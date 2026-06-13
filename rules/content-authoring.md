@@ -159,7 +159,7 @@ Title length: 1–2 lines. If more is needed, the point isn't sharp yet. Render 
 - **Telegraphic is fine.** "Intervention cut cost 23% (p<0.01)" beats a full sentence. Body font 20 pt floor.
 - **Bold/italics sparingly** — key term on first use, inline labels ("Note:", "Limitation:"), the focal finding. Not decoration.
 - **Speaker notes are not a reprint of the body.** They hold: (1) context the body couldn't fit, (2) the transition to the next slide, (3) the anticipated question + how to handle it, (4) optionally a verbatim phrase for delicate framing. 3–6 sentences, written as spoken.
-- **Word-count caps are design-mode-specific at render time.** The ~40-word guide here is the *authoring* target. The slide-render hard limits differ by mode (Education 30/50, Academic ≤40, plus physical-overflow caps ~120 EN / ~80 CJK) — see `design-system/` (`prompting_rules.md`, `qa_rules.md`) and `docs/design-reference/DESIGN_MODES.md`. Authoring ≤40 keeps you safe under all of them.
+- **Word-count caps are design-mode-specific at render time.** The ~40-word guide here is the *authoring* target. The slide-render hard limits differ by mode (Education 30/50, Academic ≤40, plus physical-overflow caps ~120 EN / ~80 CJK) — see `design-system/prompting_rules.md`, `design-system/qa_rules.md` and `docs/design-reference/DESIGN_MODES.md`. Authoring ≤40 keeps you safe under all of them.
 
 ---
 

@@ -16,6 +16,14 @@ const TEXT_SELECTOR = 'p,h1,h2,h3,h4,h5,h6,li';
 const TOLERANCE_PX = 0.5;
 const DEFAULT_SLIDES_DIR = 'slides';
 
+// Deterministic timestamp for reproducible report output: pinned via
+// SOURCE_DATE_EPOCH (reproducible-builds convention) when set, else wall clock.
+// Same input + same SOURCE_DATE_EPOCH → byte-identical report.
+function deterministicTimestamp() {
+  const epoch = process.env.SOURCE_DATE_EPOCH;
+  return (epoch ? new Date(Number.parseInt(epoch, 10) * 1000) : new Date()).toISOString();
+}
+
 function toSlideOrder(fileName) {
   const match = fileName.match(/\d+/);
   return match ? Number.parseInt(match[0], 10) : Number.POSITIVE_INFINITY;
@@ -412,7 +420,7 @@ async function main() {
   }
 
   const result = {
-    generatedAt: new Date().toISOString(),
+    generatedAt: deterministicTimestamp(),
     frame: {
       widthPt: FRAME_PT.width,
       heightPt: FRAME_PT.height,
@@ -434,7 +442,7 @@ const isMain = process.argv[1] && pathToFileURL(process.argv[1]).href === import
 if (isMain) {
   main().catch((error) => {
     const failure = {
-      generatedAt: new Date().toISOString(),
+      generatedAt: deterministicTimestamp(),
       frame: {
         widthPt: FRAME_PT.width,
         heightPt: FRAME_PT.height,

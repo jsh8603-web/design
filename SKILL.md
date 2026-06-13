@@ -49,3 +49,16 @@ user-invocable: true
 - PPTX: `pipelines/3-pptx/README.md`
 
 본문 → (디자인 HTML) → 변환 순. 자세한 실행 명령은 각 파이프라인 README 참조.
+
+## 5. 숫자 정합 검증 (excel 위임)
+
+숫자 정합은 design 이 직접 하지 않고 **excel 레포에 위임**한다(검증 책임 분리 유지). 원본 데이터가 있는 보고서는 렌더 후 산출물의 모든 숫자가 원본으로 추적되는지 게이트한다.
+
+```
+python3 $EXCEL_REPO/main.py ingest <source.xlsx> out/ingest                                  # → tidy.csv (정답)
+python3 $EXCEL_REPO/tools/content-gate.py <deck.html|pptx> out/ingest/tidy.csv --excel-repo $EXCEL_REPO
+```
+
+출처로 추적 안 되는 숫자가 있으면 게이트가 exit 1. `EXCEL_REPO` 는 submodule(`vendor/excel`) 권장. 공통 코어 §13 검증 게이트의 **derived(코드 재계산)** 축이 이 위임으로 닫힌다.
+
+> `content-gate.py` 는 excel 레포 소유물 — design 작업 범위가 아니라 **호출 계약만** 박는다. excel 측 게이트 구현은 별도.

@@ -3,6 +3,29 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 const sharp = require('sharp');
+const JSZip = require('jszip');
+
+// Deterministic epoch (ms) for reproducible output: SOURCE_DATE_EPOCH when set,
+// else a fixed reference (NOT wall clock) so the same input → same PPTX bytes.
+function deterministicEpochMs() {
+  const e = process.env.SOURCE_DATE_EPOCH;
+  return e ? Number.parseInt(e, 10) * 1000 : Date.parse('2026-01-01T00:00:00Z');
+}
+
+// pptxgenjs stamps docProps/core.xml created/modified with the wall clock, so
+// two runs of the same input differ byte-for-byte. Pin both to the deterministic
+// epoch after writeFile — visual rendering is unaffected, only metadata.
+async function pinPptxTimestamps(file) {
+  const iso = new Date(deterministicEpochMs()).toISOString().replace(/\.\d+Z$/, 'Z');
+  const zip = await JSZip.loadAsync(fs.readFileSync(file));
+  const coreFile = zip.file('docProps/core.xml');
+  if (!coreFile) return;
+  let core = await coreFile.async('string');
+  core = core.replace(/(<dcterms:created[^>]*>)[^<]*(<)/, `$1${iso}$2`)
+             .replace(/(<dcterms:modified[^>]*>)[^<]*(<)/, `$1${iso}$2`);
+  zip.file('docProps/core.xml', core);
+  fs.writeFileSync(file, await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE' }));
+}
 
 // Inline a simplified version that uses Playwright Chromium (not Chrome)
 const PT_PER_PX = 0.75;
@@ -118,7 +141,9 @@ async function convertSlide(htmlFile, pres, browser) {
     .png()
     .toBuffer();
 
-  const tmpPath = path.join(process.env.TMPDIR || '/tmp', `slide-${Date.now()}-${Math.random().toString(36).slice(2)}.png`);
+  // tmp PNG is cleaned up and never enters the PPTX bytes; the source basename
+  // keeps the name unique (single-deck traversal) without wall-clock leakage.
+  const tmpPath = path.join(process.env.TMPDIR || '/tmp', `slide-${path.basename(htmlFile, '.html')}.png`);
   fs.writeFileSync(tmpPath, resized);
 
   const slide = pres.addSlide();
@@ -170,6 +195,7 @@ async function main() {
 
   const outputFile = path.resolve(process.cwd(), options.output);
   await pres.writeFile({ fileName: outputFile });
+  await pinPptxTimestamps(outputFile);   // determinism: pin core.xml created/modified
   console.log(`\nSaved: ${outputFile}`);
 
   // Cleanup tmp files

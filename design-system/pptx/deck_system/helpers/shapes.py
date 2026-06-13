@@ -7,6 +7,7 @@ The HTML system explicitly forbids shadows/3D; this enforces parity.
 Reference: likaku/experiences/layout-pitfalls.md Experience 003
 """
 from __future__ import annotations
+import math
 from typing import Optional
 
 from pptx.enum.shapes import MSO_SHAPE
@@ -106,3 +107,46 @@ def add_block_arc(slide, x: float, y: float, size: float,
     shape.line.fill.background()
     _clean_shape(shape)
     return shape
+
+
+def add_line(slide, x1: float, y1: float, x2: float, y2: float,
+             color_hex: str, *, thickness_pt: float = 2.0):
+    """Add an arbitrary-angle line between two points (inches).
+
+    Implemented as a thin, rotated filled RECTANGLE — NEVER `add_connector()`
+    (which emits `<p:style>` and corrupts files on save; see add_hline).
+    The rect is centered on the segment midpoint and rotated by the segment
+    angle, so diagonals (scatter trend, line/combo polylines, BEP lines) work
+    without connectors. For dashed lines, callers emit short segments.
+    """
+    dx, dy = x2 - x1, y2 - y1
+    length = math.hypot(dx, dy)
+    if length <= 0:
+        return None
+    angle = math.degrees(math.atan2(dy, dx))
+    h_in = Pt(thickness_pt).inches
+    cx, cy = (x1 + x2) / 2.0, (y1 + y2) / 2.0
+    shape = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE,
+        Inches(cx - length / 2.0), Inches(cy - h_in / 2.0),
+        Inches(length), Inches(h_in),
+    )
+    shape.rotation = angle
+    shape.fill.solid()
+    shape.fill.fore_color.rgb = hex_to_rgb(color_hex)
+    shape.line.fill.background()
+    _clean_shape(shape)
+    return shape
+
+
+def add_polyline(slide, points, color_hex: str, *, thickness_pt: float = 2.0):
+    """Draw a connected polyline through `points` [(x,y), ...] (inches) as a
+    chain of add_line() segments. Used for line_chart / combo / overlapping."""
+    out = []
+    for i in range(len(points) - 1):
+        x1, y1 = points[i]
+        x2, y2 = points[i + 1]
+        seg = add_line(slide, x1, y1, x2, y2, color_hex, thickness_pt=thickness_pt)
+        if seg is not None:
+            out.append(seg)
+    return out

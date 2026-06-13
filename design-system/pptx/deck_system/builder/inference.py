@@ -36,6 +36,10 @@ _PASS_THROUGH_TYPES = {
     # V2.3-A additions
     "scorecard", "checklist", "temple", "pie", "appendix_title",
     "three_images", "two_col_image_grid", "metric_comparison",
+    # FP&A handoff charts (mirror of mck/assets/*.js)
+    "bullet", "tornado", "pvm_bridge", "cohort_heatmap", "combo",
+    "driver_tree", "scatter", "scenario_summary", "overlapping_line",
+    "heatmap", "treemap", "breakeven",
 }
 
 

@@ -15,3 +15,15 @@ from . import org                # noqa: F401  v0.2
 from . import v21_additions      # noqa: F401  V2.1: 9 layouts
 from . import v22_additions      # noqa: F401  V2.2: 8 layouts
 from . import v23_additions      # noqa: F401  V2.3-A: 8 layouts
+from . import fpna_charts        # noqa: F401  FP&A handoff charts: bullet
+from . import fc_tornado         # noqa: F401
+from . import fc_pvm_bridge      # noqa: F401
+from . import fc_cohort_heatmap  # noqa: F401
+from . import fc_combo           # noqa: F401
+from . import fc_driver_tree     # noqa: F401
+from . import fc_scatter         # noqa: F401
+from . import fc_scenario_summary  # noqa: F401
+from . import fc_overlapping_line  # noqa: F401
+from . import fc_heatmap         # noqa: F401
+from . import fc_treemap         # noqa: F401
+from . import fc_breakeven       # noqa: F401

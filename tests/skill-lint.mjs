@@ -26,6 +26,8 @@ const ALLOW = new Set([
   'deck-v2.md',    // 버저닝 산출물명
   'verify.py',     // 받을 추출본 검증 스크립트(의도적 미수록)
   'content-gate.py', // excel 레포 소유 — design 은 호출 계약만(SKILL.md §5), ROOT 부재가 정상
+  'slide-outline.md', // Step 1 에서 slides/<slug>/ 에 생성하는 아웃라인 산출물
+  'slide-NN.html',    // Step 2 생성 슬라이드 파일명 플레이스홀더(NN)
 ]);
 
 // 백틱 안의 경로 같은 토큰: `scripts/x.js`, `design-system/...`, `tests/...`

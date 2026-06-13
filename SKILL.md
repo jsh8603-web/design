@@ -33,6 +33,65 @@ user-invocable: true
 2. **고스트덱 아웃라인** — 액션 타이틀만으로 논리 흐름 확인. (`§2`, `§11.2`)
 3. **§13 검증 게이트** — 모든 주장을 internal(사내DB NLI) / external(권위출처·Confluence RARR) / derived(코드 재계산)로 분류해 검증. 출구 = 검증 원장에 `unsupported` 0건. (`§13`)
 
+## 2.5 생성 운영 절차 (Step 0~7) — slides-grab flow
+
+진입점에서 **이 순서를 지킨다**. 건너뛰면 소스 협의·plain 초안·비주얼 에디터·시각 검증이 통째로 누락된다(이식 시 빠졌던 부분). 상세 절차서 = `docs/pipeline-steps/PF_STEP_*.md` + `docs/pipeline-steps/PRESENTATION_FLOW.md`.
+
+**Step 0 — 소스 협의 (필수, 자동 진행 금지)**
+주제가 주어지면 임의 판단 말고 선택형으로 묻고 **사용자가 번호로 답할 때까지 대기**:
+```
+소스 자료를 어떻게 준비할까요?
+  1. URL/파일 직접 제공 (웹페이지·PDF·문서)
+  2. 사내 DB / Confluence 추출본 제공
+  3. AI가 WebSearch/WebFetch 로 조사 (일반 주제)
+  4. 추출본을 직접 작성해 전달
+```
+(원본 NotebookLM 1~4 는 OAuth 불가로 위 4지 대체 — `rules/research-sourcing.md` 3소스)
+
+**Step 1 — 아웃라인 + 승인**
+`slides/<슬러그>/` 생성 → `progress.md` 초기화 → `slide-outline.md` 작성 → **사용자 승인**. 승인 전 슬라이드 생성 금지. (본문 작성 기준 = 위 §2 Brief·고스트덱·§13 검증)
+
+**Step 1.5A — 디자인 미적용 plain 초안 (필수, 건너뛰기 금지)**
+HTML 슬라이드로 바로 가지 말고 **Marp 초안으로 구성/분량부터 확인**:
+```bash
+node scripts/draft-marp.mjs --outline slide-outline.md --output slides/<명>/draft.pptx --open
+```
+이미지 기반이라 텍스트 편집 불가 — 구성/분량 전용. 수정 요청 = 아웃라인 수정 → 초안 재생성 루프. (`PF_STEP_0_1.md §1.5A`)
+
+**Step 2 — HTML 생성**
+design-system + `rules/` 규칙으로 `slide-NN.html` 생성 → preflight:
+```bash
+node scripts/preflight-html.js --slides-dir slides/<명>
+```
+(`PF_STEP_2_2_5.md §2`)
+
+**Step 2.5 — 시각 검증 (필수, 에디터 전) = COM + Playwright 비교**
+시각 검사는 Gemini Vision 자리를 **사내 가용한 COM(PowerPoint) + Playwright** 로 대체한다(OAuth 불가로 Gemini VQA 제거 — VQA 는 이미지 검수 한정이라 사내 skip). 변환 후 HTML 스크린샷 ↔ PPTX COM 300DPI 프리뷰를 나란히 비교:
+```bash
+node scripts/convert-native.mjs --slides-dir slides/<명> --output slides/<명>/<명>.pptx
+node scripts/screenshot-html.mjs --slides-dir slides/<명> --output slides/<명>/html-preview          # Playwright 1600×900
+powershell -ExecutionPolicy Bypass -File scripts/export-slides-png.ps1 -PptxPath "slides/<명>/<명>.pptx" -OutputDir "slides/<명>/preview"   # COM 300DPI
+```
+각 `slide-NN.png` 두 장을 `Read` 로 나란히 확인 — 형태변형·텍스트잘림·색상차이·이미지깨짐. 차이 발견 시 HTML 수정 → 재변환(최대 2회). **이 비교 통과 전 에디터/다운로드 링크 제공 금지**. (`PF_STEP_2_2_5.md §2.5`)
+
+**Step 3 — 비주얼 에디터 (브라우저 자동 오픈 필수)**
+기존 에디터(포트 3456~3460) 종료 → editor-server 실행 → **브라우저 자동 오픈**:
+```bash
+node scripts/editor-server.js --slides-dir slides/<명> --port 3456 &
+sleep 2; start http://localhost:3456/ 2>/dev/null || powershell -Command "Start-Process 'http://localhost:3456/'"
+```
+URL만 안내하는 것 금지 — 자동으로 연다. 클릭=텍스트 직접편집, 드래그=AI 수정 요청. (외부 터널은 사내망 제약 가능 → 로컬 우선) (`PF_STEP_3_4.md §3`)
+
+**Step 4 — 수정 반복**
+사용자 피드백 = 정탐. 수정 전 번호 리스트로 확인 → HTML 수정 → 에디터 자동 갱신(fsWatch→SSE). 레이아웃/구조 수정 시 **Step 2.5 재검증 필수**. (`PF_STEP_3_4.md §4`)
+
+**Step 5~7 — 변환 (사용자 형식 선택 후)**
+```bash
+node scripts/convert-native.mjs --slides-dir slides/<명> --output <명>.pptx --full   # PPTX
+node scripts/html2pdf.js        --slides-dir slides/<명> --output <명>.pdf            # PDF
+```
+(`docs/pipeline-steps/PF_STEP_5_6_7.md`)
+
 ## 3. 규칙 SSOT (어디를 보나)
 
 | 영역 | 위치 |

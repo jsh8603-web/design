@@ -22,9 +22,12 @@ import { rasterizersAvailable } from './rasterize.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const HARNESS = path.join(__dirname, 'run-visual-regression.mjs');
-const GOLDEN = path.join(__dirname, 'golden');
 const DIFF = path.join(__dirname, 'diff');
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'vr-h-'));
+// Isolated golden dir inside TMP (passed to the harness via VR_GOLDEN_DIR) so
+// the self-test never touches the real committed golden/ — earlier the cleanup
+// here deleted the html goldens. Real golden/ is now untouched.
+const GOLDEN = path.join(TMP, 'golden');
 
 let passed = 0, failed = 0, skipped = 0;
 const ok = (n, c, d = '') => { if (c) { console.log(`  ✓ ${n}${d ? '  ' + d : ''}`); passed++; } else { console.error(`  ✗ ${n}${d ? '  ' + d : ''}`); failed++; } };
@@ -33,7 +36,7 @@ const skip = (n, why) => { console.log(`  ⊝ ${n}  (skip: ${why})`); skipped++;
 // run harness, return {code, out}
 function run(args) {
   try {
-    const out = execFileSync('node', [HARNESS, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    const out = execFileSync('node', [HARNESS, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, VR_GOLDEN_DIR: GOLDEN } });
     return { code: 0, out };
   } catch (e) {
     return { code: e.status ?? 2, out: (e.stdout || '') + (e.stderr || '') };

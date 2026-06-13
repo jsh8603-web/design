@@ -27,7 +27,7 @@ import { rasterizersAvailable, pdfToPngs, pptxToPngs } from './rasterize.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
-const GOLDEN_DIR = path.join(__dirname, 'golden');
+const GOLDEN_DIR = process.env.VR_GOLDEN_DIR || path.join(__dirname, 'golden');
 const DIFF_DIR = path.join(__dirname, 'diff');
 const DEFAULT_THRESHOLD = 0.005;
 

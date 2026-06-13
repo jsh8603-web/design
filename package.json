@@ -23,7 +23,8 @@
     "vr:save": "node tests/visual-regression/run-visual-regression.mjs --save",
     "vr:pdf": "node tests/visual-regression/run-visual-regression.mjs --mode pdf",
     "vr:pptx": "node tests/visual-regression/run-visual-regression.mjs --mode pptx",
-    "vr:test": "node tests/visual-regression/test-diff.mjs && node tests/visual-regression/test-rasterize.mjs && node tests/visual-regression/test-harness.mjs",
+    "vr:test": "node tests/visual-regression/test-diff.mjs && node tests/visual-regression/test-rasterize.mjs && node tests/visual-regression/test-harness.mjs && node tests/visual-regression/test-fonts.mjs",
+    "vr:report": "node tests/visual-regression/gen-report.mjs",
     "postinstall": "playwright install chromium"
   },
   "dependencies": {

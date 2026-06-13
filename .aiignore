@@ -1,0 +1,11 @@
+# Routing fence for Claude Code / AI agents.
+# Stale, company-blocked Vision/fetch guides (GEMINI.md, NOTEBOOKLM_FETCH.md, …)
+# describe tooling that is unavailable in this corp environment. Exclude them from
+# agent routing so dead rules are never mis-picked.
+_archive-company-blocked/
+
+# Build / cache noise
+__pycache__/
+*.pyc
+tests/visual-regression/diff/
+node_modules/

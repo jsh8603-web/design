@@ -31,6 +31,18 @@ const GOLDEN_DIR = process.env.VR_GOLDEN_DIR || path.join(__dirname, 'golden');
 const DIFF_DIR = path.join(__dirname, 'diff');
 const DEFAULT_THRESHOLD = 0.005;
 
+// Per-case thresholds (Playwright threshold/maxDiffPixelRatio model): a global
+// default plus per-key overrides. Cases that are legitimately noisier (heavy
+// gradients, sub-pixel chart strokes) get a looser bar without loosening all.
+function loadThresholds() {
+  const p = path.join(__dirname, 'thresholds.json');
+  if (fs.existsSync(p)) {
+    try { const t = JSON.parse(fs.readFileSync(p, 'utf8')); return { default: t.default ?? DEFAULT_THRESHOLD, overrides: t.overrides || {} }; }
+    catch { /* fall through to default */ }
+  }
+  return { default: DEFAULT_THRESHOLD, overrides: {} };
+}
+
 const C = { red: '\x1b[31m', green: '\x1b[32m', yellow: '\x1b[33m', cyan: '\x1b[36m', bold: '\x1b[1m', dim: '\x1b[2m', reset: '\x1b[0m' };
 
 // CSS injected before every navigation so transient animation/transition frames
@@ -43,7 +55,7 @@ function parseArgs() {
   for (let i = 0; i < a.length; i++) {
     if (a[i] === '--mode' && a[i + 1]) o.mode = a[++i];
     else if (a[i] === '--save') o.save = true;
-    else if (a[i] === '--threshold' && a[i + 1]) o.threshold = parseFloat(a[++i]);
+    else if (a[i] === '--threshold' && a[i + 1]) { o.threshold = parseFloat(a[++i]); o.thresholdSet = true; }
     else if (a[i] === '--current' && a[i + 1]) o.current = path.resolve(a[++i]);
     else if (a[i] === '--artifacts' && a[i + 1]) o.artifacts = path.resolve(a[++i]);
   }
@@ -166,7 +178,14 @@ async function main() {
   fs.mkdirSync(gdir, { recursive: true });
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'vr-'));
 
-  console.log(`${C.bold}Visual Regression [${opts.mode}]${C.reset}  (${cases.length} cases, threshold ${(opts.threshold * 100).toFixed(2)}%)`);
+  const TH = loadThresholds();
+  // CLI --threshold (if explicitly passed) wins as the global bar; otherwise the
+  // thresholds.json default. Per-key overrides always take precedence per case.
+  const globalThr = opts.thresholdSet ? opts.threshold : TH.default;
+  const caseThr = (key) => TH.overrides[key] ?? globalThr;
+  const nOverrides = Object.keys(TH.overrides).length;
+
+  console.log(`${C.bold}Visual Regression [${opts.mode}]${C.reset}  (${cases.length} cases, threshold ${(globalThr * 100).toFixed(2)}%${nOverrides ? `, ${nOverrides} override(s)` : ''})`);
   console.log('━'.repeat(54));
 
   let regressions = 0, saved = 0, missing = 0, comparedPages = 0;
@@ -188,7 +207,7 @@ async function main() {
       const r = await diffImages(gPath, pages[i], { heatmap: true });
       comparedPages++;
       if (r.ratio > worst) worst = r.ratio;
-      if (r.ratio > opts.threshold) {
+      if (r.ratio > caseThr(c.key)) {
         fs.mkdirSync(DIFF_DIR, { recursive: true });
         fs.writeFileSync(path.join(DIFF_DIR, `${gName.replace(/\.png$/, '')}.diff.png`), r.diffPng);
         caseRegressed = true;

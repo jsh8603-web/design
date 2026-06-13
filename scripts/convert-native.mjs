@@ -6,6 +6,7 @@
  */
 
 import PptxGenJS from 'pptxgenjs';
+import { guardFonts } from '../tests/visual-regression/embed-fonts.mjs';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
@@ -207,6 +208,19 @@ async function main() {
         errors: contrastErrors.map(w => `[${w.file}] <${w.tag}> "${w.text}": ${w.textColor} on ${w.bgColor} (${w.ratio}:1)`)
       });
     }
+  }
+
+  // Phase 2.5: Font preflight guard — turn silent fallback into a build failure.
+  // pptxgenjs does NOT embed fonts; a typeface we don't ship renders wrong on
+  // the recipient's machine. Fail loudly here (skippable via --skip-validation).
+  if (!options.skipValidation) {
+    const g = await guardFonts(outputPath);
+    if (!g.ok) {
+      console.error(`\n[font-guard] 미탑재 typeface 사용: ${g.offenders.join(', ')}`);
+      console.error(`  → design-system/fonts 에 추가하거나 embedFonts()로 임베드할 것 (used: ${g.used.join(', ')})`);
+      process.exit(1);   // 조용한 폴백을 빌드 실패로 전환
+    }
+    console.log(`[font-guard] OK — all typefaces shipped (${g.used.join(', ')})`);
   }
 
   // Phase 3: Post-PPTX XML validation

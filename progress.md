@@ -19,9 +19,10 @@ date: 2026-06-13
 - [ ] 1.3 mck 차트JS 중복/유효성 확인 `model: sonnet`
 
 ## Phase 2 — 변환 엔진 이식
-- [ ] 2.1 원본 slides-grab scripts/ 중 변환·검증 코어만 선별 복사 `model: sonnet`
-- [ ] 2.2 사내불가 의존 떼어내기 (Gemini/NotebookLM/터널 호출부 제거) `model: opus`
-- [ ] 2.3 package.json 정리 (불필요 deps 제거) `model: sonnet`
+- [x] 2.1 코어 선별 복사 (convert-native/preflight/validate-slides/validate-pptx/html2pptx(+local)/html2pdf/auto-checklist/editor-server/build-viewer/draft-marp + html2pptx.cjs + src/ + bin/ppt-agent + convert.cjs) `model: sonnet`
+- [x] 2.2 사내불가 의존 제거: html2pptx.cjs import경로 수정 / validate-pptx-com(Gemini Vision)→archive(existsSync 가드로 자동 skip) / editor-server Cloudflare 터널 전체 제거. NotebookLM/nodemailer 는 애초 미복사 `model: opus`
+  - 회귀 확인: 전 11파일 node --check 통과 + 잔존 외부의존(GEMINI/터널/notebooklm/nodemailer/.claude경로) grep 0건
+- [x] 2.3 package.json (commander/express/jszip/pdf-lib/playwright/pptxgenjs/sharp + marp dev. nodemailer/react-icons/xml2js 제외) `model: sonnet`
 
 ## Phase 3 — 규칙 머지
 - [ ] 3.1 rules/content-authoring.md = 루트 md 뼈대 + slides-grab 정량규칙 흡수 `model: opus`

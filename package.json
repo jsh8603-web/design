@@ -1,0 +1,36 @@
+{
+  "name": "design-report-pipeline",
+  "version": "1.0.0",
+  "description": "사내 Claude Code 보고서 생성 파이프라인 — 본문/PDF/PPTX. slides-grab 변환 엔진 + design-system 디자인, 사내 제약(OAuth·Gemini·NotebookLM 불가) 반영",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "type": "module",
+  "bin": {
+    "design-report": "./bin/ppt-agent.js"
+  },
+  "scripts": {
+    "convert": "node scripts/convert-native.mjs",
+    "convert-screenshot": "node convert.cjs",
+    "pdf": "node scripts/html2pdf.js",
+    "validate": "node scripts/validate-slides.js",
+    "build-viewer": "node scripts/build-viewer.js",
+    "editor": "node scripts/editor-server.js",
+    "draft": "node scripts/draft-marp.mjs",
+    "postinstall": "playwright install chromium"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "express": "^5.2.1",
+    "jszip": "^3.10.1",
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.58.2",
+    "pptxgenjs": "^3.12.0",
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.2.3"
+  }
+}

@@ -36,10 +36,11 @@ date: 2026-06-13
 - [x] 4.4 pipelines/3-pptx/README.md (사내용 스텝, Gemini 단계 제거 명시) `model: sonnet`
 
 ## Phase 5 — 실동작 테스트
-- [ ] 5.1 npm install + Chromium, 샘플 HTML→PPTX e2e `model: sonnet`
-- [ ] 5.2 회귀 확인 (preflight/QA 동작) `model: sonnet`
+- [x] 5.1 npm install (47pkg, 0 vuln) + chromium 확인, 샘플 HTML→PPTX e2e: slide1.xml 생성·텍스트/도형 변환 OK / HTML→PDF v1.7 생성 OK `model: sonnet`
+  - 회귀 확인: 규격 정합 검증 — design-system deliverable=720pt×405pt(960×540px)=엔진 SLIDE_W/H 10×5.625" 일치. body 크기 명시 시 변환 통과. mck/slides 1280px 는 데모 참고용(변환대상 아님)
+- [x] 5.2 preflight 단독 통과, VP XML 검증 동작(테스트 HTML 한계로 VP-04 false positive, 엔진 무결) `model: sonnet`
 
 ## Phase 6 — 마무리
-- [ ] 6.1 README.md 작성 `model: sonnet`
+- [x] 6.1 README.md 작성 `model: sonnet`
 - [ ] 6.2 git commit + repo push `model: sonnet`
 </content>

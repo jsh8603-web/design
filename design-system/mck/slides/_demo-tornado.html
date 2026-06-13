@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>tornado demo</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin:0; font-family:var(--font-sans); }
+  .deck-stage section {
+    width:1280px; height:720px; background:var(--bg); color:var(--text);
+    position:relative; overflow:hidden; box-sizing:border-box;
+  }
+  .s-title {
+    position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px;
+    display:flex; align-items:center; font-family:var(--font-display);
+    font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading);
+    letter-spacing:-0.005em;
+  }
+  .s-rule { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-source { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .chart-wrap { position:absolute; left:76.8px; top:150px; width:1126.4px; height:470px; }
+  .legend { position:absolute; left:76.8px; top:120px; font-size:13px; color:var(--gray-2); display:flex; gap:18px; }
+  .legend b { color:var(--gray-1); }
+</style>
+</head>
+<body>
+<div class="deck-stage">
+  <section data-layout="tornado" data-screen-label="tornado demo">
+    <div class="s-title">민감도 분석 — 영업이익 변동폭, 물동량이 최대 변수</div>
+    <div class="s-rule"></div>
+    <div class="legend">막대 = 결과 변동 구간 · 점선 = Base case · <b style="color:var(--negative)">빨강</b> = 하락(downside) · <b style="color:var(--positive)">초록</b> = 상승(upside)</div>
+    <div class="chart-wrap"><div id="t1" style="width:100%;"></div></div>
+    <div class="s-source">출처: FP&A 내부 시나리오 분석 (예시 데이터)</div>
+    <div class="s-pagenum">13</div>
+  </section>
+</div>
+<script type="module">
+import { renderTornado } from "../assets/tornado.js";
+renderTornado("#t1", {
+  base: 200, unit: "억",
+  items: [
+    { label: "물동량 ±10%",   low: 158, high: 246 },
+    { label: "인건비 단가 ±8%", low: 176, high: 224 },
+    { label: "연료비 ±15%",     low: 184, high: 216 },
+    { label: "환율 ±5%",        low: 190, high: 210 },
+  ],
+});
+</script>
+</body>
+</html>

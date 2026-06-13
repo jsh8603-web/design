@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>treemap demo</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin:0; font-family:var(--font-sans); }
+  .deck-stage section {
+    width:1280px; height:720px; background:var(--bg); color:var(--text);
+    position:relative; overflow:hidden; box-sizing:border-box;
+  }
+  .s-title {
+    position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px;
+    display:flex; align-items:center; font-family:var(--font-display);
+    font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading);
+    letter-spacing:-0.005em;
+  }
+  .s-rule { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-source { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .chart-wrap { position:absolute; left:76.8px; top:150px; width:1126.4px; height:470px; }
+  .legend { position:absolute; left:76.8px; top:120px; font-size:13px; color:var(--gray-2); display:flex; gap:18px; }
+  .legend b { color:var(--gray-1); }
+</style>
+</head>
+<body>
+<div class="deck-stage">
+  <section data-layout="treemap" data-screen-label="treemap demo">
+    <div class="s-title">영업비용 구성 — 인건비 33%·물류비 24%가 2/3 차지</div>
+    <div class="s-rule"></div>
+    <div class="legend">면적 = 비용 규모 · 셀 안 = 항목·금액·비중</div>
+    <div class="chart-wrap"><div id="t1" style="width:100%;"></div></div>
+    <div class="s-source">출처: FP&A 내부 결산 (예시 데이터)</div>
+    <div class="s-pagenum">11</div>
+  </section>
+</div>
+<script type="module">
+import { renderTreemap } from "../assets/treemap.js";
+renderTreemap("#t1", {
+  unit: "억",
+  items: [
+    { label: "인건비",   value: 420 },
+    { label: "물류비",   value: 310 },
+    { label: "마케팅비", value: 180 },
+    { label: "임차료",   value: 130 },
+    { label: "R&D",      value: 110 },
+    { label: "감가상각", value: 95 },
+    { label: "기타",     value: 75 }
+  ]
+});
+</script>
+</body>
+</html>

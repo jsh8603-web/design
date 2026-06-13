@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>FP&A 신규 차트 — 렌더 검증 갤러리</title>
+<style>
+  body { margin:0; padding:40px; background:#f4f5f7; font-family:'Pretendard',system-ui,sans-serif; color:#1a2332; }
+  h1 { font-size:26px; margin:0 0 6px; }
+  .sub { color:#5b6472; margin:0 0 28px; font-size:14px; }
+  .group { font-size:14px; font-weight:700; color:#2a8c4a; margin:28px 0 12px; border-top:1px solid #dfe3e8; padding-top:18px; }
+  .card { background:#fff; border-radius:10px; box-shadow:0 2px 12px rgba(0,0,0,.08); margin-bottom:24px; overflow:hidden; }
+  .card h2 { font-size:17px; margin:0; padding:14px 18px; border-bottom:1px solid #eceef1; }
+  .card h2 .tag { font-size:11px; font-weight:600; color:#2a8c4a; margin-left:10px; }
+  .card .meta { padding:6px 18px 0; font-size:12.5px; color:#5b6472; }
+  .card img { display:block; width:100%; height:auto; }
+</style>
+</head>
+<body>
+  <h1>FP&A 핸드오프 차트 — 렌더 검증 갤러리 (12종)</h1>
+  <p class="sub">Excel↔슬라이드 패리티 보완. 각 차트 = JS/SVG 렌더러 + 데모 슬라이드 렌더 스크린샷. 메인 세션이 육안 검증한 통과본만 등록.</p>
+
+  <div class="group">A. 1차 — 핵심 핸드오프 4종</div>
+  <div class="card"><h2>1 · Bullet chart <span class="tag">✓</span></h2><p class="meta">실적 vs 목표 vs 평가구간. KPI 스코어카드·보드팩. (bullet.js)</p><img src="1-bullet.png"></div>
+  <div class="card"><h2>2 · Tornado (민감도) <span class="tag">✓</span></h2><p class="meta">변수별 결과 변동폭 발산막대, swing 내림차순. (tornado.js)</p><img src="2-tornado.png"></div>
+  <div class="card"><h2>3 · PVM Bridge <span class="tag">✓</span></h2><p class="meta">가격·물량·믹스 3요인 분해 폭포. (pvm-bridge.js)</p><img src="3-pvm.png"></div>
+  <div class="card"><h2>4 · Cohort Heatmap <span class="tag">✓</span></h2><p class="meta">코호트별 잔존율 그리드, 연속 색보간. (cohort-heatmap.js)</p><img src="4-cohort.png"></div>
+
+  <div class="group">B. 2차 — 자문 발견 커버리지 보완 8종</div>
+  <div class="card"><h2>5 · Combo (dual-axis) <span class="tag">✓</span></h2><p class="meta">매출막대 + 마진%선, 좌우 독립축. FP&A 최빈. (combo.js)</p><img src="5-combo.png"></div>
+  <div class="card"><h2>6 · Driver Tree <span class="tag">✓</span></h2><p class="meta">ROIC=수익성×자산회전 등 수식 분해 트리. (driver-tree.js)</p><img src="6-driver-tree.png"></div>
+  <div class="card"><h2>7 · Scatter <span class="tag">✓</span></h2><p class="meta">조업도×원가 상관 + 회귀 추세선. (scatter.js)</p><img src="7-scatter.png"></div>
+  <div class="card"><h2>8 · Scenario Summary <span class="tag">✓</span></h2><p class="meta">Base/Up/Down 시나리오별 KPI 결과 비교. (scenario-summary.js)</p><img src="8-scenario.png"></div>
+  <div class="card"><h2>9 · Overlapping Line (계절성) <span class="tag">✓</span></h2><p class="meta">연도별 선 겹쳐 계절 패턴 비교. (overlapping-line.js)</p><img src="9-overlapping.png"></div>
+  <div class="card"><h2>10 · Heatmap (범용 발산) <span class="tag">✓</span></h2><p class="meta">부서×월 변동률, 음수빨강·양수초록. (heatmap.js)</p><img src="10-heatmap.png"></div>
+  <div class="card"><h2>11 · Treemap <span class="tag">✓</span></h2><p class="meta">비용 구성 면적 분할(squarified). (treemap.js)</p><img src="11-treemap.png"></div>
+  <div class="card"><h2>12 · Breakeven (CVP) <span class="tag">✓</span></h2><p class="meta">매출·총비용선 교차 손익분기점. (breakeven.js)</p><img src="12-breakeven.png"></div>
+</body>
+</html>

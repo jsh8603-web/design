@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>bullet demo</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin:0; font-family:var(--font-sans); }
+  .deck-stage section {
+    width:1280px; height:720px; background:var(--bg); color:var(--text);
+    position:relative; overflow:hidden; box-sizing:border-box;
+  }
+  .s-title {
+    position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px;
+    display:flex; align-items:center; font-family:var(--font-display);
+    font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading);
+    letter-spacing:-0.005em;
+  }
+  .s-rule { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-source { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .chart-wrap { position:absolute; left:76.8px; top:150px; width:1126.4px; height:470px; }
+  .legend { position:absolute; left:76.8px; top:120px; font-size:13px; color:var(--gray-2); display:flex; gap:18px; }
+  .legend b { color:var(--gray-1); }
+</style>
+</head>
+<body>
+<div class="deck-stage">
+  <section data-layout="bullet" data-screen-label="bullet demo">
+    <div class="s-title">FY26 핵심 KPI, 목표 대비 실적 — 매출·FCF 초과, 수익성·집중도 미달</div>
+    <div class="s-rule"></div>
+    <div class="legend">막대 = 실적 · 세로선 = 목표 · 회색 음영 = 평가 구간(미흡/적정/우수)</div>
+    <div class="chart-wrap"><div id="b1" style="width:100%;"></div></div>
+    <div class="s-source">출처: FP&A 내부 결산 (예시 데이터)</div>
+    <div class="s-pagenum">12</div>
+  </section>
+</div>
+<script type="module">
+import { renderBullet } from "../assets/bullet.js";
+renderBullet("#b1", {
+  items: [
+    { label: "매출",            measure: 1430, target: 1200, ranges: [800, 1100, 1500], unit: "억" },
+    { label: "영업이익",         measure: 168,  target: 200,  ranges: [120, 180, 240],  unit: "억" },
+    { label: "FCF 전환율",       measure: 84,   target: 80,   ranges: [50, 70, 100],    unit: "%" },
+    { label: "상위3사 집중도",    measure: 58,   target: 45,   ranges: [40, 60, 80],     unit: "%" },
+  ],
+});
+</script>
+</body>
+</html>

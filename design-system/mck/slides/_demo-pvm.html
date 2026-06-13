@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>pvm bridge demo</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin:0; font-family:var(--font-sans); }
+  .deck-stage section {
+    width:1280px; height:720px; background:var(--bg); color:var(--text);
+    position:relative; overflow:hidden; box-sizing:border-box;
+  }
+  .s-title {
+    position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px;
+    display:flex; align-items:center; font-family:var(--font-display);
+    font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading);
+    letter-spacing:-0.005em;
+  }
+  .s-rule { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-source { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .chart-wrap { position:absolute; left:76.8px; top:150px; width:1126.4px; height:470px; }
+  .legend { position:absolute; left:76.8px; top:120px; font-size:13px; color:var(--gray-2); display:flex; gap:18px; }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .legend i { width:13px; height:13px; border-radius:2px; display:inline-block; }
+  .legend b { color:var(--gray-1); }
+</style>
+</head>
+<body>
+<div class="deck-stage">
+  <section data-layout="pvm-bridge" data-screen-label="pvm bridge demo">
+    <div class="s-title">FY26 매출 +180억, 가격·물량이 견인 / 믹스 악화 −55억</div>
+    <div class="s-rule"></div>
+    <div class="legend">
+      <span><i style="background:var(--surface-inverse);"></i><b>기준/결과</b></span>
+      <span><i style="background:var(--accent);"></i><b>가격</b></span>
+      <span><i style="background:var(--positive);"></i><b>물량</b></span>
+      <span><i style="background:var(--gray-2);"></i><b>믹스</b></span>
+    </div>
+    <div class="chart-wrap"><div id="p1" style="width:100%;"></div></div>
+    <div class="s-source">출처: FP&A 내부 결산 (예시 데이터)</div>
+    <div class="s-pagenum">13</div>
+  </section>
+</div>
+<script type="module">
+import { renderPvmBridge } from "../assets/pvm-bridge.js";
+renderPvmBridge("#p1", {
+  unit: "억",
+  items: [
+    { label: "FY25 매출",  value: 1200, type: "base" },
+    { label: "가격 효과",   value: 145,  type: "price" },
+    { label: "물량 효과",   value: 90,   type: "volume" },
+    { label: "믹스 효과",   value: -55,  type: "mix" },
+    { label: "FY26 매출",  value: 1380, type: "end" },
+  ],
+});
+</script>
+</body>
+</html>

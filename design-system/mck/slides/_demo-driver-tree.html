@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>driver-tree demo</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  body { margin:0; font-family:var(--font-sans); }
+  .deck-stage section {
+    width:1280px; height:720px; background:var(--bg); color:var(--text);
+    position:relative; overflow:hidden; box-sizing:border-box;
+  }
+  .s-title {
+    position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px;
+    display:flex; align-items:center; font-family:var(--font-display);
+    font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading);
+    letter-spacing:-0.005em;
+  }
+  .s-rule { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-source { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .chart-wrap { position:absolute; left:76.8px; top:150px; width:1126.4px; height:470px; }
+  .legend { position:absolute; left:76.8px; top:120px; font-size:13px; color:var(--gray-2); display:flex; gap:18px; }
+  .legend b { color:var(--gray-1); }
+</style>
+</head>
+<body>
+<div class="deck-stage">
+  <section data-layout="driver-tree" data-screen-label="driver-tree demo">
+    <div class="s-title">ROIC 14.0% 분해 — 수익성(8.0%) × 자산회전(1.75x)</div>
+    <div class="s-rule"></div>
+    <div class="legend">파란 박스 = 결과지표 · 회색 박스 = 분해 동인 · 원형 기호 = 연산(×)</div>
+    <div class="chart-wrap"><div id="d1" style="width:100%;"></div></div>
+    <div class="s-source">출처: FP&A 내부 결산 (예시 데이터)</div>
+    <div class="s-pagenum">13</div>
+  </section>
+</div>
+<script type="module">
+import { renderDriverTree } from "../assets/driver-tree.js";
+renderDriverTree("#d1", {
+  root: { label: "ROIC", value: "14.0%" },
+  children: [
+    { label: "영업이익률", value: "8.0%", op: "×",
+      children: [ { label: "매출", value: "1,430억" }, { label: "영업이익", value: "114억" } ] },
+    { label: "자산회전율", value: "1.75x", op: "",
+      children: [ { label: "매출", value: "1,430억" }, { label: "투하자본", value: "817억" } ] }
+  ]
+});
+</script>
+</body>
+</html>

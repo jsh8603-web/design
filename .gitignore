@@ -16,3 +16,7 @@ slides/**/out/
 # temp
 .tmp/
 *.tmp
+
+# operational / IDE
+.secretary/
+.vscode/

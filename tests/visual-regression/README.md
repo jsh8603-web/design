@@ -51,6 +51,13 @@ npm run vr:test
 숫자 정합이 critical 한 보고서라면 (a) 임계를 낮추거나, (b) 텍스트 정합은 기존 PF/VP(규칙·XML) 레이어로 잡고
 시각 회귀는 레이아웃·차트 깨짐 탐지에 집중하는 분업이 안전하다.
 
+## 도구 부재 환경 (사내 = 정상 상태)
+
+poppler·LibreOffice 미설치가 사내의 정상 상태다(설치 불가). 이때 PDF/PPTX 레이어(B/C)는 **자동 SKIP**(fail 아님):
+`vr:test` = 엔진 **10/10 PASS** + 래스터 **2 skip** + 하니스 **9 pass·2 skip** = **전부 0 failed**.
+HTML 레이어(A)만으로 슬라이드·차트 시각 회귀를 잡는다(전 경로가 HTML로 수렴하므로 커버리지 핵심).
+poppler/LibreOffice가 있는 CI 컨테이너에서는 B/C도 활성화되어 하니스 20/20·래스터 7/7이 된다.
+
 ## LibreOffice 한계
 
 PPTX 모드는 LibreOffice 렌더를 기준으로 한다(≠ PowerPoint). **자기 골든 대비 회귀**만 잡으며,

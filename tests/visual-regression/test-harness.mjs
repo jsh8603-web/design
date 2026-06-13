@@ -3,6 +3,10 @@
  * Uses real discovery + real rasterizers; synthesizes pixels/artifacts so it is
  * fully deterministic and needs no chromium.
  *
+ * PDF/PPTX sections require system tools (poppler / LibreOffice). When those are
+ * absent — the normal state in a locked-down corporate environment — those
+ * sections SKIP (not FAIL), so a clean run reads "passed + skipped", never red.
+ *
  * Run: node tests/visual-regression/test-harness.mjs
  */
 import fs from 'node:fs';
@@ -14,6 +18,7 @@ import sharp from 'sharp';
 import { PDFDocument, rgb } from 'pdf-lib';
 import PptxGenJS from 'pptxgenjs';
 import { discoverHtmlCases } from './run-visual-regression.mjs';
+import { rasterizersAvailable } from './rasterize.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const HARNESS = path.join(__dirname, 'run-visual-regression.mjs');
@@ -21,8 +26,9 @@ const GOLDEN = path.join(__dirname, 'golden');
 const DIFF = path.join(__dirname, 'diff');
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'vr-h-'));
 
-let passed = 0, failed = 0;
+let passed = 0, failed = 0, skipped = 0;
 const ok = (n, c, d = '') => { if (c) { console.log(`  ✓ ${n}${d ? '  ' + d : ''}`); passed++; } else { console.error(`  ✗ ${n}${d ? '  ' + d : ''}`); failed++; } };
+const skip = (n, why) => { console.log(`  ⊝ ${n}  (skip: ${why})`); skipped++; };
 
 // run harness, return {code, out}
 function run(args) {
@@ -36,6 +42,9 @@ function run(args) {
 const solid = (file, c) => sharp({ create: { width: 320, height: 180, channels: 3, background: c } }).png().toFile(file);
 
 async function main() {
+  const avail = rasterizersAvailable();
+  console.log(`rasterizers: pdftoppm=${avail.pdftoppm}  soffice=${avail.soffice}\n`);
+
   // ── 1. HTML discovery against the real repo ────────────────────────────────
   console.log('1. HTML discovery (real repo)');
   const cases = discoverHtmlCases();
@@ -66,70 +75,80 @@ async function main() {
   ok('perturbed case named in output', r.out.includes(victim.key), victim.key);
   ok('diff heatmap written', fs.existsSync(path.join(DIFF, `${victim.key}.diff.png`)));
 
-  // ── 3. PDF mode E2E (real pdftoppm) ────────────────────────────────────────
+  // ── 3. PDF mode E2E (real pdftoppm) — SKIP if poppler absent ────────────────
   console.log('\n3. PDF mode (poppler)');
-  fs.rmSync(path.join(GOLDEN, 'pdf'), { recursive: true, force: true });
-  const pdfDir = path.join(TMP, 'pdf'); fs.mkdirSync(pdfDir, { recursive: true });
-  const mkPdf = async (file, pages, extra) => {
-    const d = await PDFDocument.create();
-    for (let p = 0; p < pages; p++) {
-      const pg = d.addPage([960, 540]);
-      pg.drawText(`page ${p + 1}`, { x: 60, y: 470, size: 36 });
-      pg.drawRectangle({ x: 60, y: 120, width: 300, height: 180, color: rgb(0.16, 0.55, 0.29) });
-      if (extra && p === 0) pg.drawRectangle({ x: 500, y: 200, width: 200, height: 140, color: rgb(0.86, 0.08, 0.08) });
-    }
-    fs.writeFileSync(file, await d.save());
-  };
-  await mkPdf(path.join(pdfDir, 'report-a.pdf'), 1, false);
-  await mkPdf(path.join(pdfDir, 'report-b.pdf'), 2, false); // multi-page → __p1/__p2 goldens
-  r = run(['--mode', 'pdf', '--artifacts', pdfDir, '--save']);
-  ok('pdf --save → exit 0', r.code === 0, `code=${r.code}`);
-  ok('multi-page golden naming (__p2)', fs.existsSync(path.join(GOLDEN, 'pdf', 'report-b__p2.png')));
-  r = run(['--mode', 'pdf', '--artifacts', pdfDir]);
-  ok('pdf identical → exit 0', r.code === 0, `code=${r.code}`);
-  await mkPdf(path.join(pdfDir, 'report-a.pdf'), 1, true); // add red box
-  r = run(['--mode', 'pdf', '--artifacts', pdfDir]);
-  ok('pdf changed → exit 1', r.code === 1, `code=${r.code}`);
-  ok('pdf regression names case', r.out.includes('report-a'));
+  const pdfDir = path.join(TMP, 'pdf');
+  if (!avail.pdftoppm) {
+    skip('PDF mode E2E (3) + missing-golden (5)', 'pdftoppm absent');
+  } else {
+    fs.rmSync(path.join(GOLDEN, 'pdf'), { recursive: true, force: true });
+    fs.mkdirSync(pdfDir, { recursive: true });
+    const mkPdf = async (file, pages, extra) => {
+      const d = await PDFDocument.create();
+      for (let p = 0; p < pages; p++) {
+        const pg = d.addPage([960, 540]);
+        pg.drawText(`page ${p + 1}`, { x: 60, y: 470, size: 36 });
+        pg.drawRectangle({ x: 60, y: 120, width: 300, height: 180, color: rgb(0.16, 0.55, 0.29) });
+        if (extra && p === 0) pg.drawRectangle({ x: 500, y: 200, width: 200, height: 140, color: rgb(0.86, 0.08, 0.08) });
+      }
+      fs.writeFileSync(file, await d.save());
+    };
+    await mkPdf(path.join(pdfDir, 'report-a.pdf'), 1, false);
+    await mkPdf(path.join(pdfDir, 'report-b.pdf'), 2, false); // multi-page → __p1/__p2 goldens
+    r = run(['--mode', 'pdf', '--artifacts', pdfDir, '--save']);
+    ok('pdf --save → exit 0', r.code === 0, `code=${r.code}`);
+    ok('multi-page golden naming (__p2)', fs.existsSync(path.join(GOLDEN, 'pdf', 'report-b__p2.png')));
+    r = run(['--mode', 'pdf', '--artifacts', pdfDir]);
+    ok('pdf identical → exit 0', r.code === 0, `code=${r.code}`);
+    await mkPdf(path.join(pdfDir, 'report-a.pdf'), 1, true); // add red box
+    r = run(['--mode', 'pdf', '--artifacts', pdfDir]);
+    ok('pdf changed → exit 1', r.code === 1, `code=${r.code}`);
+    ok('pdf regression names case', r.out.includes('report-a'));
 
-  // ── 4. PPTX mode E2E (real LibreOffice) ────────────────────────────────────
+    // ── 5. missing golden is not a regression (PDF mode → needs poppler) ───────
+    console.log('\n5. missing golden handling');
+    fs.rmSync(path.join(GOLDEN, 'pdf'), { recursive: true, force: true });
+    r = run(['--mode', 'pdf', '--artifacts', pdfDir]);
+    ok('missing golden → exit 0 (not regression)', r.code === 0, `code=${r.code}`);
+    ok('missing golden reported', /missing golden|missing/.test(r.out));
+  }
+
+  // ── 4. PPTX mode E2E (real LibreOffice) — SKIP if soffice absent ────────────
   console.log('\n4. PPTX mode (LibreOffice)');
-  fs.rmSync(path.join(GOLDEN, 'pptx'), { recursive: true, force: true });
-  const pxDir = path.join(TMP, 'pptx'); fs.mkdirSync(pxDir, { recursive: true });
-  const mkPptx = async (file, revised) => {
-    const p = new PptxGenJS(); p.layout = 'LAYOUT_16x9';
-    const s = p.addSlide();
-    s.addText(revised ? 'Q3 Variance — REVISED' : 'Q3 Variance', { x: 0.5, y: 0.4, w: 9, h: 1, fontSize: 32, bold: true });
-    s.addShape(p.ShapeType.rect, { x: 0.5, y: 2, w: 3, h: 2, fill: { color: '2A8C4A' } });
-    // a 'revised' deck also moves/recolors a sizeable shape — an unambiguous,
-    // above-threshold visual delta (text-only edits can sit under a full-frame
-    // threshold; see README "threshold" note).
-    if (revised) s.addShape(p.ShapeType.rect, { x: 5.5, y: 2, w: 3.5, h: 2.5, fill: { color: 'D11414' } });
-    await p.writeFile({ fileName: file });
-  };
-  await mkPptx(path.join(pxDir, 'deck.pptx'), false);
-  r = run(['--mode', 'pptx', '--artifacts', pxDir, '--save']);
-  ok('pptx --save → exit 0', r.code === 0, `code=${r.code}`);
-  ok('pptx golden written', fs.existsSync(path.join(GOLDEN, 'pptx', 'deck.png')));
-  r = run(['--mode', 'pptx', '--artifacts', pxDir]);
-  ok('pptx identical → exit 0 (LibreOffice deterministic)', r.code === 0, `code=${r.code}`);
-  await mkPptx(path.join(pxDir, 'deck.pptx'), true);
-  r = run(['--mode', 'pptx', '--artifacts', pxDir]);
-  ok('pptx changed → exit 1', r.code === 1, `code=${r.code}`);
-
-  // ── 5. missing golden is not a regression ──────────────────────────────────
-  console.log('\n5. missing golden handling');
-  fs.rmSync(path.join(GOLDEN, 'pdf'), { recursive: true, force: true });
-  r = run(['--mode', 'pdf', '--artifacts', pdfDir]);
-  ok('missing golden → exit 0 (not regression)', r.code === 0, `code=${r.code}`);
-  ok('missing golden reported', /missing golden|missing/.test(r.out));
+  if (!avail.soffice) {
+    skip('PPTX mode E2E (4)', 'soffice absent');
+  } else {
+    fs.rmSync(path.join(GOLDEN, 'pptx'), { recursive: true, force: true });
+    const pxDir = path.join(TMP, 'pptx'); fs.mkdirSync(pxDir, { recursive: true });
+    const mkPptx = async (file, revised) => {
+      const p = new PptxGenJS(); p.layout = 'LAYOUT_16x9';
+      const s = p.addSlide();
+      s.addText(revised ? 'Q3 Variance — REVISED' : 'Q3 Variance', { x: 0.5, y: 0.4, w: 9, h: 1, fontSize: 32, bold: true });
+      s.addShape(p.ShapeType.rect, { x: 0.5, y: 2, w: 3, h: 2, fill: { color: '2A8C4A' } });
+      // a 'revised' deck also moves/recolors a sizeable shape — an unambiguous,
+      // above-threshold visual delta (text-only edits can sit under a full-frame
+      // threshold; see README "threshold" note).
+      if (revised) s.addShape(p.ShapeType.rect, { x: 5.5, y: 2, w: 3.5, h: 2.5, fill: { color: 'D11414' } });
+      await p.writeFile({ fileName: file });
+    };
+    await mkPptx(path.join(pxDir, 'deck.pptx'), false);
+    r = run(['--mode', 'pptx', '--artifacts', pxDir, '--save']);
+    ok('pptx --save → exit 0', r.code === 0, `code=${r.code}`);
+    ok('pptx golden written', fs.existsSync(path.join(GOLDEN, 'pptx', 'deck.png')));
+    r = run(['--mode', 'pptx', '--artifacts', pxDir]);
+    ok('pptx identical → exit 0 (LibreOffice deterministic)', r.code === 0, `code=${r.code}`);
+    await mkPptx(path.join(pxDir, 'deck.pptx'), true);
+    r = run(['--mode', 'pptx', '--artifacts', pxDir]);
+    ok('pptx changed → exit 1', r.code === 1, `code=${r.code}`);
+  }
 
   // cleanup synthetic goldens we created (leave repo clean)
   for (const m of ['html', 'pdf', 'pptx']) fs.rmSync(path.join(GOLDEN, m), { recursive: true, force: true });
   fs.rmSync(DIFF, { recursive: true, force: true });
   fs.rmSync(TMP, { recursive: true, force: true });
 
-  console.log(`\n${failed === 0 ? 'PASS' : 'FAIL'}: ${passed} passed, ${failed} failed`);
+  const verdict = failed === 0 ? 'PASS' : 'FAIL';
+  console.log(`\n${verdict}: ${passed} passed, ${failed} failed, ${skipped} skipped`);
   process.exit(failed === 0 ? 0 : 1);
 }
 main().catch(e => { console.error(e); process.exit(2); });

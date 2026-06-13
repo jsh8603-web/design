@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- @dsCard group="Slides" name="slide-quote" subtitle="quote — 풀블리드 surface_inverse 인용 (slides-grab 흡수)" viewport="1280x720" -->
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>Quote</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1280px; height:720px; overflow:hidden;
+    font-family:var(--font-sans);
+    background:var(--surface-inverse); color:var(--surface-inverse-fg);
+    padding:120px 150px;
+    display:flex; flex-direction:column; justify-content:center;
+    position:relative;
+  }
+  .mark { font-family:var(--font-display); font-size:120px; line-height:0.7; color:var(--accent); font-weight:700; margin-bottom:24px; }
+  blockquote {
+    font-family:var(--font-display); font-weight:500; font-size:48px;
+    letter-spacing:-0.015em; line-height:1.42; max-width:980px;
+  }
+  blockquote em { font-style:normal; color:var(--accent); }
+  .by { margin-top:54px; display:flex; align-items:center; gap:16px; }
+  .by .bar { width:40px; height:2px; background:var(--accent); }
+  .by .who { font-size:20px; font-weight:600; }
+  .by .role { font-size:16px; color:rgba(255,255,255,0.6); margin-top:3px; }
+  .src { position:absolute; left:150px; bottom:48px; font-size:12px; color:rgba(255,255,255,0.45); }
+</style>
+</head>
+<body data-layout="quote" data-screen-label="quote">
+  <div class="mark">"</div>
+  <blockquote class="kr">자본은 가장 먼저 <em>확신이 서는 곳</em>으로 흐른다 — 그리고 확신은 데이터에서 나온다.</blockquote>
+  <div class="by">
+    <div class="bar"></div>
+    <div>
+      <div class="who kr">이재훈, CFA</div>
+      <div class="role kr">CFO · FY26 분기 리뷰 서문</div>
+    </div>
+  </div>
+  <div class="src kr">slides-grab · FY26.Q1</div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body>
+</html>

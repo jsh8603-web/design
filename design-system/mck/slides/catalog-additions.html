@@ -1,0 +1,802 @@
+<!-- @dsCard group="Brand" name="mck-catalog-additions" subtitle="mck 추가 10 카탈로그 슬라이드 (column/line/RAG/Harvey/Pareto/chevron/cycle/comparison/funnel/action)" viewport="1280x720" -->
+<!--
+  Catalog additions — 10 industry-common business slide layouts not covered
+  by slides/index.html. Same tokens (colors_and_type.css), same deck-stage.
+  Open via `python serve.py --open` from project root.
+-->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>슬라이드 카탈로그 — 추가 레이아웃</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#0a0a0a; }
+  body { font-family: var(--font-sans); }
+
+  /* Theme switcher — identical to index.html */
+  .theme-switcher {
+    position: fixed; top: 12px; right: 12px; z-index: 50;
+    background: rgba(15, 20, 25, 0.92); color: #E5E7EB;
+    padding: 8px 10px; border-radius: 6px;
+    font-family: "Pretendard", -apple-system, sans-serif;
+    font-size: 11px; display: flex; align-items: center; gap: 6px;
+    backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .theme-switcher .lbl { color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-right: 4px; }
+  .theme-switcher button {
+    appearance: none; background: transparent;
+    border: 1px solid rgba(255,255,255,0.18); color: inherit;
+    font: inherit; padding: 5px 10px; border-radius: 4px;
+    cursor: pointer; font-weight: 500;
+  }
+  .theme-switcher button:hover { background: rgba(255,255,255,0.06); }
+  .theme-switcher button.is-active { background: #fff; color: #0F1419; border-color: #fff; }
+
+  deck-stage section {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-sans);
+    position: relative; overflow: hidden;
+  }
+
+  /* Standard chrome */
+  .s-title    { position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px; display:flex; align-items:center; font-family:var(--font-display); font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading); letter-spacing:-0.005em; }
+  .s-rule     { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-body     { position:absolute; left:76.8px; top:124.8px; width:1126.4px; }
+  .s-source   { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum  { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-bar      { position:absolute; left:76.8px; top:595.2px; width:1126.4px; height:62.4px; background:var(--gray-4); display:flex; align-items:center; padding:0 24px; box-sizing:border-box; font-weight:700; font-size:21.33px; color:var(--gray-1); }
+  .s-bar .pre { color:var(--heading); margin-right:12px; font-weight:700; }
+  .kr { font-family: var(--font-kr); }
+
+  /* ── Column chart (slide 1) ───────────────────────────────────────── */
+  .col-chart { width:100%; height:auto; font-family:var(--font-sans); }
+  .col-chart .bar-bg  { fill: var(--gray-4); }
+  .col-chart .bar     { fill: var(--surface-inverse); }
+  .col-chart .bar.h   { fill: var(--accent); }
+  .col-chart .axis-line { stroke: var(--gray-3); stroke-width:1; }
+  .col-chart .grid    { stroke: var(--gray-4); stroke-width:1; }
+  .col-chart .cat     { font-size:13px; fill: var(--gray-2); text-anchor:middle; font-weight:500; }
+  .col-chart .val     { font-size:14px; fill: var(--gray-1); text-anchor:middle; font-weight:700; font-family:var(--font-display); }
+  .col-chart .val.h   { fill: var(--accent); }
+  .col-chart .y-tick  { font-size:11px; fill: var(--gray-3); text-anchor:end; }
+
+  /* ── Line chart (slide 2) ─────────────────────────────────────────── */
+  .ln-chart { width:100%; height:auto; font-family:var(--font-sans); }
+  .ln-chart .grid     { stroke: var(--gray-4); stroke-width:1; }
+  .ln-chart .axis     { stroke: var(--gray-3); stroke-width:1; }
+  .ln-chart .ser-a    { stroke: var(--surface-inverse); stroke-width: 2.5; fill: none; }
+  .ln-chart .ser-b    { stroke: var(--accent); stroke-width: 2.5; fill: none; }
+  .ln-chart .ser-c    { stroke: var(--gray-3); stroke-width: 2; fill: none; stroke-dasharray: 4 4; }
+  .ln-chart .dot-a    { fill: var(--surface-inverse); }
+  .ln-chart .dot-b    { fill: var(--accent); }
+  .ln-chart .cat      { font-size:12px; fill: var(--gray-2); text-anchor:middle; }
+  .ln-chart .y-tick   { font-size:11px; fill: var(--gray-3); text-anchor:end; }
+  .ln-chart .endlabel { font-size:13px; font-weight:600; font-family:var(--font-display); }
+
+  /* ── Pareto (slide 5) ─────────────────────────────────────────────── */
+  .pareto .bar       { fill: var(--surface-inverse); }
+  .pareto .bar.high  { fill: var(--accent); }
+  .pareto .cumline   { stroke: var(--negative); stroke-width: 2.5; fill: none; }
+  .pareto .cumdot    { fill: var(--negative); }
+  .pareto .threshold { stroke: var(--gray-2); stroke-width:1; stroke-dasharray: 3 4; }
+  .pareto .cat       { font-size:12px; fill: var(--gray-2); text-anchor:middle; font-weight:500; }
+  .pareto .val       { font-size:12px; fill: var(--gray-1); text-anchor:middle; font-weight:700; font-family:var(--font-display); }
+  .pareto .y-tick    { font-size:10px; fill: var(--gray-3); text-anchor:end; }
+  .pareto .y-tick.r  { text-anchor:start; }
+
+  /* ── RAG status table (slide 3) ───────────────────────────────────── */
+  .rag-table { width:100%; border-collapse:collapse; font-family:var(--font-sans); }
+  .rag-table thead th { background: var(--surface-inverse); color: var(--surface-inverse-fg); font-weight:600; font-size:13px; padding:12px 14px; text-align:left; letter-spacing:0.02em; }
+  .rag-table thead th.c { text-align:center; }
+  .rag-table tbody td { padding:14px; border-bottom:1px solid var(--gray-4); font-size:15px; color:var(--gray-1); vertical-align:top; }
+  .rag-table tbody td.label { font-weight:600; }
+  .rag-table tbody td.c { text-align:center; }
+  .rag-pip { display:inline-block; width:14px; height:14px; border-radius:50%; vertical-align:middle; }
+  .rag-pip.g { background: var(--positive); }
+  .rag-pip.a { background: var(--status-amber); }
+  .rag-pip.r { background: var(--negative); }
+  .rag-cap { display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; }
+  .rag-cap.g { background: var(--positive); color:#fff; }
+  .rag-cap.a { background: var(--status-amber); color:var(--gray-1); }
+  .rag-cap.r { background: var(--negative); color:#fff; }
+
+  /* ── Harvey ball table (slide 4) ──────────────────────────────────── */
+  .hb-table { width:100%; border-collapse:collapse; font-family:var(--font-sans); }
+  .hb-table thead th { background: var(--gray-4); color: var(--primary); font-weight:700; font-size:11px; padding:14px 12px; text-align:center; letter-spacing:0.06em; text-transform:uppercase; }
+  .hb-table thead th.l { text-align:left; }
+  .hb-table tbody td { padding:18px 12px; border-bottom:1px solid var(--gray-4); font-size:15px; color:var(--gray-1); text-align:center; }
+  .hb-table tbody td.l { text-align:left; font-weight:600; }
+  .hb-table tbody td.note { text-align:left; font-size:13px; color:var(--gray-2); }
+  .hb-table tbody tr.best td { background: rgba(232,119,34,0.06); }
+  .hb { display:inline-block; width:22px; height:22px; border-radius:50%; vertical-align:middle; position:relative; background: var(--gray-4); border: 1px solid var(--gray-3); }
+  .hb::before { content:""; position:absolute; left:0; top:0; width:100%; height:100%; border-radius:50%; background: var(--surface-inverse); clip-path: inset(0 100% 0 0); }
+  .hb.q1::before { clip-path: inset(0 75% 0 0); }
+  .hb.q2::before { clip-path: inset(0 50% 0 0); }
+  .hb.q3::before { clip-path: inset(0 25% 0 0); }
+  .hb.q4::before { clip-path: inset(0 0 0 0); }
+
+  /* ── Chevron process (slide 6) ────────────────────────────────────── */
+  .chev-row { display:flex; gap:6px; }
+  .chev {
+    flex:1;
+    background: var(--gray-4);
+    padding: 22px 28px 22px 40px;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%, 22px 50%);
+    min-height: 130px;
+    box-sizing: border-box;
+  }
+  .chev:first-child { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%); padding-left: 28px; }
+  .chev:last-child  { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 22px 50%); }
+  .chev.active { background: var(--surface-inverse); color: var(--surface-inverse-fg); }
+  .chev.active .chev-num, .chev.active .chev-h { color: var(--surface-inverse-fg); }
+  .chev.active .chev-sub { color: rgba(255,255,255,0.78); }
+  .chev-num { font-family:var(--font-display); font-weight:700; font-size:14px; color:var(--gray-2); letter-spacing:0.12em; margin-bottom:6px; }
+  .chev-h   { font-family:var(--font-display); font-weight:700; font-size:18px; color:var(--gray-1); line-height:1.25; margin-bottom:8px; }
+  .chev-sub { font-size:13px; color:var(--gray-2); line-height:1.45; }
+
+  /* ── Cycle (slide 7) ──────────────────────────────────────────────── */
+  .cycle-svg { width:380px; height:380px; }
+  .cycle-svg .ring { fill:none; stroke: var(--gray-3); stroke-width:1; stroke-dasharray: 4 6; }
+  .cycle-svg .arr  { fill: var(--gray-3); }
+  .cycle-svg .node circle { fill: var(--gray-4); stroke: var(--surface-inverse); stroke-width: 2; }
+  .cycle-svg .node.active circle { fill: var(--accent); stroke: var(--accent); }
+  .cycle-svg .node text { font-family: var(--font-display); font-weight: 700; font-size: 18px; fill: var(--gray-1); text-anchor: middle; dominant-baseline: middle; }
+  .cycle-svg .node.active text { fill: #fff; }
+
+  /* ── Comparison table (slide 8) ───────────────────────────────────── */
+  .cmp-table { width:100%; border-collapse:collapse; font-family:var(--font-sans); }
+  .cmp-table thead th { padding:10px 16px; vertical-align:bottom; text-align:left; border-bottom:2px solid var(--gray-3); }
+  .cmp-table thead th.opt { background: var(--gray-4); border-bottom:2px solid var(--primary); }
+  .cmp-table thead th.opt.rec { background: var(--surface-inverse); color: var(--surface-inverse-fg); border-bottom: 2px solid var(--accent); }
+  .cmp-table thead th .opt-tag { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-2); margin-bottom:6px; display:block; }
+  .cmp-table thead th.rec .opt-tag { color: var(--accent); }
+  .cmp-table thead th .opt-name { font-family:var(--font-display); font-weight:700; font-size:17px; line-height:1.2; }
+  .cmp-table tbody th { background:transparent; color:var(--gray-2); font-weight:600; font-size:12px; letter-spacing:0.04em; text-transform:uppercase; text-align:left; padding:14px 18px 14px 0; border-bottom:1px solid var(--gray-4); width:160px; vertical-align:top; }
+  .cmp-table tbody td { padding:9px 16px; font-size:13px; line-height:1.4; color:var(--gray-1); border-bottom:1px solid var(--gray-4); vertical-align:top; }
+  .cmp-table tbody td.rec { background:rgba(232,119,34,0.05); }
+  .cmp-table tbody td .v { font-family:var(--font-display); font-weight:700; font-size:16px; color:var(--gray-1); display:block; margin-bottom:1px; }
+
+  /* ── Funnel (slide 9) ─────────────────────────────────────────────── */
+  .funnel { display:flex; flex-direction:column; gap:8px; align-items:center; width:100%; }
+  .funnel-row { display:flex; align-items:center; gap:24px; width:100%; }
+  .funnel-bar { background: var(--surface-inverse); color: var(--surface-inverse-fg); padding:18px 26px; font-family:var(--font-display); font-weight:700; font-size:22px; display:flex; align-items:center; justify-content:space-between; }
+  .funnel-bar.acc { background: var(--accent); color:#fff; }
+  .funnel-bar .num { font-variant-numeric: tabular-nums; letter-spacing:-0.01em; }
+  .funnel-bar .lbl { font-size:14px; font-weight:600; letter-spacing:0.02em; opacity:0.85; }
+  .funnel-meta { width:240px; flex-shrink:0; font-family:var(--font-sans); font-size:13px; color:var(--gray-2); line-height:1.45; }
+  .funnel-meta .drop { font-family:var(--font-display); font-weight:700; font-size:18px; color: var(--negative); display:block; }
+
+  /* ── Action items (slide 10) ──────────────────────────────────────── */
+  .act-table { width:100%; border-collapse:collapse; font-family:var(--font-sans); }
+  .act-table thead th { background: var(--surface-inverse); color: var(--surface-inverse-fg); font-weight:600; font-size:12px; padding:12px 14px; text-align:left; letter-spacing:0.04em; text-transform:uppercase; }
+  .act-table tbody td { padding:16px 14px; border-bottom:1px solid var(--gray-4); font-size:14px; color:var(--gray-1); vertical-align:top; line-height:1.45; }
+  .act-table .pri { display:inline-block; font-family:var(--font-display); font-weight:700; font-size:11px; letter-spacing:0.08em; padding:3px 9px; }
+  .act-table .pri.p1 { background: var(--negative); color:#fff; }
+  .act-table .pri.p2 { background: var(--accent); color:#fff; }
+  .act-table .pri.p3 { background: var(--gray-3); color: var(--bg); }
+  .act-table .owner { font-weight:600; font-family:var(--font-display); }
+  .act-table .due   { font-family:var(--font-display); font-weight:600; color:var(--gray-2); font-variant-numeric: tabular-nums; }
+  .act-table tbody tr:hover { background: rgba(0,0,0,0.015); }
+</style>
+</head>
+<body>
+
+<div class="theme-switcher" role="group" aria-label="Theme">
+  <span class="lbl">Theme</span>
+  <button type="button" data-theme-set="modern" class="is-active">Modern</button>
+  <button type="button" data-theme-set="classic">Classic</button>
+  <button type="button" data-theme-set="dark-mono">Dark</button>
+</div>
+
+<deck-stage width="1280" height="720">
+
+  <!-- ═══════ 01 · Column chart ═══════ -->
+  <section data-screen-label="01 Column chart">
+    <div class="s-title kr">분기별 매출 — FY26.Q1 1,260억으로 8개 분기 최고치 갱신</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="col-chart" viewBox="0 0 1126 420" preserveAspectRatio="xMidYMid meet">
+        <!-- y grid -->
+        <line class="grid" x1="80" y1="40"  x2="1100" y2="40"/>
+        <line class="grid" x1="80" y1="120" x2="1100" y2="120"/>
+        <line class="grid" x1="80" y1="200" x2="1100" y2="200"/>
+        <line class="grid" x1="80" y1="280" x2="1100" y2="280"/>
+        <line class="axis-line" x1="80" y1="360" x2="1100" y2="360"/>
+        <text class="y-tick" x="70" y="44">1,400</text>
+        <text class="y-tick" x="70" y="124">1,050</text>
+        <text class="y-tick" x="70" y="204">700</text>
+        <text class="y-tick" x="70" y="284">350</text>
+        <text class="y-tick" x="70" y="364">0</text>
+
+        <!-- bars: 8 quarters · values approx 820/870/910/980/1020/1100/1150/1260 -->
+        <!-- bar width 80, gap 48; first x = 130 -->
+        <g><rect class="bar" x="130" y="172" width="80" height="188"/><text class="val" x="170" y="160">820</text><text class="cat" x="170" y="395">Q2·24</text></g>
+        <g><rect class="bar" x="258" y="161" width="80" height="199"/><text class="val" x="298" y="149">870</text><text class="cat" x="298" y="395">Q3·24</text></g>
+        <g><rect class="bar" x="386" y="151" width="80" height="209"/><text class="val" x="426" y="139">910</text><text class="cat" x="426" y="395">Q4·24</text></g>
+        <g><rect class="bar" x="514" y="135" width="80" height="225"/><text class="val" x="554" y="123">980</text><text class="cat" x="554" y="395">Q1·25</text></g>
+        <g><rect class="bar" x="642" y="126" width="80" height="234"/><text class="val" x="682" y="114">1,020</text><text class="cat" x="682" y="395">Q2·25</text></g>
+        <g><rect class="bar" x="770" y="108" width="80" height="252"/><text class="val" x="810" y="96">1,100</text><text class="cat" x="810" y="395">Q3·25</text></g>
+        <g><rect class="bar" x="898" y="97" width="80" height="263"/><text class="val" x="938" y="85">1,150</text><text class="cat" x="938" y="395">Q4·25</text></g>
+        <g><rect class="bar h" x="1026" y="71" width="80" height="289"/><text class="val h" x="1066" y="59">1,260</text><text class="cat" x="1066" y="395">Q1·26</text></g>
+      </svg>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>8분기 연속 우상향 — 다만 마지막 분기 격차 확대로 마진 압박 동반</div>
+    <div class="s-source">Source: 재무팀 분기 마감, FY24.Q2–FY26.Q1 · 단위 억원</div>
+    <div class="s-pagenum">1/10</div>
+  </section>
+
+  <!-- ═══════ 02 · Line chart ═══════ -->
+  <section data-screen-label="02 Line chart">
+    <div class="s-title kr">지역별 매출 추세 — 북미 +28%, 유럽 +2%, 아시아 −4%로 격차 확대</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="ln-chart" viewBox="0 0 1126 420" preserveAspectRatio="xMidYMid meet">
+        <!-- grid -->
+        <line class="grid" x1="80" y1="40"  x2="1020" y2="40"/>
+        <line class="grid" x1="80" y1="120" x2="1020" y2="120"/>
+        <line class="grid" x1="80" y1="200" x2="1020" y2="200"/>
+        <line class="grid" x1="80" y1="280" x2="1020" y2="280"/>
+        <line class="axis" x1="80" y1="360" x2="1020" y2="360"/>
+        <text class="y-tick" x="70" y="44">600</text>
+        <text class="y-tick" x="70" y="124">450</text>
+        <text class="y-tick" x="70" y="204">300</text>
+        <text class="y-tick" x="70" y="284">150</text>
+        <text class="y-tick" x="70" y="364">0</text>
+
+        <!-- x categories: 6 quarters (Q4·24 → Q1·26), positions 130, 290, 450, 610, 770, 930 -->
+        <text class="cat" x="130" y="385">Q4·24</text>
+        <text class="cat" x="290" y="385">Q1·25</text>
+        <text class="cat" x="450" y="385">Q2·25</text>
+        <text class="cat" x="610" y="385">Q3·25</text>
+        <text class="cat" x="770" y="385">Q4·25</text>
+        <text class="cat" x="930" y="385">Q1·26</text>
+
+        <!-- 북미: 290 → 320 → 360 → 410 → 460 → 480 (mapped: 360 - v*0.533) -->
+        <polyline class="ser-a" points="130,205 290,189 450,168 610,141 770,115 930,104"/>
+        <circle class="dot-a" cx="130" cy="205" r="4"/>
+        <circle class="dot-a" cx="290" cy="189" r="4"/>
+        <circle class="dot-a" cx="450" cy="168" r="4"/>
+        <circle class="dot-a" cx="610" cy="141" r="4"/>
+        <circle class="dot-a" cx="770" cy="115" r="4"/>
+        <circle class="dot-a" cx="930" cy="104" r="5"/>
+        <text class="endlabel" x="950" y="100" fill="var(--surface-inverse)">북미 480</text>
+
+        <!-- 유럽: 380 → 385 → 380 → 388 → 390 → 388 -->
+        <polyline class="ser-b" points="130,158 290,155 450,158 610,153 770,152 930,153"/>
+        <circle class="dot-b" cx="130" cy="158" r="4"/>
+        <circle class="dot-b" cx="290" cy="155" r="4"/>
+        <circle class="dot-b" cx="450" cy="158" r="4"/>
+        <circle class="dot-b" cx="610" cy="153" r="4"/>
+        <circle class="dot-b" cx="770" cy="152" r="4"/>
+        <circle class="dot-b" cx="930" cy="153" r="5"/>
+        <text class="endlabel" x="950" y="156" fill="var(--accent)">유럽 388</text>
+
+        <!-- 아시아: 410 → 405 → 398 → 395 → 392 → 392 (slight decline) -->
+        <polyline class="ser-c" points="130,141 290,144 450,148 610,150 770,151 930,151"/>
+        <text class="endlabel" x="950" y="156" fill="var(--gray-2)" style="font-size:12px; transform:translateY(14px);">아시아 392</text>
+      </svg>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>북미 단일 견인 구조 — 유럽·아시아 동시 회복 없이 가이던스 미달</div>
+    <div class="s-source">Source: 재무팀 지역별 매출, FY24.Q4–FY26.Q1 · 환산 환율 분기말 기준</div>
+    <div class="s-pagenum">2/10</div>
+  </section>
+
+  <!-- ═══════ 03 · RAG status table ═══════ -->
+  <section data-screen-label="03 RAG status">
+    <div class="s-title kr">전략 이니셔티브 9개 RAG — 그린 4 · 앰버 3 · 레드 2, Q2 게이트 점검 대상 5건</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <table class="rag-table kr">
+        <thead>
+          <tr>
+            <th style="width:60px;">#</th>
+            <th>이니셔티브</th>
+            <th style="width:90px;" class="c">상태</th>
+            <th style="width:120px;">오너</th>
+            <th>주요 진행 / 이슈</th>
+            <th style="width:110px;" class="c">게이트</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>01</td><td class="label">스택 통합 파일럿</td><td class="c"><span class="rag-cap g">On track</span></td><td>운영기획 · 김 상무</td><td>단일 BMS 가동 — KPI 3개 베이스라인 수립 완료</td><td class="c">Q2</td></tr>
+          <tr><td>02</td><td class="label">CAC 채널 믹스 재조정</td><td class="c"><span class="rag-cap g">On track</span></td><td>마케팅 · 박 본부장</td><td>유료 광고 38% → 26% 진행 · KPI –22% 경로</td><td class="c">Q2</td></tr>
+          <tr><td>03</td><td class="label">원자재 헷지 비율 상향</td><td class="c"><span class="rag-cap a">At risk</span></td><td>구매 · 최 팀장</td><td>현재 47% 진입 (목표 60%) · 6개월 만기 슬롯 부족</td><td class="c">Q2</td></tr>
+          <tr><td>04</td><td class="label">가격 인상 2차 (프리미엄)</td><td class="c"><span class="rag-cap g">On track</span></td><td>영업 · 이 본부장</td><td>상위 30% SKU +6% 적용 · 거래선 이탈 0건</td><td class="c">Q2</td></tr>
+          <tr><td>05</td><td class="label">재고 회전 75일 → 60일</td><td class="c"><span class="rag-cap a">At risk</span></td><td>운영 · 정 상무</td><td>현재 71일 · 슬로무버 정리 일정 2주 지연</td><td class="c">Q3</td></tr>
+          <tr><td>06</td><td class="label">유럽 인허가 회복</td><td class="c"><span class="rag-cap r">Off track</span></td><td>법무 · 한 이사</td><td>독일 6개월 지연 확정 · 인증기관 면담 8월</td><td class="c">Q3</td></tr>
+          <tr><td>07</td><td class="label">OEM 게이트웨이 계약 4건</td><td class="c"><span class="rag-cap g">On track</span></td><td>전략 · 윤 부사장</td><td>3건 서명 · 4번째 LOI 단계 · 9월 클로징 목표</td><td class="c">Q3</td></tr>
+          <tr><td>08</td><td class="label">차세대 화학 R&amp;D 캠퍼스</td><td class="c"><span class="rag-cap a">At risk</span></td><td>R&amp;D · 강 전무</td><td>인력 충원 16/24 · 핵심 포지션 2건 공석</td><td class="c">Q4</td></tr>
+          <tr><td>09</td><td class="label">아시아 환율 헷지 추가</td><td class="c"><span class="rag-cap r">Off track</span></td><td>재무 · 송 이사</td><td>위안화 노출 +12% 미커버 · 헷지 카드 부족</td><td class="c">Q2</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="s-source">Source: 전략기획팀 PMO 주간 리뷰, FY26.W22 · 오너 자가신고 · CFO 검증</div>
+    <div class="s-pagenum">3/10</div>
+  </section>
+
+  <!-- ═══════ 04 · Harvey ball comparison ═══════ -->
+  <section data-screen-label="04 Harvey ball">
+    <div class="s-title kr">옵션 평가 매트릭스 — 스택 통합이 5개 평가축 중 3개에서 단독 우위</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <table class="hb-table kr">
+        <thead>
+          <tr>
+            <th class="l" style="width:200px;">평가 축</th>
+            <th>스택 통합</th>
+            <th>지역 분산</th>
+            <th>차세대 화학</th>
+            <th class="l">평가 기준</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="best">
+            <td class="l">3개년 영업이익 임팩트</td>
+            <td><span class="hb q4"></span></td>
+            <td><span class="hb q2"></span></td>
+            <td><span class="hb q3"></span></td>
+            <td class="note">+1,200억 이상 → ● / 600–1,200억 → ◐ / 그 외</td>
+          </tr>
+          <tr class="best">
+            <td class="l">실행 난이도 (낮을수록 ●)</td>
+            <td><span class="hb q3"></span></td>
+            <td><span class="hb q4"></span></td>
+            <td><span class="hb q1"></span></td>
+            <td class="note">조직·자원·일정 동시 충족 가능성</td>
+          </tr>
+          <tr>
+            <td class="l">시장 타이밍 적합성</td>
+            <td><span class="hb q4"></span></td>
+            <td><span class="hb q2"></span></td>
+            <td><span class="hb q3"></span></td>
+            <td class="note">18개월 윈도우 내 효과 발생 가능성</td>
+          </tr>
+          <tr class="best">
+            <td class="l">자원 효율 (단위당 ROIC)</td>
+            <td><span class="hb q4"></span></td>
+            <td><span class="hb q3"></span></td>
+            <td><span class="hb q1"></span></td>
+            <td class="note">CapEx 대비 누적 EBIT 회수율</td>
+          </tr>
+          <tr>
+            <td class="l">전략 옵셔널리티 보존</td>
+            <td><span class="hb q3"></span></td>
+            <td><span class="hb q4"></span></td>
+            <td><span class="hb q4"></span></td>
+            <td class="note">후속 옵션 폐쇄 여부 (적을수록 ●)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:18px; display:flex; gap:24px; font-family:var(--font-sans); font-size:12px; color:var(--gray-2); align-items:center;">
+        <span style="font-weight:600; color:var(--gray-1);">범례 ·</span>
+        <span><span class="hb q4" style="width:14px; height:14px;"></span> &nbsp;강함</span>
+        <span><span class="hb q3" style="width:14px; height:14px;"></span> &nbsp;중상</span>
+        <span><span class="hb q2" style="width:14px; height:14px;"></span> &nbsp;중하</span>
+        <span><span class="hb q1" style="width:14px; height:14px;"></span> &nbsp;약함</span>
+        <span><span class="hb" style="width:14px; height:14px;"></span> &nbsp;해당없음</span>
+      </div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>스택 통합 단독 추진 정당화 — 자원 70% 집중 안 시 임팩트 분산</div>
+    <div class="s-source">Source: 전략기획팀 옵션 평가 v2.1, FY26.Q2 · 외부 자문 가중치 검증</div>
+    <div class="s-pagenum">4/10</div>
+  </section>
+
+  <!-- ═══════ 05 · Pareto ═══════ -->
+  <section data-screen-label="05 Pareto">
+    <div class="s-title kr">마진 압박 요인 분석 — 상위 3개 요인이 누적 73% 점유, 액션 우선순위 명확</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="pareto" viewBox="0 0 1126 420" preserveAspectRatio="xMidYMid meet">
+        <!-- left grid -->
+        <line class="grid" x1="80" y1="50"  x2="1060" y2="50"/>
+        <line class="grid" x1="80" y1="130" x2="1060" y2="130"/>
+        <line class="grid" x1="80" y1="210" x2="1060" y2="210"/>
+        <line class="grid" x1="80" y1="290" x2="1060" y2="290"/>
+        <line class="grid" x1="80" y1="370" x2="1060" y2="370" stroke="var(--gray-3)"/>
+        <!-- y left (영향도) -->
+        <text class="y-tick" x="70" y="54">80</text>
+        <text class="y-tick" x="70" y="134">60</text>
+        <text class="y-tick" x="70" y="214">40</text>
+        <text class="y-tick" x="70" y="294">20</text>
+        <text class="y-tick" x="70" y="374">0</text>
+        <!-- y right (누적 %) -->
+        <text class="y-tick r" x="1070" y="54">100%</text>
+        <text class="y-tick r" x="1070" y="134">75%</text>
+        <text class="y-tick r" x="1070" y="214">50%</text>
+        <text class="y-tick r" x="1070" y="294">25%</text>
+        <text class="y-tick r" x="1070" y="374">0%</text>
+
+        <!-- threshold line at 80% (cum) -->
+        <line class="threshold" x1="80" y1="90" x2="1060" y2="90"/>
+        <text x="1064" y="86" font-size="10" fill="var(--gray-2)" style="font-family:var(--font-display); font-weight:600;">80% 컷오프</text>
+
+        <!-- bars: 6 factors, values 32/24/20/12/8/4 (sum 100), bar h = v * 4 -->
+        <!-- positions: 130, 290, 450, 610, 770, 930. width 100 -->
+        <g><rect class="bar high" x="135" y="242" width="100" height="128"/><text class="val" x="185" y="232">32</text><text class="cat" x="185" y="395">CAC 상승</text></g>
+        <g><rect class="bar high" x="295" y="274" width="100" height="96"/><text class="val" x="345" y="264">24</text><text class="cat" x="345" y="395">원자재 +9%</text></g>
+        <g><rect class="bar high" x="455" y="290" width="100" height="80"/><text class="val" x="505" y="280">20</text><text class="cat" x="505" y="395">물류비 인상</text></g>
+        <g><rect class="bar" x="615" y="322" width="100" height="48"/><text class="val" x="665" y="312">12</text><text class="cat" x="665" y="395">환율 노출</text></g>
+        <g><rect class="bar" x="775" y="338" width="100" height="32"/><text class="val" x="825" y="328">8</text><text class="cat" x="825" y="395">인건비 인상</text></g>
+        <g><rect class="bar" x="935" y="354" width="100" height="16"/><text class="val" x="985" y="344">4</text><text class="cat" x="985" y="395">기타</text></g>
+
+        <!-- cumulative line: cum % 32/56/76/88/96/100 → y = 370 - (cum * 3.2) -->
+        <polyline class="cumline" points="185,267 345,191 505,127 665,89 825,63 985,50"/>
+        <circle class="cumdot" cx="185" cy="267" r="4"/>
+        <circle class="cumdot" cx="345" cy="191" r="4"/>
+        <circle class="cumdot" cx="505" cy="127" r="5" stroke="#fff" stroke-width="2"/>
+        <circle class="cumdot" cx="665" cy="89" r="4"/>
+        <circle class="cumdot" cx="825" cy="63" r="4"/>
+        <circle class="cumdot" cx="985" cy="50" r="4"/>
+        <!-- cum labels -->
+        <text x="195" y="262" font-size="11" fill="var(--negative)" font-weight="700" style="font-family:var(--font-display);">32%</text>
+        <text x="355" y="186" font-size="11" fill="var(--negative)" font-weight="700" style="font-family:var(--font-display);">56%</text>
+        <text x="515" y="122" font-size="12" fill="var(--negative)" font-weight="700" style="font-family:var(--font-display);">76%</text>
+        <text x="675" y="84" font-size="11" fill="var(--negative)" font-weight="700" style="font-family:var(--font-display);">88%</text>
+      </svg>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>상위 3개 요인 대응이 임팩트 76% 회수 — 자원 우선 배분 근거</div>
+    <div class="s-source">Source: FP&amp;A 마진 압박 분해 분석, FY26.Q1 · 표준원가 기준</div>
+    <div class="s-pagenum">5/10</div>
+  </section>
+
+  <!-- ═══════ 06 · Chevron process ═══════ -->
+  <section data-screen-label="06 Chevron process">
+    <div class="s-title kr">예산 수립 5단계 프로세스 — 7월 BU 입력에서 11월 이사회 승인까지 18주</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:160px;">
+      <div class="chev-row">
+        <div class="chev">
+          <div class="chev-num kr">01 · JUL</div>
+          <div class="chev-h kr">BU 입력</div>
+          <div class="chev-sub kr">사업부별 매출·비용 톱다운 가이드 분배 · 1차 입력 마감 W3</div>
+        </div>
+        <div class="chev">
+          <div class="chev-num kr">02 · AUG</div>
+          <div class="chev-h kr">코퍼레이트 통합</div>
+          <div class="chev-sub kr">FP&amp;A 통합 · 차이 분석 · 갭 식별 · 1차 단가 책정</div>
+        </div>
+        <div class="chev active">
+          <div class="chev-num kr">03 · SEP ★</div>
+          <div class="chev-h kr">CFO 리뷰</div>
+          <div class="chev-sub kr">시나리오 3종 (베이스·낙관·보수) · 자원 재배분 권고 · 의사결정 노트</div>
+        </div>
+        <div class="chev">
+          <div class="chev-num kr">04 · OCT</div>
+          <div class="chev-h kr">CEO·전략 정렬</div>
+          <div class="chev-sub kr">전략 우선순위와 예산 매핑 · 미충족 갭 액션 플랜 · 가이던스 초안</div>
+        </div>
+        <div class="chev">
+          <div class="chev-num kr">05 · NOV</div>
+          <div class="chev-h kr">이사회 승인</div>
+          <div class="chev-sub kr">최종 예산서 + 가이던스 + 핵심 리스크 · 분기 모니터링 체계 확정</div>
+        </div>
+      </div>
+      <div style="margin-top:48px; display:grid; grid-template-columns: 1fr 1fr 1fr; gap:24px; padding:0 4px;">
+        <div class="kr">
+          <div style="font-family:var(--font-display); font-weight:600; font-size:11px; color:var(--primary); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">현재 단계</div>
+          <div style="font-size:15px; color:var(--gray-1); line-height:1.5;">CFO 리뷰 단계 진입 (W9) · 시나리오 입력 9월 W1 마감</div>
+        </div>
+        <div class="kr">
+          <div style="font-family:var(--font-display); font-weight:600; font-size:11px; color:var(--primary); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">핵심 산출물</div>
+          <div style="font-size:15px; color:var(--gray-1); line-height:1.5;">시나리오 3종 가이던스 매트릭스 + 자원 재배분 권고 1건</div>
+        </div>
+        <div class="kr">
+          <div style="font-family:var(--font-display); font-weight:600; font-size:11px; color:var(--primary); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;">리스크</div>
+          <div style="font-size:15px; color:var(--gray-1); line-height:1.5;">BU 입력 지연 2건 · 환율 가정 갱신 9월 W3까지 보류 필요</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-source">Source: FP&amp;A 예산 캘린더 v3.0, FY27 사이클 · CFO 라인 승인</div>
+    <div class="s-pagenum">6/10</div>
+  </section>
+
+  <!-- ═══════ 07 · Cycle diagram ═══════ -->
+  <section data-screen-label="07 Cycle">
+    <div class="s-title kr">월간 마감 사이클 — 5일 데이터 → 8일 분석 → 12일 보고, 17일 액션 게이트</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px; display:grid; grid-template-columns: 420px 1fr; gap:48px; align-items:center;">
+      <div style="display:flex; justify-content:center; align-items:center; height:440px;">
+        <svg class="cycle-svg" viewBox="0 0 380 380">
+          <!-- dashed ring -->
+          <circle class="ring" cx="190" cy="190" r="140"/>
+          <!-- arrows on ring (small triangles every 90deg) -->
+          <polygon class="arr" points="190,42 200,52 180,52"/>
+          <polygon class="arr" points="338,190 328,200 328,180"/>
+          <polygon class="arr" points="190,338 200,328 180,328"/>
+          <polygon class="arr" points="42,190 52,180 52,200"/>
+
+          <!-- 4 nodes -->
+          <g class="node" transform="translate(190,50)">
+            <circle r="42"/>
+            <text y="-4">01</text>
+            <text y="14" style="font-size:11px; font-weight:500; fill:var(--gray-2);">데이터 마감</text>
+          </g>
+          <g class="node" transform="translate(330,190)">
+            <circle r="42"/>
+            <text y="-4">02</text>
+            <text y="14" style="font-size:11px; font-weight:500; fill:var(--gray-2);">분석</text>
+          </g>
+          <g class="node active" transform="translate(190,330)">
+            <circle r="42"/>
+            <text y="-4">03</text>
+            <text y="14" style="font-size:11px; font-weight:500; fill:rgba(255,255,255,0.85);">경영 보고</text>
+          </g>
+          <g class="node" transform="translate(50,190)">
+            <circle r="42"/>
+            <text y="-4">04</text>
+            <text y="14" style="font-size:11px; font-weight:500; fill:var(--gray-2);">액션 게이트</text>
+          </g>
+        </svg>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div class="kr" style="display:grid; grid-template-columns:60px 1fr; gap:18px;">
+          <div style="font-family:var(--font-display); font-weight:700; font-size:32px; color:var(--gray-3); line-height:1;">01</div>
+          <div>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--gray-1); line-height:1.2; margin-bottom:4px;">데이터 마감 — D+1 ~ D+5</div>
+            <div style="font-size:14px; color:var(--gray-2); line-height:1.5;">전표 마감 · 환율 환산 · 시스템 정합성 확인 · 마감 락</div>
+          </div>
+        </div>
+        <div class="kr" style="display:grid; grid-template-columns:60px 1fr; gap:18px;">
+          <div style="font-family:var(--font-display); font-weight:700; font-size:32px; color:var(--gray-3); line-height:1;">02</div>
+          <div>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--gray-1); line-height:1.2; margin-bottom:4px;">분석 — D+6 ~ D+8</div>
+            <div style="font-size:14px; color:var(--gray-2); line-height:1.5;">예실 차이 분석 · 변동 요인 분해 · 사업부별 코멘트 수집</div>
+          </div>
+        </div>
+        <div class="kr" style="display:grid; grid-template-columns:60px 1fr; gap:18px;">
+          <div style="font-family:var(--font-display); font-weight:700; font-size:32px; color:var(--accent); line-height:1;">03</div>
+          <div>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--gray-1); line-height:1.2; margin-bottom:4px;">경영 보고 — D+9 ~ D+12</div>
+            <div style="font-size:14px; color:var(--gray-2); line-height:1.5;">CFO 사전 리뷰 · 경영 회의 자료 · 핵심 인사이트 3건 정리</div>
+          </div>
+        </div>
+        <div class="kr" style="display:grid; grid-template-columns:60px 1fr; gap:18px;">
+          <div style="font-family:var(--font-display); font-weight:700; font-size:32px; color:var(--gray-3); line-height:1;">04</div>
+          <div>
+            <div style="font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--gray-1); line-height:1.2; margin-bottom:4px;">액션 게이트 — D+13 ~ D+17</div>
+            <div style="font-size:14px; color:var(--gray-2); line-height:1.5;">사업부 액션 합의 · 차월 가이던스 조정 · 다음 사이클 인풋 확정</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s-source">Source: FP&amp;A 월마감 SOP v2.4, FY26.Q2 · 평균 4개 사이클 소요시간</div>
+    <div class="s-pagenum">7/10</div>
+  </section>
+
+  <!-- ═══════ 08 · Comparison table (3 options) ═══════ -->
+  <section data-screen-label="08 Comparison table">
+    <div class="s-title kr">3개 옵션 정밀 비교 — 스택 통합이 4개 차원 우위, 단 실행 인력 부담 최대</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:124px;">
+      <table class="cmp-table kr">
+        <thead>
+          <tr>
+            <th style="width:170px;"></th>
+            <th class="opt rec">
+              <span class="opt-tag">★ 추천</span>
+              <span class="opt-name">스택 통합</span>
+            </th>
+            <th class="opt">
+              <span class="opt-tag">병행</span>
+              <span class="opt-name">지역 분산</span>
+            </th>
+            <th class="opt">
+              <span class="opt-tag">보류</span>
+              <span class="opt-name">차세대 화학</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>3개년 영업이익 임팩트</th>
+            <td class="rec"><span class="v">+₩1,400억</span>마진 +4.8%p · 안정적 회수 경로</td>
+            <td><span class="v">+₩620억</span>마진 +1.6%p · 지역별 변동 큼</td>
+            <td><span class="v">+₩900억</span>마진 +2.4%p · 회수 시점 +24개월</td>
+          </tr>
+          <tr>
+            <th>투자 규모 (CapEx + OpEx)</th>
+            <td class="rec"><span class="v">₩440억</span>CapEx 280 + OpEx 160 (18개월)</td>
+            <td><span class="v">₩260억</span>CapEx 120 + OpEx 140 (12개월)</td>
+            <td><span class="v">₩720억</span>CapEx 520 + OpEx 200 (36개월)</td>
+          </tr>
+          <tr>
+            <th>실행 기간</th>
+            <td class="rec"><span class="v">18개월</span>파일럿 6개월 + 본 12개월</td>
+            <td><span class="v">12개월</span>국가별 6개월 × 2개 단계</td>
+            <td><span class="v">36개월</span>R&amp;D 18 + 상용화 18</td>
+          </tr>
+          <tr>
+            <th>필요 인력</th>
+            <td class="rec"><span class="v">+24명</span>운영기획 14 · IT 6 · 기획 4</td>
+            <td><span class="v">+12명</span>지역 본부 신설 · 영업 8</td>
+            <td><span class="v">+18명</span>R&amp;D 핵심 12 · 양산 6</td>
+          </tr>
+          <tr>
+            <th>주요 리스크</th>
+            <td class="rec"><span class="v">중간</span>실행 부담 집중 · 인력 차질 시 6개월 지연</td>
+            <td><span class="v">낮음</span>지역 변동성 · 규제 변경 노출</td>
+            <td><span class="v">높음</span>기술 불확실 · 글로벌 톱5와 동시 경쟁</td>
+          </tr>
+          <tr>
+            <th>의사결정 게이트</th>
+            <td class="rec"><span class="v">Q2·26</span>파일럿 KPI 3개 통과 시 본 투자</td>
+            <td><span class="v">Q1·26</span>1개 거점 PoC 후 확장 결정</td>
+            <td><span class="v">Q4·27</span>화학 실증 결과 후 진입 여부</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="s-source">Source: 전략기획팀 옵션 비교 v2.3, FY26.Q2 · CFO·CTO 라인 검토 완료</div>
+    <div class="s-pagenum">8/10</div>
+  </section>
+
+  <!-- ═══════ 09 · Funnel ═══════ -->
+  <section data-screen-label="09 Funnel">
+    <div class="s-title kr">B2B 영업 퍼널 — 리드 12,400 → 계약 312, 전환율 2.5%로 업계 평균 +0.7%p 상회</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <div class="funnel">
+        <div class="funnel-row">
+          <div class="funnel-bar kr" style="width:1000px;">
+            <span class="lbl">01 · 리드 수집</span>
+            <span class="num">12,400</span>
+          </div>
+          <div class="funnel-meta kr"><span class="drop">—</span>마케팅 · 콘텐츠 · 컨퍼런스 합산</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-bar kr" style="width:820px;">
+            <span class="lbl">02 · MQL 검증</span>
+            <span class="num">5,820</span>
+          </div>
+          <div class="funnel-meta kr"><span class="drop">−53%</span>업계 평균 −58% · 콘텐츠 품질이 견인</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-bar kr" style="width:620px;">
+            <span class="lbl">03 · SQL 확정</span>
+            <span class="num">2,180</span>
+          </div>
+          <div class="funnel-meta kr"><span class="drop">−63%</span>SDR 검증 4주 · 영업 인계 기준 통과</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-bar acc kr" style="width:440px;">
+            <span class="lbl">04 · 제안서 발송</span>
+            <span class="num">980</span>
+          </div>
+          <div class="funnel-meta kr"><span class="drop">−55%</span><strong style="color:var(--accent);">★ 병목</strong> · 데모 단계 이탈 우세</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-bar kr" style="width:280px;">
+            <span class="lbl">05 · 가격 협상</span>
+            <span class="num">540</span>
+          </div>
+          <div class="funnel-meta kr"><span class="drop">−45%</span>POC 단계 동시 진행 시 통과율 +18%p</div>
+        </div>
+        <div class="funnel-row">
+          <div class="funnel-bar kr" style="width:170px;">
+            <span class="lbl">06 · 계약 체결</span>
+            <span class="num">312</span>
+          </div>
+          <div class="funnel-meta kr"><span class="drop">−42%</span>평균 계약 ₩2.4억 · LTV 회수 14개월</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>제안서 단계가 단일 최대 병목 — 데모 표준화 + POC 패키지가 회수 변수</div>
+    <div class="s-source">Source: 영업본부 CRM 분기 집계, FY26.Q1 · SDR/AE 자가신고 검증</div>
+    <div class="s-pagenum">9/10</div>
+  </section>
+
+  <!-- ═══════ 10 · Action items / next steps ═══════ -->
+  <section data-screen-label="10 Action items">
+    <div class="s-title kr">차주 액션 8건 — P1 3건은 7월 마감 게이트 필수, 오너·기한 확정</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <table class="act-table kr">
+        <thead>
+          <tr>
+            <th style="width:46px;">#</th>
+            <th style="width:78px;">우선순위</th>
+            <th>액션</th>
+            <th style="width:170px;">오너</th>
+            <th style="width:130px;">산출물</th>
+            <th style="width:92px;">기한</th>
+            <th style="width:84px;">상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td><span class="pri p1">P1</span></td>
+            <td><strong>본 투자 ₩280억 이사회 안건 상정.</strong> Q2 KPI 게이트 통과 즉시 집행 조건 명시.</td>
+            <td><span class="owner">전략기획 · 윤 부사장</span></td>
+            <td>안건서 v1</td>
+            <td class="due">07·W1</td>
+            <td>진행 중</td>
+          </tr>
+          <tr>
+            <td>02</td>
+            <td><span class="pri p1">P1</span></td>
+            <td><strong>유럽 인증 면담 일정 확정.</strong> 독일 인허가 6개월 지연 회복 시나리오 2종 준비.</td>
+            <td><span class="owner">법무 · 한 이사</span></td>
+            <td>면담 캘린더 + 시나리오 노트</td>
+            <td class="due">07·W2</td>
+            <td>미착수</td>
+          </tr>
+          <tr>
+            <td>03</td>
+            <td><span class="pri p1">P1</span></td>
+            <td><strong>아시아 환율 헷지 추가 카드 2건 실행.</strong> 위안화 노출 +12% 미커버 부분 우선.</td>
+            <td><span class="owner">재무 · 송 이사</span></td>
+            <td>헷지 실행 보고서</td>
+            <td class="due">07·W2</td>
+            <td>미착수</td>
+          </tr>
+          <tr>
+            <td>04</td>
+            <td><span class="pri p2">P2</span></td>
+            <td>가격 인상 2차 진행률 점검 — 상위 30% SKU 거래선 이탈 모니터링.</td>
+            <td><span class="owner">영업 · 이 본부장</span></td>
+            <td>주간 트래커</td>
+            <td class="due">07·W3</td>
+            <td>진행 중</td>
+          </tr>
+          <tr>
+            <td>05</td>
+            <td><span class="pri p2">P2</span></td>
+            <td>OEM 4번째 게이트웨이 LOI → 본계약 전환 푸시.</td>
+            <td><span class="owner">전략 · 윤 부사장</span></td>
+            <td>본계약 초안</td>
+            <td class="due">07·W4</td>
+            <td>진행 중</td>
+          </tr>
+          <tr>
+            <td>06</td>
+            <td><span class="pri p2">P2</span></td>
+            <td>차세대 화학 R&amp;D 핵심 포지션 2건 충원 — 헤드헌터 3개사 동시 진행.</td>
+            <td><span class="owner">R&amp;D · 강 전무 / HR</span></td>
+            <td>후보 풀 10명</td>
+            <td class="due">08·W1</td>
+            <td>지연</td>
+          </tr>
+          <tr>
+            <td>07</td>
+            <td><span class="pri p3">P3</span></td>
+            <td>재고 회전 75→60일 일정 슬립 2주 회복 — 슬로무버 정리 가속.</td>
+            <td><span class="owner">운영 · 정 상무</span></td>
+            <td>주간 진척 보고</td>
+            <td class="due">08·W2</td>
+            <td>지연</td>
+          </tr>
+          <tr>
+            <td>08</td>
+            <td><span class="pri p3">P3</span></td>
+            <td>분기 마진 회복 KPI 대시보드 자동화 — Q3 마감부터 D+5 산출 목표.</td>
+            <td><span class="owner">FP&amp;A · 김 팀장</span></td>
+            <td>BI 대시보드 v2</td>
+            <td class="due">08·W4</td>
+            <td>설계 중</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="s-source">Source: 본 회의 액션 로그, FY26.Q2 · 차주 PMO 동기화 회의 기준</div>
+    <div class="s-pagenum">10/10</div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script>
+  // Theme switcher — same behavior as slides/index.html.
+  const buttons = document.querySelectorAll('.theme-switcher button[data-theme-set]');
+  buttons.forEach((b) => {
+    b.addEventListener('click', () => {
+      const t = b.getAttribute('data-theme-set');
+      document.documentElement.setAttribute('data-theme', t);
+      buttons.forEach((x) => x.classList.toggle('is-active', x === b));
+    });
+  });
+</script>
+</body>
+</html>

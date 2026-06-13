@@ -1,0 +1,60 @@
+<!--
+  ⚠️ ES modules in use. Open via `python serve.py --open` from project root,
+  not file://. See README.md "Quick Start".
+-->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>Waterfall chart (Layout #49) — data-driven</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="slides.css">
+</head>
+<body>
+<div class="deck-stage">
+<section class="slide" data-screen-label="13 Waterfall">
+  <div class="s-title kr">FY26 영업이익 −15억 — 매출 +60억 대비 비용 증가 −75억으로 역전</div>
+  <div class="s-rule"></div>
+
+  <div class="s-body" style="top:140px; display:grid; grid-template-columns: 1fr 320px; gap:32px; align-items:start;">
+
+    <!-- Data-driven waterfall (rendered by assets/waterfall.js) -->
+    <div id="waterfall-target" style="width:100%;"></div>
+
+    <!-- Right takeaway panel -->
+    <div class="kr" style="background: var(--gray-4); padding: 22px 24px;">
+      <div style="font-family:var(--font-display); font-weight:600; color:var(--primary); font-size:12px; letter-spacing:0.10em; text-transform:uppercase; margin-bottom:14px;">Takeaway · 시사점</div>
+      <div style="font-family:var(--font-display); font-weight:700; font-size:18px; color:var(--gray-1); line-height:1.3; margin-bottom:14px;">매출 성장 < 비용 압박</div>
+      <ul class="bullet-list kr" style="font-size:14px;">
+        <li>매출 +60억 — 북미 시장 단일 견인</li>
+        <li>비용 −75억 (물류·마케팅·기타) — 구조적 압박 우세</li>
+        <li>순영향 −15억 — 마진 1.2%p 하락 연결</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="s-bar kr"><span class="pre">시사점 —</span>매출 증가 분이 비용 증가에 잠식 — 비용 측 액션이 회복 변수</div>
+  <div class="s-source">Source: 재무팀 P&L 브릿지 분석, FY26.Q1 · 사업부별 매출 분개</div>
+  <div class="s-pagenum">13/17</div>
+</section>
+</div>
+
+<script type="module">
+  import { renderWaterfall } from "../assets/waterfall.js";
+  import { safeRender } from "../assets/chart-helpers.js";
+
+  safeRender("#waterfall-target", renderWaterfall, {
+    items: [
+      { label: "FY25 OP",     value: 180, type: "base" },
+      { label: "매출 증가",    value:  60, type: "up"   },
+      { label: "물류비 증가",  value: -40, type: "down" },
+      { label: "마케팅 증가",  value: -20, type: "down" },
+      { label: "기타",         value: -15, type: "down" },
+      { label: "FY26 OP",     value: 165, type: "base" },
+    ],
+    unit: "억",
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="02 Modern Dark Pitch — KPI" subtitle="Hero tile + 2 stats · mono labels" viewport="960x540" --><html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../colors_and_type.css"><style>
+  body { background:var(--theme-bg); padding:71.11px 85.33px; color:var(--primary); display:flex; flex-direction:column; }
+  .head { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:42.67px; }
+  .head h1 { font-size:46.22px; font-weight:700; letter-spacing:-0.015em; color:var(--primary); max-width:853.33px; line-height:1.2; }
+  .head .num { font-family:'JetBrains Mono', ui-monospace, monospace; font-size:17.78px; color:var(--gray-3); letter-spacing:0.06em; }
+  .row { display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap:32px; flex:1; }
+  .hero, .stat { background:var(--theme-bg-card, #141416); border:1px solid var(--theme-bg-elevated, #1F1F22); border-radius:17.78px; padding:35.56px 39.11px; display:flex; flex-direction:column; justify-content:space-between; }
+  .hero { background:var(--accent); border-color:var(--accent); }
+  .hero .label { font-size:17.78px; font-weight:700; color:#0A2733; letter-spacing:0.16em; text-transform:uppercase; }
+  .hero .v { font-size:149.33px; font-weight:800; color:var(--primary); letter-spacing:-0.04em; line-height:0.95; }
+  .hero .sub { font-size:23.11px; color:#0A2733; font-weight:500; line-height:1.4; }
+  .stat .label { font-size:17.78px; font-weight:700; color:var(--gray-3); letter-spacing:0.16em; text-transform:uppercase; }
+  .stat .v { font-size:85.33px; font-weight:800; color:var(--primary); letter-spacing:-0.025em; line-height:1; }
+  .stat .v small { font-size:32px; font-weight:700; color:var(--gray-2); }
+  .stat .sub { font-size:21.33px; color:var(--gray-2); line-height:1.45; }
+  .stat .delta { font-size:19.56px; font-weight:700; color:var(--positive); }
+  .src { font-size:17.78px; color:var(--gray-3); margin-top:32px; letter-spacing:0.04em; font-family:'JetBrains Mono', ui-monospace, monospace; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="kpi_dashboard" data-screen-label="02-dark-pitch · kpi_dashboard"><div class="head">
+  <h1>HBM의 시장 규모가 2년 만에 3배가 된다.</h1>
+  <div class="num">04 / 12</div>
+</div>
+<div class="row">
+  <div class="hero">
+    <div class="label">'27 HBM TAM</div>
+    <div class="v">67<small style="font-size:56.89px; color:#0A2733;">B$</small></div>
+    <div class="sub">2025년 230억$에서 2년 만에 약 3배 — CAGR +71%</div>
+  </div>
+  <div class="stat">
+    <div class="label">// SK Hynix share</div>
+    <div>
+      <div class="v">52<small>%</small></div>
+      <div class="delta">↑ HBM3E 사실상 단독공급</div>
+    </div>
+    <div class="sub">NVIDIA H200 / B200 향 라인 전량 SK Hynix</div>
+  </div>
+  <div class="stat">
+    <div class="label">// CapEx '26</div>
+    <div>
+      <div class="v">21.5<small>B$</small></div>
+      <div class="delta">↑ YoY +44%</div>
+    </div>
+    <div class="sub">팹3 · M15X 동시 확장</div>
+  </div>
+</div>
+<div class="src">// source: SK Hynix IR · TrendForce 2026.02</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

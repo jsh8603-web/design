@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="NanoBanana image-slot pattern" subtitle="Design-time placeholder → generated image" viewport="700x320" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>nano-banana slot pattern</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../_image-slot.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:700px; background:var(--neutral-100); font-family:var(--font-sans); color:var(--neutral-900); -webkit-font-smoothing:antialiased; }
+  body { padding:20px 24px; }
+  .lead { font-size:12px; color:var(--neutral-600); margin-bottom:14px; line-height:1.55; }
+  .lead b { color:var(--neutral-900); font-weight:600; }
+  .pair { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+  .panel { display:flex; flex-direction:column; gap:8px; }
+  .panel-head {
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:10px; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .panel-head .num {
+    width:18px; height:18px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:var(--neutral-900); color:#fff; font-size:10px;
+  }
+  .panel-head .arrow {
+    margin:0 4px; color:var(--neutral-400); font-family:var(--font-sans);
+  }
+  .slot-wrap { aspect-ratio:4/3; }
+  .image-slot { width:100%; height:100%; }
+  .real {
+    width:100%; height:100%; border-radius:4pt;
+    background: linear-gradient(135deg, #1E293B 0%, #475569 100%);
+    position: relative; overflow:hidden;
+  }
+  .real::after {
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.12), transparent 55%);
+  }
+  .real .src-tag {
+    position:absolute; bottom:6px; left:8px;
+    font-family:var(--font-mono); font-size:9px; color:rgba(255,255,255,0.7);
+    letter-spacing:0.04em;
+  }
+  .legend {
+    margin-top:12px; padding:10px 12px;
+    background:#fff; border-radius:6px;
+    font-family:var(--font-mono); font-size:10px; color:var(--neutral-700);
+    line-height:1.55;
+  }
+  .legend b { color:#C45A3B; font-weight:700; }
+</style>
+</head>
+<body>
+  <div class="lead">
+    <b>image-slot pattern.</b> Design-time placeholder carries the prompt; <code style="background:#fff; padding:1px 4px; border-radius:3px; font-family:var(--font-mono); font-size:10px;">scripts/generate-images.mjs</code> renders the real image into <code style="background:#fff; padding:1px 4px; border-radius:3px; font-family:var(--font-mono); font-size:10px;">assets/</code> later.
+  </div>
+  <div class="pair">
+    <div class="panel">
+      <div class="panel-head"><span class="num">1</span> Design time <span class="arrow">→</span></div>
+      <div class="slot-wrap">
+        <div class="image-slot" data-aspect="4:3">
+          <div class="image-slot__tier">TIER 1</div>
+          <div class="image-slot__meta">
+            <div class="image-slot__label">NanoBanana · slide-03 <span class="image-slot__aspect">4:3</span></div>
+            <div class="image-slot__prompt">An aerial photograph of a semiconductor fab campus at golden hour, warm directional light, deep navy and electric blue tones, corporate polished editorial, no text. 4:3.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><span class="num">2</span> After generation</div>
+      <div class="slot-wrap">
+        <div class="real">
+          <div class="src-tag">assets/slide-03-hbm-cover.png</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <b>Where the prompt lives.</b> &nbsp; <code>data-prompt</code> attribute on the slot ↘ &nbsp; transcribed to <code>slide-outline.md</code> as<br>
+    <code>- NanoBanana: [한글 설명] | [English prompt …]</code>
+  </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="04 Editorial — photo essay" subtitle="3 image-slots · hero + 2 supporting" viewport="960x540" --><html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../colors_and_type.css"><link rel="stylesheet" href="../../_image-slot.css"><style>
+  body { background:var(--theme-bg); padding:56.89px 85.33px; color:var(--primary); display:flex; flex-direction:column; }
+  .head { display:flex; justify-content:space-between; align-items:baseline; padding-bottom:21.33px; border-bottom:1px solid var(--rule-soft, #D8D2C9); }
+  .head .kicker { font-size:17.78px; font-weight:600; color:var(--accent); letter-spacing:0.16em; text-transform:uppercase; }
+  .head .pg { font-size:17.78px; color:var(--gray-2); font-family:'Newsreader', serif; font-style:italic; }
+  h1 { font-size:64px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:24.89px; font-family:'Newsreader', serif; }
+  h1 em { font-style:italic; color:var(--accent); }
+  .grid { flex:1; display:grid; grid-template-columns: 1.2fr 1fr; grid-template-rows: 1fr 1fr; gap:17.78px; margin-top:24.89px; }
+  .hero { grid-row: span 2; }
+  .image-slot { width:100%; height:100%; border-radius:7.11px; }
+  .caption { position:absolute; bottom:14.22px; left:17.78px; font-size:16px; color:var(--gray-2); font-family:'Newsreader', serif; font-style:italic; }
+  .meta-row { padding-top:17.78px; border-top:1px solid var(--rule-soft, #D8D2C9); display:flex; justify-content:space-between; align-items:center; font-size:17.78px; color:var(--gray-2); }
+  .meta-row b { color:var(--primary); font-weight:600; font-family:'Newsreader', serif; font-style:italic; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="three_images" data-screen-label="04-editorial · three_images"><div class="head">
+  <div class="kicker">Photo essay · Three cycles</div>
+  <div class="pg">page <em>06</em></div>
+</div>
+<h1>The <em>shape</em> of capital,<br>in three frames.</h1>
+<div class="grid">
+  <div class="hero" style="position:relative;">
+    <div class="image-slot" data-aspect="3:4">
+      <div class="image-slot__tier">TIER 1</div>
+      <div class="image-slot__meta">
+        <div class="image-slot__label">NanoBanana · hero <span class="image-slot__aspect">3:4</span></div>
+        <div class="image-slot__prompt">A seedling pushing through cracked concrete, dramatic side lighting, fine grain texture, warm cream and terracotta palette, magazine editorial aesthetic, hand-crafted composition, sharp focus, no text. 3:4 portrait.</div>
+      </div>
+    </div>
+    <div class="caption">i — memory. growth from cracked surfaces.</div>
+  </div>
+  <div style="position:relative;">
+    <div class="image-slot" data-aspect="4:3">
+      <div class="image-slot__tier">T2</div>
+      <div class="image-slot__meta">
+        <div class="image-slot__label">NanoBanana <span class="image-slot__aspect">4:3</span></div>
+        <div class="image-slot__prompt">A copper wire grid against terracotta wall, soft directional light, fills the frame, even balanced lighting, no text. 4:3.</div>
+      </div>
+    </div>
+    <div class="caption">ii — compute.</div>
+  </div>
+  <div style="position:relative;">
+    <div class="image-slot" data-aspect="4:3">
+      <div class="image-slot__tier">T2</div>
+      <div class="image-slot__meta">
+        <div class="image-slot__label">NanoBanana <span class="image-slot__aspect">4:3</span></div>
+        <div class="image-slot__prompt">High-voltage transmission tower at dusk, muted moss and cream palette, fills the frame, even lighting, no text. 4:3.</div>
+      </div>
+    </div>
+    <div class="caption">iii — power.</div>
+  </div>
+</div>
+<div class="meta-row">
+  <div>— from <b>Part II</b>, "The shape of capital"</div>
+  <div>page <em style="font-family:'Newsreader',serif; font-style:italic;">06</em></div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

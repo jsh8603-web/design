@@ -1,0 +1,18 @@
+node_modules/
+.env
+.env.*
+*.log
+.DS_Store
+.playwright-session/
+.gemini-outbox/
+.cache/
+dist/
+out/
+# generated outputs
+slides/**/out/
+*.pptx
+*.pdf
+!templates/**/*.pptx
+# temp
+.tmp/
+*.tmp

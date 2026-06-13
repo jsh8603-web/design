@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="02 Dark Pitch — split" subtitle="Hero image-slot · cyan bullets" viewport="960x540" --><html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../colors_and_type.css"><link rel="stylesheet" href="../../_image-slot.css"><style>
+  body { background:var(--theme-bg); padding:71.11px 85.33px; color:var(--primary); display:grid; grid-template-columns: 1fr 1fr; gap:56.89px; align-items:stretch; }
+  .img-col { position:relative; }
+  .image-slot { width:100%; height:100%; border-radius:14.22px; }
+  .txt-col { display:flex; flex-direction:column; justify-content:center; gap:24.89px; }
+  .num-meta { font-family:'JetBrains Mono', monospace; font-size:17.78px; color:var(--accent); letter-spacing:0.16em; text-transform:uppercase; }
+  h1 { font-size:74.67px; font-weight:800; color:var(--primary); letter-spacing:-0.025em; line-height:1.05; }
+  h1 em { font-style:normal; color:var(--accent); }
+  .body { font-size:24.89px; color:var(--gray-2); line-height:1.6; }
+  .body b { color:var(--primary); font-weight:600; }
+  .bullets { display:flex; flex-direction:column; gap:14.22px; margin-top:14.22px; }
+  .bullet { display:flex; align-items:flex-start; gap:17.78px; font-size:21.33px; color:var(--gray-2); line-height:1.55; }
+  .bullet .dot { width:10.67px; height:10.67px; border-radius:50%; background:var(--accent); margin-top:12.44px; flex:none; }
+  .bullet b { color:var(--primary); font-weight:600; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="side_by_side" data-screen-label="02-dark-pitch · side_by_side"><div class="img-col">
+  <div class="image-slot image-slot--dark" data-aspect="3:4">
+    <div class="image-slot__tier">TIER 1</div>
+    <div class="image-slot__meta">
+      <div class="image-slot__label">NanoBanana · hero <span class="image-slot__aspect">3:4</span></div>
+      <div class="image-slot__prompt">A macro photograph of an AI accelerator chip, electric cyan light bleeding from underneath, jet-black surroundings, rim lighting, cinematic futuristic high-contrast tech aesthetic, sharp focus, no text. 3:4 portrait.</div>
+    </div>
+  </div>
+</div>
+<div class="txt-col">
+  <div class="num-meta">// problem · 03 / 12</div>
+  <h1>The <em>bottleneck</em><br>moves to memory.</h1>
+  <div class="body">GPU 공급은 빨라졌다. 다음 병목은 <b>HBM·전력·냉각</b>으로 옮겨가고, 자본은 그 길을 따라 이동한다.</div>
+  <div class="bullets">
+    <div class="bullet"><div class="dot"></div><div><b>HBM3E</b> — NVIDIA H200/B200 향 전량 SK Hynix 공급</div></div>
+    <div class="bullet"><div class="dot"></div><div><b>CoWoS</b> — TSMC 패키징 capacity 2배 확장</div></div>
+    <div class="bullet"><div class="dot"></div><div><b>Power</b> — 데이터센터 PUE 1.1 이하 달성이 한계</div></div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

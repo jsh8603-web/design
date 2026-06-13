@@ -1,0 +1,479 @@
+/* ============================================================
+   slides-grab × Material 3 — Foundation tokens
+   ------------------------------------------------------------
+   Two surface families share this file:
+   - .surface-slide   → 720pt × 405pt deliverable slides (warm)
+   - .surface-app     → the slides-grab editor app (dark slate)
+   PF (Presentation Flow) constraints:
+   - No rgba()/opacity on backgrounds in slides (use solid hex)
+   - No box-shadow / radial-gradient / conic-gradient in slides
+   - Min font-size 10pt (slides), system fonts only
+   ============================================================ */
+
+/* Local-only fonts (fonts/files/*.woff2). CDN @imports removed for
+   closed-network (사내망) compatibility — all weights are vendored,
+   so no external fetch happens. See fonts/README.md for source URLs. */
+@import url("fonts/fonts.css");
+
+:root {
+  /* ── Font stacks ───────────────────────────────────────── */
+  --font-sans:  "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono:  "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-serif: "Newsreader", "Times New Roman", Georgia, serif;
+
+  /* ── Type scale (px for app, pt-equivalent for slides) ── */
+  /* Display & headlines follow Material 3 type role naming  */
+  --t-display-lg:   57px /* @kind font */; --lh-display-lg: 1.10 /* @kind font */;
+  --t-display-md:   45px /* @kind font */; --lh-display-md: 1.15 /* @kind font */;
+  --t-display-sm:   36px /* @kind font */; --lh-display-sm: 1.20 /* @kind font */;
+  --t-headline-lg:  32px /* @kind font */; --lh-headline-lg: 1.20 /* @kind font */;
+  --t-headline-md:  28px /* @kind font */; --lh-headline-md: 1.25 /* @kind font */;
+  --t-headline-sm:  24px /* @kind font */; --lh-headline-sm: 1.30 /* @kind font */;
+  --t-title-lg:     22px /* @kind font */; --lh-title-lg: 1.30 /* @kind font */;
+  --t-title-md:     16px /* @kind font */; --lh-title-md: 1.40 /* @kind font */;
+  --t-title-sm:     14px /* @kind font */; --lh-title-sm: 1.40 /* @kind font */;
+  --t-body-lg:      16px /* @kind font */; --lh-body-lg: 1.55 /* @kind font */;
+  --t-body-md:      14px /* @kind font */; --lh-body-md: 1.55 /* @kind font */;
+  --t-body-sm:      12px /* @kind font */; --lh-body-sm: 1.50 /* @kind font */;
+  --t-label-lg:     14px /* @kind font */; --lh-label-lg: 1.30 /* @kind font */;
+  --t-label-md:     12px /* @kind font */; --lh-label-md: 1.30 /* @kind font */;
+  --t-label-sm:     11px /* @kind font */; --lh-label-sm: 1.30 /* @kind font */;
+
+  /* Tracking */
+  --tracking-tight: -0.02em /* @kind font */;   /* display + headline */
+  --tracking-normal: 0 /* @kind font */;
+  --tracking-label: 0.04em /* @kind font */;    /* uppercase labels   */
+  --tracking-wide: 0.08em /* @kind font */;     /* badges, hero kicker */
+
+  /* Weight ramps */
+  --w-regular: 400 /* @kind font */;
+  --w-medium:  500 /* @kind font */;
+  --w-semibold: 600 /* @kind font */;
+  --w-bold:    700 /* @kind font */;
+  --w-black:   800 /* @kind font */;
+
+  /* ── Neutral ramp (warm graphite, slide-safe) ──────────── */
+  --neutral-0:  #FFFFFF;
+  --neutral-50: #FAFAF9;
+  --neutral-100:#F5F5F0;   /* canvas warm white (executive bg) */
+  --neutral-150:#EFEEE8;
+  --neutral-200:#E5E5E0;
+  --neutral-300:#D4D4D0;
+  --neutral-400:#A8A8A2;
+  --neutral-500:#888880;
+  --neutral-600:#666666;
+  --neutral-700:#3D3D3D;
+  --neutral-800:#292524;
+  --neutral-900:#1A1A1A;   /* primary ink */
+  --neutral-950:#0F0F0F;
+
+  /* Slate ramp (editor / dark surfaces) */
+  --slate-50:  #F8FAFC;
+  --slate-100: #F1F5F9;
+  --slate-200: #E2E8F0;
+  --slate-300: #CBD5E1;
+  --slate-500: #64748B;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1E293B;
+  --slate-900: #0F172A;
+  --slate-950: #020617;
+
+  /* ── Brand / accent (M3 dynamic accents, slide-grab) ───── */
+  --accent-ink:       #1A1A1A;  /* canonical dark accent     */
+  --accent-blue:      #1428A0;  /* "samsung blue" — finance  */
+  --accent-cyan:      #00A9E0;  /* mid-data accent           */
+  --accent-orange:    #FF6F00;  /* highlight / Q4 hero       */
+  --accent-terracotta:#C45A3B;  /* warm theme accent         */
+  --accent-emerald:   #10B981;  /* up / positive             */
+  --accent-amber:     #F59E0B;  /* alert / attention         */
+  --accent-rose:      #EF4444;  /* down / negative           */
+  --accent-sage:      #B8C4B8;  /* contents / divider bg     */
+  --accent-cobalt:    #2563EB;  /* corporate                 */
+  --accent-violet:    #6366F1;  /* strategy                  */
+
+  /* ── Semantic foreground / background (slides) ─────────── */
+  --bg:           var(--neutral-100);
+  --bg-alt:       var(--neutral-0);
+  --bg-elev:      var(--neutral-50);
+  --bg-inverse:   var(--neutral-900);
+  --fg:           var(--neutral-900);
+  --fg-muted:     var(--neutral-600);
+  --fg-subtle:    var(--neutral-500);
+  --fg-inverse:   var(--neutral-0);
+  --line:         var(--neutral-200);
+  --line-strong:  var(--neutral-300);
+  --accent:       var(--accent-ink);
+
+  /* ── Semantic foreground / background (editor app) ─────── */
+  --app-bg-0:     #030711;
+  --app-bg-1:     #0A0F1A;
+  --app-panel:    #0F172A;
+  --app-panel-2:  #020617;
+  --app-border:   #1E293B;
+  --app-border-soft:#172033;
+  --app-fg-0:     #F8FAFC;
+  --app-fg-1:     #94A3B8;
+  --app-fg-2:     #64748B;
+  --app-accent:   #3B82F6;
+  --app-accent-2: #60A5FA;
+  --app-danger:   #EF4444;
+  --app-success:  #22C55E;
+  --app-warn:     #F59E0B;
+
+  /* ── Spacing (4pt grid; M3 density) ────────────────────── */
+  --s-0: 0 /* @kind spacing */;
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 48px;
+  --s-10: 64px;
+  --s-11: 80px;
+  --s-12: 96px;
+
+  /* Slide-specific pt spacing (PPTX-safe) */
+  --pt-1: 4pt /* @kind spacing */;
+  --pt-2: 8pt /* @kind spacing */;
+  --pt-3: 12pt /* @kind spacing */;
+  --pt-4: 16pt /* @kind spacing */;
+  --pt-5: 20pt /* @kind spacing */;
+  --pt-6: 24pt /* @kind spacing */;
+  --pt-7: 32pt /* @kind spacing */;
+  --pt-8: 40pt /* @kind spacing */;
+  --pt-9: 48pt /* @kind spacing */;
+
+  /* ── Radii (M3 shape scale) ────────────────────────────── */
+  --r-none:  0 /* @kind radius */;
+  --r-xs:    4px;     /* extra-small */
+  --r-sm:    8px;     /* small       */
+  --r-md:    12px;    /* medium      */
+  --r-lg:    16px;    /* large       */
+  --r-xl:    24px;    /* extra-large */
+  --r-full:  9999px;  /* full / pill */
+  --r-pt-sm: 4pt /* @kind radius */;
+  --r-pt-md: 8pt /* @kind radius */;
+  --r-pt-lg: 12pt /* @kind radius */;
+
+  /* ── Elevation (M3, app-only — slides forbid box-shadow) ─ */
+  --elev-1: 0 1px 2px rgba(0,0,0,0.06),  0 1px 3px rgba(0,0,0,0.10);
+  --elev-2: 0 2px 4px rgba(0,0,0,0.06),  0 4px 8px rgba(0,0,0,0.10);
+  --elev-3: 0 4px 8px rgba(0,0,0,0.08),  0 8px 16px rgba(0,0,0,0.12);
+  --elev-4: 0 8px 16px rgba(0,0,0,0.10), 0 16px 32px rgba(0,0,0,0.14);
+  --elev-5: 0 16px 32px rgba(0,0,0,0.12),0 32px 64px rgba(0,0,0,0.18);
+  /* Slide "elevation" is conveyed by tint, not shadow */
+  --slide-elev-1: var(--neutral-0) /* @kind other */;     /* surface-tint white-on-warm */
+  --slide-elev-2: var(--neutral-50) /* @kind other */;
+  --slide-elev-3: var(--neutral-150) /* @kind other */;
+
+  /* ── Motion (M3 emphasized easing) ─────────────────────── */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1) /* @kind other */;
+  --ease-emph-in:  cubic-bezier(0.3, 0, 0.8, 0.15) /* @kind other */;
+  --ease-emph-out: cubic-bezier(0.05, 0.7, 0.1, 1) /* @kind other */;
+  --dur-1: 100ms /* @kind other */;
+  --dur-2: 200ms /* @kind other */;
+  --dur-3: 300ms /* @kind other */;
+  --dur-4: 500ms /* @kind other */;
+}
+
+/* ── Semantic role styles (use directly, no extra classes) ── */
+
+.h-display   { font-family: var(--font-sans); font-weight: var(--w-medium);   font-size: var(--t-display-lg); line-height: var(--lh-display-lg); letter-spacing: var(--tracking-tight); color: var(--fg); }
+.h-headline  { font-family: var(--font-sans); font-weight: var(--w-semibold); font-size: var(--t-headline-md); line-height: var(--lh-headline-md); letter-spacing: var(--tracking-tight); color: var(--fg); }
+.h-title     { font-family: var(--font-sans); font-weight: var(--w-semibold); font-size: var(--t-title-lg); line-height: var(--lh-title-lg); color: var(--fg); }
+.h-subtitle  { font-family: var(--font-sans); font-weight: var(--w-regular);  font-size: var(--t-title-md); line-height: var(--lh-title-md); color: var(--fg-muted); }
+.p-body      { font-family: var(--font-sans); font-weight: var(--w-regular);  font-size: var(--t-body-md); line-height: var(--lh-body-md); color: var(--fg); }
+.p-body-lg   { font-family: var(--font-sans); font-weight: var(--w-regular);  font-size: var(--t-body-lg); line-height: var(--lh-body-lg); color: var(--fg); }
+.p-caption   { font-family: var(--font-sans); font-weight: var(--w-regular);  font-size: var(--t-label-md); line-height: var(--lh-label-md); color: var(--fg-subtle); }
+.p-label     { font-family: var(--font-sans); font-weight: var(--w-semibold); font-size: var(--t-label-md); line-height: var(--lh-label-md); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--fg-muted); }
+.p-mono      { font-family: var(--font-mono); font-weight: var(--w-regular);  font-size: var(--t-body-sm); line-height: var(--lh-body-sm); color: var(--fg); }
+
+/* Action title — slides-grab signature: an assertion, not a topic label */
+.h-action {
+  font-family: var(--font-sans);
+  font-weight: var(--w-bold);
+  font-size: 17pt;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--accent-ink);
+}
+
+/* Hero number — KPI display, M3 "display-large" feel */
+.n-hero {
+  font-family: var(--font-sans);
+  font-weight: var(--w-black);
+  font-size: 48pt;
+  line-height: 1.10;
+  letter-spacing: -0.02em;
+  color: var(--accent-ink);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   v3 INTEGRATION — mck semantic theme tokens
+   ────────────────────────────────────────────────────────────────────────
+   Adopted from mck-slide-design-system. Activate via:
+       <html data-theme="modern">    (default)
+       <html data-theme="classic">
+       <html data-theme="dark-mono">
+       <html data-theme="company">    (v3 slot, modern fallback)
+
+   USE THESE FOR ALL NEW SLIDES. Old --bg / --fg / --accent-* tokens above
+   remain for backward compatibility (editor app + legacy slides), but
+   new slide work MUST reference --primary / --accent / --positive /
+   --negative / --gray-1..4 / --surface-inverse — the semantic set.
+
+   Pair with theme_layout_matrix.md (allowed layouts per theme) and
+   prompting_rules.md (action title rules, locked type scale).
+   ════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme="modern"] {
+  /* Brand */
+  --primary:    #1A2332;   /* deep slate navy — titles, dividers, TOC marks */
+  --accent:     #E87722;   /* warm orange — single highlight per slide */
+
+  /* Status */
+  --positive:   #2E844A;
+  --negative:   #C5394A;
+
+  /* Neutrals — gray-1 = deepest fg, gray-4 = lightest bg */
+  --gray-1:     #2C2C2C;
+  --gray-2:     #666666;
+  --gray-3:     #B0B0B0;
+  --gray-4:     #F0F0F0;
+
+  /* Page surface */
+  --theme-bg:   #FFFFFF;
+  --theme-text: #2C2C2C;
+
+  /* Inverse surface — section dividers, covers, closing slides, inset capsules.
+     In light themes this equals primary; in dark themes it diverges so the
+     full-bleed slide still reads as a tonal shift. */
+  --surface-inverse:    #1A2332;
+  --surface-inverse-fg: #FFFFFF;
+
+  /* Heading color — slide titles + title rule. Defaults to primary, which
+     resolves per-theme. dark-mono overrides to a light value because there
+     primary == bg and a primary-colored title would vanish (verifier-caught
+     PF-73-adjacent failure). All chrome (.s-title / .s-rule / .slide__title /
+     .slide__rule) must use var(--heading), never var(--primary) directly. */
+  --heading: var(--primary);
+}
+
+[data-theme="classic"] {
+  --primary:    #051C2C;   /* McKinsey deep navy */
+  --accent:     #00A3E0;   /* cyan blue */
+  --positive:   #2E844A;
+  --negative:   #C5394A;
+  --gray-1:     #2C2C2C;
+  --gray-2:     #666666;
+  --gray-3:     #B0B0B0;
+  --gray-4:     #F0F0F0;
+  --theme-bg:   #FFFFFF;
+  --theme-text: #2C2C2C;
+  --surface-inverse:    #051C2C;
+  --surface-inverse-fg: #FFFFFF;
+}
+
+[data-theme="dark-mono"] {
+  --primary:    #0F1419;   /* near-black surface */
+  --accent:     #4A9EFF;   /* cold cyan-blue */
+  --positive:   #34D399;
+  --negative:   #F87171;
+
+  /* Gray scale REVERSED for dark — gray-1 = lightest on dark */
+  --gray-1:     #E5E7EB;
+  --gray-2:     #9CA3AF;
+  --gray-3:     #4B5563;
+  --gray-4:     #1F2937;
+
+  --theme-bg:   #0F1419;
+  --theme-text: #E5E7EB;
+
+  /* Section dividers in dark mode use a lighter panel so they still
+     register as a tonal shift vs regular slides (where bg == primary). */
+  --surface-inverse:    #1F2937;
+  --surface-inverse-fg: #E5E7EB;
+
+  /* dark-mono: primary == bg, so titles/rules must use a light heading
+     color instead of primary (else they vanish into the background). */
+  --heading: #E5E7EB;
+}
+
+[data-theme="company"] {
+  /* v3 slot — populated by pptx master adapter. Modern fallback for now. */
+  --primary:    #1A2332;
+  --accent:     #E87722;
+  --positive:   #2E844A;
+  --negative:   #C5394A;
+  --gray-1:     #2C2C2C;
+  --gray-2:     #666666;
+  --gray-3:     #B0B0B0;
+  --gray-4:     #F0F0F0;
+  --theme-bg:   #FFFFFF;
+  --theme-text: #2C2C2C;
+  --surface-inverse:    #1A2332;
+  --surface-inverse-fg: #FFFFFF;
+}
+
+/* ── slides-grab v2 흡수 — 4 추가 테마 (executive-editorial, dark-pitch,
+   academic, editorial) ─────────────────────────────────────────────────
+   같은 [data-theme] 한 줄 + 같은 의미적 토큰 컨트랙트. 모두 1280×720px
+   캔버스 사용 가능. 일부 슬라이드는 720×405pt legacy 캔버스 유지 (v2 호환). */
+
+/* ─── Executive Editorial — IR/투자메모/임원보고 (warm graphite + navy + orange) ── */
+[data-theme="executive-editorial"] {
+  --primary:    #1A1A1A;   /* deep ink */
+  --accent:     #1428A0;   /* navy (data primary) */
+  --accent-secondary: #FF6F00;  /* hot orange highlight */
+  --positive:   #2E844A;
+  --negative:   #C5394A;
+  --gray-1:     #1A1A1A;
+  --gray-2:     #666666;
+  --gray-3:     #999999;
+  --gray-4:     #E5E5E0;
+  --theme-bg:   #F5F5F0;   /* warm white canvas */
+  --theme-bg-alt: #F8F9FA;
+  --theme-bg-card: #FFFFFF;
+  --theme-text: #1A1A1A;
+  --surface-inverse:    #1A1A1A;
+  --surface-inverse-fg: #FFFFFF;
+  /* 시그니처 decoration: hairline circle + ↗ 화살표 (1.5px border, 28~38pt diameter) */
+  --rule-strong: #1A1A1A;
+  --border-soft: #D8D2C9;
+}
+
+/* ─── Dark Pitch — AI 스타트업 IR/키노트 (jet black + cyan, 강렬한 타이포) ── */
+[data-theme="dark-pitch"] {
+  --primary:    #FFFFFF;   /* primary mark on dark */
+  --accent:     #00A9E0;   /* electric cyan */
+  --accent-secondary: #10B981;  /* positive green */
+  --positive:   #10B981;
+  --negative:   #EF4444;
+  --gray-1:     #FFFFFF;
+  --gray-2:     #999999;
+  --gray-3:     #666666;
+  --gray-4:     #141416;   /* card on dark */
+  --theme-bg:   #0A0A0B;
+  --theme-bg-alt: #141416;
+  --theme-bg-card: #141416;
+  --theme-bg-elevated: #1F1F22;
+  --theme-text: #FFFFFF;
+  --surface-inverse:    #141416;   /* 다크 위 좀 더 밝은 패널 — 시각적 변화 유지 */
+  --surface-inverse-fg: #FFFFFF;
+  /* 시그니처 decoration: JetBrains Mono 'kicker', // 슬래시 prefix, 80~96pt 헤로 */
+  --mono-meta: "JetBrains Mono", ui-monospace, monospace /* @kind font */;
+}
+
+/* ─── Academic Clean — 학술/연구/백서 (locked white + navy) ─────────────── */
+[data-theme="academic"] {
+  --primary:    #1F4E79;   /* navy headers */
+  --accent:     #2E75B6;   /* secondary chart color */
+  --accent-secondary: #1F4E79;
+  --positive:   #1F4E79;
+  --negative:   #C5394A;
+  --gray-1:     #333333;
+  --gray-2:     #666666;
+  --gray-3:     #B0B0B0;
+  --gray-4:     #F2F2F2;
+  --theme-bg:   #FFFFFF;   /* locked white — 절대 override 금지 */
+  --theme-bg-alt: #F2F2F2;
+  --theme-bg-card: #F8F9FA;
+  --theme-text: #333333;
+  --surface-inverse:    #1F4E79;
+  --surface-inverse-fg: #FFFFFF;
+  /* 시그니처 decoration: 2pt navy 룰 (top + bottom border), 짙은 회색 디바이더, F-1/D-1 인덱스 */
+  --rule-strong: #1F4E79;
+  --border-soft: #E2E8F0;
+}
+
+/* ─── Editorial Magazine — 분기 에세이/연간보고/창립자 letter ─────────────
+   별도 트랙 (Track B). Newsreader serif + Pretendard sans 혼합.
+   별도 chrome (essay headline serif, drop cap, italic em). */
+[data-theme="editorial"] {
+  --primary:    #2D2A26;   /* dark ink */
+  --accent:     #C45A3B;   /* terracotta */
+  --accent-secondary: #C45A3B;
+  --positive:   #2E844A;
+  --negative:   #C5394A;
+  --gray-1:     #2D2A26;
+  --gray-2:     #5A554F;
+  --gray-3:     #6B6560;
+  --gray-4:     #F0EBE3;
+  --theme-bg:   #FAF8F5;   /* cream */
+  --theme-bg-alt: #F0EBE3;
+  --theme-bg-card: #FFFFFF;
+  --theme-text: #2D2A26;
+  --surface-inverse:    #2D2A26;
+  --surface-inverse-fg: #FAF8F5;
+  /* 시그니처 decoration: Newsreader serif display, italic em accents,
+     드롭캡 (::first-letter), hairline serif rule, 인용 글리프 */
+  --font-display-serif: "Newsreader", "Times New Roman", Georgia, serif;
+  --rule-soft: #D8D2C9;
+}
+
+/* ── mck slide token aliases ───────────────────────────────────────────
+   mck-authored slides (deck-stage + .s-* chrome) reference --bg / --text /
+   --font-display / --font-kr. This project's per-theme blocks define
+   --theme-bg / --theme-text instead, and --bg is pinned light in :root for
+   the editor app + legacy slides. These aliases map the mck names onto the
+   active theme so every mck slide resolves correctly under all 8 themes
+   WITHOUT touching the editor/legacy --bg. Scoped to [data-theme] only. */
+:root {
+  --font-display: var(--font-sans);   /* mck used Pretendard for display too */
+  --font-kr:      var(--font-sans);   /* Pretendard covers Korean */
+}
+[data-theme] {
+  --bg:   var(--theme-bg);
+  --text: var(--theme-text);
+}
+
+/* ── Locked pt type scale — slides only (mck conformant) ───────────────
+   These pt values match python-pptx output exactly. Do not interpolate
+   between sizes. */
+:root {
+  --pt-cover:     44pt /* @kind font */;   /* cover title only */
+  --pt-section:   28pt /* @kind font */;   /* section / TOC title */
+  --pt-subtitle:  24pt /* @kind font */;   /* cover subtitle */
+  --pt-action:    22pt /* @kind font */;   /* action title (slide title) */
+  --pt-subheader: 18pt /* @kind font */;   /* sub-header */
+  --pt-emphasis:  16pt /* @kind font */;   /* bottom-bar takeaway */
+  --pt-body:      14pt /* @kind font */;   /* PRIMARY body */
+  --pt-small:     12pt /* @kind font */;   /* caption */
+  --pt-foot:       9pt /* @kind font */;   /* footnote, source, page number */
+}
+
+/* ── Semantic type styles for slides (mck-compliant) ──────────────────── */
+.t-cover     { font-family: var(--font-sans); font-size: var(--pt-cover);     font-weight: 700; line-height: 1.15; color: var(--heading); letter-spacing: -0.015em; }
+.t-subtitle  { font-family: var(--font-sans); font-size: var(--pt-subtitle);  font-weight: 500; line-height: 1.30; color: var(--gray-1); }
+.t-section   { font-family: var(--font-sans); font-size: var(--pt-section);   font-weight: 700; line-height: 1.15; color: var(--heading); letter-spacing: -0.01em; }
+.t-action    { font-family: var(--font-sans); font-size: var(--pt-action);    font-weight: 700; line-height: 1.30; color: var(--heading); letter-spacing: -0.005em; }
+.t-subheader { font-family: var(--font-sans); font-size: var(--pt-subheader); font-weight: 600; line-height: 1.30; color: var(--heading); }
+.t-emphasis  { font-family: var(--font-sans); font-size: var(--pt-emphasis);  font-weight: 700; line-height: 1.30; color: var(--gray-1); }
+.t-body      { font-family: var(--font-sans); font-size: var(--pt-body);      font-weight: 400; line-height: 1.45; color: var(--gray-1); }
+.t-small     { font-family: var(--font-sans); font-size: var(--pt-small);     font-weight: 400; line-height: 1.45; color: var(--gray-2); }
+.t-foot      { font-family: var(--font-sans); font-size: var(--pt-foot);      font-weight: 400; line-height: 1.45; color: var(--gray-2); letter-spacing: 0.01em; }
+
+/* ── Slide chrome (v3 — mck 13.333"×7.5" canvas, 1280×720px design grid) ──
+   v3 표준 캔버스. 이전 slides-grab 의 720×405pt (10×5.625") 는 legacy.
+   px 단위는 96dpi 가정 (1280px = 13.333"). PPTX 출력은 inches.
+   margin: 0.8in (76.8px), title_top: 0.15in (14.4px), source_y: 7.05in (676.8px). */
+.slide--themed {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  background: var(--theme-bg);
+  color: var(--theme-text);
+  font-family: var(--font-sans);
+  overflow: hidden;
+}
+.slide__title    { position: absolute; left: 76.8px; top: 14.4px;  width: 1126.4px; height: 86.4px; display: flex; align-items: center; }
+.slide__rule     { position: absolute; left: 76.8px; top: 100.8px; width: 1126.4px; height: 2px; background: var(--heading); }
+.slide__content  { position: absolute; left: 76.8px; top: 124.8px; width: 1126.4px; }
+.slide__source   { position: absolute; left: 76.8px; top: 676.8px; font-size: var(--pt-foot); color: var(--gray-2); }
+.slide__pagenum  { position: absolute; right: 76.8px; top: 676.8px; font-size: var(--pt-foot); color: var(--gray-2); }
+.slide__bottombar{ position: absolute; left: 76.8px; top: 595.2px; width: 1126.4px; height: 62.4px; background: var(--gray-4); display: flex; align-items: center; padding: 0 24px; }

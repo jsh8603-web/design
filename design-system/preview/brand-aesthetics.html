@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Aesthetic directions overview" subtitle="4 directions · swatch + signature headline + use case" viewport="700x420" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>aesthetic directions</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:700px; background:var(--neutral-100); font-family:var(--font-sans); color:var(--neutral-900); -webkit-font-smoothing:antialiased; }
+  body { padding:18px 22px; }
+  .grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; }
+  .card { display:flex; flex-direction:column; border-radius:10px; overflow:hidden; border:1px solid var(--neutral-200); }
+  .head { padding:10px 12px; display:flex; justify-content:space-between; align-items:baseline; }
+  .name { font-size:13px; font-weight:700; letter-spacing:-0.01em; }
+  .tag { font-family:var(--font-mono); font-size:9px; letter-spacing:0.16em; text-transform:uppercase; font-weight:700; }
+  .swatch { padding:14px 16px; }
+  .swatch-line { display:flex; gap:6px; margin-top:6px; }
+  .swatch-line .s { width:24px; height:14px; border-radius:2px; }
+  .swatch .use { font-size:10px; line-height:1.4; }
+  .meta { padding:8px 12px; border-top:1px solid var(--neutral-200); display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:9px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <!-- 01 Executive -->
+    <div class="card" style="background:#F5F5F0;">
+      <div class="head">
+        <div class="name">Executive Editorial</div>
+        <div class="tag" style="color:#1428A0;">★ 01</div>
+      </div>
+      <div class="swatch" style="color:#1A1A1A;">
+        <div style="font-size:24px; font-weight:500; letter-spacing:-0.02em; line-height:1.1;">AI 인프라가 다음<br>사이클을 이끈다.</div>
+        <div class="swatch-line">
+          <div class="s" style="background:#1A1A1A;"></div>
+          <div class="s" style="background:#1428A0;"></div>
+          <div class="s" style="background:#FF6F00;"></div>
+          <div class="s" style="background:#F5F5F0; border:1px solid #E5E5E0;"></div>
+        </div>
+        <div class="use" style="color:#666; margin-top:8px;">IR · 컨설팅 · 임원 보고</div>
+      </div>
+      <div class="meta" style="background:#FFFFFF; color:#666;"><span>Pretendard</span><span>themes/executive-editorial.css</span></div>
+    </div>
+
+    <!-- 02 Dark Pitch -->
+    <div class="card" style="background:#0A0A0B;">
+      <div class="head">
+        <div class="name" style="color:#FFFFFF;">Modern Dark Pitch</div>
+        <div class="tag" style="color:#00A9E0;">02</div>
+      </div>
+      <div class="swatch">
+        <div style="font-size:24px; font-weight:800; letter-spacing:-0.025em; line-height:1.05; color:#FFFFFF;">Compute is the<br>new <em style="font-style:normal; color:#00A9E0;">oil.</em></div>
+        <div class="swatch-line">
+          <div class="s" style="background:#0A0A0B; border:1px solid #1F1F22;"></div>
+          <div class="s" style="background:#FFFFFF;"></div>
+          <div class="s" style="background:#00A9E0;"></div>
+          <div class="s" style="background:#10B981;"></div>
+        </div>
+        <div class="use" style="color:#999; margin-top:8px;">AI · 스타트업 · 키노트</div>
+      </div>
+      <div class="meta" style="background:#141416; color:#666;"><span>Pretendard + Mono</span><span>themes/dark-pitch.css</span></div>
+    </div>
+
+    <!-- 03 Academic -->
+    <div class="card" style="background:#FFFFFF;">
+      <div class="head">
+        <div class="name" style="color:#1F4E79;">Academic Clean</div>
+        <div class="tag" style="color:#1F4E79;">03</div>
+      </div>
+      <div class="swatch" style="color:#333;">
+        <div style="font-size:18px; font-weight:700; line-height:1.2; color:#1F4E79; letter-spacing:-0.01em; padding-bottom:8px; border-bottom:2px solid #1F4E79;">HBM TAM 2년 내 3배로 — 단일 사이클 가설을 데이터로 검증.</div>
+        <div class="swatch-line">
+          <div class="s" style="background:#FFFFFF; border:1px solid #E2E8F0;"></div>
+          <div class="s" style="background:#1F4E79;"></div>
+          <div class="s" style="background:#2E75B6;"></div>
+          <div class="s" style="background:#F2F2F2;"></div>
+        </div>
+        <div class="use" style="color:#666; margin-top:8px;">학회 · 연구 · 백서</div>
+      </div>
+      <div class="meta" style="background:#F8F9FA; color:#666;"><span>Pretendard 400–700</span><span>themes/academic-clean.css</span></div>
+    </div>
+
+    <!-- 04 Editorial -->
+    <div class="card" style="background:#FAF8F5;">
+      <div class="head">
+        <div class="name" style="color:#2D2A26; font-family:'Newsreader', serif;">The Editorial Magazine</div>
+        <div class="tag" style="color:#C45A3B;">04</div>
+      </div>
+      <div class="swatch" style="color:#2D2A26;">
+        <div style="font-family:'Newsreader', serif; font-size:26px; font-weight:500; line-height:1.05; letter-spacing:-0.02em;">The new shape<br>of <em style="color:#C45A3B; font-weight:400;">capital.</em></div>
+        <div class="swatch-line">
+          <div class="s" style="background:#FAF8F5; border:1px solid #D8D2C9;"></div>
+          <div class="s" style="background:#2D2A26;"></div>
+          <div class="s" style="background:#C45A3B;"></div>
+          <div class="s" style="background:#DDD8D0;"></div>
+        </div>
+        <div class="use" style="color:#5A554F; margin-top:8px;">연간보고 · 에세이 · 잡지</div>
+      </div>
+      <div class="meta" style="background:#FFFFFF; color:#5A554F;"><span>Newsreader + Pretendard</span><span>themes/editorial-magazine.css</span></div>
+    </div>
+  </div>
+</body>
+</html>

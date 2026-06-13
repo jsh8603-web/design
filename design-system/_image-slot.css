@@ -1,0 +1,98 @@
+/* Image slot — design-time placeholder for nano-banana images.
+   Include this CSS, then drop <div class="image-slot"> wherever an
+   image will go later. See ../nano_banana_guide.md for the full pattern.
+   ============================================================ */
+
+.image-slot {
+  background-color: #FAF8F5;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      #F0EBE3 0,
+      #F0EBE3 8px,
+      #FAF8F5 8px,
+      #FAF8F5 16px
+    );
+  border: 1.5px dashed #C45A3B;
+  border-radius: 4pt;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-slot--dark {
+  background-color: #141416;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      #1F1F22 0,
+      #1F1F22 8px,
+      #141416 8px,
+      #141416 16px
+    );
+  border-color: #00A9E0;
+}
+.image-slot--dark .image-slot__meta { background-color: rgba(10,10,11,0.9); }
+.image-slot--dark .image-slot__label { color: #00A9E0; }
+.image-slot--dark .image-slot__prompt { color: #999; }
+
+.image-slot__meta {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  text-align: center;
+  padding: 8pt 12pt;
+  background-color: rgba(255, 255, 255, 0.92);
+  border-radius: 4pt;
+  max-width: 84%;
+  margin: 12pt;
+}
+
+.image-slot__label {
+  font-size: 10pt;
+  font-weight: 700;
+  color: #C45A3B;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.image-slot__aspect {
+  display: inline-block;
+  margin-left: 6pt;
+  padding: 1pt 6pt;
+  background-color: #C45A3B;
+  color: #FFFFFF;
+  border-radius: 3pt;
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+.image-slot__prompt {
+  font-size: 9pt;
+  color: #5A554F;
+  margin-top: 6pt;
+  line-height: 1.45;
+  /* clamp to 2 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+}
+
+.image-slot__tier {
+  position: absolute;
+  top: 8pt;
+  right: 10pt;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9pt;
+  font-weight: 700;
+  color: #C45A3B;
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 2pt 6pt;
+  border-radius: 3pt;
+}
+.image-slot--dark .image-slot__tier {
+  color: #00A9E0;
+  background-color: rgba(10, 10, 11, 0.85);
+}

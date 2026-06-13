@@ -1,0 +1,84 @@
+<!doctype html>
+<!-- @dsCard group="Slides" name="slide-meet-the-team" subtitle="meet_the_team — image-slot 4인 그리드 (slides-grab 흡수)" viewport="1280x720" -->
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>Meet the team</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="../_image-slot.css">
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1280px; height:720px; overflow:hidden;
+    font-family:var(--font-sans);
+    background:var(--theme-bg); color:var(--theme-text);
+    position:relative;
+  }
+  .s-title  { position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px; display:flex; align-items:center; font-family:var(--font-display); font-weight:700; font-size:29.33px; color:var(--primary); letter-spacing:-0.005em; }
+  .s-rule   { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--primary); }
+  .grid     { position:absolute; left:76.8px; top:150px; width:1126.4px; display:grid; grid-template-columns:repeat(4,1fr); gap:32px; }
+  .person   { text-align:left; }
+  .person .photo { width:100%; aspect-ratio:1; border-radius:8px; overflow:hidden; margin-bottom:18px; }
+  .person .photo .image-slot { width:100%; height:100%; border-radius:8px; }
+  .person .nm { font-family:var(--font-display); font-weight:700; font-size:21px; color:var(--gray-1); }
+  .person .ro { font-size:14px; color:var(--accent); font-weight:600; margin-top:4px; }
+  .person .bio { font-size:13px; color:var(--gray-2); line-height:1.5; margin-top:8px; }
+  .s-source { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum{ position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+</style>
+</head>
+<body data-layout="meet_the_team" data-screen-label="meet_the_team">
+  <div class="s-title kr">증설 TF 핵심 리더십 — 4개 워크스트림 책임자</div>
+  <div class="s-rule"></div>
+  <div class="grid">
+    <div class="person">
+      <div class="photo"><div class="image-slot" data-slot-id="team-yoon" data-shape="rounded" data-aspect="1:1" data-min-w="240pt" data-min-h="240pt" data-theme-mood="modern" data-nano-prompt="professional corporate headshot of a senior Korean male executive in his 50s, neutral gray studio background, mid-key lighting, restrained editorial portrait, suit, no smile"><span class="slot-hint">윤 부사장 사진</span></div></div>
+      <div class="nm kr">윤OO 부사장</div>
+      <div class="ro kr">TF 총괄</div>
+      <div class="bio kr">증설 전략·자본 배분 최종 의사결정</div>
+    </div>
+    <div class="person">
+      <div class="photo"><div class="image-slot" data-slot-id="team-jung" data-shape="rounded" data-aspect="1:1" data-min-w="240pt" data-min-h="240pt" data-theme-mood="modern" data-nano-prompt="professional corporate headshot of a Korean male executive in his 40s, neutral gray studio background, mid-key lighting, restrained editorial portrait, no smile"><span class="slot-hint">정 상무 사진</span></div></div>
+      <div class="nm kr">정OO 상무</div>
+      <div class="ro kr">건설·설비</div>
+      <div class="bio kr">시공 일정·설비 반입 총괄</div>
+    </div>
+    <div class="person">
+      <div class="photo"><div class="image-slot" data-slot-id="team-kang" data-shape="rounded" data-aspect="1:1" data-min-w="240pt" data-min-h="240pt" data-theme-mood="modern" data-nano-prompt="professional corporate headshot of a Korean female executive in her 40s, neutral gray studio background, mid-key lighting, restrained editorial portrait, no smile"><span class="slot-hint">강 전무 사진</span></div></div>
+      <div class="nm kr">강OO 전무</div>
+      <div class="ro kr">공정·수율</div>
+      <div class="bio kr">양산 수율·차세대 공정 책임</div>
+    </div>
+    <div class="person">
+      <div class="photo"><div class="image-slot" data-slot-id="team-song" data-shape="rounded" data-aspect="1:1" data-min-w="240pt" data-min-h="240pt" data-theme-mood="modern" data-nano-prompt="professional corporate headshot of a Korean male executive in his 40s, neutral gray studio background, mid-key lighting, restrained editorial portrait, no smile"><span class="slot-hint">송 이사 사진</span></div></div>
+      <div class="nm kr">송OO 이사</div>
+      <div class="ro kr">조달·소재</div>
+      <div class="bio kr">소재 이원화·구매 전략</div>
+    </div>
+  </div>
+  <div class="s-source kr">Source: 증설 TF 발족 공지, FY26.Q1</div>
+  <div class="s-pagenum">— </div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body>
+</html>

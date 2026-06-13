@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="01 Executive — section" subtitle="Dark section divider · orange accent rule" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../colors_and_type.css"><style>
+  body { background:var(--primary); padding:85.33px; display:flex; flex-direction:column; justify-content:space-between; color:var(--theme-bg-card, var(--surface-inverse-fg)); }
+  .top { display:flex; justify-content:space-between; align-items:flex-start; }
+  .top .sec { display:inline-block; padding:8.89px 21.33px; background:var(--theme-bg-card, var(--surface-inverse-fg)); color:var(--primary); border-radius:7.11px; font-size:16px; font-weight:700; letter-spacing:0.06em; }
+  .top .copy { font-size:16px; color:var(--gray-2); }
+
+  .main { flex:1; display:flex; flex-direction:column; justify-content:center; gap:24.89px; }
+
+  /* small topic label — what the section is "about" */
+  .eyebrow {
+    display:flex; align-items:center; gap:17.78px;
+    font-size:19.56px; font-weight:600; color:var(--gray-3);
+    letter-spacing:0.16em; text-transform:uppercase;
+  }
+  .eyebrow .accent { width:42.67px; height:3.56px; background:var(--accent-secondary, #FF6F00); border-radius:1.78px; }
+  .eyebrow .topic { color:var(--accent-secondary, #FF6F00); }
+
+  /* action title — the assertion */
+  h1 {
+    font-size:67.56px; font-weight:500; color:var(--theme-bg-card, var(--surface-inverse-fg));
+    letter-spacing:-0.018em; line-height:1.15;
+    max-width:1066.67px;
+  }
+  h1 em { font-style:normal; color:var(--accent-secondary, #FF6F00); font-weight:500; }
+
+  /* supporting body — 2 lines of what's inside */
+  .body { font-size:23.11px; color:var(--gray-3); line-height:1.6; max-width:995.56px; }
+  .body b { color:var(--theme-bg-card, var(--surface-inverse-fg)); font-weight:500; }
+
+  /* contents preview — what slides come next */
+  .contents { display:flex; gap:32px; margin-top:14.22px; }
+  .contents .item { font-size:17.78px; color:var(--gray-2); display:flex; align-items:baseline; gap:10.67px; }
+  .contents .item .n { color:var(--accent-secondary, #FF6F00); font-family:'JetBrains Mono', monospace; font-weight:700; }
+
+  .footer { display:flex; justify-content:space-between; align-items:flex-end; }
+  .footer .num { font-size:17.78px; color:var(--gray-2); font-family:'JetBrains Mono', monospace; letter-spacing:0.06em; }
+  .footer .arrow-c { width:64px; height:64px; border:1.5px solid var(--theme-bg-card, var(--surface-inverse-fg)); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:28.44px; color:var(--theme-bg-card, var(--surface-inverse-fg)); }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="section_divider" data-screen-label="01-executive · section_divider"><div class="top">
+  <div class="sec">SECTION 2</div>
+  <div class="copy">©2026 slides-grab Research</div>
+</div>
+<div class="main">
+  <div class="eyebrow">
+    <span class="accent"></span>
+    <span>Section 02</span>
+    <span style="color:var(--gray-2);">·</span>
+    <span class="topic">시장 분석</span>
+  </div>
+  <h1>HBM·GPU·전력 — 한 자릿수로 움직이던 시장이 <em>동시에 두 자릿수</em>로 진입했다.</h1>
+  <div class="body">이 섹션은 2024–2025년 분기별 데이터로 <b>단일 자본 사이클 가설</b>을 검증하고, 향후 5년 자본 배분의 방향을 정한다.</div>
+  <div class="contents">
+    <div class="item"><span class="n">2.1</span><span>HBM 시장 3배 확장</span></div>
+    <div class="item"><span class="n">2.2</span><span>SK Hynix 52% 점유</span></div>
+    <div class="item"><span class="n">2.3</span><span>CapEx 21.5B$ 증액</span></div>
+  </div>
+</div>
+<div class="footer">
+  <div class="num">02 / 04</div>
+  <div class="arrow-c">↗</div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

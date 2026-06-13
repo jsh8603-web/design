@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Slides" name="Slide — Closing" subtitle="Dark bg · thank you · contact strip" viewport="960x540" -->
+<html lang="ko" data-theme="modern">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 720px;
+      font-family: 'Pretendard', sans-serif;
+      background: #1a1a1a;
+      padding: 85.33px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body data-layout="closing" data-screen-label="legacy · closing">
+  <!-- 로고 -->
+  <div style="display: flex; align-items: center; gap: 14.22px;">
+    <div style="width: 35.56px; height: 35.56px; background: #fff; border-radius: 7.11px; display: flex; align-items: center; justify-content: center;">
+      <p style="color: #1a1a1a; font-size: 21.33px;">*</p>
+    </div>
+    <p style="font-size: 21.33px; font-weight: 600; color: #ffffff;">LogoName</p>
+  </div>
+
+  <!-- 메인 메시지 -->
+  <div>
+    <h1 style="font-size: 99.56px; font-weight: 500; color: #ffffff; letter-spacing: -0.02em; line-height: 1.1;">
+      Thank You
+    </h1>
+    <p style="font-size: 28.44px; color: #888; margin-top: 28.44px;">
+      Questions? Let's discuss.
+    </p>
+  </div>
+
+  <!-- 연락처 정보 -->
+  <div style="display: flex; gap: 113.78px;">
+    <div>
+      <p style="font-size: 16px; color: #666; margin-bottom: 7.11px;">Email</p>
+      <p style="font-size: 21.33px; font-weight: 500; color: #ffffff;">hello@company.com</p>
+    </div>
+    <div>
+      <p style="font-size: 16px; color: #666; margin-bottom: 7.11px;">Phone</p>
+      <p style="font-size: 21.33px; font-weight: 500; color: #ffffff;">+82 10-1234-5678</p>
+    </div>
+    <div>
+      <p style="font-size: 16px; color: #666; margin-bottom: 7.11px;">Website</p>
+      <p style="font-size: 21.33px; font-weight: 500; color: #ffffff;">www.company.com</p>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body>
+</html>

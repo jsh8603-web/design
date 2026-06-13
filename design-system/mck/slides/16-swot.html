@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>SWOT (Layout #65)</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="slides.css">
+<style>
+  .swot {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0;
+    height: 460px;
+    border: 1px solid var(--gray-3);
+  }
+  .swot__cell {
+    padding: 20px 22px;
+    position: relative;
+  }
+  .swot__cell.tl { border-right: 1px solid var(--gray-3); border-bottom: 1px solid var(--gray-3); background: rgba(46, 132, 74, 0.05); }
+  .swot__cell.tr { border-bottom: 1px solid var(--gray-3); background: rgba(197, 57, 74, 0.05); }
+  .swot__cell.bl { border-right: 1px solid var(--gray-3); background: rgba(232, 119, 34, 0.04); }
+  .swot__cell.br { background: rgba(26, 35, 50, 0.04); }
+  .swot__head {
+    display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px;
+  }
+  .swot__letter {
+    font-family: var(--font-display); font-weight: 700; font-size: 28px;
+    line-height: 1;
+  }
+  .swot__head .label {
+    font-family: var(--font-display); font-weight: 700; font-size: 16px;
+    color: var(--gray-1);
+  }
+  .swot__head .sublabel {
+    font-family: var(--font-sans); font-size: 11px; font-weight: 500;
+    color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase;
+    margin-left: auto;
+  }
+  .swot ul {
+    list-style: none; padding: 0; margin: 0;
+    font-size: 14px; line-height: 1.45; color: var(--gray-1);
+    font-family: var(--font-kr);
+  }
+  .swot li { position: relative; padding-left: 14px; margin-bottom: 10px; }
+  .swot li::before { content: "•"; position: absolute; left: 0; top: 0; color: currentColor; opacity: 0.5; }
+  .swot__cross-h {
+    position: absolute; left: 0; right: 0; top: 50%;
+    height: 1px; background: var(--gray-1);
+  }
+  .swot__cross-v {
+    position: absolute; top: 0; bottom: 0; left: 50%;
+    width: 1px; background: var(--gray-1);
+  }
+</style>
+</head>
+<body>
+<div class="deck-stage">
+<section class="slide" data-screen-label="16 SWOT">
+  <div class="s-title kr">FY26 사업부 SWOT — 강점 2개 vs 위협 3개, 외부 변수 우세 환경</div>
+  <div class="s-rule"></div>
+
+  <div class="s-body" style="top:140px;">
+
+    <div class="swot">
+
+      <!-- Top-left: Strengths -->
+      <div class="swot__cell tl">
+        <div class="swot__head">
+          <span class="swot__letter" style="color:var(--positive);">S</span>
+          <span class="label">Strength · 강점</span>
+          <span class="sublabel">내부 · 긍정</span>
+        </div>
+        <ul>
+          <li>북미 채널 점유율 1위 (38% · 2위와 +14%p 격차)</li>
+          <li>BMS 단일 플랫폼화 완료 — 경쟁사 대비 18개월 선행</li>
+          <li>OEM 4개사 게이트웨이 계약 — 락인 효과 24개월</li>
+        </ul>
+      </div>
+
+      <!-- Top-right: Weaknesses -->
+      <div class="swot__cell tr">
+        <div class="swot__head">
+          <span class="swot__letter" style="color:var(--negative);">W</span>
+          <span class="label">Weakness · 약점</span>
+          <span class="sublabel">내부 · 부정</span>
+        </div>
+        <ul>
+          <li>북미 단일 시장 의존 38% — 지역 리스크 노출</li>
+          <li>CAC 2.7배 상승 — 유료 채널 의존 구조</li>
+          <li>운전자본 회전 75일 — 동종업계 평균 +12일</li>
+        </ul>
+      </div>
+
+      <!-- Bottom-left: Opportunities -->
+      <div class="swot__cell bl">
+        <div class="swot__head">
+          <span class="swot__letter" style="color:var(--accent);">O</span>
+          <span class="label">Opportunity · 기회</span>
+          <span class="sublabel">외부 · 긍정</span>
+        </div>
+        <ul>
+          <li>유럽 인허가 — 6개월 지연 회복 시 +280억 매출 잠재</li>
+          <li>차세대 화학 — 글로벌 톱5 중 3사 진입 전 슬롯 보유</li>
+          <li>가치 기반 가격 모델 — 마진 3배 잠재 (검증 PoC)</li>
+        </ul>
+      </div>
+
+      <!-- Bottom-right: Threats -->
+      <div class="swot__cell br">
+        <div class="swot__head">
+          <span class="swot__letter" style="color:var(--primary);">T</span>
+          <span class="label">Threat · 위협</span>
+          <span class="sublabel">외부 · 부정</span>
+        </div>
+        <ul>
+          <li>중국 3사 가격 인하 –18% — Q3 본격화 예상</li>
+          <li>원자재 변동성 9% YoY — 헷지 비율 35% 부족</li>
+          <li>아시아 환율 노출 +12% — 마진 –0.6%p 영향</li>
+        </ul>
+      </div>
+
+      <!-- Central cross overlay -->
+      <div class="swot__cross-h"></div>
+      <div class="swot__cross-v"></div>
+
+    </div>
+
+  </div>
+
+  <div class="s-bar kr"><span class="pre">시사점 —</span>S2 + O2 결합 = BMS 우위 × 차세대 화학 진입 — 단일 최우선 전략</div>
+  <div class="s-source">Source: 전략기획팀 SWOT 워크숍, FY26.Q2 · 외부 컨설팅 인터뷰 12건</div>
+  <div class="s-pagenum">16/17</div>
+</section>
+</div>
+</body>
+</html>

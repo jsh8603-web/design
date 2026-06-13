@@ -1,0 +1,389 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Slides" name="Slide deliverable system" subtitle="Templates · themes · voice · PF rules overview" viewport="1280x900" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>slides-grab · Slide deliverable system</title>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg:        #F5F5F0;
+    --bg-alt:    #FFFFFF;
+    --ink:       #1A1A1A;
+    --ink-soft:  #3D3D3D;
+    --muted:     #666666;
+    --subtle:    #999999;
+    --line:      #E5E5E0;
+    --accent:    #1428A0;
+    --hot:       #FF6F00;
+  }
+  html, body {
+    background: var(--bg);
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  body { padding: 40px 56px 64px; max-width: 1280px; margin: 0 auto; }
+
+  /* ── header (treats this page like the cover of the system itself) ── */
+  .top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 28px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand .mark {
+    width: 24px; height: 24px; background: var(--ink);
+    border-radius: 4px; color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700;
+  }
+  .brand .wordmark { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .breadcrumb { font-size: 12px; color: var(--subtle); letter-spacing: 0.04em; text-transform: uppercase; }
+  .top-right { display: flex; align-items: center; gap: 12px; }
+  .pill {
+    display: inline-block; padding: 4pt 10pt;
+    border: 1px solid var(--ink); border-radius: 14pt;
+    font-size: 10pt; font-weight: 500; color: var(--ink);
+  }
+  .arrow-circle {
+    width: 28px; height: 28px; border: 1px solid var(--ink);
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--ink);
+  }
+
+  /* ── hero ── */
+  .hero {
+    display: grid; grid-template-columns: 1.6fr 1fr; gap: 64px;
+    align-items: end;
+    padding: 56px 0 36px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero h1 {
+    font-size: 72px; font-weight: 500; line-height: 1.02;
+    letter-spacing: -0.025em;
+  }
+  .hero .meta {
+    display: flex; gap: 32px;
+    font-size: 12px;
+  }
+  .hero .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .hero .meta-label { color: var(--subtle); }
+  .hero .meta-value { font-weight: 500; color: var(--ink); }
+  .hero .right { display: flex; flex-direction: column; gap: 18px; align-items: flex-end; }
+  .hero .right p {
+    font-size: 15px; line-height: 1.55; color: var(--muted);
+    text-align: right; max-width: 320px;
+  }
+
+  /* ── sections ── */
+  section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: none; }
+  .section-head {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+  }
+  .section-tag {
+    display: inline-block; padding: 4pt 10pt;
+    background: var(--ink); color: #fff;
+    border-radius: 4pt;
+    font-size: 9pt; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .section-head h2 {
+    font-size: 26px; font-weight: 600; letter-spacing: -0.015em;
+  }
+  .section-head .right {
+    margin-left: auto; font-size: 12px; color: var(--subtle); font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── slide grid (cover, content, etc.) ── */
+  .slide-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .slide-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex; flex-direction: column;
+  }
+  .slide-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .slide-thumb {
+    aspect-ratio: 16/9;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+  }
+  .slide-thumb iframe {
+    width: 720pt; height: 405pt;
+    border: 0;
+    transform: scale(0.41); transform-origin: top left;
+    pointer-events: none;
+  }
+  .slide-thumb-fallback {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--subtle);
+    background: var(--bg);
+  }
+  .slide-meta { padding: 12px 14px; }
+  .slide-meta .tag {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+    color: var(--accent); text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .slide-meta .name { font-size: 13px; font-weight: 600; margin-top: 4px; }
+  .slide-meta .desc { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+  /* ── theme strip ── */
+  .theme-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .theme-card {
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .theme-card .swatch {
+    height: 80px;
+    display: flex; align-items: flex-end; padding: 12px;
+    position: relative;
+  }
+  .theme-card .swatch-accent {
+    position: absolute; bottom: 12px; right: 12px;
+    width: 14px; height: 14px; border-radius: 50%;
+  }
+  .theme-card .label {
+    padding: 10px 14px;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .theme-card .label .name { font-size: 12px; font-weight: 600; }
+  .theme-card .label .file { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--subtle); }
+
+  /* ── footer ── */
+  footer {
+    padding-top: 32px;
+    display: flex; justify-content: space-between; align-items: end;
+  }
+  footer .col h3 { font-size: 11px; font-weight: 600; color: var(--subtle); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  footer .col p, footer .col a {
+    display: block; font-size: 12px; color: var(--ink); text-decoration: none;
+    line-height: 1.7;
+  }
+  footer .col a:hover { color: var(--accent); }
+  footer .meta-row {
+    display: flex; gap: 56px;
+  }
+  footer .closing {
+    text-align: right;
+  }
+  footer .closing .big { font-size: 18px; font-weight: 500; }
+  footer .closing .small { font-size: 11px; color: var(--subtle); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+
+  <!-- Top -->
+  <div class="top">
+    <div class="brand">
+      <div class="mark">*</div>
+      <div class="wordmark">slides-grab</div>
+      <div class="breadcrumb" style="margin-left: 14px;">/ Slide deliverable system</div>
+    </div>
+    <div class="top-right">
+      <span class="pill">UI KIT</span>
+      <span class="pill">v1.0</span>
+      <div class="arrow-circle">↗</div>
+    </div>
+  </div>
+
+  <!-- Hero (treated as a system cover) -->
+  <div class="hero">
+    <div>
+      <h1>720pt × 405pt,<br>PPTX-safe by construction.</h1>
+    </div>
+    <div class="right">
+      <p>Five themes. Eleven templates. One Pretendard. Authored as
+      plain HTML — survives the trip to PowerPoint without anybody touching it.</p>
+      <div class="meta">
+        <div class="meta-item">
+          <span class="meta-label">Canvas</span>
+          <span class="meta-value">720pt × 405pt</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Type</span>
+          <span class="meta-value">Pretendard 400–800</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Export</span>
+          <span class="meta-value">PPTX · PDF</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Templates -->
+  <section>
+    <div class="section-head">
+      <span class="section-tag">SECTION 1</span>
+      <h2>Templates</h2>
+      <div class="right">11 layouts · slides/*.html</div>
+    </div>
+    <div class="slide-grid" id="templates"></div>
+  </section>
+
+  <!-- Themes -->
+  <section>
+    <div class="section-head">
+      <span class="section-tag">SECTION 2</span>
+      <h2>Themes</h2>
+      <div class="right">themes/*.css · 5 vars apiece</div>
+    </div>
+    <div class="theme-strip" id="themes"></div>
+  </section>
+
+  <!-- Voice (action title) -->
+  <section>
+    <div class="section-head">
+      <span class="section-tag">SECTION 3</span>
+      <h2>Action titles, not topic labels.</h2>
+      <div class="right">PF · the cardinal rule</div>
+    </div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+      <div style="background:#fff; border-radius:8px; padding:24px; border:1px solid var(--line);">
+        <div style="font-size:10px; font-weight:700; color:var(--subtle); letter-spacing:0.08em;">❌ TOPIC LABEL</div>
+        <div style="font-size:24px; font-weight:600; color:var(--subtle); line-height:1.2; margin-top:8px; text-decoration:line-through;">Q3 매출</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:14px; line-height:1.5;">A topic label tells the audience what the slide is "about". It hides the conclusion.</div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:24px; border:1px solid var(--ink);">
+        <div style="font-size:10px; font-weight:700; color:#10B981; letter-spacing:0.08em;">✓ ACTION TITLE</div>
+        <div style="font-size:24px; font-weight:700; color:var(--ink); line-height:1.2; margin-top:8px; letter-spacing:-0.01em;">Q3 매출이 전년 대비 23% 증가했다</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:14px; line-height:1.5;">An action title is an assertion. The audience can extract the takeaway in 1 second.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PF compliance -->
+  <section>
+    <div class="section-head">
+      <span class="section-tag">SECTION 4</span>
+      <h2>PF rules</h2>
+      <div class="right">pf_rules.md · enforced by preflight</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+      <div style="background:#fff; border-radius:8px; padding:16px; border-left:3px solid #EF4444;">
+        <div style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; color:#EF4444;">PF-66 · NO box-shadow</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">PPTX strips all shadows. Convey elevation via surface tint.</div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:16px; border-left:3px solid #EF4444;">
+        <div style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; color:#EF4444;">PF-63 · NO &lt;table&gt;</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">Use CSS grid with explicit grid-template-columns instead.</div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:16px; border-left:3px solid #EF4444;">
+        <div style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; color:#EF4444;">PF-42 · NO opacity &lt; 1.0</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">Backgrounds must be solid hex. Blend by hand if needed.</div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:16px; border-left:3px solid var(--accent);">
+        <div style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; color:var(--accent);">PF-25 · MIN 10pt</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">24/14/10 floor for title/body/caption. Never go smaller.</div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:16px; border-left:3px solid var(--accent);">
+        <div style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; color:var(--accent);">PF-26 · MAX 3 blocks</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">One slide = one message. Split into more slides instead.</div>
+      </div>
+      <div style="background:#fff; border-radius:8px; padding:16px; border-left:3px solid var(--accent);">
+        <div style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; color:var(--accent);">PF-28 · &le;80 CJK words</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">120 EN / 80 CJK ceiling. Captions and sources don't count.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="meta-row">
+      <div class="col">
+        <h3>Templates</h3>
+        <a href="../../slides/cover.html">cover.html</a>
+        <a href="../../slides/content.html">content.html</a>
+        <a href="../../slides/statistics.html">statistics.html</a>
+        <a href="../../slides/timeline.html">timeline.html</a>
+        <a href="../../slides/quote.html">quote.html</a>
+      </div>
+      <div class="col">
+        <h3>Themes</h3>
+        <a href="../../themes/executive.css">executive.css</a>
+        <a href="../../themes/corporate.css">corporate.css</a>
+        <a href="../../themes/modern-dark.css">modern-dark.css</a>
+        <a href="../../themes/sage.css">sage.css</a>
+        <a href="../../themes/warm.css">warm.css</a>
+      </div>
+      <div class="col">
+        <h3>Reference</h3>
+        <a href="../../README.md">README.md</a>
+        <a href="../../pf_rules.md">pf_rules.md</a>
+        <a href="../../colors_and_type.css">colors_and_type.css</a>
+      </div>
+    </div>
+    <div class="closing">
+      <div class="big">Built for agents.</div>
+      <div class="small">© 2026 · slides-grab design system</div>
+    </div>
+  </footer>
+
+<script>
+  const templates = [
+    { tag: 'COVER',    file: 'cover.html',         name: 'Business cover',    desc: 'Logo · pill · 72pt action title · presenter meta' },
+    { tag: 'CONTENT',  file: 'content.html',       name: 'Two-column content', desc: 'SECTION badge · h2 · two columns · footer' },
+    { tag: 'CONTENTS', file: 'contents.html',      name: 'Sage TOC',           desc: 'Left title · numbered section rows · sage bg' },
+    { tag: 'SECTION',  file: 'section-divider.html', name: 'Section divider', desc: 'Dark cover · section tag · 64pt headline' },
+    { tag: 'STATS',    file: 'statistics.html',    name: 'KPI metrics',        desc: '3 tiles · hero numbers · YoY chips' },
+    { tag: 'TIMELINE', file: 'timeline.html',      name: 'Horizontal timeline', desc: '4 nodes · dot+year+caption · line connector' },
+    { tag: 'SPLIT',    file: 'split-layout.html',  name: 'Image-text split',   desc: '50:50 grid · pill kicker · arrow circle' },
+    { tag: 'TEAM',     file: 'team.html',          name: '4-up team grid',     desc: 'Square avatar + name + role' },
+    { tag: 'QUOTE',    file: 'quote.html',         name: 'Centered quote',     desc: 'Dark bg · open quote · attribution' },
+    { tag: 'CLOSING',  file: 'closing.html',       name: 'Thank you',          desc: 'Dark bg · contact strip · email/phone/web' },
+  ];
+  const grid = document.getElementById('templates');
+  templates.forEach(t => {
+    const el = document.createElement('a');
+    el.className = 'slide-card';
+    el.href = '../../slides/' + t.file;
+    el.target = '_blank';
+    el.style.textDecoration = 'none';
+    el.style.color = 'inherit';
+    el.innerHTML = `
+      <div class="slide-thumb">
+        <iframe src="../../slides/${t.file}" loading="lazy"></iframe>
+      </div>
+      <div class="slide-meta">
+        <div class="tag">${t.tag}</div>
+        <div class="name">${t.name}</div>
+        <div class="desc">${t.desc}</div>
+      </div>`;
+    grid.appendChild(el);
+  });
+
+  // themes
+  const themes = [
+    { name: 'Executive',   file: 'executive.css',   bg: '#F5F5F0', accent: '#1A1A1A', text: '#1A1A1A' },
+    { name: 'Corporate',   file: 'corporate.css',   bg: '#FFFFFF', accent: '#2563EB', text: '#1E2A3A' },
+    { name: 'Modern Dark', file: 'modern-dark.css', bg: '#0F0F0F', accent: '#FFFFFF', text: '#FFFFFF' },
+    { name: 'Sage',        file: 'sage.css',        bg: '#B8C4B8', accent: '#2D2D2D', text: '#1A1A1A' },
+    { name: 'Warm',        file: 'warm.css',        bg: '#FAF8F5', accent: '#C45A3B', text: '#2D2A26' },
+  ];
+  const tg = document.getElementById('themes');
+  themes.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'theme-card';
+    el.innerHTML = `
+      <div class="swatch" style="background:${t.bg};">
+        <div style="font-size:14px; font-weight:600; color:${t.text};">Aa</div>
+        <div class="swatch-accent" style="background:${t.accent};"></div>
+      </div>
+      <div class="label"><span class="name">${t.name}</span><span class="file">${t.file}</span></div>
+    `;
+    tg.appendChild(el);
+  });
+</script>
+</body>
+</html>

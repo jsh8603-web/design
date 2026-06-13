@@ -1,0 +1,48 @@
+<!--
+  ⚠️ ES modules in use. Open via `python serve.py --open` from project root,
+  not file://. See README.md "Quick Start".
+-->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>Donut with callout (Layout #48) — data-driven</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="slides.css">
+</head>
+<body>
+<div class="deck-stage">
+<section class="slide" data-screen-label="17 Donut">
+  <div class="s-title kr">매출 지역 믹스 — 북미 38%로 단일 최대, 유럽 회복이 분산 키워드</div>
+  <div class="s-rule"></div>
+
+  <div class="s-body" style="top:160px; height:420px; overflow:hidden;">
+    <!-- Data-driven donut (rendered by assets/donut.js) — height capped so SVG never bleeds into the bottom bar -->
+    <div id="donut-target" style="width:100%; height:100%; max-height:420px;"></div>
+  </div>
+
+  <div class="s-bar kr"><span class="pre">시사점 —</span>북미 38% 의존 = 집중 리스크 — 유럽·아시아 정상화 없이는 분산 불가</div>
+  <div class="s-source">Source: 재무팀 지역별 매출 분개, FY26.Q1 · 환산 환율 분기말 기준</div>
+  <div class="s-pagenum">17/17</div>
+</section>
+</div>
+
+<script type="module">
+  // Cache-bust the donut module so leader-line removal picks up on reload
+  import { renderDonut } from "../assets/donut.js?v=2.2.1";
+  import { safeRender } from "../assets/chart-helpers.js";
+
+  safeRender("#donut-target", renderDonut, {
+    segments: [
+      { label: "북미",       value: 478, color: "accent"   },
+      { label: "유럽",       value: 328, color: "primary"  },
+      { label: "아시아",     value: 277, color: "gray-2"   },
+      { label: "중남미",     value: 113, color: "gray-3"   },
+      { label: "중동·아프리카", value: 64,  color: "gray-3" },
+    ],
+    center_value: "1,260억",
+    center_label: "FY26.Q1 매출",
+  });
+</script>
+</body>
+</html>

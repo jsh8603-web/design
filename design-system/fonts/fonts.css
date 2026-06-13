@@ -1,0 +1,121 @@
+/* ============================================================
+   slides-grab Design System — Local @font-face declarations
+   ------------------------------------------------------------
+   These declarations point to local files in fonts/files/.
+   If the files don't exist, the browser will fall back through
+   the font-stack to system fonts (or CDN, see colors_and_type.css).
+
+   To enable fully offline / PPTX-safe operation, drop the
+   corresponding .woff2 files into fonts/files/ — see README.md
+   for the exact URLs and file names.
+   ============================================================ */
+
+/* ─── Pretendard (Korean + Latin sans, weights 400-800) ─── */
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Pretendard Regular"),
+       url("files/Pretendard-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Pretendard Medium"),
+       url("files/Pretendard-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local("Pretendard SemiBold"),
+       url("files/Pretendard-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Pretendard Bold"),
+       url("files/Pretendard-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pretendard";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local("Pretendard ExtraBold"),
+       url("files/Pretendard-ExtraBold.woff2") format("woff2");
+}
+
+/* ─── Newsreader (serif display, 6..72 optical size axis) ─── */
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Newsreader Regular"),
+       url("files/Newsreader-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Newsreader Italic"),
+       url("files/Newsreader-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Newsreader Medium"),
+       url("files/Newsreader-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local("Newsreader SemiBold"),
+       url("files/Newsreader-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Newsreader Bold"),
+       url("files/Newsreader-Bold.woff2") format("woff2");
+}
+
+/* ─── JetBrains Mono (monospace for editor + code) ─── */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("JetBrainsMono-Regular"),
+       url("files/JetBrainsMono-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("JetBrainsMono-Medium"),
+       url("files/JetBrainsMono-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("JetBrainsMono-Bold"),
+       url("files/JetBrainsMono-Bold.woff2") format("woff2");
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Slides" name="Slide — Timeline" subtitle="Horizontal nodes · year + caption" viewport="960x540" -->
+<html lang="ko" data-theme="modern">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 720px;
+      font-family: 'Pretendard', sans-serif;
+      background: #ffffff;
+      padding: 71.11px 85.33px;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body data-layout="waves_timeline" data-screen-label="legacy · waves_timeline">
+  <!-- 헤더 -->
+  <div style="margin-bottom: 56.89px;">
+    <h2 style="font-size: 49.78px; font-weight: 600; color: #1a1a1a;">Our Journey</h2>
+  </div>
+
+  <!-- 타임라인 -->
+  <div style="flex: 1; display: flex; align-items: center;">
+    <div style="display: flex; width: 100%; justify-content: space-between; position: relative;">
+      <!-- 연결선 -->
+      <div style="position: absolute; top: 21.33px; left: 71.11px; right: 71.11px; height: 3.56px; background: #e5e5e0;"></div>
+
+      <!-- 타임라인 아이템들 -->
+      <div style="text-align: center; z-index: 1;">
+        <div style="width: 42.67px; height: 42.67px; background: #1a1a1a; border-radius: 50%; margin: 0 auto 28.44px;"></div>
+        <p style="font-size: 32px; font-weight: 600; color: #1a1a1a;">2020</p>
+        <p style="font-size: 19.56px; color: #888; margin-top: 14.22px; max-width: 177.78px;">Company Founded</p>
+      </div>
+      <div style="text-align: center; z-index: 1;">
+        <div style="width: 42.67px; height: 42.67px; background: #1a1a1a; border-radius: 50%; margin: 0 auto 28.44px;"></div>
+        <p style="font-size: 32px; font-weight: 600; color: #1a1a1a;">2021</p>
+        <p style="font-size: 19.56px; color: #888; margin-top: 14.22px; max-width: 177.78px;">First Product Launch</p>
+      </div>
+      <div style="text-align: center; z-index: 1;">
+        <div style="width: 42.67px; height: 42.67px; background: #1a1a1a; border-radius: 50%; margin: 0 auto 28.44px;"></div>
+        <p style="font-size: 32px; font-weight: 600; color: #1a1a1a;">2023</p>
+        <p style="font-size: 19.56px; color: #888; margin-top: 14.22px; max-width: 177.78px;">Series A Funding</p>
+      </div>
+      <div style="text-align: center; z-index: 1;">
+        <div style="width: 42.67px; height: 42.67px; background: #1a1a1a; border-radius: 50%; margin: 0 auto 28.44px;"></div>
+        <p style="font-size: 32px; font-weight: 600; color: #1a1a1a;">2025</p>
+        <p style="font-size: 19.56px; color: #888; margin-top: 14.22px; max-width: 177.78px;">Global Expansion</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div style="display: flex; justify-content: flex-end; padding-top: 28.44px;">
+    <p style="font-size: 17.78px; color: #999;">06</p>
+  </div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body>
+</html>

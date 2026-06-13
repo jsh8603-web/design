@@ -1,0 +1,18 @@
+/* Modern Dark Pitch — Tech / AI / Startup IR
+   bg=#0A0A0B · ink=#FFFFFF · accent=#00A9E0 (cyan) · positive=#10B981
+   Pairs with: ../colors_and_type.css */
+:root {
+  --bg-primary:   #0A0A0B;
+  --bg-secondary: #141416;   /* card */
+  --bg-elevated:  #1F1F22;   /* hover */
+  --bg-cta:       #FFFFFF;   /* inverted CTA */
+  --text-primary: #FFFFFF;
+  --text-secondary:#999999;
+  --text-tertiary:#666666;
+  --text-onctaa: #0A0A0B;
+  --accent:       #00A9E0;   /* cyan */
+  --accent-positive:#10B981;
+  --border:       #1F1F22;
+  --kicker:       #00A9E0;
+  --mono-meta:    "JetBrains Mono", ui-monospace, monospace;
+}

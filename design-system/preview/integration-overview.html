@@ -1,0 +1,448 @@
+<!-- @dsCard group="Brand" -->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>v3 통합 개요 · slides-grab × mck</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #FAFAF9;
+    color: var(--gray-1);
+    font-family: var(--font-sans);
+    padding: 32px 36px 48px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .crown {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 14px;
+    margin-bottom: 24px;
+  }
+  .crown h1 {
+    font-size: 22px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--primary);
+  }
+  .crown .meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--gray-2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .crown .meta b { color: var(--accent); font-weight: 700; }
+
+  .lede {
+    font-size: 13px;
+    color: var(--gray-2);
+    line-height: 1.6;
+    max-width: 820px;
+    margin-bottom: 28px;
+  }
+  .lede b { color: var(--gray-1); font-weight: 600; }
+
+  /* hero stats row */
+  .hero {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .hero .card {
+    background: #FFFFFF;
+    border: 1px solid var(--gray-3);
+    padding: 14px 16px;
+  }
+  .hero .label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-2);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .hero .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .hero .num .delta {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-left: 6px;
+    letter-spacing: 0;
+  }
+  .hero .sub {
+    font-size: 11px;
+    color: var(--gray-2);
+    margin-top: 4px;
+  }
+
+  /* section */
+  .sec {
+    margin-bottom: 32px;
+  }
+  .sec h2 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -0.005em;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .sec h2::before {
+    content: attr(data-num);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--accent);
+    background: var(--gray-4);
+    padding: 2px 6px;
+    letter-spacing: 0.06em;
+  }
+  .sec .h-sub {
+    font-size: 11px;
+    color: var(--gray-2);
+    margin-bottom: 14px;
+  }
+
+  /* theme matrix */
+  .matrix {
+    display: grid;
+    grid-template-columns: 200px repeat(4, 1fr);
+    border: 1px solid var(--gray-3);
+    background: #FFFFFF;
+    font-size: 11px;
+  }
+  .matrix .h {
+    background: var(--surface-inverse);
+    color: var(--surface-inverse-fg);
+    font-weight: 600;
+    padding: 8px 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .matrix .cat {
+    background: var(--gray-4);
+    font-weight: 600;
+    padding: 8px 10px;
+    color: var(--gray-1);
+    border-top: 1px solid var(--gray-3);
+  }
+  .matrix .v {
+    padding: 8px 10px;
+    text-align: center;
+    border-top: 1px solid var(--gray-3);
+    color: var(--gray-1);
+  }
+  .matrix .v.yes { color: var(--positive); font-weight: 700; }
+  .matrix .v.no  { color: var(--negative); font-weight: 700; }
+  .matrix .v.partial { color: var(--gray-2); font-weight: 600; }
+
+  /* file inventory */
+  .inv {
+    display: grid;
+    grid-template-columns: 280px 1fr 80px;
+    gap: 0;
+    border-top: 1px solid var(--gray-3);
+    background: #FFFFFF;
+    border-left: 1px solid var(--gray-3);
+    border-right: 1px solid var(--gray-3);
+    font-size: 11.5px;
+  }
+  .inv > div {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gray-4);
+  }
+  .inv .path {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  .inv .new {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .inv .desc {
+    color: var(--gray-2);
+    line-height: 1.45;
+  }
+  .inv .badge {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gray-2);
+    font-weight: 700;
+  }
+  .inv .badge.new { color: var(--accent); }
+  .inv .badge.upd { color: #B8860B; }
+
+  /* pipeline diagram */
+  .pipe {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .pipe .col {
+    background: #FFFFFF;
+    border: 1px solid var(--gray-3);
+    padding: 14px 16px;
+  }
+  .pipe .col.cloud { border-left: 3px solid var(--accent); }
+  .pipe .col.local { border-left: 3px solid var(--primary); }
+  .pipe .col h3 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .pipe .col .role {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    color: var(--gray-2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .pipe ul {
+    list-style: none;
+    font-size: 11px;
+    color: var(--gray-1);
+    line-height: 1.55;
+  }
+  .pipe ul li::before {
+    content: "·";
+    color: var(--accent);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .pipe .arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--gray-3);
+    font-weight: 200;
+    gap: 4px;
+  }
+  .pipe .arrow span {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    color: var(--gray-2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* footnote */
+  .foot {
+    font-size: 10.5px;
+    color: var(--gray-2);
+    line-height: 1.55;
+    border-top: 1px solid var(--gray-3);
+    padding-top: 14px;
+    margin-top: 16px;
+  }
+  .foot b { color: var(--gray-1); font-weight: 600; }
+  .foot code {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--gray-4);
+    padding: 1px 5px;
+    color: var(--primary);
+  }
+</style>
+</head>
+<body>
+
+  <div class="crown">
+    <h1>v3 통합 — slides-grab × mck</h1>
+    <div class="meta">VERSION <b>v3.0</b> · 2026.05.29 · INTEGRATION</div>
+  </div>
+
+  <p class="lede">
+    slides-grab Design System v3 는 <b>mck-slide-design-system</b> 의 <b>4-테마 시스템</b>, <b>27-레이아웃 카탈로그</b>, <b>도메인 invariants</b> (cost_nature · surface_inverse · EA font), <b>QA 파이프라인</b> (9-check + 6-autofix), <b>tone.py 명사형 종결 자동검증</b> 을 흡수했다. 이전의 9-테마 × 4-aesthetic-direction 자유 혼합 문제는 <b>theme × layout 잠금 매트릭스</b>로 차단됨.
+  </p>
+
+  <!-- hero stats -->
+  <div class="hero">
+    <div class="card">
+      <div class="label">테마 수</div>
+      <div class="num">8 <span class="delta">↑ 4에서</span></div>
+      <div class="sub">mck 4 + slides-grab v2 4 흡수 (peer)</div>
+    </div>
+    <div class="card">
+      <div class="label">레이아웃 카탈로그</div>
+      <div class="num">48 <span class="delta">↑ 5에서</span></div>
+      <div class="sub">LayoutSchema + 전수 HTML 레퍼런스</div>
+    </div>
+    <div class="card">
+      <div class="label">신규 룰</div>
+      <div class="num">7 <span class="delta">+ PF</span></div>
+      <div class="sub">PF-69~75 · 매트릭스, schema, 명사형</div>
+    </div>
+    <div class="card">
+      <div class="label">도메인 invariants</div>
+      <div class="num">4</div>
+      <div class="sub">cost_nature · surface_inverse · EA · clean_shape</div>
+    </div>
+  </div>
+
+  <!-- theme × layout matrix (snapshot) -->
+  <div class="sec">
+    <h2 data-num="01">테마 × 레이아웃 매트릭스 (snapshot)</h2>
+    <div class="h-sub">자세한 48 레이아웃 × 8 테마 풀 매트릭스는 <code>theme_layout_matrix.md</code></div>
+    <div class="matrix">
+      <div class="h">레이아웃</div>
+      <div class="h">modern</div>
+      <div class="h">classic</div>
+      <div class="h">dark-mono</div>
+      <div class="h">company</div>
+
+      <div class="cat">cover · section_divider · closing</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v yes">✅</div><div class="v yes">✅</div>
+
+      <div class="cat">variance_table ⭐ · waterfall ⭐</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v yes">✅</div><div class="v yes">✅</div>
+
+      <div class="cat">kpi_dashboard · big_number</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v yes">✅</div><div class="v yes">✅</div>
+
+      <div class="cat">dark_navy_summary</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v no">❌</div><div class="v yes">✅</div>
+
+      <div class="cat">harvey_ball_table</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v no">❌</div><div class="v yes">✅</div>
+
+      <div class="cat">pareto · gauge</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v no">❌</div><div class="v yes">✅</div>
+
+      <div class="cat">venn · two_column_text</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v no">❌</div><div class="v yes">✅</div>
+
+      <div class="cat">before_after · risk_matrix</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v no">❌</div><div class="v yes">✅</div>
+
+      <div class="cat">table_insight ⭐</div>
+      <div class="v yes">✅</div><div class="v yes">✅</div><div class="v no">❌</div><div class="v yes">✅</div>
+
+      <div class="cat" style="font-weight:700;color:var(--primary);">전체 허용</div>
+      <div class="v" style="font-weight:700;color:var(--positive);">48 / 48</div>
+      <div class="v" style="font-weight:700;color:var(--positive);">48 / 48</div>
+      <div class="v" style="font-weight:700;color:var(--negative);">39 / 48</div>
+      <div class="v" style="font-weight:700;color:var(--gray-2);">48 / 48*</div>
+    </div>
+    <p class="foot" style="margin-top:10px; padding:0; border:0;">
+      * <code>company</code> 는 v3 슬롯 — <code>modern</code> 폴백. dark-mono 가 9개 적은 이유: 다크 배경에서 식별 불가능한 시각 요소 (얇은 라인, 미세 컬러 코딩, 백+inverse 패턴) 명시적 제외. <br>
+      <b style="color:var(--accent);">+ slides-grab v2 흡수 4 테마</b> (<code>executive-editorial</code> · <code>dark-pitch</code> · <code>academic</code> · <code>editorial</code>) — 모두 peer level. 8 테마 풀 매트릭스는 <code>theme_layout_matrix.md</code>.
+    </p>
+  </div>
+
+  <!-- file inventory -->
+  <div class="sec">
+    <h2 data-num="02">신규/변경 파일 인벤토리</h2>
+    <div class="h-sub">v3 통합으로 추가·갱신된 권위 있는 파일들</div>
+    <div class="inv">
+      <div class="path">theme_layout_matrix.md</div>
+      <div class="desc">테마×레이아웃 잠금 매트릭스. <b>믹싱 차단의 핵심.</b> PF-69 룰의 단일 출처.</div>
+      <div class="badge new">NEW</div>
+
+      <div class="path">layout_catalog.md</div>
+      <div class="desc">48 레이아웃 LayoutSchema + 전수 HTML 레퍼런스. mck validation.py 1:1 매칭.</div>
+      <div class="badge new">NEW</div>
+
+      <div class="path">prompting_rules.md</div>
+      <div class="desc">에이전트 행동 계약. 액션 타이틀 명사형, 잠금 타입 스케일, 색 토큰, CJK 규칙.</div>
+      <div class="badge new">NEW</div>
+
+      <div class="path">domain/fpna_invariants.md</div>
+      <div class="desc">cost_nature 부호 반전, surface_inverse 다크안전, EA font 자동, _clean_shape.</div>
+      <div class="badge new">NEW</div>
+
+      <div class="path">qa_rules.md</div>
+      <div class="desc">9 per-slide check + 6 autofix repair rule. mck deck_system/qa/ 흡수.</div>
+      <div class="badge new">NEW</div>
+
+      <div class="path">image_slot_contract.md</div>
+      <div class="desc">이미지 슬롯 마크업 계약. 테마별 무드 매트릭스. 클라우드↔로컬 브릿지.</div>
+      <div class="badge new">NEW</div>
+
+      <div class="path">pipeline_handoff.md</div>
+      <div class="desc">클라우드(룰북) ↔ 로컬(공장) 책임 분담, sync 절차, SoT 매트릭스.</div>
+      <div class="badge new">NEW</div>
+
+      <div class="path">colors_and_type.css</div>
+      <div class="desc">mck 4-테마 의미적 토큰 + 잠금 pt 스케일 + .slide--themed chrome 추가 (기존 호환).</div>
+      <div class="badge upd">UPDATED</div>
+
+      <div class="path">nano_banana_guide.md</div>
+      <div class="desc">4-테마 prompt prefix 매트릭스로 업데이트. 슬롯 계약 참조.</div>
+      <div class="badge upd">UPDATED</div>
+
+      <div class="path">SKILL.md / README.md</div>
+      <div class="desc">v3 통합 구조 반영, 슬라이드 생성 의무 7-step 명시.</div>
+      <div class="badge upd">UPDATED</div>
+    </div>
+  </div>
+
+  <!-- pipeline split -->
+  <div class="sec">
+    <h2 data-num="03">파이프라인 책임 분담</h2>
+    <div class="h-sub">클라우드(이 프로젝트) = 룰북 · 로컬(slides-grab) = 공장</div>
+    <div class="pipe">
+      <div class="col cloud">
+        <h3>클라우드 (이 프로젝트)</h3>
+        <div class="role">DESIGN SYSTEM SOURCE OF TRUTH</div>
+        <ul>
+          <li>규칙·토큰·레이아웃·프롬프팅 룰 박제</li>
+          <li>LLM 이 슬라이드 HTML 생성 (image-slot 마커 포함)</li>
+          <li>디자인 리뷰 + image_slot.js drag-drop 시연</li>
+          <li>gen_pptx 로 변환 sanity check</li>
+          <li>실패 모드 발견 시 룰 파일 갱신</li>
+        </ul>
+      </div>
+      <div class="arrow">
+        ⇄
+        <span>SYNC</span>
+      </div>
+      <div class="col local">
+        <h3>로컬 (slides-grab 리포)</h3>
+        <div class="role">RUNTIME + SELF-LEARNING</div>
+        <ul>
+          <li>generate-images.mjs — Gemini 이미지 생성, 슬롯 swap</li>
+          <li>preflight-html.js — PF rules 자동 검증</li>
+          <li>html2pptx.cjs — Playwright + PptxGenJS final 변환</li>
+          <li>QA 9-check + autofix · vqa-batch.mjs Vision Validation</li>
+          <li>pptx-inspection-log.md 누적 (51KB), audit/ 기록</li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot">
+      <b>한 줄 mental model:</b> 클라우드는 룰북, 로컬은 공장. 룰북이 바뀌면 공장이 따른다. 공장에서 새 실패를 발견하면 룰북이 갱신된다. 자세한 sync 절차: <code>pipeline_handoff.md</code>.
+    </p>
+  </div>
+
+  <!-- footer -->
+  <p class="foot" style="margin-top:24px;">
+    <b>슬라이드 생성 의무 순서</b> (<code>prompting_rules.md</code> §0): ① 테마 결정 → ② 레이아웃 카탈로그 선택 → ③ 매트릭스 검증 (✅) → ④ LayoutSchema 준수 → ⑤ invariants 적용 → ⑥ PF rules 준수 → ⑦ QA 자가 검토. <br><br>
+    <b>v3 신규 PF 룰</b>: PF-69 (매트릭스 위반) · PF-70 (data-layout 의무) · PF-71 (data-theme 의무) · PF-72 (LayoutSchema 위반) · PF-73 (primary 풀블리드 금지) · PF-74 (whitespace) · PF-75 (명사형 종결).
+  </p>
+
+</body>
+</html>

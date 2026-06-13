@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" width="120" height="32">
+  <rect width="22" height="22" x="3" y="5" rx="4" fill="#1A1A1A"></rect>
+  <text x="14" y="22" font-family="Pretendard, system-ui, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">*</text>
+  <text x="32" y="22" font-family="Pretendard, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1A1A1A">slides-grab</text>
+</svg>

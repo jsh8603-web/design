@@ -1,0 +1,587 @@
+<!doctype html>
+<!-- @dsCard group="UI Kit — Editor" name="Editor app" subtitle="Dark slate · three-pane · bbox + agent edit" viewport="1280x720" -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>slides-grab · Editor</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg-0: #030711;
+    --bg-1: #0A0F1A;
+    --panel: #0F172A;
+    --panel-2: #020617;
+    --border: #1E293B;
+    --border-soft: #172033;
+    --text-0: #F8FAFC;
+    --text-1: #94A3B8;
+    --text-2: #64748B;
+    --accent: #3B82F6;
+    --accent-2: #60A5FA;
+    --danger: #EF4444;
+    --success: #22C55E;
+    --warn: #F59E0B;
+    --ring: rgba(213, 224, 240, 0.15);
+    --transition: 150ms ease-out;
+  }
+  html, body {
+    width: 100%; height: 100vh; min-height: 760px;
+    background: var(--bg-0);
+    font-family: var(--font-sans);
+    color: var(--text-0);
+    letter-spacing: 0.01em;
+    overflow: hidden;
+  }
+  .app { width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+  /* ── nav bar ───────────────────────────────────────────── */
+  .nav {
+    height: 44px; flex-shrink: 0;
+    background: #08090B;
+    border-bottom: 1px solid #171A20;
+    display: flex; align-items: center;
+    padding: 0 14px; gap: 12px;
+  }
+  .nav-group { display: flex; align-items: center; gap: 8px; }
+  .nav button, .nav .btn {
+    height: 30px; padding: 0 12px;
+    background: #111318;
+    color: var(--text-0);
+    border: 1px solid #1B2028;
+    border-radius: 999px;
+    font-size: 12px; font-family: inherit; font-weight: 500;
+    cursor: pointer; transition: all var(--transition);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .nav button:hover { background: #161A22; border-color: #2A323B; }
+  .counter { font-size: 12px; color: var(--text-1); font-family: var(--font-mono); min-width: 64px; text-align: center; }
+  .nav-spacer { flex: 1; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 10px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+  .chip.idle    { background: rgba(100,116,139,0.15); color: #94A3B8; }
+  .chip.running { background: rgba(245,158,11,0.18); color: #FBBF24; }
+  .chip.ok      { background: rgba(34,197,94,0.18);  color: #4ADE80; }
+  .chip .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .brand { font-size: 13px; font-weight: 700; color: var(--text-0); letter-spacing: -0.01em; }
+  .brand .mark { display: inline-block; width: 16px; height: 16px; background: #fff; border-radius: 3px; margin-right: 6px; color: #08090B; text-align: center; line-height: 16px; font-size: 11px; vertical-align: middle; }
+
+  /* ── main split ─────────────────────────────────────────── */
+  .main { flex: 1; display: flex; overflow: hidden; }
+
+  /* ── slide list (left) ──────────────────────────────────── */
+  .slidelist {
+    width: 156px; flex-shrink: 0;
+    background: #08090B;
+    border-right: 1px solid #171A20;
+    overflow-y: auto;
+    padding: 10px 8px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .slidelist::-webkit-scrollbar { width: 6px; }
+  .slidelist::-webkit-scrollbar-thumb { background: #1B2028; border-radius: 3px; }
+  .thumb {
+    aspect-ratio: 16/9;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #1B2028;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: border var(--transition);
+  }
+  .thumb:hover { border-color: #2A323B; }
+  .thumb.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(59,130,246,0.25); }
+  .thumb-idx {
+    position: absolute; top: 4px; left: 4px;
+    background: rgba(0,0,0,0.7); color: #fff;
+    font-family: var(--font-mono); font-size: 9px;
+    padding: 1px 5px; border-radius: 3px;
+  }
+  .thumb-content { width: 100%; height: 100%; padding: 6px 8px; font-family: var(--font-sans); }
+  .thumb-title { font-size: 6px; font-weight: 700; color: #1A1A1A; line-height: 1.2; }
+  .thumb-bars { display: flex; gap: 2px; margin-top: 4px; }
+  .thumb-bars > div { flex: 1; height: 14px; background: #1428A0; border-radius: 1px; }
+  .thumb-bars .b2 { background: #B0C4DE; height: 10px; }
+  .thumb-bars .b3 { background: #FF6F00; }
+
+  /* ── slide stage (center) ───────────────────────────────── */
+  .stage {
+    flex: 1; min-width: 0;
+    background: var(--bg-1);
+    padding: 24px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .stage-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+  .slide-wrap {
+    position: relative;
+    width: 720px; height: 405px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.4);
+    transform: scale(0.92); transform-origin: center;
+  }
+  .slide-content {
+    position: absolute; inset: 0;
+    background: #F8F9FA;
+    padding: 28pt 32pt 20pt 32pt;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    color: #1A1A2E;
+  }
+  .slide-h1 { font-size: 17pt; font-weight: 700; color: #1A1A2E; margin-bottom: 6pt; letter-spacing: -0.01em; }
+  .slide-sub { font-size: 10pt; color: #666; margin-bottom: 14pt; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10pt; margin-bottom: 14pt; }
+  .kpi { background: #fff; border-radius: 8pt; padding: 14pt 12pt; text-align: center; }
+  .kpi-label { font-size: 10pt; font-weight: 600; color: #1428A0; letter-spacing: 0.04em; text-transform: uppercase; }
+  .kpi-value { font-size: 26pt; font-weight: 800; color: #1A1A2E; line-height: 1.1; margin-top: 6pt; }
+  .kpi-unit  { font-size: 10pt; color: #1A1A2E; }
+  .kpi-change { font-size: 10pt; font-weight: 600; color: #1428A0; margin-top: 4pt; }
+  .kpi-sub { font-size: 9pt; color: #999; margin-top: 2pt; }
+  .bar-card { background: #fff; border-radius: 8pt; padding: 14pt 16pt; }
+  .bar-card-title { font-size: 10pt; font-weight: 600; color: #1A1A2E; margin-bottom: 10pt; }
+  .bars { display: flex; align-items: flex-end; gap: 16pt; height: 96pt; padding: 0 16pt; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
+  .bar-val { font-size: 10pt; font-weight: 700; color: #1A1A2E; margin-bottom: 4pt; }
+  .bar { width: 100%; border-radius: 4pt 4pt 0 0; min-height: 8pt; }
+  .bar-lbl { font-size: 9pt; color: #999; margin-top: 6pt; }
+  .src { font-size: 9pt; color: #999; margin-top: 8pt; text-align: right; }
+
+  /* bbox overlay */
+  .bbox-layer { position: absolute; inset: 0; pointer-events: none; }
+  .bbox {
+    position: absolute;
+    border: 2px solid var(--danger);
+    background: rgba(239,68,68,0.08);
+    border-radius: 2px;
+    pointer-events: auto;
+  }
+  .bbox .bbox-lbl {
+    position: absolute; top: -22px; left: -2px;
+    background: var(--danger); color: #fff;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 6px; border-radius: 3px;
+    font-family: var(--font-mono);
+  }
+  .object-hover {
+    position: absolute;
+    border: 1.5px solid var(--accent-2);
+    border-radius: 3px;
+    pointer-events: none;
+  }
+  .object-hover .obj-tag {
+    position: absolute; top: -20px; left: -2px;
+    background: var(--accent); color: #fff;
+    font-size: 10px; font-weight: 600; padding: 1px 5px; border-radius: 3px;
+    font-family: var(--font-mono);
+  }
+
+  .stage-meta {
+    position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-mono); font-size: 10px; color: var(--text-2);
+  }
+
+  /* ── right sidebar ─────────────────────────────────────── */
+  .sidebar {
+    width: 308px; flex-shrink: 0;
+    background: var(--panel);
+    border-left: 1px solid var(--border);
+    display: flex; flex-direction: column;
+  }
+  .mode-tabs {
+    display: flex; padding: 10px; gap: 6px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .mode-tab {
+    flex: 1; height: 38px;
+    background: transparent;
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    color: var(--text-1);
+    font-size: 12px; font-weight: 600; font-family: inherit;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .mode-tab[aria-pressed="true"] {
+    background: var(--bg-1);
+    border-color: var(--accent);
+    color: var(--text-0);
+  }
+  .mode-tab svg { width: 16px; height: 16px; }
+
+  .sidebar-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+  .sb-section { display: flex; flex-direction: column; gap: 6px; }
+  .sb-label { font-size: 10px; font-weight: 600; color: var(--text-1); letter-spacing: 0.08em; text-transform: uppercase; }
+  .sb-textarea, .sb-input {
+    width: 100%; background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
+    color: var(--text-0); font-family: inherit; font-size: 12px;
+    resize: none; transition: border var(--transition), box-shadow var(--transition);
+  }
+  .sb-textarea:focus, .sb-input:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+  }
+  .sb-select {
+    width: 100%; height: 36px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 0 10px;
+    color: var(--text-0); font-family: inherit; font-size: 12px;
+  }
+  .sb-btn-primary {
+    width: 100%; height: 38px;
+    background: var(--accent); color: #fff;
+    border: 0; border-radius: 999px;
+    font-family: inherit; font-size: 12px; font-weight: 600;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    transition: background var(--transition);
+  }
+  .sb-btn-primary:hover { background: #2563EB; }
+  .ctx-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ctx-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    height: 22px; padding: 0 8px;
+    background: rgba(239,68,68,0.15);
+    color: #FCA5A5;
+    border-radius: 999px;
+    font-size: 11px; font-weight: 600;
+  }
+  .sb-divider { height: 1px; background: var(--border-soft); margin: 2px 0; }
+  .sb-icon-grid { display: flex; gap: 6px; flex-wrap: wrap; }
+  .sb-icon-btn {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: #111318;
+    border: 1px solid #1F2530;
+    color: var(--text-0);
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all var(--transition);
+  }
+  .sb-icon-btn:hover { background: #161A22; border-color: #2A323B; }
+  .sb-color-row { display: flex; gap: 8px; }
+  .sb-color-field { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .sb-color-label { font-size: 10px; color: #8C93A0; }
+  .sb-color {
+    width: 100%; height: 36px;
+    border-radius: 10px; border: 1px solid var(--border);
+    background: var(--bg-1); padding: 3px;
+    cursor: pointer;
+  }
+
+  .sb-hint {
+    border-top: 1px solid var(--border-soft);
+    padding: 10px 14px;
+    color: var(--text-2); font-size: 11px;
+  }
+
+  /* ── status bar ─────────────────────────────────────────── */
+  .status {
+    height: 28px; flex-shrink: 0;
+    background: var(--panel-2);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center;
+    padding: 0 14px; gap: 14px;
+    font-size: 11px; color: var(--text-1);
+  }
+  .status .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
+  .status .sep { width: 1px; height: 12px; background: var(--border); }
+
+  /* swap hint */
+  .selected-obj-card {
+    display: flex; align-items: center; gap: 6px;
+    padding: 10px 12px; border-radius: 12px;
+    border: 1px solid #1C2027; background: var(--bg-1);
+    font-size: 12px;
+  }
+  .selected-obj-card .tag { color: var(--accent-2); font-weight: 600; }
+
+  /* tooltip */
+  .kbd {
+    font-family: var(--font-mono); font-size: 9px;
+    background: #0A0F1A; border: 1px solid var(--border);
+    border-radius: 3px; padding: 1px 4px;
+    color: var(--text-1);
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ─── Nav ─── -->
+  <div class="nav">
+    <div class="nav-group">
+      <button title="Previous slide (←)">◀ Prev</button>
+      <span class="counter" id="counter">03 / 18</span>
+      <button title="Next slide (→)">Next ▶</button>
+    </div>
+    <div class="nav-spacer"></div>
+    <span class="chip ok" id="chip"><span class="dot"></span><span id="chip-text">PF · OK</span></span>
+    <button title="Validate"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Validate</button>
+    <button title="Export PPTX"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg> Export</button>
+    <span class="brand"><span class="mark">*</span>slides-grab</span>
+  </div>
+
+  <!-- ─── Main ─── -->
+  <div class="main">
+
+    <!-- Slide list -->
+    <aside class="slidelist" id="slidelist"></aside>
+
+    <!-- Stage -->
+    <main class="stage">
+      <div class="stage-grid"></div>
+      <div class="slide-wrap" id="slide-wrap">
+        <div class="slide-content">
+          <div class="slide-h1">2025년 매출·이익 모두 역대 최대 수준— 회복세가 수치로 증명됐다</div>
+          <div class="slide-sub">Q4 OP 20.1조 최초 분기 20조 돌파, R&amp;D 37.7조 투자로 기술 선도</div>
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-label">연간 매출</div>
+              <div class="kpi-value">333.6</div>
+              <div class="kpi-unit">조원</div>
+              <div class="kpi-change">YoY +10.6%</div>
+              <div class="kpi-sub">역대 최대</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">영업이익</div>
+              <div class="kpi-value">43.6</div>
+              <div class="kpi-unit">조원</div>
+              <div class="kpi-change">YoY +33%</div>
+              <div class="kpi-sub">반도체 회복 반영</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">순이익</div>
+              <div class="kpi-value">45.2</div>
+              <div class="kpi-unit">조원</div>
+              <div class="kpi-change">YoY +31.2%</div>
+              <div class="kpi-sub">금융·지분이익 포함</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">영업현금흐름</div>
+              <div class="kpi-value">85.3</div>
+              <div class="kpi-unit">조원</div>
+              <div class="kpi-change">R&amp;D 37.7조</div>
+              <div class="kpi-sub">역대 최대 투자</div>
+            </div>
+          </div>
+          <div class="bar-card">
+            <div class="bar-card-title">분기별 OP 추이 (조원) — Q2 저점 후 V자 반등</div>
+            <div class="bars">
+              <div class="bar-col">
+                <div class="bar-val">6.7</div>
+                <div class="bar" style="height:33pt; background:#1428A0;"></div>
+                <div class="bar-lbl">Q1</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-val">4.7</div>
+                <div class="bar" style="height:23pt; background:#B0C4DE;"></div>
+                <div class="bar-lbl">Q2 (저점)</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-val">12.2</div>
+                <div class="bar" style="height:60pt; background:#1428A0;"></div>
+                <div class="bar-lbl">Q3</div>
+              </div>
+              <div class="bar-col">
+                <div class="bar-val">20.1</div>
+                <div class="bar" style="height:96pt; background:#FF6F00;"></div>
+                <div class="bar-lbl">Q4 (최초 20조)</div>
+              </div>
+            </div>
+          </div>
+          <div class="src">삼성전자 2025년 사업보고서 · 4Q 실적발표 (2026.01)</div>
+        </div>
+
+        <!-- Bbox overlay (user-drawn red boxes) -->
+        <div class="bbox-layer" id="bbox-layer">
+          <div class="bbox" style="top: 138pt; left: 36pt; width: 168pt; height: 60pt;">
+            <span class="bbox-lbl">#1</span>
+          </div>
+          <div class="bbox" style="top: 232pt; left: 32pt; width: 658pt; height: 132pt;">
+            <span class="bbox-lbl">#2</span>
+          </div>
+        </div>
+
+        <div class="object-hover" style="top: 36pt; left: 32pt; width: 410pt; height: 26pt; display: none;">
+          <span class="obj-tag">h1</span>
+        </div>
+      </div>
+      <div class="stage-meta">slide-03.html · 720pt × 405pt · zoom 92%</div>
+    </main>
+
+    <!-- Right sidebar -->
+    <aside class="sidebar">
+      <div class="mode-tabs">
+        <button class="mode-tab" aria-pressed="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+          BBox
+        </button>
+        <button class="mode-tab" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 4 11 8-5 1.2L14.6 20l-2.5 1-2.6-6.8L6 15z"/></svg>
+          Select
+        </button>
+      </div>
+
+      <div class="sidebar-body">
+        <div class="sb-section">
+          <span class="sb-label">2 pending · 0 review</span>
+          <div class="ctx-chips">
+            <span class="ctx-chip">#1 KPI label</span>
+            <span class="ctx-chip">#2 bar chart</span>
+          </div>
+        </div>
+        <div class="sb-section">
+          <span class="sb-label">Prompt</span>
+          <textarea class="sb-textarea" rows="4" placeholder="Describe the edit for red bboxes...">Make the bar chart slightly smaller and add a Q4 highlight with a callout pill saying "최초 20조 돌파". Keep PF rules — no shadow, solid hex.</textarea>
+        </div>
+        <div class="sb-section">
+          <span class="sb-label">Model</span>
+          <select class="sb-select">
+            <option>claude-sonnet-4.5</option>
+            <option>gpt-5.4</option>
+            <option>gpt-5.3-codex</option>
+            <option>gpt-5.3-codex-spark</option>
+          </select>
+        </div>
+        <button class="sb-btn-primary">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M3.4 11.2 19.6 4.4c.8-.3 1.7.5 1.4 1.4l-6.8 16.2c-.3.8-1.4.9-1.9.1L9.2 16l-6.1-3.1c-.8-.5-.7-1.6.3-1.7Z"/></svg>
+          Run Codex
+          <span class="kbd" style="margin-left:4px; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.85);">↵</span>
+        </button>
+
+        <div class="sb-divider"></div>
+
+        <div class="sb-section">
+          <span class="sb-label">Validators</span>
+          <div style="display:flex; flex-direction:column; gap:6px; font-size:11px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:var(--bg-1); border-radius:8px; border:1px solid var(--border-soft);">
+              <span><strong style="color:#4ADE80;">✓</strong>&nbsp; <span class="kbd">PF</span> &nbsp; Preflight</span>
+              <span style="color:var(--text-2); font-family:var(--font-mono);">0 ERR / 0 WARN</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:var(--bg-1); border-radius:8px; border:1px solid var(--border-soft);">
+              <span><strong style="color:#4ADE80;">✓</strong>&nbsp; <span class="kbd">VP</span> &nbsp; Validate PPTX</span>
+              <span style="color:var(--text-2); font-family:var(--font-mono);">XML ok</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 10px; background:var(--bg-1); border-radius:8px; border:1px solid var(--border-soft);">
+              <span><strong style="color:#FBBF24;">!</strong>&nbsp; <span class="kbd">COM</span> Vision</span>
+              <span style="color:#FBBF24; font-family:var(--font-mono);">VC-03 3/5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sb-hint">
+        Drag on the slide to add red bboxes. <span class="kbd">↵</span> to run · <span class="kbd">⌫</span> to clear
+      </div>
+    </aside>
+  </div>
+
+  <!-- ─── Status bar ─── -->
+  <div class="status">
+    <span><span class="dot"></span> Connected to editor-server :3000</span>
+    <span class="sep"></span>
+    <span>slides/samsung-investment-report</span>
+    <span class="sep"></span>
+    <span style="color:var(--text-2);">last save 1m ago · cloudflare tunnel active</span>
+  </div>
+</div>
+
+<script>
+  // Populate the slide thumbnail list with 18 mock thumbs
+  (function() {
+    const list = document.getElementById('slidelist');
+    const slides = [
+      { title: '삼성전자, 반등의 정점에 서다',  variant: 'cover' },
+      { title: 'Executive Summary',          variant: 'simple' },
+      { title: '2025년 매출·이익 역대 최대',   variant: 'bars', active: true },
+      { title: '글로벌 점유율 20%',           variant: 'simple' },
+      { title: 'HBM3E 양산 본격화',           variant: 'bars' },
+      { title: 'Foundry 2nm 로드맵',         variant: 'simple' },
+      { title: 'Galaxy AI 교체 사이클',       variant: 'bars' },
+      { title: 'Harman 자동차 전장',          variant: 'simple' },
+      { title: 'CapEx 65조 투자 계획',        variant: 'bars' },
+      { title: 'Risk: 메모리 사이클',         variant: 'simple' },
+      { title: 'TSMC 대비 경쟁력',           variant: 'bars' },
+      { title: '주주환원 정책',              variant: 'simple' },
+      { title: '밸류에이션 분석',             variant: 'bars' },
+      { title: '목표주가 95,000원',           variant: 'simple' },
+      { title: 'Investment Thesis',          variant: 'simple' },
+      { title: '시나리오 분석',              variant: 'bars' },
+      { title: 'Conclusion: Buy',           variant: 'simple' },
+      { title: 'Appendix · Sources',         variant: 'cover' },
+    ];
+    slides.forEach((s, i) => {
+      const el = document.createElement('div');
+      el.className = 'thumb' + (s.active ? ' active' : '');
+      const bg = s.variant === 'cover' ? '#1A1A2E' : '#F8F9FA';
+      const fg = s.variant === 'cover' ? '#fff' : '#1A1A2E';
+      el.innerHTML = `
+        <div class="thumb-idx">${String(i+1).padStart(2,'0')}</div>
+        <div class="thumb-content" style="background:${bg}; color:${fg};">
+          <div class="thumb-title" style="color:${fg};">${s.title}</div>
+          ${s.variant === 'bars' ? '<div class="thumb-bars"><div></div><div class="b2"></div><div></div><div class="b3"></div></div>' : ''}
+        </div>`;
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('counter').textContent = String(i+1).padStart(2,'0') + ' / 18';
+      });
+      list.appendChild(el);
+    });
+  })();
+
+  // Mode tabs
+  document.querySelectorAll('.mode-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.mode-tab').forEach(x => x.setAttribute('aria-pressed', 'false'));
+      t.setAttribute('aria-pressed', 'true');
+    });
+  });
+
+  // Bbox interactivity (toy)
+  const stage = document.querySelector('.slide-wrap');
+  let draw = null, drawingRect = null;
+  stage.addEventListener('mousedown', (e) => {
+    if (e.target !== stage && !e.target.classList.contains('slide-content')) return;
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    draw = { x, y };
+    drawingRect = document.createElement('div');
+    drawingRect.className = 'bbox';
+    drawingRect.style.left = x + 'px';
+    drawingRect.style.top = y + 'px';
+    drawingRect.style.width = '0px';
+    drawingRect.style.height = '0px';
+    const lbl = document.createElement('span');
+    lbl.className = 'bbox-lbl';
+    lbl.textContent = '#' + (document.querySelectorAll('.bbox').length + 1);
+    drawingRect.appendChild(lbl);
+    document.getElementById('bbox-layer').appendChild(drawingRect);
+  });
+  stage.addEventListener('mousemove', (e) => {
+    if (!draw) return;
+    const rect = stage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const left = Math.min(draw.x, x);
+    const top  = Math.min(draw.y, y);
+    drawingRect.style.left = left + 'px';
+    drawingRect.style.top  = top + 'px';
+    drawingRect.style.width  = Math.abs(x - draw.x) + 'px';
+    drawingRect.style.height = Math.abs(y - draw.y) + 'px';
+  });
+  window.addEventListener('mouseup', () => { draw = null; drawingRect = null; });
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* ============================================================
+   slides-grab Design System — single entry stylesheet
+   ------------------------------------------------------------
+   Link THIS file and you get the whole foundation:
+   fonts, color + type tokens, all 8 data-theme scopes,
+   the mck slide chrome, and the image-slot placeholder.
+
+       <link rel="stylesheet" href="styles.css">
+       <html data-theme="modern">   <!-- pick any of the 8 -->
+
+   Theme tokens live in colors_and_type.css under [data-theme="…"]
+   scopes — switch themes with the data-theme attribute, never by
+   swapping stylesheets.
+
+   NOTE: the standalone files in themes/ (warm.css, sage.css, …) are
+   LEGACY single-theme overrides that each clobber :root. They are
+   intentionally NOT imported here — use the data-theme system above.
+   ============================================================ */
+
+@import url("colors_and_type.css");   /* foundation tokens + fonts + 8 themes */
+@import url("mck/slides/slides.css");  /* deck-stage + .s-* slide chrome */
+@import url("_image-slot.css");        /* design-time image placeholder */

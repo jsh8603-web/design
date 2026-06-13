@@ -1,0 +1,801 @@
+<!-- @dsCard group="Brand" name="catalog-additions-2" subtitle="누락 21 레이아웃 완성 (stat/matrix/process/chart) · 1280×720 · 3테마" viewport="1280x720" -->
+<!--
+  Catalog additions · part 2 — 21 layouts completing the 46-layout catalog.
+  Same tokens (colors_and_type.css), same deck-stage, same .s-* chrome as
+  catalog-additions.html. 1280×720, semantic tokens only, modern default.
+  Open via deck-stage; switch theme top-right.
+-->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>슬라이드 카탈로그 · part 2 — 누락 레이아웃 21종</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#0a0a0a; }
+  body { font-family: var(--font-sans); }
+
+  .theme-switcher {
+    position: fixed; top: 12px; right: 12px; z-index: 50;
+    background: rgba(15, 20, 25, 0.92); color: #E5E7EB;
+    padding: 8px 10px; border-radius: 6px;
+    font-family: "Pretendard", -apple-system, sans-serif;
+    font-size: 11px; display: flex; align-items: center; gap: 6px;
+    backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .theme-switcher .lbl { color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-right: 4px; }
+  .theme-switcher button {
+    appearance: none; background: transparent;
+    border: 1px solid rgba(255,255,255,0.18); color: inherit;
+    font: inherit; padding: 5px 10px; border-radius: 4px;
+    cursor: pointer; font-weight: 500;
+  }
+  .theme-switcher button:hover { background: rgba(255,255,255,0.06); }
+  .theme-switcher button.is-active { background: #fff; color: #0F1419; border-color: #fff; }
+
+  deck-stage section {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-sans);
+    position: relative; overflow: hidden;
+  }
+
+  /* Standard chrome (identical to catalog-additions.html) */
+  .s-title    { position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px; display:flex; align-items:center; font-family:var(--font-display); font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading); letter-spacing:-0.005em; }
+  .s-rule     { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-body     { position:absolute; left:76.8px; top:124.8px; width:1126.4px; }
+  .s-source   { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum  { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-bar      { position:absolute; left:76.8px; top:595.2px; width:1126.4px; height:62.4px; background:var(--gray-4); display:flex; align-items:center; padding:0 24px; box-sizing:border-box; font-weight:700; font-size:21.33px; color:var(--gray-1); }
+  .s-bar .pre { color:var(--heading); margin-right:12px; font-weight:700; }
+  .kr { font-family: var(--font-kr); }
+
+  /* ── full-bleed structural slides (dark_navy_summary, appendix_title) ── */
+  .fb { position:absolute; inset:0; background:var(--surface-inverse); color:var(--surface-inverse-fg); padding:96px 110px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:center; }
+  .fb .rule { width:64px; height:3px; background:var(--accent); margin-bottom:28px; }
+  .fb .eyebrow { font-size:14px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-bottom:18px; font-weight:600; }
+  .fb h2 { font-family:var(--font-display); font-weight:700; font-size:40px; line-height:1.28; letter-spacing:-0.01em; max-width:980px; margin:0; }
+  .fb .src { position:absolute; left:110px; bottom:54px; font-size:12px; color:rgba(255,255,255,0.5); }
+  .fb .pg { position:absolute; right:110px; bottom:54px; font-size:12px; color:rgba(255,255,255,0.5); }
+  .fb.apx { justify-content:center; }
+  .fb.apx .big { font-family:var(--font-display); font-weight:800; font-size:128px; line-height:1; color:rgba(255,255,255,0.14); letter-spacing:-0.03em; margin-bottom:8px; }
+  .fb.apx h2 { font-size:46px; }
+
+  /* ── stat rows (two_stat, three_stat) ── */
+  .stat-row { display:grid; gap:28px; margin-top:60px; }
+  .stat-row.n2 { grid-template-columns:repeat(2,1fr); }
+  .stat-row.n3 { grid-template-columns:repeat(3,1fr); }
+  .stat-cell { padding:36px 32px; background:var(--gray-4); border-top:3px solid var(--surface-inverse); }
+  .stat-cell.acc { border-top-color:var(--accent); }
+  .stat-cell .num { font-family:var(--font-display); font-weight:800; font-size:72px; line-height:1; color:var(--heading); letter-spacing:-0.02em; font-variant-numeric:tabular-nums; }
+  .stat-cell.acc .num { color:var(--accent); }
+  .stat-cell .unit { font-size:28px; font-weight:700; color:var(--gray-2); margin-left:4px; }
+  .stat-cell .lbl { font-size:16px; color:var(--gray-1); line-height:1.45; margin-top:16px; font-weight:500; }
+  .stat-cell .delta { font-size:14px; font-weight:700; margin-top:8px; }
+  .stat-cell .delta.up { color:var(--positive); } .stat-cell .delta.down { color:var(--negative); }
+
+  /* ── three_trends ── */
+  .trends { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px; }
+  .trend { padding:26px 24px; border:1px solid var(--gray-3); }
+  .trend .th { font-family:var(--font-display); font-weight:700; font-size:19px; color:var(--heading); line-height:1.3; padding-bottom:14px; margin-bottom:14px; border-bottom:2px solid var(--accent); }
+  .trend ul { margin:0; padding-left:18px; }
+  .trend li { font-size:14px; color:var(--gray-1); line-height:1.5; margin-bottom:9px; }
+  .trend li::marker { color:var(--gray-3); }
+
+  /* ── five_key_areas ── */
+  .areas { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-top:54px; }
+  .area { text-align:left; }
+  .area .badge { width:46px; height:46px; border-radius:50%; background:var(--surface-inverse); color:var(--surface-inverse-fg); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:18px; margin-bottom:16px; }
+  .area:nth-child(odd) .badge { background:var(--accent); }
+  .area .ah { font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--gray-1); margin-bottom:8px; }
+  .area .ad { font-size:13px; color:var(--gray-2); line-height:1.45; }
+
+  /* ── two_column_text ── */
+  .twocol { display:grid; grid-template-columns:1fr 1fr; gap:64px; margin-top:32px; }
+  .twocol .col h3 { font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--heading); margin:0 0 16px; padding-bottom:12px; border-bottom:1px solid var(--gray-3); }
+  .twocol .col ul { margin:0; padding-left:20px; }
+  .twocol .col li { font-size:15px; color:var(--gray-1); line-height:1.6; margin-bottom:12px; }
+  .twocol .col li::marker { color:var(--accent); }
+
+  /* ── pros_cons ── */
+  .pc { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:32px; }
+  .pc .side { border:1px solid var(--gray-3); }
+  .pc .side .hd { display:flex; align-items:center; gap:12px; padding:16px 22px; font-family:var(--font-display); font-weight:700; font-size:19px; color:#fff; }
+  .pc .side.pro .hd { background:var(--positive); }
+  .pc .side.con .hd { background:var(--negative); }
+  .pc .side .hd .ic { font-size:22px; line-height:1; }
+  .pc .side ul { margin:0; padding:18px 24px 24px 40px; }
+  .pc .side li { font-size:15px; color:var(--gray-1); line-height:1.55; margin-bottom:12px; }
+
+  /* ── before_after ── */
+  .ba { display:grid; grid-template-columns:1fr 64px 1fr; align-items:stretch; gap:0; margin-top:36px; }
+  .ba .panel { padding:30px 32px; }
+  .ba .panel.before { background:var(--gray-4); }
+  .ba .panel.after  { background:var(--surface-inverse); color:var(--surface-inverse-fg); }
+  .ba .panel .tag { font-size:12px; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; margin-bottom:18px; color:var(--gray-2); }
+  .ba .panel.after .tag { color:rgba(255,255,255,0.7); }
+  .ba .panel ul { margin:0; padding-left:20px; }
+  .ba .panel li { font-size:15px; line-height:1.6; margin-bottom:13px; }
+  .ba .arrow { display:flex; align-items:center; justify-content:center; font-size:34px; color:var(--accent); font-weight:300; }
+
+  /* ── 2×2 matrices (bcg_matrix, prioritization_matrix) ── */
+  .mx { position:relative; margin:54px 0 0 56px; width:1014px; height:404px; }
+  .mx .quad { position:absolute; width:calc(50% - 1px); height:calc(50% - 1px); padding:18px 20px; box-sizing:border-box; border:1px solid var(--gray-3); }
+  .mx .quad.tl { left:0; top:0; }
+  .mx .quad.tr { right:0; top:0; }
+  .mx .quad.bl { left:0; bottom:0; }
+  .mx .quad.br { right:0; bottom:0; }
+  .mx .quad.hot { background:var(--surface-inverse); color:var(--surface-inverse-fg); border-color:var(--surface-inverse); }
+  .mx .quad .qh { font-family:var(--font-display); font-weight:700; font-size:15px; letter-spacing:0.02em; margin-bottom:12px; color:var(--accent); }
+  .mx .quad.hot .qh { color:#fff; }
+  .mx .quad .chip { display:inline-block; font-size:13px; line-height:1.3; background:var(--gray-4); color:var(--gray-1); padding:5px 11px; margin:0 6px 6px 0; white-space:nowrap; }
+  .mx .quad.hot .chip { background:rgba(255,255,255,0.16); color:#fff; }
+  .mx .axlabel { position:absolute; font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray-2); }
+  .mx .axlabel.x { bottom:-34px; left:50%; transform:translateX(-50%); }
+  .mx .axlabel.y { top:50%; left:-44px; transform:rotate(-90deg) translateX(50%); transform-origin:left center; }
+  .mx .axtick { position:absolute; font-size:11px; color:var(--gray-3); }
+
+  /* ── risk_matrix (3×3 heat) ── */
+  .risk { display:grid; grid-template-columns:120px repeat(3,1fr); grid-template-rows:repeat(3,1fr) 30px; gap:6px; margin:48px 0 0 0; height:430px; }
+  .risk .cell { display:flex; align-items:center; justify-content:center; text-align:center; font-size:13px; font-weight:600; color:#fff; padding:8px; line-height:1.3; border-radius:2px; }
+  .risk .g { background:var(--positive); } .risk .a { background:#D9962B; } .risk .r { background:var(--negative); }
+  .risk .yaxis { display:flex; align-items:center; justify-content:flex-end; padding-right:14px; font-size:12px; font-weight:700; color:var(--gray-2); text-align:right; }
+  .risk .xaxis { display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--gray-2); }
+  .risk .corner { }
+
+  /* ── value_chain (arrow stages) ── */
+  .vchain { display:flex; align-items:stretch; gap:0; margin-top:60px; }
+  .vstage { position:relative; flex:1; background:var(--gray-4); padding:24px 30px 24px 44px; margin-right:-18px; clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%, 22px 50%); }
+  .vstage:first-child { padding-left:30px; clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%); }
+  .vstage.hot { background:var(--surface-inverse); color:var(--surface-inverse-fg); }
+  .vstage .vn { font-family:var(--font-display); font-weight:700; font-size:13px; letter-spacing:0.1em; color:var(--accent); margin-bottom:8px; }
+  .vstage .vh { font-family:var(--font-display); font-weight:700; font-size:18px; line-height:1.25; margin-bottom:6px; }
+  .vstage .vkpi { font-size:12px; opacity:0.8; line-height:1.4; }
+  .vchain-foot { display:flex; gap:0; margin-top:18px; }
+
+  /* ── pyramid ── */
+  .pyr { display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:40px; }
+  .pyr-row { display:flex; align-items:center; gap:28px; }
+  .pyr-tier { color:#fff; font-family:var(--font-display); font-weight:700; font-size:20px; display:flex; align-items:center; justify-content:center; height:72px; text-align:center; }
+  .pyr-tier.t1 { width:300px; background:var(--accent); clip-path:polygon(50% 0, 100% 100%, 0 100%); height:90px; font-size:18px; align-items:flex-end; padding-bottom:8px; box-sizing:border-box; }
+  .pyr-tier.t2 { width:560px; background:var(--surface-inverse); }
+  .pyr-tier.t3 { width:820px; background:var(--gray-2); }
+  .pyr-tier.t4 { width:1080px; background:var(--gray-3); }
+  .pyr-side { font-size:14px; color:var(--gray-2); width:240px; line-height:1.45; }
+
+  /* ── gantt_timeline ── */
+  .gantt { width:100%; margin-top:30px; font-family:var(--font-sans); }
+  .gantt .ghead { display:grid; grid-template-columns:220px repeat(6,1fr); border-bottom:2px solid var(--primary); }
+  .gantt .ghead div { padding:10px 8px; font-size:12px; font-weight:700; color:var(--gray-2); text-align:center; letter-spacing:0.04em; }
+  .gantt .ghead div:first-child { text-align:left; }
+  .gantt .grow { display:grid; grid-template-columns:220px repeat(6,1fr); align-items:center; border-bottom:1px solid var(--gray-4); height:54px; position:relative; }
+  .gantt .gtask { font-size:14px; color:var(--gray-1); font-weight:600; padding-right:12px; }
+  .gantt .gcells { grid-column:2 / -1; position:relative; height:100%; }
+  .gantt .gbar { position:absolute; top:50%; transform:translateY(-50%); height:22px; background:var(--surface-inverse); border-radius:3px; display:flex; align-items:center; padding:0 10px; color:#fff; font-size:11px; font-weight:600; white-space:nowrap; }
+  .gantt .gbar.acc { background:var(--accent); }
+
+  /* ── org_chart ── */
+  .org { display:flex; flex-direction:column; align-items:center; margin-top:34px; }
+  .org .node { background:var(--surface-inverse); color:var(--surface-inverse-fg); padding:12px 22px; text-align:center; min-width:190px; }
+  .org .node .nn { font-family:var(--font-display); font-weight:700; font-size:16px; }
+  .org .node .nr { font-size:12px; opacity:0.78; margin-top:2px; }
+  .org .conn { width:2px; height:26px; background:var(--gray-3); }
+  .org .hbar { height:2px; background:var(--gray-3); }
+  .org .heads { display:flex; gap:26px; justify-content:center; }
+  .org .head-col { display:flex; flex-direction:column; align-items:center; }
+  .org .head { background:var(--gray-4); color:var(--gray-1); padding:10px 18px; text-align:center; min-width:170px; border-top:3px solid var(--accent); }
+  .org .head .nn { font-family:var(--font-display); font-weight:700; font-size:14px; }
+  .org .head .nr { font-size:11px; color:var(--gray-2); margin-top:2px; }
+  .org .members { margin-top:10px; display:flex; flex-direction:column; gap:6px; }
+  .org .member { font-size:12px; color:var(--gray-2); text-align:center; padding:5px 10px; border:1px solid var(--gray-4); min-width:150px; }
+
+  /* ── venn ── */
+  .venn { position:relative; width:560px; height:420px; margin:30px auto 0; }
+  .venn .circ { position:absolute; width:300px; height:300px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-align:center; font-family:var(--font-display); font-weight:700; font-size:17px; mix-blend-mode:multiply; padding:30px; box-sizing:border-box; }
+  .venn .c1 { left:0; top:0; background:rgba(232,119,34,0.30); color:var(--gray-1); }
+  .venn .c2 { right:0; top:0; background:rgba(26,35,50,0.26); color:var(--gray-1); }
+  .venn .c3 { left:130px; bottom:0; background:rgba(46,132,74,0.26); color:var(--gray-1); }
+  .venn .ix { position:absolute; left:50%; top:46%; transform:translate(-50%,-50%); font-family:var(--font-display); font-weight:700; font-size:14px; color:var(--heading); text-align:center; z-index:5; }
+  /* dark-mono: multiply blend → black on dark, so switch to screen + brighter fills */
+  [data-theme="dark-mono"] .venn .circ { mix-blend-mode:screen; }
+  [data-theme="dark-mono"] .venn .c1 { background:rgba(74,158,255,0.34); color:#fff; }
+  [data-theme="dark-mono"] .venn .c2 { background:rgba(156,163,175,0.30); color:#fff; }
+  [data-theme="dark-mono"] .venn .c3 { background:rgba(52,211,153,0.30); color:#fff; }
+  [data-theme="dark-mono"] .venn .ix { color:#fff; }
+
+  /* ── SVG charts (column_historic_forecast, stacked, grouped, gauge) ── */
+  .chart { width:100%; height:auto; font-family:var(--font-sans); }
+  .chart .grid { stroke:var(--gray-4); stroke-width:1; }
+  .chart .axis { stroke:var(--gray-3); stroke-width:1; }
+  .chart .yt   { font-size:13px; fill:var(--gray-3); text-anchor:end; }
+  .chart .cat  { font-size:13px; fill:var(--gray-2); text-anchor:middle; font-weight:500; }
+  .chart .val  { font-size:13px; fill:var(--gray-1); text-anchor:middle; font-weight:700; font-family:var(--font-display); }
+  .chart .bar  { fill:var(--surface-inverse); }
+  .chart .bar.acc { fill:var(--accent); }
+  .chart .barfc { fill:none; stroke:var(--accent); stroke-width:2; stroke-dasharray:5 4; }
+  .chart .val.fc { fill:var(--accent); }
+  .chart .seg-a { fill:var(--surface-inverse); } .chart .seg-b { fill:var(--accent); } .chart .seg-c { fill:var(--gray-3); }
+  .chart .grp1 { fill:var(--surface-inverse); } .chart .grp2 { fill:var(--accent); } .chart .grp3 { fill:var(--gray-3); }
+  .clegend { display:flex; gap:24px; justify-content:center; margin-top:18px; font-size:13px; color:var(--gray-1); }
+  .clegend .it { display:flex; align-items:center; gap:8px; }
+  .clegend .sw { width:14px; height:14px; border-radius:2px; }
+  .clegend .sw.a { background:var(--surface-inverse); } .clegend .sw.b { background:var(--accent); } .clegend .sw.c { background:var(--gray-3); }
+  .clegend .sw.fc { background:transparent; border:2px dashed var(--accent); }
+
+  /* ── gauge ── */
+  .gauge-wrap { display:flex; align-items:center; gap:80px; margin-top:40px; justify-content:center; }
+  .gauge-svg { width:420px; height:240px; }
+  .gauge-svg .track { fill:none; stroke:var(--gray-4); stroke-width:30; }
+  .gauge-svg .fillarc { fill:none; stroke:var(--accent); stroke-width:30; stroke-linecap:round; }
+  .gauge-center { text-align:left; }
+  .gauge-center .gv { font-family:var(--font-display); font-weight:800; font-size:84px; line-height:1; color:var(--heading); letter-spacing:-0.02em; }
+  .gauge-center .gv .u { font-size:34px; color:var(--gray-2); font-weight:700; }
+  .gauge-center .gl { font-size:18px; color:var(--gray-1); font-weight:600; margin-top:10px; }
+  .gauge-center .gs { font-size:14px; color:var(--gray-2); margin-top:6px; line-height:1.45; }
+  .gauge-center .gband { display:inline-block; margin-top:20px; font-size:13px; font-weight:700; padding:5px 13px; background:var(--positive); color:#fff; white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<div class="theme-switcher" role="group" aria-label="Theme">
+  <span class="lbl">Theme</span>
+  <button type="button" data-theme-set="modern" class="is-active">Modern</button>
+  <button type="button" data-theme-set="classic">Classic</button>
+  <button type="button" data-theme-set="dark-mono">Dark</button>
+</div>
+
+<deck-stage width="1280" height="720">
+
+  <!-- ═══════ 01 · dark_navy_summary ═══════ -->
+  <section data-screen-label="01 dark_navy_summary" data-layout="dark_navy_summary">
+    <div class="fb">
+      <div class="rule"></div>
+      <div class="eyebrow">Bottom line</div>
+      <h2 class="kr">FY26.Q1 매출 1,260억으로 가이던스 +60억 상회 — 다만 마진 압박으로 영업이익은 가이던스 하단, Q2 비용 구조 재점검 필요</h2>
+      <div class="src kr">Source: 재무팀 분기 마감, FY26.Q1</div>
+      <div class="pg">1</div>
+    </div>
+  </section>
+
+  <!-- ═══════ 02 · appendix_title ═══════ -->
+  <section data-screen-label="02 appendix_title" data-layout="appendix_title">
+    <div class="fb apx">
+      <div class="big">A</div>
+      <div class="eyebrow">Appendix</div>
+      <h2 class="kr">부록 — 세부 재무제표 · 가정 · 민감도 분석</h2>
+      <div class="src kr">slides-grab · FY26.Q1 분기 리뷰</div>
+      <div class="pg">2</div>
+    </div>
+  </section>
+
+  <!-- ═══════ 03 · two_stat ═══════ -->
+  <section data-screen-label="03 two_stat" data-layout="two_stat">
+    <div class="s-title kr">상반기 핵심 성과 — 매출 두 자릿수 성장, 현금 흐름 사상 최대</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="stat-row n2">
+        <div class="stat-cell">
+          <div><span class="num">2,480</span><span class="unit">억원</span></div>
+          <div class="lbl kr">상반기 누적 매출</div>
+          <div class="delta up">▲ 전년 동기 대비 +14.2%</div>
+        </div>
+        <div class="stat-cell acc">
+          <div><span class="num">612</span><span class="unit">억원</span></div>
+          <div class="lbl kr">영업활동 현금흐름 — 사상 최대</div>
+          <div class="delta up">▲ +22.0% · FCF 전환율 88%</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 재무팀 반기 결산, FY26.H1</div>
+    <div class="s-pagenum">3</div>
+  </section>
+
+  <!-- ═══════ 04 · three_stat ═══════ -->
+  <section data-screen-label="04 three_stat" data-layout="three_stat">
+    <div class="s-title kr">분기 운영 지표 — 성장·수익성·효율 3축 동시 개선</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="stat-row n3">
+        <div class="stat-cell acc">
+          <div><span class="num">+14.3</span><span class="unit">%</span></div>
+          <div class="lbl kr">매출 성장률 (YoY)</div>
+          <div class="delta up">▲ 8개 분기 연속 우상향</div>
+        </div>
+        <div class="stat-cell">
+          <div><span class="num">12.8</span><span class="unit">%</span></div>
+          <div class="lbl kr">영업이익률</div>
+          <div class="delta down">▼ −0.9%p · 원가 압박</div>
+        </div>
+        <div class="stat-cell">
+          <div><span class="num">60</span><span class="unit">일</span></div>
+          <div class="lbl kr">재고 회전 일수</div>
+          <div class="delta up">▲ 75일 → 60일 개선</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 재무팀 KPI 대시보드, FY26.Q1</div>
+    <div class="s-pagenum">4</div>
+  </section>
+
+  <!-- ═══════ 05 · three_trends ═══════ -->
+  <section data-screen-label="05 three_trends" data-layout="three_trends">
+    <div class="s-title kr">3대 시장 트렌드 — 수요 회복·공급 재편·가격 정상화 동시 진행</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:150px;">
+      <div class="trends">
+        <div class="trend">
+          <div class="th kr">수요 회복</div>
+          <ul class="kr">
+            <li>북미 데이터센터 capex +28% 재가속</li>
+            <li>전방 고객 재고 정상화 완료</li>
+            <li>신규 OEM 4개사 디자인윈 확정</li>
+          </ul>
+        </div>
+        <div class="trend">
+          <div class="th kr">공급 재편</div>
+          <ul class="kr">
+            <li>경쟁사 2곳 capex 18개월 지연</li>
+            <li>국내 증설 라인 Q3 가동 예정</li>
+            <li>핵심 소재 이원화 조달 완료</li>
+          </ul>
+        </div>
+        <div class="trend">
+          <div class="th kr">가격 정상화</div>
+          <ul class="kr">
+            <li>ASP 3개 분기 연속 상승 전환</li>
+            <li>스팟-계약 가격 갭 축소</li>
+            <li>프리미엄 제품 믹스 +6%p</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 전략기획팀 시장 분석, FY26.Q1 · TrendForce</div>
+    <div class="s-pagenum">5</div>
+  </section>
+
+  <!-- ═══════ 06 · five_key_areas ═══════ -->
+  <section data-screen-label="06 five_key_areas" data-layout="five_key_areas">
+    <div class="s-title kr">FY26 하반기 5대 중점 영역 — 성장과 체질 개선 병행</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="areas">
+        <div class="area"><div class="badge">1</div><div class="ah kr">매출 가속</div><div class="ad kr">북미·신규 OEM 중심 톱라인 +15% 목표</div></div>
+        <div class="area"><div class="badge">2</div><div class="ah kr">마진 방어</div><div class="ad kr">원가 구조 재점검, 가격 2차 인상</div></div>
+        <div class="area"><div class="badge">3</div><div class="ah kr">현금 효율</div><div class="ad kr">재고 60일 유지, CCC 추가 단축</div></div>
+        <div class="area"><div class="badge">4</div><div class="ah kr">역량 확보</div><div class="ad kr">R&D 핵심 포지션 2건 충원</div></div>
+        <div class="area"><div class="badge">5</div><div class="ah kr">리스크 관리</div><div class="ad kr">환 헷지 확대, 공급 이원화</div></div>
+      </div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>성장(1·4)과 체질(2·3·5)을 분리 관리, Q3 마감 게이트에서 진척 점검</div>
+    <div class="s-source kr">Source: 경영기획팀 하반기 운영계획, FY26.H2</div>
+    <div class="s-pagenum">6</div>
+  </section>
+
+  <!-- ═══════ 07 · two_column_text ═══════ -->
+  <section data-screen-label="07 two_column_text" data-layout="two_column_text">
+    <div class="s-title kr">투자 판단 — 강점은 구조적, 리스크는 단기적·관리 가능</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:150px;">
+      <div class="twocol">
+        <div class="col">
+          <h3 class="kr">구조적 강점</h3>
+          <ul class="kr">
+            <li>2세대 앞선 기술 격차로 점유율 방어력 확보 (r=0.87)</li>
+            <li>북미·아시아 수요 동시 회복으로 가동률 90% 상회</li>
+            <li>ASP 상승 사이클 진입 — 가격 결정력 우위</li>
+            <li>현금 창출력 사상 최대, 증설 자체 조달 가능</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3 class="kr">단기 리스크</h3>
+          <ul class="kr">
+            <li>원가 압박으로 영업이익률 −0.9%p — Q3 회복 관건</li>
+            <li>위안화 노출 12% 미헷지 — 환 변동성 노출</li>
+            <li>경쟁사 증설 재개 시 2027년 가격 재편 가능성</li>
+            <li>R&D 핵심 인력 충원 지연 — 차세대 일정 리스크</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 전략기획팀 투자 검토, FY26.Q1</div>
+    <div class="s-pagenum">7</div>
+  </section>
+
+  <!-- ═══════ 08 · pros_cons ═══════ -->
+  <section data-screen-label="08 pros_cons" data-layout="pros_cons">
+    <div class="s-title kr">증설 조기 집행 검토 — 선제 확보 이점 vs 자본 부담</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:150px;">
+      <div class="pc">
+        <div class="side pro">
+          <div class="hd kr"><span class="ic">✓</span>찬성 근거</div>
+          <ul class="kr">
+            <li>수요 회복 국면에서 6개월 선제 캐파 확보로 점유율 +3%p 기대</li>
+            <li>경쟁사 capex 18개월 지연 — 공급 공백 선점 가능</li>
+            <li>현금 창출력 최대 — 차입 없이 자체 조달</li>
+            <li>핵심 소재 이원화 완료로 가동 리스크 낮음</li>
+          </ul>
+        </div>
+        <div class="side con">
+          <div class="hd kr"><span class="ic">✕</span>반대·우려</div>
+          <ul class="kr">
+            <li>단기 감가상각 부담으로 영업이익률 추가 −0.6%p</li>
+            <li>2027년 경쟁사 증설 재개 시 공급 과잉 위험</li>
+            <li>건설·인허가 일정 슬립 시 가동 타이밍 미스</li>
+            <li>R&D 인력 충원 지연 — 차세대 라인 동시 추진 부담</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 전략기획팀 투자심의 자료, FY26.Q1</div>
+    <div class="s-pagenum">8</div>
+  </section>
+
+  <!-- ═══════ 09 · before_after ═══════ -->
+  <section data-screen-label="09 before_after" data-layout="before_after">
+    <div class="s-title kr">마감 프로세스 개선 — D+12에서 D+5로, 수작업 70% 제거</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:150px;">
+      <div class="ba">
+        <div class="panel before">
+          <div class="tag">Before · FY25</div>
+          <ul class="kr">
+            <li>월 마감 D+12 — 수작업 분개·대사 의존</li>
+            <li>BU별 엑셀 취합, 버전 충돌 빈번</li>
+            <li>분석 리포트 D+17 — 액션 타이밍 지연</li>
+            <li>오류 정정 라운드 평균 2.3회</li>
+          </ul>
+        </div>
+        <div class="arrow">→</div>
+        <div class="panel after">
+          <div class="tag">After · FY26</div>
+          <ul class="kr">
+            <li>월 마감 D+5 — ERP 자동 분개·대사</li>
+            <li>BI 단일 소스, 실시간 합산</li>
+            <li>분석 대시보드 D+5 동시 산출</li>
+            <li>정정 라운드 0.4회 — 정확도 향상</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: FP&A 프로세스 개선 보고, FY26.Q1</div>
+    <div class="s-pagenum">9</div>
+  </section>
+
+  <!-- ═══════ 10 · bcg_matrix ═══════ -->
+  <section data-screen-label="10 bcg_matrix" data-layout="bcg_matrix">
+    <div class="s-title kr">제품 포트폴리오 BCG 매트릭스 — HBM이 유일한 스타, 캐시카우 2종</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="mx">
+        <div class="quad tl hot">
+          <div class="qh kr">스타 · 고성장·고점유</div>
+          <span class="chip kr">HBM3E</span>
+        </div>
+        <div class="quad tr">
+          <div class="qh kr">물음표 · 고성장·저점유</div>
+          <span class="chip kr">차세대 화학소재</span><span class="chip kr">전력 반도체</span>
+        </div>
+        <div class="quad bl">
+          <div class="qh kr">캐시카우 · 저성장·고점유</div>
+          <span class="chip kr">DDR5 서버</span><span class="chip kr">eMMC 모바일</span>
+        </div>
+        <div class="quad br">
+          <div class="qh kr">도그 · 저성장·저점유</div>
+          <span class="chip kr">레거시 DDR3</span>
+        </div>
+        <div class="axlabel x kr">상대 시장 점유율 →</div>
+        <div class="axlabel y kr">시장 성장률 →</div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 전략기획팀 포트폴리오 분석, FY26.Q1</div>
+    <div class="s-pagenum">10</div>
+  </section>
+
+  <!-- ═══════ 11 · prioritization_matrix ═══════ -->
+  <section data-screen-label="11 prioritization_matrix" data-layout="prioritization_matrix">
+    <div class="s-title kr">이니셔티브 우선순위 — 임팩트·난이도 기준, 퀵윈 3건 즉시 착수</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="mx">
+        <div class="quad tl hot">
+          <div class="qh kr">퀵윈 · 고임팩트·저난이도</div>
+          <span class="chip kr">가격 2차 인상</span><span class="chip kr">슬로무버 정리</span><span class="chip kr">헷지 확대</span>
+        </div>
+        <div class="quad tr">
+          <div class="qh kr">대형 과제 · 고임팩트·고난이도</div>
+          <span class="chip kr">증설 조기 집행</span><span class="chip kr">차세대 라인</span>
+        </div>
+        <div class="quad bl">
+          <div class="qh kr">보조 · 저임팩트·저난이도</div>
+          <span class="chip kr">대시보드 자동화</span>
+        </div>
+        <div class="quad br">
+          <div class="qh kr">재검토 · 저임팩트·고난이도</div>
+          <span class="chip kr">레거시 라인 전환</span>
+        </div>
+        <div class="axlabel x kr">실행 난이도 →</div>
+        <div class="axlabel y kr">비즈니스 임팩트 →</div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: PMO 우선순위 워크숍, FY26.Q1</div>
+    <div class="s-pagenum">11</div>
+  </section>
+
+  <!-- ═══════ 12 · risk_matrix ═══════ -->
+  <section data-screen-label="12 risk_matrix" data-layout="risk_matrix">
+    <div class="s-title kr">리스크 히트맵 — 환 변동·공급 과잉 2건이 고위험 구간</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="risk">
+        <div class="yaxis kr">高 영향</div>
+        <div class="cell a kr">인력 이탈</div>
+        <div class="cell r kr">환율 변동</div>
+        <div class="cell r kr">공급 과잉</div>
+        <div class="yaxis kr">中 영향</div>
+        <div class="cell g kr">일정 슬립</div>
+        <div class="cell a kr">원가 상승</div>
+        <div class="cell r kr">가격 재편</div>
+        <div class="yaxis kr">低 영향</div>
+        <div class="cell g kr">소재 단가</div>
+        <div class="cell g kr">환경 규제</div>
+        <div class="cell a kr">경쟁 진입</div>
+        <div class="corner"></div>
+        <div class="xaxis kr">低 발생가능성</div>
+        <div class="xaxis kr">中 발생가능성</div>
+        <div class="xaxis kr">高 발생가능성</div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 리스크관리위원회, FY26.Q1</div>
+    <div class="s-pagenum">12</div>
+  </section>
+
+  <!-- ═══════ 13 · value_chain ═══════ -->
+  <section data-screen-label="13 value_chain" data-layout="value_chain">
+    <div class="s-title kr">가치사슬 — 소재에서 고객까지 5단계, 통합 마진율 28%</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="vchain">
+        <div class="vstage"><div class="vn">01</div><div class="vh kr">소재 조달</div><div class="vkpi kr">이원화 100%</div></div>
+        <div class="vstage"><div class="vn">02</div><div class="vh kr">웨이퍼 생산</div><div class="vkpi kr">수율 94%</div></div>
+        <div class="vstage hot"><div class="vn">03</div><div class="vh kr">패키징·HBM</div><div class="vkpi kr">마진 핵심 +18%p</div></div>
+        <div class="vstage"><div class="vn">04</div><div class="vh kr">검증·물류</div><div class="vkpi kr">리드타임 −20%</div></div>
+        <div class="vstage"><div class="vn">05</div><div class="vh kr">고객 납품</div><div class="vkpi kr">OEM 12개사</div></div>
+      </div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>마진의 65%가 패키징·HBM 단계(03)에 집중 — 증설 우선순위 근거</div>
+    <div class="s-source kr">Source: 운영전략팀 가치사슬 분석, FY26.Q1</div>
+    <div class="s-pagenum">13</div>
+  </section>
+
+  <!-- ═══════ 14 · pyramid ═══════ -->
+  <section data-screen-label="14 pyramid" data-layout="pyramid">
+    <div class="s-title kr">전략 우선순위 피라미드 — 비전에서 실행까지 4계층 정렬</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:150px;">
+      <div class="pyr">
+        <div class="pyr-row"><div class="pyr-tier t1 kr">비전</div></div>
+        <div class="pyr-row"><div class="pyr-tier t2 kr">기술 리더십 유지</div></div>
+        <div class="pyr-row"><div class="pyr-tier t3 kr">캐파 선제 확보 · 마진 방어</div></div>
+        <div class="pyr-row"><div class="pyr-tier t4 kr">증설 집행 · 가격 인상 · 재고 효율 · 인력 충원</div></div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 경영기획팀 전략 체계도, FY26</div>
+    <div class="s-pagenum">14</div>
+  </section>
+
+  <!-- ═══════ 15 · gantt_timeline ═══════ -->
+  <section data-screen-label="15 gantt_timeline" data-layout="gantt_timeline">
+    <div class="s-title kr">증설 프로젝트 일정 — 7월 착공에서 12월 양산까지 6개월</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <div class="gantt">
+        <div class="ghead">
+          <div class="kr">태스크</div><div>7월</div><div>8월</div><div>9월</div><div>10월</div><div>11월</div><div>12월</div>
+        </div>
+        <div class="grow"><div class="gtask kr">인허가·설계</div><div class="gcells"><div class="gbar kr" style="left:0; width:33.3%;">설계 확정</div></div></div>
+        <div class="grow"><div class="gtask kr">건설·설비 반입</div><div class="gcells"><div class="gbar kr" style="left:25%; width:41.6%;">클린룸·장비</div></div></div>
+        <div class="grow"><div class="gtask kr">시운전</div><div class="gcells"><div class="gbar kr" style="left:58.3%; width:25%;">수율 검증</div></div></div>
+        <div class="grow"><div class="gtask kr">양산 램프업</div><div class="gcells"><div class="gbar acc kr" style="left:75%; width:25%;">양산 시작</div></div></div>
+      </div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>9월 시운전 게이트가 12월 양산 일정의 임계 경로 — 설비 반입 지연 리스크 집중 관리</div>
+    <div class="s-source kr">Source: 증설 PMO 마스터 일정, FY26.Q1</div>
+    <div class="s-pagenum">15</div>
+  </section>
+
+  <!-- ═══════ 16 · org_chart ═══════ -->
+  <section data-screen-label="16 org_chart" data-layout="org_chart">
+    <div class="s-title kr">증설 TF 조직 — 부사장 직속 4개 워크스트림</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <div class="org">
+        <div class="node"><div class="nn kr">윤 부사장</div><div class="nr kr">증설 TF 총괄</div></div>
+        <div class="conn"></div>
+        <div class="hbar" style="width:840px;"></div>
+        <div class="heads" style="margin-top:-1px;">
+          <div class="head-col">
+            <div class="conn" style="height:18px;"></div>
+            <div class="head"><div class="nn kr">건설·설비</div><div class="nr kr">정 상무</div></div>
+            <div class="members"><div class="member kr">시공 PM 2</div><div class="member kr">설비 엔지니어 4</div></div>
+          </div>
+          <div class="head-col">
+            <div class="conn" style="height:18px;"></div>
+            <div class="head"><div class="nn kr">공정·수율</div><div class="nr kr">강 전무</div></div>
+            <div class="members"><div class="member kr">공정 리드 3</div><div class="member kr">수율 분석 2</div></div>
+          </div>
+          <div class="head-col">
+            <div class="conn" style="height:18px;"></div>
+            <div class="head"><div class="nn kr">조달·소재</div><div class="nr kr">송 이사</div></div>
+            <div class="members"><div class="member kr">구매 2</div><div class="member kr">소재 품질 2</div></div>
+          </div>
+          <div class="head-col">
+            <div class="conn" style="height:18px;"></div>
+            <div class="head"><div class="nn kr">재무·PMO</div><div class="nr kr">김 팀장</div></div>
+            <div class="members"><div class="member kr">FP&A 2</div><div class="member kr">PMO 1</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 증설 TF 발족 공지, FY26.Q1</div>
+    <div class="s-pagenum">16</div>
+  </section>
+
+  <!-- ═══════ 17 · venn ═══════ -->
+  <section data-screen-label="17 venn" data-layout="venn">
+    <div class="s-title kr">경쟁 우위의 교집합 — 기술·캐파·고객 세 축이 만나는 지점</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="venn">
+        <div class="circ c1 kr" style="align-items:flex-start;"><span style="margin-top:14px;">기술 리더십<br><span style="font-weight:400;font-size:13px;">2세대 격차</span></span></div>
+        <div class="circ c2 kr" style="align-items:flex-start; justify-content:flex-end;"><span style="margin-top:14px;">캐파 선점<br><span style="font-weight:400;font-size:13px;">6개월 선행</span></span></div>
+        <div class="circ c3 kr" style="align-items:flex-end;"><span style="margin-bottom:14px;">고객 락인<br><span style="font-weight:400;font-size:13px;">OEM 12사</span></span></div>
+        <div class="ix kr">지속가능<br>경쟁우위</div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 전략기획팀 경쟁우위 분석, FY26.Q1</div>
+    <div class="s-pagenum">17</div>
+  </section>
+
+  <!-- ═══════ 18 · column_historic_forecast ═══════ -->
+  <section data-screen-label="18 column_historic_forecast" data-layout="column_historic_forecast">
+    <div class="s-title kr">매출 전망 — '26~'27 점선 구간은 예측, 연 +12% CAGR 가정</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="chart" viewBox="0 0 1126 400" preserveAspectRatio="xMidYMid meet">
+        <line class="grid" x1="90" y1="40" x2="1100" y2="40"/>
+        <line class="grid" x1="90" y1="130" x2="1100" y2="130"/>
+        <line class="grid" x1="90" y1="220" x2="1100" y2="220"/>
+        <line class="axis" x1="90" y1="310" x2="1100" y2="310"/>
+        <text class="yt" x="80" y="44">6,000</text><text class="yt" x="80" y="134">4,000</text><text class="yt" x="80" y="224">2,000</text><text class="yt" x="80" y="314">0</text>
+        <!-- historic (solid): 24,25,26 -->
+        <g><rect class="bar" x="150" y="180" width="110" height="130"/><text class="val" x="205" y="168">3,180</text><text class="cat" x="205" y="334">FY24</text></g>
+        <g><rect class="bar" x="320" y="148" width="110" height="162"/><text class="val" x="375" y="136">3,820</text><text class="cat" x="375" y="334">FY25</text></g>
+        <g><rect class="bar acc" x="490" y="118" width="110" height="192"/><text class="val" x="545" y="106">4,430</text><text class="cat" x="545" y="334">FY26</text></g>
+        <!-- forecast (outline): 27,28 -->
+        <g><rect class="barfc" x="660" y="92" width="110" height="218"/><text class="val fc" x="715" y="80">4,960</text><text class="cat" x="715" y="334">FY27e</text></g>
+        <g><rect class="barfc" x="830" y="62" width="110" height="248"/><text class="val fc" x="885" y="50">5,560</text><text class="cat" x="885" y="334">FY28e</text></g>
+      </svg>
+      <div class="clegend"><div class="it"><span class="sw b"></span><span class="kr">실적</span></div><div class="it"><span class="sw fc"></span><span class="kr">예측 (CAGR +12%)</span></div></div>
+    </div>
+    <div class="s-source kr">Source: FP&A 중기 추정, FY26.Q1 · 단위 억원</div>
+    <div class="s-pagenum">18</div>
+  </section>
+
+  <!-- ═══════ 19 · stacked_column ═══════ -->
+  <section data-screen-label="19 stacked_column" data-layout="stacked_column">
+    <div class="s-title kr">매출 구성 추이 — HBM 비중 17%에서 41%로 3년 만에 2.4배</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="chart" viewBox="0 0 1126 400" preserveAspectRatio="xMidYMid meet">
+        <line class="grid" x1="90" y1="40" x2="1100" y2="40"/>
+        <line class="grid" x1="90" y1="130" x2="1100" y2="130"/>
+        <line class="grid" x1="90" y1="220" x2="1100" y2="220"/>
+        <line class="axis" x1="90" y1="310" x2="1100" y2="310"/>
+        <text class="yt" x="80" y="44">100%</text><text class="yt" x="80" y="224">40%</text><text class="yt" x="80" y="314">0</text>
+        <!-- 4 years, segments a(HBM)/b(DDR)/c(기타) stacked to 270px total height -->
+        <g>
+          <rect class="seg-b" x="180" y="265" width="150" height="45"/>
+          <rect class="seg-c" x="180" y="160" width="150" height="105"/>
+          <rect class="seg-a" x="180" y="100" width="150" height="60"/>
+          <text class="cat" x="255" y="334">FY23</text><text class="val" x="255" y="92" style="fill:var(--accent)">17%</text>
+        </g>
+        <g>
+          <rect class="seg-b" x="380" y="270" width="150" height="40"/>
+          <rect class="seg-c" x="380" y="170" width="150" height="100"/>
+          <rect class="seg-a" x="380" y="90" width="150" height="80"/>
+          <text class="cat" x="455" y="334">FY24</text><text class="val" x="455" y="82" style="fill:var(--accent)">24%</text>
+        </g>
+        <g>
+          <rect class="seg-b" x="580" y="275" width="150" height="35"/>
+          <rect class="seg-c" x="580" y="185" width="150" height="90"/>
+          <rect class="seg-a" x="580" y="70" width="150" height="115"/>
+          <text class="cat" x="655" y="334">FY25</text><text class="val" x="655" y="62" style="fill:var(--accent)">33%</text>
+        </g>
+        <g>
+          <rect class="seg-b" x="780" y="280" width="150" height="30"/>
+          <rect class="seg-c" x="780" y="195" width="150" height="85"/>
+          <rect class="seg-a" x="780" y="45" width="150" height="150"/>
+          <text class="cat" x="855" y="334">FY26</text><text class="val" x="855" y="37" style="fill:var(--accent)">41%</text>
+        </g>
+      </svg>
+      <div class="clegend"><div class="it"><span class="sw a"></span><span class="kr">HBM</span></div><div class="it"><span class="sw c"></span><span class="kr">DDR 서버</span></div><div class="it"><span class="sw b"></span><span class="kr">기타</span></div></div>
+    </div>
+    <div class="s-source kr">Source: 재무팀 제품별 매출, FY23–FY26 · 비중 기준</div>
+    <div class="s-pagenum">19</div>
+  </section>
+
+  <!-- ═══════ 20 · grouped_column ═══════ -->
+  <section data-screen-label="20 grouped_column" data-layout="grouped_column">
+    <div class="s-title kr">지역별 예산 대비 실적 — 북미 초과 달성, 유럽·아시아 미달</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="chart" viewBox="0 0 1126 400" preserveAspectRatio="xMidYMid meet">
+        <line class="grid" x1="90" y1="40" x2="1100" y2="40"/>
+        <line class="grid" x1="90" y1="130" x2="1100" y2="130"/>
+        <line class="grid" x1="90" y1="220" x2="1100" y2="220"/>
+        <line class="axis" x1="90" y1="310" x2="1100" y2="310"/>
+        <text class="yt" x="80" y="44">600</text><text class="yt" x="80" y="224">200</text><text class="yt" x="80" y="314">0</text>
+        <!-- 3 regions × 2 series (예산 grp1, 실적 grp2) -->
+        <g>
+          <rect class="grp1" x="180" y="150" width="70" height="160"/><text class="val" x="215" y="140">480</text>
+          <rect class="grp2" x="258" y="120" width="70" height="190"/><text class="val" x="293" y="110" style="fill:var(--accent)">560</text>
+          <text class="cat" x="254" y="334">북미</text>
+        </g>
+        <g>
+          <rect class="grp1" x="450" y="175" width="70" height="135"/><text class="val" x="485" y="165">405</text>
+          <rect class="grp2" x="528" y="190" width="70" height="120"/><text class="val" x="563" y="180" style="fill:var(--accent)">360</text>
+          <text class="cat" x="524" y="334">유럽</text>
+        </g>
+        <g>
+          <rect class="grp1" x="720" y="160" width="70" height="150"/><text class="val" x="755" y="150">450</text>
+          <rect class="grp2" x="798" y="172" width="70" height="138"/><text class="val" x="833" y="162" style="fill:var(--accent)">414</text>
+          <text class="cat" x="794" y="334">아시아</text>
+        </g>
+      </svg>
+      <div class="clegend"><div class="it"><span class="sw a"></span><span class="kr">예산</span></div><div class="it"><span class="sw b"></span><span class="kr">실적</span></div></div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>북미 +80억 초과가 유럽·아시아 미달(−81억)을 상쇄 — 지역 믹스 재조정 필요</div>
+    <div class="s-source kr">Source: 재무팀 지역별 실적, FY26.Q1 · 단위 억원</div>
+    <div class="s-pagenum">20</div>
+  </section>
+
+  <!-- ═══════ 21 · gauge ═══════ -->
+  <section data-screen-label="21 gauge" data-layout="gauge">
+    <div class="s-title kr">연간 목표 달성률 — 상반기 종료 시점 58%로 정상 궤도</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="gauge-wrap">
+        <svg class="gauge-svg" viewBox="0 0 420 240">
+          <!-- semicircle track: cx210 cy210 r170, from 180° to 0° -->
+          <path class="track" d="M 40 210 A 170 170 0 0 1 380 210"/>
+          <!-- fill to 58% of 180° = 104.4° → end angle 180-104.4=75.6° from +x.
+               point: cx+r*cos(theta), cy - r*sin(theta) with sweep -->
+          <path class="fillarc" d="M 40 210 A 170 170 0 0 1 295.6 97.8"/>
+        </svg>
+        <div class="gauge-center">
+          <div class="gv">58<span class="u">%</span></div>
+          <div class="gl kr">연간 매출 목표 달성률</div>
+          <div class="gs kr">목표 4,430억 중 2,570억 달성 · 상반기 정상 진척 (50% 대비 +8%p)</div>
+          <div class="gband kr">양호 · On track</div>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: FP&A 목표 트래커, FY26.H1</div>
+    <div class="s-pagenum">21</div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script>
+  const buttons = document.querySelectorAll('.theme-switcher button[data-theme-set]');
+  buttons.forEach((b) => {
+    b.addEventListener('click', () => {
+      const t = b.getAttribute('data-theme-set');
+      document.documentElement.setAttribute('data-theme', t);
+      buttons.forEach((x) => x.classList.toggle('is-active', x === b));
+    });
+  });
+</script>
+</body>
+</html>

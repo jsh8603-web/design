@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fpna-deck-system"
+version = "0.3.0"
+description = "Korean FP&A business .pptx generation system — 70 layouts, 4 themes, QA + autofix"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "python-pptx>=0.6.21",
+]
+
+[project.optional-dependencies]
+# Pillow is only needed if you feed real raster images through the
+# image-placeholder helpers; the core pipeline runs without it.
+images = ["Pillow>=9.0"]
+
+[project.scripts]
+fpna-deck = "deck_system.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["deck_system*"]

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Slides" name="Slide — Split (image + text)" subtitle="50:50 · pill kicker · arrow circle CTA" viewport="960x540" -->
+<html lang="ko" data-theme="modern">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../colors_and_type.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 720px;
+      font-family: 'Pretendard', sans-serif;
+      background: #ffffff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  </style>
+</head>
+<body data-layout="side_by_side" data-screen-label="legacy · side_by_side">
+  <!-- 이미지 영역 -->
+  <div style="background: #e5e5e0; display: flex; align-items: center; justify-content: center; position: relative;">
+    <div data-image-placeholder style="width: 100%; height: 100%; background: linear-gradient(135deg, #d0d0c8 0%, #b8b8b0 100%);"></div>
+    <p style="position: absolute; bottom: 28.44px; left: 28.44px; font-size: 16px; color: #666;">©2025 YOUR BRAND</p>
+  </div>
+
+  <!-- 텍스트 영역 -->
+  <div style="padding: 85.33px; display: flex; flex-direction: column; justify-content: center;">
+    <p style="display: inline-block; padding: 7.11px 17.78px; background: #1a1a1a; color: #fff; border-radius: 7.11px; font-size: 14.22px; font-weight: 600; margin-bottom: 42.67px; align-self: flex-start;">FEATURE</p>
+    <h2 style="font-size: 56.89px; font-weight: 600; color: #1a1a1a; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 35.56px;">
+      Transform Your Business
+    </h2>
+    <p style="font-size: 24.89px; color: #666; line-height: 1.7;">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <div style="margin-top: 56.89px; display: flex; align-items: center; gap: 21.33px;">
+      <p style="font-size: 21.33px; font-weight: 500; color: #1a1a1a;">Learn more</p>
+      <div style="width: 49.78px; height: 49.78px; border: 1px solid #1a1a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <p style="font-size: 21.33px; color: #1a1a1a;">→</p>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body>
+</html>

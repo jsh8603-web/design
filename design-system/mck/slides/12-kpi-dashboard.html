@@ -1,0 +1,45 @@
+<!--
+  ⚠️ ES modules in use. Open via `python serve.py --open` from project root,
+  not file://. See README.md "Quick Start".
+-->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>KPI dashboard (Layout #57) — data-driven</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="slides.css">
+</head>
+<body>
+<div class="deck-stage">
+<section class="slide" data-screen-label="12 KPI dashboard">
+  <div class="s-title kr">FY26.Q1 핵심 4개 KPI — 매출·고객 성장, 마진·재고 회전 동시 악화</div>
+  <div class="s-rule"></div>
+
+  <div class="s-body" style="top:150px;">
+    <div id="kpi-target" style="width:100%;"></div>
+  </div>
+
+  <div class="s-bar kr"><span class="pre">시사점 —</span>성장 vs 효율의 균형 붕괴 — Q2 마진 회복 액션 플랜 필수</div>
+  <div class="s-source">Source: 재무팀 KPI 대시보드, FY26.Q1 마감 · BI 시스템 자동 산출</div>
+  <div class="s-pagenum">12/17</div>
+</section>
+</div>
+
+<script type="module">
+  import { renderKPIDashboard } from "../assets/kpi-dashboard.js";
+  import { safeRender } from "../assets/chart-helpers.js";
+
+  safeRender("#kpi-target", renderKPIDashboard, {
+    kpis: [
+      { label: "매출",        value: "1,260억", yoy:  14.3, detail: "YoY +158억 · 가이던스 대비 +2.1%" },
+      { label: "영업이익률",  value: "9.4%",    yoy:  -1.8, yoy_label: "YoY (%p)", detail: "11.2% → 9.4% · 가이던스 미달 −1.1%p" },
+      { label: "신규 고객 수", value: "8,420",  yoy:  22.1, detail: "YoY +1,524 · 북미 +38%, 아시아 −6%", value_suffix: "사" },
+      { label: "재고 회전",   value: "74.6",    yoy:   14.1, yoy_label: "YoY", detail: "65.4 → 74.6일 · 운전자본 영향 +85억", value_suffix: "일" }
+    ],
+    layout: "auto",
+    neutral_threshold: 1.0
+  });
+</script>
+</body>
+</html>

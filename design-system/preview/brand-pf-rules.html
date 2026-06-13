@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="PF rules quick reference" subtitle="The constraints that make HTML survive PPTX export" viewport="700x420" --><html lang="en"><head><meta charset="utf-8"><title>pf</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 700px; background: var(--neutral-100); font-family: var(--font-sans); color: var(--neutral-900); -webkit-font-smoothing: antialiased; }
+body { padding: 20px 24px; }
+.meta { font-family: var(--font-mono); font-size: 10px; color: var(--neutral-600); letter-spacing: 0.02em; }
+
+</style></head><body>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #1428A0;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#1428A0; min-width:46px;">PF-25</div>
+          <div style="font-size:11px; color:#1A1A1A;">Hard floor: 24/14/10pt — never go smaller</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #1428A0;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#1428A0; min-width:46px;">PF-26</div>
+          <div style="font-size:11px; color:#1A1A1A;">Max 3 independent content blocks per slide</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #1428A0;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#1428A0; min-width:46px;">PF-28</div>
+          <div style="font-size:11px; color:#1A1A1A;">≤120 EN / ≤80 CJK words per slide</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #EF4444;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#EF4444; min-width:46px;">PF-63</div>
+          <div style="font-size:11px; color:#1A1A1A;">No <table> — use CSS grid (grid-template-columns)</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #EF4444;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#EF4444; min-width:46px;">PF-66</div>
+          <div style="font-size:11px; color:#1A1A1A;">No box-shadow anywhere — PPTX strips it</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #EF4444;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#EF4444; min-width:46px;">PF-42</div>
+          <div style="font-size:11px; color:#1A1A1A;">No opacity < 1.0 on backgrounds — solid hex only</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #EF4444;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#EF4444; min-width:46px;">PF-07</div>
+          <div style="font-size:11px; color:#1A1A1A;">No background/border on <p>/<h*>/<li> — wrap in <div></div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #EF4444;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#EF4444; min-width:46px;">PF-05</div>
+          <div style="font-size:11px; color:#1A1A1A;">background-image only on <body>, not child <div>s</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #EF4444;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#EF4444; min-width:46px;">PF-12</div>
+          <div style="font-size:11px; color:#1A1A1A;">No flag emojis — use PNG/SVG <img></div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #1428A0;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#1428A0; min-width:46px;">PF-57</div>
+          <div style="font-size:11px; color:#1A1A1A;">Content image ≥ 25% of slide area (260pt × 180pt min)</div>
+        </div>
+      
+        <div style="display:flex; align-items:center; gap:10px; padding:8px 10px; background:#fff; border-radius:6px; border-left:3px solid #1428A0;">
+          <div style="font-family:var(--font-mono); font-size:10px; font-weight:700; color:#1428A0; min-width:46px;">PF-43</div>
+          <div style="font-size:11px; color:#1A1A1A;">Images: object-fit: cover only (not contain/fill)</div>
+        </div>
+      
+    </div></body></html>

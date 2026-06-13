@@ -1,0 +1,16 @@
+/* Executive Editorial — IR / consulting / investment memo
+   bg=#F5F5F0 · ink=#1A1A1A · accent=#1428A0 · hot=#FF6F00
+   Pairs with: ../colors_and_type.css */
+:root {
+  --bg-primary:   #F5F5F0;   /* warm white canvas */
+  --bg-secondary: #F8F9FA;   /* alt canvas (kpi slides) */
+  --bg-card:      #FFFFFF;   /* white-on-warm surface lift */
+  --bg-dark:      #1A1A1A;   /* inverted (closing slides) */
+  --text-primary: #1A1A1A;
+  --text-secondary:#666666;
+  --text-light:   #999999;
+  --accent:       #1428A0;   /* navy (data primary) */
+  --accent-hot:   #FF6F00;   /* orange highlight */
+  --border:       #E5E5E0;
+  --rule:         #1A1A1A;   /* hairline pills/circles */
+}

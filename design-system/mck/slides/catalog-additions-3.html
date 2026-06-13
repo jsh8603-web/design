@@ -1,0 +1,510 @@
+<!-- @dsCard group="Brand" name="catalog-additions-3" subtitle="v3.2 보조 16종 (horizontal_bar/metric_cards/temple/scorecard/checklist/pie/dashboard/bubble/stacked_area 등) · 1280×720 · 3테마" viewport="1280x720" -->
+<!--
+  Catalog additions · part 3 — v3.2 secondary layouts (16종).
+  Ported geometry from mck deck_system v22/v23 additions.
+  Same tokens, deck-stage, .s-* chrome as catalog-additions(-2).html.
+  1280×720, semantic tokens, modern default, 3-theme switch.
+-->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>슬라이드 카탈로그 · part 3 — 보조 레이아웃 16종</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#0a0a0a; }
+  body { font-family: var(--font-sans); }
+
+  .theme-switcher { position:fixed; top:12px; right:12px; z-index:50; background:rgba(15,20,25,0.92); color:#E5E7EB; padding:8px 10px; border-radius:6px; font-family:"Pretendard",sans-serif; font-size:11px; display:flex; align-items:center; gap:6px; backdrop-filter:blur(8px); box-shadow:0 4px 14px rgba(0,0,0,0.4); }
+  .theme-switcher .lbl { color:#9CA3AF; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-right:4px; }
+  .theme-switcher button { appearance:none; background:transparent; border:1px solid rgba(255,255,255,0.18); color:inherit; font:inherit; padding:5px 10px; border-radius:4px; cursor:pointer; font-weight:500; }
+  .theme-switcher button:hover { background:rgba(255,255,255,0.06); }
+  .theme-switcher button.is-active { background:#fff; color:#0F1419; border-color:#fff; }
+
+  deck-stage section { background:var(--bg); color:var(--text); font-family:var(--font-sans); position:relative; overflow:hidden; }
+
+  .s-title   { position:absolute; left:76.8px; top:14.4px; width:1126.4px; height:86.4px; display:flex; align-items:center; font-family:var(--font-display); font-weight:700; font-size:29.33px; line-height:1.2; color:var(--heading); letter-spacing:-0.005em; }
+  .s-rule    { position:absolute; left:76.8px; top:100.8px; width:1126.4px; height:2px; background:var(--heading); }
+  .s-body    { position:absolute; left:76.8px; top:124.8px; width:1126.4px; }
+  .s-source  { position:absolute; left:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-pagenum { position:absolute; right:76.8px; top:676.8px; font-size:12px; color:var(--gray-2); }
+  .s-bar     { position:absolute; left:76.8px; top:595.2px; width:1126.4px; height:62.4px; background:var(--gray-4); display:flex; align-items:center; padding:0 24px; box-sizing:border-box; font-weight:700; font-size:21.33px; color:var(--gray-1); }
+  .s-bar .pre { color:var(--heading); margin-right:12px; font-weight:700; }
+  .kr { font-family: var(--font-kr); }
+
+  /* horizontal_bar */
+  .hbar { margin-top:40px; display:flex; flex-direction:column; gap:18px; }
+  .hbar .row { display:grid; grid-template-columns:280px 1fr 90px; align-items:center; gap:16px; }
+  .hbar .hl { text-align:right; font-size:15px; font-weight:700; color:var(--gray-1); }
+  .hbar .track { height:30px; position:relative; }
+  .hbar .fill { height:100%; background:var(--surface-inverse); border-radius:3px; }
+  .hbar .fill.acc { background:var(--accent); }
+  .hbar .fill.mut { background:var(--gray-2); }
+  .hbar .hv { font-size:15px; font-weight:700; color:var(--gray-1); }
+
+  /* metric_cards */
+  .mcards { display:grid; gap:20px; margin-top:36px; }
+  .mcards.n3 { grid-template-columns:repeat(3,1fr); }
+  .mcards.n4 { grid-template-columns:repeat(4,1fr); }
+  .mcard { background:var(--gray-4); padding:24px 26px; border-left:5px solid var(--surface-inverse); }
+  .mcard.acc { border-left-color:var(--accent); }
+  .mcard .ml { font-size:14px; font-weight:700; color:var(--gray-2); letter-spacing:0.04em; text-transform:uppercase; }
+  .mcard .mv { font-family:var(--font-display); font-weight:800; font-size:46px; line-height:1.05; color:var(--heading); margin-top:10px; letter-spacing:-0.02em; }
+  .mcard.acc .mv { color:var(--accent); }
+  .mcard .ms { font-size:13px; color:var(--gray-2); margin-top:8px; line-height:1.4; }
+  .mcards-narr { font-size:15px; color:var(--gray-1); line-height:1.6; margin-top:28px; max-width:980px; }
+
+  /* numbered_list_panel */
+  .nlp { display:grid; grid-template-columns:1fr 0.58fr; gap:36px; margin-top:30px; }
+  .nlp .list { display:flex; flex-direction:column; gap:14px; }
+  .nlp .nrow { display:flex; gap:16px; align-items:flex-start; }
+  .nlp .badge { flex-shrink:0; width:38px; height:38px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:16px; }
+  .nlp .ntext { font-size:15px; color:var(--gray-1); line-height:1.45; padding-top:7px; }
+  .nlp .panel { background:var(--surface-inverse); color:var(--surface-inverse-fg); padding:30px 28px; }
+  .nlp .panel .pl { font-size:13px; letter-spacing:0.12em; text-transform:uppercase; opacity:0.7; font-weight:700; }
+  .nlp .panel .ph { font-family:var(--font-display); font-weight:700; font-size:24px; line-height:1.3; margin-top:14px; }
+  .nlp .panel ul { margin:20px 0 0; padding-left:18px; }
+  .nlp .panel li { font-size:14px; line-height:1.5; margin-bottom:10px; opacity:0.92; }
+
+  /* temple */
+  .temple { margin-top:30px; display:flex; flex-direction:column; gap:14px; }
+  .temple .roof { background:var(--surface-inverse); color:var(--surface-inverse-fg); padding:18px; text-align:center; font-family:var(--font-display); font-weight:700; font-size:22px; }
+  .temple .pillars { display:grid; gap:18px; }
+  .temple .pillars.n3 { grid-template-columns:repeat(3,1fr); }
+  .temple .pillars.n4 { grid-template-columns:repeat(4,1fr); }
+  .temple .pillar { background:var(--gray-4); min-height:220px; }
+  .temple .pillar .ph { background:var(--accent); color:#fff; padding:11px; text-align:center; font-family:var(--font-display); font-weight:700; font-size:16px; }
+  .temple .pillar ul { margin:0; padding:16px 18px 16px 32px; }
+  .temple .pillar li { font-size:13px; color:var(--gray-1); line-height:1.5; margin-bottom:9px; }
+  .temple .pillar li::marker { color:var(--accent); }
+  .temple .foundation { background:var(--gray-4); padding:18px; text-align:center; font-weight:700; font-size:16px; color:var(--gray-1); }
+
+  /* scorecard */
+  .score { margin-top:30px; width:100%; border-collapse:collapse; }
+  .score th { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:14px; font-weight:700; text-align:left; padding:12px 16px; }
+  .score th.c, .score td.c { text-align:center; }
+  .score td { padding:13px 16px; font-size:15px; color:var(--gray-1); border-bottom:1px solid var(--gray-4); }
+  .score tr:nth-child(even) td { background:var(--gray-4); }
+  .score .label { font-weight:700; }
+  .score .note { color:var(--gray-2); font-size:13px; }
+  .dots { display:inline-flex; gap:5px; }
+  .dot { width:15px; height:15px; border-radius:50%; background:var(--gray-3); }
+  .dot.on { background:var(--surface-inverse); }
+  .ragdot { width:18px; height:18px; border-radius:50%; display:inline-block; }
+  .ragdot.g { background:var(--positive); } .ragdot.a { background:#D9962B; } .ragdot.r { background:var(--negative); }
+
+  /* checklist */
+  .check { margin-top:30px; display:flex; flex-direction:column; gap:0; }
+  .check .crow { display:grid; grid-template-columns:46px 1fr 280px; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid var(--gray-4); }
+  .check .ic { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:17px; font-weight:700; }
+  .check .ic.done { background:var(--positive); } .check .ic.todo { background:var(--gray-3); }
+  .check .cl { font-size:16px; color:var(--gray-1); }
+  .check .crow.is-done .cl { font-weight:700; }
+  .check .cn { font-size:13px; color:var(--gray-2); }
+  .check .phead { font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--heading); margin-bottom:8px; }
+
+  /* pie */
+  .pie-wrap { display:flex; align-items:center; gap:70px; margin-top:30px; }
+  .pie-svg { width:340px; height:340px; flex-shrink:0; }
+  .pie-legend { display:flex; flex-direction:column; gap:16px; }
+  .pie-legend .pl { display:flex; align-items:center; gap:14px; font-size:16px; color:var(--gray-1); }
+  .pie-legend .sw { width:20px; height:20px; border-radius:3px; flex-shrink:0; }
+  .pie-legend .pv { font-weight:700; color:var(--gray-1); margin-left:auto; padding-left:24px; }
+
+  /* metric_comparison */
+  .mcomp { display:grid; gap:20px; margin-top:34px; }
+  .mcomp.n3 { grid-template-columns:repeat(3,1fr); } .mcomp.n4 { grid-template-columns:repeat(4,1fr); }
+  .mcomp .mc { border:1px solid var(--gray-3); text-align:center; }
+  .mcomp .mch { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:14px; font-weight:700; padding:10px; }
+  .mcomp .mcb { padding:18px 14px; }
+  .mcomp .per { font-size:12px; color:var(--gray-2); letter-spacing:0.04em; }
+  .mcomp .bef { font-family:var(--font-display); font-weight:700; font-size:26px; color:var(--gray-3); margin:4px 0; }
+  .mcomp .arr { font-size:18px; color:var(--gray-3); margin:2px 0; }
+  .mcomp .aft { font-family:var(--font-display); font-weight:800; font-size:34px; color:var(--heading); margin:4px 0; letter-spacing:-0.01em; }
+  .mcomp .badge { display:inline-block; margin-top:10px; font-size:14px; font-weight:700; padding:4px 12px; }
+  .mcomp .badge.up { background:var(--positive); color:#fff; } .mcomp .badge.down { background:var(--negative); color:#fff; }
+
+  /* image-grid (three_images, two_col_image_grid) — placeholder boxes */
+  .imgs3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px; }
+  .imgs3 .col .ph { aspect-ratio:4/3; background:var(--gray-4); border:1px dashed var(--gray-3); display:flex; align-items:center; justify-content:center; color:var(--gray-3); font-size:13px; letter-spacing:0.06em; }
+  .imgs3 .cap { font-size:14px; color:var(--gray-1); line-height:1.45; margin-top:14px; text-align:center; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:20px; margin-top:30px; height:430px; }
+  .grid2 .cell { display:grid; grid-template-columns:0.45fr 1fr; gap:16px; align-items:start; }
+  .grid2 .ph { height:100%; min-height:120px; background:var(--gray-4); border:1px dashed var(--gray-3); display:flex; align-items:center; justify-content:center; color:var(--gray-3); font-size:12px; }
+  .grid2 .gh { font-family:var(--font-display); font-weight:700; font-size:18px; color:var(--gray-1); line-height:1.25; }
+  .grid2 .gd { font-size:13px; color:var(--gray-2); line-height:1.5; margin-top:8px; }
+
+  /* dashboard_kpi / dashboard_table */
+  .dash-kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .dash-kpis .k { background:var(--gray-4); padding:16px 18px; position:relative; }
+  .dash-kpis .kl { font-size:13px; font-weight:700; color:var(--gray-2); text-transform:uppercase; letter-spacing:0.04em; }
+  .dash-kpis .kv { font-family:var(--font-display); font-weight:800; font-size:32px; color:var(--gray-1); margin-top:6px; }
+  .dash-kpis .ky { position:absolute; top:16px; right:18px; font-size:13px; font-weight:700; }
+  .dash-kpis .ky.up { color:var(--positive); } .dash-kpis .ky.down { color:var(--negative); }
+  .dash-chart { background:var(--gray-4); margin-top:14px; height:200px; display:flex; align-items:flex-end; gap:20px; padding:20px 28px; box-sizing:border-box; }
+  .dash-chart .cb { flex:1; background:var(--surface-inverse); border-radius:3px 3px 0 0; position:relative; }
+  .dash-chart .cb.acc { background:var(--accent); }
+  .dash-chart .cb span { position:absolute; top:-22px; left:0; right:0; text-align:center; font-size:12px; font-weight:700; color:var(--gray-1); }
+  .dash-takeaways { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+  .dash-takeaways .t { display:flex; gap:12px; font-size:14px; color:var(--gray-1); line-height:1.4; }
+  .dash-takeaways .tn { color:var(--accent); font-weight:700; flex-shrink:0; }
+  .dash-split { display:grid; grid-template-columns:1.1fr 0.9fr; gap:24px; margin-top:30px; }
+  .dash-split table { width:100%; border-collapse:collapse; }
+  .dash-split th { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:13px; font-weight:700; text-align:left; padding:9px 12px; }
+  .dash-split td { padding:9px 12px; font-size:13px; color:var(--gray-1); border-bottom:1px solid var(--gray-4); }
+  .dash-split tr:nth-child(even) td { background:var(--gray-4); }
+  .dash-facts { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px; }
+  .dash-facts .f { background:var(--surface-inverse); color:var(--surface-inverse-fg); padding:14px; text-align:center; }
+  .dash-facts .fv { font-family:var(--font-display); font-weight:800; font-size:24px; }
+  .dash-facts .fl { font-size:12px; opacity:0.85; margin-top:4px; }
+
+  /* bubble / stacked_area (SVG) */
+  .chart { width:100%; height:auto; font-family:var(--font-sans); }
+  .chart .axis { stroke:var(--gray-3); stroke-width:1; }
+  .chart .grid { stroke:var(--gray-4); stroke-width:1; }
+  .chart .cat { font-size:13px; fill:var(--gray-2); text-anchor:middle; }
+  .chart .yt { font-size:12px; fill:var(--gray-3); text-anchor:end; }
+  .chart .axl { font-size:13px; fill:var(--gray-2); font-weight:700; }
+  .clegend { display:flex; gap:24px; justify-content:center; margin-top:16px; font-size:13px; color:var(--gray-1); }
+  .clegend .it { display:flex; align-items:center; gap:8px; }
+  .clegend .sw { width:14px; height:14px; border-radius:2px; }
+</style>
+</head>
+<body>
+
+<div class="theme-switcher" role="group" aria-label="Theme">
+  <span class="lbl">Theme</span>
+  <button type="button" data-theme-set="modern" class="is-active">Modern</button>
+  <button type="button" data-theme-set="classic">Classic</button>
+  <button type="button" data-theme-set="dark-mono">Dark</button>
+</div>
+
+<deck-stage width="1280" height="720">
+
+  <!-- 01 · horizontal_bar -->
+  <section data-screen-label="01 horizontal_bar" data-layout="horizontal_bar">
+    <div class="s-title kr">고객사별 매출 기여 — 상위 3사가 전체의 58% 집중</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="hbar">
+        <div class="row"><div class="hl kr">알파 세미컨덕터</div><div class="track"><div class="fill" style="width:100%;"></div></div><div class="hv">1,280억</div></div>
+        <div class="row"><div class="hl kr">베타 클라우드</div><div class="track"><div class="fill acc" style="width:74%;"></div></div><div class="hv">948억</div></div>
+        <div class="row"><div class="hl kr">감마 일렉트로닉스</div><div class="track"><div class="fill mut" style="width:58%;"></div></div><div class="hv">742억</div></div>
+        <div class="row"><div class="hl kr">델타 시스템즈</div><div class="track"><div class="fill mut" style="width:41%;"></div></div><div class="hv">525억</div></div>
+        <div class="row"><div class="hl kr">엡실론 디바이스</div><div class="track"><div class="fill mut" style="width:33%;"></div></div><div class="hv">422억</div></div>
+        <div class="row"><div class="hl kr">기타 (24사)</div><div class="track"><div class="fill mut" style="width:52%;"></div></div><div class="hv">665억</div></div>
+      </div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>상위 3사 집중도 58% — 매출 안정성 위해 고객 베이스 다변화 필요</div>
+    <div class="s-source kr">Source: 영업관리팀 고객별 매출, FY26.Q1 · 단위 억원</div>
+    <div class="s-pagenum">1</div>
+  </section>
+
+  <!-- 02 · metric_cards -->
+  <section data-screen-label="02 metric_cards" data-layout="metric_cards">
+    <div class="s-title kr">분기 핵심 지표 요약 — 매출·마진·현금 3개 지표 동시 확인</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="mcards n4">
+        <div class="mcard"><div class="ml kr">매출</div><div class="mv">1,260<span style="font-size:22px;">억</span></div><div class="ms kr">YoY +14.3%</div></div>
+        <div class="mcard acc"><div class="ml kr">영업이익률</div><div class="mv">12.8<span style="font-size:22px;">%</span></div><div class="ms kr">QoQ −0.9%p</div></div>
+        <div class="mcard"><div class="ml kr">영업현금흐름</div><div class="mv">340<span style="font-size:22px;">억</span></div><div class="ms kr">FCF 전환율 84%</div></div>
+        <div class="mcard"><div class="ml kr">순현금</div><div class="mv">1,820<span style="font-size:22px;">억</span></div><div class="ms kr">무차입 경영 유지</div></div>
+      </div>
+      <div class="mcards-narr kr">상반기 매출은 두 자릿수 성장을 유지했으나, 원가 압박으로 영업이익률이 소폭 하락했다. 현금 창출력은 견조해 증설 자금을 자체 조달할 수 있는 여력을 확보했다.</div>
+    </div>
+    <div class="s-source kr">Source: 재무팀 분기 요약, FY26.Q1</div>
+    <div class="s-pagenum">2</div>
+  </section>
+
+  <!-- 03 · numbered_list_panel -->
+  <section data-screen-label="03 numbered_list_panel" data-layout="numbered_list_panel">
+    <div class="s-title kr">하반기 실행 권고 — 5개 우선 과제와 핵심 메시지</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <div class="nlp">
+        <div class="list">
+          <div class="nrow"><div class="badge">1</div><div class="ntext kr">가격 2차 인상을 7월 내 확정해 마진 방어 — 핵심 5개 SKU 우선</div></div>
+          <div class="nrow"><div class="badge">2</div><div class="ntext kr">증설 조기 집행 의사결정을 8월 이사회 안건으로 상정</div></div>
+          <div class="nrow"><div class="badge">3</div><div class="ntext kr">위안화 노출 12% 미헷지분에 대한 환 헷지 즉시 확대</div></div>
+          <div class="nrow"><div class="badge">4</div><div class="ntext kr">재고 60일 수준 유지하며 슬로무버 정리 가속</div></div>
+          <div class="nrow"><div class="badge">5</div><div class="ntext kr">R&D 핵심 포지션 2건 3분기 내 충원 완료</div></div>
+        </div>
+        <div class="panel">
+          <div class="pl kr">핵심 메시지</div>
+          <div class="ph kr">성장은 지키되, 마진과 현금을 동시에 방어하는 분기</div>
+          <ul class="kr">
+            <li>매출 모멘텀은 구조적 — 방어보다 가속에 무게</li>
+            <li>마진 하락은 단기적 — 가격·믹스로 회복 가능</li>
+            <li>증설 타이밍이 2027 점유율을 좌우</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 경영기획팀 하반기 실행계획, FY26.H2</div>
+    <div class="s-pagenum">3</div>
+  </section>
+
+  <!-- 04 · temple -->
+  <section data-screen-label="04 temple" data-layout="temple">
+    <div class="s-title kr">성장 전략 프레임워크 — 비전·3대 기둥·기반 역량</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:135px;">
+      <div class="temple">
+        <div class="roof kr">2027년 글로벌 HBM 점유율 1위</div>
+        <div class="pillars n3">
+          <div class="pillar"><div class="ph kr">기술 선도</div><ul class="kr"><li>차세대 HBM4 양산 선점</li><li>패키징 수율 95% 달성</li><li>특허 포트폴리오 강화</li></ul></div>
+          <div class="pillar"><div class="ph kr">캐파 확보</div><ul class="kr"><li>증설 6개월 조기 집행</li><li>가동률 90% 이상 유지</li><li>소재 이원화 완료</li></ul></div>
+          <div class="pillar"><div class="ph kr">고객 락인</div><ul class="kr"><li>OEM 장기 계약 확대</li><li>공동 개발 프로그램</li><li>품질·납기 신뢰 구축</li></ul></div>
+        </div>
+        <div class="foundation kr">기반 역량 — 자체 현금 창출력 · 핵심 인재 · 데이터 기반 의사결정</div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 경영기획팀 전략 체계도, FY26</div>
+    <div class="s-pagenum">4</div>
+  </section>
+
+  <!-- 05 · scorecard -->
+  <section data-screen-label="05 scorecard" data-layout="scorecard">
+    <div class="s-title kr">분기 KPI 스코어카드 — 5개 지표 중 3개 목표 충족</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <table class="score">
+        <thead><tr><th class="kr">평가 항목</th><th class="c kr">점수</th><th class="kr">비고</th></tr></thead>
+        <tbody>
+          <tr><td class="label kr">매출 성장</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></td><td class="note kr">목표 +12% 대비 +14.3% 초과 달성</td></tr>
+          <tr><td class="label kr">수익성</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></td><td class="note kr">영업이익률 −0.9%p, 원가 압박</td></tr>
+          <tr><td class="label kr">현금 효율</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></td><td class="note kr">FCF 전환율 84%, 양호</td></tr>
+          <tr><td class="label kr">고객 다변화</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td><td class="note kr">상위 3사 집중도 58%, 개선 필요</td></tr>
+          <tr><td class="label kr">실행 진척</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></td><td class="note kr">하반기 과제 5건 중 4건 착수</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>수익성·고객 다변화 2개 지표가 개선 영역 — 하반기 집중 관리 대상</div>
+    <div class="s-source kr">Source: 경영관리팀 KPI 평가, FY26.Q1</div>
+    <div class="s-pagenum">5</div>
+  </section>
+
+  <!-- 06 · checklist -->
+  <section data-screen-label="06 checklist" data-layout="checklist">
+    <div class="s-title kr">증설 준비 체크리스트 — 7개 항목 중 5개 완료</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="phead kr">진척률 71% · 잔여 2건 7월 내 완료 예정</div>
+      <div class="check">
+        <div class="crow is-done"><div class="ic done">✓</div><div class="cl kr">부지 확보 및 인허가 완료</div><div class="cn kr">5월 완료</div></div>
+        <div class="crow is-done"><div class="ic done">✓</div><div class="cl kr">설비 발주 및 납기 확정</div><div class="cn kr">주요 장비 6월 발주</div></div>
+        <div class="crow is-done"><div class="ic done">✓</div><div class="cl kr">소재 이원화 공급사 계약</div><div class="cn kr">2개사 확보</div></div>
+        <div class="crow is-done"><div class="ic done">✓</div><div class="cl kr">자금 조달 계획 승인</div><div class="cn kr">자체 현금 100%</div></div>
+        <div class="crow is-done"><div class="ic done">✓</div><div class="cl kr">TF 조직 구성</div><div class="cn kr">4개 워크스트림</div></div>
+        <div class="crow"><div class="ic todo">·</div><div class="cl kr">공정 인력 충원 (3/8명)</div><div class="cn kr">7월 목표</div></div>
+        <div class="crow"><div class="ic todo">·</div><div class="cl kr">시운전 프로토콜 확정</div><div class="cn kr">8월 목표</div></div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 증설 PMO 주간 보고, FY26.Q2</div>
+    <div class="s-pagenum">6</div>
+  </section>
+
+  <!-- 07 · pie -->
+  <section data-screen-label="07 pie" data-layout="pie">
+    <div class="s-title kr">매출 비중 — HBM이 전체의 41%로 최대 비중</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="pie-wrap">
+        <svg class="pie-svg" viewBox="0 0 100 100">
+          <!-- pie slices: HBM 41%, DDR5 28%, LPDDR 17%, 기타 14% -->
+          <!-- start at top (12 o'clock), clockwise. cx=50 cy=50 r=50 -->
+          <path d="M50,50 L50,0 A50,50 0 0,1 98.6,65.5 Z" fill="var(--surface-inverse)"/>
+          <path d="M50,50 L98.6,65.5 A50,50 0 0,1 35.2,98.0 Z" fill="var(--accent)"/>
+          <path d="M50,50 L35.2,98.0 A50,50 0 0,1 2.4,32.8 Z" fill="var(--gray-2)"/>
+          <path d="M50,50 L2.4,32.8 A50,50 0 0,1 50,0 Z" fill="var(--gray-3)"/>
+        </svg>
+        <div class="pie-legend">
+          <div class="pl"><span class="sw" style="background:var(--surface-inverse);"></span><span class="kr">HBM</span><span class="pv">41%</span></div>
+          <div class="pl"><span class="sw" style="background:var(--accent);"></span><span class="kr">DDR5 서버</span><span class="pv">28%</span></div>
+          <div class="pl"><span class="sw" style="background:var(--gray-2);"></span><span class="kr">LPDDR 모바일</span><span class="pv">17%</span></div>
+          <div class="pl"><span class="sw" style="background:var(--gray-3);"></span><span class="kr">기타</span><span class="pv">14%</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 재무팀 제품별 매출, FY26.Q1</div>
+    <div class="s-pagenum">7</div>
+  </section>
+
+  <!-- 08 · metric_comparison -->
+  <section data-screen-label="08 metric_comparison" data-layout="metric_comparison">
+    <div class="s-title kr">프로세스 개선 전후 비교 — 4개 지표 모두 목표 방향 개선</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <div class="mcomp n4">
+        <div class="mc"><div class="mch kr">월 마감 소요</div><div class="mcb"><div class="per kr">Before</div><div class="bef">D+12</div><div class="arr">↓</div><div class="per kr" style="color:var(--heading);">After</div><div class="aft">D+5</div><div class="badge up kr">▼ 58% 단축</div></div></div>
+        <div class="mc"><div class="mch kr">수작업 비율</div><div class="mcb"><div class="per kr">Before</div><div class="bef">70%</div><div class="arr">↓</div><div class="per kr" style="color:var(--heading);">After</div><div class="aft">21%</div><div class="badge up kr">▼ 70% 감소</div></div></div>
+        <div class="mc"><div class="mch kr">정정 라운드</div><div class="mcb"><div class="per kr">Before</div><div class="bef">2.3회</div><div class="arr">↓</div><div class="per kr" style="color:var(--heading);">After</div><div class="aft">0.4회</div><div class="badge up kr">▼ 83% 감소</div></div></div>
+        <div class="mc"><div class="mch kr">분석 가용일</div><div class="mcb"><div class="per kr">Before</div><div class="bef">1일</div><div class="arr">↑</div><div class="per kr" style="color:var(--heading);">After</div><div class="aft">7일</div><div class="badge up kr">▲ 7배 증가</div></div></div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: FP&A 프로세스 개선 보고, FY26.Q1</div>
+    <div class="s-pagenum">8</div>
+  </section>
+
+  <!-- 09 · three_images -->
+  <section data-screen-label="09 three_images" data-layout="three_images">
+    <div class="s-title kr">증설 부지 현황 — 3개 후보지 실사 결과 종합</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="imgs3">
+        <div class="col"><div class="ph kr">[부지 A 항공뷰]</div><div class="cap kr"><b>평택 1단지</b> — 인프라 완비, 즉시 착공 가능</div></div>
+        <div class="col"><div class="ph kr">[부지 B 항공뷰]</div><div class="cap kr"><b>청주 2단지</b> — 전력 인입 6개월 소요</div></div>
+        <div class="col"><div class="ph kr">[부지 C 항공뷰]</div><div class="cap kr"><b>천안 3단지</b> — 부지 매입 협상 진행 중</div></div>
+      </div>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>평택 1단지가 인프라·일정 측면에서 최우선 — 7월 이사회 승인 권고</div>
+    <div class="s-source kr">Source: 부동산개발팀 실사 보고, FY26.Q1</div>
+    <div class="s-pagenum">9</div>
+  </section>
+
+  <!-- 10 · two_col_image_grid -->
+  <section data-screen-label="10 two_col_image_grid" data-layout="two_col_image_grid">
+    <div class="s-title kr">신제품 라인업 — 4개 카테고리 동시 출시 준비 완료</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:135px;">
+      <div class="grid2">
+        <div class="cell"><div class="ph kr">[HBM3E]</div><div><div class="gh kr">HBM3E 12단</div><div class="gd kr">대역폭 1.2TB/s, 양산 수율 94% 달성. 북미 OEM 4사 디자인윈 확보.</div></div></div>
+        <div class="cell"><div class="ph kr">[DDR5]</div><div><div class="gh kr">DDR5 서버 모듈</div><div class="gd kr">128GB RDIMM, 데이터센터 표준 채택. 전력 효율 18% 개선.</div></div></div>
+        <div class="cell"><div class="ph kr">[CXL]</div><div><div class="gh kr">CXL 메모리 확장</div><div class="gd kr">차세대 메모리 풀링, 2026 하반기 샘플 출하 예정.</div></div></div>
+        <div class="cell"><div class="ph kr">[LPDDR]</div><div><div class="gh kr">LPDDR5X 모바일</div><div class="gd kr">온디바이스 AI 최적화, 플래그십 단말 탑재 확정.</div></div></div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 제품기획팀 로드맵, FY26</div>
+    <div class="s-pagenum">10</div>
+  </section>
+
+  <!-- 11 · dashboard_kpi -->
+  <section data-screen-label="11 dashboard_kpi" data-layout="dashboard_kpi">
+    <div class="s-title kr">경영 대시보드 — KPI·추이·시사점 한 장 종합</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="dash-kpis">
+        <div class="k"><div class="kl kr">매출</div><div class="kv">1,260억</div><div class="ky up">▲ 14.3%</div></div>
+        <div class="k"><div class="kl kr">영업이익</div><div class="kv">161억</div><div class="ky down">▼ 6.2%</div></div>
+        <div class="k"><div class="kl kr">현금흐름</div><div class="kv">340억</div><div class="ky up">▲ 9.1%</div></div>
+        <div class="k"><div class="kl kr">수주잔고</div><div class="kv">3,820억</div><div class="ky up">▲ 22.0%</div></div>
+      </div>
+      <div class="dash-chart">
+        <div class="cb" style="height:48%;"><span>980</span></div>
+        <div class="cb" style="height:60%;"><span>1,050</span></div>
+        <div class="cb" style="height:72%;"><span>1,130</span></div>
+        <div class="cb" style="height:84%;"><span>1,180</span></div>
+        <div class="cb acc" style="height:100%;"><span>1,260</span></div>
+      </div>
+      <div class="dash-takeaways">
+        <div class="t"><span class="tn">1.</span><span class="kr">5개 분기 연속 매출 우상향 — 수주잔고가 향후 2분기 가시성 확보</span></div>
+        <div class="t"><span class="tn">2.</span><span class="kr">영업이익만 역성장 — 원가 압박이 유일한 약한 고리, 가격 대응 시급</span></div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 경영관리팀 통합 대시보드, FY26.Q1</div>
+    <div class="s-pagenum">11</div>
+  </section>
+
+  <!-- 12 · dashboard_table -->
+  <section data-screen-label="12 dashboard_table" data-layout="dashboard_table">
+    <div class="s-title kr">사업부별 실적 대시보드 — 표·추이·핵심 수치 종합</div>
+    <div class="s-rule"></div>
+    <div class="s-body">
+      <div class="dash-split">
+        <table>
+          <thead><tr><th class="kr">사업부</th><th class="kr">매출</th><th class="kr">YoY</th><th class="kr">이익률</th></tr></thead>
+          <tbody>
+            <tr><td class="kr">메모리</td><td>820억</td><td>+18%</td><td>15.2%</td></tr>
+            <tr><td class="kr">시스템</td><td>240억</td><td>+9%</td><td>11.8%</td></tr>
+            <tr><td class="kr">파운드리</td><td>140억</td><td>+6%</td><td>8.4%</td></tr>
+            <tr><td class="kr">기타</td><td>60억</td><td>−2%</td><td>5.1%</td></tr>
+          </tbody>
+        </table>
+        <div class="dash-chart" style="margin-top:0; height:100%;">
+          <div class="cb" style="height:100%;"><span>820</span></div>
+          <div class="cb acc" style="height:30%;"><span>240</span></div>
+          <div class="cb" style="height:18%;"><span>140</span></div>
+          <div class="cb" style="height:8%;"><span>60</span></div>
+        </div>
+      </div>
+      <div class="dash-facts">
+        <div class="f"><div class="fv">64%</div><div class="fl kr">메모리 매출 비중</div></div>
+        <div class="f"><div class="fv">+18%</div><div class="fl kr">메모리 성장률</div></div>
+        <div class="f"><div class="fv">15.2%</div><div class="fl kr">최고 이익률 사업부</div></div>
+        <div class="f"><div class="fv">4</div><div class="fl kr">전 사업부 흑자</div></div>
+      </div>
+    </div>
+    <div class="s-source kr">Source: 재무팀 사업부별 손익, FY26.Q1</div>
+    <div class="s-pagenum">12</div>
+  </section>
+
+  <!-- 13 · bubble -->
+  <section data-screen-label="13 bubble" data-layout="bubble">
+    <div class="s-title kr">제품 포지셔닝 — 성장성·수익성·매출규모 3축 분석</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="chart" viewBox="0 0 1126 420" preserveAspectRatio="xMidYMid meet">
+        <line class="axis" x1="90" y1="380" x2="1090" y2="380"/>
+        <line class="axis" x1="90" y1="20" x2="90" y2="380"/>
+        <text class="axl" x="590" y="412" text-anchor="middle">시장 성장률 →</text>
+        <text class="axl" x="30" y="200" text-anchor="middle" transform="rotate(-90 30 200)">수익성 →</text>
+        <!-- bubbles: x=growth, y=profitability, r=revenue -->
+        <g>
+          <circle cx="880" cy="90" r="72" fill="var(--surface-inverse)" opacity="0.9"/>
+          <text x="880" y="95" text-anchor="middle" fill="#fff" font-size="15" font-weight="700">HBM</text>
+        </g>
+        <g>
+          <circle cx="420" cy="160" r="56" fill="var(--accent)" opacity="0.9"/>
+          <text x="420" y="165" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">DDR5</text>
+        </g>
+        <g>
+          <circle cx="300" cy="280" r="38" fill="var(--gray-2)" opacity="0.9"/>
+          <text x="300" y="285" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">LPDDR</text>
+        </g>
+        <g>
+          <circle cx="640" cy="240" r="30" fill="var(--gray-3)" opacity="0.9"/>
+          <text x="640" y="245" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">CXL</text>
+        </g>
+      </svg>
+    </div>
+    <div class="s-bar kr"><span class="pre">시사점 —</span>HBM이 성장·수익·규모 3축 모두 최상단 — 자본 배분 1순위</div>
+    <div class="s-source kr">Source: 전략기획팀 제품 포트폴리오, FY26.Q1 · 버블 크기=매출</div>
+    <div class="s-pagenum">13</div>
+  </section>
+
+  <!-- 14 · stacked_area -->
+  <section data-screen-label="14 stacked_area" data-layout="stacked_area">
+    <div class="s-title kr">누적 매출 추이 — 메모리 주도 성장에 시스템 가세</div>
+    <div class="s-rule"></div>
+    <div class="s-body" style="top:140px;">
+      <svg class="chart" viewBox="0 0 1126 400" preserveAspectRatio="xMidYMid meet">
+        <line class="grid" x1="90" y1="40" x2="1090" y2="40"/>
+        <line class="grid" x1="90" y1="140" x2="1090" y2="140"/>
+        <line class="grid" x1="90" y1="240" x2="1090" y2="240"/>
+        <line class="axis" x1="90" y1="340" x2="1090" y2="340"/>
+        <text class="yt" x="80" y="44">1,500</text><text class="yt" x="80" y="244">500</text><text class="yt" x="80" y="344">0</text>
+        <!-- stacked areas: bottom=메모리(surface_inverse), mid=시스템(accent), top=기타(gray-3) -->
+        <path d="M90,290 L340,250 L590,210 L840,160 L1090,120 L1090,340 L90,340 Z" fill="var(--surface-inverse)"/>
+        <path d="M90,250 L340,212 L590,170 L840,120 L1090,78 L1090,120 L840,160 L590,210 L340,250 L90,290 Z" fill="var(--accent)"/>
+        <path d="M90,232 L340,196 L590,154 L840,104 L1090,60 L1090,78 L840,120 L590,170 L340,212 L90,250 Z" fill="var(--gray-3)"/>
+        <text class="cat" x="90" y="362">FY22</text><text class="cat" x="340" y="362">FY23</text><text class="cat" x="590" y="362">FY24</text><text class="cat" x="840" y="362">FY25</text><text class="cat" x="1090" y="362">FY26</text>
+      </svg>
+      <div class="clegend"><div class="it"><span class="sw" style="background:var(--surface-inverse);"></span><span class="kr">메모리</span></div><div class="it"><span class="sw" style="background:var(--accent);"></span><span class="kr">시스템</span></div><div class="it"><span class="sw" style="background:var(--gray-3);"></span><span class="kr">기타</span></div></div>
+    </div>
+    <div class="s-source kr">Source: 재무팀 사업부별 매출 추이, FY22–FY26 · 단위 억원</div>
+    <div class="s-pagenum">14</div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script>
+  const buttons = document.querySelectorAll('.theme-switcher button[data-theme-set]');
+  buttons.forEach((b) => b.addEventListener('click', () => {
+    document.documentElement.setAttribute('data-theme', b.getAttribute('data-theme-set'));
+    buttons.forEach((x) => x.classList.toggle('is-active', x === b));
+  }));
+</script>
+</body>
+</html>

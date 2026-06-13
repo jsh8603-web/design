@@ -1,0 +1,17 @@
+/* Editorial Magazine — Quarterly letter / annual report / essay
+   bg=#FAF8F5 · ink=#2D2A26 · accent=#C45A3B (terracotta)
+   Type: Newsreader (serif) + Pretendard (sans). Drop caps allowed.
+   Pairs with: ../colors_and_type.css */
+:root {
+  --bg-primary:   #FAF8F5;   /* cream */
+  --bg-secondary: #F0EBE3;   /* warm beige */
+  --bg-card:      #FFFFFF;
+  --text-primary: #2D2A26;
+  --text-secondary:#5A554F;
+  --text-tertiary:#6B6560;
+  --accent:       #C45A3B;   /* terracotta */
+  --accent-quiet: #DDD8D0;
+  --border:       #D8D2C9;
+  --rule-strong:  #2D2A26;
+  --font-serif:   "Newsreader", "Times New Roman", Georgia, serif;
+}

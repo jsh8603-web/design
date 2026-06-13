@@ -1,0 +1,338 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Aesthetic directions (4)" subtitle="Same content · 4 visual languages · 12 sample slides" viewport="1280x1100" -->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>4 aesthetic directions · slides-grab</title>
+
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg: #F5F5F0;
+    --ink: #1A1A1A;
+    --muted: #666;
+    --subtle: #999;
+    --line: #E5E5E0;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px 56px 80px;
+    max-width: 1400px; margin: 0 auto;
+  }
+
+  /* top */
+  .top { display:flex; justify-content:space-between; align-items:center; padding-bottom:36px; border-bottom:1px solid var(--line); }
+  .brand { display:flex; align-items:center; gap:10px; }
+  .mark { width:24px; height:24px; background:var(--ink); border-radius:4px; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; }
+  .wordmark { font-size:14px; font-weight:600; letter-spacing:-0.01em; }
+  .crumb { font-size:12px; color:var(--subtle); letter-spacing:0.04em; text-transform:uppercase; }
+  .pill { display:inline-block; padding:5px 12px; border:1px solid var(--ink); border-radius:14px; font-size:11px; font-weight:500; }
+  .arrow-c { width:30px; height:30px; border:1px solid var(--ink); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:14px; }
+
+  /* hero */
+  .hero { display:grid; grid-template-columns: 1.4fr 1fr; gap:64px; align-items:end; padding:40px 0; border-bottom:1px solid var(--line); }
+  h1 { font-size:64px; font-weight:500; letter-spacing:-0.025em; line-height:1.02; }
+  .hero p { font-size:14px; color:var(--muted); line-height:1.6; max-width:340px; text-align:right; margin-left:auto; }
+
+  /* legend */
+  .legend { display:flex; gap:14px; padding:18px 0 6px; font-size:11px; color:var(--subtle); align-items:center; }
+  .legend .dot { width:8px; height:8px; border-radius:50%; }
+
+  /* direction blocks */
+  section.dir { padding: 36px 0; border-bottom: 1px solid var(--line); }
+  section.dir:last-of-type { border-bottom: none; }
+
+  .dir-head { display:grid; grid-template-columns: 80px 1fr 240px; gap:24px; align-items:start; margin-bottom:20px; }
+  .dir-num { font-size:80px; font-weight:300; line-height:0.9; letter-spacing:-0.04em; color:var(--ink); font-family:'Newsreader', serif; }
+  .dir-meta .tag { font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent, #1428A0); }
+  .dir-meta h2 { font-size:28px; font-weight:600; letter-spacing:-0.015em; margin-top:6px; line-height:1.2; }
+  .dir-meta .desc { font-size:13px; color:var(--muted); margin-top:8px; line-height:1.55; max-width:540px; }
+  .dir-spec { font-family:var(--mono); font-size:10px; color:var(--subtle); line-height:1.7; text-align:right; padding-top:14px; }
+  .dir-spec b { color:var(--ink); font-weight:600; }
+
+  .slide-row { display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+  .slide-card { border-radius:8px; overflow:hidden; background:#fff; border:1px solid var(--line); cursor:pointer; transition: all 0.2s ease; }
+  .slide-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .slide-frame {
+    width: 100%;
+    aspect-ratio: 16/9;
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    container-type: inline-size;
+  }
+  .slide-frame iframe {
+    width: 1280px; height: 720px;
+    border: 0;
+    transform: scale(calc(100cqw / 1280px));
+    transform-origin: top left;
+    pointer-events: none;
+  }
+  .slide-meta { padding:10px 14px; display:flex; justify-content:space-between; align-items:center; font-size:11px; color:var(--muted); }
+  .slide-meta .label { font-weight:600; color:var(--ink); }
+  .slide-meta .open { color:var(--subtle); }
+
+  /* recommended badge */
+  .rec {
+    display:inline-flex; align-items:center; gap:6px;
+    background: var(--ink); color:#fff;
+    padding:3px 10px; border-radius:99px;
+    font-size:10px; font-weight:700; letter-spacing:0.08em;
+    margin-left:10px;
+  }
+  .rec .star { color: #FF6F00; }
+
+  /* direction color accents (left rail) */
+  .accent-bar { width: 4px; background: var(--accent, #1428A0); border-radius: 2px; }
+
+  .footer-note { padding-top: 24px; margin-top: 24px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted); line-height:1.6; }
+  .footer-note b { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+  <!-- top -->
+  <div class="top">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="brand"><div class="mark">*</div><div class="wordmark">slides-grab</div></div>
+      <div class="crumb">/ aesthetic directions</div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <span class="pill">5 OPTIONS</span>
+      <span class="pill">v3 통합</span>
+      <div class="arrow-c">↗</div>
+    </div>
+  </div>
+
+  <!-- hero -->
+  <div class="hero">
+    <h1>다섯 가지 방향,<br>같은 콘텐츠로<br>나란히 본다.</h1>
+    <p>같은 콘텐츠를 다섯 가지 시각언어로 동시에 제시합니다. 모두 v3 통합 — 동일 토큰 contract, 동일 LayoutSchema, 동일 QA, <code>[data-theme]</code> 한 줄로 전환. 하나를 선택하거나, 슬라이드별로 섞어 쓰세요.</p>
+  </div>
+
+  <div class="legend">
+    <span class="dot" style="background:#1428A0;"></span> Exec Navy
+    <span class="dot" style="background:#00A9E0;"></span> Pitch Cyan
+    <span class="dot" style="background:#1F4E79;"></span> Academic Blue
+    <span class="dot" style="background:#C45A3B;"></span> Editorial Terracotta
+    <span class="dot" style="background:#E87722;"></span> MCK Slate
+    <span style="margin-left:auto; font-family:var(--mono);">5 directions · 16:9 · Pretendard ± Newsreader</span>
+  </div>
+
+  <!-- direction 1: Executive Editorial -->
+  <section class="dir" style="--accent:#1428A0;">
+    <div class="dir-head">
+      <div class="dir-num">01</div>
+      <div class="dir-meta">
+        <div class="tag">PRIORITY · MOST PRACTICAL <span class="rec"><span class="star">★</span> recommended</span></div>
+        <h2>Executive Editorial</h2>
+        <div class="desc">한국 IR · 컨설팅 · 투자 메모. slides-grab의 메인 유저층. Pretendard, warm white 캔버스, navy 액센트, hairline 핀·동그라미 모티프. 의사결정자가 5초 안에 결론을 잡을 수 있다.</div>
+      </div>
+      <div class="dir-spec">
+        <b>BG</b> #F5F5F0 · #F8F9FA<br>
+        <b>INK</b> #1A1A1A<br>
+        <b>ACCENT</b> #1428A0 · #FF6F00<br>
+        <b>TYPE</b> Pretendard 500–800<br>
+        <b>USE</b> IR · 컨설팅 · 임원 보고
+      </div>
+    </div>
+    <div class="slide-row" style="grid-template-columns: repeat(5, 1fr);">
+      <a class="slide-card" href="01-executive/cover.html" target="_blank">
+        <div class="slide-frame"><iframe src="01-executive/cover.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">cover</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="01-executive/section.html" target="_blank">
+        <div class="slide-frame"><iframe src="01-executive/section.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">section</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="01-executive/kpi.html" target="_blank">
+        <div class="slide-frame"><iframe src="01-executive/kpi.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">kpi</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="01-executive/split.html" target="_blank">
+        <div class="slide-frame"><iframe src="01-executive/split.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">split</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="01-executive/closing.html" target="_blank">
+        <div class="slide-frame"><iframe src="01-executive/closing.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">closing</span><span class="open">↗</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- direction 2: Modern Dark Pitch -->
+  <section class="dir" style="--accent:#00A9E0;">
+    <div class="dir-head">
+      <div class="dir-num">02</div>
+      <div class="dir-meta">
+        <div class="tag" style="color:#00A9E0;">FOR TECH / STARTUP / IR</div>
+        <h2>Modern Dark Pitch</h2>
+        <div class="desc">검정 캔버스에 큰 타이포와 단일 액센트. AI·테크 스타트업 시리즈 라운드, YC-스타일 메모. 슬라이드별 메시지가 강하게 박힌다. 인쇄보다 발표·스크린 우선.</div>
+      </div>
+      <div class="dir-spec">
+        <b>BG</b> #0A0A0B<br>
+        <b>INK</b> #FFFFFF · #999<br>
+        <b>ACCENT</b> #00A9E0 · #10B981<br>
+        <b>TYPE</b> Pretendard 700–800 + Mono<br>
+        <b>USE</b> AI · 스타트업 · 키노트
+      </div>
+    </div>
+    <div class="slide-row" style="grid-template-columns: repeat(5, 1fr);">
+      <a class="slide-card" href="02-dark-pitch/cover.html" target="_blank">
+        <div class="slide-frame"><iframe src="02-dark-pitch/cover.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">cover</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="02-dark-pitch/section.html" target="_blank">
+        <div class="slide-frame"><iframe src="02-dark-pitch/section.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">section</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="02-dark-pitch/kpi.html" target="_blank">
+        <div class="slide-frame"><iframe src="02-dark-pitch/kpi.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">kpi</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="02-dark-pitch/split.html" target="_blank">
+        <div class="slide-frame"><iframe src="02-dark-pitch/split.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">split</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="02-dark-pitch/closing.html" target="_blank">
+        <div class="slide-frame"><iframe src="02-dark-pitch/closing.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">closing</span><span class="open">↗</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- direction 3: Academic Clean -->
+  <section class="dir" style="--accent:#1F4E79;">
+    <div class="dir-head">
+      <div class="dir-num">03</div>
+      <div class="dir-meta">
+        <div class="tag" style="color:#1F4E79;">FOR RESEARCH / WHITEPAPERS</div>
+        <h2>Academic Clean</h2>
+        <div class="desc">순백 배경, navy primary, 회색 디바이더. 학회·연구·정책 보고서. 데이터·출처가 가장 잘 보이는 방향. Action title이 완전한 문장이 되어야 한다는 PF 규칙이 가장 강하게 적용된다.</div>
+      </div>
+      <div class="dir-spec">
+        <b>BG</b> #FFFFFF (고정)<br>
+        <b>INK</b> #333 · #1F4E79<br>
+        <b>ACCENT</b> #2E75B6<br>
+        <b>TYPE</b> Pretendard 400–700<br>
+        <b>USE</b> 학회 · 연구 · 백서
+      </div>
+    </div>
+    <div class="slide-row" style="grid-template-columns: repeat(5, 1fr);">
+      <a class="slide-card" href="03-academic/cover.html" target="_blank">
+        <div class="slide-frame"><iframe src="03-academic/cover.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">cover</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="03-academic/section.html" target="_blank">
+        <div class="slide-frame"><iframe src="03-academic/section.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">section</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="03-academic/kpi.html" target="_blank">
+        <div class="slide-frame"><iframe src="03-academic/kpi.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">findings</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="03-academic/content.html" target="_blank">
+        <div class="slide-frame"><iframe src="03-academic/content.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">table</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="03-academic/closing.html" target="_blank">
+        <div class="slide-frame"><iframe src="03-academic/closing.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">closing</span><span class="open">↗</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- direction 4: Editorial Magazine -->
+  <section class="dir" style="--accent:#C45A3B;">
+    <div class="dir-head">
+      <div class="dir-num">04</div>
+      <div class="dir-meta">
+        <div class="tag" style="color:#C45A3B;">FOR THOUGHT LEADERSHIP</div>
+        <h2>Editorial Magazine</h2>
+        <div class="desc">크림 배경에 serif display(Newsreader) + Pretendard 본문. 연간보고서, 창립자 에세이, 시장 회고. 한 페이지에 머무르는 시간이 가장 긴 방향 — 디테일·여백·드롭캡으로 읽기의 리듬을 만든다.</div>
+      </div>
+      <div class="dir-spec">
+        <b>BG</b> #FAF8F5<br>
+        <b>INK</b> #2D2A26<br>
+        <b>ACCENT</b> #C45A3B<br>
+        <b>TYPE</b> Newsreader + Pretendard<br>
+        <b>USE</b> 연간보고 · 에세이
+      </div>
+    </div>
+    <div class="slide-row" style="grid-template-columns: repeat(5, 1fr);">
+      <a class="slide-card" href="04-editorial/cover.html" target="_blank">
+        <div class="slide-frame"><iframe src="04-editorial/cover.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">cover</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="04-editorial/section.html" target="_blank">
+        <div class="slide-frame"><iframe src="04-editorial/section.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">section</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="04-editorial/kpi.html" target="_blank">
+        <div class="slide-frame"><iframe src="04-editorial/kpi.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">essay</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="04-editorial/photo-essay.html" target="_blank">
+        <div class="slide-frame"><iframe src="04-editorial/photo-essay.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">photo-essay</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="04-editorial/closing.html" target="_blank">
+        <div class="slide-frame"><iframe src="04-editorial/closing.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">closing</span><span class="open">↗</span></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- direction 5: MCK Slate (v3 흡수) -->
+  <section class="dir" style="--accent:#E87722;">
+    <div class="dir-head">
+      <div class="dir-num">05</div>
+      <div class="dir-meta">
+        <div class="tag" style="color:#E87722;">FP&amp;A · CONSULTING · BOARD</div>
+        <h2>MCK Slate</h2>
+        <div class="desc">McKinsey/BCG/Bain 컨설팅 전통의 한국어 슬라이드 시스템. 분기 리뷰, 임원 보고, 기술 발표. 내부에 4 sub-theme (modern · classic · dark-mono · company) — <code style="font-family:var(--mono); font-size:11px; background:#fff; padding:1px 5px;">[data-theme]</code> 한 줄로 전환. 46 레이아웃 schema 박제 + <code>cost_nature</code> FP&amp;A invariant.</div>
+      </div>
+      <div class="dir-spec">
+        <b>BG</b> #FFFFFF · #051C2C · #0F1419<br>
+        <b>INK</b> slate (theme별)<br>
+        <b>ACCENT</b> orange · cyan · cold blue<br>
+        <b>TYPE</b> Pretendard 400–700<br>
+        <b>USE</b> FP&amp;A · 이사회 · 키노트
+      </div>
+    </div>
+    <div class="slide-row" style="grid-template-columns: repeat(5, 1fr);">
+      <a class="slide-card" href="../mck/slides/01-cover.html" target="_blank">
+        <div class="slide-frame"><iframe src="../mck/slides/01-cover.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">cover</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="../mck/slides/03-section-divider.html" target="_blank">
+        <div class="slide-frame"><iframe src="../mck/slides/03-section-divider.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">section</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="../mck/slides/05-big-number.html" target="_blank">
+        <div class="slide-frame"><iframe src="../mck/slides/05-big-number.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">big_number</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="../mck/slides/14-variance-table.html" target="_blank">
+        <div class="slide-frame"><iframe src="../mck/slides/14-variance-table.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">variance_table ⭐</span><span class="open">↗</span></div>
+      </a>
+      <a class="slide-card" href="../mck/slides/10-closing.html" target="_blank">
+        <div class="slide-frame"><iframe src="../mck/slides/10-closing.html" loading="eager"></iframe></div>
+        <div class="slide-meta"><span class="label">closing</span><span class="open">↗</span></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    <b>다섯 가지 방향, 한 시스템.</b> 모두 v3 통합 — 동일 의미적 토큰 (<code style="background:#fff; padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:10px;">--primary</code> · <code style="background:#fff; padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:10px;">--accent</code> · <code style="background:#fff; padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:10px;">--surface-inverse</code>), 동일 LayoutSchema (46), 동일 QA (9 check + 8 autofix). <code style="background:#fff; padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:10px;">&lt;html data-theme="..."&gt;</code> 한 줄로 전환. MCK 는 내부에 4 sub-theme 가짐 (modern·classic·dark-mono·company). 8 테마 풀세트는 <code style="background:#fff; padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:10px;">theme_layout_matrix.md</code> §1.<br><br>
+    <b>슬라이드 단위 mixing.</b> 위 5 directions 의 슬라이드는 각자의 `data-theme` + `data-layout` 마크업이 박혀 있어 다른 deck 에 그대로 import 가능. <code style="background:#fff; padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:10px;">theme_layout_matrix.md</code> §2 의 매트릭스가 어느 (theme, layout) 조합이 허용되는지 잠금.<br><br>
+    <b>이미지 슬롯.</b> split / photo-essay 슬라이드에는 <code style="background:#fff; padding:1px 5px; border-radius:3px; font-family:var(--mono); font-size:10px;">.image-slot</code> 패턴 + NanoBanana 프롬프트 임베드 — 자세한 contract 는 <a href="../image_slot_contract.md" style="color:var(--ink);">image_slot_contract.md</a>, 테마별 무드는 <a href="../nano_banana_guide.md" style="color:var(--ink);">nano_banana_guide.md</a>.
+  </div>
+
+</body>
+</html>

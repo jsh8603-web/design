@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../colors_and_type.css"><style>
+  body { background:var(--theme-bg); padding:85.33px; color:var(--gray-1); display:flex; flex-direction:column; }
+  h1 { font-size:49.78px; font-weight:700; color:var(--primary); letter-spacing:-0.015em; padding-bottom:24.89px; border-bottom:3.56px solid var(--primary); }
+  .body { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:49.78px; padding-top:32px; }
+  .col h2 { font-size:24.89px; font-weight:700; color:var(--primary); margin-bottom:17.78px; }
+  .col ol { padding-left:32px; }
+  .col li { font-size:23.11px; line-height:1.55; color:var(--gray-1); margin-bottom:14.22px; }
+  .col li b { color:var(--primary); font-weight:600; }
+  .refs { padding-top:24.89px; border-top:1px solid var(--border-soft, #E2E8F0); display:flex; justify-content:space-between; }
+  .refs .item { font-size:17.78px; color:var(--gray-1); line-height:1.5; }
+  .refs .item b { color:var(--primary); font-weight:600; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="closing" data-screen-label="03-academic · closing"><h1>Conclusions</h1>
+<div class="body">
+  <div class="col">
+    <h2>Key Findings</h2>
+    <ol>
+      <li><b>F-1.</b> HBM TAM의 3배 확장(2년)은 GPU·전력 사이클과 통계적으로 동기화되어 있다 (Granger p&lt;0.01).</li>
+      <li><b>F-2.</b> ASP 상승(5×)은 공급 제약 요인이 수요 측 가설보다 우세함을 시사한다.</li>
+      <li><b>F-3.</b> 시장 점유율은 기술 격차(2 generations)와 강한 상관관계를 보였다 (r=0.87).</li>
+    </ol>
+  </div>
+  <div class="col">
+    <h2>Discussion</h2>
+    <ol>
+      <li><b>D-1.</b> 단일 자본 사이클 가설(unified-cycle)이 본 데이터로 기각되지 않는다.</li>
+      <li><b>D-2.</b> 2027년 이후 HBM4 진입 시 점유율 재편 가능성이 존재한다.</li>
+      <li><b>D-3.</b> 향후 연구 — 전력 인프라(grid-side) 데이터로 사이클 종료 시점 추정.</li>
+    </ol>
+  </div>
+</div>
+<div class="refs">
+  <div class="item"><b>References.</b> SK Hynix (2026); TrendForce (2026); IEA (2025); Bloomberg (2026).</div>
+  <div class="item">slides-grab Research · No. 03 · March 2026</div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

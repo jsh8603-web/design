@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- @dsCard group="Components" name="Inputs (app)" subtitle="Editor form fields — slate, blue focus ring" viewport="700x220" --><html lang="en"><head><meta charset="utf-8"><title>inputs</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 700px; background: var(--neutral-100); font-family: var(--font-sans); color: var(--neutral-900); -webkit-font-smoothing: antialiased; }
+body { padding: 20px 24px; }
+.meta { font-family: var(--font-mono); font-size: 10px; color: var(--neutral-600); letter-spacing: 0.02em; }
+
+</style></head><body>
+    <div style="background:#0A0F1A; padding:16px; border-radius:12px; display:flex; flex-direction:column; gap:10px;">
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <label style="font-size:10px; font-weight:600; color:#94A3B8; letter-spacing:0.06em; text-transform:uppercase;">Outline file</label>
+        <input style="height:32px; background:#0F172A; border:1px solid #1E293B; border-radius:6px; padding:0 10px; color:#F8FAFC; font-family:inherit; font-size:12px;" value="slides/samsung-investment-report/outline.md">
+      </div>
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <label style="font-size:10px; font-weight:600; color:#94A3B8; letter-spacing:0.06em; text-transform:uppercase;">Edit prompt</label>
+        <div style="background:#0F172A; border:1px solid #3B82F6; border-radius:6px; padding:8px 10px; color:#F8FAFC; font-size:12px; min-height:60px; box-shadow:0 0 0 3px rgba(59,130,246,0.18);">Make this slide's KPI tiles slightly smaller and add a Q4 highlight ▍</div>
+      </div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <select style="height:30px; background:#0F172A; border:1px solid #1E293B; border-radius:6px; padding:0 10px; color:#F8FAFC; font-family:inherit; font-size:12px;"><option>Theme · Executive</option></select>
+        <select style="height:30px; background:#0F172A; border:1px solid #1E293B; border-radius:6px; padding:0 10px; color:#F8FAFC; font-family:inherit; font-size:12px;"><option>Mode · Professional</option></select>
+        <div style="flex:1;"></div>
+        <button style="height:30px; padding:0 14px; background:#3B82F6; color:#fff; border:0; border-radius:999px; font-size:12px; font-weight:600;">Apply</button>
+      </div>
+    </div></body></html>

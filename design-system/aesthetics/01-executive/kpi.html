@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="01 Executive Editorial — KPI" subtitle="4-tile KPI · V-bar chart · Q4 orange highlight" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../colors_and_type.css"><style>
+  body { background:var(--theme-bg-alt, #F8F9FA); padding:49.78px 56.89px; }
+  h1 { font-size:30.22px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; margin-bottom:10.67px; }
+  .key { font-size:17.78px; color:var(--gray-2); margin-bottom:24.89px; }
+  .grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:17.78px; margin-bottom:24.89px; }
+  .kpi { background:var(--theme-bg-card, var(--surface-inverse-fg)); border-radius:14.22px; padding:24.89px 21.33px; text-align:center; }
+  .kl { font-size:17.78px; font-weight:600; color:var(--accent); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:10.67px; }
+  .kv { font-size:53.33px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1.05; }
+  .ku { font-size:17.78px; color:var(--primary); }
+  .kc { font-size:17.78px; font-weight:600; color:var(--accent); margin-top:7.11px; }
+  .ks { font-size:17.78px; color:var(--gray-3); margin-top:3.56px; }
+  .bar-card { background:var(--theme-bg-card, var(--surface-inverse-fg)); border-radius:14.22px; padding:24.89px 28.44px; }
+  .bt { font-size:17.78px; font-weight:600; color:var(--primary); margin-bottom:17.78px; }
+  .bars { display:flex; align-items:flex-end; gap:32px; height:188.44px; padding:0 35.56px; }
+  .b-col { flex:1; display:flex; flex-direction:column; align-items:center; }
+  .bv { font-size:19.56px; font-weight:700; color:var(--primary); margin-bottom:7.11px; }
+  .b { width:100%; border-radius:7.11px 7.11px 0 0; min-height:14.22px; }
+  .bl { font-size:17.78px; color:var(--gray-2); margin-top:10.67px; text-align:center; }
+  .src { font-size:17.78px; color:var(--gray-3); margin-top:14.22px; text-align:right; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="kpi_dashboard" data-screen-label="01-executive · kpi_dashboard"><h1>HBM 시장이 2년 내 3배로 — '25 230억$ → '27 670억$</h1>
+<div class="key">DRAM 매출에서 HBM 비중 17% → 41% · ASP 5배 · 공급 부족 지속</div>
+<div class="grid">
+  <div class="kpi"><div class="kl">'27 HBM TAM</div><div class="kv">67.0</div><div class="ku">B USD</div><div class="kc">CAGR +71%</div><div class="ks">2년 3배</div></div>
+  <div class="kpi"><div class="kl">SK Hynix 점유율</div><div class="kv">52</div><div class="ku">%</div><div class="kc">HBM3E 1위</div><div class="ks">NVIDIA 단독공급</div></div>
+  <div class="kpi"><div class="kl">CapEx '26</div><div class="kv">21.5</div><div class="ku">B USD</div><div class="kc">YoY +44%</div><div class="ks">팹3·M15X 확장</div></div>
+  <div class="kpi"><div class="kl">영업이익 '26E</div><div class="kv">38.4</div><div class="ku">조원</div><div class="kc">YoY +52%</div><div class="ks">컨센서스 상향</div></div>
+</div>
+<div class="bar-card">
+  <div class="bt">분기별 HBM 매출 추이 (조원) — '25 4Q 한 분기에 '23 연간 추월</div>
+  <div class="bars">
+    <div class="b-col"><div class="bv">1.2</div><div class="b" style="height:24.89px; background:var(--gray-3);"></div><div class="bl">'24 4Q</div></div>
+    <div class="b-col"><div class="bv">2.8</div><div class="b" style="height:58.67px; background:var(--accent);"></div><div class="bl">'25 1Q</div></div>
+    <div class="b-col"><div class="bv">4.6</div><div class="b" style="height:96px; background:var(--accent);"></div><div class="bl">'25 2Q</div></div>
+    <div class="b-col"><div class="bv">6.9</div><div class="b" style="height:144px; background:var(--accent);"></div><div class="bl">'25 3Q</div></div>
+    <div class="b-col"><div class="bv">9.0</div><div class="b" style="height:188.44px; background:var(--accent-secondary, #FF6F00);"></div><div class="bl">'25 4Q</div></div>
+  </div>
+</div>
+<div class="src">SK Hynix 4Q 실적발표 · TrendForce HBM Tracker (2026.02)</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

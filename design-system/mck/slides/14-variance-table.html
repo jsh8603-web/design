@@ -1,0 +1,48 @@
+<!--
+  ⚠️ ES modules in use. Open via `python serve.py --open` from project root,
+  not file://. See README.md "Quick Start".
+-->
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<title>Variance table (Layout #11) — data-driven</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="slides.css">
+</head>
+<body>
+<div class="deck-stage">
+<section class="slide" data-screen-label="14 Variance table">
+  <div class="s-title kr">FY26.Q1 예산 대비 실적 — 매출 +2.1%, 마진 −1.1%p, 운전자본 −85억 차이</div>
+  <div class="s-rule"></div>
+
+  <div class="s-body" style="top:140px;">
+    <div id="var-target" style="width:100%;"></div>
+  </div>
+
+  <div class="s-bar kr"><span class="pre">시사점 —</span>탑라인 초과 vs 보텀라인 미달 — 비용 측 구조 재점검 필요</div>
+  <div class="s-source">Source: 재무팀 예실 분석, FY26.Q1 마감 · 가이던스 v2.1 기준</div>
+  <div class="s-pagenum">14/17</div>
+</section>
+</div>
+
+<script type="module">
+  import { renderVarianceTable } from "../assets/variance-table.js";
+  import { safeRender } from "../assets/chart-helpers.js";
+
+  safeRender("#var-target", renderVarianceTable, {
+    items: [
+      { label: "매출",        budget: 1234, actual: 1260 },
+      { label: "매출원가",    budget:  684, actual:  712, cost_nature: true },
+      { label: "매출총이익",  budget:  550, actual:  548 },
+      { label: "판관비",      budget:  418, actual:  430, cost_nature: true },
+      { label: "영업이익",    budget:  132, actual:  118 },
+      { label: "영업이익률",  budget: 10.7, actual:  9.4, unit: "%" },
+    ],
+    columns: ["label","budget","actual","variance_abs","variance_pct"],
+    unit_default: "억",
+    highlight_row_index: 4,
+  });
+</script>
+</body>
+</html>

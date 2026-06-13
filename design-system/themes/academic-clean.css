@@ -1,0 +1,15 @@
+/* Academic Clean — Research / whitepaper / journal
+   bg=#FFFFFF (locked) · ink=#333 / #1F4E79 · accent=#2E75B6
+   Pairs with: ../colors_and_type.css */
+:root {
+  --bg-primary:   #FFFFFF;   /* locked white — never override */
+  --bg-secondary: #F2F2F2;   /* alt-row, callouts */
+  --bg-card:      #F8F9FA;
+  --text-primary: #333333;
+  --text-heading: #1F4E79;   /* navy headers */
+  --text-secondary:#666666;
+  --accent:       #1F4E79;   /* primary */
+  --accent-2:     #2E75B6;   /* secondary chart color */
+  --border:       #E2E8F0;
+  --rule:         #1F4E79;
+}

@@ -25,17 +25,15 @@ date: 2026-06-13
 - [x] 2.3 package.json (commander/express/jszip/pdf-lib/playwright/pptxgenjs/sharp + marp dev. nodemailer/react-icons/xml2js 제외) `model: sonnet`
 
 ## Phase 3 — 규칙 머지
-- [ ] 3.1 rules/content-authoring.md = 루트 md 뼈대 + slides-grab 정량규칙 흡수 `model: opus`
-- [ ] 3.2 rules/html-prevention.md (PF/IL 정량 제약) `model: sonnet`
-- [ ] 3.3 rules/design-modes.md `model: sonnet`
-- [ ] 3.4 rules/verification-gate.md (§13 internal/external/derived) `model: opus`
-- [ ] 3.5 rules/research-sourcing.md (WebFetch+사내DB+Confluence 3소스) `model: opus`
+- [x] 3.1 rules/content-authoring.md = 루트 md 뼈대 이동 + §17 사내환경/엑셀 데이터 보고서 보완 추가 `model: opus`
+- [x] 3.2~3.4 ~~html-prevention/design-modes/verification-gate 별도 생성~~ → **design-system/ + content-authoring §13 이 SSOT (중복 제거, 설계 조정)** `model: opus`
+- [x] 3.5 rules/research-sourcing.md (사내DB+WebFetch+Confluence 3소스, Source 태그, 보강 트리거) `model: opus`
 
 ## Phase 4 — 파이프라인 + 진입점
-- [ ] 4.1 SKILL.md 라우터 (의도 판별 → 1/2/3 분기) `model: opus`
-- [ ] 4.2 pipelines/1-report-text/ (본문, 엑셀 derived 기준 포함) `model: opus`
-- [ ] 4.3 pipelines/2-pdf/ `model: sonnet`
-- [ ] 4.4 pipelines/3-pptx/ (스텝 문서) `model: sonnet`
+- [x] 4.1 SKILL.md 라우터 (의도 판별 → 1/2/3 분기 + 공통 코어 + 규칙 SSOT 맵) `model: opus`
+- [x] 4.2 pipelines/1-report-text/README.md (본문, 엑셀 derived 기준 포함) `model: opus`
+- [x] 4.3 pipelines/2-pdf/README.md `model: sonnet`
+- [x] 4.4 pipelines/3-pptx/README.md (사내용 스텝, Gemini 단계 제거 명시) `model: sonnet`
 
 ## Phase 5 — 실동작 테스트
 - [ ] 5.1 npm install + Chromium, 샘플 HTML→PPTX e2e `model: sonnet`

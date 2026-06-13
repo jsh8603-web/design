@@ -424,3 +424,23 @@ Reader testing passing means *near* done, not done. Before completion:
 - **Network reality.** When a source or package isn't reachable (corporate proxy/SSL, npm/PyPI blocks), say so and ask for an extract or a vendored path; keep verification code stdlib-only. Never substitute a guessed number for an unreachable source.
 - **One elicitation pass, then autonomy.** The brief (§10) is the single scheduled user interaction. After it, build and log; return to the user only for `needs-human` verification items and the final handoff, plus genuine forks (§11.0). Do not re-interrogate.
 - **The §13 gate is non-negotiable even in freeform mode.** A user can skip the brief or the per-slide checkpoints; they cannot skip grounding for a deck built on internal numbers.
+
+---
+
+## 17. 사내 환경 (이 저장소의 운영 전제)
+
+이 규칙은 사내 Claude Code 환경에 맞춰 이식됐다. 다음 제약이 항상 적용된다.
+
+- **지식 소스 = 사내 DB + WebFetch/WebSearch 직접 + Confluence(사내 위키/용어집) 3종으로 한정.** OAuth 키 사용 불가 → Gemini 이미지 생성·Gemini Vision·NotebookLM 전부 불가. 외부 자료가 안 닿으면 추정치로 메우지 말고 사용자에게 추출본을 요청한다(§10.3, §16 Network reality). 리서치 절차 상세는 `rules/research-sourcing.md`.
+- **이미지는 차트/표/도형 우선, 사진형 슬롯은 최소화.** AI 이미지 생성이 없으므로 사진이 꼭 필요하면 placeholder 를 두고 사용자가 수동 배치하거나 사내 이미지 라이브러리를 참조한다(`design-system/image_slot_contract.md`).
+- **디자인/HTML/PPTX 규칙 SSOT = `design-system/`** (prompting_rules / pf_rules / qa_rules / theme_layout_matrix / layout_catalog / colors_and_type.css). 본문(이 파일)이 무엇을 말할지를 정하고, design-system 이 어떻게 보이게 할지를 정한다.
+
+### 17.1 엑셀 / 데이터 기반 보고서도 같은 기준
+
+엑셀·DB 추출처럼 데이터가 주가 되는 보고서를 만들 때도 이 파이프라인의 작성 기준을 그대로 따른다.
+
+- **액션 타이틀(§2)**: "Q3 실적" 이 아니라 "Q3 매출, 가이던스 4% 상회 — B2B 갱신이 견인" 처럼 셀의 결론을 제목으로.
+- **derived 숫자는 코드 재계산(§13.4)**: 분산·증감률·마진·비중·환산·합계는 LLM 판단이 아니라 코드로 결정론적 재계산하고, cross-foot(행·열 합 = 표시 합계)까지 확인한다. 엑셀 수식을 그대로 믿지 말고 원천 값에서 다시 계산한다.
+- **as-of date + src 태그(§5)**: 모든 수치에 출처 셀/쿼리 + 기준일을 단다. 사내 데이터는 bitemporal 이므로 기준일 없는 숫자는 검증 불가.
+- **표보다 그래프(§3)**: 추세·비교는 그래프, 정확한 값 대조가 필요할 때만 표. 표는 `<table>` 금지, CSS grid(`design-system/pf_rules.md`).
+- **본문만 필요하면 파이프라인 1**, PDF·PPTX 까지 가면 2·3 으로 넘긴다(`SKILL.md` 라우팅).

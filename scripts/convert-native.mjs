@@ -14,7 +14,7 @@ import { injectChecklist } from './auto-checklist.mjs';
 import JSZip from 'jszip';
 
 const require = createRequire(import.meta.url);
-const html2pptx = require('./html2pptx.cjs');
+const html2pptx = require('../skills/pptx-skill/scripts/html2pptx.cjs');
 
 const DEFAULT_SLIDES_DIR = 'slides';
 const DEFAULT_OUTPUT = 'output-native.pptx';

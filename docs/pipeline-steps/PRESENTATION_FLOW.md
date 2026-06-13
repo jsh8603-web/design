@@ -1,0 +1,59 @@
+> ⚠️ **사내 환경 주의 (원본 slides-grab 자산)**: 이 문서의 **Gemini 이미지 생성·Gemini Vision·NotebookLM** 관련 단계/기능은 사내 사용 **불가**이며 해당 부분은 무시한다. 지식 소스 = 사내 DB + WebFetch + Confluence 한정. 실제 운영 기준은 `SKILL.md` · `rules/` · `design-system/` 이 우선한다.
+
+# 프레젠테이션 워크플로우 (트리거)
+
+프레젠테이션 요청 감지 시 → 상세 절차: `.claude/docs/presentation-flow.md` 읽기
+
+## 트리거 매핑
+
+| 사용자 발화 | 시작 지점 |
+|------------|----------|
+| "~~ 주제로 만들어줘" / "프레젠테이션 만들어줘" | Step 0 |
+| "아웃라인 검토해줘" / outline 파일 제공 | Step 2 |
+| "슬라이드 수정해줘" / "편집기 열어줘" / "에디터 열어줘" | Step 3 |
+| "pptx 변환" / "pdf 변환" / "내보내기" | Step 5 |
+
+## 세션 복원 (압축 + 대화 이어받기)
+
+progress.md는 각 Step 완료·수정 발생·로그 기록 시 **즉시 갱신**하여 상시 최신 유지 (자동 압축은 예고 없이 발생하므로).
+
+다음 상황 **모두**에서 동일한 복원 절차를 실행한다:
+- **컨텍스트 압축** (PostCompact 훅 트리거 — 같은 세션 내 자동 압축)
+- **대화 이어받기** (conversation continuation — 이전 대화가 컨텍스트 한도 초과로 새 세션에서 요약과 함께 시작. PostCompact 훅 미발동이므로 에이전트가 직접 복원)
+
+**감지**: 시스템 메시지에 "continued from a previous conversation" 또는 대화 요약이 포함된 경우.
+
+**새 세션 첫 행동** (대화 요약보다 우선):
+1. `slides/프레젠테이션명/progress.md`를 Read
+2. `## 활성 규칙`의 `[ ]` 미체크 항목 → **해당 docs 파일을 즉시 Read로 재로드** (이 단계를 건너뛰면 이후 절차 위반의 근본 원인이 됨)
+3. **미완료 이슈 체크리스트 확인** → `### 이슈 #N` 하위에 `[ ]` 미완료 항목 → 해당 항목부터 처리 완료 후 작업 재개 (CLAUDE.md §공통 절차 참조)
+4. `## 로그 기록 상태`에 `[ ]` 미기록 항목 → `pptx-inspection-log.md`에 먼저 기록
+5. 게이트 통과 기록 없으면 해당 Step 재실행
+6. **복원 완료 마커 갱신**: `touch slides/프레젠테이션명/.restore-marker` (session-restore-guard가 이 마커로 복원 완료를 확인 — 없으면 Edit/Write/Bash 차단)
+7. 위 1~6 완료 후에만 작업 재개
+
+**하드 가드**: `session-restore-guard.mjs`가 PreToolUse(Edit|Write|Bash)에서 `.restore-marker`의 mtime < `progress.md` mtime이면 차단. PostCompact 시 `post-compact-restore.mjs`가 marker를 삭제하여 재복원 강제.
+
+| 체크포인트 | 미충족 시 |
+|-----------|----------|
+| **활성 규칙 재로드** (`## 활성 규칙` `[ ]` 항목) | 해당 규칙 파일 Read 재로드 |
+| Step 0~1.5B 각 단계 | 해당 Step 재시작 |
+| **Step 2.5 / 6-3 COM 비교** (progress.md "통과" 기록) | 에디터/다운로드 링크 제공 금지, 재실행 |
+| **Step 4 수정 재검증** | Step 5 진행 금지 |
+| **Step 7.5 V-NN 검증** (V-NN 전부 `[x]`) | 완료 보고 금지, V-NN 순차 실행 |
+
+## Step별 로드 규칙 (토큰 최적화)
+
+현재 Step에 해당하는 `docs/` 파일만 Read. **완료된 Step의 파일/스킬 재로드 금지.**
+
+| Step | Step 절차 파일 | 추가 Read 대상 (docs/ 경로 생략) | 로드 금지 |
+|------|------|------|------|
+| 0-1 소스/아웃라인 | `pf-step-0-1.md` | `design-modes.md`, `plan-skill` 호출 | nanoBanana, pptx-inspection-log |
+| 1.5B 이미지 | `pf-step-1.5b.md` | `nanoBanana-guide.md`, `vqa-pipeline-maintenance.md` | design-modes, html-prevention-rules |
+| 2-2.5 HTML/검증 | `pf-step-2-2.5.md` | **`design-skill`** 호출, `html-prevention-rules.md`, `pptx-inspection-log.md` | nanoBanana, vqa, design-modes |
+| 3-4 에디터/수정 | `pf-step-3-4.md` | `html-prevention-rules.md` (수정 시만), `nanoBanana-guide.md` (이미지 교체 시만) | 조건 미해당 파일 |
+| 5-6-7 변환 | `pf-step-5-6-7.md` | **`pptx-skill`** 호출, `html-prevention-rules.md`, `pptx-inspection-log.md` | nanoBanana, design-modes, design-skill |
+
+**공통 규칙**:
+- `progress.md`는 매 Step에서 Read/Write. 이미 컨텍스트에 있는 파일은 재로드 금지 (압축 후에만).
+- `production-reporting-rules.md`는 세션 시작 시 1회 Read (활성 규칙으로 관리).

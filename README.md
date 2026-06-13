@@ -24,11 +24,20 @@ pipelines/
   1-report-text/          본문 텍스트(.md). 엑셀/DB 데이터 보고서도 여기 기준
   2-pdf/                  회람용 문서(.pdf)
   3-pptx/                발표자료(.pptx)
-scripts/                  변환·검증 엔진 (HTML→PPTX/PDF, preflight, validate)
+scripts/                  변환·검증 엔진 (HTML→PPTX/PDF, preflight, validate, 가드)
+skills/                   pptx-skill(변환엔진 html2pptx+ooxml) · ppt-{plan,design,pptx,presentation}-skill
 src/                      에디터 모듈 (localhost 전용)
 bin/                      CLI 진입점
+tests/                    회귀·e2e 테스트 (vision 제외)
+docs/                     slides-grab 원본 운영자산 (참고)
+  conversion-rules/       html-prevention·HTML예제·QA·테스트·보고 규칙
+  pipeline-steps/         PF_STEP_*·PRESENTATION_FLOW (회사의존 단계 배너)
+  design-reference/       DESIGN_MODES·RESEARCH_SUPPLEMENT
+  slides-grab-docs/       설치·프롬프트·원본 plan·README-KO
 assets/, _archive-company-blocked/
 ```
+
+> `docs/` 의 slides-grab 원본 규칙은 **참고용**이다. 운영 SSOT 는 `SKILL.md`·`rules/`·`design-system/` 이 우선하며, 회사의존(Gemini/NotebookLM) 단계는 각 문서 상단 배너로 무력화했다.
 
 ## 파이프라인 (의도별)
 

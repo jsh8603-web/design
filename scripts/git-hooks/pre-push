@@ -1,0 +1,22 @@
+#!/bin/sh
+# Pre-push gate — GitHub Actions workflow 를 쓰지 않는 사내 환경용 로컬 검증.
+# .github/workflows/ 는 PAT 의 workflow scope 를 요구해 푸시가 막히므로,
+# 동등한 게이트(참조 무결성 + 시각 회귀 자체 테스트)를 푸시 직전 로컬에서 돌린다.
+#
+# 설치: npm run hooks:install   (git config core.hooksPath scripts/git-hooks)
+# 우회: git push --no-verify     (긴급 시 1회)
+#
+# 게이트 실패 = exit 1 → 푸시 중단. node 부재 = skip(차단 안 함, 안내만).
+set -e
+
+# git bash 가 nodejs 를 PATH 에서 못 잡는 경우 보강
+command -v node >/dev/null 2>&1 || export PATH="/c/Program Files/nodejs:$PATH"
+if ! command -v node >/dev/null 2>&1; then
+  echo "[pre-push] node 없음 — 게이트 skip (수동 검증: npm run ci)"
+  exit 0
+fi
+
+echo "[pre-push] 참조 무결성(lint:skill) + 시각 회귀(vr:test) 검증..."
+npm run --silent lint:skill
+npm run --silent vr:test
+echo "[pre-push] OK — 게이트 통과"

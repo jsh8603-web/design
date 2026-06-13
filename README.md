@@ -62,6 +62,22 @@ node scripts/editor-server.js   --slides-dir slides/<slug>                      
 
 각 파이프라인 상세는 `pipelines/<n>/README.md`, 디자인 규칙은 `design-system/SKILL.md` 참조.
 
+## 검증 게이트 (로컬, GitHub Actions 미사용)
+
+사내는 GitHub Actions workflow(`.github/workflows/`)를 쓰지 않는다 — PAT 의 `workflow` scope 의존을 피하고, 게이트를 **로컬 pre-push hook** 으로 돌린다.
+
+```bash
+npm run hooks:install   # git config core.hooksPath scripts/git-hooks (1회)
+npm run ci              # 게이트 수동 실행 = lint:skill + vr:test
+```
+
+설치 후 `git push` 직전 `scripts/git-hooks/pre-push` 가 자동으로:
+
+- `lint:skill` — SKILL/rules 참조 무결성(깨진 경로 → 차단)
+- `vr:test` — 시각 회귀 자체 테스트(엔진/래스터/하니스/폰트, 도구 부재 시 SKIP)
+
+실패하면 푸시가 중단된다. 긴급 우회는 `git push --no-verify`. node 가 없으면 게이트는 차단 없이 skip 한다.
+
 ## 출처
 
 - 변환 엔진·파이프라인: slides-grab (사내불가 의존 제거본)

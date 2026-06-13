@@ -26,6 +26,8 @@
     "vr:test": "node tests/visual-regression/test-diff.mjs && node tests/visual-regression/test-rasterize.mjs && node tests/visual-regression/test-harness.mjs && node tests/visual-regression/test-fonts.mjs",
     "vr:report": "node tests/visual-regression/gen-report.mjs",
     "lint:skill": "node tests/skill-lint.mjs",
+    "ci": "npm run lint:skill && npm run vr:test",
+    "hooks:install": "git config core.hooksPath scripts/git-hooks && echo \"git hooks installed (core.hooksPath=scripts/git-hooks)\"",
     "postinstall": "playwright install chromium"
   },
   "dependencies": {

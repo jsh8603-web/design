@@ -20,3 +20,12 @@ slides/**/out/
 # operational / IDE
 .secretary/
 .vscode/
+
+# python
+__pycache__/
+*.pyc
+
+# visual regression (golden/ is committed; these are transient)
+tests/visual-regression/diff/
+tests/visual-regression/_selftest-out/
+tests/visual-regression/fixtures/

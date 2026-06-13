@@ -42,5 +42,8 @@ date: 2026-06-13
 
 ## Phase 6 — 마무리
 - [x] 6.1 README.md 작성 `model: sonnet`
-- [ ] 6.2 git commit + repo push `model: sonnet`
+- [x] 6.2 git commit + repo push (main → github.com/jsh8603-web/design) `model: sonnet`
+
+---
+**전체 완료** 2026-06-13. 5커밋 push. 변환 코어 검증(PPTX/PDF/preflight). 사내불가 의존(Gemini/NotebookLM/터널/nodemailer) 전부 제거 또는 archive.
 </content>

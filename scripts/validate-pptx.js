@@ -170,6 +170,10 @@ function extractShapes(slideXml) {
     const txBody = inner.match(/<p:txBody>([\s\S]*?)<\/p:txBody>/i);
     if (txBody) {
       shape.hasTxBody = true;
+      // autofit: spAutoFit(도형이 텍스트에 맞게 확장) / normAutofit(텍스트가 도형에 맞게 축소) =
+      // 둘 다 PowerPoint 렌더 시 넘침/잘림 없음. none/noAutofit = 고정(잘림 가능). VP-16 판정에 사용.
+      const bpr = txBody[1].match(/<a:bodyPr[^>]*>[\s\S]*?<\/a:bodyPr>|<a:bodyPr[^>]*\/>/);
+      shape.autofit = bpr ? (/<a:spAutoFit/.test(bpr[0]) ? 'sp' : /<a:normAutofit/.test(bpr[0]) ? 'norm' : 'none') : 'none';
       const runs = matchAll(txBody[1], '<a:r>([\\s\\S]*?)<\\/a:r>');
       for (const run of runs) {
         const runInner = run[1];
@@ -1323,6 +1327,16 @@ function checkCjkTextOverflow(shapes, slideNum) {
 
   for (const s of shapes) {
     if (s.w === 0 || s.h === 0) continue;
+    // autofit 도형(spAutoFit/normAutofit) = PowerPoint가 텍스트를 도형에 맞게 자동 조정 → 자체 넘침/
+    // 잘림 없음(subagent: s89/s56 normAutofit 정상수용). 단 ★인접 텍스트 도형 겹침(제목이 길어져
+    // 부제 침범)은 autofit이어도 발생 → GT s99 "중동 지정학"(normAutofit+부제침범) 보존 위해 겹침 시 유지.
+    if (s.autofit === 'sp' || s.autofit === 'norm') {
+      const sBot = s.y + s.h;
+      const overlaps = shapes.some((o) => o !== s && o.textRuns &&
+        o.textRuns.some((rr) => rr.text && rr.text.trim()) &&
+        o.y > s.y && o.y < sBot && o.x < s.x + s.w && o.x + o.w > s.x);
+      if (!overlaps) continue;
+    }
     const text = shapeText(s);
     if (text.length < 2) continue;
 

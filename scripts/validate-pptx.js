@@ -35,11 +35,15 @@ const COL_TOLERANCE = 36000;
 
 // WCAG contrast thresholds
 const CONTRAST_ERROR = 1.5;
-// VP-04 sweet-spot(정답지 튜닝 2026-06-14): WARN 임계 4.5→3.0. 3-judge 다수결 정답지 13건 중
-// VP-04 저대비 9건이 전부 ratio≤2.3(청록2.1·초록1.9·금색2.3) = 3.0 미만이라 recall=1.0 유지.
-// 3~4.5:1 muted-but-legible(회색 부제·출처 = 운영덱 미감) 220건은 judges 전원 FP → 침묵.
-const CONTRAST_WARN = 3.0;
-const CONTRAST_LARGE = 3.0; // (now subsumed by WARN floor) WCAG 큰 텍스트 임계
+// VP-04 sweet-spot(GT 이미지직접확인 2026-06-14): WARN 임계 4.5→3.0→2.124.
+// realmix 10장 PowerPoint COM 이미지 직접 판정: ratio 2.13~2.8 발화는 전부 FP —
+//   강조배지(주황#E8913A·초록#03C75A on 흰글자, s115)·강조수치(주황#FF6F00, s23)·
+//   출처캡션(회색#94A3B8/#999999, 보조정보 가독OK)·밝은배경 금색(GT보다 대비좋음).
+// GT 9건 raw = 1.947~2.118(청록#00C2FF 2.067·초록#00D48A 1.947·금색#D4A537 2.118).
+// FP 최소 raw = 2.130(#AAAAAA). ratio는 XML색상 결정함수(렌더무관) → floor 2.124면
+// GT 9건 항상 발화·그 위 445건 항상 침묵, 양쪽 마진 0.006. recall=1.0 유지.
+const CONTRAST_WARN = 2.124;
+const CONTRAST_LARGE = 3.0; // (subsumed by WARN floor) WCAG 큰 텍스트 임계
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -369,7 +373,7 @@ function checkColumnAlignment(shapes, slideNum) {
     if (maxW - minW > 63500 && cv > 0.15) {
       const widthStrs = widths.map((w) => emuToInches(w) + '"').join(', ');
       issues.push({
-        level: 'INFO',
+        level: 'WARN',
         code: 'VP-02',
         slide: slideNum,
         message: `Column at x=${emuToInches(col.x)}" has inconsistent widths (${widthStrs})`,
@@ -382,7 +386,7 @@ function checkColumnAlignment(shapes, slideNum) {
     const maxX = Math.max(...xs);
     if (maxX - minX > COL_TOLERANCE) {
       issues.push({
-        level: 'INFO',
+        level: 'WARN',
         code: 'VP-02',
         slide: slideNum,
         message: `Column at x~${emuToInches(col.x)}" has x-offset variance (${emuToInches(maxX - minX)}" spread)`,
@@ -445,7 +449,7 @@ function checkEmptyText(shapes, slideNum) {
         }
         const name = s.name || 'unnamed';
         issues.push({
-          level: 'INFO',
+          level: 'WARN',
           code: 'VP-03',
           slide: slideNum,
           message: `Shape "${name}" has a text frame but all text runs are empty`,
@@ -908,7 +912,7 @@ function checkGapConsistency(shapes, slideNum) {
     if (gapStdDev > 5 * EMU_PER_PT && gapCV > 0.2) {
       const gapsPt = gaps.map(g => (g / EMU_PER_PT).toFixed(1) + 'pt').join(', ');
       issues.push({
-        level: 'INFO',
+        level: 'WARN',
         code: 'VP-10',
         slide: slideNum,
         message: `Row at y=${emuToInches(row.y)}" has inconsistent gaps: [${gapsPt}]`,
@@ -958,7 +962,7 @@ function checkReadingOrder(shapes, slideNum) {
   const tauRatio = totalPairs > 0 ? inversions / totalPairs : 0;
   if (tauRatio > 0.2) {
     issues.push({
-      level: 'INFO',
+      level: 'WARN',
       code: 'VP-11',
       slide: slideNum,
       message: `Reading order mismatch: ${inversions}/${totalPairs} shape pairs inverted vs visual order (${Math.round(tauRatio * 100)}%) — may affect accessibility`,
@@ -1359,7 +1363,6 @@ export async function validatePptx(pptxPath, options = {}) {
   const zipFiles = await loadPptxInMemory(pptxPath);
   const errors = [];
   const warnings = [];
-  const infos = [];
 
   try {
     // Read slide dimensions from presentation.xml
@@ -1443,8 +1446,6 @@ export async function validatePptx(pptxPath, options = {}) {
       for (const issue of slideIssues) {
         if (issue.level === 'ERROR') {
           errors.push(issue);
-        } else if (issue.level === 'INFO') {
-          infos.push(issue);
         } else {
           warnings.push(issue);
         }
@@ -1454,13 +1455,13 @@ export async function validatePptx(pptxPath, options = {}) {
     // In-memory — no cleanup needed
   }
 
-  return { errors, warnings, infos, passed: errors.length === 0 };
+  return { errors, warnings, passed: errors.length === 0 };
 }
 
 // ── CLI ────────────────────────────────────────────────────────────────────
 
 function formatIssue(issue) {
-  const icon = issue.level === 'ERROR' ? '❌ ERROR' : issue.level === 'INFO' ? 'ℹ️  INFO ' : '⚠️  WARN ';
+  const icon = issue.level === 'ERROR' ? '❌ ERROR' : '⚠️  WARN ';
   return `${icon} [slide ${issue.slide}] ${issue.code}: ${issue.message}`;
 }
 
@@ -1471,7 +1472,6 @@ function parseCliArgs(argv) {
       args.input = argv[++i];
     }
     if (argv[i] === '--json') args.json = true;
-    if (argv[i] === '--verbose' || argv[i] === '-v') args.verbose = true;
   }
   return args;
 }
@@ -1485,26 +1485,25 @@ async function main() {
   }
 
   try {
-    const { errors, warnings, infos, passed } = await validatePptx(args.input);
+    const { errors, warnings, passed } = await validatePptx(args.input);
 
-    // --json: output structured JSON and exit (INFO only with --verbose)
+    // --json: output structured JSON and exit
     if (args.json) {
-      const all = args.verbose ? [...errors, ...warnings, ...infos] : [...errors, ...warnings];
+      const all = [...errors, ...warnings];
       console.log(JSON.stringify(all, null, 2));
       process.exit(passed ? 0 : 1);
     }
 
-    // Print issues (INFO = layout-hint channel, shown only with --verbose)
+    // Print all issues
     for (const w of warnings) console.log(formatIssue(w));
     for (const e of errors) console.log(formatIssue(e));
-    if (args.verbose) for (const inf of infos) console.log(formatIssue(inf));
 
     // Summary
     console.log(`\n${'─'.repeat(60)}`);
     if (passed && warnings.length === 0) {
-      console.log(`✅ All checks passed — no issues found${infos.length ? ` (${infos.length} INFO hint(s), use --verbose)` : ''}`);
+      console.log(`✅ All checks passed — no issues found`);
     } else {
-      console.log(`Results: ${errors.length} error(s), ${warnings.length} warning(s)${infos.length ? `, ${infos.length} INFO hint(s)` : ''}`);
+      console.log(`Results: ${errors.length} error(s), ${warnings.length} warning(s)`);
       if (!passed) {
         console.log(`❌ Validation FAILED`);
       } else {

@@ -102,11 +102,12 @@ assets/fonts/         # 로컬 .woff2 (CDN 대체)
 - VP-16 실제 잘림 4건: s71 막대 내 "평균0.55"·"현재"(7pt 잘림), s99 제목 wrap·"분석팀"(115% 잘림)
 - FP 277건 / UNVERIFIABLE(VP-11) 12건
 
-## 다음 단계 (sweet-spot 튜닝)
-- [ ] 각 룰별: majority-REAL 13건을 **전부 포함**하는 최소 발화 조건 탐색 (recall=1.0 제약).
-  - VP-04: 정답 9건 전부 ratio<2.6 부근 → hard floor를 ~3:1 또는 색상별로 조정해 muted-legible(3~4.5:1) 277 FP 다수 침묵, 청록/금색 저대비만 발화.
-  - VP-16: 정답 4건 전부 **실제 잘림**(렌더 텍스트≠소스) → "fills %" 추정 발화 폐기, **렌더 잘림 검출**로 교체(소스↔렌더 텍스트 비교).
-  - VP-08/03/02/10: 정답 0건 → 거의 전부 FP. 발화 자체를 고확신 케이스로 대폭 축소(또는 INFO 강등).
-  - VP-11: UNVERIFIABLE → WARN 침묵(또는 별도 a11y 채널 분리).
-- [ ] 튜닝 후 12장 재측정: recall=1.0 유지 + precision 47%→목표 ↑ 확인.
-- [ ] OLD/NEW/TUNED 3자 정답지 채점 비교(부수 지표).
+## 다음 단계 (sweet-spot 튜닝) — ★완료 2026-06-14 (이미지 직접판정, recall 1.0)
+- [x] 각 룰별 최소 발화 조건 탐색 (recall=1.0 제약). ★원칙: 등급추가=회피 폐기 → 검출로직으로 발화제거, 판정은 이미지 직접확인.
+  - [x] VP-04: floor 4.5→3.0→**2.124**. GT 9건 raw≤2.118, FP min 2.130(강조배지/캡션). 537→92(전부 TP).
+  - [x] VP-16: 1.0→1.1 + wraps 겹침/작은도형 게이트 + fills 세로넘침+긴텍스트 + 표격자 셀 제외. 467→27(GT 4 보존).
+  - [x] VP-02: 표격자가드 + 너비분기 끔(좌측정렬 너비차 FP). 45→0. VP-10: 표격자 38→1.
+  - [x] VP-03/11: 끔(빈프레임 투명·z-order 변환산물 UNVERIFIABLE, 함수 보존). 49→0.
+- [x] 튜닝 후 측정: realmix 155장 GT 13/13 recall=1.0. 전체 WARN 849→132.
+- [x] OLD/NEW/TUNED 채점: OLD 2014 → TUNED 153(92%↓), recall 1.0, precision 0.6→8.5%.
+- 근거: slides/rule-audit/VERIFICATION.md, 회귀이미지 slides/rule-audit/regr-img/, 커밋 28b2f80~45c2f5a.

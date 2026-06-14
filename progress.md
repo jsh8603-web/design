@@ -111,6 +111,10 @@ date: 2026-06-13
 
 ## Working Notes
 > 인계: [handoff-sweetspot-20260614.md](./handoff-sweetspot-20260614.md) — 정답지 기반 sweet-spot 튜닝
+> [ckpt-202606142240:btn-design] **STATUS: sweet-spot 튜닝 완료**
+- 마지막 결정: GT기반 sweet-spot 완결(이미지 직접판정, 등급회피 폐기). 전체 WARN 849→132(84%↓)·OLD 2014 대비 153(92%↓), GT 13/13 recall1.0. VP-04 floor2.124(92 TP)·VP-16 467→27(wraps겹침게이트+fills세로넘침+표격자)·VP-02 너비끔(0)·VP-03/11 끔. 커밋 28b2f80~45c2f5a(9개). plan sweet-spot 3항목 전부 [x].
+- 다음 의도: plan 3항목 완료. 추가 여지=VP-09 9(빡빡카드 경계, 보수유지)·잔존 미검증 143장 TP 검증. 사용자 추가 지시 대기 or OLD/NEW 채점 후속.
+- 동기화 필요: VERIFICATION.md(전 과정+채점 박제) slides/rule-audit/. 회귀이미지 regr-img/(20장). long-mode ON. 검출엔진 scripts/validate-pptx.js.
 > [ckpt-202606142115:btn-design]
 - 마지막 결정: ★등급추가=회피 폐기(사용자 "WARN 안뜨게/INFO 회피"). FP는 검출로직으로 발화제거, 판정은 이미지직접확인(realmix 12장 COM렌더). 적용완료: VP-04 floor 2.124(537→92, 강조색/캡션 raw 2.13~2.8 FP)·VP-16 1.1(467→172, fills100~110% 한줄확인 s7/9/63/124)·VP-02/10 표격자가드(45→9·38→1, 직교축짝 과반=격자 skip)·VP-03/11 끔(빈프레임투명·z-order, 함수보존 호출주석). GT 13/13 recall1.0. 전체 WARN 849→282(67%↓). 커밋 28b2f80·b679a54·d8058b4. INFO강등 d93e5cd는 원복.
 - 다음 의도: 잔존 VP-02 9건 진짜 산발오정렬 1건 이미지확인(의도살림 검증)·VP-09 9건/VP-16 168건 sweet-spot 여지 점검. OLD/NEW/TUNED 부수채점(plan 마지막). VERIFICATION.md=slides/rule-audit/ (INFO섹션 정정완료, 실제처리 박제).

@@ -1,0 +1,35 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+<style>
+@font-face { font-family: 'X'; src: url(x.woff2); }
+body { background: url(bg.png); width:960px; height:540px; }
+.col { columns: 2; }
+.rtl { direction: rtl; }
+.pre { white-space: pre; }
+.sticky { position: sticky; top:0; }
+.bimg { border-image: linear-gradient(red,blue) 30; }
+.conic { background: conic-gradient(red, blue); }
+</style></head>
+<body>
+<h1>PF 결함 다발 <span style="color:#f00">스팬분할</span> 꼬리텍스트</h1>
+<div style="flex:1; color:#222">PF-02 flex1 no box-sizing</div>
+<img style="height:100%" src="assets/a.png">
+<div style="background:url(deco.png); width:100px; height:100px">PF-05</div>
+<div style="display:flex; gap:8px"><img src="assets/b.png"></div>
+<p style="background:#eee; padding:8px">PF-07 p with background</p>
+<div>국기 🇰🇷 이모지 PF-12</div>
+<div style="border-radius:50%; border:3px solid #333; width:80px; height:80px">PF-13</div>
+<div><div style="background:#ccc; width:50px; height:50px"></div><span>PF-14 형제스팬</span></div>
+<div style="transform:scale(1.4)">PF-17 unsupported transform</div>
+<div style="background-image:linear-gradient(#fff,#000); width:120px; height:60px">PF-39 inline gradient</div>
+<div class="col">PF-48 columns</div>
+<div class="bimg" style="width:100px;height:40px">PF-50 border-image</div>
+<div class="sticky">PF-51 sticky</div>
+<div class="rtl">PF-53 rtl 텍스트</div>
+<div class="pre">PF-54 pre   공백</div>
+<span style="background:#1428a0; color:#fff; padding:4px">PF-55 span bg+color</span>
+<div class="conic" style="width:90px;height:90px">PF-62 conic</div>
+<div style="display:flex; align-items:center"><img src="assets/c.png"></div>
+<div style="flex:1; overflow:hidden; flex-direction:column; display:flex"><div style="height:800px">PF-59 큰 고정높이</div></div>
+<table><tr><td>PF-63 table</td></tr></table>
+<img src="assets/noalt.png" width="100" height="80">
+</body></html>

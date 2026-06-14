@@ -1760,6 +1760,52 @@ async function runPlaywrightChecks(slidesDir, files) {
             `Text "${issue.text}..." (${issue.color}) on background image without overlay or text-shadow — may be unreadable [IL-69]`));
         }
 
+        // PF-71: 일반 텍스트 WCAG 대비 (VP-04 동등 floor 2.124) — PF-clean → VP-04-clean 보장.
+        // 생성규칙: HTML이 저대비 색조합을 쓰면 변환 후 PPTX(VP-04)에서 잡힘. HTML 단계에서 막아
+        // 생성 시 예방. PF-60(배지)·PF-24(흰on흰)·PF-61(이미지배경)이 못 잡는 일반 텍스트 커버.
+        const lowContrastIssues = await page.evaluate(() => {
+          function lum(r, g, b) { const a = [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2]; }
+          function cr(f, b) { const L = Math.max(lum(...f), lum(...b)), D = Math.min(lum(...f), lum(...b)); return (L + 0.05) / (D + 0.05); }
+          const issues = [];
+          const els = document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,div,td,th,li,strong,b,em');
+          for (const el of els) {
+            // 직접 텍스트 노드만 (자식 요소 텍스트 중복 제외)
+            const direct = [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join('');
+            if (!direct || direct.length < 2) continue;
+            const cs = getComputedStyle(el);
+            const m = cs.color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/); if (!m) continue;
+            const fg = [+m[1], +m[2], +m[3]];
+            // 배경: ancestor chain 첫 solid bg. 이미지배경 만나면 PF-61 담당이라 skip.
+            let bg = null, cur = el;
+            while (cur && cur !== document.body) {
+              const bcs = getComputedStyle(cur);
+              if (bcs.backgroundImage && bcs.backgroundImage !== 'none') { bg = 'image'; break; }
+              const bm = bcs.backgroundColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+              if (bm && (bm[4] === undefined || +bm[4] >= 0.5)) { bg = [+bm[1], +bm[2], +bm[3]]; break; }
+              cur = cur.parentElement;
+            }
+            if (bg === 'image') continue;
+            if (!bg) {
+              // ancestor에서 solid bg 못 찾으면 body/html 실제 배경 사용(어두운 풀블리드 배경 s99 #1A1511
+              // 같은 경우 흰글자=정상대비인데 흰 fallback이면 흰on흰 오판). body→html 순.
+              for (const root of [document.body, document.documentElement]) {
+                const rbg = getComputedStyle(root).backgroundColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+                if (rbg && (rbg[4] === undefined || +rbg[4] >= 0.5)) { bg = [+rbg[1], +rbg[2], +rbg[3]]; break; }
+              }
+              if (!bg) bg = [255, 255, 255];
+            }
+            const ratio = cr(fg, bg);
+            if (ratio < 2.124) {
+              issues.push({ text: direct.substring(0, 30), fg: `rgb(${fg.join(',')})`, bg: `rgb(${bg.join(',')})`, ratio: ratio.toFixed(2) });
+            }
+          }
+          return issues;
+        });
+        for (const issue of lowContrastIssues) {
+          results.push(fmtWarn(file, 'PF-71',
+            `Text "${issue.text}..." (${issue.fg} on ${issue.bg}) — WCAG contrast ${issue.ratio}:1 < 2.124 (VP-04 동등). 변환 후 저대비=가독성 결함, 색 조정 필요 [IL-66]`));
+        }
+
         // PF-65: Table/grid cell text overflow — detect text wrapping in cells that should be single-line
         const cellOverflowIssues = await page.evaluate(() => {
           const issues = [];

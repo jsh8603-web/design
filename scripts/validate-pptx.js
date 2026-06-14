@@ -1306,10 +1306,11 @@ function checkCjkTextOverflow(shapes, slideNum) {
         slide: slideNum,
         message: `CJK text "${text.substring(0, 25)}..." wraps to ${linesNeeded} lines (${estPt}pt / ${availPt}pt, ${estimatedFontPt}pt font) — fits vertically [IL-37]`,
       });
-    } else if (ratio > 1.0) {
-      // VP-16 추가개선: 임계 0.95→1.0. 추정폭이 가용폭 미만(<100%)이면 한 줄에 들어가 wrap 안 함
-      // (게다가 CJK 0.92 계수가 ~5% 과대추정: s2 "미·중·유럽" 101%도 실제 한 줄). "may wrap" 경고는
-      // 추정폭이 실제로 가용폭을 넘을 때만. 운영덱 <100% 81건 FP 제거. 잘림(ERROR)·실제초과(>100%)는 유지.
+    } else if (ratio > 1.1) {
+      // VP-16 sweet-spot(정답지 앵커, 2026-06-14): 임계 1.0→1.1. CJK 0.92 계수가 ~5% 과대추정이라
+      // fills 100~110% 발화는 렌더상 실제 한 줄에 들어감(realmix 12장 검증: s2 101%·s7 105%/101%·
+      // s99 105% 4건 모두 3-judge blind 다수결 FP, 정답 0건). 정답 99.9 "분석팀"은 fills 115%로
+      // 110% 초과 → 생존(recall=1.0). 운영덱 fills 100~110% 299건 FP 침묵, >110% 37건 유지.
       const availPt = Math.round(availableWidth / EMU_PER_PT);
       const estPt = Math.round(estimatedWidth / EMU_PER_PT);
       issues.push({

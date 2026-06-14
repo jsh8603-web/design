@@ -113,13 +113,19 @@ date: 2026-06-13
 > plan.md `# VP/PF 정답화 마무리` 참조. 판정기준 SSOT 5항(plan). 자율주행, 정탐회귀 절대금지.
 - [x] C0 표본확대 발견 FP 처리 — phantom 흰글씨(VP-04 배경오측정 2종: 뱃지 미세이탈 톨러런스 + 막대=트랙 동률 타이브레이크) + 장식glyph("+") 제외. errors 14→4, WARN 119→115, GT 13/13. 커밋 (phantom)·(glyph)
   - 회귀 확인: VP-04 수정전후 diff = phantom 10건(s43/59/122/149/151)+glyph 4건(s123)만 제거, 새 발화 0. 이미지 직접판정(s43/59/122/149 정상슬라이드).
-- [ ] C1 VP-16 출처캡션 FP 게이트 (fills 과대추정, GT s71/99 보존)
-- [ ] C2 PF-71 동기화 (VP-04 phantom·glyph 게이트 이식)
-- [ ] C3 PF-clean=VP-clean 교차검증 (전수)
-- [ ] C4 VERIFICATION.md + 커밋
+- [x] C1 VP-16 출처캡션 게이트(31→21) + autofit 게이트(21→16, normAutofit skip·겹침예외 GT보존). errors 4→2. GT VP-16 4/4
+  - 회귀 확인: GT 13/13 전구간 유지. 잔존 비-GT 12건(s26/56/76/78/113/129/134)=autofit none이라 GT s71/99(none)와 추정구조 동일 → 정탐회귀 방지 보수유지(subagent FP확인했으나 안전신호 부재)
+- [x] C2 VP-04 배경추적 정밀화 — phantom(뱃지 톨러런스+막대 타이브레이크) + 반투명 alpha 제외 + 2-tier 배경선택 + 장식T. A8B8CC 7·s144·s57 제거. VP-04 88→80
+  - 회귀 확인: 각 수정 verify-gt 가드, GT 13/13. s71 2회 LOST→즉시 게이트 보정(톨러런스 0.15·2차 폭2배 제한)으로 복구
+- [x] C3 PF-clean=VP-clean 교차검증(색 단위, 매핑우회) — VP-04 발화색 전부 PF-71도 발화 = PF 구멍 0. A8B8CC·FF9800 해소로 2색→0
+- [x] C4 VERIFICATION.md 박제 + 커밋(phantom·glyph·출처·반투명·장식T·autofit 6커밋). VP 133→96, FP 37건 제거
 
 ## Working Notes
-> ★인계(최신): [handoff-vp-pf-crossverify-20260615.md](./handoff-vp-pf-crossverify-20260615.md) — 표본확대 FP발견(강조색 GT충돌·phantom버그·VP-16 14장), 다음세션 §5 우선순위
+> [ckpt-202606150000:btn-design] **STATUS: Phase C 완료 — VP 정답화 마무리 + PF교차검증**
+- 마지막 결정: 사용자 "vp정답화→pf렌더링하면 vp 안잡혀야 정상, 잡히면 pf구멍. 정탐회귀 절대금지, fp 최대0, 기준명시" + 자율주행 on2. **판정기준 SSOT 5항 plan 박제**(recall=1.0 절대/이미지직접/TP=WCAG미달·잘림/accent=약한정탐 유지/PF-clean=VP-clean). **성과**: VP 133→96(E2 W94), FP 37건 제거(phantom10·glyph4·출처10·반투명A8B8CC7·장식T1·autofit5, 전부 이미지직접판정), GT 13/13 recall=1.0 전구간, ★PF-clean⊇VP-clean(VP-04 발화색 전부 PF-71 커버=구멍0). 커밋 6개.
+- 다음 의도: 잔존 = (a)VP-16 비-GT 12건(autofit none, GT s71/99와 추정구조 동일 → 정탐회귀 위험 보수유지. 추가시 bodyPr tIns/bIns 파싱으로 padding 정밀화 여지) (b)VP-04 강조색 65건(기준4=WCAG미달 약한정탐 유지, GT가 REAL로 박음. 사용자가 FP로 재정의 원하면 floor·PF-71 동반조정+GT재산정 필요 — §4 미해결). PF 과민분(1B2A4A/FAFAF9/FFFFFF26=HTML단계 엄격경고, 변환후 무해).
+- 동기화 필요: 엔진 scripts/validate-pptx.js(findBackgroundColor 2-tier+alpha, checkCjkTextOverflow autofit게이트)+preflight-html.js(PF-71). VERIFICATION.md 전과정 박제. 회귀이미지 regr-img/(s137/141/144/57 등 추가). long-mode on2(750k).
+> ★인계(이전): [handoff-vp-pf-crossverify-20260615.md](./handoff-vp-pf-crossverify-20260615.md) — 표본확대 FP발견, §5 우선순위(①phantom ②glyph ③VP-16 ④강조색 — ①②③ 처리완료, ④ 미해결)
 > 인계: [handoff-sweetspot-20260614.md](./handoff-sweetspot-20260614.md) — 정답지 기반 sweet-spot 튜닝
 > [ckpt-202606142330:btn-design] **STATUS: VP 전수 정답화 + PF-71 보강 완료**
 - 마지막 결정: 사용자 "VP 일부만 본다·정공법 FP0"+"PF는?"+"PF-clean인데 VP걸리면 PF구멍" → ★작업순서 재정립: Phase1 VP정답화→Phase2 PF보강. **Phase1**: VP 16룰 전수, VP-14 거짓ERROR7(장식글자 S/5)·VP-07 FP2(h0셀) 제거(GT밖 구멍), 미발화6 회귀✓. errors21→14·WARN129. **Phase2**: PF-VP교차테스트→VP-04저대비 PF구멍 발견→PF-71 신규(텍스트대비 floor2.124, --full Playwright). GT검증 VP-04동일ratio, realmix PF-71 99≈VP-04 92=PF-clean→VP-04clean 보장. 커밋 76ea1dd·efe858b 등.

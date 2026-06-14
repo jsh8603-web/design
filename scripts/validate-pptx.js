@@ -353,8 +353,14 @@ function checkColumnAlignment(shapes, slideNum) {
     const minW = Math.min(...widths);
     const maxW = Math.max(...widths);
 
-    // If width variance exceeds ~5pt (63500 EMU), flag it
-    if (maxW - minW > 63500) {
+    // VP-02 추가개선: 절대 5pt 변동만으론 좌측정렬 리스트(텍스트 길이차로 폭만 다른 항목)도 발화한다
+    // (약한 FP, slide5 [5.28×4,5.72×2] relVar 0.08). 상대 변동(maxW-minW)/median>0.15 일 때만 발화.
+    // VP-10 CV게이트와 동형. 진짜 불일치(폭 35%+ 차이)는 보존.
+    const sortedW = widths.slice().sort((a, b) => a - b);
+    const medW = sortedW[Math.floor(sortedW.length / 2)];
+    const relVar = medW > 0 ? (maxW - minW) / medW : 0;
+    // If width variance exceeds ~5pt (63500 EMU) AND is relatively meaningful, flag it
+    if (maxW - minW > 63500 && relVar > 0.15) {
       const widthStrs = widths.map((w) => emuToInches(w) + '"').join(', ');
       issues.push({
         level: 'WARN',
@@ -415,6 +421,11 @@ function checkEmptyText(shapes, slideNum) {
     if (s.hasTxBody) {
       const allEmpty = s.textRuns.length === 0 || s.textRuns.every((r) => r.text.trim() === '');
       if (allEmpty) {
+        // VP-03 추가개선: fill 있고 면적 있는 도형은 시각요소(막대·카드·배경·구분선)이고 텍스트 없는
+        // 게 정상이다. 운영덱 빈 도형 1690개 중 92%가 fill, 68%가 fill+면적>0.2in²(막대·카드)=FP.
+        // → 진짜 빈 텍스트박스(fill 없거나 면적 작음)만 발화. 핸드오프가 코퍼스 의존이라 보류한 영역.
+        const areaIn2 = (s.w * s.h) / (EMU_PER_INCH * EMU_PER_INCH);
+        if (s.fillColor && areaIn2 > 0.2) continue;
         // Suppress if this is html2pptx's fill-only shape with a text sibling nearby
         if (s.fillColor && hasOverlappingSibling(s, shapes,
           (o) => o.textRuns.length > 0 && o.textRuns.some(r => r.text.trim()))) {

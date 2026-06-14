@@ -376,16 +376,11 @@ function checkColumnAlignment(shapes, slideNum) {
     const meanW = widths.reduce((a, b) => a + b, 0) / widths.length;
     const variance = widths.reduce((a, w) => a + (w - meanW) ** 2, 0) / widths.length;
     const cv = meanW > 0 ? Math.sqrt(variance) / meanW : 0;
-    // If width variance exceeds ~5pt (63500 EMU) AND CV is relatively meaningful, flag it
-    if (maxW - minW > 63500 && cv > 0.15) {
-      const widthStrs = widths.map((w) => emuToInches(w) + '"').join(', ');
-      issues.push({
-        level: 'WARN',
-        code: 'VP-02',
-        slide: slideNum,
-        message: `Column at x=${emuToInches(col.x)}" has inconsistent widths (${widthStrs})`,
-      });
-    }
+    // VP-02 너비 불일치 분기 끔(이미지직접확인 2026-06-14): col은 같은 x로 묶인 좌측정렬 그룹인데,
+    // 좌측정렬에선 폭이 내용따라 달라도 정렬이 맞는 게 정상(s8 "415TWh"·"945TWh" KPI카드+하단항목,
+    // s7 차트). cv/widthStrs는 계산만 두되 발화 안 함. 진짜 결함은 아래 x-offset(같은 컬럼인데 좌측
+    // 경계가 어긋남)만 의미. GT 0건이라 회귀 없음. (변수 미사용 경고 회피 위해 참조)
+    void cv; void maxW; void minW;
 
     // Check x alignment within the column
     const xs = col.shapes.map((s) => s.x);

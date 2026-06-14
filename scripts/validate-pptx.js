@@ -428,8 +428,14 @@ function checkEmptyText(shapes, slideNum) {
         // → 진짜 빈 텍스트박스(fill 없거나 면적 작음)만 발화. 핸드오프가 코퍼스 의존이라 보류한 영역.
         const areaIn2 = (s.w * s.h) / (EMU_PER_INCH * EMU_PER_INCH);
         if (s.fillColor && areaIn2 > 0.2) continue;
-        // Suppress if this is html2pptx's fill-only shape with a text sibling nearby
-        if (s.fillColor && hasOverlappingSibling(s, shapes,
+        // VP-03 추가개선: 텍스트 라벨로 못 쓰는 크기(높이<0.1in≈7pt OR 면적<0.025in²≈0.16²)는
+        // placeholder 가 아니라 장식(점·구분선·밑줄·마일스톤마커). 점 0.08²·밑줄 0.83×0.06·마커 0.14²(10pt) 등.
+        // 진짜 빈 라벨은 폭·높이 모두≥0.1 & 면적≥0.025 — 보존. min(w,h) 으로 가로·세로 얇은 바 모두 차단.
+        if (Math.min(s.w, s.h) < 0.1 * EMU_PER_INCH || areaIn2 < 0.025) continue;
+        // VP-03 추가개선: html2pptx 는 빈 wrapper div(컨테이너·행 래퍼)에도 txBody 를 붙인다.
+        // 텍스트는 자식 도형에 있고 래퍼는 투명(no-fill). 겹치는 텍스트 자식이 있으면 래퍼 = 억제.
+        // 기존엔 fill 도형만 억제해 no-fill 래퍼(s71 차트 컨테이너·행 래퍼 25건)를 놓쳤다.
+        if (hasOverlappingSibling(s, shapes,
           (o) => o.textRuns.length > 0 && o.textRuns.some(r => r.text.trim()))) {
           continue;
         }

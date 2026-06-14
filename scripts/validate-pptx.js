@@ -851,7 +851,11 @@ function checkShrinkReliability(shapes, slideNum) {
     // VP-09 추가개선: 박스높이가 한 줄(lineHeight)도 안 되게 잡힌 도형은 html2pptx 측정 아티팩트다
     // (라벨류 도형이 autofit 으로 실제론 늘어남). 운영덱 avail 8pt(<lineHeight) 8건 + 자연폭 자막류가
     // 약한 FP. 박스가 최소 한 줄 높이 이상일 때만 밀도 판정. 진짜 과밀(여러 줄 박스+넘침)은 보존.
-    if (neededHeight > shapHeightPt * 1.5 && shapHeightPt >= avgLineHeightPt) {
+    // VP-09 잔존 정밀화(이미지직접확인 2026-06-14): 운영덱 잔존 9건 전부 "2 lines" 추정인데 실제
+    // PptxGenJS autofit/박스가 처리해 잘림 0(s110 카드제목·s56 funnel·s78 타임라인·s114 배지·s128 표헤더).
+    // 진짜 과밀(fn-verify slide4 "5 lines")만 3줄+. → lines>=3 일 때만 발화. 2줄 경계 autofit FP 제거,
+    // 다중줄 진짜 넘침은 보존(FN 안전).
+    if (lines >= 3 && neededHeight > shapHeightPt * 1.5 && shapHeightPt >= avgLineHeightPt) {
       const name = s.name || 'unnamed';
       issues.push({
         level: 'WARN',

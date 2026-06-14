@@ -835,6 +835,9 @@ function checkContrast(shapes, slideNum, slideBgColor, pictures = []) {
       // VP-04 장식 glyph 제외: 단일 구분/연산 기호(+ · • × ÷ / → 등)는 막대/단계 사이 보조 연결
       // 시각요소로 의도적 저채도(본문 아님) → 대비검사 제외. (s123 막대그래프 "+" ×4 = 100+20+...145 FP)
       if (rt.length === 1 && /^[+\-·•×÷/→←↑↓*=~|<>]$/.test(rt)) continue;
+      // 단일 문자 대형(≥30pt) 장식 라벨(SWOT 매트릭스 S/W/O/T 위치글자 등) 제외 — 본문 아닌 장식.
+      // (s57 "T" 32pt 주황 on 연살구 = 읽히는 장식. GT 청록 "01" 등은 2자라 무관 = 보존)
+      if (rt.length === 1 && run.fontSize && run.fontSize >= 30) continue;
       // Default text color is black if not specified
       const fgColor = run.color || '000000';
 

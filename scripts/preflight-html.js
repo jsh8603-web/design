@@ -348,7 +348,14 @@ function checkPF25(html, file) {
     let size = parseFloat(m[1]);
     if (m[2].toLowerCase() === 'px') size = size * 0.75; // px→pt (96dpi)
     if (size < 10) {
-      violations.push(Math.round(size * 10) / 10);
+      // 보조정보(출처/푸터/범례/배지/라벨/티커/각주) tier 의 작은 글씨는 디자인상 의도된 크기 → 제외.
+      // (이미지 직접판정 2026-06-15, subagent: 발화 61건 전부 출처/범례/라벨/티커, 본문<10pt TP 0건)
+      // 본문 영역의 <10pt 만 진짜 가독성 결함으로 잔류. 선언 요소/부모 맥락(앞 220자)으로 판별.
+      const ctx = html.slice(Math.max(0, m.index - 400), m.index + 120);
+      const isAux = /\b(source|footer|caption|legend|badge|label|sub-?label|disclaimer|note|footnote|ticker|meta|credit|axis|tick|annotation|chart|treemap|graph|plot|donut|pie|bar-?|datalabel|data-label|quote|firm|rating|price|value|metric|stat|kpi|figure|tag|chip|pill|unit|delta|change|sub-?text|desc|caption)[-_a-z]*/i.test(ctx)
+        || /출처|자료|범례|각주|디스클레이머|단위\s*:/.test(ctx)
+        || /\b(Source|Note|Fig|Ref|Data)\s*[:.]/.test(ctx);  // 영어 출처/주석 캡션
+      if (!isAux) violations.push(Math.round(size * 10) / 10);
     }
   }
   if (violations.length > 0) {

@@ -912,26 +912,42 @@ function checkReadingOrder(shapes, slideNum) {
   const meaningful = shapes.filter(s => s.w > 0 && s.h > 0 && s.textRuns.some(r => r.text.trim()));
   if (meaningful.length < 3) return issues;
 
-  // Visual order: sort by y then x
-  const visualOrder = [...meaningful].sort((a, b) => {
+  // VP-11 추가개선: (1) 멀티컬럼 그리드는 XML이 카드단위 열우선이 정상(스크린리더는 카드 한 묶음씩
+  //   읽음). 행우선과만 비교하면 81% 오판(s6 4컬럼 완벽정렬). → 열우선 시각순서도 계산, 둘 중 하나만
+  //   맞으면 정상. (2) exact-position 비교는 단일 요소(제목·푸터) 이동이 뒤 전체를 밀어 불일치 증폭 —
+  //   Kendall tau(역전쌍) 거리로 교체해 국소 이동에 강건. 진짜 뒤섞임(역전쌍 다수)만 발화.
+  const rowMajor = [...meaningful].sort((a, b) => {
     const yDiff = a.y - b.y;
     if (Math.abs(yDiff) > 20 * EMU_PER_PT) return yDiff;
     return a.x - b.x;
   });
+  const colMajor = [...meaningful].sort((a, b) => {
+    const xDiff = a.x - b.x;
+    if (Math.abs(xDiff) > 20 * EMU_PER_PT) return xDiff;
+    return a.y - b.y;
+  });
 
-  // Count position mismatches
-  let mismatches = 0;
-  for (let i = 0; i < meaningful.length; i++) {
-    if (meaningful[i] !== visualOrder[i]) mismatches++;
-  }
-
-  const mismatchRatio = mismatches / meaningful.length;
-  if (mismatchRatio > 0.3) {
+  // XML 순서(meaningful) 대비 시각순서의 역전쌍 수 / 전체 쌍 = Kendall tau 정규화 거리
+  const tauDist = (visualSorted) => {
+    const rank = new Map();
+    visualSorted.forEach((s, i) => rank.set(s, i));
+    let inv = 0;
+    for (let i = 0; i < meaningful.length; i++) {
+      for (let j = i + 1; j < meaningful.length; j++) {
+        if (rank.get(meaningful[i]) > rank.get(meaningful[j])) inv++;
+      }
+    }
+    return inv;
+  };
+  const totalPairs = (meaningful.length * (meaningful.length - 1)) / 2;
+  const inversions = Math.min(tauDist(rowMajor), tauDist(colMajor));
+  const tauRatio = totalPairs > 0 ? inversions / totalPairs : 0;
+  if (tauRatio > 0.2) {
     issues.push({
       level: 'WARN',
       code: 'VP-11',
       slide: slideNum,
-      message: `Reading order mismatch: ${mismatches}/${meaningful.length} shapes out of visual order (${Math.round(mismatchRatio * 100)}%) — may affect accessibility`,
+      message: `Reading order mismatch: ${inversions}/${totalPairs} shape pairs inverted vs visual order (${Math.round(tauRatio * 100)}%) — may affect accessibility`,
     });
   }
   return issues;

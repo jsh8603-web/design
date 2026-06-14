@@ -1265,6 +1265,17 @@ function checkCjkTextOverflow(shapes, slideNum) {
     const cjkRatio = cjkCount / text.length;
     if (cjkRatio < 0.2) continue;
 
+    // 표/격자 셀 판정(이미지직접확인 2026-06-14): 같은 행(다른 x)·같은 열(다른 y) 짝을 둘 다 가지면
+    // 표 셀 = 셀 폭이 넉넉해 PptxGenJS autofit 한 줄(s130 "기본급(22일×10만)"·"퇴직금(1/12)" 한 줄).
+    // CJK 추정 과대로 WARN 오발화 → wraps/fills 분기에서만 skip. 단 ERROR(will overflow=심각 넘침)는
+    // 표 셀이라도 진짜 잘림일 수 있어 유지(FN 방지). GT(s71 막대라벨·s99 제목/푸터)는 격자 아니라 보존.
+    const gtol = 10 * EMU_PER_PT;
+    const hasRowPeer = shapes.some((o) => o !== s && shapeText(o).trim() &&
+      Math.abs(o.y - s.y) <= gtol && Math.abs(o.x - s.x) > gtol);
+    const hasColPeer = shapes.some((o) => o !== s && shapeText(o).trim() &&
+      Math.abs(o.x - s.x) <= gtol && Math.abs(o.y - s.y) > gtol);
+    const isGridCell = hasRowPeer && hasColPeer;
+
     // Use actual font size from textRuns if available, fallback to 12pt
     const fontSizes = s.textRuns.filter(r => r.fontSize).map(r => r.fontSize);
     const estimatedFontPt = fontSizes.length > 0 ? Math.max(...fontSizes) : 12;
@@ -1326,6 +1337,7 @@ function checkCjkTextOverflow(shapes, slideNum) {
         o.textRuns.some((rr) => rr.text && rr.text.trim()) &&
         o.y > s.y && o.y < shapeBottom && o.x < s.x + s.w && o.x + o.w > s.x);
       const isSmallShape = availableWidth < 1.5 * EMU_PER_INCH;
+      if (isGridCell) continue; // 표 셀 = autofit 한 줄(WARN 한정 skip)
       // 큰 도형이고 인접 텍스트 도형 겹침도 없으면 = 여백충분 정상 2줄(s12 카드제목) → skip.
       // 작은도형(막대 s71) 또는 인접겹침(s99 제목→부제)이면 발화 유지(GT 보존).
       if (!isSmallShape && !overlapsNeighbor) continue;
@@ -1348,7 +1360,7 @@ function checkCjkTextOverflow(shapes, slideNum) {
       // 도형 h=0.20"<2줄 필요 = 세로 넘침). 세로 여유면(autofit 한 줄 처리) skip.
       // 짧은 텍스트(≤5자 배지·라벨, s132 "정기성")는 PptxGenJS autofit이 한 줄로 처리 → skip.
       // 세로 여유(s84 큰제목 한 줄) → skip. 긴 텍스트가 세로까지 넘칠 때만 진짜 잘림(GT 99.9 11자).
-      if (!verticalOverflow || isShortText) continue;
+      if (isGridCell || !verticalOverflow || isShortText) continue;
       const availPt = Math.round(availableWidth / EMU_PER_PT);
       const estPt = Math.round(estimatedWidth / EMU_PER_PT);
       issues.push({

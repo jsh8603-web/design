@@ -95,3 +95,31 @@
 - **PF 31개**: preflight 가 HTML 정규식 검사 → 결함 다발 HTML(fn-verify/slide-1·2) 직접 먹임 → **31/31 발화**.
 - **VP 7개**: 일부 결함(VP-01 오프슬라이드·VP-15 그림겹침·VP-05/06 테이블)은 convert-native 가 상류 차단/정규화(오버플로 FAIL·그림 항상 텍스트뒤·HTML table→도형) = HTML픽스처 트리거 불가 = 외부PPTX용 defense-in-depth. → PPTX XML 직접 주입(`inject-vp-defects.mjs`)으로 **7/7 발화**(VP-08은 slide-vp08.html).
 → **결론**: 미발화는 깨끗한 운영덱에 결함이 없어서일 뿐, 전 규칙 정상 작동. 진짜 FN(놓침) 0. 재현 = fn-verify/README.md.
+
+## 기준결함목록(GT) 기반 sweet-spot 튜닝 (2026-06-14, 압축후 속개)
+> 전환: 개별 FP 줄이기(정밀도 35→47%) → **GT 13건 100% 잡는 한도(recall=1.0) 내 FP 최소화**.
+> 사용자 지적 "예쁜 슬라이드에 경고 쏟아붓는 과민성이 문제".
+
+### 기준결함목록(majority-REAL 13건, 3-judge blind Opus 다수결 split 0)
+`slides/rule-audit/ab-verify/groundtruth.json`. realmix 12 대표슬라이드(7·127·122·2·71·62·24·142·90·15·124·99).
+- VP-04 저대비 9: s2 청록"01~06"×6(#00C2FF 2.1:1), s7 청록2.1·초록1.9, s71 금색#D4A537 2.3
+- VP-16 실잘림 4: s71 막대 "10년평균0.55"·"현재"(7pt wrap), s99 제목wrap·"분석팀"(fills 115%)
+- 단일 Gemini Pro vision = 모순 confabulate(같은 슬라이드 110% "FP"·95% "REAL")로 신뢰불가 → 3 blind Opus 다수결 교체.
+
+### 적용 (전부 GT 13건 ERROR+WARN 가시 = recall 1.0 유지)
+| 룰 | 조치 | before→after | 근거 |
+|---|---|---|---|
+| VP-16 | "fills %" 임계 1.0→1.1 | 467→172 | fills 100~110% 295건 = CJK 0.92계수 ~5% 과대추정, 렌더상 한줄(GT 0건). GT 99.9 "분석팀"=115%로 생존 |
+| VP-02/03/10/11 | WARN→INFO 강등 | 132건 분리 | GT 13건에 0건 기여, 12장 발화 전부 3-judge FP. INFO 채널(infos 배열+--verbose) 신설=검출보존+기본출력 분리. VP-11=탭순서 정적이미지 검증불가(UNVERIFIABLE) |
+| VP-04 | floor 4.5→3.0 | 775→547 | muted-legible 3~4.5:1 침묵. GT 9건 전부 ratio≤2.3 |
+
+### 12장 precision 재측정 (기본출력 ERROR+WARN, INFO 제외)
+- 발화 75건 = VP-04 59 + VP-16 16. **recall 13/13**. precision ≈ 17%.
+- VP-04가 12장 노이즈 79% 차지 = 잔존 최대 노이즈원.
+- VP-04 ratio 분포: GT 9건 max=2.3 / FP 39건 = ratio 2.4~2.8(muted, judge 전부 "읽을만함"). 경계 마진 0.05.
+- **미결(사용자 판단 대기)**: VP-04 floor 3.0→2.35 추가하향 시 precision 17→36%, 단 미검증 143장 ratio2.4 잠재 FN 리스크. 또는 색상별 조정 / 현 3.0 유지.
+
+### 커밋 (압축후)
+- 28b2f80 VP-16 sweet-spot 1.0→1.1
+- d93e5cd VP-02/03/10/11 INFO 강등
+- (VP-04 3.0 = 압축전 ec9fdc7 계열)

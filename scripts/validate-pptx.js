@@ -562,8 +562,15 @@ function checkShapeGridEmptyCells(shapes, slideNum) {
 
   // Include shapes with fill, even if h=0 (collapsed empty cells)
   // Exclude fill-only shapes that are html2pptx bg siblings (have overlapping text shape)
+  // 위치기반 짝 제외(이미지직접확인 2026-06-14): h=0 collapsed 셀 배경(E0E0E0)이 같은 셀 위치에 실제
+  // text 셀(FAFAFA, s118 "1년+ 의무 적립")과 짝일 때, hasOverlappingSibling은 면적기반이라 h=0을 못
+  // 잡아 빈 셀로 오발화. 같은 (x,y) 위치(±0.1")에 text 도형 있으면 진짜 빈칸 아니므로 제외.
+  const CELL_POS_TOL = 0.1 * EMU_PER_INCH;
+  const hasColocatedText = (s) => shapes.some((o) => o !== s &&
+    o.textRuns.length > 0 && o.textRuns.some((r) => r.text.trim()) &&
+    Math.abs(o.x - s.x) < CELL_POS_TOL && Math.abs(o.y - s.y) < CELL_POS_TOL);
   const filledShapes = shapes.filter((s) => s.w > 0 && s.fillColor && !hasOverlappingSibling(s, shapes,
-    (o) => o.textRuns.length > 0 && o.textRuns.some(r => r.text.trim())));
+    (o) => o.textRuns.length > 0 && o.textRuns.some(r => r.text.trim())) && !hasColocatedText(s));
   if (filledShapes.length < 6) return issues;
 
 
@@ -1058,6 +1065,15 @@ function checkShapeOverlap(shapes, slideNum) {
       if ((!aHasText && a.fillColor && bHasText) || (!bHasText && b.fillColor && aHasText)) continue;
       // Skip fill-only pairs: neither shape has text → no readability impact
       if (!aHasText && !bHasText) continue;
+
+      // 장식 대형 글자 제외(이미지직접확인 2026-06-14): S/W/O/T·5·6·7 같은 1~2자 거대 장식 글자는
+      // box가 콘텐츠와 겹쳐도 실제 글자 위치는 분리(s57 SWOT·s129 큰숫자"5" 직접확인) = box-overlap이
+      // 실제 글자 겹침을 과대평가 → 거짓 ERROR("text unreadable"). 짧은텍스트(≤2자)+큰폰트(≥48pt) 한쪽이면
+      // 의도적 장식 배치로 보고 skip. 본문끼리 진짜 겹침은 유지.
+      const fontOf = (s) => { const fs = s.textRuns.filter((r) => r.fontSize).map((r) => r.fontSize); return fs.length ? Math.max(...fs) : 0; };
+      const aDecor = shapeText(a).trim().length <= 2 && fontOf(a) >= 30;
+      const bDecor = shapeText(b).trim().length <= 2 && fontOf(b) >= 30;
+      if (aDecor || bDecor) continue;
 
       const overlapW = Math.min(aRight, bRight) - Math.max(a.x, b.x);
       const overlapH = Math.min(aBottom, bBottom) - Math.max(a.y, b.y);

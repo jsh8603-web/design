@@ -35,8 +35,11 @@ const COL_TOLERANCE = 36000;
 
 // WCAG contrast thresholds
 const CONTRAST_ERROR = 1.5;
-const CONTRAST_WARN = 4.5;
-const CONTRAST_LARGE = 3.0; // WCAG AA 큰 텍스트(≥18pt) 임계 (정상 4.5 대신 3:1)
+// VP-04 sweet-spot(정답지 튜닝 2026-06-14): WARN 임계 4.5→3.0. 3-judge 다수결 정답지 13건 중
+// VP-04 저대비 9건이 전부 ratio≤2.3(청록2.1·초록1.9·금색2.3) = 3.0 미만이라 recall=1.0 유지.
+// 3~4.5:1 muted-but-legible(회색 부제·출처 = 운영덱 미감) 220건은 judges 전원 FP → 침묵.
+const CONTRAST_WARN = 3.0;
+const CONTRAST_LARGE = 3.0; // (now subsumed by WARN floor) WCAG 큰 텍스트 임계
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 

@@ -1,0 +1,302 @@
+7.1 | FP — bars align, widths fine
+7.2 | FP — left/right edges align fine
+7.3 | FP — decorative/structural empty shape
+7.4 | FP — decorative/structural empty shape
+7.5 | FP — decorative/structural empty shape
+7.6 | FP — decorative/structural empty shape
+7.7 | REAL — cyan ~35% hard to read
+7.8 | REAL — green ~7.5% hard to read
+7.9 | FP — muted source legible 2.6:1
+7.10 | FP — bar fill block, no text needed
+7.11 | FP — dark bar fill, decorative
+7.12 | FP — bar track fill, decorative
+7.13 | FP — colored bar fill, decorative
+7.14 | FP — bar track fill, decorative
+7.15 | FP — spacing looks even, fine
+7.16 | FP — gaps look fine visually
+7.17 | FP — gaps look fine visually
+7.18 | UNVERIFIABLE — tab order not visible
+7.19 | FP — wraps 2 lines, readable
+7.20 | FP — fits on one line
+7.21 | FP — title wraps cleanly readable
+7.22 | FP — fits within area fine
+7.23 | FP — fits on one line
+7.24 | FP — fits within area fine
+127.1 | FP — table cells align fine
+127.2 | FP — table cells align fine
+127.3 | FP — table cells align fine
+127.4 | FP — table cells align fine
+127.5 | FP — table cells align fine
+127.6 | FP — table cells align fine
+127.7 | FP — table cells align fine
+127.8 | FP — table cells align fine
+127.9 | FP — empty structural shape
+127.10 | FP — empty structural shape
+127.11 | FP — empty structural shape
+127.12 | FP — empty structural shape
+127.13 | FP — empty structural shape
+127.14 | FP — empty structural shape
+127.15 | FP — empty structural shape
+127.16 | FP — gray "미가입" legible on chip
+127.17 | FP — gray "미가입" legible on chip
+127.18 | FP — gray "미가입" legible on chip
+127.19 | FP — muted source legible
+127.20 | FP — orange "주의사항" legible 4.3:1
+127.21 | FP — orange text legible 4.3:1
+127.22 | FP — orange text legible 4.3:1
+127.23 | REAL — orange 100% on gray faint
+127.24 | REAL — orange 1.5% on gray faint
+127.25 | REAL — orange 50% on gray faint
+127.26 | REAL — orange 3.5% on gray faint
+127.27 | REAL — orange 50% faint readable
+127.28 | REAL — orange 0.9% faint readable
+127.29 | REAL — orange 50% faint readable
+127.30 | REAL — orange 4.5% faint readable
+127.31 | FP — white on orange chip legible
+127.32 | FP — white on orange chip legible
+127.33 | FP — white on orange chip legible
+127.34 | UNVERIFIABLE — tab order not visible
+127.35 | FP — fits in cell fine
+127.36 | FP — fits in cell fine
+127.37 | FP — fits in cell fine
+127.38 | FP — fits in cell fine
+127.39 | FP — fits in cell fine
+127.40 | FP — fits in cell fine
+127.41 | FP — fits in cell fine
+127.42 | FP — fits in cell fine
+127.43 | FP — fits in cell fine
+127.44 | FP — fits in cell fine
+127.45 | FP — fits in cell fine
+127.46 | FP — fits in cell fine
+127.47 | FP — fits in cell fine
+127.48 | FP — fits in cell fine
+127.49 | FP — fits in cell fine
+127.50 | FP — fits in cell fine
+127.51 | FP — fits in cell fine
+127.52 | FP — fits in cell fine
+127.53 | FP — source fits fine
+127.54 | FP — fits in cell fine
+127.55 | FP — fits in cell fine
+122.1 | FP — card edges align fine
+122.2 | FP — card content aligns fine
+122.3 | FP — card edges align fine
+122.4 | FP — card edges align fine
+122.5 | FP — empty structural shape
+122.6 | FP — empty structural shape
+122.7 | FP — empty structural shape
+122.8 | FP — empty structural shape
+122.9 | FP — empty structural shape
+122.10 | FP — empty structural shape
+122.11 | FP — empty structural shape
+122.12 | FP — empty structural shape
+122.13 | FP — muted source legible
+122.14 | FP — orange highlight text legible
+122.15 | FP — orange highlight text legible
+122.16 | FP — orange highlight text legible
+122.17 | FP — orange highlight text legible
+122.18 | FP — white on orange chip legible
+122.19 | FP — white on orange chip legible
+122.20 | FP — white on orange chip legible
+122.21 | FP — white on orange chip legible
+122.22 | FP — number not visible in image
+122.23 | UNVERIFIABLE — tab order not visible
+122.24 | FP — fits in card fine
+122.25 | FP — fits in card fine
+122.26 | FP — chip label fits fine
+122.27 | FP — chip label fits fine
+122.28 | FP — chip label fits fine
+122.29 | FP — source fits fine
+122.30 | FP — chip label fits fine
+2.1 | FP — card columns align fine
+2.2 | FP — card columns align fine
+2.3 | REAL — cyan "01" low contrast
+2.4 | REAL — cyan "02" low contrast
+2.5 | REAL — cyan "03" low contrast
+2.6 | REAL — cyan "04" low contrast
+2.7 | REAL — cyan "05" low contrast
+2.8 | REAL — cyan "06" low contrast
+2.9 | FP — subtitle legible 4.5:1
+2.10 | UNVERIFIABLE — tab order not visible
+2.11 | FP — fits on one line
+2.12 | FP — fits on one line
+71.1 | FP — bars align left edge fine
+71.2 | FP — empty structural shape
+71.3 | FP — empty structural shape
+71.4 | FP — empty structural shape
+71.5 | FP — empty structural shape
+71.6 | FP — empty structural shape
+71.7 | FP — empty structural shape
+71.8 | FP — empty structural shape
+71.9 | FP — empty structural shape
+71.10 | FP — empty structural shape
+71.11 | FP — empty structural shape
+71.12 | FP — empty structural shape
+71.13 | FP — empty structural shape
+71.14 | FP — empty structural shape
+71.15 | FP — empty structural shape
+71.16 | FP — empty structural shape
+71.17 | FP — empty structural shape
+71.18 | FP — empty structural shape
+71.19 | FP — empty structural shape
+71.20 | FP — empty structural shape
+71.21 | FP — empty structural shape
+71.22 | FP — empty structural shape
+71.23 | FP — empty structural shape
+71.24 | FP — empty structural shape
+71.25 | FP — empty structural shape
+71.26 | FP — empty structural shape
+71.27 | FP — muted source legible
+71.28 | REAL — gold label overlapped by line
+71.29 | FP — white on gold bar legible
+71.30 | REAL — "0.55" label clipped by line
+71.31 | REAL — value labels clipped vertically
+62.1 | FP — progress tracks align fine
+62.2 | FP — empty structural shape
+62.3 | FP — empty structural shape
+62.4 | FP — empty structural shape
+62.5 | FP — empty structural shape
+62.6 | FP — empty structural shape
+62.7 | FP — empty structural shape
+62.8 | FP — empty structural shape
+62.9 | FP — empty structural shape
+62.10 | FP — empty structural shape
+62.11 | FP — empty structural shape
+62.12 | FP — empty structural shape
+62.13 | FP — empty structural shape
+62.14 | FP — progress track fill, decorative
+62.15 | FP — yellow progress fill, decorative
+62.16 | FP — progress track fill, decorative
+62.17 | FP — yellow progress fill, decorative
+62.18 | FP — progress track fill, decorative
+62.19 | FP — yellow progress fill, decorative
+62.20 | FP — small label fits fine
+62.21 | FP — label fits fine
+62.22 | FP — label fits fine
+62.23 | FP — label fits fine
+62.24 | FP — label fits fine
+62.25 | FP — label fits fine
+62.26 | FP — label fits fine
+62.27 | FP — label fits fine
+62.28 | FP — label fits fine
+62.29 | FP — label fits fine
+24.1 | FP — table columns align fine
+24.2 | FP — empty structural shape
+24.3 | FP — empty structural shape
+24.4 | FP — muted source legible
+24.5 | REAL — orange ~6~8% low contrast
+24.6 | REAL — orange 50%대 low contrast
+24.7 | REAL — orange 7.2% low contrast
+24.8 | UNVERIFIABLE — tab order not visible
+24.9 | UNVERIFIABLE — tab order not visible
+24.10 | FP — fits on one line
+142.1 | FP — empty structural shape
+142.2 | FP — empty structural shape
+142.3 | FP — empty structural shape
+142.4 | FP — empty structural shape
+142.5 | FP — empty structural shape
+142.6 | FP — empty structural shape
+142.7 | FP — empty structural shape
+142.8 | FP — empty structural shape
+142.9 | FP — empty structural shape
+142.10 | FP — empty structural shape
+142.11 | FP — empty structural shape
+142.12 | FP — empty structural shape
+142.13 | FP — empty structural shape
+142.14 | FP — empty structural shape
+142.15 | FP — empty structural shape
+142.16 | FP — empty structural shape
+142.17 | FP — empty structural shape
+142.18 | FP — empty structural shape
+142.19 | FP — empty structural shape
+142.20 | FP — white "9" on orange legible
+142.21 | FP — orange divider bar, decorative
+142.22 | FP — orange decorative block
+142.23 | UNVERIFIABLE — tab order not visible
+142.24 | UNVERIFIABLE — tab order not visible
+142.25 | FP — title wraps cleanly readable
+90.1 | FP — empty structural shape
+90.2 | FP — muted source legible
+90.3 | FP — orange annotation legible
+90.4 | FP — orange "IPO" legible
+90.5 | FP — orange annotation legible
+90.6 | FP — orange annotation legible
+90.7 | FP — dark chart bar, decorative
+90.8 | FP — dark chart bar, decorative
+90.9 | FP — dark chart bar, decorative
+90.10 | FP — dark chart bar, decorative
+90.11 | FP — dark chart bar, decorative
+90.12 | FP — red chart bar, decorative
+90.13 | FP — chart bar spacing looks fine
+90.14 | UNVERIFIABLE — tab order not visible
+90.15 | FP — annotation label fits fine
+90.16 | FP — annotation label fits fine
+15.1 | FP — muted source legible
+15.2 | FP — gray annotation legible
+15.3 | FP — gray annotation legible
+15.4 | FP — gray annotation legible
+15.5 | FP — gray annotation legible
+15.6 | FP — gray "Q1" legible
+15.7 | FP — gray annotation legible
+15.8 | FP — gray "Q3" legible
+15.9 | FP — gray annotation legible
+15.10 | FP — colored card block, decorative
+15.11 | FP — colored card block, decorative
+15.12 | FP — colored card block, decorative
+15.13 | FP — colored card block, decorative
+15.14 | UNVERIFIABLE — tab order not visible
+15.15 | FP — label fits fine
+15.16 | FP — label fits fine
+124.1 | FP — table columns align fine
+124.2 | FP — table columns align fine
+124.3 | FP — table columns align fine
+124.4 | FP — table columns align fine
+124.5 | FP — muted source legible
+124.6 | REAL — orange 124.5 faint on gray
+124.7 | REAL — orange 128.5 faint on gray
+124.8 | REAL — orange 130.9 faint on gray
+124.9 | REAL — orange 145.0 faint on gray
+124.10 | REAL — orange 100.0 faint on gray
+124.11 | REAL — orange 128.0 faint readable
+124.12 | REAL — orange 129.4 faint readable
+124.13 | REAL — orange 139.2 faint readable
+124.14 | REAL — orange 120.0 faint readable
+124.15 | FP — table row spacing fine
+124.16 | FP — table row spacing fine
+124.17 | FP — table row spacing fine
+124.18 | FP — table row spacing fine
+124.19 | FP — cell label fits fine
+124.20 | FP — cell label fits fine
+124.21 | FP — cell label fits fine
+124.22 | FP — cell label fits fine
+124.23 | FP — cell label fits fine
+124.24 | FP — cell label fits fine
+124.25 | FP — cell label fits fine
+124.26 | FP — cell label fits fine
+124.27 | FP — cell label fits fine
+124.28 | FP — cell label fits fine
+124.29 | FP — cell label fits fine
+124.30 | FP — cell label fits fine
+124.31 | FP — cell label fits fine
+124.32 | FP — cell label fits fine
+124.33 | FP — cell label fits fine
+124.34 | FP — cell label fits fine
+124.35 | FP — cell label fits fine
+124.36 | FP — cell label fits fine
+124.37 | FP — cell label fits fine
+124.38 | FP — cell label fits fine
+124.39 | FP — cell label fits fine
+124.40 | FP — cell label fits fine
+124.41 | FP — cell label fits fine
+124.42 | FP — cell label fits fine
+124.43 | FP — cell label fits fine
+124.44 | FP — cell label fits fine
+124.45 | FP — cell label fits fine
+99.1 | FP — empty structural shape
+99.2 | FP — muted date legible on dark
+99.3 | FP — muted date legible 3.8:1
+99.4 | FP — muted footer legible 3.8:1
+99.5 | UNVERIFIABLE — tab order not visible
+99.6 | UNVERIFIABLE — tab order not visible
+99.7 | FP — date fits fine
+99.8 | REAL — title overlaps subtitle text
+99.9 | REAL — footer clipped wraps to 2 lines

@@ -1,0 +1,84 @@
+{
+ "realIds": [
+  "2.3",
+  "2.4",
+  "2.5",
+  "2.6",
+  "2.7",
+  "2.8",
+  "7.7",
+  "7.8",
+  "71.28",
+  "71.30",
+  "71.31",
+  "99.8",
+  "99.9"
+ ],
+ "realFlags": [
+  {
+   "id": "2.3",
+   "code": "VP-04",
+   "t": "Text \"#00C2FF\" on \"#FFFFFF\" in \"Text 14\" — low contrast (ratio: 2.1:1) — \"01\""
+  },
+  {
+   "id": "2.4",
+   "code": "VP-04",
+   "t": "Text \"#00C2FF\" on \"#FFFFFF\" in \"Text 17\" — low contrast (ratio: 2.1:1) — \"02\""
+  },
+  {
+   "id": "2.5",
+   "code": "VP-04",
+   "t": "Text \"#00C2FF\" on \"#FFFFFF\" in \"Text 20\" — low contrast (ratio: 2.1:1) — \"03\""
+  },
+  {
+   "id": "2.6",
+   "code": "VP-04",
+   "t": "Text \"#00C2FF\" on \"#FFFFFF\" in \"Text 23\" — low contrast (ratio: 2.1:1) — \"04\""
+  },
+  {
+   "id": "2.7",
+   "code": "VP-04",
+   "t": "Text \"#00C2FF\" on \"#FFFFFF\" in \"Text 26\" — low contrast (ratio: 2.1:1) — \"05\""
+  },
+  {
+   "id": "2.8",
+   "code": "VP-04",
+   "t": "Text \"#00C2FF\" on \"#FFFFFF\" in \"Text 29\" — low contrast (ratio: 2.1:1) — \"06\""
+  },
+  {
+   "id": "7.7",
+   "code": "VP-04",
+   "t": "Text \"#00C2FF\" on \"#FFFFFF\" in \"Text 13\" — low contrast (ratio: 2.1:1) — \"~35%\""
+  },
+  {
+   "id": "7.8",
+   "code": "VP-04",
+   "t": "Text \"#00D48A\" on \"#FFFFFF\" in \"Text 15\" — low contrast (ratio: 1.9:1) — \"~7.5%\""
+  },
+  {
+   "id": "71.28",
+   "code": "VP-04",
+   "t": "Text \"#D4A537\" on \"#F5F7FA\" in \"Text 4\" — low contrast (ratio: 2.1:1) — \"10년 평균 0.55배\""
+  },
+  {
+   "id": "71.30",
+   "code": "VP-16",
+   "t": "CJK text \"10년 평균 0.55배...\" wraps to 2 lines (50pt / 40pt, 7pt font) — fits vertically [IL-37]"
+  },
+  {
+   "id": "71.31",
+   "code": "VP-16",
+   "t": "CJK text \"현재...\" wraps to 2 lines (13pt / 8pt, 7pt font) — fits vertically [IL-37]"
+  },
+  {
+   "id": "99.8",
+   "code": "VP-16",
+   "t": "CJK text \"2026년 중동 지정학적 위기에 따른글로벌 원...\" wraps to 2 lines (930pt / 670pt, 36pt font) — fits vertically [IL-37]"
+  },
+  {
+   "id": "99.9",
+   "code": "VP-16",
+   "t": "CJK text \"경영전략본부 원자재 분석팀...\" fills 115% of available width (138pt / 120pt, 12pt font) — may wrap in PPTX [IL-37]"
+  }
+ ]
+}

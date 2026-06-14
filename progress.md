@@ -110,6 +110,12 @@ date: 2026-06-13
 - [ ] R5-2 잔여 추가개선(VP-08 fill제외·PF-20 푸터면제·VP-11 멀티컬럼) + 정적32 + 미발화25 `model: opus` (다음 배치)
 
 ## Working Notes
+> 인계: [handoff-sweetspot-20260614.md](./handoff-sweetspot-20260614.md) — 정답지 기반 sweet-spot 튜닝
+> [ckpt-202606141016:btn-design]
+- 마지막 결정: 정답지 = 3 blind Opus 다수결(split0) majority-REAL 13건(VP-04 저대비9·VP-16 실제잘림4, FP277·VP-11검증불가12). VP-04 WARN 임계 4.5→3.0 적용(validate-pptx.js:38), 운영 775→547, 정답 ratio2.1/1.9/2.3 생존=recall1.0. **미커밋**.
+- 다음 의도: VP-16 sweet-spot("fills %" 추정→렌더잘림 검출 또는 임계1.0→1.1, 정답4 생존확인) → VP-08/03/02/10 고확신만 축소 → VP-11 WARN침묵 → 12장 재측정 recall1.0+precision↑. plan.md "정답지 기반 sweet-spot 튜닝" 체크리스트 기준.
+- 동기화 필요: VP-04 변경 미커밋. 자산 slides/rule-audit/ab-verify/(judge1~3·groundtruth.json·gemini-judge.mjs). 정답지 C:/msys64/tmp/ab-verify/groundtruth.json. handoff-sweetspot-20260614.md 전체 맥락.
+
 > [ckpt-202606131410:btn-design]
 - 마지막 결정: excel `metric_table.py` 생성(사용자 제공 코드 그대로, /d/projects/excel/fpna/templates/). design 개선 9건 = LICENSE만 생성, 나머지 8건 미적용.
 - 다음 의도: (1) excel `fpna/templates/__init__.py` _MODULES 에 metric_table 등록 + `py main.py selftest` 검증 (2) design 9건 = `handoff-improvements-20260613.md` 대로 §A embed-fonts/gen-report/test-fonts/CI-yml + §B convert-native 가드·package.json vr:test·thresholds.json·.aiignore 적용.

@@ -1,0 +1,302 @@
+7.1 | FP — bars left/right aligned, fine
+7.2 | FP — content blocks edge-aligned, fine
+7.3 | FP — decorative/structural empty slot
+7.4 | FP — decorative/structural empty slot
+7.5 | FP — decorative/structural empty slot
+7.6 | FP — decorative/structural empty slot
+7.7 | FP — cyan ~35% bold, clearly legible
+7.8 | FP — green ~7.5% bold, clearly legible
+7.9 | FP — muted source line, readable
+7.10 | FP — chart bar track, not text
+7.11 | FP — chart bar track, not text
+7.12 | FP — chart bar track, not text
+7.13 | FP — colored progress bar, not text
+7.14 | FP — chart bar track, not text
+7.15 | FP — label-bar-value spacing looks fine
+7.16 | FP — spacing looks even, fine
+7.17 | FP — spacing looks even, fine
+7.18 | UNVERIFIABLE — tab order not visible
+7.19 | FP — wraps 2 lines, readable, fits
+7.20 | FP — "엣지 AI" fits on one line
+7.21 | FP — title wraps cleanly, readable
+7.22 | FP — fits inside area, readable
+7.23 | FP — "클라우드" fits fine
+7.24 | FP — text fits, readable
+127.1 | FP — table cells aligned, fine
+127.2 | FP — table cells aligned, fine
+127.3 | FP — table cells aligned, fine
+127.4 | FP — table cells aligned, fine
+127.5 | FP — table cells aligned, fine
+127.6 | FP — table cells aligned, fine
+127.7 | FP — table cells aligned, fine
+127.8 | FP — table cells aligned, fine
+127.9 | FP — structural empty slot
+127.10 | FP — structural empty slot
+127.11 | FP — structural empty slot
+127.12 | FP — structural empty slot
+127.13 | FP — structural empty slot
+127.14 | FP — structural empty slot
+127.15 | FP — structural empty slot
+127.16 | FP — "미가입" grey badge legible
+127.17 | FP — "미가입" grey badge legible
+127.18 | FP — "미가입" grey badge legible
+127.19 | FP — muted source line, readable
+127.20 | FP — orange "주의사항" readable
+127.21 | FP — orange text readable
+127.22 | FP — orange text readable
+127.23 | FP — orange 100% readable on grey
+127.24 | FP — orange 1.5% readable on grey
+127.25 | FP — orange 50% readable on grey
+127.26 | FP — orange 3.5% readable on grey
+127.27 | FP — orange 50% readable on white
+127.28 | FP — orange 0.9% readable on white
+127.29 | FP — orange 50% readable on white
+127.30 | FP — orange 4.5% readable on white
+127.31 | FP — white "60h+" on orange legible
+127.32 | FP — white text on orange legible
+127.33 | FP — white text on orange legible
+127.34 | UNVERIFIABLE — tab order not visible
+127.35 | FP — header text fits, readable
+127.36 | FP — "가입기준" fits, readable
+127.37 | FP — "건강" fits fine
+127.38 | FP — text fits cell, readable
+127.39 | FP — "고용" fits fine
+127.40 | FP — text fits, readable
+127.41 | FP — "국민연금" fits fine
+127.42 | FP — text fits cell, readable
+127.43 | FP — "미가입" fits badge, readable
+127.44 | FP — "보험" header fits
+127.45 | FP — text fits cell, readable
+127.46 | FP — "산재" fits fine
+127.47 | FP — "신고방법" fits, readable
+127.48 | FP — "요율" header fits
+127.49 | FP — "월별 신고" fits, readable
+127.50 | FP — "전원 가입" fits badge
+127.51 | FP — "지연 과태료" fits, readable
+127.52 | FP — "초단시간" fits fine
+127.53 | FP — source line fits, readable
+127.54 | FP — "취득신고(14일)" fits
+127.55 | FP — "회사부담" header fits
+122.1 | FP — cards edge-aligned, fine
+122.2 | FP — cards edge-aligned, fine
+122.3 | FP — cards edge-aligned, fine
+122.4 | FP — cards edge-aligned, fine
+122.5 | FP — structural empty slot
+122.6 | FP — structural empty slot
+122.7 | FP — structural empty slot
+122.8 | FP — structural empty slot
+122.9 | FP — structural empty slot
+122.10 | FP — structural empty slot
+122.11 | FP — structural empty slot
+122.12 | FP — structural empty slot
+122.13 | FP — muted footer source, readable
+122.14 | FP — orange-on-cream highlight legible
+122.15 | FP — orange-on-cream highlight legible
+122.16 | FP — orange-on-cream highlight legible
+122.17 | FP — orange-on-cream highlight legible
+122.18 | FP — white "포괄임금제" on orange legible
+122.19 | FP — white badge text legible
+122.20 | FP — white badge text legible
+122.21 | FP — white badge text legible
+122.22 | FP — number badge "1" not visible in render
+122.23 | UNVERIFIABLE — tab order not visible
+122.24 | FP — text fits card, readable
+122.25 | FP — text fits, readable
+122.26 | FP — "수습 감액 오적용" fits badge
+122.27 | FP — "식대·교통비 현물" fits badge
+122.28 | FP — "정기상여금 주기" fits badge
+122.29 | FP — footer fits, readable
+122.30 | FP — "포괄임금제" fits badge
+2.1 | FP — cards edge-aligned, fine
+2.2 | FP — cards edge-aligned, fine
+2.3 | FP — cyan "01" bold large, legible
+2.4 | FP — cyan "02" bold large, legible
+2.5 | FP — cyan "03" bold large, legible
+2.6 | FP — cyan "04" bold large, legible
+2.7 | FP — cyan "05" bold large, legible
+2.8 | FP — cyan "06" bold large, legible
+2.9 | FP — grey subtitle clearly legible
+2.10 | UNVERIFIABLE — tab order not visible
+2.11 | FP — subtitle fits one line
+2.12 | FP — subtitle fits one line
+71.1 | FP — bars left-aligned, fine
+71.2 | FP — structural empty slot
+71.3 | FP — structural empty slot
+71.4 | FP — structural empty slot
+71.5 | FP — structural empty slot
+71.6 | FP — structural empty slot
+71.7 | FP — structural empty slot
+71.8 | FP — structural empty slot
+71.9 | FP — structural empty slot
+71.10 | FP — structural empty slot
+71.11 | FP — structural empty slot
+71.12 | FP — structural empty slot
+71.13 | FP — structural empty slot
+71.14 | FP — structural empty slot
+71.15 | FP — structural empty slot
+71.16 | FP — structural empty slot
+71.17 | FP — structural empty slot
+71.18 | FP — structural empty slot
+71.19 | FP — structural empty slot
+71.20 | FP — structural empty slot
+71.21 | FP — structural empty slot
+71.22 | FP — structural empty slot
+71.23 | FP — structural empty slot
+71.24 | FP — structural empty slot
+71.25 | FP — structural empty slot
+71.26 | FP — structural empty slot
+71.27 | FP — muted source line, readable
+71.28 | REAL — gold "10년 평균 0.55" clipped by line
+71.29 | FP — white "0.40" on gold legible
+71.30 | REAL — value label clipped, second digit cut
+71.31 | FP — "현재" wraps but readable
+62.1 | FP — divider bars aligned, fine
+62.2 | FP — structural empty slot
+62.3 | FP — structural empty slot
+62.4 | FP — structural empty slot
+62.5 | FP — structural empty slot
+62.6 | FP — structural empty slot
+62.7 | FP — structural empty slot
+62.8 | FP — structural empty slot
+62.9 | FP — structural empty slot
+62.10 | FP — structural empty slot
+62.11 | FP — structural empty slot
+62.12 | FP — structural empty slot
+62.13 | FP — structural empty slot
+62.14 | FP — thin divider line, not text
+62.15 | FP — yellow underline bar, not text
+62.16 | FP — thin divider line, not text
+62.17 | FP — yellow underline bar, not text
+62.18 | FP — thin divider line, not text
+62.19 | FP — yellow underline bar, not text
+62.20 | FP — "132개" fits, readable
+62.21 | FP — "AI 광고 수익화" fits one line
+62.22 | FP — "IPO 검토" fits, readable
+62.23 | FP — "광고 단가 +10%" fits, readable
+62.24 | FP — "모빌리티 / 페이" fits one line
+62.25 | FP — "서비스 확대" fits, readable
+62.26 | FP — "수익성 집중" fits, readable
+62.27 | FP — "출시" fits fine
+62.28 | FP — "톡비즈 2.8조" fits, readable
+62.29 | FP — "흑자 전환" fits, readable
+24.1 | FP — table columns uniform, aligned
+24.2 | FP — structural empty slot
+24.3 | FP — structural empty slot
+24.4 | FP — muted source line, readable
+24.5 | FP — orange "~6~8%" bold legible
+24.6 | FP — orange "50%대" bold legible
+24.7 | FP — orange "7.2%" bold legible
+24.8 | UNVERIFIABLE — tab order not visible
+24.9 | UNVERIFIABLE — tab order not visible
+24.10 | FP — "투자 시사점:" fits, readable
+142.1 | FP — structural empty slot
+142.2 | FP — structural empty slot
+142.3 | FP — structural empty slot
+142.4 | FP — structural empty slot
+142.5 | FP — structural empty slot
+142.6 | FP — structural empty slot
+142.7 | FP — structural empty slot
+142.8 | FP — structural empty slot
+142.9 | FP — structural empty slot
+142.10 | FP — structural empty slot
+142.11 | FP — structural empty slot
+142.12 | FP — structural empty slot
+142.13 | FP — structural empty slot
+142.14 | FP — structural empty slot
+142.15 | FP — structural empty slot
+142.16 | FP — structural empty slot
+142.17 | FP — structural empty slot
+142.18 | FP — structural empty slot
+142.19 | FP — structural empty slot
+142.20 | FP — white "9" on orange circle legible
+142.21 | FP — orange accent bar, decorative
+142.22 | FP — orange decorative block, not text
+142.23 | UNVERIFIABLE — tab order not visible
+142.24 | UNVERIFIABLE — tab order not visible
+142.25 | FP — title wraps 2 lines, readable
+90.1 | FP — structural empty slot
+90.2 | FP — muted source line, readable
+90.3 | FP — orange "COVID 가속" legible
+90.4 | FP — orange "IPO" legible
+90.5 | FP — orange "흑자 전환" legible
+90.6 | FP — orange "1위 역전" legible
+90.7 | FP — dark chart bar segment, not text
+90.8 | FP — dark chart bar segment, not text
+90.9 | FP — dark chart bar segment, not text
+90.10 | FP — dark chart bar segment, not text
+90.11 | FP — dark chart bar segment, not text
+90.12 | FP — red chart bar segment, not text
+90.13 | FP — chart bar gaps look fine
+90.14 | UNVERIFIABLE — tab order not visible
+90.15 | FP — "1위 역전" fits below bar
+90.16 | FP — "흑자 전환" fits below bar
+15.1 | FP — muted source line, readable
+15.2 | FP — grey "역대 최대" legible
+15.3 | FP — grey caption legible
+15.4 | FP — grey caption legible
+15.5 | FP — grey caption legible
+15.6 | FP — grey "Q1" legible
+15.7 | FP — grey "Q2 (저점)" legible
+15.8 | FP — grey "Q3" legible
+15.9 | FP — grey "Q4 (최초 20조)" legible
+15.10 | FP — colored chart bar, not text
+15.11 | FP — colored chart bar, not text
+15.12 | FP — colored chart bar, not text
+15.13 | FP — colored chart bar, not text
+15.14 | UNVERIFIABLE — tab order not visible
+15.15 | FP — "Q2 (저점)" fits below bar
+15.16 | FP — "Q4 (최초 20조)" fits, readable
+124.1 | FP — table columns aligned, fine
+124.2 | FP — table columns aligned, fine
+124.3 | FP — table columns aligned, fine
+124.4 | FP — table columns aligned, fine
+124.5 | FP — muted footer source, readable
+124.6 | FP — orange cumulative number legible
+124.7 | FP — orange cumulative number legible
+124.8 | FP — orange cumulative number legible
+124.9 | FP — orange cumulative number legible
+124.10 | FP — orange cumulative number legible
+124.11 | FP — orange number on white legible
+124.12 | FP — orange number on white legible
+124.13 | FP — orange number on white legible
+124.14 | FP — orange number on white legible
+124.15 | FP — table row spacing looks fine
+124.16 | FP — table row spacing looks fine
+124.17 | FP — table row spacing looks fine
+124.18 | FP — table row spacing looks fine
+124.19 | FP — "1년+" fits cell
+124.20 | FP — "건강보험" fits, readable
+124.21 | FP — formula text fits cell
+124.22 | FP — "계산 근거" header fits
+124.23 | FP — "고용보험" fits, readable
+124.24 | FP — "국민연금" fits, readable
+124.25 | FP — "기본급" fits, readable
+124.26 | FP — "기본급×1/5" fits cell
+124.27 | FP — "기준" fits fine
+124.28 | FP — "기준액" fits, readable
+124.29 | FP — "누적" header fits
+124.30 | FP — "만근" fits fine
+124.31 | FP — "법정" fits fine
+124.32 | FP — formula fits cell, readable
+124.33 | FP — "비고" header fits
+124.34 | FP — "비율" header fits
+124.35 | FP — "산재(운수)" fits, readable
+124.36 | FP — "업종별" fits, readable
+124.37 | FP — "연차수당" fits, readable
+124.38 | FP — "옵션" fits fine
+124.39 | FP — formula fits cell, readable
+124.40 | FP — "장기요양" fits, readable
+124.41 | FP — "주휴수당" fits, readable
+124.42 | FP — formula fits cell, readable
+124.43 | FP — "퇴직충당금" fits, readable
+124.44 | FP — "항목" header fits
+124.45 | FP — "회사분" fits, readable
+99.1 | FP — structural empty slot
+99.2 | FP — structural empty slot
+99.3 | FP — muted date on dark, readable
+99.4 | FP — muted footer on dark, readable
+99.5 | UNVERIFIABLE — tab order not visible
+99.6 | UNVERIFIABLE — tab order not visible
+99.7 | FP — date fits one line
+99.8 | REAL — subtitle overlaps title text
+99.9 | REAL — footer wraps and clips at edge

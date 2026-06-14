@@ -1,0 +1,326 @@
+### SLIDE 7  (image: C:/msys64/tmp/ab-verify/img/slide_07.png)
+  7.1 | VP-02 :: Column at x=0.67" has inconsistent widths (1.03", 0.83", 0.67")
+  7.2 | VP-02 :: Column at x=0.67" has inconsistent widths (3.33", 3.33", 3.33", 2.03", 3.33")
+  7.3 | VP-03 :: Shape "Text 5" has a text frame but all text runs are empty
+  7.4 | VP-03 :: Shape "Text 6" has a text frame but all text runs are empty
+  7.5 | VP-03 :: Shape "Text 7" has a text frame but all text runs are empty
+  7.6 | VP-03 :: Shape "Text 8" has a text frame but all text runs are empty
+  7.7 | VP-04 :: Text "#00C2FF" on "#FFFFFF" in "Text 13" — low contrast (ratio: 2.1:1) — "~35%"
+  7.8 | VP-04 :: Text "#00D48A" on "#FFFFFF" in "Text 15" — low contrast (ratio: 1.9:1) — "~7.5%"
+  7.9 | VP-04 :: Text "#94A3B8" on "#FFFFFF" in "Text 22" — low contrast (ratio: 2.6:1) — "출처: MarketsandMarkets, Grand V"
+  7.10 | VP-08 :: Shape "Text 0" (3.33" × 0.28") has fill #F4F6FA but no text — possible empty card
+  7.11 | VP-08 :: Shape "Text 1" (3.33" × 0.28") has fill #0A1628 but no text — possible empty card
+  7.12 | VP-08 :: Shape "Text 2" (3.33" × 0.28") has fill #F4F6FA but no text — possible empty card
+  7.13 | VP-08 :: Shape "Text 3" (2.03" × 0.28") has fill #00C2FF but no text — possible empty card
+  7.14 | VP-08 :: Shape "Text 4" (3.33" × 0.28") has fill #F4F6FA but no text — possible empty card
+  7.15 | VP-10 :: Row at y=1.67" has inconsistent gaps: [127.3pt, 22.0pt, 10.0pt]
+  7.16 | VP-10 :: Row at y=2.65" has inconsistent gaps: [32.0pt, 10.0pt]
+  7.17 | VP-10 :: Row at y=3.39" has inconsistent gaps: [32.0pt, 10.0pt]
+  7.18 | VP-11 :: Reading order mismatch: 8/14 shapes out of visual order (57%) — may affect accessibility
+  7.19 | VP-16 :: CJK text "데이터 주권 · 지연 시간 민감 워크로드. 금..." wraps to 2 lines (445pt / 368pt, 11pt font) — fits vertically [IL-37]
+  7.20 | VP-16 :: CJK text "엣지 AI..." fills 105% of available width (40pt / 38pt, 13pt font) — may wrap in PPTX [IL-37]
+  7.21 | VP-16 :: CJK text "온프레미스가57%로 여전히 주도하지만, 클라우..." wraps to 2 lines (804pt / 662pt, 22pt font) — fits vertically [IL-37]
+  7.22 | VP-16 :: CJK text "자율주행 · 제조 · 스마트시티 수요 폭발. ..." fills 98% of available width (361pt / 368pt, 11pt font) — may wrap in PPTX [IL-37]
+  7.23 | VP-16 :: CJK text "클라우드..." fills 97% of available width (48pt / 50pt, 13pt font) — may wrap in PPTX [IL-37]
+  7.24 | VP-16 :: CJK text "탄력적 확장성. AWS, Azure, GCP ..." fills 101% of available width (372pt / 368pt, 11pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 127  (image: C:/msys64/tmp/ab-verify/img/slide_127.png)
+  127.1 | VP-02 :: Column at x=1.46" has inconsistent widths (0.71", 0.55", 0.96", 0.96", 0.64")
+  127.2 | VP-02 :: Column at x=1.56" has inconsistent widths (0.61", 0.45", 0.87", 0.87")
+  127.3 | VP-02 :: Column at x=3.26" has inconsistent widths (0.43", 0.55", 0.55", 0.55", 0.64")
+  127.4 | VP-02 :: Column at x=3.36" has inconsistent widths (0.35", 0.46", 0.46", 0.46")
+  127.5 | VP-02 :: Column at x=4.10" has inconsistent widths (0.64", 0.61", 0.52", 0.52", 0.52")
+  127.6 | VP-02 :: Column at x=4.90" has inconsistent widths (0.38", 0.53", 0.57", 0.56")
+  127.7 | VP-02 :: Column at x=5.62" has inconsistent widths (1.33", 1.02", 1.17", 1.34")
+  127.8 | VP-02 :: Column at x=7.69" has inconsistent widths (1.13", 1.03", 0.82")
+  127.9 | VP-03 :: Shape "Text 51" has a text frame but all text runs are empty
+  127.10 | VP-03 :: Shape "Text 52" has a text frame but all text runs are empty
+  127.11 | VP-03 :: Shape "Text 53" has a text frame but all text runs are empty
+  127.12 | VP-03 :: Shape "Text 54" has a text frame but all text runs are empty
+  127.13 | VP-03 :: Shape "Text 56" has a text frame but all text runs are empty
+  127.14 | VP-03 :: Shape "Text 57" has a text frame but all text runs are empty
+  127.15 | VP-03 :: Shape "Text 58" has a text frame but all text runs are empty
+  127.16 | VP-04 :: Text "#666666" on "#DDDDDD" in "Text 74" — low contrast (ratio: 4.2:1) — "미가입"
+  127.17 | VP-04 :: Text "#666666" on "#DDDDDD" in "Text 80" — low contrast (ratio: 4.2:1) — "미가입"
+  127.18 | VP-04 :: Text "#666666" on "#DDDDDD" in "Text 86" — low contrast (ratio: 4.2:1) — "미가입"
+  127.19 | VP-04 :: Text "#999999" on "#FFF4EC" in "Text 107" — low contrast (ratio: 2.6:1) — "출처: 고용보험법 등"
+  127.20 | VP-04 :: Text "#C0541A" on "#FFF4EC" in "Text 103" — low contrast (ratio: 4.3:1) — "주의사항"
+  127.21 | VP-04 :: Text "#C0541A" on "#FFF4EC" in "Text 104" — low contrast (ratio: 4.3:1) — "산재만"
+  127.22 | VP-04 :: Text "#C0541A" on "#FFF4EC" in "Text 105" — low contrast (ratio: 4.3:1) — "8일+"
+  127.23 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 69" — low contrast (ratio: 2.3:1) — "100%"
+  127.24 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 70" — low contrast (ratio: 2.3:1) — "1.5%"
+  127.25 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 81" — low contrast (ratio: 2.3:1) — "50%"
+  127.26 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 82" — low contrast (ratio: 2.3:1) — "3.5%"
+  127.27 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 75" — low contrast (ratio: 2.5:1) — "50%"
+  127.28 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 76" — low contrast (ratio: 2.5:1) — "0.9%"
+  127.29 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 87" — low contrast (ratio: 2.5:1) — "50%"
+  127.30 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 88" — low contrast (ratio: 2.5:1) — "4.5%"
+  127.31 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 73" — low contrast (ratio: 2.5:1) — "60h+"
+  127.32 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 79" — low contrast (ratio: 2.5:1) — "8일+ / 60h+"
+  127.33 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 85" — low contrast (ratio: 2.5:1) — "8일+ / 60h+"
+  127.34 | VP-11 :: Reading order mismatch: 15/49 shapes out of visual order (31%) — may affect accessibility
+  127.35 | VP-16 :: CJK text "가입..." wraps to 2 lines (18pt / 15pt, 10pt font) — fits vertically [IL-37]
+  127.36 | VP-16 :: CJK text "가입기준..." fills 103% of available width (37pt / 36pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.37 | VP-16 :: CJK text "건강..." fills 106% of available width (20pt / 19pt, 11pt font) — may wrap in PPTX [IL-37]
+  127.38 | VP-16 :: CJK text "건강·연금 8일+..." fills 99% of available width (64pt / 64pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.39 | VP-16 :: CJK text "고용..." fills 106% of available width (20pt / 19pt, 11pt font) — may wrap in PPTX [IL-37]
+  127.40 | VP-16 :: CJK text "국민연금 (4.5%)..." fills 102% of available width (69pt / 68pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.41 | VP-16 :: CJK text "국민연금..." fills 100% of available width (40pt / 40pt, 11pt font) — may wrap in PPTX [IL-37]
+  127.42 | VP-16 :: CJK text "근로확인(익월15일)..." fills 98% of available width (84pt / 86pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.43 | VP-16 :: CJK text "미가입..." wraps to 2 lines (28pt / 23pt, 10pt font) — fits vertically [IL-37]
+  127.44 | VP-16 :: CJK text "보험..." fills 106% of available width (18pt / 17pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.45 | VP-16 :: CJK text "사업장(익월15일)..." fills 101% of available width (75pt / 74pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.46 | VP-16 :: CJK text "산재..." fills 106% of available width (20pt / 19pt, 11pt font) — may wrap in PPTX [IL-37]
+  127.47 | VP-16 :: CJK text "신고방법..." fills 103% of available width (37pt / 36pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.48 | VP-16 :: CJK text "요율..." fills 106% of available width (18pt / 17pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.49 | VP-16 :: CJK text "월별 신고..." fills 105% of available width (39pt / 37pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.50 | VP-16 :: CJK text "전원 가입..." fills 116% of available width (39pt / 34pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.51 | VP-16 :: CJK text "지연 과태료..." fills 100% of available width (49pt / 49pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.52 | VP-16 :: CJK text "초단시간..." fills 103% of available width (37pt / 36pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.53 | VP-16 :: CJK text "출처: 고용보험법 등..." fills 104% of available width (84pt / 81pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.54 | VP-16 :: CJK text "취득신고(14일)..." fills 104% of available width (66pt / 64pt, 10pt font) — may wrap in PPTX [IL-37]
+  127.55 | VP-16 :: CJK text "회사부담..." fills 103% of available width (37pt / 36pt, 10pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 122  (image: C:/msys64/tmp/ab-verify/img/slide_122.png)
+  122.1 | VP-02 :: Column at x=0.42" has inconsistent widths (4.53", 4.53", 3.63")
+  122.2 | VP-02 :: Column at x=0.76" has inconsistent widths (2.17", 1.67", 1.54", 1.65")
+  122.3 | VP-02 :: Column at x=5.40" has inconsistent widths (1.37", 1.60", 1.50")
+  122.4 | VP-02 :: Column at x=8.28" has inconsistent widths (1.30", 1.10", 1.10", 1.07")
+  122.5 | VP-03 :: Shape "Text 10" has a text frame but all text runs are empty
+  122.6 | VP-03 :: Shape "Text 11" has a text frame but all text runs are empty
+  122.7 | VP-03 :: Shape "Text 16" has a text frame but all text runs are empty
+  122.8 | VP-03 :: Shape "Text 17" has a text frame but all text runs are empty
+  122.9 | VP-03 :: Shape "Text 22" has a text frame but all text runs are empty
+  122.10 | VP-03 :: Shape "Text 23" has a text frame but all text runs are empty
+  122.11 | VP-03 :: Shape "Text 4" has a text frame but all text runs are empty
+  122.12 | VP-03 :: Shape "Text 5" has a text frame but all text runs are empty
+  122.13 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 53" — low contrast (ratio: 2.8:1) — "최저임금법 §5, §28"
+  122.14 | VP-04 :: Text "#C0541A" on "#FFF4EC" in "Text 34" — low contrast (ratio: 4.3:1) — "시급 환산값 기준으로 판단"
+  122.15 | VP-04 :: Text "#C0541A" on "#FFF4EC" in "Text 40" — low contrast (ratio: 4.3:1) — "현물 산입 불가"
+  122.16 | VP-04 :: Text "#C0541A" on "#FFF4EC" in "Text 46" — low contrast (ratio: 4.3:1) — "정기성이면 전액 포함"
+  122.17 | VP-04 :: Text "#C0541A" on "#FFF4EC" in "Text 52" — low contrast (ratio: 4.3:1) — "단기직 9,027원 적용 시 위반"
+  122.18 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 30" — low contrast (ratio: 2.5:1) — "포괄임금제"
+  122.19 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 36" — low contrast (ratio: 2.5:1) — "식대·교통비 현물"
+  122.20 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 42" — low contrast (ratio: 2.5:1) — "정기상여금 주기"
+  122.21 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 48" — low contrast (ratio: 2.5:1) — "수습 감액 오적용"
+  122.22 | VP-04 :: Text "#FFFFFF" on "#F0F0F0" in "Text 29" — invisible (ratio: 1.1:1) — "1"
+  122.23 | VP-11 :: Reading order mismatch: 22/29 shapes out of visual order (76%) — may affect accessibility
+  122.24 | VP-16 :: CJK text "1년 미만 = 감액 불가..." fills 95% of available width (93pt / 98pt, 11pt font) — may wrap in PPTX [IL-37]
+  122.25 | VP-16 :: CJK text "2,000만원 벌금..." fills 96% of available width (64pt / 67pt, 10pt font) — may wrap in PPTX [IL-37]
+  122.26 | VP-16 :: CJK text "수습 감액 오적용..." fills 110% of available width (69pt / 63pt, 10pt font) — may wrap in PPTX [IL-37]
+  122.27 | VP-16 :: CJK text "식대·교통비 현물..." fills 113% of available width (72pt / 64pt, 10pt font) — may wrap in PPTX [IL-37]
+  122.28 | VP-16 :: CJK text "정기상여금 주기..." fills 110% of available width (67pt / 61pt, 10pt font) — may wrap in PPTX [IL-37]
+  122.29 | VP-16 :: CJK text "최저임금법 §5, §28..." fills 98% of available width (81pt / 82pt, 10pt font) — may wrap in PPTX [IL-37]
+  122.30 | VP-16 :: CJK text "포괄임금제..." fills 112% of available width (46pt / 41pt, 10pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 2  (image: C:/msys64/tmp/ab-verify/img/slide_02.png)
+  2.1 | VP-02 :: Column at x=1.75" has inconsistent widths (1.71", 1.58", 1.51", 1.56", 1.28", 1.27")
+  2.2 | VP-02 :: Column at x=6.18" has inconsistent widths (2.11", 2.26", 1.70", 1.57", 2.49", 2.29")
+  2.3 | VP-04 :: Text "#00C2FF" on "#FFFFFF" in "Text 14" — low contrast (ratio: 2.1:1) — "01"
+  2.4 | VP-04 :: Text "#00C2FF" on "#FFFFFF" in "Text 17" — low contrast (ratio: 2.1:1) — "02"
+  2.5 | VP-04 :: Text "#00C2FF" on "#FFFFFF" in "Text 20" — low contrast (ratio: 2.1:1) — "03"
+  2.6 | VP-04 :: Text "#00C2FF" on "#FFFFFF" in "Text 23" — low contrast (ratio: 2.1:1) — "04"
+  2.7 | VP-04 :: Text "#00C2FF" on "#FFFFFF" in "Text 26" — low contrast (ratio: 2.1:1) — "05"
+  2.8 | VP-04 :: Text "#00C2FF" on "#FFFFFF" in "Text 29" — low contrast (ratio: 2.1:1) — "06"
+  2.9 | VP-04 :: Text "#6B7280" on "#F4F6FA" in "Text 13" — low contrast (ratio: 4.5:1) — "시장 규모부터 투자 전략까지, 데이터 기반 의사결정 프"
+  2.10 | VP-11 :: Reading order mismatch: 9/20 shapes out of visual order (45%) — may affect accessibility
+  2.11 | VP-16 :: CJK text "$1,583억 시장의 실체..." fills 96% of available width (99pt / 104pt, 11pt font) — may wrap in PPTX [IL-37]
+  2.12 | VP-16 :: CJK text "미 · 중 · 유럽 3각 경쟁..." fills 101% of available width (104pt / 103pt, 11pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 71  (image: C:/msys64/tmp/ab-verify/img/slide_71.png)
+  71.1 | VP-02 :: Column at x=0.97" has inconsistent widths (4.99", 6.35", 5.26", 4.08", 5.62", 4.53", 4.99", 3.81", 3.44", 3.63")
+  71.2 | VP-03 :: Shape "Text 1" has a text frame but all text runs are empty
+  71.3 | VP-03 :: Shape "Text 11" has a text frame but all text runs are empty
+  71.4 | VP-03 :: Shape "Text 13" has a text frame but all text runs are empty
+  71.5 | VP-03 :: Shape "Text 16" has a text frame but all text runs are empty
+  71.6 | VP-03 :: Shape "Text 18" has a text frame but all text runs are empty
+  71.7 | VP-03 :: Shape "Text 2" has a text frame but all text runs are empty
+  71.8 | VP-03 :: Shape "Text 21" has a text frame but all text runs are empty
+  71.9 | VP-03 :: Shape "Text 23" has a text frame but all text runs are empty
+  71.10 | VP-03 :: Shape "Text 26" has a text frame but all text runs are empty
+  71.11 | VP-03 :: Shape "Text 28" has a text frame but all text runs are empty
+  71.12 | VP-03 :: Shape "Text 31" has a text frame but all text runs are empty
+  71.13 | VP-03 :: Shape "Text 33" has a text frame but all text runs are empty
+  71.14 | VP-03 :: Shape "Text 36" has a text frame but all text runs are empty
+  71.15 | VP-03 :: Shape "Text 38" has a text frame but all text runs are empty
+  71.16 | VP-03 :: Shape "Text 41" has a text frame but all text runs are empty
+  71.17 | VP-03 :: Shape "Text 43" has a text frame but all text runs are empty
+  71.18 | VP-03 :: Shape "Text 46" has a text frame but all text runs are empty
+  71.19 | VP-03 :: Shape "Text 48" has a text frame but all text runs are empty
+  71.20 | VP-03 :: Shape "Text 5" has a text frame but all text runs are empty
+  71.21 | VP-03 :: Shape "Text 51" has a text frame but all text runs are empty
+  71.22 | VP-03 :: Shape "Text 53" has a text frame but all text runs are empty
+  71.23 | VP-03 :: Shape "Text 56" has a text frame but all text runs are empty
+  71.24 | VP-03 :: Shape "Text 58" has a text frame but all text runs are empty
+  71.25 | VP-03 :: Shape "Text 6" has a text frame but all text runs are empty
+  71.26 | VP-03 :: Shape "Text 8" has a text frame but all text runs are empty
+  71.27 | VP-04 :: Text "#999999" on "#F5F7FA" in "Text 62" — low contrast (ratio: 2.7:1) — "FnGuide, 2026.03 기준"
+  71.28 | VP-04 :: Text "#D4A537" on "#F5F7FA" in "Text 4" — low contrast (ratio: 2.1:1) — "10년 평균 0.55배"
+  71.29 | VP-04 :: Text "#FFFFFF" on "#D4A537" in "Text 60" — low contrast (ratio: 2.3:1) — "0.40"
+  71.30 | VP-16 :: CJK text "10년 평균 0.55배..." wraps to 2 lines (50pt / 40pt, 7pt font) — fits vertically [IL-37]
+  71.31 | VP-16 :: CJK text "현재..." wraps to 2 lines (13pt / 8pt, 7pt font) — fits vertically [IL-37]
+
+### SLIDE 62  (image: C:/msys64/tmp/ab-verify/img/slide_62.png)
+  62.1 | VP-02 :: Column at x=0.50" has inconsistent widths (6.30", 4.50", 5.40")
+  62.2 | VP-03 :: Shape "Text 10" has a text frame but all text runs are empty
+  62.3 | VP-03 :: Shape "Text 11" has a text frame but all text runs are empty
+  62.4 | VP-03 :: Shape "Text 14" has a text frame but all text runs are empty
+  62.5 | VP-03 :: Shape "Text 15" has a text frame but all text runs are empty
+  62.6 | VP-03 :: Shape "Text 16" has a text frame but all text runs are empty
+  62.7 | VP-03 :: Shape "Text 17" has a text frame but all text runs are empty
+  62.8 | VP-03 :: Shape "Text 2" has a text frame but all text runs are empty
+  62.9 | VP-03 :: Shape "Text 3" has a text frame but all text runs are empty
+  62.10 | VP-03 :: Shape "Text 4" has a text frame but all text runs are empty
+  62.11 | VP-03 :: Shape "Text 5" has a text frame but all text runs are empty
+  62.12 | VP-03 :: Shape "Text 8" has a text frame but all text runs are empty
+  62.13 | VP-03 :: Shape "Text 9" has a text frame but all text runs are empty
+  62.14 | VP-08 :: Shape "Text 0" (9.00" × 0.14") has fill #F5F5F0 but no text — possible empty card
+  62.15 | VP-08 :: Shape "Text 1" (6.30" × 0.14") has fill #FEE500 but no text — possible empty card
+  62.16 | VP-08 :: Shape "Text 12" (9.00" × 0.14") has fill #F5F5F0 but no text — possible empty card
+  62.17 | VP-08 :: Shape "Text 13" (5.40" × 0.14") has fill #FEE500 but no text — possible empty card
+  62.18 | VP-08 :: Shape "Text 6" (9.00" × 0.14") has fill #F5F5F0 but no text — possible empty card
+  62.19 | VP-08 :: Shape "Text 7" (4.50" × 0.14") has fill #FEE500 but no text — possible empty card
+  62.20 | VP-16 :: CJK text "132개..." fills 97% of available width (16pt / 16pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  62.21 | VP-16 :: CJK text "AI 광고 수익화..." fills 100% of available width (67pt / 67pt, 11pt font) — may wrap in PPTX [IL-37]
+  62.22 | VP-16 :: CJK text "IPO 검토..." fills 101% of available width (23pt / 23pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  62.23 | VP-16 :: CJK text "광고 단가 +10%..." fills 95% of available width (40pt / 42pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  62.24 | VP-16 :: CJK text "모빌리티 / 페이..." fills 99% of available width (72pt / 72pt, 11pt font) — may wrap in PPTX [IL-37]
+  62.25 | VP-16 :: CJK text "서비스 확대..." fills 106% of available width (32pt / 30pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  62.26 | VP-16 :: CJK text "수익성 집중..." fills 106% of available width (32pt / 30pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  62.27 | VP-16 :: CJK text "출시..." fills 106% of available width (12pt / 11pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  62.28 | VP-16 :: CJK text "톡비즈 2.8조..." fills 106% of available width (35pt / 33pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  62.29 | VP-16 :: CJK text "흑자 전환..." fills 106% of available width (26pt / 24pt, 6.5pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 24  (image: C:/msys64/tmp/ab-verify/img/slide_24.png)
+  24.1 | VP-02 :: Column at x=0.61" has inconsistent widths (1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 1.11", 0.88")
+  24.2 | VP-03 :: Shape "Text 1" has a text frame but all text runs are empty
+  24.3 | VP-03 :: Shape "Text 42" has a text frame but all text runs are empty
+  24.4 | VP-04 :: Text "#999999" on "#F8F9FA" in "Text 88" — low contrast (ratio: 2.7:1) — "TrendForce 2025.4Q, IDC Smartp"
+  24.5 | VP-04 :: Text "#FF6F00" on "#FAFBFC" in "Text 54" — low contrast (ratio: 2.7:1) — "~6~8%"
+  24.6 | VP-04 :: Text "#FF6F00" on "#FFFFFF" in "Text 19" — low contrast (ratio: 2.8:1) — "50%대"
+  24.7 | VP-04 :: Text "#FF6F00" on "#FFFFFF" in "Text 7" — low contrast (ratio: 2.8:1) — "7.2%"
+  24.8 | VP-11 :: Reading order mismatch: 310/1128 shape pairs inverted vs visual order (27%) — may affect accessibility
+  24.9 | VP-11 :: Reading order mismatch: 42/48 shapes out of visual order (88%) — may affect accessibility
+  24.10 | VP-16 :: CJK text "투자 시사점:..." fills 100% of available width (54pt / 54pt, 10pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 142  (image: C:/msys64/tmp/ab-verify/img/slide_142.png)
+  142.1 | VP-03 :: Shape "Text 10" has a text frame but all text runs are empty
+  142.2 | VP-03 :: Shape "Text 11" has a text frame but all text runs are empty
+  142.3 | VP-03 :: Shape "Text 12" has a text frame but all text runs are empty
+  142.4 | VP-03 :: Shape "Text 13" has a text frame but all text runs are empty
+  142.5 | VP-03 :: Shape "Text 14" has a text frame but all text runs are empty
+  142.6 | VP-03 :: Shape "Text 15" has a text frame but all text runs are empty
+  142.7 | VP-03 :: Shape "Text 16" has a text frame but all text runs are empty
+  142.8 | VP-03 :: Shape "Text 17" has a text frame but all text runs are empty
+  142.9 | VP-03 :: Shape "Text 19" has a text frame but all text runs are empty
+  142.10 | VP-03 :: Shape "Text 20" has a text frame but all text runs are empty
+  142.11 | VP-03 :: Shape "Text 22" has a text frame but all text runs are empty
+  142.12 | VP-03 :: Shape "Text 23" has a text frame but all text runs are empty
+  142.13 | VP-03 :: Shape "Text 3" has a text frame but all text runs are empty
+  142.14 | VP-03 :: Shape "Text 4" has a text frame but all text runs are empty
+  142.15 | VP-03 :: Shape "Text 5" has a text frame but all text runs are empty
+  142.16 | VP-03 :: Shape "Text 6" has a text frame but all text runs are empty
+  142.17 | VP-03 :: Shape "Text 7" has a text frame but all text runs are empty
+  142.18 | VP-03 :: Shape "Text 8" has a text frame but all text runs are empty
+  142.19 | VP-03 :: Shape "Text 9" has a text frame but all text runs are empty
+  142.20 | VP-04 :: Text "#FFFFFF" on "#E8913A" in "Text 18" — low contrast (ratio: 2.5:1) — "9"
+  142.21 | VP-08 :: Shape "Text 0" (0.11" × 5.63") has fill #E8913A but no text — possible empty card
+  142.22 | VP-08 :: Shape "Text 1" (1.39" × 1.11") has fill #E8913A but no text — possible empty card
+  142.23 | VP-11 :: Reading order mismatch: 3/6 shape pairs inverted vs visual order (50%) — may affect accessibility
+  142.24 | VP-11 :: Reading order mismatch: 4/4 shapes out of visual order (100%) — may affect accessibility
+  142.25 | VP-16 :: CJK text "보수총액 정산과 연말정산은 연간 인건비 예산의..." wraps to 2 lines (828pt / 635pt, 20pt font) — fits vertically [IL-37]
+
+### SLIDE 90  (image: C:/msys64/tmp/ab-verify/img/slide_90.png)
+  90.1 | VP-03 :: Shape "Text 2" has a text frame but all text runs are empty
+  90.2 | VP-04 :: Text "#A8A29E" on "#FAFAF9" in "Text 31" — low contrast (ratio: 2.4:1) — "Coupang Inc. 연간 보고서 2019-2025,"
+  90.3 | VP-04 :: Text "#F97316" on "#FAFAF9" in "Text 17" — low contrast (ratio: 2.7:1) — "COVID 가속"
+  90.4 | VP-04 :: Text "#F97316" on "#FAFAF9" in "Text 20" — low contrast (ratio: 2.7:1) — "IPO"
+  90.5 | VP-04 :: Text "#F97316" on "#FAFAF9" in "Text 25" — low contrast (ratio: 2.7:1) — "흑자 전환"
+  90.6 | VP-04 :: Text "#F97316" on "#FAFAF9" in "Text 28" — low contrast (ratio: 2.7:1) — "1위 역전"
+  90.7 | VP-08 :: Shape "Text 4" (0.91" × 0.78") has fill #52100F but no text — possible empty card
+  90.8 | VP-08 :: Shape "Text 5" (0.91" × 1.18") has fill #52100F but no text — possible empty card
+  90.9 | VP-08 :: Shape "Text 6" (0.91" × 1.32") has fill #52100F but no text — possible empty card
+  90.10 | VP-08 :: Shape "Text 7" (0.91" × 1.57") has fill #52100F but no text — possible empty card
+  90.11 | VP-08 :: Shape "Text 8" (0.91" × 1.94") has fill #52100F but no text — possible empty card
+  90.12 | VP-08 :: Shape "Text 9" (0.91" × 2.22") has fill #D83228 but no text — possible empty card
+  90.13 | VP-10 :: Row at y=4.79" has inconsistent gaps: [62.1pt, 160.2pt, 61.0pt]
+  90.14 | VP-11 :: Reading order mismatch: 19/23 shapes out of visual order (83%) — may affect accessibility
+  90.15 | VP-16 :: CJK text "1위 역전..." fills 107% of available width (23pt / 21pt, 6.5pt font) — may wrap in PPTX [IL-37]
+  90.16 | VP-16 :: CJK text "흑자 전환..." fills 106% of available width (26pt / 24pt, 6.5pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 15  (image: C:/msys64/tmp/ab-verify/img/slide_15.png)
+  15.1 | VP-04 :: Text "#999999" on "#F8F9FA" in "Text 40" — low contrast (ratio: 2.7:1) — "삼성전자 2025년 사업보고서 · 4Q 실적발표 (20"
+  15.2 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 15" — low contrast (ratio: 2.8:1) — "역대 최대"
+  15.3 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 20" — low contrast (ratio: 2.8:1) — "반도체 회복 반영"
+  15.4 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 25" — low contrast (ratio: 2.8:1) — "금융·지분이익 포함"
+  15.5 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 30" — low contrast (ratio: 2.8:1) — "역대 최대 투자"
+  15.6 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 33" — low contrast (ratio: 2.8:1) — "Q1"
+  15.7 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 35" — low contrast (ratio: 2.8:1) — "Q2 (저점)"
+  15.8 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 37" — low contrast (ratio: 2.8:1) — "Q3"
+  15.9 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 39" — low contrast (ratio: 2.8:1) — "Q4 (최초 20조)"
+  15.10 | VP-08 :: Shape "Text 5" (1.86" × 0.46") has fill #1428A0 but no text — possible empty card
+  15.11 | VP-08 :: Shape "Text 6" (1.86" × 0.32") has fill #B0C4DE but no text — possible empty card
+  15.12 | VP-08 :: Shape "Text 7" (1.86" × 0.83") has fill #1428A0 but no text — possible empty card
+  15.13 | VP-08 :: Shape "Text 8" (1.86" × 1.39") has fill #FF6F00 but no text — possible empty card
+  15.14 | VP-11 :: Reading order mismatch: 25/32 shapes out of visual order (78%) — may affect accessibility
+  15.15 | VP-16 :: CJK text "Q2 (저점)..." fills 103% of available width (41pt / 40pt, 10pt font) — may wrap in PPTX [IL-37]
+  15.16 | VP-16 :: CJK text "Q4 (최초 20조)..." fills 99% of available width (63pt / 63pt, 10pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 124  (image: C:/msys64/tmp/ab-verify/img/slide_124.png)
+  124.1 | VP-02 :: Column at x=0.53" has inconsistent widths (0.70", 0.70", 0.70", 0.70", 0.70", 0.80", 0.87", 0.70", 0.80")
+  124.2 | VP-02 :: Column at x=1.92" has inconsistent widths (0.65", 0.53", 0.84", 0.91")
+  124.3 | VP-02 :: Column at x=1.92" has inconsistent widths (1.22", 1.35", 1.29", 1.15", 1.12", 1.04", 1.15")
+  124.4 | VP-02 :: Column at x=6.64" has inconsistent widths (0.38", 0.40", 0.40", 0.53", 0.53", 0.53", 0.53", 0.53", 0.43", 0.40", 0.38")
+  124.5 | VP-04 :: Text "#999999" on "#FFFFFF" in "Text 138" — low contrast (ratio: 2.8:1) — "근로기준법, 퇴직급여보장법"
+  124.6 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 100" — low contrast (ratio: 2.3:1) — "124.5"
+  124.7 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 110" — low contrast (ratio: 2.3:1) — "128.5"
+  124.8 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 120" — low contrast (ratio: 2.3:1) — "130.9"
+  124.9 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 130" — low contrast (ratio: 2.3:1) — "145.0"
+  124.10 | VP-04 :: Text "#E8913A" on "#F7F7F7" in "Text 90" — low contrast (ratio: 2.3:1) — "100.0"
+  124.11 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 105" — low contrast (ratio: 2.5:1) — "128.0"
+  124.12 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 115" — low contrast (ratio: 2.5:1) — "129.4"
+  124.13 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 125" — low contrast (ratio: 2.5:1) — "139.2"
+  124.14 | VP-04 :: Text "#E8913A" on "#FFFFFF" in "Text 95" — low contrast (ratio: 2.5:1) — "120.0"
+  124.15 | VP-10 :: Row at y=1.61" has inconsistent gaps: [49.6pt, 129.5pt, 6.0pt, 16.0pt]
+  124.16 | VP-10 :: Row at y=2.30" has inconsistent gaps: [49.6pt, 92.8pt, 6.0pt, 16.0pt]
+  124.17 | VP-10 :: Row at y=2.99" has inconsistent gaps: [49.6pt, 106.9pt, 6.0pt, 16.0pt]
+  124.18 | VP-10 :: Row at y=3.69" has inconsistent gaps: [37.0pt, 124.8pt, 6.0pt, 16.0pt]
+  124.19 | VP-16 :: CJK text "1년+..." fills 100% of available width (21pt / 21pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.20 | VP-16 :: CJK text "건강보험..." fills 100% of available width (40pt / 40pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.21 | VP-16 :: CJK text "건강보험×12.81%..." fills 96% of available width (79pt / 83pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.22 | VP-16 :: CJK text "계산 근거..." fills 106% of available width (39pt / 37pt, 10pt font) — may wrap in PPTX [IL-37]
+  124.23 | VP-16 :: CJK text "고용보험..." fills 100% of available width (40pt / 40pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.24 | VP-16 :: CJK text "국민연금..." fills 100% of available width (40pt / 40pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.25 | VP-16 :: CJK text "기본급..." fills 106% of available width (30pt / 29pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.26 | VP-16 :: CJK text "기본급×1/5..." fills 104% of available width (52pt / 50pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.27 | VP-16 :: CJK text "기준..." fills 106% of available width (20pt / 19pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.28 | VP-16 :: CJK text "기준액..." fills 106% of available width (30pt / 29pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.29 | VP-16 :: CJK text "누적..." fills 106% of available width (18pt / 17pt, 10pt font) — may wrap in PPTX [IL-37]
+  124.30 | VP-16 :: CJK text "만근..." fills 106% of available width (20pt / 19pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.31 | VP-16 :: CJK text "법정..." fills 106% of available width (20pt / 19pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.32 | VP-16 :: CJK text "보수월액×1.5%..." fills 96% of available width (68pt / 71pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.33 | VP-16 :: CJK text "비고..." fills 106% of available width (18pt / 17pt, 10pt font) — may wrap in PPTX [IL-37]
+  124.34 | VP-16 :: CJK text "비율..." fills 106% of available width (18pt / 17pt, 10pt font) — may wrap in PPTX [IL-37]
+  124.35 | VP-16 :: CJK text "산재(운수)..." fills 108% of available width (51pt / 48pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.36 | VP-16 :: CJK text "업종별..." fills 106% of available width (30pt / 29pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.37 | VP-16 :: CJK text "연차수당..." fills 100% of available width (40pt / 40pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.38 | VP-16 :: CJK text "옵션..." fills 106% of available width (18pt / 17pt, 10pt font) — may wrap in PPTX [IL-37]
+  124.39 | VP-16 :: CJK text "일급×15일÷12..." fills 97% of available width (63pt / 65pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.40 | VP-16 :: CJK text "장기요양..." fills 100% of available width (40pt / 40pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.41 | VP-16 :: CJK text "주휴수당..." fills 100% of available width (40pt / 40pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.42 | VP-16 :: CJK text "총임금×1/12..." fills 105% of available width (58pt / 55pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.43 | VP-16 :: CJK text "퇴직충당금..." fills 96% of available width (51pt / 53pt, 11pt font) — may wrap in PPTX [IL-37]
+  124.44 | VP-16 :: CJK text "항목..." fills 106% of available width (18pt / 17pt, 10pt font) — may wrap in PPTX [IL-37]
+  124.45 | VP-16 :: CJK text "회사분..." fills 106% of available width (30pt / 29pt, 11pt font) — may wrap in PPTX [IL-37]
+
+### SLIDE 99  (image: C:/msys64/tmp/ab-verify/img/slide_99.png)
+  99.1 | VP-03 :: Shape "Text 0" has a text frame but all text runs are empty
+  99.2 | VP-03 :: Shape "Text 1" has a text frame but all text runs are empty
+  99.3 | VP-04 :: Text "#64748B" on "#0F172A" in "Text 3" — low contrast (ratio: 3.8:1) — "2026년 3월 29일"
+  99.4 | VP-04 :: Text "#64748B" on "#0F172A" in "Text 4" — low contrast (ratio: 3.8:1) — "경영전략본부 원자재 분석팀"
+  99.5 | VP-11 :: Reading order mismatch: 4/4 shapes out of visual order (100%) — may affect accessibility
+  99.6 | VP-11 :: Reading order mismatch: 4/6 shape pairs inverted vs visual order (67%) — may affect accessibility
+  99.7 | VP-16 :: CJK text "2026년 3월 29일..." fills 105% of available width (81pt / 78pt, 12pt font) — may wrap in PPTX [IL-37]
+  99.8 | VP-16 :: CJK text "2026년 중동 지정학적 위기에 따른글로벌 원..." wraps to 2 lines (930pt / 670pt, 36pt font) — fits vertically [IL-37]
+  99.9 | VP-16 :: CJK text "경영전략본부 원자재 분석팀..." fills 115% of available width (138pt / 120pt, 12pt font) — may wrap in PPTX [IL-37]
+

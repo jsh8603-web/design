@@ -1,0 +1,302 @@
+7.1 | FP — edges align, width vary by text
+7.2 | FP — edges align, width vary by text
+7.3 | FP — empty bar-track/decorative, not content slot
+7.4 | FP — empty bar-track/decorative, not content slot
+7.5 | FP — empty bar-track/decorative, not content slot
+7.6 | FP — empty bar-track/decorative, not content slot
+7.7 | REAL — cyan ~35% hard on white
+7.8 | REAL — green ~7.5% hard on white
+7.9 | FP — muted source legible at 2.6:1
+7.10 | FP — chart bar/track fill, decorative
+7.11 | FP — dark bar fill, decorative
+7.12 | FP — chart bar/track fill, decorative
+7.13 | FP — cyan progress bar, decorative
+7.14 | FP — chart bar/track fill, decorative
+7.15 | FP — spacing looks fine in image
+7.16 | FP — spacing looks fine in image
+7.17 | FP — spacing looks fine in image
+7.18 | UNVERIFIABLE — tab order not visible
+7.19 | FP — wraps 2 lines, fully readable
+7.20 | FP — fits on one line cleanly
+7.21 | FP — title wraps 2 lines, readable
+7.22 | FP — fits, not clipped
+7.23 | FP — fits on one line cleanly
+7.24 | FP — fits, not clipped
+127.1 | FP — table cells align, no jaggedness
+127.2 | FP — table cells align, no jaggedness
+127.3 | FP — table cells align, no jaggedness
+127.4 | FP — table cells align, no jaggedness
+127.5 | FP — table cells align, no jaggedness
+127.6 | FP — table cells align, no jaggedness
+127.7 | FP — table cells align, no jaggedness
+127.8 | FP — table cells align, no jaggedness
+127.9 | FP — table grid cell, no content slot
+127.10 | FP — table grid cell, no content slot
+127.11 | FP — table grid cell, no content slot
+127.12 | FP — table grid cell, no content slot
+127.13 | FP — table grid cell, no content slot
+127.14 | FP — table grid cell, no content slot
+127.15 | FP — table grid cell, no content slot
+127.16 | FP — "미가입" gray badge clearly legible
+127.17 | FP — "미가입" gray badge clearly legible
+127.18 | FP — "미가입" gray badge clearly legible
+127.19 | FP — muted source legible
+127.20 | FP — orange-on-cream heading legible
+127.21 | FP — orange-on-cream legible
+127.22 | FP — orange-on-cream legible
+127.23 | FP — orange 100% clearly readable
+127.24 | FP — orange 1.5% clearly readable
+127.25 | FP — orange 50% clearly readable
+127.26 | FP — orange 3.5% clearly readable
+127.27 | FP — orange 50% clearly readable
+127.28 | FP — orange 0.9% clearly readable
+127.29 | FP — orange 50% clearly readable
+127.30 | FP — orange 4.5% clearly readable
+127.31 | FP — white on orange legible badge
+127.32 | FP — white on orange legible badge
+127.33 | FP — white on orange legible badge
+127.34 | UNVERIFIABLE — tab order not visible
+127.35 | FP — fits in cell, readable
+127.36 | FP — fits in cell, readable
+127.37 | FP — fits, header readable
+127.38 | FP — fits in cell, readable
+127.39 | FP — fits, header readable
+127.40 | FP — fits in cell, readable
+127.41 | FP — fits in cell, readable
+127.42 | FP — fits in cell, readable
+127.43 | FP — wraps but readable
+127.44 | FP — fits, header readable
+127.45 | FP — fits in cell, readable
+127.46 | FP — fits, header readable
+127.47 | FP — fits, header readable
+127.48 | FP — fits, header readable
+127.49 | FP — fits in cell, readable
+127.50 | FP — fits, badge readable
+127.51 | FP — fits in cell, readable
+127.52 | FP — fits, header readable
+127.53 | FP — source line fits, readable
+127.54 | FP — fits in cell, readable
+127.55 | FP — fits, header readable
+122.1 | FP — card edges align, no jaggedness
+122.2 | FP — card edges align, no jaggedness
+122.3 | FP — card edges align, no jaggedness
+122.4 | FP — card edges align, no jaggedness
+122.5 | FP — decorative block, not content slot
+122.6 | FP — decorative block, not content slot
+122.7 | FP — decorative block, not content slot
+122.8 | FP — decorative block, not content slot
+122.9 | FP — decorative block, not content slot
+122.10 | FP — decorative block, not content slot
+122.11 | FP — decorative block, not content slot
+122.12 | FP — decorative block, not content slot
+122.13 | FP — muted source legible
+122.14 | FP — orange-on-cream tag legible
+122.15 | FP — orange-on-cream tag legible
+122.16 | FP — orange-on-cream tag legible
+122.17 | FP — orange-on-cream tag legible
+122.18 | FP — white on orange badge legible
+122.19 | FP — white on orange badge legible
+122.20 | FP — white on orange badge legible
+122.21 | FP — white on orange badge legible
+122.22 | FP — "1" badge in number circle visible
+122.23 | UNVERIFIABLE — tab order not visible
+122.24 | FP — fits inside card, readable
+122.25 | FP — fits inside card, readable
+122.26 | FP — fits inside card, readable
+122.27 | FP — fits inside card, readable
+122.28 | FP — fits inside card, readable
+122.29 | FP — source fits, readable
+122.30 | FP — orange tag fits, readable
+2.1 | FP — card edges align, no jaggedness
+2.2 | FP — card edges align, no jaggedness
+2.3 | REAL — cyan "01" faint on white
+2.4 | REAL — cyan "02" faint on white
+2.5 | REAL — cyan "03" faint on white
+2.6 | REAL — cyan "04" faint on white
+2.7 | REAL — cyan "05" faint on white
+2.8 | REAL — cyan "06" faint on white
+2.9 | FP — subtitle legible at 4.5:1
+2.10 | UNVERIFIABLE — tab order not visible
+2.11 | FP — subtitle fits, readable
+2.12 | FP — subtitle fits, readable
+71.1 | FP — bar widths encode data values
+71.2 | FP — empty bar/track segment, decorative
+71.3 | FP — empty bar/track segment, decorative
+71.4 | FP — empty bar/track segment, decorative
+71.5 | FP — empty bar/track segment, decorative
+71.6 | FP — empty bar/track segment, decorative
+71.7 | FP — empty bar/track segment, decorative
+71.8 | FP — empty bar/track segment, decorative
+71.9 | FP — empty bar/track segment, decorative
+71.10 | FP — empty bar/track segment, decorative
+71.11 | FP — empty bar/track segment, decorative
+71.12 | FP — empty bar/track segment, decorative
+71.13 | FP — empty bar/track segment, decorative
+71.14 | FP — empty bar/track segment, decorative
+71.15 | FP — empty bar/track segment, decorative
+71.16 | FP — empty bar/track segment, decorative
+71.17 | FP — empty bar/track segment, decorative
+71.18 | FP — empty bar/track segment, decorative
+71.19 | FP — empty bar/track segment, decorative
+71.20 | FP — empty bar/track segment, decorative
+71.21 | FP — empty bar/track segment, decorative
+71.22 | FP — empty bar/track segment, decorative
+71.23 | FP — empty bar/track segment, decorative
+71.24 | FP — empty bar/track segment, decorative
+71.25 | FP — empty bar/track segment, decorative
+71.26 | FP — empty bar/track segment, decorative
+71.27 | FP — muted source legible
+71.28 | FP — gold avg label legible on gray
+71.29 | FP — white 0.40 on gold bar legible
+71.30 | REAL — value label clipped/wrapped in bar
+71.31 | REAL — "현재" label clipped/wrapped
+62.1 | FP — track widths encode progress data
+62.2 | FP — progress track fill, decorative
+62.3 | FP — progress track fill, decorative
+62.4 | FP — progress track fill, decorative
+62.5 | FP — progress track fill, decorative
+62.6 | FP — progress track fill, decorative
+62.7 | FP — progress track fill, decorative
+62.8 | FP — progress track fill, decorative
+62.9 | FP — progress track fill, decorative
+62.10 | FP — progress track fill, decorative
+62.11 | FP — progress track fill, decorative
+62.12 | FP — progress track fill, decorative
+62.13 | FP — progress track fill, decorative
+62.14 | FP — thin progress bar, decorative
+62.15 | FP — yellow progress bar, decorative
+62.16 | FP — thin progress bar, decorative
+62.17 | FP — yellow progress bar, decorative
+62.18 | FP — thin progress bar, decorative
+62.19 | FP — yellow progress bar, decorative
+62.20 | FP — milestone label fits, readable
+62.21 | FP — milestone label fits, readable
+62.22 | FP — milestone label fits, readable
+62.23 | FP — milestone label fits, readable
+62.24 | FP — section label fits, readable
+62.25 | FP — milestone label fits, readable
+62.26 | FP — milestone label fits, readable
+62.27 | FP — milestone label fits, readable
+62.28 | FP — milestone label fits, readable
+62.29 | FP — milestone label fits, readable
+24.1 | FP — table columns align uniformly
+24.2 | FP — empty cell, decorative table grid
+24.3 | FP — empty cell, decorative table grid
+24.4 | FP — muted source legible
+24.5 | FP — orange ~6~8% legible on light
+24.6 | FP — orange 50%대 legible on white
+24.7 | FP — orange 7.2% legible on white
+24.8 | UNVERIFIABLE — tab order not visible
+24.9 | UNVERIFIABLE — tab order not visible
+24.10 | FP — insight text fits, readable
+142.1 | FP — decorative block, section divider
+142.2 | FP — decorative block, section divider
+142.3 | FP — decorative block, section divider
+142.4 | FP — decorative block, section divider
+142.5 | FP — decorative block, section divider
+142.6 | FP — decorative block, section divider
+142.7 | FP — decorative block, section divider
+142.8 | FP — decorative block, section divider
+142.9 | FP — decorative block, section divider
+142.10 | FP — decorative block, section divider
+142.11 | FP — decorative block, section divider
+142.12 | FP — decorative block, section divider
+142.13 | FP — decorative block, section divider
+142.14 | FP — decorative block, section divider
+142.15 | FP — decorative block, section divider
+142.16 | FP — decorative block, section divider
+142.17 | FP — decorative block, section divider
+142.18 | FP — decorative block, section divider
+142.19 | FP — decorative block, section divider
+142.20 | FP — white "9" on orange bullet legible
+142.21 | FP — orange accent bar, decorative
+142.22 | FP — orange accent block, decorative
+142.23 | UNVERIFIABLE — tab order not visible
+142.24 | UNVERIFIABLE — tab order not visible
+142.25 | FP — title wraps 2 lines, readable
+90.1 | FP — empty bar segment, decorative
+90.2 | FP — muted source legible
+90.3 | FP — orange milestone label legible
+90.4 | FP — orange IPO label legible
+90.5 | FP — orange label legible
+90.6 | FP — orange label legible
+90.7 | FP — dark chart bar segment, decorative
+90.8 | FP — dark chart bar segment, decorative
+90.9 | FP — dark chart bar segment, decorative
+90.10 | FP — dark chart bar segment, decorative
+90.11 | FP — dark chart bar segment, decorative
+90.12 | FP — red chart bar segment, decorative
+90.13 | FP — bar gaps look even in image
+90.14 | UNVERIFIABLE — tab order not visible
+90.15 | FP — milestone label fits, readable
+90.16 | FP — milestone label fits, readable
+15.1 | FP — muted source legible
+15.2 | FP — gray annotation legible on white
+15.3 | FP — gray annotation legible on white
+15.4 | FP — gray annotation legible on white
+15.5 | FP — gray annotation legible on white
+15.6 | FP — gray Q1 axis label legible
+15.7 | FP — gray Q2 axis label legible
+15.8 | FP — gray Q3 axis label legible
+15.9 | FP — gray Q4 axis label legible
+15.10 | FP — chart bar fill, decorative
+15.11 | FP — chart bar fill, decorative
+15.12 | FP — chart bar fill, decorative
+15.13 | FP — chart bar fill, decorative
+15.14 | UNVERIFIABLE — tab order not visible
+15.15 | FP — axis label fits, readable
+15.16 | FP — axis label fits, readable
+124.1 | FP — table columns align uniformly
+124.2 | FP — table columns align uniformly
+124.3 | FP — table columns align uniformly
+124.4 | FP — table columns align uniformly
+124.5 | FP — muted source legible
+124.6 | FP — orange cumulative value legible
+124.7 | FP — orange cumulative value legible
+124.8 | FP — orange cumulative value legible
+124.9 | FP — orange cumulative value legible
+124.10 | FP — orange cumulative value legible
+124.11 | FP — orange value legible on white
+124.12 | FP — orange value legible on white
+124.13 | FP — orange value legible on white
+124.14 | FP — orange value legible on white
+124.15 | FP — row spacing looks even
+124.16 | FP — row spacing looks even
+124.17 | FP — row spacing looks even
+124.18 | FP — row spacing looks even
+124.19 | FP — cell text fits, readable
+124.20 | FP — cell text fits, readable
+124.21 | FP — formula fits in cell, readable
+124.22 | FP — header fits, readable
+124.23 | FP — cell text fits, readable
+124.24 | FP — cell text fits, readable
+124.25 | FP — cell text fits, readable
+124.26 | FP — formula fits, readable
+124.27 | FP — header fits, readable
+124.28 | FP — header fits, readable
+124.29 | FP — header fits, readable
+124.30 | FP — cell text fits, readable
+124.31 | FP — cell text fits, readable
+124.32 | FP — formula fits, readable
+124.33 | FP — header fits, readable
+124.34 | FP — header fits, readable
+124.35 | FP — cell text fits, readable
+124.36 | FP — cell text fits, readable
+124.37 | FP — cell text fits, readable
+124.38 | FP — header fits, readable
+124.39 | FP — formula fits, readable
+124.40 | FP — cell text fits, readable
+124.41 | FP — cell text fits, readable
+124.42 | FP — formula fits, readable
+124.43 | FP — cell text fits, readable
+124.44 | FP — header fits, readable
+124.45 | FP — cell text fits, readable
+99.3 | REAL — dark subtitle hard on navy
+99.4 | REAL — team name dim on navy, wrapped
+99.1 | FP — empty decorative element
+99.2 | FP — decorative element, not content slot
+99.5 | UNVERIFIABLE — tab order not visible
+99.6 | UNVERIFIABLE — tab order not visible
+99.7 | REAL — date wraps awkward, dim
+99.8 | REAL — title overlaps subtitle below
+99.9 | REAL — team name clipped/wraps "분/석팀"

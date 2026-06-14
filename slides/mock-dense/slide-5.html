@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: #fff; color: #1a1a2e; overflow: hidden; }
+  .slide { width: 960px; height: 540px; position: relative; }
+  .label { position: absolute; font-size: 11px; color: #718096; font-weight: 600; }
+
+  /* CASE A: flex 자식들이 음수마진으로 텍스트끼리 진짜 겹침 — 판독 불가 결함인데 flex라 skip되면 FN */
+  .fxbad { position: absolute; left: 40px; top: 60px; width: 360px; height: 70px; display: flex; }
+  .fa1 { width: 220px; height: 70px; font-size: 20px; font-weight: 700; color: #16213e; }
+  .fa2 { width: 220px; height: 70px; font-size: 20px; font-weight: 700; color: #b91c1c; margin-left: -180px; }
+
+  /* CASE B: 작은 텍스트가 큰 텍스트 박스 안에 완전 포함되어 글자를 가림 — containment skip되면 FN */
+  .bigtext { position: absolute; left: 40px; top: 200px; width: 420px; height: 120px; font-size: 18px; color: #2d3748; padding: 10px; line-height: 1.5; }
+  .overtext { position: absolute; left: 60px; top: 230px; width: 240px; height: 40px; font-size: 18px; font-weight: 800; color: #0f3460; background: #fde68a; }
+
+  /* CASE C: 정상 flex (안 겹침) — 대조군, 양쪽 PASS */
+  .fxok { position: absolute; left: 520px; top: 60px; width: 380px; height: 70px; display: flex; gap: 12px; }
+  .fo1, .fo2 { flex: 1; height: 70px; background: #f7f9fc; border: 1px solid #cbd5e0; font-size: 14px; padding: 8px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="label" style="left:40px; top:40px;">A. flex 자식 텍스트끼리 진짜 겹침(결함)</div>
+  <div class="fxbad">
+    <div class="fa1">매출 성장률 둔화</div>
+    <div class="fa2">수익성 급격 악화</div>
+  </div>
+
+  <div class="label" style="left:520px; top:40px;">C. 정상 flex(대조군)</div>
+  <div class="fxok"><div class="fo1">정상 카드 1</div><div class="fo2">정상 카드 2</div></div>
+
+  <div class="label" style="left:40px; top:180px;">B. 텍스트 박스 안에 텍스트 완전 포함(글자 가림 결함)</div>
+  <div class="bigtext">분기 실적은 시장 기대치를 상회했으며 주요 사업부 전반에서 고른 성장세가 확인되었습니다 향후 가이던스도 상향 조정</div>
+  <div class="overtext">긴급 정정 공지</div>
+</div>
+</body>
+</html>

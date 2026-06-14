@@ -169,6 +169,7 @@ async function main() {
   pptx.layout = 'LAYOUT_16x9';
 
   const allContrastWarnings = [];
+  let okCount = 0, failCount = 0;
 
   for (const file of files) {
     const filePath = path.join(slidesDir, file);
@@ -176,6 +177,7 @@ async function main() {
     try {
       const result = await html2pptx(filePath, pptx);
       console.log('OK');
+      okCount++;
       if (result.contrastWarnings && result.contrastWarnings.length > 0) {
         for (const w of result.contrastWarnings) {
           allContrastWarnings.push({ file, ...w });
@@ -183,11 +185,21 @@ async function main() {
       }
     } catch (err) {
       console.log('FAILED:', err.message);
+      failCount++;
     }
   }
 
+  if (okCount === 0) {
+    console.error(`\n❌ All ${failCount} slide(s) failed to convert — no PPTX written. Build failed.`);
+    process.exit(1);
+  }
+
   await pptx.writeFile({ fileName: outputPath });
-  console.log(`\nSaved: ${outputPath}`);
+  console.log(`\nSaved: ${outputPath}${failCount > 0 ? `  (⚠️ ${failCount} slide(s) FAILED and were omitted)` : ''}`);
+  if (failCount > 0) {
+    console.error(`\n❌ ${failCount} slide(s) failed to convert. Build failed (non-zero exit).`);
+    process.exit(1);
+  }
 
   // DISABLED: patchNotesSlides corrupts PPTX via JSZip re-compression.
   // Notes wrapping works correctly when injected via PowerPoint COM API (Python win32com).

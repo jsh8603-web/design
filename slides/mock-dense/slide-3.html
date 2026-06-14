@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: #ffffff; color: #1a1a2e; overflow: hidden; }
+  .slide { width: 960px; height: 540px; padding: 24px 32px; position: relative; }
+  h1 { font-size: 24px; font-weight: 800; color: #16213e; margin-bottom: 16px; }
+  .grid { display: flex; flex-direction: column; gap: 13px; }
+  .row { display: flex; align-items: center; gap: 14px; }
+  .tag { font-size: 11px; color: #718096; width: 150px; flex-shrink: 0; }
+  .cell { white-space: nowrap; overflow: hidden; background: #f7f9fc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 7px 10px; color: #2d3748; font-size: 20px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1>제품별 분기 실적 요약 및 핵심 메시지 정리표</h1>
+  <div class="grid">
+    <!-- ① 실제 넘침: 텍스트가 박스보다 확실히 김 → TRUE overflow (ERROR 기대 양쪽) -->
+    <div class="row"><span class="tag">① 실제 넘침(좁은 박스)</span><div class="cell" style="width:230px;">차세대 인공지능 반도체 플랫폼 통합 로드맵 발표</div></div>
+    <!-- ② 한글 ~90% 채움: 실제로는 안 넘침. 기존 과대추정 → WARN(FP) 기대 / 조정 → PASS 기대 -->
+    <div class="row"><span class="tag">② 한글 빠듯(~90%)</span><div class="cell" style="width:520px;">데이터센터 전력 효율 전년 대비 개선 추세</div></div>
+    <!-- ③ 라틴+공백 많음 ~90%: 기존(공백0.55) 과대 → WARN(FP) / 조정(공백0.25) → PASS -->
+    <div class="row"><span class="tag">③ 라틴·공백 빠듯</span><div class="cell" style="width:520px;">Total market reached 320 billion in 2025</div></div>
+    <!-- ④ 충분 여유 ~65%: 양쪽 PASS 기대 -->
+    <div class="row"><span class="tag">④ 충분 여유</span><div class="cell" style="width:520px;">QoQ 18% 증가 기록</div></div>
+    <!-- ⑤ 한글 빠듯2 ~92% -->
+    <div class="row"><span class="tag">⑤ 한글 빠듯2</span><div class="cell" style="width:520px;">소버린 인공지능 정책 확산 공공 발주 본격화</div></div>
+    <!-- ⑥ 라틴 공백 빠듯2 -->
+    <div class="row"><span class="tag">⑥ 라틴·공백 빠듯2</span><div class="cell" style="width:520px;">Optical transceiver lead time over forty</div></div>
+  </div>
+</div>
+</body>
+</html>

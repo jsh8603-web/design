@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: #ffffff; color: #1a1a2e; overflow: hidden; position: relative; }
+  .slide { width: 960px; height: 540px; padding: 28px 36px; }
+  h1 { font-size: 28px; font-weight: 800; color: #16213e; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: #4a5568; margin-bottom: 18px; }
+  .cols { display: flex; gap: 24px; }
+  .col { flex: 1; }
+  .col h2 { font-size: 16px; font-weight: 700; color: #0f3460; border-bottom: 2px solid #e94560; padding-bottom: 4px; margin-bottom: 10px; }
+  .col ul { list-style: none; }
+  .col li { font-size: 13px; line-height: 1.5; color: #2d3748; margin-bottom: 7px; padding-left: 12px; position: relative; }
+  .col li::before { content: '▪'; position: absolute; left: 0; color: #e94560; }
+  .metrics { display: flex; gap: 16px; margin-top: 16px; }
+  .metric { flex: 1; background: #f7f9fc; border-radius: 6px; padding: 10px 12px; }
+  .metric .num { font-size: 22px; font-weight: 800; color: #16213e; }
+  .metric .lbl { font-size: 11px; color: #718096; }
+  .source { position: absolute; bottom: 10px; left: 36px; font-size: 9px; color: #a0aec0; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1>2025 글로벌 AI 인프라 시장 전망 및 주요 투자 동향 분석</h1>
+  <div class="subtitle">데이터센터 GPU 수요, 전력 인프라 제약, 그리고 하이퍼스케일러 자본지출 가속화의 3중 구조</div>
+  <div class="cols">
+    <div class="col">
+      <h2>수요 측 동인</h2>
+      <ul>
+        <li>생성형 AI 학습용 GPU 클러스터 수요가 전년 대비 142% 증가하며 공급 병목 심화</li>
+        <li>추론(inference) 워크로드 비중 확대로 엣지 데이터센터 신규 착공 건수 급증</li>
+        <li>엔터프라이즈 도입률 38%에서 61%로 상승, B2B SaaS 통합 가속</li>
+        <li>국가 단위 소버린 AI 정책으로 공공 부문 발주 본격화</li>
+        <li>멀티모달 모델 확산에 따른 메모리 대역폭 요구치 상향</li>
+        <li>온디바이스 추론 칩셋 양산으로 분산 컴퓨팅 수요 동반 성장</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2>공급 측 제약</h2>
+      <ul>
+        <li>선단 공정 HBM3E 양산 수율이 목표치를 하회하며 단가 압박 지속</li>
+        <li>데이터센터 전력 확보가 신규 증설의 최대 병목으로 부상</li>
+        <li>냉각 인프라(액침·수냉) 전환 비용이 총소유비용의 23% 차지</li>
+        <li>광트랜시버 및 스위치 ASIC 리드타임 40주 이상으로 장기화</li>
+        <li>핵심 소재 공급망의 지정학적 리스크가 가격 변동성 확대</li>
+        <li>숙련 엔지니어 부족으로 신규 사이트 가동 일정 지연 빈발</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2>투자 시사점</h2>
+      <ul>
+        <li>전력·냉각 밸류체인이 GPU 대비 상대적 저평가 구간에 위치</li>
+        <li>HBM 및 첨단 패키징 업체의 구조적 마진 개선 모멘텀 유효</li>
+        <li>소버린 AI 수혜 지역 인프라 사업자의 장기 수주 가시성 양호</li>
+        <li>광부품·네트워킹 영역의 병목 해소 수혜 종목 선별 접근 권고</li>
+        <li>전력 IPP 및 송배전 기자재 업체의 실적 레버리지 주목</li>
+        <li>밸류에이션 부담 구간에서는 분할 매수 및 변동성 관리 병행</li>
+      </ul>
+    </div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="num">$3,200억</div><div class="lbl">2025E 글로벌 AI 인프라 CapEx</div></div>
+    <div class="metric"><div class="num">142%</div><div class="lbl">학습용 GPU 수요 YoY 증가율</div></div>
+    <div class="metric"><div class="num">40주+</div><div class="lbl">핵심 부품 평균 리드타임</div></div>
+    <div class="metric"><div class="num">23%</div><div class="lbl">냉각 인프라 TCO 비중</div></div>
+  </div>
+  <div class="source">출처: 내부 리서치 종합, 글로벌 반도체 산업협회 분기 보고서, 주요 하이퍼스케일러 실적 발표 자료 및 시장조사기관 컨센서스 추정치 (2025년 1분기 기준, 일부 수치는 잠정)</div>
+</div>
+</body>
+</html>

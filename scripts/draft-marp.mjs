@@ -10,6 +10,7 @@
  */
 
 import { readFile, writeFile, unlink, access, readdir } from "node:fs/promises";
+import { existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { execSync, exec } from "node:child_process";
 import { platform } from "node:os";
@@ -545,12 +546,35 @@ async function main() {
   await writeFile(tempMdPath, marpMd, "utf-8");
   console.log(`Generated Marp markdown: ${tempMdPath}`);
 
+  // Resolve a Chrome/Chromium for Marp's --pptx rendering (Marp needs a browser).
+  const resolveChrome = () => {
+    if (process.env.CHROME_PATH && existsSync(process.env.CHROME_PATH)) return process.env.CHROME_PATH;
+    const candidates = [
+      "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+      "/usr/bin/google-chrome-stable",
+      "/usr/bin/google-chrome",
+      "/usr/bin/chromium-browser",
+      "/usr/bin/chromium",
+      "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+    ];
+    return candidates.find((p) => existsSync(p)) || null;
+  };
+  const chromePath = resolveChrome();
+
   // Run Marp CLI
   try {
     console.log("Converting to PPTX via Marp CLI...");
+    if (!chromePath) {
+      console.warn("[draft-marp] Chrome/Chromium not found — Marp --pptx needs a browser. Set CHROME_PATH.");
+    }
     execSync(
-      `npx @marp-team/marp-cli "${tempMdPath}" --pptx --allow-local-files -o "${outputPath}"`,
-      { stdio: "inherit", timeout: 120_000 }
+      `npx @marp-team/marp-cli "${tempMdPath}" --pptx --no-stdin --allow-local-files -o "${outputPath}"`,
+      {
+        stdio: ["ignore", "inherit", "inherit"],
+        timeout: 120_000,
+        env: chromePath ? { ...process.env, CHROME_PATH: chromePath } : process.env,
+      }
     );
     console.log(`\nDraft PPTX created: ${outputPath}`);
   } catch (err) {

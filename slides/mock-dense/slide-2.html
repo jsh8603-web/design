@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: #ffffff; color: #1a1a2e; overflow: hidden; }
+  .slide { width: 960px; height: 540px; position: relative; padding: 0; }
+  .label { position: absolute; font-size: 11px; color: #718096; font-weight: 600; }
+
+  /* CASE 1: text-on-text ~43% overlap — TRUE DEFECT (expect ERROR both) */
+  .t1 { position: absolute; left: 40px; top: 60px; width: 300px; height: 56px; font-size: 18px; font-weight: 700; color: #16213e; background: rgba(233,69,96,0.06); padding: 6px; }
+  .t2 { position: absolute; left: 40px; top: 92px; width: 300px; height: 56px; font-size: 18px; font-weight: 700; color: #0f3460; background: rgba(15,52,96,0.06); padding: 6px; }
+
+  /* CASE 2: box ~13% overlap — BORDERLINE (expect PASS old / WARN tuned) */
+  .b1 { position: absolute; left: 40px; top: 230px; width: 220px; height: 120px; background: #f7f9fc; border: 1px solid #cbd5e0; padding: 10px; font-size: 12px; color: #2d3748; }
+  .b2 { position: absolute; left: 40px; top: 338px; width: 220px; height: 120px; background: #edf2f7; border: 1px solid #cbd5e0; padding: 10px; font-size: 12px; color: #2d3748; }
+
+  /* CASE 3: badge fully INSIDE image box — containment (expect PASS both / skip) */
+  .imgbox { position: absolute; left: 360px; top: 230px; width: 260px; height: 150px; background: linear-gradient(135deg,#4a5568,#2d3748); border-radius: 6px; }
+  .badge { position: absolute; left: 372px; top: 242px; width: 72px; height: 26px; background: #e94560; color: #fff; font-size: 12px; font-weight: 700; border-radius: 13px; text-align: center; line-height: 26px; }
+
+  /* CASE 4: flex siblings overlapping via negative margin — INTENTIONAL layering (expect skip) */
+  .fx { position: absolute; left: 660px; top: 60px; width: 280px; height: 90px; display: flex; }
+  .fc1 { width: 150px; height: 90px; background: rgba(15,52,96,0.85); border-radius: 8px; color:#fff; font-size: 12px; padding: 8px; }
+  .fc2 { width: 150px; height: 90px; background: rgba(233,69,96,0.85); border-radius: 8px; margin-left: -70px; color:#fff; font-size: 12px; padding: 8px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="label" style="left:40px; top:40px;">① 텍스트-온-텍스트 (진짜 결함)</div>
+  <div class="t1">분기 매출 전년比 12.4% 성장 달성</div>
+  <div class="t2">영업이익률 추가 개선 여력 확보</div>
+
+  <div class="label" style="left:40px; top:210px;">② 박스 경계 겹침</div>
+  <div class="b1">상단 카드: 핵심 지표 요약 영역. 매출·이익·점유율 트렌드를 압축 표기합니다.</div>
+  <div class="b2">하단 카드: 리스크 요인 정리 영역. 공급망·환율·규제 변수를 나열합니다.</div>
+
+  <div class="label" style="left:360px; top:210px;">③ 배지-온-이미지 (의도된 오버레이)</div>
+  <div class="imgbox"></div>
+  <div class="badge">NEW</div>
+
+  <div class="label" style="left:660px; top:40px;">④ flex 형제 겹침 (의도된 레이어)</div>
+  <div class="fx">
+    <div class="fc1">레이어 A<br>배경 카드</div>
+    <div class="fc2">레이어 B<br>전면 카드</div>
+  </div>
+</div>
+</body>
+</html>

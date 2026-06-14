@@ -1138,8 +1138,15 @@ function checkCjkTextOverflow(shapes, slideNum) {
     const estimatedFontPt = fontSizes.length > 0 ? Math.max(...fontSizes) : 12;
     const fontEmu = estimatedFontPt * EMU_PER_PT;
 
-    // Estimate text width: CJK ≈ 1.0 × fontSize, Latin ≈ 0.55 × fontSize
-    const estimatedWidth = (cjkCount * fontEmu * 1.0) + (latinCount * fontEmu * 0.55);
+    // Estimate text width, calibrated to measured render widths (Playwright measureText,
+    // see VERIFICATION.md): CJK ≈ 1.0× (real ~0.9 but over-estimate is the safe direction —
+    // avoids FN; raising whitespace to the measured ~0.4 instead re-introduced FP on
+    // CJK lines, so whitespace stays 0.25), Latin/digit ≈ 0.5× (measured ~0.47),
+    // whitespace ≈ 0.25×. Note: VP-16 only runs when cjkRatio ≥ 0.2 (CJK-width rule);
+    // pure-Latin lines are out of scope by design.
+    const spaceCount = (text.match(/\s/g) || []).length;
+    const otherLatin = Math.max(0, latinCount - spaceCount);
+    const estimatedWidth = (cjkCount * fontEmu * 1.0) + (otherLatin * fontEmu * 0.5) + (spaceCount * fontEmu * 0.25);
 
     // Compare with shape width (minus estimated padding ~5pt each side)
     const availableWidth = s.w - (10 * EMU_PER_PT);

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: #fff; color: #1a1a2e; overflow: hidden; }
+  .slide { width: 960px; height: 540px; padding: 28px 36px; }
+  h1 { font-size: 22px; font-weight: 800; color: #16213e; margin-bottom: 18px; }
+  .row { margin-bottom: 13px; display: flex; align-items: baseline; gap: 14px; }
+  .tag { font-size: 11px; color: #718096; width: 230px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1>PF-25 역케이스 — px→pt(×0.75) 환산 경계 정확도</h1>
+  <div class="row"><span class="tag">10px = 7.5pt (위반)</span><span style="font-size:10px;">이 줄은 10px 입니다 — 환산 7.5pt</span></div>
+  <div class="row"><span class="tag">12px = 9.0pt (위반)</span><span style="font-size:12px;">이 줄은 12px 입니다 — 환산 9.0pt</span></div>
+  <div class="row"><span class="tag">13px = 9.75pt (위반·경계下)</span><span style="font-size:13px;">이 줄은 13px 입니다 — 환산 9.75pt</span></div>
+  <div class="row"><span class="tag">13.34px = 10.005pt (통과·경계上)</span><span style="font-size:13.34px;">이 줄은 13.34px 입니다 — 환산 10.005pt</span></div>
+  <div class="row"><span class="tag">14px = 10.5pt (통과)</span><span style="font-size:14px;">이 줄은 14px 입니다 — 환산 10.5pt</span></div>
+  <div class="row"><span class="tag">16px = 12.0pt (통과)</span><span style="font-size:16px;">이 줄은 16px 입니다 — 환산 12.0pt</span></div>
+</div>
+</body>
+</html>

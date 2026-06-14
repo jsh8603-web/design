@@ -266,10 +266,14 @@ async function inspectSlide(page, fileName, slidesDir) {
         });
       }
 
+      const hasText = (el) => (el.textContent || '').trim().length > 0;
       const parents = [document.body, ...allVisibleElements];
       for (const parent of parents) {
         const children = Array.from(parent.children).filter((child) => visibleSet.has(child));
         if (children.length < 2) continue;
+
+        const parentDisplay = getComputedStyle(parent).display;
+        const isFlexParent = /flex|grid|inline-flex|inline-grid/.test(parentDisplay);
 
         for (let i = 0; i < children.length; i += 1) {
           for (let j = i + 1; j < children.length; j += 1) {
@@ -279,10 +283,31 @@ async function inspectSlide(page, fileName, slidesDir) {
             const rectA = first.getBoundingClientRect();
             const rectB = second.getBoundingClientRect();
 
+            // flex/grid siblings & bbox containment are usually intentional layering
+            // (image + badge/overlay). But a TEXT-on-TEXT overlap is unreadable even
+            // inside a flex/containment layer, so we don't blindly skip it — see below.
+            const aContainsB = rectA.left <= rectB.left && rectA.right >= rectB.right && rectA.top <= rectB.top && rectA.bottom >= rectB.bottom;
+            const bContainsA = rectB.left <= rectA.left && rectB.right >= rectA.right && rectB.top <= rectA.top && rectB.bottom >= rectA.bottom;
+            const intentionalLayer = isFlexParent || aContainsB || bContainsA;
+
             const overlapWidth = Math.min(rectA.right, rectB.right) - Math.max(rectA.left, rectB.left);
             const overlapHeight = Math.min(rectA.bottom, rectB.bottom) - Math.max(rectA.top, rectB.top);
 
             if (overlapWidth <= tolerancePx || overlapHeight <= tolerancePx) continue;
+
+            // Intentional layer + at least one non-text side (overlay/badge) → skip.
+            // Intentional layer + BOTH sides have text → surface as WARNING (not critical).
+            const bothText = hasText(first) && hasText(second);
+            if (intentionalLayer && !bothText) continue;
+
+            // Unified thresholds (shared with preflight PF-18):
+            //   ratio < 0.05 → skip · 0.05–0.20 → WARN · ≥0.20 → ERROR (critical)
+            const overlapArea = overlapWidth * overlapHeight;
+            const aArea = rectA.width * rectA.height;
+            const bArea = rectB.width * rectB.height;
+            const smallerArea = Math.min(aArea, bArea);
+            const pct = smallerArea > 0 ? overlapArea / smallerArea : 0;
+            if (pct < 0.05) continue;
 
             const firstPath = elementPath(first);
             const secondPath = elementPath(second);
@@ -291,11 +316,20 @@ async function inspectSlide(page, fileName, slidesDir) {
             if (seenOverlaps.has(overlapKey)) continue;
             seenOverlaps.add(overlapKey);
 
-            warning.push({
+            // Critical (fails build) only for plain-sibling ≥20% overlap.
+            // Intentional-layer text-on-text is surfaced as WARNING for review.
+            const isCritical = !intentionalLayer && pct >= 0.20;
+            const bucket = isCritical ? critical : warning;
+            bucket.push({
               code: 'sibling-overlap',
-              message: 'Sibling elements overlap in their bounding boxes.',
+              message: isCritical
+                ? 'Sibling elements overlap by 20% or more of the smaller element area.'
+                : intentionalLayer
+                  ? 'Text overlaps text inside a flex/containment layer — may be unreadable; review.'
+                  : 'Sibling elements overlap (5-19% of the smaller element area).',
               parent: elementPath(parent),
               elements: [firstPath, secondPath],
+              overlapPct: round(pct * 100),
               intersection: {
                 x: round(Math.max(rectA.left, rectB.left)),
                 y: round(Math.max(rectA.top, rectB.top)),

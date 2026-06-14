@@ -340,13 +340,14 @@ function checkPF25(html, file) {
   const issues = [];
   // Hard Floor: font-size < 10pt is ERROR (design-skill typography minimum)
   // Scans all inline style font-size declarations
-  const fontSizeRe = /font-size\s*:\s*([\d.]+)\s*pt/gi;
+  const fontSizeRe = /font-size\s*:\s*([\d.]+)\s*(pt|px)/gi;
   let m;
   const violations = [];
   while ((m = fontSizeRe.exec(html)) !== null) {
-    const size = parseFloat(m[1]);
+    let size = parseFloat(m[1]);
+    if (m[2].toLowerCase() === 'px') size = size * 0.75; // px→pt (96dpi)
     if (size < 10) {
-      violations.push(size);
+      violations.push(Math.round(size * 10) / 10);
     }
   }
   if (violations.length > 0) {
@@ -396,6 +397,9 @@ function checkPF28(html, file) {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
   const bodyContent = bodyMatch ? bodyMatch[1] : html;
   const textOnly = bodyContent.replace(/<style[\s\S]*?<\/style>/gi, '')
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<(figcaption|small)\b[\s\S]*?<\/\1>/gi, '')
+    .replace(/<(\w+)[^>]*class="[^"]*\b(source|caption|footnote|footer)\b[^"]*"[\s\S]*?<\/\1>/gi, '')
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<[^>]+>/g, ' ')
     .replace(/&[a-z]+;/gi, ' ')
@@ -1457,6 +1461,8 @@ async function runPlaywrightChecks(slidesDir, files) {
 
           // Check pairwise overlaps (limit to first 50 elements for performance)
           const check = entries.slice(0, 50);
+          let worstError = { ratio: 0 };
+          let worstWarn = { ratio: 0 };
           for (let i = 0; i < check.length; i++) {
             for (let j = i + 1; j < check.length; j++) {
               const a = check[i], b = check[j];
@@ -1485,18 +1491,31 @@ async function runPlaywrightChecks(slidesDir, files) {
               if (overlapW > 0 && overlapH > 0) {
                 const overlapArea = overlapW * overlapH;
                 const smallerArea = Math.min(a.area, b.area);
-                if (smallerArea > 0 && overlapArea / smallerArea > 0.2) {
-                  return { found: true, tag1: a.tag, tag2: b.tag, pct: Math.round(overlapArea / smallerArea * 100) };
+                const ratio = smallerArea > 0 ? overlapArea / smallerArea : 0;
+                // Unified sibling-overlap thresholds (shared with validate-slides.js):
+                //   ratio < 0.05 → skip · 0.05–0.20 → WARN · ≥0.20 → ERROR.
+                // Track worst ERROR and worst WARN separately so a slide with both
+                // (e.g. 43% + 10%) surfaces one of each instead of hiding the smaller.
+                if (ratio >= 0.20) {
+                  if (ratio > worstError.ratio) worstError = { ratio, tag1: a.tag, tag2: b.tag };
+                } else if (ratio >= 0.05) {
+                  if (ratio > worstWarn.ratio) worstWarn = { ratio, tag1: a.tag, tag2: b.tag };
                 }
               }
             }
           }
-          return { found: false };
+          return {
+            error: worstError.ratio >= 0.20 ? { ...worstError, pct: Math.round(worstError.ratio * 100) } : null,
+            warn: worstWarn.ratio >= 0.05 ? { ...worstWarn, pct: Math.round(worstWarn.ratio * 100) } : null
+          };
         });
-        if (overlapIssue.found) {
-          const isError = overlapIssue.pct >= 20;
-          results.push((isError ? fmtError : fmtWarn)(file, 'PF-18',
-            `Elements overlap: ${overlapIssue.tag1} and ${overlapIssue.tag2} (${overlapIssue.pct}% overlap) — ${isError ? 'text unreadable, fix layout or split slide' : 'may cause readability issues'}`));
+        if (overlapIssue.error) {
+          results.push(fmtError(file, 'PF-18',
+            `Elements overlap: ${overlapIssue.error.tag1} and ${overlapIssue.error.tag2} (${overlapIssue.error.pct}% overlap) — text unreadable, fix layout or split slide`));
+        }
+        if (overlapIssue.warn) {
+          results.push(fmtWarn(file, 'PF-18',
+            `Elements overlap: ${overlapIssue.warn.tag1} and ${overlapIssue.warn.tag2} (${overlapIssue.warn.pct}% overlap) — may cause readability issues`));
         }
 
         // PF-20: Bottom margin intrusion (content in 0.5" safe zone: 369pt-405pt)

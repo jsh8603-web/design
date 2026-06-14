@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; background: #fff; color: #1a1a2e; overflow: hidden; }
+  .slide { width: 960px; height: 540px; padding: 24px 32px; }
+  h1 { font-size: 22px; font-weight: 800; color: #16213e; margin-bottom: 14px; }
+  .grid { display: flex; flex-direction: column; gap: 14px; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .tag { font-size: 11px; color: #718096; width: 175px; flex-shrink: 0; }
+  .cell { white-space: nowrap; overflow: hidden; background: #f7f9fc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 7px 10px; color: #2d3748; font-size: 20px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <h1>VP-16 역케이스 — 실제로 살짝 넘치는 경계 텍스트</h1>
+  <div class="grid">
+    <!-- 박스 폭을 텍스트 실제폭에 아주 가깝게(~100%) — 실제 넘침인데 통과되면 FN -->
+    <div class="row"><span class="tag">A 한글 정확히 꽉(폭 좁힘)</span><div class="cell" style="width:430px;">데이터센터 전력 효율 전년 대비 삼십이 퍼센트 개선</div></div>
+    <div class="row"><span class="tag">B 한글 1글자 초과</span><div class="cell" style="width:455px;">차세대 인공지능 반도체 통합 플랫폼 로드맵 공개</div></div>
+    <div class="row"><span class="tag">C 라틴 공백많고 빠듯</span><div class="cell" style="width:430px;">Total addressable market reached 320 billion now</div></div>
+    <div class="row"><span class="tag">D 한글+숫자 빠듯</span><div class="cell" style="width:450px;">영업이익 QoQ 18% 증가 매출총이익률 사십이 퍼센트</div></div>
+    <div class="row"><span class="tag">E 공백 많은 영문장</span><div class="cell" style="width:440px;">we expect a strong rebound in the next two quarters</div></div>
+  </div>
+</div>
+</body>
+</html>

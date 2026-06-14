@@ -111,6 +111,10 @@ date: 2026-06-13
 
 ## Working Notes
 > 인계: [handoff-sweetspot-20260614.md](./handoff-sweetspot-20260614.md) — 정답지 기반 sweet-spot 튜닝
+> [ckpt-202606142330:btn-design] **STATUS: VP 전수 정답화 + PF-71 보강 완료**
+- 마지막 결정: 사용자 "VP 일부만 본다·정공법 FP0"+"PF는?"+"PF-clean인데 VP걸리면 PF구멍" → ★작업순서 재정립: Phase1 VP정답화→Phase2 PF보강. **Phase1**: VP 16룰 전수, VP-14 거짓ERROR7(장식글자 S/5)·VP-07 FP2(h0셀) 제거(GT밖 구멍), 미발화6 회귀✓. errors21→14·WARN129. **Phase2**: PF-VP교차테스트→VP-04저대비 PF구멍 발견→PF-71 신규(텍스트대비 floor2.124, --full Playwright). GT검증 VP-04동일ratio, realmix PF-71 99≈VP-04 92=PF-clean→VP-04clean 보장. 커밋 76ea1dd·efe858b 등.
+- 다음 의도: VP-09 9 경계(추정한계 보수유지, 추가시 FN위험). PF 나머지룰(PF-25/03/36 등) 교차검증 여지. plan sweet-spot 완료, VP전수+PF-71은 확장분.
+- 동기화 필요: VERIFICATION.md(전과정+교차검증+PF-71 박제). 회귀이미지 regr-img/(30+장). long-mode on2(750k). 엔진 scripts/validate-pptx.js+preflight-html.js(PF-71).
 > [ckpt-202606142240:btn-design] **STATUS: sweet-spot 튜닝 완료**
 - 마지막 결정: GT기반 sweet-spot 완결(이미지 직접판정, 등급회피 폐기). 전체 WARN 849→132(84%↓)·OLD 2014 대비 153(92%↓), GT 13/13 recall1.0. VP-04 floor2.124(92 TP)·VP-16 467→27(wraps겹침게이트+fills세로넘침+표격자)·VP-02 너비끔(0)·VP-03/11 끔. 커밋 28b2f80~45c2f5a(9개). plan sweet-spot 3항목 전부 [x].
 - 다음 의도: plan 3항목 완료. 추가 여지=VP-09 9(빡빡카드 경계, 보수유지)·잔존 미검증 143장 TP 검증. 사용자 추가 지시 대기 or OLD/NEW 채점 후속.

@@ -369,7 +369,7 @@ function checkColumnAlignment(shapes, slideNum) {
     if (maxW - minW > 63500 && cv > 0.15) {
       const widthStrs = widths.map((w) => emuToInches(w) + '"').join(', ');
       issues.push({
-        level: 'WARN',
+        level: 'INFO',
         code: 'VP-02',
         slide: slideNum,
         message: `Column at x=${emuToInches(col.x)}" has inconsistent widths (${widthStrs})`,
@@ -382,7 +382,7 @@ function checkColumnAlignment(shapes, slideNum) {
     const maxX = Math.max(...xs);
     if (maxX - minX > COL_TOLERANCE) {
       issues.push({
-        level: 'WARN',
+        level: 'INFO',
         code: 'VP-02',
         slide: slideNum,
         message: `Column at x~${emuToInches(col.x)}" has x-offset variance (${emuToInches(maxX - minX)}" spread)`,
@@ -445,7 +445,7 @@ function checkEmptyText(shapes, slideNum) {
         }
         const name = s.name || 'unnamed';
         issues.push({
-          level: 'WARN',
+          level: 'INFO',
           code: 'VP-03',
           slide: slideNum,
           message: `Shape "${name}" has a text frame but all text runs are empty`,
@@ -908,7 +908,7 @@ function checkGapConsistency(shapes, slideNum) {
     if (gapStdDev > 5 * EMU_PER_PT && gapCV > 0.2) {
       const gapsPt = gaps.map(g => (g / EMU_PER_PT).toFixed(1) + 'pt').join(', ');
       issues.push({
-        level: 'WARN',
+        level: 'INFO',
         code: 'VP-10',
         slide: slideNum,
         message: `Row at y=${emuToInches(row.y)}" has inconsistent gaps: [${gapsPt}]`,
@@ -958,7 +958,7 @@ function checkReadingOrder(shapes, slideNum) {
   const tauRatio = totalPairs > 0 ? inversions / totalPairs : 0;
   if (tauRatio > 0.2) {
     issues.push({
-      level: 'WARN',
+      level: 'INFO',
       code: 'VP-11',
       slide: slideNum,
       message: `Reading order mismatch: ${inversions}/${totalPairs} shape pairs inverted vs visual order (${Math.round(tauRatio * 100)}%) — may affect accessibility`,
@@ -1359,6 +1359,7 @@ export async function validatePptx(pptxPath, options = {}) {
   const zipFiles = await loadPptxInMemory(pptxPath);
   const errors = [];
   const warnings = [];
+  const infos = [];
 
   try {
     // Read slide dimensions from presentation.xml
@@ -1442,6 +1443,8 @@ export async function validatePptx(pptxPath, options = {}) {
       for (const issue of slideIssues) {
         if (issue.level === 'ERROR') {
           errors.push(issue);
+        } else if (issue.level === 'INFO') {
+          infos.push(issue);
         } else {
           warnings.push(issue);
         }
@@ -1451,13 +1454,13 @@ export async function validatePptx(pptxPath, options = {}) {
     // In-memory — no cleanup needed
   }
 
-  return { errors, warnings, passed: errors.length === 0 };
+  return { errors, warnings, infos, passed: errors.length === 0 };
 }
 
 // ── CLI ────────────────────────────────────────────────────────────────────
 
 function formatIssue(issue) {
-  const icon = issue.level === 'ERROR' ? '❌ ERROR' : '⚠️  WARN ';
+  const icon = issue.level === 'ERROR' ? '❌ ERROR' : issue.level === 'INFO' ? 'ℹ️  INFO ' : '⚠️  WARN ';
   return `${icon} [slide ${issue.slide}] ${issue.code}: ${issue.message}`;
 }
 
@@ -1468,6 +1471,7 @@ function parseCliArgs(argv) {
       args.input = argv[++i];
     }
     if (argv[i] === '--json') args.json = true;
+    if (argv[i] === '--verbose' || argv[i] === '-v') args.verbose = true;
   }
   return args;
 }
@@ -1481,25 +1485,26 @@ async function main() {
   }
 
   try {
-    const { errors, warnings, passed } = await validatePptx(args.input);
+    const { errors, warnings, infos, passed } = await validatePptx(args.input);
 
-    // --json: output structured JSON and exit
+    // --json: output structured JSON and exit (INFO only with --verbose)
     if (args.json) {
-      const all = [...errors, ...warnings];
+      const all = args.verbose ? [...errors, ...warnings, ...infos] : [...errors, ...warnings];
       console.log(JSON.stringify(all, null, 2));
       process.exit(passed ? 0 : 1);
     }
 
-    // Print all issues
+    // Print issues (INFO = layout-hint channel, shown only with --verbose)
     for (const w of warnings) console.log(formatIssue(w));
     for (const e of errors) console.log(formatIssue(e));
+    if (args.verbose) for (const inf of infos) console.log(formatIssue(inf));
 
     // Summary
     console.log(`\n${'─'.repeat(60)}`);
     if (passed && warnings.length === 0) {
-      console.log(`✅ All checks passed — no issues found`);
+      console.log(`✅ All checks passed — no issues found${infos.length ? ` (${infos.length} INFO hint(s), use --verbose)` : ''}`);
     } else {
-      console.log(`Results: ${errors.length} error(s), ${warnings.length} warning(s)`);
+      console.log(`Results: ${errors.length} error(s), ${warnings.length} warning(s)${infos.length ? `, ${infos.length} INFO hint(s)` : ''}`);
       if (!passed) {
         console.log(`❌ Validation FAILED`);
       } else {

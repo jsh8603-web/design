@@ -1314,6 +1314,21 @@ function checkCjkTextOverflow(shapes, slideNum) {
         message: `CJK text "${text.substring(0, 25)}..." ${estPt}pt > available ${availPt}pt (${estimatedFontPt}pt font, ${linesNeeded} lines needed, shape too short) — will overflow [IL-37]`,
       });
     } else if (ratio > 1.2 && (isShortText || isMinorOverflow || isBorderlineOverflow || !verticalOverflow)) {
+      // VP-16 wraps 정밀화(이미지직접확인 2026-06-14): 2줄 wrap 자체는 정상 — 큰 도형의 긴 제목/문장이
+      // 카드 안에서 2줄로 흐르는 건 디자인(s12 카드제목·s7 제목 여백충분). 진짜 결함은 ① 늘어난 텍스트가
+      // 인접 텍스트 도형을 침범(s99 GT: 제목 3줄→부제 "호르무즈해협" 덮음) ② 작은 도형(막대 안 7pt,
+      // s71 GT "10년평균0.55"/"현재")에서 잘림. → 겹침도 작은도형도 아니면(여백충분 큰도형) skip.
+      // 인접 겹침 = 이 도형의 실제 bounding box(s.y~s.y+s.h) 안에 다른 텍스트 도형이 들어옴.
+      // s99 GT: 제목 도형 h=2.07"(bottom 3.01")이 부제 y=2.97"를 품음 → 텍스트가 길어 2줄+ 되면
+      // 하단까지 차며 부제 "호르무즈해협" 침범. 추정 텍스트높이가 아닌 실제 도형영역으로 판정.
+      const shapeBottom = s.y + s.h;
+      const overlapsNeighbor = shapes.some((o) => o !== s &&
+        o.textRuns.some((rr) => rr.text && rr.text.trim()) &&
+        o.y > s.y && o.y < shapeBottom && o.x < s.x + s.w && o.x + o.w > s.x);
+      const isSmallShape = availableWidth < 1.5 * EMU_PER_INCH;
+      // 큰 도형이고 인접 텍스트 도형 겹침도 없으면 = 여백충분 정상 2줄(s12 카드제목) → skip.
+      // 작은도형(막대 s71) 또는 인접겹침(s99 제목→부제)이면 발화 유지(GT 보존).
+      if (!isSmallShape && !overlapsNeighbor) continue;
       // Wraps but fits vertically — WARN only
       const availPt = Math.round(availableWidth / EMU_PER_PT);
       const estPt = Math.round(estimatedWidth / EMU_PER_PT);

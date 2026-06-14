@@ -920,6 +920,10 @@ function checkGapConsistency(shapes, slideNum) {
     // VP-10 FP 제거: 겹친 도형(음수 gap)은 PF-18/sibling-overlap이 담당.
     // 음수 gap이 stdDev를 부풀려 '간격 불일치'로 오발화하므로 해당 행은 제외.
     if (gaps.some((g) => g < 0)) continue;
+    // 그룹/쌍 배치 제외(이미지직접확인 2026-06-14): 매우 작은 양수 gap(<10pt)이 큰 gap과 섞이면
+    // 아이콘-라벨 쌍/그룹 배치(s149 타임라인 점-라벨 6pt + 항목간 54pt)다 = 쌍 내부 근접이 stdDev를
+    // 부풀려 오발화. 작은 gap이 있으면 의도적 그룹핑으로 보고 제외. 균등 단일행은 발화 유지.
+    if (gaps.some((g) => g >= 0 && g < 10 * EMU_PER_PT)) continue;
     const gapMean = gaps.reduce((a, b) => a + b, 0) / gaps.length;
     const gapStdDev = Math.sqrt(gaps.reduce((sum, g) => sum + (g - gapMean) ** 2, 0) / gaps.length);
 

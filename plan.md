@@ -129,4 +129,20 @@ assets/fonts/         # 로컬 .woff2 (CDN 대체)
 - [ ] C1 VP-16 출처캡션 FP 게이트 — fills 과대추정(s82 "출처:" 한줄수용 확인). GT s71/99 보존.
 - [ ] C2 PF-71 동기화 — VP-04 phantom(배경오측정)·장식glyph 게이트를 PF-71에 이식(PF-71 99 → VP-04 88 정합).
 - [ ] C3 PF-clean=VP-clean 교차검증 — realmix 전수: PF-71 미발화 슬라이드가 VP-04 발화하면 PF 구멍 식별·보강.
-- [ ] C4 VERIFICATION.md 박제 + 커밋.
+- [x] C1 VP-16 출처캡션+autofit 게이트 (31→16, GT VP-16 4/4)
+- [x] C2 VP-04 phantom·반투명·2tier·장식T (88→80, A8B8CC/s144/s57)
+- [x] C3 PF-clean⊇VP-clean 교차검증 (구멍 0)
+- [x] C4 VERIFICATION.md 박제 + 커밋 (VP 133→96, FP 37 제거)
+
+---
+
+# PF 룰 정답화 — 2026-06-15 (PF-70부터, 끝까지 자율주행)
+
+> 사용자: "PF-70부터 정답화, plan/progress 박고 끝날때까지 자율주행". 기준 = VP와 동일(이미지 직접판정, FP는 검출로직 게이트로 제거, 등급강등 회피 금지). PF=생성규칙이라 발화=HTML이 답 위반 → 변환후 PPTX 이미지/HTML 렌더로 FP/TP 판정. 이전 검증 ~14룰(PF-23/65/66/15/34/20/25/18/29/71 등), 미판정 ~54룰.
+> 회귀 제약: PF는 GT 정답지 별도 없음 → 각 룰 수정 시 발화 diff로 "제거분 전수 이미지확인 = 안 깨진 것만 제거" 확인. 정탐(진짜 결함) 놓침 금지.
+
+## 작업 (미판정 PF, 발화량 순)
+- [ ] D1 **PF-70(91건, 이미지품질)** — object-fit:cover 27 / pt크기 27 / border-radius 27 / alt 10. img 30개(realmix assets/). 이미지 직접판정 FP/TP → 게이트.
+- [ ] D2 PF-28(84)/PF-25(61)/PF-20(45) realmix 재판정 (이전 부분검증, 현 발화 미판정분)
+- [ ] D3 잔여 미판정 PF (PF-60/61/36/24/63/19/21/40/42 등, 발화량 순)
+- [ ] D4 VERIFICATION 박제 + 커밋 (PF 정답화 종합)

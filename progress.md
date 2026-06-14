@@ -120,6 +120,13 @@ date: 2026-06-13
 - [x] C3 PF-clean=VP-clean 교차검증(색 단위, 매핑우회) — VP-04 발화색 전부 PF-71도 발화 = PF 구멍 0. A8B8CC·FF9800 해소로 2색→0
 - [x] C4 VERIFICATION.md 박제 + 커밋(phantom·glyph·출처·반투명·장식T·autofit 6커밋). VP 133→96, FP 37건 제거
 
+## Phase D — PF 룰 정답화 `2026-06-15` `model: opus`
+> plan.md `# PF 룰 정답화` 참조. PF-70부터, 끝까지 자율주행. 이미지 직접판정, FP는 로직게이트(회피금지), 정탐 놓침 금지.
+- [ ] D1 PF-70(91건 이미지품질: object-fit/pt/border-radius/alt) 이미지 직접판정 → 게이트
+- [ ] D2 PF-28/25/20 realmix 재판정
+- [ ] D3 잔여 미판정 PF (PF-60/61/36/24 등)
+- [ ] D4 VERIFICATION 박제 + 커밋
+
 ## Working Notes
 > [ckpt-202606150000:btn-design] **STATUS: Phase C 완료 — VP 정답화 마무리 + PF교차검증**
 - 마지막 결정: 사용자 "vp정답화→pf렌더링하면 vp 안잡혀야 정상, 잡히면 pf구멍. 정탐회귀 절대금지, fp 최대0, 기준명시" + 자율주행 on2. **판정기준 SSOT 5항 plan 박제**(recall=1.0 절대/이미지직접/TP=WCAG미달·잘림/accent=약한정탐 유지/PF-clean=VP-clean). **성과**: VP 133→96(E2 W94), FP 37건 제거(phantom10·glyph4·출처10·반투명A8B8CC7·장식T1·autofit5, 전부 이미지직접판정), GT 13/13 recall=1.0 전구간, ★PF-clean⊇VP-clean(VP-04 발화색 전부 PF-71 커버=구멍0). 커밋 6개.

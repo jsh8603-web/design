@@ -1313,17 +1313,28 @@ function checkPF70(html, file) {
     const styleMatch = attrs.match(/style\s*=\s*["']([^"']+)/i);
     const style = styleMatch ? styleMatch[1] : '';
 
-    // Check parent container for opacity
     const imgIdx = m.index;
     const before = html.substring(Math.max(0, imgIdx - 300), imgIdx);
+    // 디자인 시스템 이미지 클래스 판정(이미지 직접판정 2026-06-15, subagent 발화25 전부 FP·TP0):
+    // PF-70 정적 inline 검사는 CSS 클래스로 object-fit/크기/border-radius 를 스타일하는 디자인 시스템을
+    // "inline 누락"으로 오판한다(realmix 25장 렌더 왜곡·잘림 0). 이미지 컨테이너 클래스(bg/hero/cover/
+    // image/img/visual/photo/media 류)가 있으면 디자인 시스템이 스타일 처리 → inline 형식 검사 면제.
+    const imgCls = (attrs.match(/class\s*=\s*["']([^"']+)/i) || [])[1] || '';
+    const ctxCls = (imgCls + ' ' + [...before.matchAll(/class\s*=\s*["']([^"']+)["']/gi)].map(x => x[1]).join(' ')).toLowerCase();
+    const isBgImg = /\b(bg|background|hero|cover|full-?bleed)[-_a-z]*/.test(ctxCls);
+    const isDesignImg = isBgImg || /\b(image|img|visual|photo|picture|thumb|media|icon)[-_a-z]*/.test(ctxCls);
+
+    // Check parent container for opacity — 단 배경 이미지는 흐림(opacity 저하)이 디자인 의도 → 면제
     const opacityMatch = before.match(/opacity\s*:\s*([\d.]+)/i);
-    if (opacityMatch) {
+    if (!isBgImg && opacityMatch) {
       const opacity = parseFloat(opacityMatch[1]);
       if (opacity < 0.5) {
         issues.push(fmtError(file, 'PF-70',
           `Image "${src}" has opacity ${opacity} (<0.5) — watermark-style images are not valid design. Use opacity >= 0.5 or remove.`));
       }
     }
+    // 디자인 시스템 이미지 = CSS 클래스로 스타일 → inline 형식 검사(object-fit/border-radius/alt/pt) 면제
+    if (isDesignImg) continue;
 
     // Check for object-fit: cover (contain leaves gaps, fill distorts)
     if (!/object-fit\s*:\s*cover/i.test(style)) {

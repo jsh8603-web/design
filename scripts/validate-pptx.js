@@ -798,7 +798,11 @@ function checkContrast(shapes, slideNum, slideBgColor, pictures = []) {
     }
 
     for (const run of s.textRuns) {
-      if (!run.text.trim()) continue;
+      const rt = run.text.trim();
+      if (!rt) continue;
+      // VP-04 장식 glyph 제외: 단일 구분/연산 기호(+ · • × ÷ / → 등)는 막대/단계 사이 보조 연결
+      // 시각요소로 의도적 저채도(본문 아님) → 대비검사 제외. (s123 막대그래프 "+" ×4 = 100+20+...145 FP)
+      if (rt.length === 1 && /^[+\-·•×÷/→←↑↓*=~|<>]$/.test(rt)) continue;
       // Default text color is black if not specified
       const fgColor = run.color || '000000';
 

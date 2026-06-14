@@ -158,6 +158,12 @@ function extractShapes(slideXml) {
     const spFill = spPrSection.match(/<a:solidFill>\s*<a:srgbClr\s+val="([0-9A-Fa-f]{6})"/i);
     if (spFill) {
       shape.fillColor = spFill[1].toUpperCase();
+      // 반투명(rgba alpha) 파싱: PptxGenJS 가 HTML rgba(255,255,255,0.08) 류를 srgbClr+alpha 로 변환.
+      // 낮은 alpha = 반투명 배경(아래 도형색이 비침) → 불투명색으로 대비 측정하면 오판(s141 운수업
+      // 흰8% on 남색카드 = 실제 거의 남색이라 A8B8CC 라벨 읽힘인데 흰불투명으로 2.0 저대비 FP).
+      const fillIdx = spPrSection.indexOf(spFill[0]);
+      const alphaM = spPrSection.slice(fillIdx, fillIdx + 220).match(/<a:alpha\s+val="(\d+)"\s*\/>/);
+      shape.fillAlpha = alphaM ? parseInt(alphaM[1], 10) / 100000 : 1;
     }
 
     // Text runs from <p:txBody>
@@ -723,14 +729,24 @@ function findBackgroundColor(textShape, allShapes, slideBgColor, excludeColors =
 
   let bestFill = null;
   let bestScore = -Infinity;
+  // 2차 후보: 텍스트 중심이 fill 밖이지만 충분히(≥30%) 겹치는 fill. 1차(중심포함) 후보가 전혀
+  // 없을 때만 fallback. s144 "!" 는 아이콘 박스가 주황뱃지보다 넓어 중심이 뱃지를 50402EMU(마진
+  // 26289 초과) 벗어남 → 1차 실패. 반투명 띠 제외 후 흰 slideBg 잡혀 흰on흰 1.0 FP → 2차로 주황뱃지
+  // 선택해 해소. GT s71 금색은 1차(흰카드 cc통과)라 2차 미사용 = 보존.
+  let bestFill2 = null, bestScore2 = -Infinity;
 
   for (const bg of allShapes) {
     if (bg === textShape) continue;
     if (!bg.fillColor) continue;
+    // 반투명 fill(alpha<50%)은 아래 도형색이 비치므로 진짜 배경 아님 → 후보 제외(아래 불투명 카드 선택).
+    // s141 운수업 흰8% 박스 제외 → 남색카드(1B2A4A) 선택 → A8B8CC 라벨 고대비 → FP 소멸.
+    if (bg.fillAlpha != null && bg.fillAlpha < 0.5) continue;
     if (excludeColors.length > 0 && excludeColors.includes(bg.fillColor.toUpperCase())) continue;
     if (bg.w === 0 || bg.h === 0) continue;
 
     const bx = bg.x, by = bg.y, bw = bg.w, bh = bg.h;
+    const ox = Math.min(tx + tw, bx + bw) - Math.max(tx, bx);
+    const oy = Math.min(ty + th, by + bh) - Math.max(ty, by);
 
     // 게이트: 텍스트 중심이 fill 안(미세 톨러런스 포함)에 있어야 후보.
     // (구) 엄격 containsCenter 는 텍스트 박스가 컬러뱃지보다 약간 넓을 때 중심이 뱃지 경계를
@@ -743,7 +759,6 @@ function findBackgroundColor(textShape, allShapes, slideBgColor, excludeColors =
     const containsCenter =
       tCx >= bx - margin && tCx <= bx + bw + margin &&
       tCy >= by - margin && tCy <= by + bh + margin;
-    if (!containsCenter) continue;
 
     // Score: prefer shapes that most closely match the text shape bounds (same origin = sibling)
     // Higher score = better match
@@ -754,6 +769,23 @@ function findBackgroundColor(textShape, allShapes, slideBgColor, excludeColors =
     // Penalize distance; prefer shapes at same position with similar size
     const score = -(dxOff + dyOff + dw + dh);
 
+    if (!containsCenter) {
+      // 2차 후보: 중심 이탈했으나 텍스트 면적의 30%+ '실제 겹치는' fill(아이콘뱃지 등).
+      // (1차 cc 는 톨러런스라 overlap=0 이어도 통과 가능 — F5F7FA 처럼 중심만 margin 내인 카드.
+      //  그래서 overlap 게이트는 2차에만 적용, 1차는 cc 만으로 후보 = GT s71 금색 on F5F7FA 보존)
+      // 2차는 '텍스트를 감싸는 작은 배지'만(폭·높이 ≤ 텍스트의 2배). 거대 막대/카드가 중심이탈로
+      // 30% 겹치는 건 실제 배경 아님(s71 금색이 남색막대와 47% 겹쳐도 실제 배경은 연한 슬라이드 →
+      // 거대 막대 폭 7배 제외해 GT 보존 / s144 주황뱃지는 "!" 폭의 0.56배라 통과).
+      if (ox > 0 && oy > 0 && bw <= tw * 2 && bh <= th * 2) {
+        const overlapRatio = (ox * oy) / (tw * th);
+        if (overlapRatio >= 0.3 && score >= bestScore2) {
+          bestScore2 = score;
+          bestFill2 = bg.fillColor;
+        }
+      }
+      continue;
+    }
+
     // 동률(>=) 타이브레이크: 막대그래프에서 트랙배경과 값막대가 bounds 완전 동일(값=max → 풀폭)일 때
     // XML order 나중(=위에 그려진 = 텍스트 즉시배경)을 선택. (구) ">" 는 먼저 그려진 트랙(EEEEEE)을
     // 유지해 흰글씨 on EEEEEE 1.2 phantom(s59 "50"/"18.2") 발생. >= 면 위 막대(E31837 4.7:1) 선택→소멸.
@@ -763,7 +795,7 @@ function findBackgroundColor(textShape, allShapes, slideBgColor, excludeColors =
     }
   }
 
-  return bestFill || slideBgColor || 'FFFFFF';
+  return bestFill || bestFill2 || slideBgColor || 'FFFFFF';
 }
 
 function checkContrast(shapes, slideNum, slideBgColor, pictures = []) {
@@ -1291,6 +1323,13 @@ function checkCjkTextOverflow(shapes, slideNum) {
     const text = shapeText(s);
     if (text.length < 2) continue;
 
+    // VP-16 출처/메타 캡션 제외(이미지직접확인 2026-06-15, s82 "출처: 포스코홀딩스 IR…" w1.40"
+    // 한 줄 수용): "출처:/자료:/주:/참고:/※/*" 시작 = 슬라이드 하단 메타정보, 여백충분 한 줄.
+    // CJK 0.92 과대추정으로 fills 110~120%·wraps 2줄 오판(s73/74/75/77/79/81/82/83 전부 7pt 출처).
+    // GT s71("10년 평균")·s99("분석팀") 은 출처 아니라 무관. WARN 분기만 skip, ERROR(will overflow=
+    // 심각 잘림)는 캡션이라도 유지(FN 방지).
+    const isMetaCaption = /^\s*(출처|자료출처|자료|참고|주|note|source)\s*[:：]/i.test(text) || /^\s*[※*]\s/.test(text);
+
     // Count CJK characters
     const cjkMatches = text.match(CJK_CHAR_RE);
     if (!cjkMatches || cjkMatches.length === 0) continue;
@@ -1372,7 +1411,7 @@ function checkCjkTextOverflow(shapes, slideNum) {
         o.textRuns.some((rr) => rr.text && rr.text.trim()) &&
         o.y > s.y && o.y < shapeBottom && o.x < s.x + s.w && o.x + o.w > s.x);
       const isSmallShape = availableWidth < 1.5 * EMU_PER_INCH;
-      if (isGridCell) continue; // 표 셀 = autofit 한 줄(WARN 한정 skip)
+      if (isGridCell || isMetaCaption) continue; // 표 셀·출처캡션 = autofit 한 줄(WARN 한정 skip)
       // 큰 도형이고 인접 텍스트 도형 겹침도 없으면 = 여백충분 정상 2줄(s12 카드제목) → skip.
       // 작은도형(막대 s71) 또는 인접겹침(s99 제목→부제)이면 발화 유지(GT 보존).
       if (!isSmallShape && !overlapsNeighbor) continue;
@@ -1395,7 +1434,7 @@ function checkCjkTextOverflow(shapes, slideNum) {
       // 도형 h=0.20"<2줄 필요 = 세로 넘침). 세로 여유면(autofit 한 줄 처리) skip.
       // 짧은 텍스트(≤5자 배지·라벨, s132 "정기성")는 PptxGenJS autofit이 한 줄로 처리 → skip.
       // 세로 여유(s84 큰제목 한 줄) → skip. 긴 텍스트가 세로까지 넘칠 때만 진짜 잘림(GT 99.9 11자).
-      if (isGridCell || !verticalOverflow || isShortText) continue;
+      if (isGridCell || isMetaCaption || !verticalOverflow || isShortText) continue;
       const availPt = Math.round(availableWidth / EMU_PER_PT);
       const estPt = Math.round(estimatedWidth / EMU_PER_PT);
       issues.push({

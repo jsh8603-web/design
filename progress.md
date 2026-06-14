@@ -109,6 +109,15 @@ date: 2026-06-13
   - VP-03 423→362(fill 시각요소 제외)·VP-02 178→109(상대변동 게이트) 추가개선 적용. VP-11/PF-20/VP-08 FP패턴 식별(다음배치). VP-07/VP-01 저빈도. 상세 VERIFICATION §R5
 - [ ] R5-2 잔여 추가개선(VP-08 fill제외·PF-20 푸터면제·VP-11 멀티컬럼) + 정적32 + 미발화25 `model: opus` (다음 배치)
 
+## Phase C — VP/PF 정답화 마무리 + 교차검증 `2026-06-15` `model: opus`
+> plan.md `# VP/PF 정답화 마무리` 참조. 판정기준 SSOT 5항(plan). 자율주행, 정탐회귀 절대금지.
+- [x] C0 표본확대 발견 FP 처리 — phantom 흰글씨(VP-04 배경오측정 2종: 뱃지 미세이탈 톨러런스 + 막대=트랙 동률 타이브레이크) + 장식glyph("+") 제외. errors 14→4, WARN 119→115, GT 13/13. 커밋 (phantom)·(glyph)
+  - 회귀 확인: VP-04 수정전후 diff = phantom 10건(s43/59/122/149/151)+glyph 4건(s123)만 제거, 새 발화 0. 이미지 직접판정(s43/59/122/149 정상슬라이드).
+- [ ] C1 VP-16 출처캡션 FP 게이트 (fills 과대추정, GT s71/99 보존)
+- [ ] C2 PF-71 동기화 (VP-04 phantom·glyph 게이트 이식)
+- [ ] C3 PF-clean=VP-clean 교차검증 (전수)
+- [ ] C4 VERIFICATION.md + 커밋
+
 ## Working Notes
 > ★인계(최신): [handoff-vp-pf-crossverify-20260615.md](./handoff-vp-pf-crossverify-20260615.md) — 표본확대 FP발견(강조색 GT충돌·phantom버그·VP-16 14장), 다음세션 §5 우선순위
 > 인계: [handoff-sweetspot-20260614.md](./handoff-sweetspot-20260614.md) — 정답지 기반 sweet-spot 튜닝

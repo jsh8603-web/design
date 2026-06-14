@@ -111,3 +111,22 @@ assets/fonts/         # 로컬 .woff2 (CDN 대체)
 - [x] 튜닝 후 측정: realmix 155장 GT 13/13 recall=1.0. 전체 WARN 849→132.
 - [x] OLD/NEW/TUNED 채점: OLD 2014 → TUNED 153(92%↓), recall 1.0, precision 0.6→8.5%.
 - 근거: slides/rule-audit/VERIFICATION.md, 회귀이미지 slides/rule-audit/regr-img/, 커밋 28b2f80~45c2f5a.
+
+---
+
+# VP/PF 정답화 마무리 + PF-clean=VP-clean 교차검증 — 2026-06-15 (현재 작업)
+
+> 사용자 지시: "vp 정답화 → pf로 html 렌더링하면 vp에 안잡혀야하는데 잡히면 pf가 문제. 정탐 못잡는 회귀 절대 금지. 이연 금지. fp 최대한 0. 기준 명시." 끝까지 자율주행.
+
+## ★판정 기준 (SSOT — 이후 모든 FP/TP 판정에 적용)
+1. **recall=1.0 절대 제약**: GT 13/13(groundtruth.json majority-REAL) 전부 보존. FP 제거가 GT 1건이라도 깨면 **즉시 롤백**. = 정탐 회귀 절대 금지(사용자 1순위).
+2. **FP 판정 = PowerPoint COM 렌더 이미지 직접확인**. 추정·모델의견 금지. 안 깨진 것(안 잘림/또렷이 읽힘/정상 다단)만 FP.
+3. **TP 정의** = 이미지에서 실제 깨짐: VP-16 텍스트 잘림/겹침, VP-04 WCAG 대비<floor 2.124 흐림.
+4. **accent(청록 #00C2FF·금색 #D4A537·녹색 #03C75A 등 ratio 2.0~2.1) = WCAG 미달 저대비 = 약한 정탐(TP), 유지**. 큰 bold라 형태는 보이나 접근성 기준 미달 + GT가 REAL로 박음 → FP 아님(빼면 정탐 회귀). [자율 결정, 기준4]
+5. **PF-clean = VP-clean 교차검증**: PF 통과한 HTML을 PPTX 변환 후 VP 돌리면 VP도 통과해야 한다. VP에 잡히는데 PF에 안 잡히면 = **PF 구멍** → PF 보강. (PF=생성규칙=답, VP=변환후 검증)
+
+## 작업 (recall=1.0 유지, 이미지 직접판정, 매 수정 GT 게이트)
+- [ ] C1 VP-16 출처캡션 FP 게이트 — fills 과대추정(s82 "출처:" 한줄수용 확인). GT s71/99 보존.
+- [ ] C2 PF-71 동기화 — VP-04 phantom(배경오측정)·장식glyph 게이트를 PF-71에 이식(PF-71 99 → VP-04 88 정합).
+- [ ] C3 PF-clean=VP-clean 교차검증 — realmix 전수: PF-71 미발화 슬라이드가 VP-04 발화하면 PF 구멍 식별·보강.
+- [ ] C4 VERIFICATION.md 박제 + 커밋.

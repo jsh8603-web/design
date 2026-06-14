@@ -732,8 +732,17 @@ function findBackgroundColor(textShape, allShapes, slideBgColor, excludeColors =
 
     const bx = bg.x, by = bg.y, bw = bg.w, bh = bg.h;
 
-    // Check if bg shape contains or substantially overlaps the text shape center
-    const containsCenter = tCx >= bx && tCx <= bx + bw && tCy >= by && tCy <= by + bh;
+    // 게이트: 텍스트 중심이 fill 안(미세 톨러런스 포함)에 있어야 후보.
+    // (구) 엄격 containsCenter 는 텍스트 박스가 컬러뱃지보다 약간 넓을 때 중심이 뱃지 경계를
+    // 미세하게(예 s43 "1" 중심 x=992832 > 빨강뱃지 우측 990451, 2381EMU=0.003") 벗어나
+    // 즉시배경(뱃지)을 놓치고 거대 카드배경(F5F5F5)을 잡아 흰글씨를 1.1 저대비로 오측정 = phantom FP.
+    // → 텍스트 단변(min w,h)의 15% 마진으로 경계를 확장해 미세 이탈만 구제.
+    //   (s43 뱃지 이탈 2381 < 마진 31218 → 구제 / s71 금색-남색막대 이탈 19050 > 마진 15716 →
+    //    제외 유지, GT 금색 on F5F7FA 2.1 보존). overlap 전체 완화는 GT 배경선택을 바꿔 금지.
+    const margin = Math.min(tw, th) * 0.15;
+    const containsCenter =
+      tCx >= bx - margin && tCx <= bx + bw + margin &&
+      tCy >= by - margin && tCy <= by + bh + margin;
     if (!containsCenter) continue;
 
     // Score: prefer shapes that most closely match the text shape bounds (same origin = sibling)
@@ -745,7 +754,10 @@ function findBackgroundColor(textShape, allShapes, slideBgColor, excludeColors =
     // Penalize distance; prefer shapes at same position with similar size
     const score = -(dxOff + dyOff + dw + dh);
 
-    if (score > bestScore) {
+    // 동률(>=) 타이브레이크: 막대그래프에서 트랙배경과 값막대가 bounds 완전 동일(값=max → 풀폭)일 때
+    // XML order 나중(=위에 그려진 = 텍스트 즉시배경)을 선택. (구) ">" 는 먼저 그려진 트랙(EEEEEE)을
+    // 유지해 흰글씨 on EEEEEE 1.2 phantom(s59 "50"/"18.2") 발생. >= 면 위 막대(E31837 4.7:1) 선택→소멸.
+    if (score >= bestScore) {
       bestScore = score;
       bestFill = bg.fillColor;
     }

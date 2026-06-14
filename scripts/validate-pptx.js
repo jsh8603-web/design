@@ -357,6 +357,13 @@ function checkColumnAlignment(shapes, slideNum) {
     const uniqueY = new Set(col.shapes.map((s) => Math.round(s.y / COL_TOLERANCE)));
     if (uniqueY.size < 2) continue; // all at same y = row, not column
 
+    // VP-02 표/그리드 가드(이미지직접확인 2026-06-14): 이 컬럼의 도형 다수가 행으로도 짝(같은 y에
+    // 다른 x 셀)을 가지면 표/격자 셀이다 → 컬럼폭이 칸마다 다른 게 정상. realmix s124/s127/s131
+    // 표를 일반 도형 그룹으로 오판하던 FP 제거. 진짜 리스트(행 짝 없음)·산발 도형은 발화 유지.
+    const gridCells = col.shapes.filter((s) => candidates.some((o) =>
+      o !== s && Math.abs(o.y - s.y) <= COL_TOLERANCE && Math.abs(o.x - s.x) > COL_TOLERANCE));
+    if (gridCells.length >= Math.ceil(col.shapes.length / 2)) continue;
+
     const widths = col.shapes.map((s) => s.w);
     const minW = Math.min(...widths);
     const maxW = Math.max(...widths);
@@ -892,6 +899,12 @@ function checkGapConsistency(shapes, slideNum) {
     if (row.shapes.length < 3) continue;
     // Sort by x position
     const sorted = row.shapes.sort((a, b) => a.x - b.x);
+    // VP-10 표/그리드 가드(이미지직접확인 2026-06-14): 이 행의 셀 다수가 열로도 짝(같은 x에 다른 y
+    // 셀)을 가지면 표/격자 행이다 → 셀 간격이 칸마다 다른 게 정상(라벨열 넓고 숫자열 좁고). realmix
+    // s124 표 행을 '간격 불일치'로 오판하던 FP 제거. 진짜 단일 행 배치(열 짝 없음)는 발화 유지.
+    const gridCells = sorted.filter((s) => meaningful.some((o) =>
+      o !== s && Math.abs(o.x - s.x) <= rowTolerance && Math.abs(o.y - s.y) > rowTolerance));
+    if (gridCells.length >= Math.ceil(sorted.length / 2)) continue;
     const gaps = [];
     for (let i = 1; i < sorted.length; i++) {
       const gap = sorted[i].x - (sorted[i - 1].x + sorted[i - 1].w);
@@ -1428,12 +1441,17 @@ export async function validatePptx(pptxPath, options = {}) {
       const slideIssues = [
         ...checkOverflow(shapes, slideW, slideH, slideNum),
         ...checkColumnAlignment(shapes, slideNum),
-        ...checkEmptyText(shapes, slideNum),
+        // VP-03 checkEmptyText 비활성(이미지직접확인 2026-06-14): 빈 텍스트프레임 = convert/PptxGenJS
+        // 구조 흔적, 렌더에 투명·시각 영향 0(realmix s9 6건 확인). GT 0건. 함수는 복구용 보존.
+        // ...checkEmptyText(shapes, slideNum),
         ...checkContrast(shapes, slideNum, slideBgColor, allElements.filter((e) => e.type === 'picture')),
         ...checkFilledEmptyShapes(shapes, slideNum),
         ...checkShrinkReliability(shapes, slideNum),
         ...checkGapConsistency(shapes, slideNum),
-        ...checkReadingOrder(shapes, slideNum),
+        // VP-11 checkReadingOrder 비활성(이미지직접확인 2026-06-14): spTree 순서=변환 산물, 표 z-order를
+        // '읽기순서 역전'으로 오판(realmix s24 표 확인). 정적 이미지로 탭순서 검증 불가(UNVERIFIABLE).
+        // 접근성은 별도 a11y 도구 영역. 함수는 복구용 보존.
+        // ...checkReadingOrder(shapes, slideNum),
         ...checkEmptySlide(shapes, tables, slideNum),
         ...checkTableEmptyCells(tables, slideNum),
         ...checkTableConsistency(tables, slideNum),

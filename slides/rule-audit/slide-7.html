@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; padding: 28px 36px; background: #ffffff; color: #1a1a2e; }
+  h1 { font-size: 24px; font-weight: 800; margin-bottom: 16px; }
+  p { font-size: 18px; line-height: 1.6; margin-bottom: 12px; }
+  .hl { color: #e94560; font-weight: 700; }
+</style>
+</head>
+<body>
+  <h1>PF-34 inline span(무발화) vs block span(발화)</h1>
+  <!-- GROUND TRUTH(무발화): 인라인 span 은 PPTX에서 런(run)으로 변환 = 줄 추가 없음 -->
+  <p>분기 매출은 <span class="hl">+12.4%</span> 성장했고 영업이익률은 <span class="hl">18.4%</span>로 개선됐다</p>
+  <!-- GROUND TRUTH(발화 TP): display:block span 은 실제 줄바꿈 유발 -->
+  <p>핵심 지표 <span style="display:block; color:#0f3460;">매출 2.1조원 달성</span> 전년 대비 큰 폭 성장</p>
+</body>
+</html>

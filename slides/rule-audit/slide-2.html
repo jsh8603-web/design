@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; position: relative; overflow: hidden; background: #ffffff; }
+  /* GROUND TRUTH: 이미지 없음 + 흰 배경 위 흰 글자 = 진짜 invisible. VP-04 ERROR 유지(TP)가 정답. */
+  .title { position: absolute; top: 80px; left: 48px; color: #FFFFFF; font-size: 34px; font-weight: 800; }
+  .body { position: absolute; top: 160px; left: 48px; width: 700px; color: #FFFFFF; font-size: 18px; line-height: 1.6; }
+  /* 정상 대조: 검은 글자 = 무발화 기대 */
+  .ok { position: absolute; bottom: 40px; left: 48px; color: #1a1a2e; font-size: 16px; }
+</style>
+</head>
+<body>
+  <div class="title">흰 배경 위 흰색 제목 — 진짜 보이지 않는 대조군</div>
+  <div class="body">흰 바탕에 흰 글자를 얹으면 사람 눈에도 읽히지 않는다. 이 경우는 이미지 위 흰 글자와 달리 실제로 invisible 이므로 검출기가 ERROR 로 잡는 것이 옳다.</div>
+  <div class="ok">이 줄은 검은 글자라 정상적으로 읽힌다 — 무발화가 정답.</div>
+</body>
+</html>

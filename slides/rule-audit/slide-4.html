@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; position: relative; overflow: hidden; background: #ffffff; color: #1a1a2e; }
+  h1 { position: absolute; top: 22px; left: 48px; font-size: 24px; font-weight: 800; color: #16213e; }
+  /* GROUND TRUTH(과밀 TP): 좁고 낮은 박스에 CJK 80자 → 여러 줄 필요한데 높이 부족. 7pt/char(OLD)는 CJK 과소추정으로 FN, NEW(CJK 0.92 측정)는 발화 기대 */
+  .dense { position: absolute; top: 80px; left: 48px; width: 200px; height: 50px; font-size: 15px; line-height: 1.3; overflow: hidden; background: #f7f9fc; padding: 4px; }
+  /* GROUND TRUTH(무발화): 같은 텍스트, 충분한 박스 → 안 넘침 */
+  .normal { position: absolute; top: 80px; left: 300px; width: 360px; height: 200px; font-size: 15px; line-height: 1.3; background: #f7f9fc; padding: 12px; }
+  /* GROUND TRUTH(경계 FP 후보): 넓고 낮은 한 줄 푸터. 폭 근소 초과가 OLD에서 줄 수 올림 오발화 → NEW 5% 여유로 무발화 기대 */
+  .footer { position: absolute; bottom: 18px; left: 48px; width: 864px; height: 18px; font-size: 13px; white-space: nowrap; color: #64748b; }
+</style>
+</head>
+<body>
+  <h1>VP-09 밀도 — 과밀(TP) / 정상(무발화) / 푸터(경계)</h1>
+  <div class="dense">인공지능 데이터센터의 전력 효율은 전년 대비 삼십이 퍼센트 개선되었으며 신규 냉각 기술 도입으로 추가 절감 여력이 충분히 확보된 상태이다 향후 전망</div>
+  <div class="normal">인공지능 데이터센터의 전력 효율은 전년 대비 삼십이 퍼센트 개선되었으며 신규 냉각 기술 도입으로 추가 절감 여력이 충분히 확보된 상태이다 향후 전망</div>
+  <div class="footer">출처 본 자료는 회사 내부 재무 데이터와 외부 시장 조사 기관의 분기별 보고서를 종합 재구성한 것이며 일부 추정치를 포함한다 추가 검증이 필요하다</div>
+</body>
+</html>

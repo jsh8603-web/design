@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; padding: 28px 36px; background: #ffffff; color: #1a1a2e; }
+  /* GROUND TRUTH PF-30(발화): title 20px(=15pt) ≤ body 28px(=21pt) 위계역전. px 미인식 OLD는 FN */
+  h2 { font-size: 20px; font-weight: 800; color: #16213e; }
+  p { font-size: 28px; color: #2d3748; margin-top: 8px; }
+  /* GROUND TRUTH PF-41(발화): letter-spacing 2px(=1.5pt) > 1pt 임계. px 미인식 OLD는 FN */
+  .ls { font-size: 16px; letter-spacing: 2px; margin-top: 20px; }
+  /* GROUND TRUTH PF-45(발화): margin -12px(=-9pt) ≤ -5pt. px 미인식 OLD는 FN */
+  .neg { font-size: 16px; margin-top: -12px; }
+  /* GROUND TRUTH PF-41(무발화 대조): letter-spacing 1px(=0.75pt) < 1pt */
+  .ls-ok { font-size: 16px; letter-spacing: 1px; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <h2>작은 제목 (20px = 15pt)</h2>
+  <p>큰 본문 텍스트 (28px = 21pt) — 제목보다 큼 = 위계역전</p>
+  <!-- GROUND TRUTH PF-30(발화): 인라인 style 위계역전 — title 16px(12pt) ≤ body 24px(18pt). px 미인식 OLD는 FN -->
+  <h1 style="font-size:16px; font-weight:800;">인라인 작은 제목 16px</h1>
+  <p style="font-size:24px;">인라인 큰 본문 24px — 위계역전 (PF-30)</p>
+  <div class="ls">자간 2px 적용 텍스트 (PF-41 발화)</div>
+  <div class="neg">음수 마진 -12px 텍스트 (PF-45 발화)</div>
+  <div class="ls-ok">자간 1px 텍스트 (PF-41 무발화 대조)</div>
+  <!-- GROUND TRUTH PF-15(발화): 3+ column grid + CJK + font 14px(=10.5pt>7.5pt). px 미인식 OLD는 FN -->
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); font-size:14px; margin-top:20px;">
+    <div>한국어 그리드 셀 하나</div><div>한국어 그리드 셀 둘</div><div>한국어 그리드 셀 셋</div>
+  </div>
+</body>
+</html>

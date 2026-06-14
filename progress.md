@@ -16,7 +16,8 @@ date: 2026-06-13
 - [x] 1.1 "slides-grab Design System/" → design-system/ 이동, nano_banana 만 archive 분리(image_slot 은 수동배치용 잔류) `model: sonnet`
 - [x] 1.2 폰트 CDN 제거 → 로컬 .woff2 (colors_and_type.css + HTML 32개 link 제거) `model: sonnet`
   - 회귀 확인: fonts.css 가 3패밀리 local()+url(files/) 완비 → CDN 제거해도 오프라인 렌더 정상 (수동 확인)
-- [ ] 1.3 mck 차트JS 중복/유효성 확인 `model: sonnet`
+- [x] 1.3 mck 차트JS 중복/유효성 확인 `model: opus`
+  - 점검(읽기만, 코드변경 0): assets 차트 17종 전부 동적 import 유효(FAIL 0) / demo HTML = ES module 직접 참조(중복 정의 없음) / `_ds_bundle.js`는 레포 미참조 죽은 산물(신규 12종 미반영 stale이나 무해). 회귀=코드 무변경 직교
 
 ## Phase 2 — 변환 엔진 이식
 - [x] 2.1 코어 선별 복사 (convert-native/preflight/validate-slides/validate-pptx/html2pptx(+local)/html2pdf/auto-checklist/editor-server/build-viewer/draft-marp + html2pptx.cjs + src/ + bin/ppt-agent + convert.cjs) `model: sonnet`
@@ -60,6 +61,47 @@ date: 2026-06-13
   - 회귀 확인: convert e2e 재검증(slide xml 생성·Saved) + 실행경로(scripts/src/bin/skills/convert.cjs) 회사의존 grep 0건
 - [x] B8 제외 결정(보고): 회사의존(NLM/Gemini이미지/Vision/email 스크립트, GEMINI/NOTEBOOKLM md)→archive / 일회성 디버그(fix-slides-*, gen-slides-* 구버전)·중복 / 디자인열위(templates/themes — design-system 우월)·CI(.github)·데모미디어(demo.gif 5.4MB)
 </content>
+
+---
+
+# Phase R — 규칙 감사 후속 (11규칙 후속 패치) `2026-06-14`
+> plan.md `# 규칙 감사 후속` 참조. 검증 = 직접검증→A/B→FP/FN 전수→추가수정→커밋 (사용자 표준 1세트). 전부 `model: opus` (매 step FP/FN 판정이 핵심 = 거짓검증 금지 품질 요구).
+
+- [x] R0 검증 환경 셋업 `model: opus`
+  - 픽스처 신규: `slides/rule-audit/slide-1`(VP-04 어두운 img 위 흰글자+출처), `slide-2`(흰on흰 invisible), `slide-3`(VP-10 KPI 3행 균등/겹침/불일치), `slide-4`(VP-09 과밀/정상/푸터) + `assets/dark-bg.png`. 수정전 사본 `/c/msys64/tmp/{preflight,validate-pptx}-OLD.js`. 검증환경 = pw-shim 없음→`convert-native --skip-preflight`, OLD/NEW swap 측정
+- [x] R1 그룹A 적용·검증 — VP-04 picture제외 / VP-10 중첩제외+음수스킵 / VP-09 shrink **0.92** `model: opus`
+  - validate-pptx.js 5패치 적용(checkContrast pictures / overlapsPicture / VP-09 측정재보정 0.92 / VP-10 meaningfulRaw 중첩제외 / 음수gap 스킵 / 호출부). 구문 OK
+  - **합성 4장 before/after**: VP-04 이미지위 흰글자 2 FP제거 + 흰on흰 2 TP유지 ✓ / VP-10 Row C `[9pt,159pt]` TP보존 + 중첩노이즈 4 제거 ✓ / VP-09 slide4 dense TP유지(4→5줄 측정정밀화)
+  - **★운영덱 156장(slides-grab 8덱) OLD→NEW**: VP-04 776→742(−34) / VP-09 159→23(−136) / VP-10 467→46(−421) / **의도룰 VP-02·03·07·08·11·14·16 전부 불변 = 직교 회귀안전 ✓**
+  - **FP/FN 이미지 직접판정**(export-slides-png COM 렌더 → Read):
+    - VP-10 양수소멸 표본 5장(s17·27·32·68·122) 직접 확인 → 전부 카드 내부 중첩(배지/라벨/값)이 만든 가짜 불일치, 실제 카드 균등 → **FN 0**. (소멸421 = 겹침음수370 + 중첩노이즈51, 잔존46=진짜불일치)
+    - VP-09 소멸 표본 3장(s130 표·s60 차트·s79 카드) 직접 확인 → 텍스트 전부 박스 정상수용, 과밀/잘림 0. 숫자·라틴 7pt/char 과대추정 FP를 라틴0.5 교정으로 제거 → **FN 0**
+- [x] R1.5 ★추가개선 — VP-04 텍스트밝기 게이트 (개선안 위 정교화) `model: opus`
+  - **발견(FN)**: ★핸드오프 "picture 겹치면 무조건 제외"는 **운영덱 소멸 34건 중 33건이 FN**(s3 청록 `$1,583억` luma143, s90 주황 "COVID 가속" 144, 회색 출처 161 등 — 연한 장식 picture 위 유채색/회색 저대비 텍스트 과잉제외). 밝은 흰글자 진짜 FP는 1건뿐. 핸드오프 그대로 채택했으면 33 FN 박을 뻔
+  - **개선 적용**(validate-pptx.js checkContrast): picture 겹침 제외를 **도형의 모든 텍스트 run 이 밝을(luma>200) 때만** 적용. litRuns.every(luma>200) AND overlapsPicture
+  - **검증**: 운영덱 VP-04 776→(무조건)742→**(게이트)775** = 밝은글자 1건만 제거, 33건 복원 ✓ / 합성 slide1 흰·연회 글자 FP제거 유지 ✓ + slide2 흰on흰 invisible TP유지 ✓. **FN 0**
+- [x] R1.6 잔존 TP 정당성 검증 (사용자 지적: FP/FN 양방향) `model: opus`
+  - VP-10 잔존(46) 표본 s7·s9 직접확인: 큰 FP(겹침/중첩) 제거됨, 잔존은 **약한 FP**(우측정렬 값간격·타임라인 텍스트폭 변동, stdDev 5pt 절대임계 민감). 진짜 불일치 TP는 소수. **FN(놓침) 0**
+  - VP-09 잔존(23) 표본 s74 직접확인: 박스높이 작게 잡힌 경계 케이스, 렌더상 잘림 없음 = 약한 FP 경향. 명백 과밀 아님
+  - **결론**: 잔존 약한 FP = 과발화지 정탐회귀 아님. 추가개선 여지(상대임계)는 핸드오프도 코퍼스 의존이라 보류 → L2 큐
+  - **잔존 이슈**: 합성 slide1 부제 자연폭 1줄→2줄 오판(VP-09). 운영덱 순감소라 빈도 낮으나 L2 큐 기록
+- [x] R2 그룹B 적용·검증 — PF-23 realOverflow / PF-65 Range측정 / PF-66 ellipsis제외 `model: opus`
+  - preflight-html.js 3패치 적용. 구문 OK. **운영 156장 --full OLD→NEW**: PF-23 **156→4(−152)** / PF-65 33↔33 / PF-66 34↔34 / 나머지 PF 전부 불변 = 회귀안전 ✓
+  - **PF-23**: OLD가 전 슬라이드 발화(scrollWidth≈clientWidth라 20%보정이 무조건 5%초과 = 버그). 이미지 직접판정: 사라진 s1003(ai-infra) 텍스트 정상수용=FP, 남은 4건 s8017"기본급(22일×10만)" 컬럼 빠듯=경계 TP → **−152 거대 FP제거, FN 0**
+  - **PF-65**: 카운트 동일이나 발화 **대상 교체**. 이미지판정: 사라진 s4013 분기라벨"2024Q1~Q4" 1줄=FP제거 정당 / ★새로생긴 s4007 복합셀(원형배지+라벨 세로배치 "+12%/긍정적")을 Range가 도형높이 합산해 2줄 오판 = **새 FP 발견**
+  - [x] ★R2 추가개선 — PF-65 blockKids 게이트: 셀에 블록자식 ≥2(배지+라벨 의도적 세로배치)면 wrap 아님 → 제외. 표본검증: s4007 FP 제거됨 ✓ + s4013 무발화·s8012/8017 scrollWidth TP 유지 ✓
+  - **PF-66**: 운영덱 OLD=NEW 완전동일(ellipsis 케이스 부재) → 효과 0. 합성 픽스처로 검증 필요(R2b)
+- [x] R2b PF-66 합성 검증 (slide-5) `model: opus`
+  - before/after: OLD 2건(clamp+clip) → NEW 1건(clip만). **line-clamp/ellipsis FP 제거, 진짜 overflow:hidden 클리핑 TP 유지** ✓
+- [x] R3 그룹C 적용·검증 — PF-15·30·41·45 px→pt / PF-34 blockSpans `model: opus`
+  - preflight 8패치 적용. 운영 156장: PF-15/30/41/45 효과0(운영덱 pt만=안전망, 핸드오프 예측대로) / 나머지 PF 불변=회귀안전
+  - **합성 slide-6/7 before/after**: PF-30(인라인 16px≤24px)·PF-41(자간2px)·PF-45(마진-12px) OLD 전부 무발화(px 미인식 FN) → NEW 발화 = px→pt 개선 입증 ✓ / PF-34 OLD 2(inline FP)→NEW 1(block TP) ✓. PF-15 동일 코드 패턴(코드 동일성 입증)
+- [x] R4 통합 회귀 + 커밋 `model: opus` → **커밋 b304a40**
+  - PF 156장 최종: PF-23 156→4, **PF-65 33→23(blockKids 순감소)**, PF-66/15/30/41/45 안전망, 의도룰(PF-20/25/28/36/70) 불변 ✓ / VP 최종 VP-04 775(밝기게이트)·VP-09 23·VP-10 46, 의도룰 불변 ✓
+  - VERIFICATION.md(slides/rule-audit/) 박제 — 종합표 + FP/FN 이미지판정 + 추가개선2 + L2큐. 양파일 구문OK
+  - PF-15 확인 완료(slide-6 3-col grid CJK 14px: OLD 무발화 FN→NEW 발화)
+  - **L2 큐(추가개선 여지, 코퍼스 의존이라 보류)**: VP-10/09 잔존 약한FP(상대임계) / VP-09 합성 slide1 부제 자연폭 오판
+  - 미푸시(사용자 확인 대기)
 
 ## Working Notes
 > [ckpt-202606131410:btn-design]

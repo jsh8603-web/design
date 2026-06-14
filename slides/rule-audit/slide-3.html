@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; position: relative; overflow: hidden; background: #ffffff; color: #1a1a2e; }
+  h1 { position: absolute; top: 22px; left: 48px; font-size: 24px; font-weight: 800; color: #16213e; }
+  /* 카드 = fill 컨테이너 + 내부 num/lbl 텍스트 (PPTX 변환 시 카드 안에 텍스트 도형 중첩 생성 → meaningfulRaw 중첩 재현) */
+  .card { position: absolute; width: 240px; height: 110px; background: #eef2f7; border-radius: 8px; }
+  .card .num { position: absolute; top: 24px; left: 20px; font-size: 30px; font-weight: 800; color: #0f3460; }
+  .card .lbl { position: absolute; top: 70px; left: 20px; font-size: 14px; color: #64748b; }
+  /* Row A (y=78): 균등 gap. x=48,360,672 → gap 72,72 (균등) = 무발화 정답 */
+  /* Row B (y=228): 카드끼리 겹침. x=48,200,352 → gap -88 (음수=PF-18 몫) = VP-10 무발화 정답 */
+  /* Row C (y=388): 간격 불일치. x=48,260,712 → gap1=12, gap2=212 (불일치) = VP-10 FIRE 정답(TP) */
+</style>
+</head>
+<body>
+  <h1>KPI 카드 3행 — 균등 / 겹침 / 불일치 그라운드트루스</h1>
+
+  <!-- Row A: 균등 (gap 72,72) -->
+  <div class="card" style="top:78px; left:48px;"><div class="num">+23%</div><div class="lbl">매출 성장률</div></div>
+  <div class="card" style="top:78px; left:360px;"><div class="num">1.2조</div><div class="lbl">영업이익</div></div>
+  <div class="card" style="top:78px; left:672px;"><div class="num">18.4%</div><div class="lbl">영업이익률</div></div>
+
+  <!-- Row B: 겹침 (gap -88, 음수) -->
+  <div class="card" style="top:228px; left:48px;"><div class="num">320억</div><div class="lbl">신규 수주</div></div>
+  <div class="card" style="top:228px; left:200px;"><div class="num">52개사</div><div class="lbl">신규 고객</div></div>
+  <div class="card" style="top:228px; left:352px;"><div class="num">94.1%</div><div class="lbl">재계약률</div></div>
+
+  <!-- Row C: 불일치. width180 → x=48(끝228), 240(gap1=12, 끝420), 632(gap2=212, 끝812) -->
+  <div class="card" style="top:388px; left:48px; width:180px;"><div class="num">7.8년</div><div class="lbl">평균 근속</div></div>
+  <div class="card" style="top:388px; left:240px; width:180px;"><div class="num">2,140명</div><div class="lbl">총 임직원</div></div>
+  <div class="card" style="top:388px; left:632px; width:180px;"><div class="num">31%</div><div class="lbl">연구개발 비중</div></div>
+</body>
+</html>

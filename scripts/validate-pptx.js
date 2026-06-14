@@ -684,10 +684,24 @@ function findBackgroundColor(textShape, allShapes, slideBgColor, excludeColors =
   return bestFill || slideBgColor || 'FFFFFF';
 }
 
-function checkContrast(shapes, slideNum, slideBgColor) {
+function checkContrast(shapes, slideNum, slideBgColor, pictures = []) {
   const issues = [];
+  const overlapsPicture = (s) =>
+    pictures.some((p) =>
+      s.x < p.x + p.w && s.x + s.w > p.x && s.y < p.y + p.h && s.y + s.h > p.y
+    );
   for (const s of shapes) {
     if (s.textRuns.length === 0) continue;
+    // VP-04 FP 제거(정교화): 그림 위 텍스트는 XML만으로 실제 배경색을 알 수 없다(픽셀 샘플링 필요).
+    // 단, '무조건 제외'는 과잉 — 운영덱 실측상 소멸 34건 중 33건이 FN(연한 장식 picture 위 유채색/회색
+    // 저대비 텍스트까지 제외). 따라서 '어두운 사진 위 밝은 글자' FP만 타겟: 도형의 모든 텍스트 run 이
+    // 밝을(luma>200, 흰/연회색) 때만 picture 겹침 제외. 유채색·회색·어두운 텍스트는 유지(FN 방지).
+    const litRuns = s.textRuns.filter(r => r.color && /^[0-9A-F]{6}$/.test(r.color));
+    const allBright = litRuns.length > 0 && litRuns.every(r => {
+      const R = parseInt(r.color.slice(0, 2), 16), G = parseInt(r.color.slice(2, 4), 16), B = parseInt(r.color.slice(4, 6), 16);
+      return (0.299 * R + 0.587 * G + 0.114 * B) > 200;
+    });
+    if (overlapsPicture(s) && allBright) continue;
 
     // Determine background color: shape fill, nearest overlapping filled shape, slide bg, or white
     let bgColor = s.fillColor || findBackgroundColor(s, shapes, slideBgColor);
@@ -744,14 +758,20 @@ function checkShrinkReliability(shapes, slideNum) {
     const totalText = s.textRuns.map(r => r.text).join('');
     if (totalText.length < 10) continue;
 
-    // Estimate font size from XML (default ~12pt if not specified)
-    const avgCharWidthPt = 7; // rough average for mixed CJK+Latin
-    const avgLineHeightPt = 16; // rough average
+    // 측정 기반 재보정: 균일 7pt/char는 CJK를 ~1.7배 과소추정(FN). 실측상 CJK≈0.92×폰트
+    // (VP-16 현행값 validate-pptx.js:1149 와 일관), 라틴≈0.5×, 공백≈0.25×. 폰트크기는 run에서 취득.
+    const fontSizes = s.textRuns.filter(r => r.fontSize).map(r => r.fontSize);
+    const fontPt = fontSizes.length > 0 ? Math.max(...fontSizes) : 12;
+    const cjkCount = (totalText.match(/[　-〿㐀-䶿一-鿿豈-﫿가-힯]/g) || []).length;
+    const spaceCount = (totalText.match(/\s/g) || []).length;
+    const otherLatin = Math.max(0, totalText.length - cjkCount - spaceCount);
+    const textWidthPt = (cjkCount * fontPt * 0.92) + (otherLatin * fontPt * 0.5) + (spaceCount * fontPt * 0.25);
+    const avgLineHeightPt = fontPt * 1.3; // 측정상 행높이 ≈ 1.3×폰트
     const shapWidthPt = s.w / EMU_PER_PT;
     const shapHeightPt = s.h / EMU_PER_PT;
 
-    const charsPerLine = Math.max(1, Math.floor(shapWidthPt / avgCharWidthPt));
-    const lines = Math.ceil(totalText.length / charsPerLine);
+    // 5% 폭 여유: 경계선(근소 초과) 텍스트가 줄 수 올림으로 오발화하지 않도록.
+    const lines = Math.max(1, Math.ceil(textWidthPt / (shapWidthPt * 1.05)));
     const neededHeight = lines * avgLineHeightPt;
 
     if (neededHeight > shapHeightPt * 1.5) {
@@ -774,7 +794,15 @@ function checkGapConsistency(shapes, slideNum) {
   const issues = [];
 
   // Filter to meaningful shapes
-  const meaningful = shapes.filter(s => s.w > 0 && s.h > 0 && s.w < DEFAULT_SLIDE_W * 0.8);
+  const meaningfulRaw = shapes.filter(s => s.w > 0 && s.h > 0 && s.w < DEFAULT_SLIDE_W * 0.8);
+  // VP-10 정밀화: 다른 도형 안에 완전히 포함된(중첩) 도형은 gap 피어가 아니다.
+  // html2pptx가 카드 컨테이너 안에 텍스트 도형을 중첩 생성 → 음수 gap을 양산하므로 제외.
+  const meaningful = meaningfulRaw.filter((s) => !meaningfulRaw.some((o) =>
+    o !== s &&
+    o.x <= s.x && o.y <= s.y &&
+    o.x + o.w >= s.x + s.w && o.y + o.h >= s.y + s.h &&
+    (o.w * o.h) > (s.w * s.h)
+  ));
   if (meaningful.length < 3) return issues;
 
   // Group by similar y (same row, within ~10pt tolerance)
@@ -802,6 +830,9 @@ function checkGapConsistency(shapes, slideNum) {
       gaps.push(gap);
     }
     if (gaps.length < 2) continue;
+    // VP-10 FP 제거: 겹친 도형(음수 gap)은 PF-18/sibling-overlap이 담당.
+    // 음수 gap이 stdDev를 부풀려 '간격 불일치'로 오발화하므로 해당 행은 제외.
+    if (gaps.some((g) => g < 0)) continue;
     const gapMean = gaps.reduce((a, b) => a + b, 0) / gaps.length;
     const gapStdDev = Math.sqrt(gaps.reduce((sum, g) => sum + (g - gapMean) ** 2, 0) / gaps.length);
 
@@ -1306,7 +1337,7 @@ export async function validatePptx(pptxPath, options = {}) {
         ...checkOverflow(shapes, slideW, slideH, slideNum),
         ...checkColumnAlignment(shapes, slideNum),
         ...checkEmptyText(shapes, slideNum),
-        ...checkContrast(shapes, slideNum, slideBgColor),
+        ...checkContrast(shapes, slideNum, slideBgColor, allElements.filter((e) => e.type === 'picture')),
         ...checkFilledEmptyShapes(shapes, slideNum),
         ...checkShrinkReliability(shapes, slideNum),
         ...checkGapConsistency(shapes, slideNum),

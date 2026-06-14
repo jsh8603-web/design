@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; position: relative; overflow: hidden; background: #ffffff; }
+  /* GROUND TRUTH: 어두운 사진(rgb18,24,38) 위 흰 글자 = 실제로 잘 보임. XML만으론 흰배경 가정 → VP-04 FP의 핵심. */
+  .hero { position: absolute; top: 0; left: 0; width: 960px; height: 470px; }
+  .hero img { width: 960px; height: 470px; object-fit: cover; display: block; }
+  .title { position: absolute; top: 330px; left: 48px; color: #FFFFFF; font-size: 40px; font-weight: 800; }
+  .sub { position: absolute; top: 395px; left: 48px; color: #E5E7EB; font-size: 18px; }
+  /* GROUND TRUTH: 출처는 이미지 밖(흰 띠) #9CA3AF on white = 진짜 저대비 → WARN 유지 기대 */
+  .source { position: absolute; bottom: 14px; left: 48px; color: #9CA3AF; font-size: 15px; }
+</style>
+</head>
+<body>
+  <div class="hero"><img src="assets/dark-bg.png" alt="데이터센터 야경 배경"></div>
+  <div class="title">2025년 4분기 매출, 전년 대비 23퍼센트 성장 달성</div>
+  <div class="sub">데이터센터 부문 호조와 신규 고객 확대가 견인한 분기 최대 실적</div>
+  <div class="source">출처: 회사 IR 자료 2026년 1월 기준 내부 집계 데이터 재구성</div>
+</body>
+</html>

@@ -205,10 +205,11 @@ function checkPF15(html, file) {
     if (!CJK_RE.test(region)) continue;
 
     // Look for font-size declarations in this region
-    const fontSizeRe = /font-size\s*:\s*([\d.]+)\s*pt/gi;
+    const fontSizeRe = /font-size\s*:\s*([\d.]+)\s*(pt|px)/gi;
     let fs;
     while ((fs = fontSizeRe.exec(region)) !== null) {
-      const size = parseFloat(fs[1]);
+      let size = parseFloat(fs[1]);
+      if (fs[2].toLowerCase() === 'px') size = size * 0.75; // px→pt
       if (size > 7.5 && CJK_RE.test(region.substring(fs.index, fs.index + 500))) {
         issues.push(fmtWarn(file, 'PF-15',
           `${colCount}-column grid with CJK text at ${size}pt (>7.5pt) — may overflow in PPTX [IL-27]`));
@@ -452,23 +453,25 @@ function checkPF30(html, file) {
   let bodyMaxSize = 0;
 
   // Find h1/h2 font sizes
-  const titleRe = /<h[12][^>]*style="[^"]*font-size\s*:\s*([\d.]+)\s*pt/gi;
+  const titleRe = /<h[12][^>]*style="[^"]*font-size\s*:\s*([\d.]+)\s*(pt|px)/gi;
   let m;
   while ((m = titleRe.exec(html)) !== null) {
-    const size = parseFloat(m[1]);
+    let size = parseFloat(m[1]);
+    if (m[2].toLowerCase() === 'px') size = size * 0.75;
     if (size > titleSize) titleSize = size;
   }
 
   // Find body text font sizes (p, div with text, li)
-  const bodyRe = /<(?:p|li)\b[^>]*style="[^"]*font-size\s*:\s*([\d.]+)\s*pt/gi;
+  const bodyRe = /<(?:p|li)\b[^>]*style="[^"]*font-size\s*:\s*([\d.]+)\s*(pt|px)/gi;
   while ((m = bodyRe.exec(html)) !== null) {
-    const size = parseFloat(m[1]);
+    let size = parseFloat(m[1]);
+    if (m[2].toLowerCase() === 'px') size = size * 0.75;
     if (size > bodyMaxSize) bodyMaxSize = size;
   }
 
   if (titleSize > 0 && bodyMaxSize > 0 && titleSize <= bodyMaxSize) {
     issues.push(fmtWarn(file, 'PF-30',
-      `Font hierarchy inversion: title ${titleSize}pt ≤ body ${bodyMaxSize}pt — title should be larger [2502.15412]`));
+      `Font hierarchy inversion: title ${titleSize.toFixed(1)}pt ≤ body ${bodyMaxSize.toFixed(1)}pt — title should be larger [2502.15412]`));
   }
   return issues;
 }
@@ -496,12 +499,18 @@ function checkPF34(html, file) {
       .replace(/\s+/g, '')
       .trim();
     if (textOutsideSpans.length > 0 && spans.length > 0) {
+      // 검증(실제 PPTX): html2pptx는 인라인 <span>을 런(run)으로 변환 → 단락 분리/줄 추가 없음.
+      // 따라서 줄바꿈을 실제로 유발하는 block 계열(display:block/flex/grid) span만 발화한다.
+      const blockSpans = content.match(
+        /<span\b[^>]*style="[^"]*display\s*:\s*(?:block|flex|grid)[^"]*"[^>]*>/gi
+      ) || [];
+      if (blockSpans.length === 0) continue; // 인라인 전용 → PPTX에서 런으로 안전, FP 제외
       // Count expected line increase
       const brCount = (content.match(/<br\s*\/?>/gi) || []).length;
       const htmlLines = brCount + 1;
-      const pptxLines = htmlLines + spans.length; // each span boundary adds a line
+      const pptxLines = htmlLines + blockSpans.length; // block span 경계마다 줄 추가
       issues.push(fmtError(file, 'PF-34',
-        `<${tag}> has inline <span> with mixed text — PPTX will add ${spans.length} extra line(s) (${htmlLines}→${pptxLines} lines). Use separate <p> elements instead [IL-45]`));
+        `<${tag}> has block-level <span> with mixed text — PPTX will add ${blockSpans.length} extra line(s) (${htmlLines}→${pptxLines} lines). Use separate <p> elements instead [IL-45]`));
     }
   }
   return issues;
@@ -634,13 +643,14 @@ function checkPF39(html, file) {
  */
 function checkPF41(html, file) {
   const issues = [];
-  const re = /letter-spacing\s*:\s*(-?[\d.]+)\s*pt/gi;
+  const re = /letter-spacing\s*:\s*(-?[\d.]+)\s*(pt|px)/gi;
   let m;
   while ((m = re.exec(html)) !== null) {
-    const val = Math.abs(parseFloat(m[1]));
+    let val = Math.abs(parseFloat(m[1]));
+    if (m[2].toLowerCase() === 'px') val = val * 0.75; // px→pt
     if (val > 1) {
       issues.push(fmtWarn(file, 'PF-41',
-        `letter-spacing: ${m[1]}pt — ignored in PPTX (>±1pt threshold). Remove or accept width difference [IL-46]`));
+        `letter-spacing: ${m[1]}${m[2]} — ignored in PPTX (>±1pt threshold). Remove or accept width difference [IL-46]`));
       return issues;
     }
   }
@@ -750,13 +760,14 @@ function checkPF44(html, file) {
  */
 function checkPF45(html, file) {
   const issues = [];
-  const re = /margin(?:-(?:top|bottom|left|right))?\s*:\s*(-[\d.]+)\s*pt/gi;
+  const re = /margin(?:-(?:top|bottom|left|right))?\s*:\s*(-[\d.]+)\s*(pt|px)/gi;
   let m;
   while ((m = re.exec(html)) !== null) {
-    const val = parseFloat(m[1]);
+    let val = parseFloat(m[1]);
+    if (m[2].toLowerCase() === 'px') val = val * 0.75; // px→pt
     if (val <= -5) {
       issues.push(fmtWarn(file, 'PF-45',
-        `Negative margin ${m[1]}pt — PPTX shape positioning may differ. Consider absolute positioning [IL-50]`));
+        `Negative margin ${m[1]}${m[2]} — PPTX shape positioning may differ. Consider absolute positioning [IL-50]`));
       return issues;
     }
   }
@@ -1623,9 +1634,13 @@ async function runPlaywrightChecks(slidesDir, files) {
             const cjkRatio = cjkChars / text.length;
             if (cjkRatio < 0.3) continue;
 
+            // PF-23 FP 제거: scrollWidth는 이미 줄바꿈/shrink-to-fit 결과를 반영한다.
+            // 잘 맞는(감싸지는) 텍스트는 scrollWidth ≈ clientWidth이라 20% 보정이 무조건 5%를 넘겨
+            // 항상 오발화한다. 실제 가로 오버플로(content가 box를 넘침)일 때만 판정한다.
+            const realOverflow = el.scrollWidth > r.width + 1;
             // Compare scrollWidth with clientWidth, applying 20% CJK correction
             const correctedWidth = el.scrollWidth * (1 + cjkRatio * 0.2);
-            if (correctedWidth > r.width * 1.05) { // 5% tolerance
+            if (realOverflow && correctedWidth > r.width * 1.05) { // 5% tolerance
               return {
                 found: true,
                 text: text.substring(0, 30),
@@ -1772,20 +1787,37 @@ async function runPlaywrightChecks(slidesDir, files) {
             // Line-count heuristic: short text forced into 2+ lines by narrow column
             const fontSize = parseFloat(cs.fontSize) || 14;
             const lineHeight = parseFloat(cs.lineHeight) || fontSize * 1.4;
-            const padTop = parseFloat(cs.paddingTop) || 0;
-            const padBot = parseFloat(cs.paddingBottom) || 0;
-            let contentHeight = r.height - padTop - padBot;
-            // Flex/grid cells with align-items may stretch taller than text content.
-            // Measure the inner text element height to avoid false positives.
-            const cellDisplay = cs.display;
-            if (cellDisplay === 'flex' || cellDisplay === 'inline-flex' || cellDisplay === 'grid') {
-              const textChild = cell.querySelector('span, p, a') || cell.firstElementChild;
-              if (textChild) {
-                contentHeight = textChild.getBoundingClientRect().height;
+            // PF-65 FP 제거: 셀 박스 높이는 같은 행의 다른 셀이 줄바꿈하면 함께 늘어난다(table-row stretch).
+            // → 셀 박스가 아니라 '텍스트 자체'의 렌더 높이를 Range로 측정해 실제 줄 수를 구한다.
+            let actualLines;
+            try {
+              const range = document.createRange();
+              range.selectNodeContents(cell);
+              const rects = Array.from(range.getClientRects());
+              if (rects.length > 0) {
+                const top = Math.min(...rects.map((rc) => rc.top));
+                const bot = Math.max(...rects.map((rc) => rc.bottom));
+                actualLines = Math.round((bot - top) / lineHeight);
               }
+            } catch (e) { /* fall through to box measure */ }
+            if (actualLines == null) {
+              const padTop = parseFloat(cs.paddingTop) || 0;
+              const padBot = parseFloat(cs.paddingBottom) || 0;
+              let contentHeight = r.height - padTop - padBot;
+              const cellDisplay = cs.display;
+              if (cellDisplay === 'flex' || cellDisplay === 'inline-flex' || cellDisplay === 'grid') {
+                const textChild = cell.querySelector('span, p, a') || cell.firstElementChild;
+                if (textChild) contentHeight = textChild.getBoundingClientRect().height;
+              }
+              actualLines = Math.round(contentHeight / lineHeight);
             }
-            const actualLines = Math.round(contentHeight / lineHeight);
-            if (actualLines >= 2 && text.length <= 12) {
+            // PF-65 추가개선: 셀에 블록 자식이 여럿(배지+라벨 등 의도적 세로배치)이면 wrap 이 아니다.
+            // Range 는 배지 도형+라벨을 합산해 2줄로 오판하므로(slide-4007 복합셀 새 FP) 블록자식 ≤1 일 때만 발화.
+            const blockKids = Array.from(cell.children).filter((c) => {
+              const d = getComputedStyle(c).display;
+              return d === 'block' || d === 'flex' || d === 'grid' || d === 'inline-flex';
+            });
+            if (actualLines >= 2 && text.length <= 12 && blockKids.length <= 1) {
               issues.push({ text: text.substring(0, 30), tag: cell.tagName, type: 'multiline' });
             }
           }
@@ -1803,6 +1835,9 @@ async function runPlaywrightChecks(slidesDir, files) {
           for (const el of allEls) {
             const cs = getComputedStyle(el);
             if (cs.overflow !== 'hidden' && cs.overflowY !== 'hidden') continue;
+            // PF-66 FP 제거: 의도적 말줄임(ellipsis / line-clamp)은 설계된 truncation이지 사고가 아님.
+            const clampVal = cs.getPropertyValue('-webkit-line-clamp');
+            if (cs.textOverflow === 'ellipsis' || (clampVal && clampVal !== 'none')) continue;
             const r = el.getBoundingClientRect();
             if (r.width <= 0 || r.height <= 0) continue;
             // Vertical clipping: content taller than visible area

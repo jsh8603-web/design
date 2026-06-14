@@ -52,5 +52,28 @@ assets/fonts/         # 로컬 .woff2 (CDN 대체)
 - 디자인: design 폴더가 우수 → 통째 사용 (mck 차트JS 중복 확인만)
 - 폰트: jsDelivr Pretendard → design 폴더 fonts/files/*.woff2 로컬 참조 교체
 - 리서치: RESEARCH_SUPPLEMENT 를 WebFetch+사내DB+Confluence 3소스로 재구성
-</content>
-</invoke>
+
+---
+
+# 규칙 감사 후속 (rule-audit) — 2026-06-14
+
+> 출처: 사용자 전달 핸드오프 "규칙 감사 후속 (불만 제기 이후 누적분)". 전달완료 base(VP-16 0.92·PF-25·PF-28·PF-18, 커밋 0de6ba7~73c8a4c) 위에 **11규칙 후속 패치**를 적용한다.
+> 사용자 지시: "이전과 같은 방법으로 검증하며 적용" = 직접검증→A/B(수정전 사본 vs 수정후)→FP/FN 전수 렌더→추가수정→커밋. diff 무비판 코드화 금지.
+
+## 핵심 설계 결정 (적용 전 확정)
+1. **diff 통째 `git apply` 금지** — 규칙 그룹별로 적용하고 각 그룹 직후 실 PPTX before/after 실증. (consult-adoption-gate: 적용 전 falsify)
+2. **VP-09 계수 충돌 해소** — 핸드오프 diff 는 `CJK×1.0`(작성 시점 VP-16=1.0 기준)이나 우리 VP-16(validate-pptx.js:1149)은 이미 `0.92`로 재보정됨. → VP-09 도 **0.92 로 맞춰 적용**(핸드오프의 "VP-16과 일관" 의도를 현행값으로 재해석). 라틴 0.5·공백 0.25·행높이 1.3 은 diff 그대로.
+3. **검증 환경 대체** — 핸드오프의 `pw-shim.mjs` 없음 → 직전 검증과 동일하게 `convert-native --skip-preflight`로 실 PPTX 생성. 수정전 = `git stash`/사본, 수정후 = 현재.
+4. **픽스처 신규 제작** — VP-04(어두운 이미지 위 흰 글자 + 흰-on-흰 대조군)·VP-10(KPI 3행: 균등/겹침/불일치) 전용 슬라이드 신규. 기존 mock-dense(slide-1~6) 는 px·CJK 룰 재활용.
+
+## 11규칙 그룹 (전부 validate-pptx.js 2 + preflight-html.js 9, 2파일)
+| 그룹 | 규칙 | 종류 | 검증 방식 |
+|---|---|---|---|
+| A (validate-pptx) | VP-04 contrast / VP-10 gap / VP-09 shrink | 검출 계약 변경 | 실 PPTX before/after + FP/FN 렌더 |
+| B (preflight 렌더) | PF-23 realOverflow / PF-65 Range측정 / PF-66 ellipsis제외 | FP 제거(--full 실렌더) | --full DOM 측정 before/after |
+| C (preflight 정적) | PF-15·30·41·45 px→pt / PF-34 blockSpans | px FN·FP(결정형) | 픽스처 발화 전수 분류 |
+
+## FP/FN 회귀 규율 (직전 K-202606140510 준수)
+- 각 규칙: 수정으로 **제거된 발화(OLD→NEW 소멸)** 전수를 렌더 대조 → 실제 안 넘침/안 겹침이면 FP 제거 정당, 넘침/겹침이면 FN(과제거).
+- **will-overflow 뿐 아니라 may-wrap→pass 격하분도 전수**(직전 누락 교훈).
+- 의도 룰(VP-02/03/07/08/11·PF-20 등 코퍼스전용)은 이번 범위 밖 — 카운트 불변(회귀 안전) 확인만.

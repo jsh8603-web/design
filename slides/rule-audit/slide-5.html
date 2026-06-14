@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; position: relative; background: #ffffff; color: #1a1a2e; }
+  h1 { position: absolute; top: 22px; left: 48px; font-size: 24px; font-weight: 800; }
+  /* GROUND TRUTH(무발화): 의도적 말줄임 ellipsis = 설계된 truncation, PF-66 제외 정답 */
+  .ellipsis { position: absolute; top: 90px; left: 48px; width: 240px; height: 28px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; background: #f0f4f8; padding: 4px; }
+  /* GROUND TRUTH(무발화): line-clamp 2줄 말줄임 = 설계, PF-66 제외 정답 */
+  .clamp { position: absolute; top: 150px; left: 48px; width: 240px; height: 50px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size: 16px; line-height: 1.4; background: #f0f4f8; padding: 4px; }
+  /* GROUND TRUTH(발화 TP): 진짜 클리핑 — overflow:hidden 인데 말줄임 아님, 내용 잘림 사고 */
+  .clip { position: absolute; top: 230px; left: 48px; width: 240px; height: 30px; overflow: hidden; font-size: 16px; line-height: 1.5; background: #fff0f0; padding: 4px; }
+</style>
+</head>
+<body>
+  <h1>PF-66 클리핑 — ellipsis/clamp(무발화) vs 진짜 클리핑(발화)</h1>
+  <div class="ellipsis">의도적 말줄임 처리된 매우 긴 제목 텍스트가 한 줄로 잘린다</div>
+  <div class="clamp">라인클램프로 두 줄까지만 보이고 나머지는 말줄임 처리되는 설계된 본문 텍스트가 여기에 길게 들어간다 추가 내용도 있다</div>
+  <div class="clip">높이 30px 박스에 두 줄 이상 들어가 아래가 사고로 잘리는 진짜 클리핑 텍스트 케이스다 이건 발화해야 한다</div>
+</body>
+</html>

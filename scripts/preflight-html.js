@@ -408,6 +408,11 @@ function checkPF28(html, file) {
     .replace(/<script[\s\S]*?<\/script>/gi, '')
     .replace(/<(figcaption|small)\b[\s\S]*?<\/\1>/gi, '')
     .replace(/<(\w+)[^>]*class="[^"]*\b(source|caption|footnote|footer)\b[^"]*"[\s\S]*?<\/\1>/gi, '')
+    // \uD45C \uC140\u00B7\uCC28\uD2B8 \uB370\uC774\uD130 \uC81C\uC678(\uC774\uBBF8\uC9C0\uC9C1\uC811\uD310\uC815 2026-06-15, subagent: \uBC1C\uD65484 \uC804\uBD80 FP \u2014 \uD45C/\uCE74\uB4DC/\uBD88\uB9BF\uB85C
+    // \uC815\uB9AC\uB3FC \uB118\uCE680\uC778\uB370 word-equiv\uAC00 \uD45C \uC140\u00B7\uC22B\uC790\uB97C \uACFC\uB300\uACC4\uC218). 6x6 Rule \uC740 \uBCF8\uBB38 \uD14D\uC2A4\uD2B8 \uBC00\uB3C4\uC6A9\uC774\uC9C0
+    // \uD45C\u00B7\uB370\uC774\uD130 \uC2DC\uAC01\uD654 \uB300\uC0C1 \uC544\uB2D8 \u2192 <table>/<svg>(\uCC28\uD2B8) \uC81C\uAC70 \uD6C4 \uBCF8\uBB38\uB9CC \uCE74\uC6B4\uD2B8.
+    .replace(/<table\b[\s\S]*?<\/table>/gi, ' ')
+    .replace(/<svg\b[\s\S]*?<\/svg>/gi, ' ')
     .replace(/<!--[\s\S]*?-->/g, '')
     .replace(/<[^>]+>/g, ' ')
     .replace(/&[a-z]+;/gi, ' ')
@@ -415,9 +420,10 @@ function checkPF28(html, file) {
     .trim();
   // Count: CJK characters count as 1 word each, Latin words split by space
   const cjkChars = (textOnly.match(/[\u3000-\u303F\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF]/g) || []).length;
-  // For word count: split non-CJK text by spaces, filter empties
+  // For word count: split non-CJK text by spaces, filter empties.
+  // \uC21C\uC218 \uC22B\uC790/\uD37C\uC13C\uD2B8/\uD1B5\uD654/\uB2E8\uC704 \uD1A0\uD070(36.8%, 2,000, $1.5B \uB4F1)\uC740 \uB370\uC774\uD130\uAC12\uC774\uC9C0 '\uB2E8\uC5B4' \uC544\uB2D8 \u2192 \uC81C\uC678.
   const nonCjk = textOnly.replace(/[\u3000-\u303F\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\uAC00-\uD7AF]/g, ' ');
-  const latinWords = nonCjk.split(/\s+/).filter(w => w.length > 0).length;
+  const latinWords = nonCjk.split(/\s+/).filter(w => w.length > 0 && !/^[\d.,%+\-/$~()]+[bmtkBMTK%]?$/.test(w)).length;
   // CJK: roughly 2 characters = 1 "word equivalent" for density
   const wordEquiv = latinWords + Math.ceil(cjkChars / 2);
   if (wordEquiv > 120) {

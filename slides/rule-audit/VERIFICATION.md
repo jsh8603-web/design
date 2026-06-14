@@ -10,8 +10,8 @@
 | 규칙 | OLD | NEW | Δ | 판정 |
 |---|---|---|---|---|
 | VP-04 contrast | 776 | 775 | −1 | ★밝기게이트 추가개선(아래) |
-| VP-09 shrink | 159 | 23 | −136 | FP제거, FN 0 |
-| VP-10 gap | 467 | 46 | −421 | FP제거(겹침370+중첩51), FN 0 |
+| VP-09 shrink | 159 | 9 | −150 | 측정재보정 + ★availHeight 보정(추가개선4), FN 0 |
+| VP-10 gap | 467 | 38 | −429 | 중첩제외+음수스킵 + ★CV게이트(추가개선3), FN 0 |
 | VP-02/03/07/08/11/14/16 | — | — | 0 | 의도룰 불변=회귀안전 |
 
 ### preflight-html (PF, HTML --full) — realmix dir
@@ -44,6 +44,15 @@
 - **개선**: 셀에 블록자식 ≥2(의도적 세로배치)면 wrap 아님 → 제외. `blockKids.length <= 1` 조건.
 - **검증**: s4007 FP 제거 + s4013 무발화·s8012/8017 scrollWidth TP 유지. 운영덱 PF-65 33→23 순감소(무조건 Range였으면 33).
 
+### 3. VP-10 상대임계 CV 게이트 (validate-pptx.js checkGapConsistency)
+- **발견**: 절대 stdDev 5pt 만으론 균등 배치(마일스톤 점·진행바)의 텍스트폭 미세변동도 발화. 운영덱 잔존 46건 CV 분석 → CV<0.2 8건(`[172,178,184]` 등 시각상 균등)=약한 FP, CV>0.6 20건=진짜 불일치로 명확히 갈림.
+- **개선**: `gapStdDev>5pt AND CV(stdDev/mean)>0.2` 일 때만 발화. 코퍼스 불필요(균등 CV~0 vs 불일치 CV>0.6 자명).
+- **검증**: 운영 46→38. slide62(진행바 마일스톤 균등 CV0.03) 약한FP 제거 + slide58 `[4,6,4,6,4,271]`·합성 Row C `[9,159]` 진짜 불일치 유지. FN 0.
+
+### 4. VP-09 availHeight 보정 (validate-pptx.js checkShrinkReliability)
+- **발견**: 박스높이가 한 줄(lineHeight)도 안 되게 잡힌 도형 = html2pptx 측정 아티팩트(라벨류 autofit / 히어로 숫자 1줄). 운영덱 잔존 23건 중 avail≤10pt 8건(s74~82 라벨) + 큰폰트 히어로(s101 `$120.00` 1줄을 2줄 오판) = 약한 FP.
+- **개선**: `neededHeight>avail×1.5 AND shapHeightPt>=avgLineHeightPt` 일 때만 발화(박스가 최소 한 줄 이상일 때만 밀도 판정).
+- **검증**: 운영 23→9. slide74/s101 약한FP 제거 + ★합성 slide4 dense(진짜 과밀 `5 lines 73pt/38pt`) 유지 = FN 0. L2 큐였던 slide1 부제 자연폭 FP(avail16<lineHeight17.5)도 함께 해결.
+
 ## L2 큐 (추가개선 여지, 코퍼스 의존이라 보류)
-- VP-10/VP-09 잔존 약한 FP(텍스트폭 변동·박스높이 경계) → 상대임계 정교화. 과발화지 FN 아님.
-- VP-09 합성 slide1 부제 자연폭 1줄→2줄 오판 FP. 운영덱 순감소라 빈도 낮음.
+- VP-10/VP-09 0.2<CV<0.6 / 10<avail 경계 잔존(약한 불일치~진짜 과밀 혼재) → 보수적으로 발화 유지(FN 방지). 추가 정밀화는 실덱 라벨링 필요.

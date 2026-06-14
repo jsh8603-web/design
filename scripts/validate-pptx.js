@@ -774,7 +774,10 @@ function checkShrinkReliability(shapes, slideNum) {
     const lines = Math.max(1, Math.ceil(textWidthPt / (shapWidthPt * 1.05)));
     const neededHeight = lines * avgLineHeightPt;
 
-    if (neededHeight > shapHeightPt * 1.5) {
+    // VP-09 추가개선: 박스높이가 한 줄(lineHeight)도 안 되게 잡힌 도형은 html2pptx 측정 아티팩트다
+    // (라벨류 도형이 autofit 으로 실제론 늘어남). 운영덱 avail 8pt(<lineHeight) 8건 + 자연폭 자막류가
+    // 약한 FP. 박스가 최소 한 줄 높이 이상일 때만 밀도 판정. 진짜 과밀(여러 줄 박스+넘침)은 보존.
+    if (neededHeight > shapHeightPt * 1.5 && shapHeightPt >= avgLineHeightPt) {
       const name = s.name || 'unnamed';
       issues.push({
         level: 'WARN',
@@ -836,8 +839,12 @@ function checkGapConsistency(shapes, slideNum) {
     const gapMean = gaps.reduce((a, b) => a + b, 0) / gaps.length;
     const gapStdDev = Math.sqrt(gaps.reduce((sum, g) => sum + (g - gapMean) ** 2, 0) / gaps.length);
 
-    // Flag if gap variance > 5pt
-    if (gapStdDev > 5 * EMU_PER_PT) {
+    // VP-10 추가개선: 절대 stdDev 5pt 만으로는 균등 배치(마일스톤 점·진행바 등)의 텍스트폭 미세변동도
+    // 발화한다(약한 FP, 운영덱 CV<0.2 8건 = 시각상 균등). 상대 변동계수(CV=stdDev/mean)도 함께 봐
+    // CV>0.2(명백히 불균등)일 때만 발화. 균등(CV<0.2)은 제외. 진짜 불일치(예 [6,217,6] CV>1)는 보존.
+    const gapCV = gapMean > 0 ? gapStdDev / gapMean : 0;
+    // Flag if gap variance > 5pt AND relative variation is meaningful
+    if (gapStdDev > 5 * EMU_PER_PT && gapCV > 0.2) {
       const gapsPt = gaps.map(g => (g / EMU_PER_PT).toFixed(1) + 'pt').join(', ');
       issues.push({
         level: 'WARN',

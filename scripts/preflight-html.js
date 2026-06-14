@@ -1536,7 +1536,13 @@ async function runPlaywrightChecks(slidesDir, files) {
           let maxBottomPx = 0;
           for (const el of allEls) {
             const r = el.getBoundingClientRect();
-            if (r.height > 0 && r.bottom > maxBottomPx) maxBottomPx = r.bottom;
+            if (r.height <= 0) continue;
+            // PF-20 추가개선: 출처/푸터/캡션은 하단 배치가 의도(디자인)다. 본문 오버플로만 잡는다.
+            // class 매칭 + 작은 텍스트(높이<20px≈한 줄 출처)를 푸터류로 간주해 면제.
+            const cls = (el.className || '').toString().toLowerCase();
+            const isFooter = /source|footer|caption|footnote|credit/.test(cls) || r.height < 20;
+            if (isFooter) continue;
+            if (r.bottom > maxBottomPx) maxBottomPx = r.bottom;
           }
           const maxBottomPt = maxBottomPx * 0.75; // px → pt
           // 369pt = 405pt - 36pt (0.5" margin)

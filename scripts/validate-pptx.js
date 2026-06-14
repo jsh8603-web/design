@@ -1342,14 +1342,20 @@ function checkCjkTextOverflow(shapes, slideNum) {
       // VP-16 sweet-spot(정답지 앵커, 2026-06-14): 임계 1.0→1.1. CJK 0.92 계수가 ~5% 과대추정이라
       // fills 100~110% 발화는 렌더상 실제 한 줄에 들어감(realmix 12장 검증: s2 101%·s7 105%/101%·
       // s99 105% 4건 모두 3-judge blind 다수결 FP, 정답 0건). 정답 99.9 "분석팀"은 fills 115%로
-      // 110% 초과 → 생존(recall=1.0). 운영덱 fills 100~110% 299건 FP 침묵, >110% 37건 유지.
+      // 110% 초과 → 생존. 단 fills 정밀화(이미지직접확인 2026-06-14): 가로 110~120% 초과 대부분은
+      // CJK 0.92 과대추정 + PptxGenJS autofit/overflow로 실제 한 줄(s84 "투자결론"36pt·s132 배지 확인).
+      // 진짜 잘림은 세로도 넘칠 때 — 도형 높이가 늘어난 줄수를 수용 못함(GT 99.9 "분석팀" 12pt가
+      // 도형 h=0.20"<2줄 필요 = 세로 넘침). 세로 여유면(autofit 한 줄 처리) skip.
+      // 짧은 텍스트(≤5자 배지·라벨, s132 "정기성")는 PptxGenJS autofit이 한 줄로 처리 → skip.
+      // 세로 여유(s84 큰제목 한 줄) → skip. 긴 텍스트가 세로까지 넘칠 때만 진짜 잘림(GT 99.9 11자).
+      if (!verticalOverflow || isShortText) continue;
       const availPt = Math.round(availableWidth / EMU_PER_PT);
       const estPt = Math.round(estimatedWidth / EMU_PER_PT);
       issues.push({
         level: 'WARN',
         code: 'VP-16',
         slide: slideNum,
-        message: `CJK text "${text.substring(0, 25)}..." fills ${Math.round(ratio * 100)}% of available width (${estPt}pt / ${availPt}pt, ${estimatedFontPt}pt font) — may wrap in PPTX [IL-37]`,
+        message: `CJK text "${text.substring(0, 25)}..." fills ${Math.round(ratio * 100)}% of available width (${estPt}pt / ${availPt}pt, ${estimatedFontPt}pt font) — may overflow/clip in PPTX [IL-37]`,
       });
     }
   }

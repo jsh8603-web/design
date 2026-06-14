@@ -36,6 +36,7 @@ const COL_TOLERANCE = 36000;
 // WCAG contrast thresholds
 const CONTRAST_ERROR = 1.5;
 const CONTRAST_WARN = 4.5;
+const CONTRAST_LARGE = 3.0; // WCAG AA 큰 텍스트(≥18pt) 임계 (정상 4.5 대신 3:1)
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -786,6 +787,10 @@ function checkContrast(shapes, slideNum, slideBgColor, pictures = []) {
           message: `Text "#${fgColor}" on "#${bgColor}" in "${name}" — invisible (ratio: ${ratioStr}:1) — "${textPreview}"`,
         });
       } else if (ratio < CONTRAST_WARN) {
+        // VP-04 추가개선: WCAG AA 큰 텍스트(≥18pt) 면제 — 큰 텍스트 기준은 3:1. ratio≥3 이면 통과.
+        // checkContrast가 run.fontSize 를 파싱하면서도 단일 4.5 임계만 써 큰 제목·강조(3.0~4.5)를 과발화.
+        // bold≥14pt도 WCAG 큰텍스트지만 bold 미파싱 → ≥18pt만 보수적 면제(FN 방지). 운영덱 765 WARN 감축.
+        if (run.fontSize && run.fontSize >= 18 && ratio >= CONTRAST_LARGE) continue;
         issues.push({
           level: 'WARN',
           code: 'VP-04',
@@ -1298,7 +1303,10 @@ function checkCjkTextOverflow(shapes, slideNum) {
         slide: slideNum,
         message: `CJK text "${text.substring(0, 25)}..." wraps to ${linesNeeded} lines (${estPt}pt / ${availPt}pt, ${estimatedFontPt}pt font) — fits vertically [IL-37]`,
       });
-    } else if (ratio > 0.95) {
+    } else if (ratio > 1.0) {
+      // VP-16 추가개선: 임계 0.95→1.0. 추정폭이 가용폭 미만(<100%)이면 한 줄에 들어가 wrap 안 함
+      // (게다가 CJK 0.92 계수가 ~5% 과대추정: s2 "미·중·유럽" 101%도 실제 한 줄). "may wrap" 경고는
+      // 추정폭이 실제로 가용폭을 넘을 때만. 운영덱 <100% 81건 FP 제거. 잘림(ERROR)·실제초과(>100%)는 유지.
       const availPt = Math.round(availableWidth / EMU_PER_PT);
       const estPt = Math.round(estimatedWidth / EMU_PER_PT);
       issues.push({

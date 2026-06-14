@@ -621,8 +621,37 @@ function checkShapeGridEmptyCells(shapes, slideNum) {
 }
 
 /**
+ * VP-08 추가개선: 빈 채움도형이 "카드 그리드의 빈 칸"(작성자 텍스트 누락)일 때만 발화.
+ * 같은 크기·정렬된 fill+텍스트 동료(peer)가 있어야 진짜 카드 그리드로 판정.
+ * 차트 막대·트랙·구분선·장식 원·컨테이너 배경은 그런 peer 가 없어 억제(=VP-03 시각요소 원칙과 정합).
+ * 운영덱 41건(전부 막대/트랙/장식 FP) → 0. 진짜 빈카드 TP 는 동료 카드가 텍스트를 품으므로 생존.
+ */
+function hasFilledTextPeer(s, shapes) {
+  // html2pptx 는 카드를 [fill 배경 도형 + 별도 텍스트 도형] 으로 분리한다.
+  // → 같은 크기·정렬된 다른 fill 카드배경(o)이 텍스트 자식을 품으면(콘텐츠 카드),
+  //   s 는 그 그리드의 빈 카드 = 진짜 TP. 막대/트랙/장식/컨테이너는 이런 peer 가 없다.
+  const ALIGN_TOL = 0.15 * EMU_PER_INCH; // 같은 행/열 정렬 허용
+  const SIZE_TOL = 0.2; // ±20% 크기 일치
+  if (s.w === 0 || s.h === 0) return false;
+  const hasText = (o) => o.textRuns.length > 0 && o.textRuns.some(r => r.text.trim() !== '');
+  for (const o of shapes) {
+    if (o === s) continue;
+    if (!o.fillColor) continue;
+    const sizeMatch = Math.abs(o.w - s.w) <= SIZE_TOL * s.w && Math.abs(o.h - s.h) <= SIZE_TOL * s.h;
+    if (!sizeMatch) continue;
+    const sameRow = Math.abs(o.y - s.y) <= ALIGN_TOL;
+    const sameCol = Math.abs(o.x - s.x) <= ALIGN_TOL;
+    if (!(sameRow || sameCol)) continue;
+    // o 가 콘텐츠 카드인가: 자신이 텍스트를 갖거나, 겹치는 텍스트 자식이 있다
+    if (hasText(o) || hasOverlappingSibling(o, shapes, hasText)) return true;
+  }
+  return false;
+}
+
+/**
  * VP-08: Detect shapes with fill but no text content — possible empty card.
- * Only flags shapes with significant area (> 50pt × 50pt = 635000 × 635000 EMU).
+ * Only flags shapes with significant area (> 50pt × 50pt = 635000 × 635000 EMU)
+ * AND that sit in a grid of same-size filled+text peer cards (genuine blank card).
  */
 function checkFilledEmptyShapes(shapes, slideNum) {
   const issues = [];
@@ -640,6 +669,11 @@ function checkFilledEmptyShapes(shapes, slideNum) {
         (o) => o.textRuns.length > 0 && o.textRuns.some(r => r.text.trim()))) {
         continue;
       }
+      // VP-08 추가개선: 길쭉한 도형(종횡비≥4)은 막대/트랙/구분선 = 카드 아님 → 억제
+      const aspect = Math.max(s.w, s.h) / Math.min(s.w, s.h);
+      if (aspect >= 4) continue;
+      // VP-08 추가개선: 카드 그리드 동료(같은 크기·정렬 fill+텍스트)가 없으면 장식/컨테이너 = 억제
+      if (!hasFilledTextPeer(s, shapes)) continue;
       const name = s.name || 'unnamed';
       issues.push({
         level: 'WARN',

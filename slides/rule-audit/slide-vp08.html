@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 960px; height: 540px; font-family: 'Pretendard', 'Malgun Gothic', sans-serif; padding: 28px 36px; background: #ffffff; color: #1a1a2e; }
+  h1 { font-size: 24px; font-weight: 800; margin-bottom: 24px; }
+  .grid { display: flex; gap: 24px; }
+  .card { width: 280px; height: 200px; background: #e8ecf1; border-radius: 12px; padding: 24px; }
+  .card .num { font-size: 32px; font-weight: 800; color: #0f3460; }
+  .card .lbl { font-size: 16px; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <h1>VP-08 카드 그리드 빈칸(발화 TP) — 3카드 중 1개 작성자 텍스트 누락</h1>
+  <div class="grid">
+    <!-- GROUND TRUTH(무발화): 텍스트 채워진 카드 -->
+    <div class="card"><div class="num">333.6조</div><div class="lbl">연간 매출</div></div>
+    <!-- GROUND TRUTH(무발화): 텍스트 채워진 카드 -->
+    <div class="card"><div class="num">43.6조</div><div class="lbl">영업이익</div></div>
+    <!-- GROUND TRUTH(발화 TP): 같은 크기 동료 카드 2개가 텍스트를 품은 그리드의 빈 카드 -->
+    <div class="card"></div>
+  </div>
+</body>
+</html>

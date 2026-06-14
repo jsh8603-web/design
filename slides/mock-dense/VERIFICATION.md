@@ -83,3 +83,28 @@
   - PF-18 다중 겹침은 ERROR 1 + WARN 1까지만(같은 등급 다수는 여전히 worst 1).
 - **실세계 빈도 축 미검증**: `slides/`에 과거 baseline 덱이 없어, 합성 6장으로만 검증. 실덱 확보 시 `tests/run-full-regression.mjs`로 baseline 재생성 권장.
 - 측정은 합성 슬라이드 기반(내가 그라운드트루스를 알고 설계) — 우호적 편향 가능성이 있어 적대적 케이스(slide-4~6)를 병행했음.
+
+## 8. 운영 덱 검증 (slides-grab 156장, §7 실세계 빈도 축 메움)
+
+빽빽한 투자/업무 덱 8개(ai-infra·samsung·naver·kakao·posco·coupang·commodity·payroll-guide)를 합본해 기존 vs 새 규칙 A/B.
+
+| 항목 | OLD | NEW(커밋) | diff | 판정 |
+|---|---|---|---|---|
+| **VP-16** | 786 | 671 | **-115 (-15%)** | ✅ 최대 실효 (한글 폭 FP 제거, 30장에서 23건 렌더 확인과 동일 패턴) |
+| **validate-slides warn** | 116 | 36 | **-80** | ✅ 의도 레이아웃(카드 그리드) 오탐 제거 + 텍스트겹침 노출 유지 |
+| PF-28 | 89 | 84 | -5 | 미미 |
+| **PF-25** | 61 | 61 | **0** | 운영 덱은 작은 폰트를 pt로 쓰고 px 9px급이 없음 → px 변경 효과 0 (무해한 안전망) |
+| **PF-18** | 1 | 1 | **0** | 겹침 1건뿐 → ERROR+WARN 분리 발동 안 함 |
+| 나머지 PF 30종·VP 9종 | = | = | 0 | 회귀 안전 |
+
+- **핵심**: VP-16·validate-slides가 운영 덱 노이즈를 크게 줄임. PF-25/PF-18은 잘 만든 덱엔 트리거 0 (결함 생겼을 때를 위한 안전망).
+- **합본 한계**: validate-slides critical(103/105)은 합본 이미지 일부 깨짐(assets 머지 누락)으로 overflow 오염 → 신뢰도 낮음. 정상 단일 덱(real-ai/sam/po/cm.pptx)으로 개별 검증함.
+
+## 9. VP-16 CJK 계수 0.92 재보정 (운영 덱이 이끈 추가 개선)
+
+운영 덱 671건 중 WARN 508건의 fills% 분포가 96~116% 경계에 몰려(CJK 1.0 과대추정). measureText 실측 CJK ~0.9를 반영해 1.0 → 0.92 재보정:
+
+- **정상덱(ai+samsung) VP-16: 77 → 58 (-19, -25%)**, 합본 671 → 568.
+- **빠진 케이스 렌더 검증 (FN 0)**: 1.0 WARN→0.92 PASS된 케이스("2024 글로벌 DC 전력 소비", "4대 하이퍼스케일러 투자 비교", "기회:전력 인프라...")가 PPTX 렌더(Pretendard 임베드)에서 전부 1줄로 박스 안에 들어감.
+- **will overflow 7 → 4도 FP 격하 검증**: 빠진 3건(posco "구조개편 73건 완료로 1.8조원..." / commodity "변동성 시대를 위한 전략적 통찰")을 정상 덱 렌더로 확인 → posco는 카드 안 3줄 정상 표시, commodity는 2줄 wrap(화면 밖 넘침 아님). 1.0의 "shape too short" 판정이 과한 오판이었음.
+- **CJK 1.0 → 0.92 채택**. whitespace 0.25·Latin 0.5는 유지(0.4는 §4에서 FP 재발로 철회). measureText(Malgun fallback) + PPTX(Pretendard) 양쪽 렌더로 교차 검증.

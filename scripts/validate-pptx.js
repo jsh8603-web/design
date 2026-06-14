@@ -354,13 +354,15 @@ function checkColumnAlignment(shapes, slideNum) {
     const maxW = Math.max(...widths);
 
     // VP-02 추가개선: 절대 5pt 변동만으론 좌측정렬 리스트(텍스트 길이차로 폭만 다른 항목)도 발화한다
-    // (약한 FP, slide5 [5.28×4,5.72×2] relVar 0.08). 상대 변동(maxW-minW)/median>0.15 일 때만 발화.
-    // VP-10 CV게이트와 동형. 진짜 불일치(폭 35%+ 차이)는 보존.
-    const sortedW = widths.slice().sort((a, b) => a - b);
-    const medW = sortedW[Math.floor(sortedW.length / 2)];
-    const relVar = medW > 0 ? (maxW - minW) / medW : 0;
-    // If width variance exceeds ~5pt (63500 EMU) AND is relatively meaningful, flag it
-    if (maxW - minW > 63500 && relVar > 0.15) {
+    // (약한 FP, slide5 [5.28×4,5.72×2]). 1차로 상대변동(max-min)/median>0.15 게이트를 뒀으나,
+    // max-min 은 단일 outlier 에 민감 — s24 [1.11×13, 0.88](마지막 짧은 항목 1개)이 relVar 0.21 로 발화.
+    // → 변동계수 CV(stdDev/mean) 로 교체. 다수 동일+소수 outlier 는 CV 작아 둔감(s24 0.05·s16 0.13),
+    //   진짜 산발 불일치(폭 다양)는 CV 커서 보존. CV>0.15 일 때만 발화.
+    const meanW = widths.reduce((a, b) => a + b, 0) / widths.length;
+    const variance = widths.reduce((a, w) => a + (w - meanW) ** 2, 0) / widths.length;
+    const cv = meanW > 0 ? Math.sqrt(variance) / meanW : 0;
+    // If width variance exceeds ~5pt (63500 EMU) AND CV is relatively meaningful, flag it
+    if (maxW - minW > 63500 && cv > 0.15) {
       const widthStrs = widths.map((w) => emuToInches(w) + '"').join(', ');
       issues.push({
         level: 'WARN',

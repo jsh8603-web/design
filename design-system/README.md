@@ -194,8 +194,9 @@ Supplementary rules from the codebase:
   Chosen for Korean + Latin balance and a wider x-height than Inter. Weights
   used: 400, 500, 600, 700, 800.
 - **Mono:** **JetBrains Mono** (Google Fonts) — only in the editor, never on slides.
-- **Hard floor (Minimal mode):** 24pt title, 14pt body, 10pt caption. **Never
-  render text smaller than 10pt** in PPTX-bound HTML.
+- **Recommended floor (Minimal mode):** 24pt title, 14pt body, 10pt caption.
+  Avoid text smaller than 10pt in PPTX-bound HTML. *(Code PF-25 gate only ERRORs on
+  body text <7pt — 8–9pt passes; 10pt is a design recommendation, not the hard gate.)*
 - **Action titles** use 17pt / weight 700 / line-height 1.25 / `letter-spacing:
   -0.01em`. **Hero KPI numbers** use 48pt / weight 800 / line-height 1.10 /
   `letter-spacing: -0.02em`.
@@ -251,8 +252,10 @@ Two patterns coexist:
 
 ### Shadow & elevation
 
-- **In slides: forbidden.** `box-shadow` is a PF ERROR (PF-66) — PPTX strips all
-  shadows. Use surface tint instead.
+- **In slides: forbidden (design rule).** `box-shadow` is dropped by PPTX, so it's
+  banned at source. Note: general `box-shadow` has **no dedicated PF gate** (only
+  `inset` → PF-22 WARN); **PF-66 is the overflow-clip gate**, not box-shadow. Use
+  surface tint instead.
 - **In editor app:** 5-level M3 elevation tokens (`--elev-1` … `--elev-5`) define
   shadow stacks. Modals lift to `--elev-4`, popovers to `--elev-3`, cards rest
   at `--elev-1`.
@@ -337,13 +340,13 @@ set lives in `pf_rules.md`; here are the load-bearing ones:
 | PF-05 | Background images only on `<body>` |
 | PF-07 | No background/border on `<p>`/`<h*>`/`<li>` — wrap in `<div>` |
 | PF-12 | Flag emojis → PNG/SVG `<img>` |
-| PF-25 | Hard floor: 24/14/10pt |
-| PF-26 | Max 3 independent content blocks per slide |
-| PF-28 | ≤120 EN / ≤80 CJK words per slide |
+| PF-25 | Body text floor: code gate ERRORs only <7pt (10pt = design recommendation) |
+| PF-26 | Max 3 content blocks — *design rule; code gate disabled 2026-06-15 (FP)* |
+| PF-28 | Text-container vertical overflow ERROR (--full). Word limit ≤120 EN/≤80 CJK = non-enforced guideline |
 | PF-42 | No `opacity < 1.0` on backgrounds |
-| PF-57 | Content image ≥ 25% of slide area (≥260pt × 180pt) |
+| PF-57 | Image too small vs container: <100pt W / <80pt H WARN (25%/260/180 gate = PF-70) |
 | PF-63 | No `<table>` — use CSS grid |
-| PF-66 | No `box-shadow` (full ERROR) |
+| PF-66 | overflow:hidden content-clip ERROR (--full). *box-shadow has no PF gate; inset only = PF-22 WARN* |
 
 ---
 

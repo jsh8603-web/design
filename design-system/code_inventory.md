@@ -169,7 +169,7 @@ PPTX 파일 손상을 방지하는 5개 핵심 헬퍼.
 ### slides-grab 박제 매핑
 
 slides-grab 의 `convert-native.cjs` 는 PptxGenJS 사용. PptxGenJS 의 line/shape 헬퍼는 자체 검증 — 별도 `_clean_shape` 불필요. 하지만 **invariant 자체 (no shadow, no 3D, flat fills)** 는 양쪽 공통:
-- HTML 단계: PF-66 (box-shadow 금지)
+- HTML 단계: box-shadow 미사용 (디자인 규약 — 일반 box-shadow 전용 PF 룰 없음, `inset` 만 PF-22 WARN. PF-66 은 overflow 클립 게이트)
 - python-pptx: `_clean_shape()` strip
 - PptxGenJS: 기본값에서 shadow 미생성 — 명시적으로 추가하지 않으면 안전
 

@@ -246,7 +246,7 @@ Format:
 - `<p>` / `<h*>` / `<li>` 에 background/border (PF-07 → `<div>` 래핑)
 - `<body>` 외 element 에 `background: url(...)` (PF-05)
 - 국기 이모지 🇰🇷🇺🇸 (PF-12 → PNG/SVG)
-- `box-shadow` — 슬라이드 안 (PF-66, full ERROR)
+- `box-shadow` — 슬라이드 안 금지 (디자인 규약; 일반 box-shadow 전용 PF 룰 없음, `inset` 만 PF-22 WARN. PF-66 은 overflow 클립 게이트)
 - `text-decoration: underline` (IL-38)
 - `opacity < 1.0` 배경 (PF-42)
 - `<table>` 등가의 `column-count: N` (PF-48)
@@ -311,7 +311,7 @@ Format:
 | 항목 | 규칙 |
 |------|-----|
 | 이미지 컨테이너 | `min-width: 0`, `overflow: hidden`, `display: flex; align-items: center` 시 `height: 100%` 의무 |
-| 이미지 최소 크기 | ≥ 260pt × 180pt (슬라이드 면적의 25%, PF-57 / PF-70) |
+| 이미지 최소 크기 | ≥ 260pt × 180pt (슬라이드 면적의 25%, PF-70 ERROR. PF-57 은 <100/<80pt WARN 별개) |
 | 이미지 src | `<img>` 의 width/height inline pt 명시. `ls assets/` 로 파일 존재 확인 (PF-58) |
 | 이미지 비율 | `object-fit: cover` 만 사용 (PF-21 / PF-43) |
 | 이미지 비율 | `object-fit: cover` 만 사용 (PF-21 / PF-43) |

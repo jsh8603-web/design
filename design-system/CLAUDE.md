@@ -39,13 +39,13 @@ The canonical entry point is **`SKILL.md`**. It lists the read order:
 ## Cardinal rules (never violate)
 
 - Slide titles are **noun-ending assertions** ("Q3 매출, 전년 대비 +23%"), never topic labels
-- 1 slide = 1 message; max 3 content blocks; ≤120 EN / ≤80 CJK words
+- 1 slide = 1 message; max 3 content blocks; ≤120 EN / ≤80 CJK words *(단어 한도는 비강제 작성 규약 — 코드 PF-28 게이트는 단어수가 아니라 텍스트 컨테이너 세로 넘침을 ERROR; `pf_rules.md` §PF-28 참조)*
 - Numbers are the visual: hero them at 48pt+, weight 800
-- 10pt is the absolute floor for any slide text
+- 10pt is the recommended design floor for slide text *(코드 PF-25 차단 게이트는 본문 <7pt 만 ERROR — 8~9pt 통과; `pf_rules.md` §PF-25 참조)*
 - No `<table>` — use CSS grid
 - Slides: solid hex only; gradient/shadow live only in the editor app
 - Full-bleed uses `var(--surface-inverse)`, not `var(--primary)`
-- `<html data-theme>` + `<section data-layout>` are mandatory (PF-70 / PF-71)
+- `<html data-theme>` + `<section data-layout>` are mandatory (문서 구조 게이트, 코드와 번호 별개 — 코드의 PF-70=이미지 품질·PF-71=WCAG 대비. 이 구조 게이트는 현재 preflight 미구현, `pf_rules.md` §v3 PF-69~73 주의 참조)
 
 ## Surfaces
 

@@ -36,8 +36,8 @@
 | `data-slot-id` | kebab-case, deck 내 유일 | 생성 후 `assets/<slot-id>.png` 로 저장 |
 | `data-shape` | `rect` / `rounded` / `circle` / `pill` | 슬롯 외형 |
 | `data-aspect` | `4:3` / `16:9` / `1:1` / `3:2` / `21:9` | 종횡비 |
-| `data-min-w` | `Npt` (≥260pt) | 슬라이드 면적 25% 의무 (PF-57) |
-| `data-min-h` | `Npt` (≥180pt) | 슬라이드 면적 25% 의무 (PF-57) |
+| `data-min-w` | `Npt` (≥260pt) | 슬라이드 면적 25% 의무 (PF-70 — width<260pt ERROR) |
+| `data-min-h` | `Npt` (≥180pt) | 슬라이드 면적 25% 의무 (PF-70 — height<180pt ERROR) |
 | `data-nano-prompt` | 자연어 prompt | Gemini 호출 본문 |
 
 ---
@@ -147,11 +147,10 @@ for (const slot of slots) {
 ### 5.2 검증 게이트
 
 이미지 생성 후:
-- **PF-57**: 이미지 면적 ≥ 슬라이드 면적의 25%
+- **PF-70**: 이미지 면적 ≥ 슬라이드 면적의 25% (width≥260pt·height≥180pt 미달 시 ERROR) + width/height inline pt 명시 의무. *(PF-57 은 width<100pt / height<80pt "컨테이너 대비 과소" WARN 으로 별개 — 25%/260/180 게이트는 PF-70 소관)*
 - **PF-58**: `<img src>` 파일이 `assets/` 에 실제로 존재
 - **PF-43 / PF-21**: `object-fit: cover` 사용, 비율 왜곡 없음
-- **PF-70**: width/height inline pt 명시
-- **PF-21**: aspect 가 실제 이미지와 ±20% 이내
+- **PF-21**: 표시 박스 scale 축 차이 > 5% 면 distorted WARN. `object-fit: cover/contain/scale-down` 은 비율 보존이므로 면제 *(문서의 "±20%" 표현은 코드 게이트와 무관 — 실측은 scale 5% 기준)*
 
 ### 5.3 fallback
 

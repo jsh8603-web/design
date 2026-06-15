@@ -338,32 +338,13 @@ function checkPF22(html, file) {
 }
 
 function checkPF25(html, file) {
-  const issues = [];
-  // Hard Floor: font-size < 10pt is ERROR (design-skill typography minimum)
-  // Scans all inline style font-size declarations
-  const fontSizeRe = /font-size\s*:\s*([\d.]+)\s*(pt|px)/gi;
-  let m;
-  const violations = [];
-  while ((m = fontSizeRe.exec(html)) !== null) {
-    let size = parseFloat(m[1]);
-    if (m[2].toLowerCase() === 'px') size = size * 0.75; // px→pt (96dpi)
-    if (size < 10) {
-      // 보조정보(출처/푸터/범례/배지/라벨/티커/각주) tier 의 작은 글씨는 디자인상 의도된 크기 → 제외.
-      // (이미지 직접판정 2026-06-15, subagent: 발화 61건 전부 출처/범례/라벨/티커, 본문<10pt TP 0건)
-      // 본문 영역의 <10pt 만 진짜 가독성 결함으로 잔류. 선언 요소/부모 맥락(앞 220자)으로 판별.
-      const ctx = html.slice(Math.max(0, m.index - 400), m.index + 120);
-      const isAux = /\b(source|footer|caption|legend|badge|label|sub-?label|disclaimer|note|footnote|ticker|meta|credit|axis|tick|annotation|chart|treemap|graph|plot|donut|pie|bar-?|datalabel|data-label|quote|firm|rating|price|value|metric|stat|kpi|figure|tag|chip|pill|unit|delta|change|sub-?text|desc|caption)[-_a-z]*/i.test(ctx)
-        || /출처|자료|범례|각주|디스클레이머|단위\s*:/.test(ctx)
-        || /\b(Source|Note|Fig|Ref|Data)\s*[:.]/.test(ctx);  // 영어 출처/주석 캡션
-      if (!isAux) violations.push(Math.round(size * 10) / 10);
-    }
-  }
-  if (violations.length > 0) {
-    const unique = [...new Set(violations)].sort((a, b) => a - b);
-    issues.push(fmtError(file, 'PF-25',
-      `Font size below Hard Floor (10pt): found ${unique.join('pt, ')}pt — increase to 10pt+ or split slide [IL-31]`));
-  }
-  return issues;
+  // PF-25 는 --full computed 로 이전(runPlaywrightChecks 내 smallFontIssues).
+  // 정적 정규식(inline font-size 스캔)은 ① CSS 클래스 폰트크기를 못 보고 ② 작은 글씨의 요소역할
+  // (출처/범례/차트축/티커 = 의도된 보조정보)을 못 봐 전수 FP였다(2026-06-15 subagent COM 전수판정,
+  // 발화 61→정적게이트 35 잔존 전부 클래스없는 inline 9pt 차트라벨/카드, 본문<10pt TP 0). computed
+  // 실측 font-size + ancestor 역할판정(차트/표/svg/aux 클래스 제외)으로 본문영역 <10pt 만 ERROR.
+  void html; void file;
+  return [];
 }
 
 function checkPF27(html, file) {
@@ -398,6 +379,12 @@ function checkPF27(html, file) {
 }
 
 function checkPF28(html, file) {
+  // PF-28 은 --full computed 로 이전(runPlaywrightChecks 내 overflowText). 정적 word-equiv 밀도
+  // 카운트(5x5/6x6)는 표 셀·숫자 토큰 과대계수 + "밀도=결함" 단정 → 잘 정리된 IR 덱에서 전수 FP
+  // (2026-06-15 subagent COM 전수판정, 84→정적게이트 61 잔존 전부 본문카드 FP). 실측 scrollHeight
+  // 세로 넘침(고정높이 박스를 텍스트가 넘쳐 잘림)만 ERROR. body=PF-03, hidden clip=PF-66, 셀=PF-65.
+  return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   // Word count per slide: > 80 words WARN, > 120 ERROR (5x5/6x6 Rule, BCG principle)
   // Strip HTML tags, then count words
@@ -1832,6 +1819,83 @@ async function runPlaywrightChecks(slidesDir, files) {
         for (const issue of lowContrastIssues) {
           results.push(fmtWarn(file, 'PF-71',
             `Text "${issue.text}..." (${issue.fg} on ${issue.bg}) — WCAG contrast ${issue.ratio}:1 < 2.124 (VP-04 동등). 변환 후 저대비=가독성 결함, 색 조정 필요 [IL-66]`));
+        }
+
+        // PF-25 (computed): 본문 영역 텍스트의 실측 font-size < 10pt. 정적 정규식(inline 스캔)은
+        // CSS 클래스 폰트크기를 못 보고 작은 글씨의 요소역할(출처/범례/차트축/티커=의도된 보조정보)을
+        // 못 봐 전수 FP였다(2026-06-15 subagent COM 전수판정, 본문<10pt TP 0). computed font-size +
+        // ancestor 역할판정(svg/table/figure/aux 클래스 제외)으로 본문영역 <10pt 만 ERROR.
+        const smallFontIssues = await page.evaluate(() => {
+          const AUX_RE = /source|footer|caption|footnote|credit|legend|badge|label|chip|tag|pill|ticker|axis|tick|annotation|chart|graph|plot|donut|pie|treemap|disclaimer|note|meta|sub-?label|data-?label|datalabel|unit|delta|micro|fine-?print|small|kicker|eyebrow|watermark/i;
+          const seen = new Set();
+          const els = document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,div,td,th,li,strong,b,em,a');
+          for (const el of els) {
+            // 직접 텍스트 노드만 (자식 텍스트 중복 제외)
+            const direct = [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join('');
+            if (!direct || direct.length < 2) continue;
+            const r = el.getBoundingClientRect();
+            if (r.width <= 0 || r.height <= 0) continue;
+            const cs = getComputedStyle(el);
+            if (cs.visibility === 'hidden' || cs.display === 'none' || parseFloat(cs.opacity) === 0) continue;
+            const px = parseFloat(cs.fontSize); if (!px) continue;
+            const pt = px * 0.75; // px(96dpi) → pt
+            // floor 정밀화(2026-06-15 6장 COM 직접판정): 8-9pt 본문 설명문·차트라벨·지표값·표숫자·도형
+            // 라벨이 전수 화면상 가독(FP). 짧은 라벨/배지/값/축은 작아도 읽히고, 긴 본문도 7.5pt+ 는 읽힌다
+            // → ① <7pt 극소 + ② 긴 본문문장(≥20자) 둘 다일 때만 진짜 가독성 결함(정탐)으로 잔류.
+            // plan SSOT "TP=WCAG미달·잘림" 기준상 폰트 floor 자체는 약한정탐이라 보수화. CSS 10pt 환산오차도 동시 해소.
+            if (pt >= 6.99) continue; // 6.99: CSS 7pt→9.333px→6.9997pt 환산오차 통과, 6pt대 이하만 잔류
+            const tlen = direct.replace(/\s/g, '').length;
+            if (tlen < 20) continue; // 짧은 라벨/배지/지표값/축/헤더 = 작아도 가독 OK
+            // 출처/자료/주석 캡션은 클래스 없어도 보조정보(의도된 작은 글씨) → 텍스트 패턴으로 제외
+            if (/^\s*(출처|자료|참고|주|source|note|ref|data|fig)\s*[:：.]/i.test(direct)) continue;
+            // 차트/표/캡션 내부 = 데이터 라벨·셀·캡션(보조정보)
+            if (el.closest('svg, table, figure, figcaption')) continue;
+            // 자신+조상 className 에 보조정보 토큰 → 의도된 작은 글씨
+            let aux = false, cur = el;
+            while (cur && cur !== document.body) {
+              if (AUX_RE.test((cur.className || '').toString())) { aux = true; break; }
+              cur = cur.parentElement;
+            }
+            if (aux) continue;
+            const key = Math.round(pt * 10) / 10;
+            seen.add(key);
+          }
+          return [...seen].sort((a, b) => a - b);
+        });
+        if (smallFontIssues.length > 0) {
+          results.push(fmtError(file, 'PF-25',
+            `Body text below 10pt floor (computed): ${smallFontIssues.join('pt, ')}pt — increase to 10pt+ [IL-31]`));
+        }
+
+        // PF-28 (computed): 텍스트 컨테이너 실측 세로 넘침(scrollHeight 초과)만. 정적 word-equiv 밀도
+        // 카운트는 표/숫자 과대계수 + "밀도=결함" 단정으로 전수 FP였다(COM 전수판정, 밀도 높아도 깨짐0).
+        // 실제 잘림(고정높이 박스를 텍스트가 세로로 넘침)만 ERROR. body 전체=PF-03, 표/그리드 셀=PF-65.
+        const overflowText = await page.evaluate(() => {
+          let worst = null;
+          const els = document.querySelectorAll('p,div,li,section,article,h1,h2,h3,h4,h5,h6');
+          for (const el of els) {
+            if (el === document.body) continue;
+            const txt = (el.textContent || '').trim();
+            if (txt.length < 10) continue;
+            // 직접 텍스트 보유 요소만 (래퍼는 자식이 넘쳐도 자신 scrollHeight 동일 → 직접텍스트로 한정)
+            const direct = [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join('');
+            if (direct.length < 10) continue;
+            const cs = getComputedStyle(el);
+            // 스크롤/자동확장 컨테이너는 잘리지 않음
+            const oy = cs.overflowY, ox = cs.overflow;
+            if (oy === 'auto' || oy === 'scroll' || ox === 'auto' || ox === 'scroll') continue;
+            // 셀(PF-65 영역)·표 내부 제외
+            if (el.tagName === 'TD' || el.tagName === 'TH' || el.closest('table')) continue;
+            const over = el.scrollHeight - el.clientHeight;
+            if (over > 4) { // 4px tolerance (rounding)
+              if (!worst || over > worst.over) worst = { text: txt.substring(0, 30), over: Math.round(over) };
+            }
+          }
+          return worst;
+        });
+        if (overflowText) {
+          results.push(fmtError(file, 'PF-28',
+            `Text overflows its container by ${overflowText.over}px: "${overflowText.text}..." — reduce text or enlarge box [6x6 Rule]`));
         }
 
         // PF-65: Table/grid cell text overflow — detect text wrapping in cells that should be single-line

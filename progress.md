@@ -323,3 +323,8 @@ date: 2026-06-13
 - e2e2-executive slide-02 = 프로세스 플로우(원형노드01~05+연결선+게이트카드3). COM 완벽렌더·겹침0. VP-07 "9×2 4/9빈셀 missing data"는 FP(원형노드+연결선+카드를 sparse table 오판).
 - ⛔ **VP-07 recall-lock**: samsung 진짜 빈칸표 정탐과 충돌. flow를 표와 구분하는 안전게이트 난이(연결선=thin인데 samsung 빈셀도 h=0 thin / 원형=square인데...). containment 확장 = samsung 2→5 깨짐 실증. → **현재 미수정·advisory 수용**. 견고한 flow-detection 게이트(원형 prstGeom 파싱 or 연결선 종횡비 제외 등)는 별도 신중과제.
 - **루프 함의**: VP-07이 flow/칸반/카드 패턴서 FP 지속 → "2연속 클린" 도달은 이 게이트 해결 또는 spec서 해당 레이아웃 회피 유도 필요. 텍스트손실 변환기버그(진짜)는 전부 수정됨 — 남은 "에러"는 대부분 recall-lock 룰FP(flow/card)·패턴미준수.
+
+> [ckpt-202606171130:btn-design] 루프 판정기준 확정(권고안 자율채택) + R4 2/8 클린
+- **클린 판정 = baseline-relative**: 생성덱 회귀 = finalize ERROR보다 증가시만 회귀. recall-lock FP(flow/funnel/kanban VP-07/16, COM 확정 FP지만 samsung 정탐 보호상 미수정)는 "늘 있던 것"=클린 간주. **신규 global_issue(변환기버그/새 룰FP) 또는 baseline 대비 ERROR 증가 = 비클린**.
+- **R4 진행**: dark-mono·company = global_issue 0(클린). spec4 idiomatic 체크리스트가 변환기 우회 자체를 없앰 = 신규 결함 0. 나머지 6 진행중.
+- 사용자 재지정 시 absolute-0 또는 flow-detection 게이트 개발로 전환 가능(핸드오프 박제).

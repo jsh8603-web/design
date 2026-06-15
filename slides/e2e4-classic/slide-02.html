@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 48px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 12px; }
+  h1 { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 14px; }
+
+  .hm { padding: 30px 72px 0; }
+  /* col header + 6 data cols */
+  .grid { display: grid; grid-template-columns: 168px repeat(6, 1fr); gap: 6px; }
+  .ch { font-size: 13px; font-weight: 800; color: var(--primary); text-align: center; display: flex; align-items: center; justify-content: center; height: 34px; }
+  .ch.corner { justify-content: flex-start; color: var(--gray-2); font-weight: 700; }
+  .rh { font-size: 14px; font-weight: 700; color: var(--gray-1); display: flex; align-items: center; height: 64px; padding-right: 10px; }
+  /* cell = solid hex colored div, value text directly inside */
+  .cell { height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+  .cell .cv { font-size: 18px; font-weight: 800; line-height: 1; }
+  .cell .cu { font-size: 10px; font-weight: 600; line-height: 1; }
+  /* navy density ramp — solid hex, pre-composited. light cells -> dark text, dark cells -> white text */
+  .l1 { background: #E3EEF5; } .l1 .cv, .l1 .cu { color: #0B3B5C; }
+  .l2 { background: #A8CDE0; } .l2 .cv, .l2 .cu { color: #06283D; }
+  .l3 { background: #5C9FC4; } .l3 .cv, .l3 .cu { color: #06283D; }
+  .l4 { background: #1E6A95; } .l4 .cv, .l4 .cu { color: #FFFFFF; }
+  .l5 { background: #0B3B5C; } .l5 .cv, .l5 .cu { color: #FFFFFF; }
+
+  .scale { display: flex; align-items: center; gap: 10px; padding: 26px 72px 0; }
+  .scale .lbl { font-size: 12px; font-weight: 600; color: var(--gray-2); }
+  .scale .sw { width: 56px; height: 14px; }
+  .scale .end { font-size: 12px; font-weight: 600; color: var(--gray-2); }
+  .foot { position: absolute; left: 72px; bottom: 34px; font-size: 13px; color: var(--gray-3); font-family: var(--font-mono); }
+</style>
+</head>
+<body data-layout="data_table" data-screen-label="classic · heatmap">
+  <div class="head">
+    <div class="kicker">// 운영 · 라인별 가동률 히트맵</div>
+    <h1>화성 P3·평택 P2 라인이 6개월 내내 90% 이상 가동률로 캐파 한계 근접</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="hm">
+    <div class="grid">
+      <div class="ch corner">라인 / 월</div>
+      <div class="ch">1월</div><div class="ch">2월</div><div class="ch">3월</div><div class="ch">4월</div><div class="ch">5월</div><div class="ch">6월</div>
+
+      <div class="rh">화성 P3</div>
+      <div class="cell l4"><div class="cv">88</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">94</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">96</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">97</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">95</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">98</div><div class="cu">%</div></div>
+
+      <div class="rh">평택 P2</div>
+      <div class="cell l3"><div class="cv">82</div><div class="cu">%</div></div>
+      <div class="cell l4"><div class="cv">87</div><div class="cu">%</div></div>
+      <div class="cell l4"><div class="cv">90</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">93</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">96</div><div class="cu">%</div></div>
+      <div class="cell l5"><div class="cv">94</div><div class="cu">%</div></div>
+
+      <div class="rh">평택 P1</div>
+      <div class="cell l2"><div class="cv">71</div><div class="cu">%</div></div>
+      <div class="cell l3"><div class="cv">78</div><div class="cu">%</div></div>
+      <div class="cell l3"><div class="cv">80</div><div class="cu">%</div></div>
+      <div class="cell l3"><div class="cv">83</div><div class="cu">%</div></div>
+      <div class="cell l4"><div class="cv">86</div><div class="cu">%</div></div>
+      <div class="cell l4"><div class="cv">89</div><div class="cu">%</div></div>
+
+      <div class="rh">화성 P2</div>
+      <div class="cell l1"><div class="cv">58</div><div class="cu">%</div></div>
+      <div class="cell l2"><div class="cv">64</div><div class="cu">%</div></div>
+      <div class="cell l2"><div class="cv">69</div><div class="cu">%</div></div>
+      <div class="cell l3"><div class="cv">76</div><div class="cu">%</div></div>
+      <div class="cell l3"><div class="cv">81</div><div class="cu">%</div></div>
+      <div class="cell l4"><div class="cv">85</div><div class="cu">%</div></div>
+
+      <div class="rh">기흥 R&D</div>
+      <div class="cell l1"><div class="cv">42</div><div class="cu">%</div></div>
+      <div class="cell l1"><div class="cv">48</div><div class="cu">%</div></div>
+      <div class="cell l2"><div class="cv">61</div><div class="cu">%</div></div>
+      <div class="cell l2"><div class="cv">66</div><div class="cu">%</div></div>
+      <div class="cell l2"><div class="cv">63</div><div class="cu">%</div></div>
+      <div class="cell l3"><div class="cv">74</div><div class="cu">%</div></div>
+    </div>
+  </div>
+  <div class="scale">
+    <div class="lbl">가동률</div>
+    <div class="end">낮음</div>
+    <div class="sw l1"></div><div class="sw l2"></div><div class="sw l3"></div><div class="sw l4"></div><div class="sw l5"></div>
+    <div class="end">높음</div>
+  </div>
+  <div class="foot">Source: MES 라인 가동 로그, 2026 1H</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

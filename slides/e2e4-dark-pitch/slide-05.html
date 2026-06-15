@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:#0A0A0B; color:#FFFFFF;
+  padding:56px 72px 48px;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:#00A9E0; }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:#00A9E0; letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:34px; font-weight:700; color:#FFFFFF; line-height:1.18; letter-spacing:-0.01em; margin-bottom:34px; }
+h1 em { font-style:normal; color:#00A9E0; }
+
+.list { flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; grid-auto-rows:1fr; gap:16px 40px; }
+.item { background:#141416; border-radius:14px; padding:18px 24px; display:flex; align-items:center; gap:22px; }
+.numbox { flex:none; width:74px; display:flex; align-items:center; justify-content:center; }
+.numbox .nm { font-family:'JetBrains Mono', monospace; font-size:46px; font-weight:800; color:#00A9E0; line-height:1; letter-spacing:-0.02em; }
+.txt { flex:1; min-width:0; display:flex; flex-direction:column; }
+.txt .ti { font-size:20px; font-weight:700; color:#FFFFFF; line-height:1.25; }
+.txt .ds { font-size:13px; color:#999999; font-weight:500; line-height:1.4; margin-top:5px; }
+.refbox { flex:none; display:flex; align-items:center; }
+.refchip { background:#1F1F22; border-radius:999px; padding:6px 13px; display:inline-flex; align-items:center; }
+.refchip span { font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:600; color:#999999; letter-spacing:0.03em; }
+.item.hot { background:#0F2730; }
+.item.hot .nm { color:#5FD2E8; }
+.item.hot .refchip { background:#0F3D4A; }
+.item.hot .refchip span { color:#5FD2E8; }
+</style></head><body data-layout="toc" data-screen-label="05-dark-pitch · agenda">
+  <div class="bar"></div>
+  <div class="kicker">// FY26 INVESTOR DAY · AGENDA</div>
+  <h1>오늘 발표는 <em>시장 → 기술 → 양산 → 재무 → 전망</em> 순으로<br>여섯 개 세션에 걸쳐 진행한다.</h1>
+  <div class="list">
+    <div class="item">
+      <div class="numbox"><div class="nm">01</div></div>
+      <div class="txt"><div class="ti">AI 메모리 시장</div><div class="ds">HBM 수요 곡선과 가속기 사이클 전망</div></div>
+      <div class="refbox"><div class="refchip"><span>p.03</span></div></div>
+    </div>
+    <div class="item">
+      <div class="numbox"><div class="nm">02</div></div>
+      <div class="txt"><div class="ti">기술 로드맵</div><div class="ds">12단 적층과 차세대 TC 본딩 전환</div></div>
+      <div class="refbox"><div class="refchip"><span>p.08</span></div></div>
+    </div>
+    <div class="item hot">
+      <div class="numbox"><div class="nm">03</div></div>
+      <div class="txt"><div class="ti">양산 실행 현황</div><div class="ds">수율·가동률·납기 — 본 발표의 핵심 세션</div></div>
+      <div class="refbox"><div class="refchip"><span>p.14</span></div></div>
+    </div>
+    <div class="item">
+      <div class="numbox"><div class="nm">04</div></div>
+      <div class="txt"><div class="ti">재무 성과</div><div class="ds">매출·영업이익 브릿지와 현금흐름</div></div>
+      <div class="refbox"><div class="refchip"><span>p.21</span></div></div>
+    </div>
+    <div class="item">
+      <div class="numbox"><div class="nm">05</div></div>
+      <div class="txt"><div class="ti">자본 배분</div><div class="ds">설비 투자 우선순위와 주주환원 정책</div></div>
+      <div class="refbox"><div class="refchip"><span>p.27</span></div></div>
+    </div>
+    <div class="item">
+      <div class="numbox"><div class="nm">06</div></div>
+      <div class="txt"><div class="ti">하반기 전망</div><div class="ds">가이던스 상향 근거와 리스크 점검</div></div>
+      <div class="refbox"><div class="refchip"><span>p.32</span></div></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

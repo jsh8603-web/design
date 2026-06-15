@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:#0A0A0B; color:#FFFFFF;
+  padding:56px 72px 48px;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:#00A9E0; }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:#00A9E0; letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:32px; font-weight:700; color:#FFFFFF; line-height:1.2; letter-spacing:-0.01em; margin-bottom:24px; max-width:1040px; }
+h1 em { font-style:normal; color:#00A9E0; }
+
+.wf { flex:1; min-height:0; background:#141416; border-radius:14px; padding:26px 30px 22px; display:flex; flex-direction:column; }
+.plot { flex:1; min-height:0; display:flex; align-items:flex-end; gap:0; }
+.col { flex:1; height:100%; position:relative; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; }
+/* value label sits above bar in its own colored chip div */
+.vlab { position:absolute; left:0; right:0; display:flex; justify-content:center; }
+.vchip { background:#1F1F22; border-radius:6px; padding:3px 9px; }
+.vchip span { font-size:14px; font-weight:800; }
+/* spacer pushes floating bars up to running-total baseline */
+.spacer { width:100%; }
+.barseg { width:62%; border-radius:5px 5px 0 0; }
+.barseg.base { background:#00A9E0; }
+.barseg.up   { background:#10B981; }
+.barseg.down { background:#EF4444; }
+.barseg.sub  { background:#3FC4E0; }
+/* connector line as real div */
+.conn { position:absolute; top:0; right:0; width:38%; height:3px; background:#4A4A4E; transform:translateX(50%); }
+/* x labels */
+.xrow { display:flex; gap:0; margin-top:10px; }
+.xc { flex:1; text-align:center; padding:0 4px; }
+.xc span { font-size:12px; font-weight:600; color:#999999; line-height:1.3; }
+.axis { height:2px; background:#3A3A3E; margin-top:2px; }
+</style></head><body data-layout="waterfall" data-screen-label="04-dark-pitch · waterfall">
+  <div class="bar"></div>
+  <div class="kicker">// 분기 영업이익 브릿지 · 단위 십억$</div>
+  <h1>물량·믹스 개선이 비용 증가를 압도하며 영업이익이<br><em>2.1 → 3.6십억$</em>로 한 분기 만에 70% 뛰었다.</h1>
+  <div class="wf">
+    <div class="plot">
+      <!-- baseline 2.1 (full height ~ 58% of plot) -->
+      <div class="col">
+        <div class="vlab" style="bottom:58%;"><div class="vchip"><span style="color:#5FD2E8;">2.1</span></div></div>
+        <div class="barseg base" style="height:58%;"></div>
+        <div class="conn" style="bottom:58%;"></div>
+      </div>
+      <!-- 물량 +0.9 → 58%~83% -->
+      <div class="col">
+        <div class="vlab" style="bottom:83%;"><div class="vchip"><span style="color:#10B981;">+0.9</span></div></div>
+        <div class="spacer" style="height:58%;"></div>
+        <div class="barseg up" style="height:25%;"></div>
+        <div class="conn" style="bottom:83%;"></div>
+      </div>
+      <!-- 믹스 +0.6 → 83%~100% (cap) use 83%~99% -->
+      <div class="col">
+        <div class="vlab" style="bottom:99%;"><div class="vchip"><span style="color:#10B981;">+0.6</span></div></div>
+        <div class="spacer" style="height:83%;"></div>
+        <div class="barseg up" style="height:16%;"></div>
+        <div class="conn" style="bottom:99%;"></div>
+      </div>
+      <!-- 원가 -0.5 → 99%~85% (down from top) -->
+      <div class="col">
+        <div class="vlab" style="bottom:99%;"><div class="vchip"><span style="color:#EF4444;">−0.5</span></div></div>
+        <div class="spacer" style="height:85%;"></div>
+        <div class="barseg down" style="height:14%;"></div>
+        <div class="conn" style="bottom:85%;"></div>
+      </div>
+      <!-- 환율 -0.1 → 85%~82% -->
+      <div class="col">
+        <div class="vlab" style="bottom:85%;"><div class="vchip"><span style="color:#EF4444;">−0.1</span></div></div>
+        <div class="spacer" style="height:82%;"></div>
+        <div class="barseg down" style="height:3%;"></div>
+        <div class="conn" style="bottom:82%;"></div>
+      </div>
+      <!-- subtotal 3.6 → full 82% -->
+      <div class="col">
+        <div class="vlab" style="bottom:82%;"><div class="vchip" style="background:#0F3D4A;"><span style="color:#5FD2E8;">3.6</span></div></div>
+        <div class="barseg sub" style="height:82%;"></div>
+      </div>
+    </div>
+    <div class="axis"></div>
+    <div class="xrow">
+      <div class="xc"><span>Q1 영업이익</span></div>
+      <div class="xc"><span>물량 증가</span></div>
+      <div class="xc"><span>제품 믹스</span></div>
+      <div class="xc"><span>원가 상승</span></div>
+      <div class="xc"><span>환율 영향</span></div>
+      <div class="xc"><span>Q2 영업이익</span></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:#0A0A0B; color:#FFFFFF;
+  padding:56px 72px 48px;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:#00A9E0; }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:#00A9E0; letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:32px; font-weight:700; color:#FFFFFF; line-height:1.2; letter-spacing:-0.01em; margin-bottom:34px; max-width:1040px; }
+h1 em { font-style:normal; color:#00A9E0; }
+
+.dash { flex:1; min-height:0; display:flex; gap:28px; }
+.gcard { flex:1; min-width:0; background:#141416; border-radius:16px; padding:30px 24px 26px; display:flex; flex-direction:column; align-items:center; }
+.gtitle { font-size:16px; font-weight:700; color:#FFFFFF; text-align:center; margin-bottom:6px; }
+.gsub { font-size:12px; color:#999999; font-weight:500; text-align:center; margin-bottom:18px; }
+
+/* ring gauge built from real divs — solid color ring + needle (no conic) */
+.ring { position:relative; width:172px; height:172px; display:flex; align-items:center; justify-content:center; }
+/* colored ring = solid border in accent; thickness reads the metric color */
+.track { position:absolute; inset:0; border-radius:50%; border:16px solid #1F1F22; }
+.ringcol { position:absolute; inset:0; border-radius:50%; border:16px solid; border-color:transparent; }
+/* needle: thin rotated bar pointing from center to rim, real div */
+.needle { position:absolute; left:50%; top:18px; width:5px; height:70px; border-radius:3px; transform-origin:50% 100%; }
+.hub { position:absolute; width:18px; height:18px; border-radius:50%; }
+/* arc segment markers (4 ticks as real divs around ring) */
+.tick4 { position:absolute; inset:0; }
+.tk { position:absolute; left:50%; top:2px; width:3px; height:10px; background:#3A3A3E; transform-origin:50% 84px; }
+/* center value plate — solid elevated dark panel (distinct from slide bg so the
+   validator resolves THIS as the text background, not the colored ring sibling) */
+.gval { position:absolute; width:112px; height:112px; border-radius:50%; background:#1F1F22; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:2; }
+.gval .num { font-size:42px; font-weight:800; color:#FFFFFF; line-height:1; letter-spacing:-0.02em; }
+.gval .num small { font-size:18px; font-weight:700; color:#3FC4E0; padding-left:2px; }
+.gval .gl { font-size:11px; color:#C8C8C8; font-weight:600; margin-top:5px; }
+
+.gfoot { margin-top:auto; padding-top:18px; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.gtag { display:inline-flex; align-items:center; gap:7px; background:#1F1F22; border-radius:999px; padding:6px 14px; }
+.gtag .dot { width:9px; height:9px; border-radius:50%; }
+.gtag .tt { font-size:12px; font-weight:700; margin:0; }
+.gdelta { font-size:12px; color:#999999; font-weight:500; }
+</style></head><body data-layout="kpi_dashboard" data-screen-label="03-dark-pitch · gauge">
+  <div class="bar"></div>
+  <div class="kicker">// 분기 운영 지표 대시보드 · 목표 대비 달성</div>
+  <h1>핵심 운영 지표 4종 중 <em>3종이 목표선을 넘었고</em>,<br>전력효율만 경고 구간에 남아 집중 관리한다.</h1>
+  <div class="dash">
+
+    <!-- gauge 1: 78% cyan -->
+    <div class="gcard">
+      <div class="gtitle">양산 수율</div>
+      <div class="gsub">목표 75% · 12단 적층</div>
+      <div class="ring">
+        <div class="track"></div>
+        <div class="ringcol" style="border-color:#00A9E0;"></div>
+        <div class="needle" style="background:#00A9E0; transform:translateX(-50%) rotate(75.6deg);"></div>
+        <div class="hub" style="background:#00A9E0;"></div>
+        <div class="gval"><div class="num">78<small>%</small></div><div class="gl">달성</div></div>
+      </div>
+      <div class="gfoot">
+        <div class="gtag" style="background:#0F3D2E;"><div class="dot" style="background:#34D399;"></div><p class="tt" style="color:#34D399;">목표 초과</p></div>
+        <div class="gdelta">목표 대비 +3.0%p</div>
+      </div>
+    </div>
+
+    <!-- gauge 2: 92% green -->
+    <div class="gcard">
+      <div class="gtitle">설비 가동률</div>
+      <div class="gsub">목표 88% · P1~P2</div>
+      <div class="ring">
+        <div class="track"></div>
+        <div class="ringcol" style="border-color:#10B981;"></div>
+        <div class="needle" style="background:#10B981; transform:translateX(-50%) rotate(113.4deg);"></div>
+        <div class="hub" style="background:#10B981;"></div>
+        <div class="gval"><div class="num">92<small>%</small></div><div class="gl">달성</div></div>
+      </div>
+      <div class="gfoot">
+        <div class="gtag" style="background:#0F3D2E;"><div class="dot" style="background:#34D399;"></div><p class="tt" style="color:#34D399;">목표 초과</p></div>
+        <div class="gdelta">목표 대비 +4.0%p</div>
+      </div>
+    </div>
+
+    <!-- gauge 3: 61% cyan -->
+    <div class="gcard">
+      <div class="gtitle">납기 준수율</div>
+      <div class="gsub">목표 60% · 가속기 고객</div>
+      <div class="ring">
+        <div class="track"></div>
+        <div class="ringcol" style="border-color:#00A9E0;"></div>
+        <div class="needle" style="background:#00A9E0; transform:translateX(-50%) rotate(29.7deg);"></div>
+        <div class="hub" style="background:#00A9E0;"></div>
+        <div class="gval"><div class="num">61<small>%</small></div><div class="gl">달성</div></div>
+      </div>
+      <div class="gfoot">
+        <div class="gtag" style="background:#0F3D2E;"><div class="dot" style="background:#10B981;"></div><p class="tt" style="color:#10B981;">목표 도달</p></div>
+        <div class="gdelta">목표 대비 +1.0%p</div>
+      </div>
+    </div>
+
+    <!-- gauge 4: 47% warn (amber) below target -->
+    <div class="gcard">
+      <div class="gtitle">전력 효율</div>
+      <div class="gsub">목표 55% · PUE 개선</div>
+      <div class="ring">
+        <div class="track"></div>
+        <div class="ringcol" style="border-color:#F59E0B;"></div>
+        <div class="needle" style="background:#F59E0B; transform:translateX(-50%) rotate(-8.1deg);"></div>
+        <div class="hub" style="background:#F59E0B;"></div>
+        <div class="gval"><div class="num">47<small>%</small></div><div class="gl">달성</div></div>
+      </div>
+      <div class="gfoot">
+        <div class="gtag" style="background:#4A3410;"><div class="dot" style="background:#F59E0B;"></div><p class="tt" style="color:#F59E0B;">목표 미달</p></div>
+        <div class="gdelta">목표 대비 −8.0%p</div>
+      </div>
+    </div>
+
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

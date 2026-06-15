@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:#0A0A0B; color:#FFFFFF;
+  padding:56px 72px 48px;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:#00A9E0; }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:#00A9E0; letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:32px; font-weight:700; color:#FFFFFF; line-height:1.2; letter-spacing:-0.01em; margin-bottom:26px; max-width:1040px; }
+h1 em { font-style:normal; color:#00A9E0; }
+
+.hwrap { flex:1; min-height:0; display:flex; flex-direction:column; background:#141416; border-radius:14px; padding:22px 26px; }
+/* grid: row-label col + 6 month cols */
+.hgrid { flex:1; min-height:0; display:grid; grid-template-columns:170px repeat(6, 1fr); grid-auto-rows:1fr; gap:6px; }
+.hcorner { display:flex; align-items:flex-end; }
+.hcorner span { font-size:12px; color:#A0A0A0; font-weight:600; font-family:'JetBrains Mono', monospace; }
+.hcol { display:flex; align-items:flex-end; justify-content:center; padding-bottom:4px; }
+.hcol span { font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:600; color:#999999; letter-spacing:0.04em; }
+.hrow { display:flex; align-items:center; padding-right:12px; }
+.hrow span { font-size:14px; font-weight:600; color:#FFFFFF; }
+.cell { border-radius:6px; display:flex; align-items:center; justify-content:center; }
+.cell .v { font-size:16px; font-weight:700; }
+/* dark-on-light for high cells, light-on-dark for low cells */
+.tdark .v { color:#0A0A0B; }
+.tlite .v { color:#FFFFFF; }
+
+.scale { display:flex; align-items:center; gap:10px; margin-top:16px; }
+.scale .slab { font-size:12px; color:#999999; font-weight:600; }
+.scale .steps { display:flex; gap:3px; }
+.scale .st { width:34px; height:14px; border-radius:3px; }
+</style></head><body data-layout="data_table" data-screen-label="02-dark-pitch · heatmap">
+  <div class="bar"></div>
+  <div class="kicker">// 라인별 월간 가동률 히트맵 · 단위 %</div>
+  <h1>HBM 라인 가동률은 하반기로 갈수록 <em>전 라인 90% 선</em>에<br>수렴하며, P3 초기 램프 구간만 낮게 남는다.</h1>
+  <div class="hwrap">
+    <div class="hgrid">
+      <!-- header -->
+      <div class="hcorner"><span>라인 / 월</span></div>
+      <div class="hcol"><span>1월</span></div><div class="hcol"><span>2월</span></div><div class="hcol"><span>3월</span></div>
+      <div class="hcol"><span>4월</span></div><div class="hcol"><span>5월</span></div><div class="hcol"><span>6월</span></div>
+
+      <!-- row P1 -->
+      <div class="hrow"><span>P1 (12단)</span></div>
+      <div class="cell tdark" style="background:#1FB6D8;"><span class="v">88</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">91</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">94</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">95</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">96</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">96</span></div>
+
+      <!-- row P2 -->
+      <div class="hrow"><span>P2 (8단)</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">90</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">92</span></div>
+      <div class="cell tdark" style="background:#1FB6D8;"><span class="v">89</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">91</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">93</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">94</span></div>
+
+      <!-- row P3 (ramp) -->
+      <div class="hrow"><span>P3 (신규)</span></div>
+      <div class="cell tlite" style="background:#123A47;"><span class="v">41</span></div>
+      <div class="cell tlite" style="background:#185464;"><span class="v">58</span></div>
+      <div class="cell tlite" style="background:#1B7184;"><span class="v">72</span></div>
+      <div class="cell tdark" style="background:#1FB6D8;"><span class="v">85</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">90</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">92</span></div>
+
+      <!-- row P4 (test) -->
+      <div class="hrow"><span>P4 (테스트)</span></div>
+      <div class="cell tlite" style="background:#0F2E38;"><span class="v">22</span></div>
+      <div class="cell tlite" style="background:#123A47;"><span class="v">38</span></div>
+      <div class="cell tlite" style="background:#185464;"><span class="v">55</span></div>
+      <div class="cell tlite" style="background:#1B7184;"><span class="v">70</span></div>
+      <div class="cell tlite" style="background:#1B7184;"><span class="v">76</span></div>
+      <div class="cell tdark" style="background:#1FB6D8;"><span class="v">84</span></div>
+
+      <!-- row 패키징 -->
+      <div class="hrow"><span>패키징 (TC)</span></div>
+      <div class="cell tdark" style="background:#3FC4E0;"><span class="v">92</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">95</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">96</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">97</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">97</span></div>
+      <div class="cell tdark" style="background:#5FD2E8;"><span class="v">98</span></div>
+    </div>
+    <div class="scale">
+      <span class="slab">낮음</span>
+      <div class="steps">
+        <div class="st" style="background:#0F2E38;"></div>
+        <div class="st" style="background:#185464;"></div>
+        <div class="st" style="background:#1B7184;"></div>
+        <div class="st" style="background:#1FB6D8;"></div>
+        <div class="st" style="background:#3FC4E0;"></div>
+        <div class="st" style="background:#5FD2E8;"></div>
+      </div>
+      <span class="slab">높음</span>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

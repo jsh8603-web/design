@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 48px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 12px; }
+  h1 { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 14px; }
+
+  .toc { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 72px; padding: 38px 72px 0; }
+  .item { display: flex; align-items: flex-start; gap: 22px; padding-bottom: 18px; border-bottom: 1.5px solid var(--gray-4); }
+  .num { font-size: 54px; font-weight: 800; color: var(--gray-3); line-height: 0.9; letter-spacing: -0.03em; flex-shrink: 0; width: 78px; }
+  .item.on .num { color: var(--accent); }
+  .body { padding-top: 6px; }
+  .ttl { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.2; }
+  .sub { font-size: 13px; font-weight: 500; color: var(--gray-2); line-height: 1.45; margin-top: 6px; max-width: 380px; }
+  /* page ref pill = div with bg */
+  .ref { display: inline-flex; align-items: center; padding: 3px 10px; background: var(--gray-4); margin-top: 10px; }
+  .ref .rt { font-size: 11px; font-weight: 700; color: var(--gray-2); font-family: var(--font-mono); letter-spacing: 0.04em; }
+  .item.on .ref { background: var(--primary); }
+  .item.on .ref .rt { color: #FFFFFF; }
+  .foot { position: absolute; left: 72px; bottom: 34px; font-size: 13px; color: var(--gray-3); font-family: var(--font-mono); }
+</style>
+</head>
+<body data-layout="toc" data-screen-label="classic · agenda">
+  <div class="head">
+    <div class="kicker">// 2026 상반기 사업 리뷰 · 목차</div>
+    <h1>시장 환경부터 투자 결정까지, 6개 섹션으로 분기 실적을 종합</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="toc">
+    <div class="item on">
+      <div class="num">01</div>
+      <div class="body">
+        <div class="ttl">시장 환경 진단</div>
+        <div class="sub">AI 메모리 수요 회복과 HBM 공급 부족이 만든 판가 반등 구조.</div>
+        <div class="ref"><span class="rt">P.03 — 08</span></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">02</div>
+      <div class="body">
+        <div class="ttl">분기 실적 요약</div>
+        <div class="sub">매출 +23%, 영업이익률 31.5% — 가이던스 상회 마감.</div>
+        <div class="ref"><span class="rt">P.09 — 15</span></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">03</div>
+      <div class="body">
+        <div class="ttl">생산·수율 현황</div>
+        <div class="sub">화성·평택 라인 90% 이상 가동, TSV 수율 92% 도달.</div>
+        <div class="ref"><span class="rt">P.16 — 22</span></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">04</div>
+      <div class="body">
+        <div class="ttl">고객·파이프라인</div>
+        <div class="sub">GPU 고객 2곳 장기공급계약, 수주 전환율 8.0% 달성.</div>
+        <div class="ref"><span class="rt">P.23 — 29</span></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">05</div>
+      <div class="body">
+        <div class="ttl">리스크 점검</div>
+        <div class="sub">수율 개선 일정 지연과 재고 회전 둔화가 핵심 모니터링 항목.</div>
+        <div class="ref"><span class="rt">P.30 — 35</span></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="num">06</div>
+      <div class="body">
+        <div class="ttl">투자 결정 제언</div>
+        <div class="sub">HBM4 캐파 증설과 후공정 자동화 투자 우선순위 권고.</div>
+        <div class="ref"><span class="rt">P.36 — 42</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Source: FY26 상반기 경영 리뷰 패키지</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

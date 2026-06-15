@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 48px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 12px; }
+  h1 { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 14px; }
+
+  .gantt { padding: 30px 72px 0; }
+  /* time-axis header */
+  .axis { display: grid; grid-template-columns: 250px repeat(4, 1fr); margin-bottom: 10px; }
+  .axis .corner { font-size: 13px; font-weight: 700; color: var(--gray-2); display: flex; align-items: flex-end; padding-bottom: 8px; }
+  .axis .q { font-size: 14px; font-weight: 800; color: var(--primary); text-align: center; padding-bottom: 8px; border-left: 1.5px solid var(--gray-4); }
+
+  .row { display: grid; grid-template-columns: 250px 1fr; align-items: center; height: 62px; border-top: 1.5px solid var(--gray-4); }
+  .row:last-child { border-bottom: 1.5px solid var(--gray-4); }
+  .rlabel { padding-right: 16px; }
+  .rlabel .rt { font-size: 15px; font-weight: 700; color: var(--gray-1); }
+  .rlabel .ro { font-size: 12px; font-weight: 500; color: var(--gray-2); margin-top: 3px; }
+  /* track = 4-quarter grid; bar is a real div placed by column-span */
+  .track { display: grid; grid-template-columns: repeat(4, 1fr); height: 100%; align-items: center; }
+  .gline { border-left: 1.5px solid var(--gray-4); height: 100%; grid-row: 1; }
+  .bar { height: 26px; grid-row: 1; display: flex; align-items: center; padding: 0 12px; }
+  .bar .bv { font-size: 12px; font-weight: 700; color: #FFFFFF; white-space: nowrap; }
+  .b-done { background: var(--positive); }
+  .b-prog { background: var(--accent); }
+  .b-plan { background: var(--gray-3); }
+  .b-risk { background: var(--negative); }
+  .bar.dark .bv { color: #FFFFFF; }
+
+  .legend { display: flex; gap: 26px; padding: 24px 72px 0; }
+  .lg { display: inline-flex; align-items: center; gap: 8px; }
+  .lg .sw { width: 16px; height: 12px; }
+  .lg .lt { font-size: 13px; font-weight: 600; color: var(--gray-2); }
+  .foot { position: absolute; left: 72px; bottom: 34px; font-size: 13px; color: var(--gray-3); font-family: var(--font-mono); }
+</style>
+</head>
+<body data-layout="gantt_timeline" data-screen-label="classic · gantt">
+  <div class="head">
+    <div class="kicker">// FY26 · HBM4 양산 로드맵</div>
+    <h1>설계 검증부터 고객 인증까지 4개 분기 일정, 검증 단계가 임계 경로</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="gantt">
+    <div class="axis">
+      <div class="corner">작업 / 담당</div>
+      <div class="q">Q1</div>
+      <div class="q">Q2</div>
+      <div class="q">Q3</div>
+      <div class="q">Q4</div>
+    </div>
+
+    <div class="row">
+      <div class="rlabel"><div class="rt">설계 동결 (Tape-out)</div><div class="ro">설계팀 · 이도현</div></div>
+      <div class="track">
+        <div class="gline" style="grid-column:1"></div>
+        <div class="gline" style="grid-column:2"></div>
+        <div class="gline" style="grid-column:3"></div>
+        <div class="gline" style="grid-column:4"></div>
+        <div class="bar b-done" style="grid-column:1 / span 1;"><span class="bv">완료</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="rlabel"><div class="rt">시제품 검증 (PoC)</div><div class="ro">양산기술실 · 박지우</div></div>
+      <div class="track">
+        <div class="gline" style="grid-column:1"></div>
+        <div class="gline" style="grid-column:2"></div>
+        <div class="gline" style="grid-column:3"></div>
+        <div class="gline" style="grid-column:4"></div>
+        <div class="bar b-prog" style="grid-column:1 / span 2;"><span class="bv">진행 67%</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="rlabel"><div class="rt">수율 개선 (TSV)</div><div class="ro">수율개선팀 · 정유진</div></div>
+      <div class="track">
+        <div class="gline" style="grid-column:1"></div>
+        <div class="gline" style="grid-column:2"></div>
+        <div class="gline" style="grid-column:3"></div>
+        <div class="gline" style="grid-column:4"></div>
+        <div class="bar b-risk" style="grid-column:2 / span 2;"><span class="bv">리스크</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="rlabel"><div class="rt">파일럿 양산</div><div class="ro">생산본부 · 김선호</div></div>
+      <div class="track">
+        <div class="gline" style="grid-column:1"></div>
+        <div class="gline" style="grid-column:2"></div>
+        <div class="gline" style="grid-column:3"></div>
+        <div class="gline" style="grid-column:4"></div>
+        <div class="bar b-plan" style="grid-column:3 / span 1;"><span class="bv">계획</span></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="rlabel"><div class="rt">고객 인증 (Qual)</div><div class="ro">고객솔루션팀 · 한지민</div></div>
+      <div class="track">
+        <div class="gline" style="grid-column:1"></div>
+        <div class="gline" style="grid-column:2"></div>
+        <div class="gline" style="grid-column:3"></div>
+        <div class="gline" style="grid-column:4"></div>
+        <div class="bar b-plan" style="grid-column:4 / span 1;"><span class="bv">계획</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="legend">
+    <div class="lg"><div class="sw b-done"></div><div class="lt">완료</div></div>
+    <div class="lg"><div class="sw b-prog"></div><div class="lt">진행 중</div></div>
+    <div class="lg"><div class="sw b-risk"></div><div class="lt">리스크</div></div>
+    <div class="lg"><div class="sw b-plan"></div><div class="lt">계획</div></div>
+  </div>
+  <div class="foot">Source: PMO 마일스톤 트래커, 2026 Q2</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

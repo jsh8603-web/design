@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 48px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 12px; }
+  h1 { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 14px; }
+
+  .dash { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; padding: 46px 72px 0; }
+  .gauge { display: flex; flex-direction: column; align-items: center; }
+  /* dial = real div circle (border-radius 50%), thick colored ring encodes status */
+  .dial { width: 188px; height: 188px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--theme-bg); }
+  .ring-good { border: 18px solid var(--positive); }
+  .ring-warn { border: 18px solid var(--accent); }
+  .ring-bad  { border: 18px solid var(--negative); }
+  .ring-mid  { border: 18px solid #1E6A95; }
+  .dial .val { font-size: 50px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -0.02em; }
+  .dial .val small { font-size: 22px; font-weight: 700; color: var(--gray-2); letter-spacing: 0; }
+  .dial .sub { font-size: 12px; font-weight: 600; color: var(--gray-2); margin-top: 6px; }
+  .glabel { font-size: 16px; font-weight: 800; color: var(--gray-1); margin-top: 22px; }
+  .gdesc { font-size: 12px; font-weight: 500; color: var(--gray-2); margin-top: 6px; text-align: center; line-height: 1.45; max-width: 200px; }
+  /* status pill = div (not span) with bg */
+  .pill { display: inline-flex; align-items: center; padding: 4px 12px; margin-top: 12px; }
+  .pill .pt { font-size: 11px; font-weight: 700; color: #FFFFFF; letter-spacing: 0.04em; }
+  .p-good { background: var(--positive); } .p-warn { background: var(--accent); } .p-bad { background: var(--negative); } .p-mid { background: #1E6A95; }
+  .foot { position: absolute; left: 72px; bottom: 34px; font-size: 13px; color: var(--gray-3); font-family: var(--font-mono); }
+</style>
+</head>
+<body data-layout="kpi_dashboard" data-screen-label="classic · gauge-dashboard">
+  <div class="head">
+    <div class="kicker">// 운영 대시보드 · 핵심 지표 게이지</div>
+    <h1>수율과 정시납기는 목표 도달, 재고회전은 경고 구간으로 개선 필요</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="dash">
+    <div class="gauge">
+      <div class="dial ring-good"><div class="val">92<small>%</small></div><div class="sub">목표 90%</div></div>
+      <div class="glabel">양산 수율</div>
+      <div class="pill p-good"><span class="pt">목표 달성</span></div>
+      <div class="gdesc">TSV 검사 자동화로 전분기 대비 +4%p</div>
+    </div>
+    <div class="gauge">
+      <div class="dial ring-good"><div class="val">96<small>%</small></div><div class="sub">목표 95%</div></div>
+      <div class="glabel">정시 납기율</div>
+      <div class="pill p-good"><span class="pt">목표 달성</span></div>
+      <div class="gdesc">공급망 가시성 강화로 결품 최소화</div>
+    </div>
+    <div class="gauge">
+      <div class="dial ring-warn"><div class="val">4.1<small>회</small></div><div class="sub">목표 6.0회</div></div>
+      <div class="glabel">재고 회전율</div>
+      <div class="pill p-warn"><span class="pt">주의</span></div>
+      <div class="gdesc">완제품 재고 적체, 회전 가속 필요</div>
+    </div>
+    <div class="gauge">
+      <div class="dial ring-mid"><div class="val">78<small>점</small></div><div class="sub">목표 85점</div></div>
+      <div class="glabel">설비 종합효율</div>
+      <div class="pill p-mid"><span class="pt">진행 중</span></div>
+      <div class="gdesc">계획정지 단축으로 OEE 점진 개선</div>
+    </div>
+  </div>
+  <div class="foot">Source: 운영 KPI 대시보드, 2026 Q2 마감</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

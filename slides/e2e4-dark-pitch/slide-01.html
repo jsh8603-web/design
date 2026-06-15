@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:#0A0A0B; color:#FFFFFF;
+  padding:56px 72px 48px;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:#00A9E0; }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:#00A9E0; letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:32px; font-weight:700; color:#FFFFFF; line-height:1.2; letter-spacing:-0.01em; margin-bottom:30px; max-width:1040px; }
+h1 em { font-style:normal; color:#00A9E0; }
+
+.gantt { flex:1; min-height:0; display:flex; flex-direction:column; background:#141416; border-radius:14px; padding:24px 28px; }
+/* header row: label gutter + 6 period columns */
+.grow { display:grid; grid-template-columns:200px repeat(6, 1fr); align-items:center; }
+.ghead { height:36px; border-bottom:1px solid #2A2A2E; margin-bottom:8px; }
+.ghead .gh { font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:600; color:#999999; text-align:center; letter-spacing:0.04em; }
+.ghead .gh-corner { font-size:12px; color:#A0A0A0; font-weight:600; }
+
+.gbody { flex:1; min-height:0; display:flex; flex-direction:column; gap:10px; padding-top:6px; }
+.gtl { font-size:15px; font-weight:600; color:#FFFFFF; padding-right:14px; display:flex; flex-direction:column; justify-content:center; }
+.gtl .gsub { font-size:11px; color:#666666; font-weight:500; }
+/* track spanning 6 cols */
+.gtrack { grid-column:2 / 8; position:relative; height:30px; background:#1F1F22; border-radius:6px; }
+/* bar positioned by left/width in % of 6-col track */
+.gbarwrap { position:absolute; top:0; bottom:0; }
+.gbar { width:100%; height:100%; border-radius:6px; display:flex; align-items:center; padding:0 12px; }
+.gbar .gtxt { font-size:12px; font-weight:700; color:#0A0A0B; white-space:nowrap; }
+.gbar.done { background:#10B981; }
+.gbar.active { background:#00A9E0; }
+.gbar.plan { background:#3A6A78; }
+.gbar.plan .gtxt { color:#FFFFFF; }
+
+.legend { display:flex; gap:22px; margin-top:16px; align-items:center; }
+.lg { display:inline-flex; align-items:center; gap:8px; }
+.lg .sw { width:20px; height:12px; border-radius:3px; }
+.lg .lt { font-size:12px; color:#B0B0B0; font-weight:600; margin:0; }
+</style></head><body data-layout="gantt_timeline" data-screen-label="01-dark-pitch · gantt">
+  <div class="bar"></div>
+  <div class="kicker">// FY26 HBM3E 양산 로드맵 · 디바이스솔루션</div>
+  <h1>6개 분기 안에 <em>샘플 → 검증 → 양산 확대</em>까지<br>핵심 작업이 순차로 맞물려 진행된다.</h1>
+  <div class="gantt">
+    <div class="grow ghead">
+      <div class="gh gh-corner">작업 / 분기</div>
+      <div class="gh">Q1</div><div class="gh">Q2</div><div class="gh">Q3</div>
+      <div class="gh">Q4</div><div class="gh">Q5</div><div class="gh">Q6</div>
+    </div>
+    <div class="gbody">
+      <div class="grow">
+        <div class="gtl">초기 샘플 출하<span class="gsub">ES → CS</span></div>
+        <div class="gtrack"><div class="gbarwrap" style="left:0%;width:33.33%;"><div class="gbar done"><span class="gtxt">완료</span></div></div></div>
+      </div>
+      <div class="grow">
+        <div class="gtl">고객 인증<span class="gsub">가속기 3社</span></div>
+        <div class="gtrack"><div class="gbarwrap" style="left:16.66%;width:33.33%;"><div class="gbar active"><span class="gtxt">진행중</span></div></div></div>
+      </div>
+      <div class="grow">
+        <div class="gtl">수율 안정화<span class="gsub">12단 적층</span></div>
+        <div class="gtrack"><div class="gbarwrap" style="left:33.33%;width:33.33%;"><div class="gbar active"><span class="gtxt">진행중</span></div></div></div>
+      </div>
+      <div class="grow">
+        <div class="gtl">초도 양산<span class="gsub">P3 라인</span></div>
+        <div class="gtrack"><div class="gbarwrap" style="left:50%;width:33.33%;"><div class="gbar plan"><span class="gtxt">계획</span></div></div></div>
+      </div>
+      <div class="grow">
+        <div class="gtl">CAPA 2배 증설<span class="gsub">P4 전환</span></div>
+        <div class="gtrack"><div class="gbarwrap" style="left:66.66%;width:33.34%;"><div class="gbar plan"><span class="gtxt">계획</span></div></div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <div class="lg"><div class="sw" style="background:#10B981;"></div><p class="lt">완료</p></div>
+      <div class="lg"><div class="sw" style="background:#00A9E0;"></div><p class="lt">진행중</p></div>
+      <div class="lg"><div class="sw" style="background:#3A6A78;"></div><p class="lt">계획</p></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

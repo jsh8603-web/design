@@ -6,117 +6,80 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
-  .slide { width: 1280px; height: 720px; padding: 52px 72px 44px; position: relative; display: flex; flex-direction: column; }
-  .head { margin-bottom: 24px; }
-  .kicker { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 9px; }
-  .title { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.16; letter-spacing: -0.01em; max-width: 1040px; }
-  .tbl { display: flex; flex-direction: column; }
-  .row { display: grid; grid-template-columns: 23% 15% 12% 16% 15% 12%; column-gap: 16px; align-items: stretch; }
-  .cell { padding: 13px 4px; font-size: 15px; text-align: left; border-bottom: 1px solid var(--gray-4); display: flex; align-items: center; justify-content: flex-start; }
-  .cell.seg { font-weight: 700; color: var(--primary); }
-  .row.hd .cell { background: var(--primary); color: #FFFFFF; font-weight: 700; font-size: 14px; border-bottom: none; }
-  .row.hd .cell.seg { color: #FFFFFF; }
-  .row.alt .cell { background: var(--gray-4); }
-  .cell.pos { color: var(--positive); font-weight: 700; }
-  .cell.neg { color: var(--negative); font-weight: 700; }
-  .row.tot .cell { background: var(--surface-inverse); color: var(--surface-inverse-fg); font-weight: 800; border-bottom: none; }
-  .row.tot .cell.seg { color: var(--surface-inverse-fg); }
-  .row.tot .cell.accent { color: var(--accent); }
-  .legend { margin-top: 18px; font-size: 13px; color: var(--gray-2); display: flex; gap: 24px; }
-  .legend span b { color: var(--primary); }
-  .source { position: absolute; bottom: 18px; left: 72px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 18px; right: 72px; font-size: 12px; font-weight: 600; color: var(--gray-3); }
+  .slide { width: 1280px; height: 720px; padding: 60px 72px 56px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 8px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 31px; font-weight: 800; color: var(--primary); line-height: 1.18; letter-spacing: -0.01em; max-width: 1080px; }
+  .tbl { margin-top: 32px; display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr 1fr 1.1fr; border: 1px solid var(--gray-3); border-radius: 10px; overflow: hidden; }
+  .tbl > div { padding: 14px 16px; font-size: 15px; display: flex; align-items: center; }
+  .tbl .h { background: var(--primary); color: #fff; font-weight: 700; font-size: 14px; letter-spacing: 0.02em; }
+  .tbl .h.r, .tbl .c.r { justify-content: flex-end; }
+  .tbl .rh { font-weight: 700; color: var(--primary); }
+  .tbl .c { color: var(--gray-1); border-top: 1px solid var(--gray-4); }
+  .tbl .c.r { font-variant-numeric: tabular-nums; }
+  .tbl .row-alt { background: var(--gray-4); }
+  .tbl .pos { color: var(--positive); font-weight: 700; }
+  .tbl .neg { color: var(--negative); font-weight: 700; }
+  .tbl .tot { background: var(--gray-4); font-weight: 800; color: var(--primary); border-top: 2px solid var(--primary); }
+  .foot { margin-top: 18px; font-size: 12px; color: var(--gray-2); }
 </style>
 </head>
 <body>
 <div class="slide">
-  <div class="head">
-    <div class="kicker">Segment Performance · FY26 1H</div>
-    <div class="title">사업부별 실적 — 엔터프라이즈가 성장과 수익성을 동시에 견인</div>
-  </div>
+  <div class="bar"></div>
+  <div class="kicker">사업부별 손익 현황</div>
+  <div class="title">메모리 부문이 전사 영업이익의 71% 견인</div>
   <div class="tbl">
-    <div class="row hd">
-      <div class="cell seg">사업부</div>
-      <div class="cell">매출(억)</div>
-      <div class="cell">YoY</div>
-      <div class="cell">영업이익(억)</div>
-      <div class="cell">영업이익률</div>
-      <div class="cell">비중</div>
-    </div>
-    <div class="row">
-      <div class="cell seg">엔터프라이즈</div>
-      <div class="cell">8,420</div>
-      <div class="cell pos">+31.2%</div>
-      <div class="cell">1,180</div>
-      <div class="cell">14.0%</div>
-      <div class="cell">45.8%</div>
-    </div>
-    <div class="row alt">
-      <div class="cell seg">클라우드 플랫폼</div>
-      <div class="cell">4,260</div>
-      <div class="cell pos">+24.6%</div>
-      <div class="cell">512</div>
-      <div class="cell">12.0%</div>
-      <div class="cell">23.2%</div>
-    </div>
-    <div class="row">
-      <div class="cell seg">리테일 솔루션</div>
-      <div class="cell">3,180</div>
-      <div class="cell pos">+9.4%</div>
-      <div class="cell">286</div>
-      <div class="cell">9.0%</div>
-      <div class="cell">17.3%</div>
-    </div>
-    <div class="row alt">
-      <div class="cell seg">디바이스</div>
-      <div class="cell">1,640</div>
-      <div class="cell neg">−6.1%</div>
-      <div class="cell">74</div>
-      <div class="cell">4.5%</div>
-      <div class="cell">8.9%</div>
-    </div>
-    <div class="row">
-      <div class="cell seg">신사업(베타)</div>
-      <div class="cell">890</div>
-      <div class="cell pos">+118%</div>
-      <div class="cell neg">−42</div>
-      <div class="cell">적자</div>
-      <div class="cell">4.8%</div>
-    </div>
-    <div class="row tot">
-      <div class="cell seg">전사 합계</div>
-      <div class="cell">18,390</div>
-      <div class="cell accent">+23.4%</div>
-      <div class="cell">2,010</div>
-      <div class="cell">10.9%</div>
-      <div class="cell">100%</div>
-    </div>
+    <div class="h">사업부</div>
+    <div class="h r">매출 (M$)</div>
+    <div class="h r">영업이익 (M$)</div>
+    <div class="h r">이익률</div>
+    <div class="h r">YoY 매출</div>
+    <div class="h r">비중</div>
+
+    <div class="rh">메모리 (DRAM/HBM)</div>
+    <div class="c r">2,180</div>
+    <div class="c r">834</div>
+    <div class="c r">38.3%</div>
+    <div class="c r pos">+41%</div>
+    <div class="c r">51.4%</div>
+
+    <div class="rh row-alt">파운드리</div>
+    <div class="c r row-alt">1,040</div>
+    <div class="c r row-alt">198</div>
+    <div class="c r row-alt">19.0%</div>
+    <div class="c r pos row-alt">+12%</div>
+    <div class="c r row-alt">24.5%</div>
+
+    <div class="rh">시스템 LSI</div>
+    <div class="c r">512</div>
+    <div class="c r">61</div>
+    <div class="c r">11.9%</div>
+    <div class="c r pos">+8%</div>
+    <div class="c r">12.1%</div>
+
+    <div class="rh row-alt">디스플레이</div>
+    <div class="c r row-alt">358</div>
+    <div class="c r row-alt">29</div>
+    <div class="c r row-alt">8.1%</div>
+    <div class="c r neg row-alt">-6%</div>
+    <div class="c r row-alt">8.4%</div>
+
+    <div class="rh">기타·소거</div>
+    <div class="c r">152</div>
+    <div class="c r">52</div>
+    <div class="c r">34.2%</div>
+    <div class="c r pos">+3%</div>
+    <div class="c r">3.6%</div>
+
+    <div class="rh tot">전사 합계</div>
+    <div class="c r tot">4,242</div>
+    <div class="c r tot">1,174</div>
+    <div class="c r tot">27.7%</div>
+    <div class="c r tot">+23%</div>
+    <div class="c r tot">100%</div>
   </div>
-  <div class="legend">
-    <span><b>적자</b> = 영업손실 구간 (신사업 투자 단계)</span>
-    <span>비중 = 전사 매출 대비 사업부 매출 점유</span>
-  </div>
-  <div class="source">Source: FY26 1H 사업부별 손익 (잠정) · 전사 경영관리</div>
-  <div class="page">03 / 05</div>
+  <div class="foot">단위: 백만 달러(M$) · FY2026 상반기 누적 · 이익률 = 영업이익/매출 · 내부거래 소거 후 기준 · 출처: 전사 재무관리시스템</div>
 </div>
-<style id="om-fit-scaler-style">
-  html { overflow:hidden !important; background:#0a0a0a; }
-</style>
-<script id="om-fit-scaler">
-(function(){
-  function fit(){
-    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
-    var b = document.body;
-    b.style.width='1280px'; b.style.height='720px';
-    b.style.position='absolute'; b.style.transformOrigin='top left';
-    b.style.left=((window.innerWidth-1280*s)/2)+'px';
-    b.style.top=((window.innerHeight-720*s)/2)+'px';
-    b.style.transform='scale('+s+')';
-  }
-  window.addEventListener('resize', fit, {passive:true});
-  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
-  fit();
-})();
-</script>
 </body>
 </html>

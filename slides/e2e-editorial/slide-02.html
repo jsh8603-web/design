@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <!-- @dsCard group="Brand" name="04 Editorial Magazine — kpi dashboard" subtitle="KPI cards + bar chart · terracotta" viewport="960x540" --><html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
 <style>
-  body { background:var(--theme-bg); padding:40px 64px; color:var(--primary); display:grid; grid-template-rows: auto auto 1fr; gap:24px; }
-  .head { display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--rule-soft, #D8D2C9); padding-bottom:16px; }
-  .head h2 { font-size:19.56px; font-weight:600; color:var(--accent); letter-spacing:0.16em; text-transform:uppercase; }
-  .head .pg { font-size:17.78px; color:var(--gray-2); font-family:'Newsreader', serif; font-style:italic; }
-  .cards { display:grid; grid-template-columns: repeat(3, 1fr); gap:28px; }
-  .card { border-top:3.56px solid var(--primary); padding-top:16px; display:flex; flex-direction:column; gap:6px; }
-  .card .label { font-size:14px; color:var(--gray-2); letter-spacing:0.12em; text-transform:uppercase; font-weight:600; }
-  .card .v { font-size:72px; font-weight:400; color:var(--accent); letter-spacing:-0.025em; line-height:1; font-family:'Newsreader', serif; }
-  .card .v small { font-size:28px; color:var(--primary); }
-  .card .cap { font-size:14px; color:var(--gray-1); line-height:1.4; }
-  .chartwrap { display:grid; grid-template-columns: 1fr; gap:10px; }
-  .chartwrap h3 { font-size:16px; color:var(--gray-2); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; }
-  .chart { display:grid; grid-template-columns: 120px 1fr 64px; gap:12px 16px; align-items:center; }
-  .chart .name { font-size:15px; color:var(--primary); font-weight:500; text-align:right; }
-  .chart .track { height:22px; background:var(--gray-4); position:relative; }
-  .chart .fill { height:22px; background:var(--accent); }
+  body { background:var(--theme-bg); padding:52px 72px; color:var(--primary); display:flex; flex-direction:column; }
+  .head { display:flex; justify-content:space-between; align-items:baseline; border-bottom:2px solid var(--primary); padding-bottom:14px; }
+  .head h2 { font-size:30.22px; font-weight:600; letter-spacing:-0.01em; }
+  .head .pg { font-size:16px; color:var(--gray-2); letter-spacing:0.08em; text-transform:uppercase; }
+  .head .pg em { color:var(--accent); font-style:normal; font-weight:600; }
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:21.33px; margin-top:28.44px; }
+  .card { background:var(--theme-bg-card); border:1px solid var(--rule-soft, #D8D2C9); border-top:3px solid var(--accent); padding:20px 21.33px 21.33px; }
+  .card .label { font-size:14.22px; color:var(--gray-2); letter-spacing:0.06em; text-transform:uppercase; }
+  .card .v { font-size:55px; font-weight:500; color:var(--primary); line-height:1.05; margin-top:12px; letter-spacing:-0.02em; }
+  .card .v small { font-size:23.11px; color:var(--accent); font-weight:600; padding-left:3.56px; }
+  .card .cap { font-size:14.22px; color:var(--gray-1); line-height:1.5; margin-top:12.44px; }
+  .chartwrap { margin-top:30px; }
+  .chartwrap h3 { font-size:18.67px; font-weight:600; color:var(--primary); margin-bottom:17.78px; }
+  .chart { display:grid; grid-template-columns:130px 1fr 64px; row-gap:14.22px; column-gap:17.78px; align-items:center; }
+  .chart .name { font-size:16px; color:var(--gray-1); }
+  .chart .track { height:24px; background:var(--theme-bg-alt); }
+  .chart .fill { height:24px; background:var(--accent); }
   .chart .fill.muted { background:var(--gray-2); }
-  .chart .pct { font-size:15px; color:var(--primary); font-family:'Newsreader', serif; }
+  .chart .pct { font-size:16px; color:var(--primary); font-family:'Newsreader', serif; text-align:right; }
 </style><style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
 .serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
 </style></head><body data-layout="kpi_dashboard" data-screen-label="04-editorial · kpi_dashboard"><div class="head">
-  <h2>Dashboard · HBM 사이클</h2>
-  <div class="pg">page <em>05</em></div>
+  <h2>대시보드 · HBM 사이클이 자본을 끌어당긴다</h2>
+  <div class="pg">page <em>02</em></div>
 </div>
 <div class="cards">
   <div class="card">
@@ -36,12 +37,17 @@ body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -a
   <div class="card">
     <div class="label">SK Hynix 점유율</div>
     <div class="v serif">52<small>%</small></div>
-    <div class="cap">HBM3E 시장 사실상 단독 공급 지위.</div>
+    <div class="cap">HBM3E 시장 사실상 단독 공급 지위 유지.</div>
   </div>
   <div class="card">
     <div class="label">'26 CapEx · YoY</div>
     <div class="v serif">+44<small>%</small></div>
     <div class="cap">팹·전력 인프라 동시 증설 가속.</div>
+  </div>
+  <div class="card">
+    <div class="label">단가 프리미엄</div>
+    <div class="v serif">5.2<small>×</small></div>
+    <div class="cap">동일 용량 DDR5 대비 HBM3E 평균판가 배수.</div>
   </div>
 </div>
 <div class="chartwrap">

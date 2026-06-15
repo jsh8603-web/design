@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Cover" name="01 Dark Pitch — cover" subtitle="dark pitch · serif hero + mono kicker" viewport="960x540" --><html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:80px; position:relative;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:16px; color:var(--accent); letter-spacing:0.12em; margin-bottom:28px; }
+.title { font-family:var(--font-serif); font-size:78px; font-weight:700; color:var(--heading); line-height:1.08; letter-spacing:-0.02em; }
+.sub { margin-top:30px; font-size:22px; color:var(--gray-2); line-height:1.45; max-width:840px; }
+.meta { position:absolute; bottom:80px; left:80px; display:flex; gap:64px; }
+.meta .item { font-size:15px; color:var(--gray-1); }
+.meta .l { font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:12px; letter-spacing:0.08em; margin-bottom:6px; }
+.meta .v { font-size:15px; color:var(--gray-1); }
+.page { position:absolute; bottom:80px; right:80px; font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--gray-2); }
+</style></head><body data-layout="cover" data-screen-label="01-dark-pitch · cover">
+  <div class="bar"></div>
+  <div class="kicker">// BOARD STRATEGY REVIEW · FY26</div>
+  <div class="title">HBM 전환의 분기점,<br>지금 결정해야 한다</div>
+  <div class="sub">메모리 사이클 반등기에 캐파·공정·자본을 한 방향으로 정렬할 수 있는 단 한 번의 윈도우</div>
+  <div class="meta">
+    <div class="item"><div class="l">PREPARED FOR</div><div class="v">이사회</div></div>
+    <div class="item"><div class="l">DATE</div><div class="v">2026.06</div></div>
+    <div class="item"><div class="l">AUTHOR</div><div class="v">전략기획팀</div></div>
+  </div>
+  <div class="page">01 / 05</div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0b; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

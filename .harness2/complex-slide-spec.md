@@ -33,3 +33,9 @@
 
 ## 절대 금지(disclaimer)
 - .md(progress/plan/handoff/MEMORY) 작성·수정 금지(slides/e2e-{테마}/ 하위 제외). /compact·psmux 금지. Agent/Task 하위 스폰 금지. 전역 CLAUDE.md 압축·라우팅·state trailer·DA cite 무시. 끝나면 JSON 1줄만, 서사·메타 금지.
+
+---
+## phase3 재실행 노트 (2026-06-15, 수정 파이프라인 검증)
+- **수정 적용됨**: VP-04 noFill배지·VP-07 정탐·VP-10 space-between·VP-14 ink-range·VP-16 ERROR게이트 + html2pptx `<small>` 인라인 텍스트 보존. → 이전 phase2 FP(데이터표 VP-14 phantom·cover dek VP-16·KPI `<small>` 단위소실)는 **이제 안 나와야 정상**.
+- **slide-01~05 전부 fresh 재생성**(이전 것 덮어쓰기 OK = 재실행). 표지도 새로.
+- 목표 = 고친 파이프라인이 fresh 생성물을 PF/VP 깨끗이 통과시키는지 확인. **남는 ERROR는 진짜 디자인결함**(슬라이드 자율수정) 또는 **새 룰/변환기 FP**(ev:global_issue 보고). 이전 FP 재출현 시 = fix 미반영이니 보고.

@@ -4,80 +4,93 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="../../design-system/colors_and_type.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
-  .slide { width: 1280px; height: 720px; padding: 56px 96px; position: relative; }
-  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
-  .title { font-size: 30px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 48px; max-width: 1040px; }
-  .timeline { position: relative; padding-top: 8px; }
-  .track { position: absolute; left: 60px; right: 60px; top: 44px; height: 3px; background: var(--gray-4); z-index: 0; }
-  .track .fill { position: absolute; left: 0; top: 0; height: 3px; width: 62%; background: var(--accent); }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; position: relative; z-index: 1; }
-  .step { text-align: center; padding: 0 6px; }
-  .marker { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 22px; display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono); font-weight: 700; font-size: 24px; background: var(--theme-bg); border: 3px solid var(--gray-3); color: var(--gray-2); }
-  .step.done .marker { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .step.active .marker { background: var(--surface-inverse); border-color: var(--accent); color: var(--surface-inverse-fg); }
-  .phase { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-  .stitle { font-size: 19px; font-weight: 700; color: var(--heading); line-height: 1.25; margin-bottom: 12px; }
-  .sdesc { font-size: 12.5px; color: var(--gray-2); line-height: 1.5; max-width: 210px; margin: 0 auto; }
-  .sdate { display: inline-block; margin-top: 14px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 12px; background: var(--gray-4); color: var(--gray-1); }
-  .step.active .sdate { background: var(--accent); color: #fff; }
-  .legend { display: flex; gap: 28px; margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--gray-4); }
-  .legend .li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--gray-2); }
-  .legend .dot { width: 16px; height: 16px; border-radius: 50%; }
-  .legend .dot.done { background: var(--accent); }
-  .legend .dot.active { background: var(--surface-inverse); border: 2px solid var(--accent); }
-  .legend .dot.todo { background: var(--theme-bg); border: 2px solid var(--gray-3); }
-  .legend .li b { color: var(--heading); font-weight: 700; }
-  .source { position: absolute; bottom: 28px; left: 96px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 28px; right: 96px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+  body { background:var(--theme-bg); padding:48px 64px; color:var(--gray-1); display:flex; flex-direction:column; }
+  .ghost { font-size:14px; color:var(--gray-2); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+  h1 { font-size:32px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.2; max-width:1100px; }
+  .tl-cap { font-size:14px; color:var(--gray-2); margin-top:14px; margin-bottom:6px; }
+  .tl-cap b { color:var(--primary); }
+  .tl { flex:1; position:relative; display:grid; grid-template-columns:repeat(5,1fr); gap:0; min-height:0; margin-top:20px; }
+  .line { position:absolute; top:42px; left:10%; right:10%; height:3px; background:#E2E8F0; z-index:0; }
+  .line .fill { position:absolute; left:0; top:0; height:100%; width:62%; background:var(--primary); }
+  .step { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; padding:0 26px; }
+  .marker { width:54px; height:54px; border-radius:50%; background:#FFFFFF; border:3px solid var(--primary); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-size:18px; font-weight:700; color:var(--primary); }
+  .step.done .marker { background:var(--primary); color:#FFFFFF; }
+  .step.now .marker { outline:5px solid var(--gray-4); outline-offset:0; border-color:var(--accent); color:var(--accent); }
+  .badge { margin-top:14px; font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; padding:3px 10px; border-radius:11px; background:var(--gray-4); color:var(--gray-2); white-space:nowrap; }
+  .step.done .badge { background:var(--primary); color:#FFFFFF; }
+  .step.now .badge { background:var(--accent); color:#FFFFFF; }
+  .step .sh { font-size:16px; font-weight:700; color:var(--primary); margin-top:12px; text-align:center; line-height:1.25; }
+  .step .q { font-size:13px; color:var(--gray-2); margin-top:4px; }
+  .step .sp { font-size:13px; color:var(--gray-1); line-height:1.45; margin-top:8px; text-align:center; }
+  .src { font-size:13px; color:var(--gray-2); margin-top:14px; }
+  .src b { color:var(--primary); font-weight:600; }
+</style>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
 </style>
 </head>
-<body>
-<div class="slide">
-  <div class="kicker">// EXECUTION ROADMAP</div>
-  <div class="title">B안 단계적 증설 실행 로드맵 — 게이트 2 통과 시 P4 본착공 트리거</div>
-  <div class="timeline">
-    <div class="track"><div class="fill"></div></div>
-    <div class="steps">
-      <div class="step done">
-        <div class="marker">01</div>
-        <div class="phase">완료</div>
-        <div class="stitle">장비 선발주<br>리드타임 분리</div>
-        <div class="sdesc">EUV·본더 핵심 장비 28종 선행 발주로 18개월 리드타임 확보</div>
-        <div class="sdate">FY26.Q1</div>
-      </div>
-      <div class="step done">
-        <div class="marker">02</div>
-        <div class="phase">완료</div>
-        <div class="stitle">게이트 1<br>수주잔고 확인</div>
-        <div class="sdesc">분기 수주잔고 임계치 통과 — P3 1단계 증설 집행 승인</div>
-        <div class="sdate">FY26.Q2</div>
-      </div>
-      <div class="step active">
-        <div class="marker">03</div>
-        <div class="phase">진행 중</div>
-        <div class="stitle">게이트 2<br>수율 안정화</div>
-        <div class="sdesc">1β 양산 수율 80% 도달 게이트. 통과 시 P4 본착공 자동 트리거</div>
-        <div class="sdate">FY26.Q4</div>
-      </div>
-      <div class="step">
-        <div class="marker">04</div>
-        <div class="phase">예정</div>
-        <div class="stitle">P4 본착공<br>풀가동 진입</div>
-        <div class="sdesc">P4 18Kwpm 풀램프 — FY27 증분 목표 175Kwpm 최종 달성</div>
-        <div class="sdate">FY27.Q3</div>
-      </div>
-    </div>
+<body data-layout="waves_timeline" data-screen-label="04-classic · timeline">
+<div class="ghost">Roadmap · 04</div>
+<h1>세 레버 실행, 4Q에 영업이익률 +5.2%p 목표 도달</h1>
+<div class="tl-cap"><b>Process.</b> 믹스 전환 → 캐파 집행 → 수율 혁신 → 마진 점검 → R&D 본격화. ● = 완료 단계, 강조 = 진행 중.</div>
+<div class="tl">
+  <div class="line"><div class="fill"></div></div>
+  <div class="step done">
+    <div class="marker">1</div>
+    <div class="badge">완료</div>
+    <div class="sh">제품 믹스 전환</div>
+    <div class="q">'25 Q4</div>
+    <div class="sp">12단 이상 고적층·커스텀 비중 상향, 평균판가 +9% 반영.</div>
   </div>
-  <div class="legend">
-    <div class="li"><span class="dot done"></span><b>완료</b> · 2단계 (게이트 1 통과)</div>
-    <div class="li"><span class="dot active"></span><b>진행</b> · 게이트 2 수율 검증</div>
-    <div class="li"><span class="dot todo"></span><b>예정</b> · P4 본착공 대기</div>
+  <div class="step done">
+    <div class="marker">2</div>
+    <div class="badge">완료</div>
+    <div class="sh">캐파 1차 집행</div>
+    <div class="q">'26 Q1</div>
+    <div class="sp">병목 공정 단계적 증설 착수, 가동률 리스크 분산 설계.</div>
   </div>
-  <div class="source">Source: 제조기술팀 실행 로드맵 v2.0 · 게이트 통과 자동 집행 체계 · FY26.Q2</div>
-  <div class="page">05 / 12</div>
+  <div class="step now">
+    <div class="marker">3</div>
+    <div class="badge">진행 중</div>
+    <div class="sh">수율·원가 혁신</div>
+    <div class="q">'26 Q2</div>
+    <div class="sp">선단 수율 +4%p, 소재·검사 단가 재협상으로 변동비 절감.</div>
+  </div>
+  <div class="step">
+    <div class="marker">4</div>
+    <div class="badge">예정</div>
+    <div class="sh">마진 점검</div>
+    <div class="q">'26 Q3</div>
+    <div class="sp">레버별 효과 실측·재배분, 다운사이클 방어선 재점검.</div>
+  </div>
+  <div class="step">
+    <div class="marker">5</div>
+    <div class="badge">예정</div>
+    <div class="sh">차세대 R&D</div>
+    <div class="q">'26 Q4</div>
+    <div class="sp">하이브리드 본딩 본격 투자, 차기 사이클 장벽 구축.</div>
+  </div>
 </div>
+<div class="src"><b>Source.</b> 전략기획실 실행 로드맵 (2026.06). 단계별 KPI는 부록 B 참조.</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

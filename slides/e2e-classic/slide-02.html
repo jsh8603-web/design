@@ -4,94 +4,85 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="../../design-system/colors_and_type.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
-  .slide { width: 1280px; height: 720px; padding: 56px 96px; position: relative; }
-  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
-  .title { font-size: 30px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 34px; max-width: 1040px; }
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 32px; }
-  .kpi { background: var(--gray-4); border-top: 4px solid var(--accent); border-radius: 10px; padding: 24px 24px 22px; }
-  .kpi .lab { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
-  .kpi .num { font-weight: 700; font-size: 56px; line-height: 0.95; color: var(--heading); letter-spacing: -0.02em; }
-  .kpi .num small { font-size: 26px; font-weight: 700; color: var(--accent); }
-  .kpi .delta { margin-top: 12px; font-size: 14px; font-weight: 600; }
-  .kpi .delta.up { color: var(--positive); }
-  .kpi .delta.down { color: var(--negative); }
-  .kpi .cap { margin-top: 8px; font-size: 13px; color: var(--gray-2); line-height: 1.45; }
-  .charts { display: grid; grid-template-columns: 1fr 340px; gap: 40px; align-items: end; }
-  .bars { display: flex; align-items: flex-end; gap: 22px; height: 180px; padding-bottom: 28px; position: relative; border-bottom: 1px solid var(--gray-4); }
-  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
-  .bar-col .b { width: 100%; max-width: 56px; background: var(--accent); border-radius: 4px 4px 0 0; }
-  .bar-col .b.muted { background: var(--gray-3); }
-  .bar-col .bn { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
-  .bar-col .bl { position: absolute; bottom: 4px; font-size: 12px; color: var(--gray-2); }
-  .chart-title { font-family: var(--font-mono); font-size: 12px; color: var(--gray-2); letter-spacing: 0.06em; margin-bottom: 18px; text-transform: uppercase; }
-  .mix-bar { display: flex; width: 100%; height: 46px; border-radius: 6px; overflow: hidden; }
-  .mix-bar .seg { display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 14px; font-weight: 700; color: #fff; }
-  .legend { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
-  .legend span { font-size: 13px; color: var(--gray-2); display: flex; align-items: center; gap: 9px; }
-  .legend span b { color: var(--heading); font-weight: 700; }
-  .legend i { width: 13px; height: 13px; border-radius: 3px; display: inline-block; }
-  .source { position: absolute; bottom: 28px; left: 96px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 28px; right: 96px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+  body { background:var(--theme-bg); padding:48px 64px; color:var(--gray-1); display:flex; flex-direction:column; }
+  .ghost { font-size:14px; color:var(--gray-2); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+  h1 { font-size:32px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.2; max-width:1060px; }
+  .kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:26px; }
+  .kpi { padding:22px 24px; background:var(--gray-4); border-left:6px solid var(--accent); }
+  .kpi .n { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--gray-2); }
+  .kpi .v { font-size:46px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1.05; margin-top:6px; }
+  .kpi .v small { font-size:22px; color:var(--accent); font-weight:700; }
+  .kpi .v.pos { color:var(--positive); }
+  .kpi .lbl { font-size:16px; color:var(--gray-1); margin-top:8px; line-height:1.4; }
+  .figure { flex:1; margin-top:24px; display:flex; flex-direction:column; min-height:0; }
+  .fig-cap { font-size:15px; color:var(--gray-2); margin-bottom:10px; }
+  .fig-cap b { color:var(--primary); }
+  .chart { flex:1; border:1.5px solid #E2E8F0; padding:20px 30px; display:flex; flex-direction:column; min-height:0; }
+  .axes { display:flex; align-items:flex-end; gap:26px; flex:1; padding:0 12px; min-height:0; }
+  .ax { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; justify-content:flex-end; }
+  .ax .v { font-size:16px; font-weight:700; color:var(--primary); }
+  .ax .b { width:100%; background:var(--accent); border-radius:3px; }
+  .ax.hl .b { background:var(--primary); }
+  .ax .l { font-size:14px; color:var(--gray-2); }
+  .src { font-size:14px; color:var(--gray-2); margin-top:12px; }
+  .src b { color:var(--primary); font-weight:600; }
+</style>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
 </style>
 </head>
-<body>
-<div class="slide">
-  <div class="kicker">// PERFORMANCE DASHBOARD · FY26.Q2</div>
-  <div class="title">HBM 사업부 분기 핵심지표 — 매출·수율 동반 개선, 재고만 역행</div>
-  <div class="kpis">
-    <div class="kpi">
-      <div class="lab">분기 매출</div>
-      <div class="num">3.42<small> B$</small></div>
-      <div class="delta up">▲ +18.6% QoQ</div>
-      <div class="cap">HBM3E 12-hi 양산 본격화 기여</div>
-    </div>
-    <div class="kpi">
-      <div class="lab">웨이퍼 수율</div>
-      <div class="num">82<small>%</small></div>
-      <div class="delta up">▲ +6.4%p QoQ</div>
-      <div class="cap">스택 본딩 공정 안정화 효과</div>
-    </div>
-    <div class="kpi">
-      <div class="lab">영업이익률</div>
-      <div class="num">27.3<small>%</small></div>
-      <div class="delta up">▲ +4.1%p QoQ</div>
-      <div class="cap">ASP 상승·고정비 레버리지</div>
-    </div>
-    <div class="kpi">
-      <div class="lab">재고 회전</div>
-      <div class="num">1.9<small> ×</small></div>
-      <div class="delta down">▼ –0.3× QoQ</div>
-      <div class="cap">선행 캐파 확보용 원자재 적재</div>
-    </div>
+<body data-layout="kpi_dashboard" data-screen-label="04-classic · kpi_dashboard">
+<div class="ghost">Executive Summary · 01</div>
+<h1>HBM 매출 +186%, 영업이익률 49% — 사이클 정점 진입</h1>
+<div class="kpis">
+  <div class="kpi">
+    <div class="n">K-1</div>
+    <div class="v">9.0<small>조원</small></div>
+    <div class="lbl">'25 4Q HBM 분기 매출 (전년 동기 대비 +186%)</div>
   </div>
-  <div class="charts">
-    <div>
-      <div class="chart-title">분기 매출 추이 (B$)</div>
-      <div class="bars">
-        <div class="bar-col"><div class="bn">2.18</div><div class="b muted" style="height:50%"></div><div class="bl">Q3'25</div></div>
-        <div class="bar-col"><div class="bn">2.51</div><div class="b muted" style="height:58%"></div><div class="bl">Q4'25</div></div>
-        <div class="bar-col"><div class="bn">2.88</div><div class="b muted" style="height:67%"></div><div class="bl">Q1'26</div></div>
-        <div class="bar-col"><div class="bn">3.42</div><div class="b" style="height:80%"></div><div class="bl">Q2'26</div></div>
-      </div>
-    </div>
-    <div>
-      <div class="chart-title">매출 믹스 (제품군)</div>
-      <div class="mix-bar">
-        <div class="seg" style="width:62%;background:var(--accent)">62%</div>
-        <div class="seg" style="width:22%;background:var(--primary)">22%</div>
-        <div class="seg" style="width:16%;background:var(--gray-3)">16%</div>
-      </div>
-      <div class="legend">
-        <span><i style="background:var(--accent)"></i><b>HBM3E 12-hi</b> · 62%</span>
-        <span><i style="background:var(--primary)"></i><b>HBM3 8-hi</b> · 22%</span>
-        <span><i style="background:var(--gray-3)"></i><b>기타 DRAM</b> · 16%</span>
-      </div>
-    </div>
+  <div class="kpi">
+    <div class="n">K-2</div>
+    <div class="v pos">49<small>%</small></div>
+    <div class="lbl">'25 4Q 영업이익률 (전년 +18%p, 4개 분기 연속 확장)</div>
   </div>
-  <div class="source">Source: 사업부 관리회계, FY26.Q2 마감 · 내부 수율 트래커</div>
-  <div class="page">02 / 12</div>
+  <div class="kpi">
+    <div class="n">K-3</div>
+    <div class="v">2.4<small>×</small></div>
+    <div class="lbl">선행 수주잔고 / 현 분기 매출 배수 (가시성 6개 분기)</div>
+  </div>
 </div>
+<div class="figure">
+  <div class="fig-cap"><b>Fig. 1</b> · 분기별 HBM 매출 추이 (조원) — '25년 4개 분기 연속 가속, 4Q 정점</div>
+  <div class="chart">
+    <div class="axes">
+      <div class="ax"><div class="v">2.8</div><div class="b" style="height:38px;"></div><div class="l">'25 1Q</div></div>
+      <div class="ax"><div class="v">4.6</div><div class="b" style="height:62px;"></div><div class="l">'25 2Q</div></div>
+      <div class="ax"><div class="v">6.9</div><div class="b" style="height:94px;"></div><div class="l">'25 3Q</div></div>
+      <div class="ax hl"><div class="v">9.0</div><div class="b" style="height:122px;"></div><div class="l">'25 4Q</div></div>
+      <div class="ax"><div class="v">10.4</div><div class="b" style="height:141px;"></div><div class="l">'26 1Q E</div></div>
+    </div>
+  </div>
+  <div class="src"><b>Source.</b> 사내 IR (2026); TrendForce HBM Revenue Tracker (Feb 2026). '26 1Q는 추정치(E).</div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Content" name="04 Dark Pitch — 2x2 matrix" subtitle="dark pitch · capital allocation grid" viewport="960x540" --><html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 80px 48px; position:relative;
+}
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.1em; margin-bottom:14px; }
+.title { font-size:30px; font-weight:700; color:var(--heading); line-height:1.2; margin-bottom:28px; max-width:1080px; }
+.matrix { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:20px; height:476px; }
+.cell { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:10px; padding:22px 26px; display:flex; flex-direction:column; }
+.cell.hl { border-color:var(--accent); border-width:1.5px; background:var(--surface-inverse); }
+.cell .tag { font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.08em; color:var(--gray-2); margin-bottom:10px; }
+.cell.hl .tag { color:var(--accent); }
+.cell h3 { font-size:20px; font-weight:700; color:var(--gray-1); line-height:1.25; margin-bottom:11px; }
+.cell h3 .acc { color:var(--accent); }
+.cell p { font-size:14px; color:var(--gray-2); line-height:1.5; }
+.cell .foot { margin-top:auto; padding-top:13px; font-size:13px; color:var(--gray-2); display:flex; gap:8px; align-items:baseline; }
+.cell .foot b { font-size:22px; font-weight:800; color:var(--gray-1); }
+.cell.hl .foot b { color:var(--accent); }
+.source { position:absolute; bottom:24px; left:80px; font-size:12px; color:var(--gray-2); }
+.page { position:absolute; bottom:24px; right:80px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gray-2); }
+</style></head><body data-layout="matrix-2x2" data-screen-label="04-dark-pitch · matrix">
+  <div class="kicker">// CAPITAL ALLOCATION · ASSESSMENT</div>
+  <div class="title">설비 투자 4개 옵션 — HBM 캐파 집중만이 사이클·마진 동시 충족</div>
+  <div class="matrix">
+    <div class="cell hl">
+      <div class="tag">OPTION A · 권고</div>
+      <h3><span class="acc">HBM 전용 캐파 증설</span> — 수직 집중</h3>
+      <p>TSV·본딩 라인을 18개월 내 2배로 확장해 12단 스택 수요를 선점한다. 주요 GPU 고객사 3곳의 차세대 가속기 양산 일정과 동기화돼 있어, 6개월 이상 지연 시 할당 슬롯이 경쟁사로 넘어간다. 자본 65% 집중이 유일한 임계 돌파 경로.</p>
+      <div class="foot"><b>+78%</b> 매출 · <b>16mo</b> 회수</div>
+    </div>
+    <div class="cell">
+      <div class="tag">OPTION B</div>
+      <h3>레거시 DRAM 라인 유지</h3>
+      <p>단기 가동률은 방어하나 ASP 하락 추세로 마진 기여가 빠르게 소진된다. 캐파를 HBM으로 전환하지 않으면 기회비용이 분기마다 누적되며, 사이클 반등의 핵심 수혜를 놓친다. 보조 트랙(자본 10%)으로만 한시 유효.</p>
+      <div class="foot"><b>−10%</b> 매출 · <b>—</b> 회수</div>
+    </div>
+    <div class="cell">
+      <div class="tag">OPTION C</div>
+      <h3>차세대 공정 R&D 선행 투자</h3>
+      <p>HBM4·하이브리드 본딩의 장기 우위를 확보할 잠재력이 있으나 30개월 이상 선행 투자가 필요하고 양산 시점 불확실성이 높다. 현 의사결정 윈도우 밖. 자본 15% 탐색 배분으로 옵션 가치만 보존한다.</p>
+      <div class="foot"><b>n/a</b> 매출 · <b>30mo+</b> 회수</div>
+    </div>
+    <div class="cell">
+      <div class="tag">OPTION D · 기각</div>
+      <h3>현상 유지 — 균형 분산 투자</h3>
+      <p>리스크는 분산되나 어느 제품군에서도 임계 캐파에 도달하지 못해 HBM 선점 경쟁에서 탈락한다. 경쟁사 집중 투자가 진행되면 단가·할당 격차가 누적돼 24개월 내 구조적 열위로 고착. 방어 불가.</p>
+      <div class="foot"><b>+4%</b> 매출 · <b>—</b> 회수</div>
+    </div>
+  </div>
+  <div class="source">Source: 전략기획 옵션 평가 매트릭스, FY26.Q2 · 사이클·마진 2축 정규화</div>
+  <div class="page">04 / 05</div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0b; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

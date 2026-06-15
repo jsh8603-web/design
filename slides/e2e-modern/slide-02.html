@@ -13,8 +13,8 @@
   .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-bottom: 34px; }
   .kpi { background: var(--gray-4); border-top: 4px solid var(--accent); border-radius: 10px; padding: 22px 22px 20px; }
   .kpi .lab { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
-  .kpi .num { font-weight: 800; font-size: 54px; line-height: 0.95; color: var(--heading); letter-spacing: -0.02em; }
-  .kpi .num small { font-size: 25px; font-weight: 700; color: var(--accent); }
+  .kpi .num { font-weight: 800; font-size: 52px; line-height: 0.95; color: var(--heading); letter-spacing: -0.02em; }
+  .kpi .num small { font-size: 24px; font-weight: 700; color: var(--accent); }
   .kpi .delta { margin-top: 12px; font-size: 14px; font-weight: 600; }
   .kpi .delta.up { color: var(--positive); }
   .kpi .delta.down { color: var(--negative); }
@@ -35,59 +35,56 @@
   .mixbar .s1 { background: var(--accent); }
   .mixbar .s2 { background: var(--primary); }
   .mixbar .s3 { background: var(--gray-3); color: var(--gray-1); }
-  .legend { display: flex; justify-content: center; gap: 18px; margin-top: 16px; }
-  .legend span { font-size: 12px; color: var(--gray-2); display: flex; align-items: center; gap: 6px; }
-  .legend i { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
   .source { position: absolute; bottom: 26px; left: 88px; font-size: 12px; color: var(--gray-3); }
   .page { position: absolute; bottom: 26px; right: 88px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
 </style>
 </head>
-<body data-layout="data_table" data-screen-label="modern · kpi_dashboard">
+<body data-layout="kpi_dashboard" data-screen-label="modern · kpi_dashboard">
 <div class="slide">
   <div class="kicker">// PERFORMANCE DASHBOARD · FY26.Q2</div>
-  <div class="title">HBM 사업부 분기 핵심지표 — 매출·수율 동반 개선, 재고만 역행</div>
+  <div class="title">전사 핵심지표 — 매출·이익률 동반 상승, 자유현금흐름만 일시 둔화</div>
   <div class="kpis">
     <div class="kpi">
       <div class="lab">분기 매출</div>
-      <div class="num">3.42<small>B$</small></div>
-      <div class="delta up">▲ +18.6% QoQ</div>
-      <div class="cap">HBM3E 12-hi 양산 본격화 기여</div>
-    </div>
-    <div class="kpi">
-      <div class="lab">웨이퍼 수율</div>
-      <div class="num">82<small>%</small></div>
-      <div class="delta up">▲ +6.4%p QoQ</div>
-      <div class="cap">스택 본딩 공정 안정화 효과</div>
+      <div class="num">3.61<small>B$</small></div>
+      <div class="delta up">▲ +21.4% QoQ</div>
+      <div class="cap">HBM3E 12-hi 출하 확대 견인</div>
     </div>
     <div class="kpi">
       <div class="lab">영업이익률</div>
-      <div class="num">27.3<small>%</small></div>
-      <div class="delta up">▲ +4.1%p QoQ</div>
+      <div class="num">28.9<small>%</small></div>
+      <div class="delta up">▲ +5.2%p QoQ</div>
       <div class="cap">ASP 상승·고정비 레버리지</div>
     </div>
     <div class="kpi">
-      <div class="lab">재고 회전</div>
-      <div class="num">1.9<small>×</small></div>
-      <div class="delta down">▼ –0.3× QoQ</div>
-      <div class="cap">선행 캐파 확보용 원자재 적재</div>
+      <div class="lab">웨이퍼 수율</div>
+      <div class="num">84<small>%</small></div>
+      <div class="delta up">▲ +2.0%p QoQ</div>
+      <div class="cap">하이브리드 본딩 안정화</div>
+    </div>
+    <div class="kpi">
+      <div class="lab">자유현금흐름</div>
+      <div class="num">0.42<small>B$</small></div>
+      <div class="delta down">▼ –31% QoQ</div>
+      <div class="cap">선행 캐파 CAPEX 집행 영향</div>
     </div>
   </div>
   <div class="charts">
     <div>
       <div class="chart-title">분기 매출 추이 (B$)</div>
       <div class="bars">
-        <div class="bar-col"><div class="bn">2.18</div><div class="b muted" style="height:50%"></div><div class="bl">Q3'25</div></div>
-        <div class="bar-col"><div class="bn">2.51</div><div class="b muted" style="height:58%"></div><div class="bl">Q4'25</div></div>
-        <div class="bar-col"><div class="bn">2.88</div><div class="b muted" style="height:67%"></div><div class="bl">Q1'26</div></div>
-        <div class="bar-col"><div class="bn">3.42</div><div class="b" style="height:80%"></div><div class="bl">Q2'26</div></div>
+        <div class="bar-col"><div class="bn">2.31</div><div class="b muted" style="height:51%"></div><div class="bl">Q3'25</div></div>
+        <div class="bar-col"><div class="bn">2.68</div><div class="b muted" style="height:59%"></div><div class="bl">Q4'25</div></div>
+        <div class="bar-col"><div class="bn">2.97</div><div class="b muted" style="height:66%"></div><div class="bl">Q1'26</div></div>
+        <div class="bar-col"><div class="bn">3.61</div><div class="b" style="height:80%"></div><div class="bl">Q2'26</div></div>
       </div>
     </div>
     <div class="mix-wrap">
       <div class="chart-title">매출 믹스 (제품군별)</div>
       <div class="mixbar">
-        <div class="seg s1" style="height:58%"><span class="pct">58%</span><span class="nm">HBM3E</span></div>
-        <div class="seg s2" style="height:24%"><span class="pct">24%</span><span class="nm">HBM3</span></div>
-        <div class="seg s3" style="height:18%"><span class="pct">18%</span><span class="nm">기타</span></div>
+        <div class="seg s1" style="height:61%"><span class="pct">61%</span><span class="nm">HBM3E</span></div>
+        <div class="seg s2" style="height:23%"><span class="pct">23%</span><span class="nm">DDR5</span></div>
+        <div class="seg s3" style="height:16%"><span class="pct">16%</span><span class="nm">기타</span></div>
       </div>
     </div>
   </div>

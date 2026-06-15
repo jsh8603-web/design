@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- @dsCard group="Content" name="05 Dark Mono — timeline" subtitle="dark monotone · 4-stage process with markers" viewport="960x540" --><html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+<!-- @dsCard group="Content" name="05 Dark Pitch — timeline" subtitle="dark pitch · 4-stage process with markers" viewport="960x540" --><html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
   width:1280px; height:720px; overflow:hidden;
@@ -13,7 +13,7 @@ body {
 .line { position:absolute; top:23px; left:6%; right:6%; height:2px; background:var(--gray-3); z-index:0; }
 .stage { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
 .marker { width:48px; height:48px; border-radius:50%; background:var(--gray-4); border:2px solid var(--gray-3); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-weight:700; font-size:18px; color:var(--gray-2); margin-bottom:18px; }
-.stage.done .marker { background:var(--accent); border-color:var(--accent); color:#0F1419; }
+.stage.done .marker { background:var(--accent); border-color:var(--accent); color:#06222B; }
 .stage.now .marker { background:var(--surface-inverse); border-color:var(--accent); color:var(--accent); }
 .badge { font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; color:var(--gray-2); border:1px solid var(--gray-3); border-radius:11px; padding:3px 11px; margin-bottom:12px; }
 .stage.done .badge { color:var(--accent); border-color:var(--accent); }
@@ -28,47 +28,47 @@ body {
 .metric .ml { margin-top:8px; font-size:12px; color:var(--gray-2); }
 .source { position:absolute; bottom:24px; left:80px; font-size:12px; color:var(--gray-2); }
 .page { position:absolute; bottom:24px; right:80px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gray-2); }
-</style></head><body data-layout="timeline-process" data-screen-label="05-dark-mono · timeline">
-  <div class="kicker">// RAMP-UP ROADMAP · 18-MONTH WINDOW</div>
-  <div class="title">HBM 전환 4단계 — 현재 2단계, 게이트 통과 시 자동 집행</div>
+</style></head><body data-layout="timeline-process" data-screen-label="05-dark-pitch · timeline">
+  <div class="kicker">// EXECUTION ROADMAP · 18-MONTH WINDOW</div>
+  <div class="title">HBM 캐파 증설 4단계 — 현재 2단계, 게이트 통과 시 자동 집행</div>
   <div class="tl">
     <div class="line"></div>
     <div class="stage done">
       <div class="marker">01</div>
       <div class="badge">완료 · Q4</div>
       <h3>파일럿 라인 검증</h3>
-      <p>전환 1개 라인 HBM3E 양산 PoC. 수율 11%p 개선 실측 확인.</p>
+      <p>12단 스택 TSV 본딩 PoC. 수율 1.8배 개선 실측 확인.</p>
     </div>
     <div class="stage now">
       <div class="marker">02</div>
       <div class="badge">진행 · Q1–Q2</div>
-      <h3>핵심 라인 전환</h3>
-      <p>주력 DRAM 팹 3개 라인 HBM 이관. 분기 매출 8.7B$ 기여 확정.</p>
+      <h3>주력 라인 전환</h3>
+      <p>레거시 DRAM 2개 팹 HBM 전용 전환. 매출 +78% 기여 확정.</p>
     </div>
     <div class="stage">
       <div class="marker">03</div>
       <div class="badge">예정 · Q3</div>
-      <h3>풀 캐파 가동</h3>
-      <p>전환 라인 100% 가동. 월 캐파 34K wpm → 52K wpm 목표.</p>
+      <h3>캐파 2배 증설</h3>
+      <p>신규 본딩 장비 반입·정렬. GPU 고객 3사 할당 슬롯 확보.</p>
     </div>
     <div class="stage">
       <div class="marker">04</div>
       <div class="badge">예정 · Q4</div>
-      <h3>차세대 공정 도입</h3>
-      <p>16-Hi 스택 + 하이브리드 본딩. 비트당 원가 추가 14% 절감 타겟.</p>
+      <h3>차세대 공정 안착</h3>
+      <p>하이브리드 본딩 양산 이행. HBM4 선행 캐파 12% 추가 확보.</p>
     </div>
   </div>
   <div class="metrics">
-    <div class="metric"><div class="mv acc">34<small>K wpm</small></div><div class="ml">현재 월 캐파</div></div>
-    <div class="metric"><div class="mv">52<small>K wpm</small></div><div class="ml">목표 월 캐파</div></div>
+    <div class="metric"><div class="mv acc">34<small>%</small></div><div class="ml">현재 HBM 매출 비중</div></div>
+    <div class="metric"><div class="mv">52<small>%</small></div><div class="ml">목표 HBM 매출 비중</div></div>
     <div class="metric"><div class="mv">18<small>mo</small></div><div class="ml">총 실행 윈도우</div></div>
-    <div class="metric"><div class="mv">70<small>%</small></div><div class="ml">집중 자원 배분</div></div>
+    <div class="metric"><div class="mv">65<small>%</small></div><div class="ml">집중 자본 배분</div></div>
   </div>
   <div class="source">Source: 실행 로드맵, FY26.Q2 기준 · 분기 게이트 리뷰 체계</div>
   <div class="page">05 / 05</div>
 
 <style id="om-fit-scaler-style">
-  html { overflow:hidden !important; background:#0a0a0a; }
+  html { overflow:hidden !important; background:#0a0a0b; }
 </style>
 <script id="om-fit-scaler">
 (function(){

@@ -6,81 +6,47 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
-  .slide { width: 1280px; height: 720px; padding: 52px 72px 44px; position: relative; display: flex; flex-direction: column; }
-  .head { margin-bottom: 22px; }
-  .kicker { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 9px; }
-  .title { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.16; letter-spacing: -0.01em; max-width: 1040px; }
-  .axis { display: flex; gap: 14px; margin-bottom: 14px; padding-left: 56px; }
-  .axis .ax { flex: 1; font-size: 13px; font-weight: 700; color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase; text-align: center; }
-  .matrix { display: grid; grid-template-columns: 56px 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; flex: 1; min-height: 0; }
-  .rowlab { writing-mode: vertical-rl; transform: rotate(180deg); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--gray-2); letter-spacing: 0.08em; text-transform: uppercase; }
-  .cell { border: 1px solid var(--gray-4); border-radius: 12px; padding: 22px 26px; display: flex; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; }
-  .cell.hi { border-color: var(--accent); border-width: 2px; }
-  .cell .tag { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
-  .cell h3 { font-size: 21px; font-weight: 800; color: var(--primary); line-height: 1.25; margin-bottom: 12px; }
-  .cell p { font-size: 15px; color: var(--gray-2); line-height: 1.6; }
-  .cell .foot { margin-top: auto; padding-top: 14px; font-size: 13.5px; font-weight: 700; color: var(--primary); }
-  .cell .foot em { font-style: normal; color: var(--accent); }
-  .source { position: absolute; bottom: 18px; left: 72px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 18px; right: 72px; font-size: 12px; font-weight: 600; color: var(--gray-3); }
+  .slide { width: 1280px; height: 720px; padding: 60px 72px 52px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 8px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 31px; font-weight: 800; color: var(--primary); line-height: 1.18; letter-spacing: -0.01em; max-width: 1080px; }
+  .matrix { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; flex: 1; }
+  .cell { border-radius: 12px; padding: 24px 26px; display: flex; flex-direction: column; border: 1px solid var(--gray-3); }
+  .cell.hi { background: var(--gray-4); border-color: var(--accent); }
+  .tag { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+  .tag .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .ch { font-size: 19px; font-weight: 800; color: var(--primary); line-height: 1.25; margin-bottom: 10px; }
+  .cb { font-size: 14px; color: var(--gray-1); line-height: 1.55; }
+  .cb b { color: var(--primary); font-weight: 700; }
 </style>
 </head>
 <body>
 <div class="slide">
-  <div class="head">
-    <div class="kicker">Strategic Portfolio · Impact × Effort</div>
-    <div class="title">전략 과제 우선순위 — 임팩트와 실행 난이도로 본 2×2 배분</div>
-  </div>
-  <div class="axis"><div class="ax">실행 난이도 낮음</div><div class="ax">실행 난이도 높음</div></div>
+  <div class="bar"></div>
+  <div class="kicker">하반기 전략 우선순위 매트릭스</div>
+  <div class="title">고성장·고수익 영역에 자원을 집중 배분</div>
   <div class="matrix">
-    <div class="rowlab">임팩트 높음</div>
     <div class="cell hi">
-      <div class="tag">Quick Win · 즉시 착수</div>
-      <h3>B2B 채널 영업 조직 재배치</h3>
-      <p>상위 5개 도시 거점에 영업 인력을 집중 배치하고 기존 파트너 네트워크와 커버리지를 통합한다. 추가 투자 없이 인력 재배치만으로 단기 매출 기여가 가능해, 하반기 가장 빠른 성과를 낼 수 있는 과제로 분류된다.</p>
-      <div class="foot">기대 효과: 분기 매출 <em>+4%p</em> · 리드타임 3개월</div>
+      <div class="tag"><span class="dot"></span>집중 투자 — 고성장·고수익</div>
+      <div class="ch">HBM4 양산 라인 증설</div>
+      <div class="cb">차세대 <b>HBM4</b> 수요는 AI 가속기 채택 확대로 향후 3년간 연평균 60% 이상 성장이 전망됩니다. 평택 신규 라인 조기 가동과 TSV 공정 수율 개선을 통해 선제적 캐파를 확보하고, 주요 고객사와의 장기 공급계약 비중을 70% 이상으로 끌어올려 가격 변동성을 방어합니다.</div>
     </div>
     <div class="cell">
-      <div class="tag">Big Bet · 전사 투자</div>
-      <h3>클라우드 플랫폼 글로벌 확장</h3>
-      <p>해외 리전 증설과 현지 컴플라이언스 대응에 상당한 자본 투입과 조직 신설이 요구된다. 회수 기간은 길지만 성공 시 전사 성장의 새 축이 되므로, 단계별 게이트를 두고 신중하게 추진한다.</p>
-      <div class="foot">3년 누적 투자 <em>1,200억</em> · 손익분기 7분기</div>
-    </div>
-    <div class="rowlab">임팩트 낮음</div>
-    <div class="cell">
-      <div class="tag">Fill-in · 여력 시</div>
-      <h3>리테일 솔루션 UI 리프레시</h3>
-      <p>사용성 개선 효과는 명확하지만 매출 기여 폭은 제한적이다. 핵심 과제의 자원 여력이 생길 때 점진적으로 진행하며, 고객 만족도 지표 개선을 주된 성과 척도로 둔다.</p>
-      <div class="foot">NPS <em>+6pt</em> 목표 · 비핵심 리소스 활용</div>
+      <div class="tag"><span class="dot"></span>선별 확대 — 고성장·중수익</div>
+      <div class="ch">파운드리 선단 공정 전환</div>
+      <div class="cb">3nm 이하 선단 공정의 고객 다변화를 추진하되, 초기 투자 부담이 큰 만큼 <b>수율 안정화</b> 시점까지는 단계적 캐파 확장으로 리스크를 관리합니다. 차량용·고성능 컴퓨팅 고객 비중을 높여 메모리 사이클 의존도를 완화하는 것을 핵심 과제로 설정합니다.</div>
     </div>
     <div class="cell">
-      <div class="tag">Re-evaluate · 보류</div>
-      <h3>디바이스 신규 라인업 확대</h3>
-      <p>시장 수요 둔화와 마진 압박이 동시에 진행 중이라, 추가 투자 대비 회수 불확실성이 크다. 현 시점에는 보류하고 기존 라인업의 수익성 방어에 집중하며 시장 회복 시그널을 모니터링한다.</p>
-      <div class="foot">의사결정 재검토 시점 <em>'27 1Q</em></div>
+      <div class="tag"><span class="dot"></span>효율 개선 — 저성장·고수익</div>
+      <div class="ch">레거시 메모리 운영 최적화</div>
+      <div class="cb">성숙기에 진입한 <b>DDR4·구형 NAND</b>는 추가 증설 없이 가동률과 원가 경쟁력 중심으로 운영합니다. 자동화 투자로 단위 원가를 8% 절감하고, 발생 현금흐름을 성장 영역 재투자 재원으로 전환하는 캐시카우 역할에 집중합니다.</div>
+    </div>
+    <div class="cell">
+      <div class="tag"><span class="dot"></span>구조 재편 — 저성장·저수익</div>
+      <div class="ch">디스플레이 사업 합리화</div>
+      <div class="cb">경쟁 심화와 가격 하락이 지속되는 <b>중소형 패널</b>은 고부가 OLED 중심으로 포트폴리오를 재편하고, 비핵심 라인은 단계적으로 축소합니다. 파트너십·합작 검토를 병행해 고정비 부담을 낮추고 손익 변동성을 줄이는 방향으로 전환합니다.</div>
     </div>
   </div>
-  <div class="source">Source: FY26 전사 전략 워크숍 · 과제 포트폴리오 분석</div>
-  <div class="page">04 / 05</div>
 </div>
-<style id="om-fit-scaler-style">
-  html { overflow:hidden !important; background:#0a0a0a; }
-</style>
-<script id="om-fit-scaler">
-(function(){
-  function fit(){
-    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
-    var b = document.body;
-    b.style.width='1280px'; b.style.height='720px';
-    b.style.position='absolute'; b.style.transformOrigin='top left';
-    b.style.left=((window.innerWidth-1280*s)/2)+'px';
-    b.style.top=((window.innerHeight-720*s)/2)+'px';
-    b.style.transform='scale('+s+')';
-  }
-  window.addEventListener('resize', fit, {passive:true});
-  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
-  fit();
-})();
-</script>
 </body>
 </html>

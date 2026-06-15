@@ -9,8 +9,6 @@ body {
   grid-template-columns: 1.55fr 1fr;
   grid-template-rows: auto 1fr auto;
 }
-
-/* ── Top strip: brand · classification · doc-id ── */
 .top-strip {
   grid-column: 1 / -1;
   display:flex; align-items:center; justify-content:space-between;
@@ -27,9 +25,7 @@ body {
 .brand .wordmark { font-size:19.56px; font-weight:600; }
 .brand .sep { color:var(--gray-3); margin:0 10.67px; }
 .brand .group { font-size:17.78px; color:var(--gray-2); }
-.classification {
-  display:flex; gap:10.67px; align-items:center;
-}
+.classification { display:flex; gap:10.67px; align-items:center; }
 .classification .pill {
   display:inline-block; padding:5.33px 17.78px;
   border:1px solid var(--primary); border-radius:21.33px;
@@ -41,8 +37,6 @@ body {
   letter-spacing:0.08em; text-transform:uppercase; font-weight:700;
 }
 .docid { font-family:'JetBrains Mono', monospace; font-size:16px; color:var(--gray-3); letter-spacing:0.04em; }
-
-/* ── Hero: action title + dek on the left ── */
 .hero {
   padding:42.67px 56.89px 35.56px;
   display:flex; flex-direction:column; justify-content:center;
@@ -55,7 +49,7 @@ body {
 }
 .eyebrow .dot { width:8.89px; height:8.89px; border-radius:50%; background:var(--accent); }
 h1 {
-  font-size:81.78px; font-weight:500; color:var(--primary);
+  font-size:78px; font-weight:500; color:var(--primary);
   letter-spacing:-0.02em; line-height:1.08;
 }
 h1 em { font-style:normal; color:var(--accent); font-weight:500; }
@@ -63,8 +57,6 @@ h1 em { font-style:normal; color:var(--accent); font-weight:500; }
   font-size:23.11px; color:var(--gray-1); line-height:1.55;
   margin-top:24.89px; max-width:675.56px;
 }
-
-/* ── "Inside this report" — vertical preview block on the right ── */
 .inside {
   padding:49.78px 56.89px 42.67px 42.67px;
   border-left:1px solid var(--border-soft, #D8D2C9);
@@ -94,8 +86,6 @@ h1 em { font-style:normal; color:var(--accent); font-weight:500; }
   font-family:'JetBrains Mono', monospace;
   font-size:16px; color:var(--gray-3);
 }
-
-/* ── Bottom meta strip ── */
 .bottom {
   grid-column: 1 / -1;
   display:flex; align-items:flex-end; justify-content:space-between;
@@ -114,52 +104,47 @@ h1 em { font-style:normal; color:var(--accent); font-weight:500; }
 }
 </style></head><body data-layout="cover" data-screen-label="01-executive · cover">
 
-  <!-- Top strip -->
   <div class="top-strip">
     <div class="brand">
       <div class="mark">*</div>
       <div class="wordmark">slides-grab</div>
       <span class="sep">·</span>
-      <span class="group">Research</span>
+      <span class="group">Strategy</span>
     </div>
     <div class="classification">
-      <span class="pill solid">Investment Memo</span>
-      <span class="pill">Internal</span>
-      <span class="docid">/ SGR-2026-03</span>
+      <span class="pill solid">Board Memo</span>
+      <span class="pill">Confidential</span>
+      <span class="docid">/ SGS-2026-07</span>
     </div>
   </div>
 
-  <!-- Hero: action title + dek -->
   <div class="hero">
     <div class="eyebrow">
       <span class="dot"></span>
-      <span>Vol. VII · No. 03</span>
+      <span>Vol. IX · No. 07</span>
       <span style="color:var(--gray-3);">/</span>
-      <span>March 2026</span>
+      <span>June 2026</span>
     </div>
-    <h1>AI 인프라가 향후 5년<br>자본 사이클의 <em>모양을 결정</em>한다.</h1>
-    <div class="dek">HBM·CoWoS·서버 전력 — 세 개의 동시 사이클이 한 번에 시작된 첫 해. 어디에 자본을 묶을지 결정하는 단 하나의 질문에 대한 28페이지의 답.</div>
+    <h1>전력이 다음 10년<br>AI 경쟁의 <em>병목을 정의</em>한다.</h1>
+    <div class="dek">데이터센터 전력 수요는 2030년까지 3배. 칩이 아니라 전력·냉각·부지가 새로운 희소 자원이 된다. 어디에 먼저 투자할지에 대한 32페이지의 결론.</div>
   </div>
 
-  <!-- "Inside this report" preview -->
   <div class="inside">
     <div class="label">Inside this report</div>
-    <div class="toc-row"><span class="num">01</span><span class="title">Executive summary</span><span class="pg">p.02</span></div>
-    <div class="toc-row"><span class="num">02</span><span class="title">시장 분석 — 세 사이클의 동시 진입</span><span class="pg">p.08</span></div>
-    <div class="toc-row"><span class="num">03</span><span class="title">기업별 포지셔닝</span><span class="pg">p.14</span></div>
-    <div class="toc-row"><span class="num">04</span><span class="title">투자 의견 &amp; 시나리오</span><span class="pg">p.22</span></div>
+    <div class="toc-row"><span class="num">01</span><span class="title">핵심 요약 — 전력 병목의 구조</span><span class="pg">p.02</span></div>
+    <div class="toc-row"><span class="num">02</span><span class="title">권역별 전력·부지 가용성</span><span class="pg">p.09</span></div>
+    <div class="toc-row"><span class="num">03</span><span class="title">밸류체인 포지셔닝 매트릭스</span><span class="pg">p.16</span></div>
+    <div class="toc-row"><span class="num">04</span><span class="title">투자 로드맵 &amp; 마일스톤</span><span class="pg">p.24</span></div>
   </div>
 
-  <!-- Bottom meta -->
   <div class="bottom">
     <div class="meta-row">
-      <div class="meta-item"><div class="label">애널리스트</div><div class="val">이재훈, CFA</div></div>
-      <div class="meta-item"><div class="label">투자의견</div><div class="val accent">Buy · 285,000원</div></div>
-      <div class="meta-item"><div class="label">자료</div><div class="val">SK Hynix IR · Bloomberg · TrendForce</div></div>
+      <div class="meta-item"><div class="label">작성</div><div class="val">전략기획실</div></div>
+      <div class="meta-item"><div class="label">권고</div><div class="val accent">Overweight · 전력 인프라</div></div>
+      <div class="meta-item"><div class="label">자료</div><div class="val">IEA · BloombergNEF · 내부 추정</div></div>
     </div>
     <div class="arrow-c">↗</div>
   </div>
-
 
 <style id="om-fit-scaler-style">
   html { overflow:hidden !important; background:#0a0a0a; }

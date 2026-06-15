@@ -247,6 +247,12 @@ date: 2026-06-13
   - → **(A) 우선**. 적용 후 재변환 + COM 렌더로 1줄 복귀 확인 + rule-audit 회귀 diff 0.
 - **⛔삽질주의**: B2 normAutofit·중복pPr 가설 기각됨. 폰트는 설치로 해결(임베드는 COM 무효). 높이 추정 가설도 기각(폭 문제).
 
+> [ckpt-202606155000:btn-design] **STATUS: ✅Phase3 수정파이프라인 검증 = 8테마 fresh 재실행 전부 ERROR=0**
+- 지시: 고친 파이프라인(VP-04/07/10/14/16 + `<small>` 변환기)으로 8테마(editorial/modern/executive/academic/classic/dark-mono/company/dark-pitch) **처음부터 fresh 재생성** 5장씩 → 디자인스킬→PF→VP→COM.
+- **결과: 8/8 전부 ERROR=0** (academic/classic 각 2 WARN=timeline 라벨·bar gap cosmetic, COM 클린). **이전 phase2 FP 3종(VP-14 표 phantom·VP-16 cover dek·`<small>` 단위소실) 전 테마서 미재출현 = fix end-to-end 검증**. VP-16 fix 실증=표지 제목 ERROR→WARN("fits vertically").
+- 디자인 결함은 teammate 자율수정(small margin→padding/div·h1 폰트↓·p→div·badge min-width). 전 teammate 글로벌 직접수정0=방법준수.
+- **누적 변환기 결함(미수정·디자인회피됨, 별도 처리 목록)**: ①grid/flex 컬럼 내 `<h3>`/`<p>` x-collapse(academic/classic/modern 다수) ②CJK width inflation in grid(editorial) ③inline-flex/% bar collapse(executive) ④**loose text-node drop**(dark-pitch 신규: div가 자식요소+sibling 텍스트노드 동시보유 시 텍스트 drop, dark-deck 레퍼런스서도 재현=테마무관) ⑤inline margin reject(=진짜 PPTX 제약, 정탐). ①~④는 positioning/text-extraction 결함=전역 회귀위험 큼, 회귀게이트 갖춰 별도.
+
 > [ckpt-202606154500:btn-design] **STATUS: ✅Phase2 복잡슬라이드 e2e(7테마×5장) + VP-14/VP-16 일괄수정 완료**
 - Phase2: 각 테마 표지1+복잡슬라이드4(KPI/표/매트릭스/타임라인) harness2 Teammate 7병렬. 전 teammate 글로벌 직접수정0(global_issue 보고만)=방법준수. 디자인결함=슬라이드 자율수정(PF-62 conic→bar·h3→div·gray-3→gray-2·padding/gap 등). PF-55/62/63=변환기 미지원 정탐(디자인적응).
 - **글로벌 일괄수정(메인, 회귀게이트 통과)**:

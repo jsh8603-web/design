@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- @dsCard group="Brand" name="03 Executive Editorial — data table" subtitle="6×6 peer comparison · noFill + filled cells" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+<!-- @dsCard group="Brand" name="03 Executive Editorial — data table" subtitle="7×6 regional comparison · noFill + filled cells" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body { width:1280px; height:720px; overflow:hidden; position:relative;
   font-family:'Pretendard', -apple-system, sans-serif;
@@ -11,10 +11,10 @@ h1 { font-size:31.11px; font-weight:700; color:var(--primary); letter-spacing:-0
 h1 em { font-style:normal; color:var(--accent); }
 .key { font-size:16px; color:var(--gray-2); margin-top:8.89px; }
 .tbl { flex:1; display:flex; flex-direction:column; min-height:0; border:1px solid var(--border-soft); border-radius:10px; overflow:hidden; }
-.row { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr 1fr 1.1fr; }
+.row { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr 1fr 1.1fr; }
 .row.hd { background:var(--surface-inverse); }
 .row.hd .c { color:var(--surface-inverse-fg); font-size:14.22px; font-weight:700; letter-spacing:0.02em; }
-.row .c { padding:13.33px 17.78px; font-size:15.11px; color:var(--primary); display:flex; align-items:center; border-bottom:1px solid var(--border-soft); border-right:1px solid var(--border-soft); }
+.row .c { padding:11.56px 17.78px; font-size:15.11px; color:var(--primary); display:flex; align-items:center; border-bottom:1px solid var(--border-soft); border-right:1px solid var(--border-soft); }
 .row.hd .c { border-bottom:none; border-right:1px solid rgba(255,255,255,0.18); }
 .row .c:first-child { font-weight:700; }
 .row .c:last-child { border-right:none; }
@@ -29,61 +29,77 @@ h1 em { font-style:normal; color:var(--accent); }
 .src { font-size:12.44px; color:var(--gray-2); margin-top:14.22px; text-align:right; }
 </style></head><body data-layout="data_table" data-screen-label="03-executive · data_table">
   <div class="head">
-    <div class="eyebrow">Section 02 · Peer benchmark</div>
-    <h1>경쟁사 대비 HBM 마진 격차 <em>+11%p</em> — 수율 우위가 핵심</h1>
-    <div class="key">FY2025 실적 기준 글로벌 메모리 3사 + 신규 진입사 HBM 사업 비교 (USD 환산)</div>
+    <div class="eyebrow">Section 02 · 권역 벤치마크</div>
+    <h1>전력 단가·연결 대기 격차 <em>최대 4배</em> — 부지 선정이 수익성 좌우</h1>
+    <div class="key">FY2026 기준 주요 6개 DC 권역의 전력 환경·비용·확장 여건 비교 (USD 환산)</div>
   </div>
   <div class="tbl">
     <div class="row hd">
-      <div class="c">기업 / 지표</div>
-      <div class="c num">HBM 매출 ($B)</div>
-      <div class="c num">점유율 (%)</div>
-      <div class="c num">영업이익률 (%)</div>
-      <div class="c num">수율 (%)</div>
-      <div class="c">HBM4 양산</div>
+      <div class="c">권역 / 지표</div>
+      <div class="c num">전력단가 ($/MWh)</div>
+      <div class="c num">신규용량 (GW)</div>
+      <div class="c num">재생E 비중 (%)</div>
+      <div class="c num">연결대기 (개월)</div>
+      <div class="c">증설 여건</div>
     </div>
     <div class="row">
-      <div class="c">SK Hynix</div>
-      <div class="c num">28.4</div>
-      <div class="c num">52.0</div>
-      <div class="c num"><span class="pos">47.2</span></div>
-      <div class="c num">82</div>
-      <div class="c"><span class="tag">'26 2H</span></div>
+      <div class="c">버지니아 (US)</div>
+      <div class="c num">58</div>
+      <div class="c num">14.2</div>
+      <div class="c num">31</div>
+      <div class="c num"><span class="neg">38</span></div>
+      <div class="c"><span class="tag">포화 임박</span></div>
     </div>
     <div class="row alt">
-      <div class="c">Samsung</div>
-      <div class="c num">15.1</div>
-      <div class="c num">27.6</div>
-      <div class="c num">36.1</div>
-      <div class="c num">71</div>
-      <div class="c"><span class="tag">'27 1H</span></div>
-    </div>
-    <div class="row">
-      <div class="c">Micron</div>
-      <div class="c num">9.8</div>
-      <div class="c num">17.9</div>
-      <div class="c num">31.4</div>
-      <div class="c num">68</div>
-      <div class="c"><span class="tag">'27 1H</span></div>
-    </div>
-    <div class="row alt">
-      <div class="c">CXMT (신규)</div>
-      <div class="c num">1.4</div>
-      <div class="c num">2.5</div>
-      <div class="c num"><span class="neg">-8.0</span></div>
+      <div class="c">텍사스 (US)</div>
       <div class="c num">41</div>
-      <div class="c">미정</div>
+      <div class="c num">9.6</div>
+      <div class="c num"><span class="pos">44</span></div>
+      <div class="c num">19</div>
+      <div class="c"><span class="tag">우수</span></div>
+    </div>
+    <div class="row">
+      <div class="c">아일랜드 (EU)</div>
+      <div class="c num">112</div>
+      <div class="c num">2.1</div>
+      <div class="c num">39</div>
+      <div class="c num"><span class="neg">42</span></div>
+      <div class="c">신규 제한</div>
+    </div>
+    <div class="row alt">
+      <div class="c">노르딕 (EU)</div>
+      <div class="c num"><span class="pos">29</span></div>
+      <div class="c num">3.8</div>
+      <div class="c num"><span class="pos">94</span></div>
+      <div class="c num">14</div>
+      <div class="c"><span class="tag">우수</span></div>
+    </div>
+    <div class="row">
+      <div class="c">싱가포르 (APAC)</div>
+      <div class="c num">96</div>
+      <div class="c num">0.9</div>
+      <div class="c num">12</div>
+      <div class="c num">28</div>
+      <div class="c">모라토리엄</div>
+    </div>
+    <div class="row alt">
+      <div class="c">세종·새만금 (KR)</div>
+      <div class="c num">67</div>
+      <div class="c num">5.4</div>
+      <div class="c num">27</div>
+      <div class="c num">22</div>
+      <div class="c"><span class="tag">정책 지원</span></div>
     </div>
     <div class="row total">
       <div class="c">합계 / 평균</div>
-      <div class="c num">54.7</div>
-      <div class="c num">100.0</div>
-      <div class="c num">26.7</div>
-      <div class="c num">66</div>
+      <div class="c num">67</div>
+      <div class="c num">36.0</div>
+      <div class="c num">41</div>
+      <div class="c num">27</div>
       <div class="c">—</div>
     </div>
   </div>
-  <div class="src">각사 4Q 실적발표 · TrendForce · Gartner Memory Tracker (2026.02) · 환율 1,380원/$ 적용</div>
+  <div class="src">IEA · BloombergNEF · 각국 계통운영기관 · 내부 추정 (2026.04) · 환율 1,380원/$ 적용</div>
 <style id="om-fit-scaler-style">
   html { overflow:hidden !important; background:#0a0a0a; }
 </style>

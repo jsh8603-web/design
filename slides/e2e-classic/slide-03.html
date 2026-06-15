@@ -4,96 +4,94 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="../../design-system/colors_and_type.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
-  .slide { width: 1280px; height: 720px; padding: 56px 96px; position: relative; }
-  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
-  .title { font-size: 30px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 30px; max-width: 1040px; }
-  .tbl { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr 1.1fr; border: 1px solid var(--gray-3); border-radius: 8px; overflow: hidden; }
-  .tbl > div { padding: 14px 18px; font-size: 15px; line-height: 1.3; border-bottom: 1px solid var(--gray-4); border-right: 1px solid var(--gray-4); display: flex; align-items: center; }
-  .tbl > div.r { justify-content: flex-end; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
-  .tbl > div.c { justify-content: center; }
-  .head { background: var(--surface-inverse); color: var(--surface-inverse-fg); font-weight: 700; font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; border-bottom-color: var(--primary) !important; }
-  .head.r { justify-content: flex-end; }
-  .head.c { justify-content: center; }
-  .lab { font-weight: 600; color: var(--heading); }
-  .zebra { background: var(--gray-4); }
-  .pos { color: var(--positive); font-weight: 700; }
-  .neg { color: var(--negative); font-weight: 700; }
-  .total { background: var(--accent); color: #fff; font-weight: 700; }
-  .total .lab, .total.r, .total.c { color: #fff; }
-  .tbl > div.st { justify-content: center; font-family: var(--font-mono); font-size: 12px; font-weight: 700; }
-  .st.ok { background: var(--positive); color: #fff; }
-  .st.warn { background: var(--negative); color: #fff; }
-  .st.hold { background: var(--gray-2); color: #fff; }
-  .source { position: absolute; bottom: 28px; left: 96px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 28px; right: 96px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+  body { background:var(--theme-bg); padding:48px 64px; color:var(--gray-1); display:flex; flex-direction:column; }
+  .ghost { font-size:14px; color:var(--gray-2); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; }
+  h1 { font-size:32px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.2; max-width:1100px; }
+  .tbl-cap { font-size:15px; color:var(--gray-2); margin-top:18px; margin-bottom:12px; }
+  .tbl-cap b { color:var(--primary); }
+  .grid { flex:1; display:grid; grid-template-columns:1.8fr 1fr 1fr 1fr 1fr 1.2fr; grid-auto-rows:1fr; border-top:2px solid var(--primary); border-bottom:2px solid var(--primary); min-height:0; }
+  .cell { display:flex; align-items:center; padding:0 16px; font-size:16px; color:var(--gray-1); border-bottom:1px solid #E2E8F0; }
+  .cell.r { justify-content:flex-end; font-family:'JetBrains Mono', monospace; font-variant-numeric:tabular-nums; }
+  .head { font-size:14px; font-weight:700; color:#FFFFFF; background:var(--primary); border-bottom:none; letter-spacing:0.02em; }
+  .head.r { justify-content:flex-end; }
+  .rowlbl { font-weight:600; color:var(--primary); }
+  .band { background:var(--gray-4); }
+  .pos { color:var(--positive); font-weight:600; }
+  .neg { color:var(--negative); font-weight:600; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; }
+  .src b { color:var(--primary); font-weight:600; }
+</style>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
 </style>
 </head>
-<body>
-<div class="slide">
-  <div class="kicker">// CAPACITY PLAN BY LINE</div>
-  <div class="title">라인별 캐파 증설 계획 — P3·P4가 FY27 증분의 71% 담당</div>
-  <div class="tbl">
-    <!-- header -->
-    <div class="head">생산 라인</div>
-    <div class="head c">노드</div>
-    <div class="head r">현 캐파 (Kwpm)</div>
-    <div class="head r">FY27 목표</div>
-    <div class="head r">증분</div>
-    <div class="head c">상태</div>
-    <!-- row 1 -->
-    <div class="lab">P1 — 화성 1기</div>
-    <div class="c">1α</div>
-    <div class="r">42.0</div>
-    <div class="r">45.0</div>
-    <div class="r pos">+3.0</div>
-    <div class="st ok">진행</div>
-    <!-- row 2 -->
-    <div class="lab zebra">P2 — 화성 2기</div>
-    <div class="c zebra">1α</div>
-    <div class="r zebra">38.5</div>
-    <div class="r zebra">40.0</div>
-    <div class="r zebra pos">+1.5</div>
-    <div class="st ok">진행</div>
-    <!-- row 3 -->
-    <div class="lab">P3 — 평택 3기</div>
-    <div class="c">1β</div>
-    <div class="r">28.0</div>
-    <div class="r">52.0</div>
-    <div class="r pos">+24.0</div>
-    <div class="st ok">진행</div>
-    <!-- row 4 -->
-    <div class="lab zebra">P4 — 평택 4기</div>
-    <div class="c zebra">1β</div>
-    <div class="r zebra">0.0</div>
-    <div class="r zebra">18.0</div>
-    <div class="r zebra pos">+18.0</div>
-    <div class="st warn">착공지연</div>
-    <!-- row 5 -->
-    <div class="lab">P5 — 청주 1기</div>
-    <div class="c">1y</div>
-    <div class="r">15.0</div>
-    <div class="r">12.0</div>
-    <div class="r neg">–3.0</div>
-    <div class="st hold">전환검토</div>
-    <!-- row 6 -->
-    <div class="lab zebra">P6 — 신규 (미정)</div>
-    <div class="c zebra">—</div>
-    <div class="r zebra">0.0</div>
-    <div class="r zebra">8.0</div>
-    <div class="r zebra pos">+8.0</div>
-    <div class="st hold">검토</div>
-    <!-- total -->
-    <div class="total lab" style="border-right:1px solid var(--primary)">합계</div>
-    <div class="total c" style="border-right:1px solid var(--primary)">—</div>
-    <div class="total r" style="border-right:1px solid var(--primary)">123.5</div>
-    <div class="total r" style="border-right:1px solid var(--primary)">175.0</div>
-    <div class="total r" style="border-right:1px solid var(--primary)">+51.5</div>
-    <div class="total c">▲ +41.7%</div>
-  </div>
-  <div class="source">Source: 제조기술팀 캐파 마스터플랜 v4.2 · Kwpm = 1,000 wafers/month · FY26.Q2 기준</div>
-  <div class="page">03 / 12</div>
+<body data-layout="data_table" data-screen-label="04-classic · data_table">
+<div class="ghost">Detail · 02</div>
+<h1>HBM 3사, 2025년 분기 내내 매출·마진 동반 확장</h1>
+<div class="tbl-cap"><b>Table 1</b> · 글로벌 HBM 공급 3사 분기 실적 (매출 조원, 영업이익률 %, 점유율 %)</div>
+<div class="grid">
+  <div class="cell head">공급사 · 지표</div>
+  <div class="cell head r">'25 1Q</div>
+  <div class="cell head r">'25 2Q</div>
+  <div class="cell head r">'25 3Q</div>
+  <div class="cell head r">'25 4Q</div>
+  <div class="cell head r">YoY 증감</div>
+
+  <div class="cell rowlbl">SK Hynix · 매출</div>
+  <div class="cell r">2.8</div>
+  <div class="cell r">4.6</div>
+  <div class="cell r">6.9</div>
+  <div class="cell r">9.0</div>
+  <div class="cell r pos">+186%</div>
+
+  <div class="cell rowlbl band">SK Hynix · OPM</div>
+  <div class="cell r band">31%</div>
+  <div class="cell r band">38%</div>
+  <div class="cell r band">44%</div>
+  <div class="cell r band">49%</div>
+  <div class="cell r pos band">+18%p</div>
+
+  <div class="cell rowlbl">Samsung · 매출</div>
+  <div class="cell r">1.9</div>
+  <div class="cell r">2.4</div>
+  <div class="cell r">3.1</div>
+  <div class="cell r">4.2</div>
+  <div class="cell r pos">+121%</div>
+
+  <div class="cell rowlbl band">Micron · 매출</div>
+  <div class="cell r band">1.1</div>
+  <div class="cell r band">1.5</div>
+  <div class="cell r band">2.0</div>
+  <div class="cell r band">2.7</div>
+  <div class="cell r pos band">+145%</div>
+
+  <div class="cell rowlbl">3사 합산 점유율</div>
+  <div class="cell r">94%</div>
+  <div class="cell r">95%</div>
+  <div class="cell r">96%</div>
+  <div class="cell r">97%</div>
+  <div class="cell r neg">+3%p 집중</div>
 </div>
+<div class="src"><b>Source.</b> 각사 IR (2026); TrendForce HBM Revenue Tracker (Feb 2026). YoY = '24 4Q 대비 '25 4Q.</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

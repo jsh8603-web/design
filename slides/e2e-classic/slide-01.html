@@ -4,31 +4,50 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="../../design-system/colors_and_type.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
-  .slide { width: 1280px; height: 720px; padding: 88px 96px; position: relative; display: flex; flex-direction: column; justify-content: center; }
-  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
-  .kicker { font-family: var(--font-mono); font-size: 16px; color: var(--accent); letter-spacing: 0.14em; margin-bottom: 30px; }
-  .title { font-size: 72px; font-weight: 700; color: var(--heading); line-height: 1.1; letter-spacing: -0.02em; max-width: 980px; }
-  .sub { margin-top: 30px; font-size: 23px; color: var(--gray-2); line-height: 1.45; max-width: 820px; }
-  .rule { position: absolute; left: 96px; bottom: 168px; width: 1088px; height: 1px; background: var(--gray-4); }
-  .meta { position: absolute; bottom: 88px; left: 96px; display: flex; gap: 72px; }
-  .meta .l { font-family: var(--font-mono); color: var(--accent); font-size: 12px; letter-spacing: 0.08em; margin-bottom: 8px; }
-  .meta .v { font-size: 16px; color: var(--gray-1); font-weight: 600; }
+  body { background:var(--theme-bg); color:var(--gray-1); padding:88px 96px; display:flex; flex-direction:column; justify-content:center; }
+  .bar { position:absolute; left:0; top:0; width:10px; height:720px; background:var(--accent); }
+  .kicker { font-family:'JetBrains Mono', monospace; font-size:16px; color:var(--accent); letter-spacing:0.14em; margin-bottom:30px; }
+  .title { font-size:66px; font-weight:700; color:var(--primary); line-height:1.12; letter-spacing:-0.02em; max-width:1000px; }
+  .sub { margin-top:30px; font-size:23px; color:var(--gray-2); line-height:1.45; max-width:840px; }
+  .rule { position:absolute; left:96px; bottom:172px; width:1088px; height:1px; background:var(--gray-4); }
+  .meta { position:absolute; bottom:88px; left:96px; display:flex; gap:80px; }
+  .meta .l { font-family:'JetBrains Mono', monospace; color:var(--accent); font-size:12px; letter-spacing:0.08em; margin-bottom:8px; }
+  .meta .v { font-size:16px; color:var(--gray-1); font-weight:600; }
+</style>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
 </style>
 </head>
-<body>
-<div class="slide">
-  <div class="bar"></div>
-  <div class="kicker">// GROWTH STRATEGY · FY26</div>
-  <div class="title">전사 수익성 회복을<br>위한 세 가지 레버</div>
-  <div class="sub">2026년 영업이익률 +5.2%p 개선을 위한 우선순위와 실행 로드맵</div>
-  <div class="rule"></div>
-  <div class="meta">
-    <div class="item"><div class="l">PREPARED FOR</div><div class="v">경영위원회</div></div>
-    <div class="item"><div class="l">DATE</div><div class="v">2026.06</div></div>
-    <div class="item"><div class="l">AUTHOR</div><div class="v">전략기획실</div></div>
-  </div>
+<body data-layout="cover" data-screen-label="04-classic · cover">
+<div class="bar"></div>
+<div class="kicker">// STRATEGY REVIEW · FY26</div>
+<div class="title">HBM 사이클 정점에서<br>수익성을 잠그는 세 가지 선택</div>
+<div class="sub">2026년 영업이익률 +5.2%p 개선과 다음 다운사이클 대비를 위한 우선순위·실행 로드맵</div>
+<div class="rule"></div>
+<div class="meta">
+  <div class="item"><div class="l">PREPARED FOR</div><div class="v">경영위원회</div></div>
+  <div class="item"><div class="l">DATE</div><div class="v">2026.06</div></div>
+  <div class="item"><div class="l">AUTHOR</div><div class="v">전략기획실</div></div>
 </div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

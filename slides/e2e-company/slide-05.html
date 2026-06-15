@@ -6,87 +6,57 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
-  .slide { width: 1280px; height: 720px; padding: 52px 72px 44px; position: relative; display: flex; flex-direction: column; }
-  .head { margin-bottom: 30px; }
-  .kicker { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 9px; }
-  .title { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.16; letter-spacing: -0.01em; max-width: 1040px; }
-  .timeline { position: relative; flex: 1; min-height: 0; }
-  .track { position: absolute; top: 36px; left: 64px; right: 64px; height: 3px; background: var(--gray-4); }
-  .track .fill { position: absolute; left: 0; top: 0; height: 3px; width: 60%; background: var(--accent); }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; position: relative; }
-  .step { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
-  .marker { width: 72px; height: 72px; border-radius: 50%; background: var(--theme-bg); border: 3px solid var(--gray-3); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: var(--gray-3); position: relative; z-index: 2; }
-  .step.done .marker { border-color: var(--accent); background: var(--accent); color: #FFFFFF; }
-  .step.now .marker { border-color: var(--accent); color: var(--accent); }
-  .badge { margin-top: 16px; font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
-  .badge.muted { color: var(--gray-3); }
-  .step h3 { font-size: 19px; font-weight: 800; color: var(--primary); margin-top: 8px; line-height: 1.25; }
-  .step p { font-size: 14px; color: var(--gray-2); line-height: 1.5; margin-top: 10px; max-width: 215px; }
-  .step .kpi { margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--primary); background: var(--gray-4); border-radius: 20px; padding: 6px 14px; }
-  .source { position: absolute; bottom: 18px; left: 72px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 18px; right: 72px; font-size: 12px; font-weight: 600; color: var(--gray-3); }
+  .slide { width: 1280px; height: 720px; padding: 60px 72px 56px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 8px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 31px; font-weight: 800; color: var(--primary); line-height: 1.18; letter-spacing: -0.01em; max-width: 1080px; }
+  .timeline { margin-top: 56px; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; flex: 1; align-content: start; }
+  .line { position: absolute; top: 28px; left: 6%; right: 6%; height: 3px; background: var(--gray-3); z-index: 0; }
+  .step { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .marker { width: 56px; height: 56px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; margin-bottom: 18px; border: 4px solid var(--theme-bg); }
+  .step.now .marker { background: var(--accent); }
+  .badge { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 0.06em; margin-bottom: 8px; }
+  .sh { font-size: 18px; font-weight: 800; color: var(--primary); margin-bottom: 10px; line-height: 1.25; }
+  .sb { font-size: 13.5px; color: var(--gray-1); line-height: 1.5; max-width: 240px; }
+  .kpi { margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--primary); background: var(--gray-4); border-radius: 999px; padding: 6px 14px; }
 </style>
 </head>
 <body>
 <div class="slide">
-  <div class="head">
-    <div class="kicker">Execution Roadmap · FY26 H2 → FY27</div>
-    <div class="title">전사 전략 실행 로드맵 — 4단계로 본 모멘텀 고착화 경로</div>
-  </div>
+  <div class="bar"></div>
+  <div class="kicker">하반기 실행 로드맵</div>
+  <div class="title">4단계 실행 계획으로 연말 영업이익률 30% 달성</div>
   <div class="timeline">
-    <div class="track"><div class="fill"></div></div>
-    <div class="steps">
-      <div class="step done">
-        <div class="marker">1</div>
-        <div class="badge">FY26 Q3 · 완료</div>
-        <h3>기반 정비</h3>
-        <p>영업 조직 재배치와 운영 자동화 1차 구축을 완료한다.</p>
-        <div class="kpi">자동화 커버리지 60%</div>
-      </div>
-      <div class="step done">
-        <div class="marker">2</div>
-        <div class="badge">FY26 Q4 · 완료</div>
-        <h3>채널 확장</h3>
-        <p>상위 거점 B2B 채널을 가동하고 파트너망을 통합한다.</p>
-        <div class="kpi">신규 채널 매출 +18%</div>
-      </div>
-      <div class="step now">
-        <div class="marker">3</div>
-        <div class="badge">FY27 Q1 · 진행 중</div>
-        <h3>수익성 고도화</h3>
-        <p>원가 개선과 고정비 레버리지로 영업이익률 12%대에 안착한다.</p>
-        <div class="kpi">목표 OPM 12.5%</div>
-      </div>
-      <div class="step">
-        <div class="marker">4</div>
-        <div class="badge muted">FY27 Q2 · 예정</div>
-        <h3>글로벌 진입</h3>
-        <p>클라우드 해외 리전 1차 오픈으로 신규 성장 축을 확보한다.</p>
-        <div class="kpi">2개 리전 상용화</div>
-      </div>
+    <div class="line"></div>
+    <div class="step now">
+      <div class="marker">1</div>
+      <div class="badge">3분기 초</div>
+      <div class="sh">HBM4 라인 착수</div>
+      <div class="sb">평택 P4 증설 발주 및 핵심 장비 입고를 시작하고 초기 파일럿 물량을 확보합니다.</div>
+      <div class="kpi">투자 1.2B$ 집행</div>
+    </div>
+    <div class="step">
+      <div class="marker">2</div>
+      <div class="badge">3분기 말</div>
+      <div class="sh">파운드리 수율 안정화</div>
+      <div class="sb">3nm 공정 수율을 양산 목표선까지 끌어올려 신규 고객 인증을 완료합니다.</div>
+      <div class="kpi">수율 +6%p</div>
+    </div>
+    <div class="step">
+      <div class="marker">3</div>
+      <div class="badge">4분기 초</div>
+      <div class="sh">레거시 원가 절감</div>
+      <div class="sb">자동화 적용으로 구형 라인 단위 원가를 낮추고 운전자본 효율을 개선합니다.</div>
+      <div class="kpi">원가 -8%</div>
+    </div>
+    <div class="step">
+      <div class="marker">4</div>
+      <div class="badge">4분기 말</div>
+      <div class="sh">목표 달성·차년 준비</div>
+      <div class="sb">연간 가이던스를 상회 마감하고 FY2027 캐파·투자 계획을 확정합니다.</div>
+      <div class="kpi">영업이익률 30%</div>
     </div>
   </div>
-  <div class="source">Source: FY26 전사 전략 워크숍 · 실행 로드맵 (전략기획본부)</div>
-  <div class="page">05 / 05</div>
 </div>
-<style id="om-fit-scaler-style">
-  html { overflow:hidden !important; background:#0a0a0a; }
-</style>
-<script id="om-fit-scaler">
-(function(){
-  function fit(){
-    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
-    var b = document.body;
-    b.style.width='1280px'; b.style.height='720px';
-    b.style.position='absolute'; b.style.transformOrigin='top left';
-    b.style.left=((window.innerWidth-1280*s)/2)+'px';
-    b.style.top=((window.innerHeight-720*s)/2)+'px';
-    b.style.transform='scale('+s+')';
-  }
-  window.addEventListener('resize', fit, {passive:true});
-  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
-  fit();
-})();
-</script>
 </body>
 </html>

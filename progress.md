@@ -179,3 +179,12 @@ date: 2026-06-13
 - 마지막 결정: excel `metric_table.py` 생성(사용자 제공 코드 그대로, /d/projects/excel/fpna/templates/). design 개선 9건 = LICENSE만 생성, 나머지 8건 미적용.
 - 다음 의도: (1) excel `fpna/templates/__init__.py` _MODULES 에 metric_table 등록 + `py main.py selftest` 검증 (2) design 9건 = `handoff-improvements-20260613.md` 대로 §A embed-fonts/gen-report/test-fonts/CI-yml + §B convert-native 가드·package.json vr:test·thresholds.json·.aiignore 적용.
 - 동기화 필요: design push 완료(ad3ff36). LICENSE·handoff md·excel metric_table = 미커밋. HANDOFF 9건 전문 = 사용자 2026-06-13 14:07 메시지(다음 세션 재요청).
+
+## Phase D-design — 디자인-룰 충돌 sweet-spot (Tier1+2, 회귀0) `2026-06-15` `model: opus`
+> 사용자: "정탐 회귀·트레이드오프 0 + 디자인 의도 존중 + 실변환 테스트 필수". 변환기 능력 기준 3-tier 분류, A(Tier1+2) 채택.
+> ★핵심 분리축: 변환기가 실제 살리는 디자인을 막으면 FP(완화) / 변환기가 버리는 디자인을 막으면 정탐(유지=풀면 변환후 깨짐). 근거 = html2pptx.cjs 실능력 falsify(subagent a8dc4e8).
+- [x] T1-1 PF-19 폰트 동적스캔 — vendored woff2 스캔 + var(--font-*) resolve + CSS_VAR_FONTS.values() SSOT. ★falsify로 버그 발견·수정: 카멜분해 "JetBrainsMono"→"jet brains mono" 오차 → CSS 실제값 포함으로 해결. 재검증 PF-19 0
+- [x] T1-2 PF-39 div linear-gradient ERROR→WARN — 변환기 solid fallback 입증(COM 렌더 남색 단색, 패널 생존). 주석→selector 오인 cosmetic도 fix
+- [x] T2 대안권고 — PF-07(wrap div)·PF-55(parent div)·PF-42(rgba) 메시지 점검 결과 이미 충실 → 변경불요(over-eng 회피). embed-fonts 1-B도 정합으로 skip
+- [x] TEST 실변환 — slides/design-test/slide-1.html(vendored폰트+gradient+배지) → convert OK(font-guard·XML pass) → COM PNG. 변경前 PF-39 ERROR·PF-19 WARN → 변경後 둘다 통과/WARN. compare.png 전송
+- [x] REG 회귀게이트 — rule-audit PF 발화 diff 0(PF-19/39 외 정탐 불변). PF변경은 VP GT(VP-04/16)와 직교라 realmix GT 13/13 무영향

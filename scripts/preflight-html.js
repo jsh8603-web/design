@@ -474,11 +474,15 @@ function checkPF30(html, file) {
     if (size > titleSize) titleSize = size;
   }
 
-  // Find body text font sizes (p, div with text, li)
-  const bodyRe = /<(?:p|li)\b[^>]*style="[^"]*font-size\s*:\s*([\d.]+)\s*(pt|px)/gi;
+  // Find body text font sizes (p, li). 강조 숫자/지표값(metric-value 카드 대형숫자)은 본문 아닌 데이터
+  // 강조라 제외(2026-06-15 COM 직접판정, s3004/3011/3016 카드 숫자 232,000 등이 제목보다 커서 계층역전
+  // 오판 FP). 여는 태그 직후 텍스트가 숫자·통화·%·단위 위주 또는 짧으면(≤6자) 강조값으로 보고 skip.
+  const bodyRe = /<(?:p|li)\b[^>]*style="[^"]*font-size\s*:\s*([\d.]+)\s*(pt|px)[^"]*"[^>]*>([^<]*)/gi;
   while ((m = bodyRe.exec(html)) !== null) {
     let size = parseFloat(m[1]);
     if (m[2].toLowerCase() === 'px') size = size * 0.75;
+    const inner = (m[3] || '').replace(/&[a-z]+;/gi, '').trim();
+    if (/^[\d.,%+\-/$~()원조억만달러x\s]*$/i.test(inner) || inner.length <= 6) continue;
     if (size > bodyMaxSize) bodyMaxSize = size;
   }
 
@@ -1605,8 +1609,15 @@ async function runPlaywrightChecks(slidesDir, files) {
               issues.push({ type: 'lowres', scale: Math.max(scaleX, scaleY).toFixed(1), src: img.src.split('/').pop() });
             }
 
-            // Aspect ratio distortion: >5% difference between scale axes
-            if (Math.abs(scaleX - scaleY) / Math.max(scaleX, scaleY) > 0.05) {
+            // Aspect ratio distortion: >5% difference between scale axes.
+            // PF-21 FP 제거(2026-06-15 subagent COM 전수판정 TP 0/FP 13): object-fit cover/contain/
+            // scale-down 은 브라우저가 비율을 강제 보존(crop/letterbox)하므로 박스 AR≠원본 AR 이어도
+            // 렌더 픽셀 왜곡 0. distorted 검사는 fill/none/미지정일 때만 의미. (cover crop 을 왜곡으로 오판)
+            const objFit = getComputedStyle(img).objectFit;
+            const arPreserved = objFit === 'cover' || objFit === 'contain' || objFit === 'scale-down';
+            // fill 이어도 작은 썸네일/아이콘(<64px)은 stretch 왜곡이 시각적으로 인지 불가(s7006 32px 썸네일).
+            const tinyThumb = r.width < 64 || r.height < 64;
+            if (!arPreserved && !tinyThumb && Math.abs(scaleX - scaleY) / Math.max(scaleX, scaleY) > 0.05) {
               issues.push({ type: 'distorted', src: img.src.split('/').pop(), scaleX: scaleX.toFixed(2), scaleY: scaleY.toFixed(2) });
             }
 
@@ -2204,10 +2215,10 @@ function checkConsistency(allMetrics) {
     }
   }
 
-  // PF-24: Cross-slide background-text contrast consistency
-  // Improved: check if text has sufficient contrast with ANY background on the slide
-  // (body bg OR container div bg) to avoid false positives from table headers etc.
-  for (let i = 0; i < allMetrics.length; i++) {
+  // PF-24 비활성(2026-06-15 COM 직접판정, s8040 FAQ 흰글씨=주황 배지 위 정상, 흰on흰 0 = FP). cross-slide
+  // 정적 검사는 텍스트↔배경 매핑이 없어 "흰글씨 존재 + 흰배경 존재"를 흰on흰으로 오판한다. 실측 PF-71
+  // (--full ancestor 매핑 대비)이 정확히 대체 — PF-71 미발화인데 PF-24만 발화 = 정적 매핑부재 오판.
+  for (let i = 0; false && i < allMetrics.length; i++) {
     const m = allMetrics[i];
     if (m.bodyBgBrightness === null || m.textColors.length === 0) continue;
     const isDarkBg = m.bodyBgBrightness < 0.2;

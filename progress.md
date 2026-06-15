@@ -308,3 +308,9 @@ date: 2026-06-13
   - R4~: gantt/swot/heatmap/radar/waterfall/map/gauge/venn/team-grid/agenda/feature-spotlight/tier/checklist/comparison-slider 등에서 5종씩
 - **클린 카운터**: R3까지 매 회차 신규결함 발생(아직 0회 연속 클린). R 신규에러0 = 카운터+1, 에러발생 = 카운터 리셋. 2 도달 시 종료.
 - **누적 수정**(전역, 모든 회차 적용): VP-04/07/10/14/16 룰게이트 + `<small>`/loose-text/orphan-span/blockquote/중첩ul 변환기. R3 발견분(VP-07 칸반·VP-16 퍼널) 수정 예정.
+
+> [ckpt-202606170000:btn-design] **STATUS: R3(phase5) 결함 처리 + R4 진입. 클린카운터=0**
+- R3 결함 판정: 텍스트손실 변환기버그는 R2서 이미 수정(blockquote/중첩ul). R3 신규 = ① VP-07 칸반 WARN FP(advisory) ② VP-16 퍼널라벨 WARN FP(advisory) ③ rgba alpha-drop·span-bg·clip-path·inline-margin = 변환기 미지원 패턴을 디자인이 사용(spec에 "div/solid/padding 쓰라" 명시돼 있으나 teammate가 미준수→우회).
+- ⛔ **VP-07 칸반 colocated 수정 시도→revert**: containment 확장이 samsung 진짜 빈칸표 정탐 2→5 깨뜨림(회귀). WARN-level FP 위해 정탐 깰 수 없음 → 미수정(advisory 수용).
+- **전략**: R4 spec(complex-spec4.md)에 ★변환기 idiomatic 필수 체크리스트 6항 추가(배경=div만/solid hex만/인라인 margin금지/텍스트는 색div 자손/clip-path·pseudo는 실div/대비 COM기준) + advisory WARN(칸반·퍼널·clip-path)은 "워크어라운드 말고 note만". → R4부터 변환기 global_issue 급감 기대.
+- R4 새 5종: gantt/heatmap/gauge/waterfall/agenda × 8테마.

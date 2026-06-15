@@ -252,12 +252,16 @@ async function getBodyDimensions(page) {
 // Helper: Validate dimensions match presentation layout
 function validateDimensions(bodyDimensions, pres) {
   const errors = [];
-  const widthInches = bodyDimensions.width / PX_PER_IN;
-  const heightInches = bodyDimensions.height / PX_PER_IN;
 
   if (pres.presLayout) {
     const layoutWidth = pres.presLayout.width / EMU_PER_IN;
     const layoutHeight = pres.presLayout.height / EMU_PER_IN;
+
+    // 동적 정규화: HTML body 폭을 슬라이드 폭에 맞춰 dpi 환산(960px→96, 1280px→128).
+    // → width 는 항상 layout 폭에 일치, height(=비율)만 실질 검증. 디자인시스템 1280×720·960×540 둘 다 수용.
+    const pxPerIn = bodyDimensions.width / layoutWidth;
+    const widthInches = bodyDimensions.width / pxPerIn;
+    const heightInches = bodyDimensions.height / pxPerIn;
 
     if (Math.abs(layoutWidth - widthInches) > 0.1 || Math.abs(layoutHeight - heightInches) > 0.1) {
       errors.push(
@@ -271,7 +275,9 @@ function validateDimensions(bodyDimensions, pres) {
 
 function validateTextBoxPosition(slideData, bodyDimensions) {
   const errors = [];
-  const slideHeightInches = bodyDimensions.height / PX_PER_IN;
+  // 동적 정규화(LAYOUT_16x9 10" 폭 기준): body 폭으로 dpi 환산 — 960→96, 1280→128
+  const pxPerIn = bodyDimensions.width / 10;
+  const slideHeightInches = bodyDimensions.height / pxPerIn;
   const minBottomMargin = 0.5; // 0.5 inches from bottom
 
   for (const el of slideData.elements) {
@@ -708,8 +714,10 @@ function addElements(slideData, targetSlide, pres) {
 // Helper: Extract slide data from HTML page
 async function extractSlideData(page) {
   return await page.evaluate(() => {
-    const PT_PER_PX = 0.75;
-    const PX_PER_IN = 96;
+    // 동적 정규화: body 폭을 10"(LAYOUT_16x9) 슬라이드에 맞춤 — 960→96, 1280→128 dpi.
+    // 디자인시스템 표준 1280×720(=PowerPoint 기본 16:9) 지원. 폰트(PT_PER_PX)도 같은 dpi 기준이라 물리 크기 일정.
+    const PX_PER_IN = document.body.offsetWidth / 10;
+    const PT_PER_PX = 72 / PX_PER_IN;
 
     // Fonts that are single-weight and should not have bold applied
     // (applying bold causes PowerPoint to use faux bold which makes text wider)

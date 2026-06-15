@@ -79,12 +79,13 @@
   .temple .pillar li::marker { color:var(--accent); }
   .temple .foundation { background:var(--gray-4); padding:18px; text-align:center; font-weight:700; font-size:16px; color:var(--gray-1); }
 
-  /* scorecard */
-  .score { margin-top:30px; width:100%; border-collapse:collapse; }
-  .score th { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:14px; font-weight:700; text-align:left; padding:12px 16px; }
-  .score th.c, .score td.c { text-align:center; }
-  .score td { padding:13px 16px; font-size:15px; color:var(--gray-1); border-bottom:1px solid var(--gray-4); }
-  .score tr:nth-child(even) td { background:var(--gray-4); }
+  /* scorecard — CSS grid (PF-63, no table element) */
+  .score { margin-top:30px; width:100%; display:grid; grid-template-columns:1fr auto 1.6fr; align-items:center; }
+  .score .score-row { display:contents; }
+  .score .score-th { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:14px; font-weight:700; text-align:left; padding:12px 16px; box-sizing:border-box; }
+  .score .score-th.c, .score .score-cell.c { text-align:center; }
+  .score .score-cell { padding:13px 16px; font-size:15px; color:var(--gray-1); border-bottom:1px solid var(--gray-4); box-sizing:border-box; }
+  .score .score-row:nth-child(even) .score-cell { background:var(--gray-4); }
   .score .label { font-weight:700; }
   .score .note { color:var(--gray-2); font-size:13px; }
   .dots { display:inline-flex; gap:5px; }
@@ -149,10 +150,11 @@
   .dash-takeaways .t { display:flex; gap:12px; font-size:14px; color:var(--gray-1); line-height:1.4; }
   .dash-takeaways .tn { color:var(--accent); font-weight:700; flex-shrink:0; }
   .dash-split { display:grid; grid-template-columns:1.1fr 0.9fr; gap:24px; margin-top:30px; }
-  .dash-split table { width:100%; border-collapse:collapse; }
-  .dash-split th { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:13px; font-weight:700; text-align:left; padding:9px 12px; }
-  .dash-split td { padding:9px 12px; font-size:13px; color:var(--gray-1); border-bottom:1px solid var(--gray-4); }
-  .dash-split tr:nth-child(even) td { background:var(--gray-4); }
+  .dash-split .dgrid { width:100%; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; align-content:start; }
+  .dash-split .dg-row { display:contents; }
+  .dash-split .dg-th { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:13px; font-weight:700; text-align:left; padding:9px 12px; box-sizing:border-box; }
+  .dash-split .dg-cell { padding:9px 12px; font-size:13px; color:var(--gray-1); border-bottom:1px solid var(--gray-4); box-sizing:border-box; }
+  .dash-split .dg-row:nth-child(even) .dg-cell { background:var(--gray-4); }
   .dash-facts { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:18px; }
   .dash-facts .f { background:var(--surface-inverse); color:var(--surface-inverse-fg); padding:14px; text-align:center; }
   .dash-facts .fv { font-family:var(--font-display); font-weight:800; font-size:24px; }
@@ -269,16 +271,14 @@
     <div class="s-title kr">분기 KPI 스코어카드 — 5개 지표 중 3개 목표 충족</div>
     <div class="s-rule"></div>
     <div class="s-body">
-      <table class="score">
-        <thead><tr><th class="kr">평가 항목</th><th class="c kr">점수</th><th class="kr">비고</th></tr></thead>
-        <tbody>
-          <tr><td class="label kr">매출 성장</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></td><td class="note kr">목표 +12% 대비 +14.3% 초과 달성</td></tr>
-          <tr><td class="label kr">수익성</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></td><td class="note kr">영업이익률 −0.9%p, 원가 압박</td></tr>
-          <tr><td class="label kr">현금 효율</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></td><td class="note kr">FCF 전환율 84%, 양호</td></tr>
-          <tr><td class="label kr">고객 다변화</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></td><td class="note kr">상위 3사 집중도 58%, 개선 필요</td></tr>
-          <tr><td class="label kr">실행 진척</td><td class="c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></td><td class="note kr">하반기 과제 5건 중 4건 착수</td></tr>
-        </tbody>
-      </table>
+      <div class="score" role="table">
+        <div class="score-row" role="row"><div class="score-th kr">평가 항목</div><div class="score-th c kr">점수</div><div class="score-th kr">비고</div></div>
+        <div class="score-row" role="row"><div class="score-cell label kr">매출 성장</div><div class="score-cell c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div><div class="score-cell note kr">목표 +12% 대비 +14.3% 초과 달성</div></div>
+        <div class="score-row" role="row"><div class="score-cell label kr">수익성</div><div class="score-cell c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div><div class="score-cell note kr">영업이익률 −0.9%p, 원가 압박</div></div>
+        <div class="score-row" role="row"><div class="score-cell label kr">현금 효율</div><div class="score-cell c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="score-cell note kr">FCF 전환율 84%, 양호</div></div>
+        <div class="score-row" role="row"><div class="score-cell label kr">고객 다변화</div><div class="score-cell c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div><div class="score-cell note kr">상위 3사 집중도 58%, 개선 필요</div></div>
+        <div class="score-row" role="row"><div class="score-cell label kr">실행 진척</div><div class="score-cell c"><span class="dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div><div class="score-cell note kr">하반기 과제 5건 중 4건 착수</div></div>
+      </div>
     </div>
     <div class="s-bar kr"><span class="pre">시사점 —</span>수익성·고객 다변화 2개 지표가 개선 영역 — 하반기 집중 관리 대상</div>
     <div class="s-source kr">Source: 경영관리팀 KPI 평가, FY26.Q1</div>
@@ -412,15 +412,13 @@
     <div class="s-rule"></div>
     <div class="s-body">
       <div class="dash-split">
-        <table>
-          <thead><tr><th class="kr">사업부</th><th class="kr">매출</th><th class="kr">YoY</th><th class="kr">이익률</th></tr></thead>
-          <tbody>
-            <tr><td class="kr">메모리</td><td>820억</td><td>+18%</td><td>15.2%</td></tr>
-            <tr><td class="kr">시스템</td><td>240억</td><td>+9%</td><td>11.8%</td></tr>
-            <tr><td class="kr">파운드리</td><td>140억</td><td>+6%</td><td>8.4%</td></tr>
-            <tr><td class="kr">기타</td><td>60억</td><td>−2%</td><td>5.1%</td></tr>
-          </tbody>
-        </table>
+        <div class="dgrid" role="table">
+          <div class="dg-row" role="row"><div class="dg-th kr">사업부</div><div class="dg-th kr">매출</div><div class="dg-th kr">YoY</div><div class="dg-th kr">이익률</div></div>
+          <div class="dg-row" role="row"><div class="dg-cell kr">메모리</div><div class="dg-cell">820억</div><div class="dg-cell">+18%</div><div class="dg-cell">15.2%</div></div>
+          <div class="dg-row" role="row"><div class="dg-cell kr">시스템</div><div class="dg-cell">240억</div><div class="dg-cell">+9%</div><div class="dg-cell">11.8%</div></div>
+          <div class="dg-row" role="row"><div class="dg-cell kr">파운드리</div><div class="dg-cell">140억</div><div class="dg-cell">+6%</div><div class="dg-cell">8.4%</div></div>
+          <div class="dg-row" role="row"><div class="dg-cell kr">기타</div><div class="dg-cell">60억</div><div class="dg-cell">−2%</div><div class="dg-cell">5.1%</div></div>
+        </div>
         <div class="dash-chart" style="margin-top:0; height:100%;">
           <div class="cb" style="height:100%;"><span>820</span></div>
           <div class="cb acc" style="height:30%;"><span>240</span></div>

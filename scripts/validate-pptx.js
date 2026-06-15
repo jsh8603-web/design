@@ -155,7 +155,11 @@ function extractShapes(slideXml) {
     // Split at <p:txBody> to isolate shape properties
     const txBodyStart = inner.indexOf('<p:txBody');
     const spPrSection = txBodyStart >= 0 ? inner.slice(0, txBodyStart) : inner;
-    const spFill = spPrSection.match(/<a:solidFill>\s*<a:srgbClr\s+val="([0-9A-Fa-f]{6})"/i);
+    // VP-04 FP 제거: noFill+border(roundRect 투명 pill) 의 <a:ln><a:solidFill> 테두리색을
+    // shape fill 로 오인하면(s1 PRESENTATION/OUR PROJECT 배지 = #1A1A1A 테두리를 배경으로 읽어
+    // 검정글씨 1.2 phantom) 거짓 저대비. 테두리(ln)는 배경이 아니므로 fill 탐색 전 제거.
+    const spPrNoLn = spPrSection.replace(/<a:ln[ >][\s\S]*?<\/a:ln>/gi, '');
+    const spFill = spPrNoLn.match(/<a:solidFill>\s*<a:srgbClr\s+val="([0-9A-Fa-f]{6})"/i);
     if (spFill) {
       shape.fillColor = spFill[1].toUpperCase();
       // 반투명(rgba alpha) 파싱: PptxGenJS 가 HTML rgba(255,255,255,0.08) 류를 srgbClr+alpha 로 변환.
@@ -164,6 +168,14 @@ function extractShapes(slideXml) {
       const fillIdx = spPrSection.indexOf(spFill[0]);
       const alphaM = spPrSection.slice(fillIdx, fillIdx + 220).match(/<a:alpha\s+val="(\d+)"\s*\/>/);
       shape.fillAlpha = alphaM ? parseInt(alphaM[1], 10) / 100000 : 1;
+    }
+    // 테두리색 별도 파싱: noFill+border(투명 박스) 는 fillColor=null 이지만 시각적 박스 존재.
+    // VP-04(대비)는 fillColor(진짜 배경)만 보고, VP-07(그리드 셀)·셀 존재 판별은 테두리도
+    // 셀로 인정해야 정탐 유지(samsung s4 분기표 = noFill+border 셀). 두 관심사 분리용.
+    const lnM = spPrSection.match(/<a:ln[ >][\s\S]*?<\/a:ln>/i);
+    if (lnM) {
+      const lnFill = lnM[0].match(/<a:solidFill>\s*<a:srgbClr\s+val="([0-9A-Fa-f]{6})"/i);
+      if (lnFill) shape.borderColor = lnFill[1].toUpperCase();
     }
 
     // Text runs from <p:txBody>
@@ -581,7 +593,9 @@ function checkShapeGridEmptyCells(shapes, slideNum) {
   const hasColocatedText = (s) => shapes.some((o) => o !== s &&
     o.textRuns.length > 0 && o.textRuns.some((r) => r.text.trim()) &&
     Math.abs(o.x - s.x) < CELL_POS_TOL && Math.abs(o.y - s.y) < CELL_POS_TOL);
-  const filledShapes = shapes.filter((s) => s.w > 0 && s.fillColor && !hasOverlappingSibling(s, shapes,
+  // (fillColor || borderColor): noFill+border 셀도 그리드 셀로 인정 — line-158 ln-strip 이전의
+  // 원래 VP-07 거동(테두리색이 fillColor 로 잡히던 때) 정확 복원. VP-04 FP 해소와 직교.
+  const filledShapes = shapes.filter((s) => s.w > 0 && (s.fillColor || s.borderColor) && !hasOverlappingSibling(s, shapes,
     (o) => o.textRuns.length > 0 && o.textRuns.some(r => r.text.trim())) && !hasColocatedText(s));
   if (filledShapes.length < 6) return issues;
 
@@ -981,6 +995,18 @@ function checkGapConsistency(shapes, slideNum) {
     // 아이콘-라벨 쌍/그룹 배치(s149 타임라인 점-라벨 6pt + 항목간 54pt)다 = 쌍 내부 근접이 stdDev를
     // 부풀려 오발화. 작은 gap이 있으면 의도적 그룹핑으로 보고 제외. 균등 단일행은 발화 유지.
     if (gaps.some((g) => g >= 0 && g < 10 * EMU_PER_PT)) continue;
+    // VP-10 space-between 가드(이미지직접확인 2026-06-15 modern s2): 좌측 클러스터 + 우측 단독요소
+    // (헤더 페이지번호 "02" / 푸터 우측 항목)는 justify-content:space-between 의도 레이아웃 →
+    // 가장자리(첫/마지막) gap 하나만 압도적으로 크다. 그 끝 gap 이 나머지 gap 최대값의 3배+ 면
+    // 가장자리로 밀어낸 의도 배치로 보고 제외. 중간 큰 gap([6,217,6] 진짜 불일치)은 끝 아님 → 보존.
+    {
+      const maxGap = Math.max(...gaps);
+      const maxIdx = gaps.indexOf(maxGap);
+      if (maxIdx === 0 || maxIdx === gaps.length - 1) {
+        const restMax = Math.max(...gaps.filter((_, i) => i !== maxIdx));
+        if (maxGap > 3 * restMax) continue;
+      }
+    }
     const gapMean = gaps.reduce((a, b) => a + b, 0) / gaps.length;
     const gapStdDev = Math.sqrt(gaps.reduce((sum, g) => sum + (g - gapMean) ** 2, 0) / gaps.length);
 
@@ -1266,6 +1292,10 @@ function extractAllElementsOrdered(slideXml) {
       }
       const txBodyStart = inner.indexOf('<p:txBody');
       const spPrSection = txBodyStart >= 0 ? inner.slice(0, txBodyStart) : inner;
+      // ⛔ ln-strip 적용 금지: getElements 의 el.fillColor 는 VP-07(빈 그리드셀 표 누락데이터)
+      // 셀 grid 판별에 쓰인다. noFill+border 표 셀의 테두리색을 fill 로 잡는 현 동작이 VP-07
+      // 정탐(samsung s4 = 분기표 Q1~Q3·연간 빈칸)을 살린다. line-158(checkContrast)만 ln-strip
+      // 하면 VP-04 noFill 배지 FP 는 해소되고 VP-07 정탐은 보존된다. (2026-06-15 회귀검증)
       const spFill = spPrSection.match(/<a:solidFill>\s*<a:srgbClr\s+val="([0-9A-Fa-f]{6})"/i);
       if (spFill) el.fillColor = spFill[1].toUpperCase();
     }

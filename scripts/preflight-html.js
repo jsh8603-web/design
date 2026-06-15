@@ -150,16 +150,36 @@ function checkPF12(html, file) {
   return issues;
 }
 
+// parse an inline-style length (anchored so border-width / line-height / max-width don't false-match)
+function pf13Len(style, prop) {
+  const re = new RegExp('(?:^|[;\\s])' + prop + '\\s*:\\s*([0-9.]+)\\s*(px|pt|em|rem|%|in|cm|mm|vw|vh)?', 'i');
+  const mm = style.match(re);
+  if (!mm) return null;
+  return { val: parseFloat(mm[1]), unit: (mm[2] || 'px').toLowerCase() };
+}
+
 function checkPF13(html, file) {
   const issues = [];
-  // IL-25: border-radius: 50% + border combo (donut/circle chart trick)
+  // IL-25: border-radius: 50% + border combo (donut/circle chart trick).
+  // Verified by COM render (2026-06-15): a SQUARE element with border-radius:50% renders as a
+  // perfect circle in PPTX (roundRect adj clamps at 50% → square+50% = clean circle), so the
+  // designer's intent is fully preserved → NOT a defect. Only NON-SQUARE border-radius:50%
+  // renders as a pill/stadium (≠ intended ellipse) → real defect. Square cases (e.g. timeline
+  // dot markers) were the sole PF-13 GT and were a baked-in false positive.
   const styleRe = /style="([^"]*)"/gi;
   let m;
   while ((m = styleRe.exec(html)) !== null) {
     const style = m[1];
     if (/border-radius\s*:\s*50%/i.test(style) && /(?:^|;\s*)border\s*:/i.test(style)) {
+      const w = pf13Len(style, 'width');
+      const h = pf13Len(style, 'height');
+      if (w && h && w.unit === h.unit && h.val > 0) {
+        const ratio = w.val / h.val;
+        if (ratio >= 0.95 && ratio <= 1.05) continue; // square → clean circle, intent preserved
+      }
+      // non-square OR dimensions unverifiable → keep ERROR (conservative, recall-preserving)
       issues.push(fmtError(file, 'PF-13',
-        'border-radius:50% + border combo — renders as roundRect in PPTX, use PNG image instead [IL-25]'));
+        'non-square border-radius:50% + border — renders as pill/stadium in PPTX, not an ellipse; use PNG image [IL-25]'));
       return issues; // one per file
     }
   }

@@ -417,6 +417,33 @@ function addElements(slideData, targetSlide, pres) {
       if (el.shape.lineSpacing) {
         shapeOptions.lineSpacing = el.shape.lineSpacing;
       }
+      // No-fill (transparent) single-line shape text behaves like plain text but
+      // bypasses the text-path width correction (headroom at the text branch below).
+      // A box sized to Chrome's tight width wraps in PowerPoint when its font (e.g.
+      // Newsreader serif) renders wider than Chrome. Add the same width headroom so
+      // 1-line text stays 1 line. Safe because no fill = no visible box to distort,
+      // and PptxGenJS ignores `fit:'shrink'` for shape+text. Only single-line text
+      // (no explicit line break); filled shapes (cards/badges) keep fixed width.
+      const shapeText = typeof el.text === 'string'
+        ? el.text
+        : (Array.isArray(el.text) ? el.text.map(r => (r && r.text) || '').join('') : '');
+      // Single-line guard: `!includes('\n')` alone is insufficient — a long body
+      // paragraph wraps to several visual lines with no explicit break and would be
+      // mis-widened, overflowing into adjacent columns. Gate on box height being ≤ one
+      // text line so only genuinely 1-line text (mastheads, labels) gets the headroom.
+      const oneLineMaxH = (el.shape && el.shape.fontSize)
+        ? (el.shape.fontSize * 1.6 / 72)
+        : 0.45;
+      if (!el.shape.fill && shapeText.trim() && !shapeText.includes('\n') && el.position.h <= oneLineMaxH) {
+        const hasCJKshape = /[　-鿿가-힯豈-﫿]/.test(shapeText);
+        const mult = hasCJKshape ? 0.18 : 0.10;
+        const inc = Math.max(shapeOptions.w * mult, 10 / 72);
+        if (shapeOptions.align === 'center') shapeOptions.x -= inc / 2;
+        else if (shapeOptions.align === 'right') shapeOptions.x -= inc;
+        shapeOptions.w += inc;
+        const sc = clampToSlide(shapeOptions.x, shapeOptions.y, shapeOptions.w, shapeOptions.h);
+        shapeOptions.x = sc.x; shapeOptions.w = sc.w;
+      }
       targetSlide.addText(el.text || '', shapeOptions);
     } else if (el.type === 'list') {
       const listOptions = {

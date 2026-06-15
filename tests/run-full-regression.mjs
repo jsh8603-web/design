@@ -24,7 +24,11 @@ import { validatePptx } from '../scripts/validate-pptx.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..');
-const SLIDES_DIR = path.join(PROJECT_ROOT, 'slides');
+// REGRESSION_SLIDES_DIR lets the runner target an external GT corpus (e.g. slides-grab) without
+// hardcoding a machine path; falls back to the in-repo slides/ when unset.
+const SLIDES_DIR = process.env.REGRESSION_SLIDES_DIR
+  ? path.resolve(process.env.REGRESSION_SLIDES_DIR)
+  : path.join(PROJECT_ROOT, 'slides');
 const BASELINE_PATH = path.join(__dirname, 'detection-regression', 'full-baseline.json');
 
 // Presentations to always exclude (test directories)

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="04 Editorial Magazine — essay" subtitle="Drop cap · 3 cycles · asymmetric grid" viewport="960x540" --><html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:40px 85.33px; color:var(--primary); display:grid; grid-template-rows: auto 1fr; gap:14px; }
+  .head { display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--rule-soft, #D8D2C9); padding-bottom:24.89px; }
+  .head h2 { font-size:19.56px; font-weight:600; color:var(--accent); letter-spacing:0.16em; text-transform:uppercase; }
+  .head .pg { font-size:17.78px; color:var(--gray-2); font-family:'Newsreader', serif; font-style:italic; }
+  .body { display:grid; grid-template-columns: 1.2fr 1fr; gap:56.89px; }
+  .lead h1 { font-size:67.56px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.05; font-family:'Newsreader', serif; }
+  .lead h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .lead .drop {
+    font-size:24.89px; line-height:1.6; color:var(--gray-1); margin-top:32px; column-count:1; max-width:675.56px;
+  }
+  .lead .drop::first-letter {
+    font-family:'Newsreader', serif; font-size:96px; font-weight:500; color:var(--accent);
+    float:left; line-height:0.85; padding:10.67px 14.22px 0 0;
+  }
+  .lead .src { font-size:17.78px; color:var(--gray-2); margin-top:24.89px; font-style:italic; font-family:'Newsreader', serif; }
+  .stats { display:flex; flex-direction:column; gap:21.33px; }
+  .stat { border-top:1px solid var(--rule-soft, #D8D2C9); padding-top:17.78px; }
+  .stat:first-child { border-top:3.56px solid var(--primary); }
+  .stat .label { font-size:16px; color:var(--gray-2); letter-spacing:0.12em; text-transform:uppercase; font-weight:600; }
+  .stat .v { font-size:85.33px; font-weight:400; color:var(--accent); letter-spacing:-0.025em; line-height:1; margin-top:7.11px; font-family:'Newsreader', serif; }
+  .stat .v small { font-size:32px; color:var(--primary); }
+  .stat .cap { font-size:19.56px; color:var(--gray-1); line-height:1.45; margin-top:7.11px; max-width:426.67px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="kpi_dashboard" data-screen-label="04-editorial · kpi_dashboard"><div class="head">
+  <h2>Essay · Part II</h2>
+  <div class="pg">page <em>04</em></div>
+</div>
+<div class="body">
+  <div class="lead">
+    <h1 class="serif">Three <em>cycles,</em><br>one wave.</h1>
+    <div class="drop serif">2년 안에 HBM 시장이 세 배로 커진다는 단순한 문장은 — 자세히 보면 세 개의 사이클이 동시에 시작되었다는 신호다. 메모리, 컴퓨트, 그리고 전력. 한 자릿수 단위로 변동하던 시장이 동시에 두 자릿수로 움직이는 일은 한 세대에 한 번 일어난다.</div>
+    <div class="src">— from Section 2.1, "The shape of capital"</div>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="label">Cycle I · Memory</div>
+      <div class="v serif">3<small>×</small></div>
+      <div class="cap">2년 안에 HBM TAM이 230억$에서 670억$로 확장.</div>
+    </div>
+    <div class="stat">
+      <div class="label">Cycle II · Compute</div>
+      <div class="v serif">52<small>%</small></div>
+      <div class="cap">SK Hynix가 HBM3E 시장에서 차지하는 점유율 — 사실상 단독 공급.</div>
+    </div>
+    <div class="stat">
+      <div class="label">Cycle III · Power</div>
+      <div class="v serif">+44<small>%</small></div>
+      <div class="cap">'26 CapEx YoY — 팹과 전력 인프라 동시 확장.</div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

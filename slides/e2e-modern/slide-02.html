@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Slides" name="Slide — Two-column content" subtitle="SECTION tag · h2 · two columns · footer" viewport="960x540" -->
+<html lang="ko" data-theme="modern">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../design-system/colors_and_type.css">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 720px;
+      font-family: 'Pretendard', sans-serif;
+      background: #ffffff;
+      padding: 71.11px 85.33px;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body data-layout="data_table" data-screen-label="legacy · data_table">
+  <!-- 헤더 -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 56.89px;">
+    <div style="display: flex; align-items: center; gap: 21.33px;">
+      <div style="display: inline-block; padding: 7.11px 17.78px; background: #1a1a1a; color: #fff; border-radius: 7.11px; font-size: 14.22px; font-weight: 600;">SECTION 1</div>
+      <h2 style="font-size: 42.67px; font-weight: 600; color: #1a1a1a;">Main Topic</h2>
+    </div>
+    <p style="font-size: 17.78px; color: #999;">02</p>
+  </div>
+
+  <!-- 콘텐츠 영역 -->
+  <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 56.89px;">
+    <div>
+      <h3 style="font-size: 32px; font-weight: 600; color: #1a1a1a; margin-bottom: 28.44px;">Key Point One</h3>
+      <p style="font-size: 23.11px; color: #666; line-height: 1.7;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+      </p>
+    </div>
+    <div>
+      <h3 style="font-size: 32px; font-weight: 600; color: #1a1a1a; margin-bottom: 28.44px;">Key Point Two</h3>
+      <p style="font-size: 23.11px; color: #666; line-height: 1.7;">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+      </p>
+    </div>
+  </div>
+
+  <!-- 푸터 -->
+  <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 28.44px; border-top: 1px solid #eee;">
+    <p style="font-size: 16px; color: #999;">www.yourwebsite.com</p>
+    <p style="font-size: 16px; color: #999;">©2025 YOUR BRAND</p>
+  </div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body>
+</html>

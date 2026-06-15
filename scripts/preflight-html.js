@@ -178,6 +178,12 @@ function checkPF14(html, file) {
 }
 
 function checkPF15(html, file) {
+  // PF-15 비활성(2026-06-15 COM 직접판정, s3004 등 3xxx 10장 전수 FP). 정적 휴리스틱("3+컬럼 grid +
+  // CJK + >7.5pt = overflow 우려")이 컬럼 실폭·텍스트량을 못 봐 안 넘치는 카드도 발화. 실측 CJK
+  // overflow 는 PF-23(--full Playwright scrollWidth 초과)이 정확히 커버 → 정적 예측 폐기.
+  void html; void file;
+  return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   // IL-27: 3+ column CSS grid with CJK text > 7.5pt
   const gridRe = /style="([^"]*grid-template-columns\s*:[^"]*)"/gi;
@@ -1452,9 +1458,12 @@ async function runPlaywrightChecks(slidesDir, files) {
         await page.goto(fileUrl, { waitUntil: 'domcontentloaded', timeout: 10000 });
 
         // PF-03: overflow check
+        // tolerance 8px(=6pt, 2026-06-15 COM 직접판정): realmix 6xxx 덱 12장이 일관 4px(=3pt) 초과인데
+        // 표지/본문 시각 잘림 0 = 디자인시스템 미세 여백/border 오차(FP). 의미있는 잘림(s2015 28px=박스
+        // 하단 잘림)만 ERROR 유지하도록 8px 여유. 진짜 콘텐츠 잘림(정탐)은 보존.
         const overflow = await page.evaluate(() => {
           const body = document.body;
-          return body.scrollHeight > body.clientHeight;
+          return body.scrollHeight > body.clientHeight + 8;
         });
         if (overflow) {
           results.push(fmtError(file, 'PF-03',
@@ -1478,8 +1487,11 @@ async function runPlaywrightChecks(slidesDir, files) {
               const ownText = Array.from(el.childNodes).filter(n => n.nodeType === 3).map(n => n.textContent.trim()).join('');
               return { el, tag: el.tagName, left: r.left, top: r.top, right: r.right, bottom: r.bottom, area: r.width * r.height, ownText };
             })
-            // Filter to elements with their own text content (not just inherited)
-            .filter(r => r.ownText.length > 0 || ['IMG', 'DIV'].includes(r.tag));
+            // Filter to elements with their own text content (not just inherited) or images.
+            // PF-18 FP 제거(2026-06-15 COM 직접판정): ownText 없는 순수 컨테이너 DIV(차트 막대 트랙+fill
+            // 레이어, 배경 박스)는 의도된 시각 레이어인데 bbox 94% 겹침으로 오판(s5006 가로막대차트 전수
+            // FP). "text unreadable" 룰 취지상 글자 보유 요소 + 이미지만 겹침 대상 → ownText DIV/IMG 만.
+            .filter(r => r.ownText.length > 0 || r.tag === 'IMG');
 
           // Check pairwise overlaps (limit to first 50 elements for performance)
           const check = entries.slice(0, 50);
@@ -1658,10 +1670,15 @@ async function runPlaywrightChecks(slidesDir, files) {
             // PF-23 FP 제거: scrollWidth는 이미 줄바꿈/shrink-to-fit 결과를 반영한다.
             // 잘 맞는(감싸지는) 텍스트는 scrollWidth ≈ clientWidth이라 20% 보정이 무조건 5%를 넘겨
             // 항상 오발화한다. 실제 가로 오버플로(content가 box를 넘침)일 때만 판정한다.
-            const realOverflow = el.scrollWidth > r.width + 1;
+            // 추가 FP 제거(2026-06-15 subagent COM 전수판정 TP 0/FP 4): sub-pixel(s8012·8017 1줄 완전
+            // 표시) 과 장식 워터마크 글자(s8018 "6"·s8021 "7")가 20% 보정으로 과대추정 → +4px sub-pixel
+            // tolerance + 보정 임계 10% 완화. 거대 단일글자(폰트>box높이 40%)는 의도된 배경 글리프 skip.
+            const fs2 = parseFloat(getComputedStyle(el).fontSize) || 14;
+            if (text.length <= 2 && fs2 > r.height * 0.4) continue; // 장식 워터마크
+            const realOverflow = el.scrollWidth > r.width + 4;
             // Compare scrollWidth with clientWidth, applying 20% CJK correction
             const correctedWidth = el.scrollWidth * (1 + cjkRatio * 0.2);
-            if (realOverflow && correctedWidth > r.width * 1.05) { // 5% tolerance
+            if (realOverflow && correctedWidth > r.width * 1.10) { // 10% tolerance
               return {
                 found: true,
                 text: text.substring(0, 30),
@@ -1921,10 +1938,14 @@ async function runPlaywrightChecks(slidesDir, files) {
             if (!text || text.length < 2) continue;
             const cs = getComputedStyle(cell);
             if (cs.whiteSpace === 'pre-wrap' || cs.whiteSpace === 'pre-line') continue;
+            // PF-65 FP 제거(2026-06-15 subagent COM 전수판정 TP 0/FP 23): 세로축 회전 라벨(transform
+            // rotate / writing-mode vertical)은 표 셀이 아닌 차트 축 라벨 → 제외(s2016 "충격도→").
+            if (/rotate|matrix/.test(cs.transform) || /vertical/.test(cs.writingMode)) continue;
             const r = cell.getBoundingClientRect();
             if (r.width <= 0 || r.height <= 0) continue;
-            // Horizontal overflow (scrollWidth exceeds visible width)
-            if (cell.scrollWidth > cell.clientWidth + 2) {
+            // Horizontal overflow (scrollWidth exceeds visible width) — +4 sub-pixel tolerance
+            // (s8012·8017 1줄 완전표시인데 sub-pixel 로 오발화)
+            if (cell.scrollWidth > cell.clientWidth + 4) {
               issues.push({ text: text.substring(0, 30), tag: cell.tagName, type: 'scrollWidth' });
               continue;
             }
@@ -1961,7 +1982,11 @@ async function runPlaywrightChecks(slidesDir, files) {
               const d = getComputedStyle(c).display;
               return d === 'block' || d === 'flex' || d === 'grid' || d === 'inline-flex';
             });
-            if (actualLines >= 2 && text.length <= 12 && blockKids.length <= 1) {
+            // PF-65 FP 제거: 2줄 wrap 이어도 행 높이가 흡수해 실제 잘림(clip) 없으면 의도된 디자인이지
+            // 결함 아님(s1009·8005·8015 의도된 2줄 보조값 스택). 셀 자체가 세로로 잘릴 때만(scrollHeight
+            // 초과) ERROR. blockKids≤1 + 짧은 텍스트 조건 유지.
+            const cellClipped = cell.scrollHeight > cell.clientHeight + 4;
+            if (actualLines >= 2 && text.length <= 12 && blockKids.length <= 1 && cellClipped) {
               issues.push({ text: text.substring(0, 30), tag: cell.tagName, type: 'multiline' });
             }
           }
@@ -1988,19 +2013,34 @@ async function runPlaywrightChecks(slidesDir, files) {
             if (el.scrollHeight > el.clientHeight + 2) {
               const allText = (el.textContent || '').trim();
               if (!allText) continue;
-              // Find first clipped child element for diagnostic
-              let clippedText = '';
+              // PF-66 FP 제거(2026-06-15 subagent COM 전수판정 TP 2/FP 12): scrollHeight 단독은 디센더
+              // /box 패딩 미세오차(3~12px)와 장식 워터마크 글자를 진짜 잘림으로 오판. 진짜 정보손실은
+              // "실제 본문 텍스트 자식이 컨테이너 하단을 디센더 이상 넘어 잘릴 때"만 (s8004 ④값·s8017
+              // 콜아웃=TP). 잘린 본문 자식 없으면 skip.
+              let clippedText = '', clippedLen = 0, clippedVis = 1;
               const children = el.querySelectorAll('h1,h2,h3,h4,h5,h6,p,li,span,div');
               for (const child of children) {
+                const childTxt = (child.textContent || '').trim();
+                if (!childTxt) continue;
                 const cr = child.getBoundingClientRect();
-                if (cr.bottom > r.bottom + 1 && (child.textContent || '').trim()) {
-                  clippedText = (child.textContent || '').trim().substring(0, 30);
-                  break;
-                }
+                // 자식이 컨테이너 하단을 디센더 이상(>4px) 넘어 잘림
+                if (cr.bottom <= r.bottom + 4) continue;
+                // 장식 워터마크 skip: 짧은 글자(≤2자)가 컨테이너 높이의 40%+ 큰 폰트 = 의도된 배경 글리프
+                const cfs = parseFloat(getComputedStyle(child).fontSize) || 14;
+                if (childTxt.length <= 2 && cfs > r.height * 0.4) continue;
+                // 자식이 컨테이너 안에서 보이는 비율(낮을수록 실제로 많이 잘림). 디센더/행높이 미세오차는
+                // 자식이 거의 다 보이고(>0.65) 끝만 살짝 넘는다(s8034 셀·s8032). 진짜 잘림은 자식이 하단에
+                // 걸쳐 절반↓ 만 보인다(s8004 ④행·s8017 콜아웃).
+                const visRatio = (r.bottom - Math.max(cr.top, r.top)) / Math.max(1, cr.bottom - cr.top);
+                // 가장 긴(본문) 잘린 자식 선택 — ④ 번호 span 같은 짧은 자식이 본문을 가리지 않게
+                if (childTxt.length > clippedLen) { clippedLen = childTxt.length; clippedText = childTxt.substring(0, 30); clippedVis = visRatio; }
               }
+              // 잘린 본문이 충분히 길고(>4자) 실제로 많이 잘릴 때(보이는 비율 ≤0.65)만 TP. 짧은 셀 라벨·
+              // 행높이 디센더 오차(s8034·s8032)는 skip. s8004 ④값·s8017 콜아웃은 본문 길고 절반↓ 잘려 보존.
+              if (!clippedText || clippedLen <= 4 || clippedVis > 0.65) continue;
               issues.push({
                 clipped: Math.round(el.scrollHeight - el.clientHeight),
-                text: clippedText || allText.substring(allText.length - 30),
+                text: clippedText,
                 tag: el.tagName,
                 cls: (el.className || '').toString().substring(0, 20)
               });

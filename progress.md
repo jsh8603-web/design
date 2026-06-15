@@ -125,11 +125,33 @@ date: 2026-06-13
 - [x] D1 PF-70 91→0 (subagent 전수 FP·TP0, 디자인 이미지 클래스 면제 게이트). 커밋
 - [x] D2 PF-28/25 정적 게이트 (subagent 전수 FP) — PF-25 61→35(보조정보 제외), PF-28 84→61(표/숫자 제외). 잔존 = 정적 한계(요소역할·레이아웃 미인지)
   - 회귀 확인: checkPF25/PF28 독립 수정, 타 PF 룰 불변. 잔존은 정탐놓침방지 보수유지
-- [~] D2b PF-20(45, --full 룰) subagent 판정 중 → 게이트 예정
-- [ ] D3 잔여 PF (PF-36/19/29/60 등) + ★PF-25/28 잔존·PF-20 완전해소 = --full computed 실측 전환 필요(설계분기)
-- [ ] D4 VERIFICATION 박제 + 커밋
+- [x] D2b PF-20 45→0 (subagent COM 16장 전수FP, safe-margin≠잘림 비활성, PF-03 위임). 커밋
+- [x] D3 ★잔존 완전해소 + 소급 (COM 직접판정) — (a) PF-25/28 --full computed 전환 96→0(6장 직접, 짧은라벨/도형/표 제외+극소긴본문만+scrollHeight넘침만) (b) 소급 PF-66 34→3(TP s8004/s8017 보존)·PF-65 23→1·PF-23 4→1·PF-03 12→1·PF-18 2→1·PF-15 10→0·PF-27 3→0 (c) 잔존 분류: PF-71/60(accent 약한정탐)·변환호환7룰/PF-21(표준강제 유효). --full 384→207. 커밋 a666eec·b56580a·9f36dd7
+- [x] D4 VERIFICATION 박제(D2c·D3) + 커밋
+> ★잔여(다음): PF-71 99(VP-04 accent ④ 핸드오프 연동, 기준4 약한정탐 유지)·PF-21 13(이미지왜곡 표준, borderline 전수판정 미완)·1건씩 13개(개별). 사용자 accent FP 재정의 시 floor·PF-71·GT 재산정.
+> ★인계: [handoff-pf-truing-20260615.md](./handoff-pf-truing-20260615.md) — PF 정답화 현황+3 subagent COM 판정+잔존 --full computed 로드맵+소급대상
 
 ## Working Notes
+> [ckpt-202606150600:btn-design] **STATUS: 전체 규칙(PF 67+VP 16) 전수 검토 완료** ✅
+- 마지막 결정: 사용자 "전체 안본거 마저, VP도 팩트체크" → 3 subagent 병렬. ①PF 발화 미판정 18룰 COM(E): FP 7룰 비활성(PF-36 19발 최대노이즈 등, 전부 실측룰 PF-71/03/18/23 대체)+TP 3유지(PF-37/19/42)+권고/정책 8(PF-26 비활성, 나머지 사용자판단). PF 197→161. ②PF 미발화 43룰 코드리뷰(G): 버그0, 케이스부재 정상. ③VP 96 팩트체크(F): VP-04 80건 FP0(측정정확, TP9+약한정탐71 accent)·VP-16 ERROR 2건만 FP(s76 autofit 미반영, 메인 falsify확인)·GT recall 13/13·미발화 13룰 정상. 커밋 f3c5cf9·9509e5a.
+- VP-16 s76 FP 보강 완료: lineCount(명시 줄바꿈)≥2 AND 인접 겹침 없을 때만 줄당 폭 → s76 ERROR2 제거, GT 71/99(겹침=원래폭) 보존. 1차 무조건 lineDiv가 s99 제목 누락(recall 회귀) 발견→겹침조건 재설계. VP 96→95, recall 13/13.
+- 미해결(사용자 판단): ①PF 정책/권고(PF-29 alt·40 AI·31 중복제목·09/10/11/22 디자인)=FP 재정의 시 약화. ②VP-02/10 약한 과억제 잔여위험(폴리시드 덱 0발화 정상범위).
+- 전체 결론: PF 검출오류 FP 룰 384→161 전부 COM 게이트. VP 정답성 검증(FP0~2건). GT 13/13 보존. accent(PF-71 106·VP-04 약한정탐 71)=기준4 유지.
+> [ckpt-202606150500:btn-design] **STATUS: PF-clean⊇VP-clean 교차검증 + 대비갭 메움 (PF 197)** **STATUS: resolved (2026-06-15 ckpt-0600 흡수)**
+- 마지막 결정: 사용자 "PF로 생성한게 VP에 안걸리나" → PF 약화(384→190) 후 교차검증 미재실행 발견. realmix.pptx VP 실행(96=VP-04 80·VP-16 16) ↔ PF 교차. **갭 2종**: ①VP-04 색단위 구멍 1색(흰on주황 FFB347, s3014 번호배지 "3"/"4" 흰글씨를 PF-71이 length<2 skip) → PF-71 보강(장식 glyph만 제외, 번호 검사=VP-04 checkContrast 동일). PF-71 99→106. **색단위 재교차 VP-04 19색 전부 커버=구멍0 복원** ②VP-16 overflow는 변환기 도형 렌더차이(s5011 .step-box 48pt고정에 2줄 HTML정상→PPTX 29pt·3줄 넘침). HTML서 예측시 FP양산 → PF예방+VP실측 역할분담이 정답(갭 아님). 커밋 59f6d4c.
+- 검토 범위 정직: VP 16룰 완료·PF 발화 검출오류룰 COM 게이트 완료·VP-04↔PF-71 교차 구멍0. **미완**: 변환호환 표준룰(PF-36/19/29 등 코드사실 유효, 전수 COM 아님 분류만)·PF 미발화룰(realmix 0발화=대상없음)·VP-16↔PF overflow(변환특성, 역할분담).
+> [ckpt-202606150400:btn-design] **STATUS: PF 검출오류 FP 룰 COM 게이트화 (--full 384→190)** **STATUS: resolved (2026-06-15 ckpt-0500 흡수)**
+- 마지막 결정: "필요한거 다 해" 자율. D3b 추가 — PF-21(이미지왜곡) 13→0(subagent 전수 FP, object-fit 미반영 측정버그=cover/contain 비율보존인데 박스AR만 봄. objectFit AR보존 skip+썸네일<64px 면제)·PF-30(폰트계층) 3→0(카드 강조숫자 232,000을 본문 오인, 직후텍스트 숫자/단위/≤6자 제외)·PF-24(흰on흰 cross-slide) 1→0(s8040 흰글씨=주황배지 위, 정적 매핑부재 오판, 실측 PF-71 위임). 커밋 90ae383.
+- 잔존 190 = 전부 검출오류 아님: PF-71 99(accent 약한정탐 기준4, VP-04 accent ④ 핸드오프)·변환호환 표준강제(PF-36/19/29/41/42/40/37/35/22/64/45/47=코드사실 유효)·accent PF-60 4·TP보존(PF-66 3=s8004/8017·PF-03 1=s2015·PF-18/23/65 경계)·디자인권고 cross-slide(PF-09/10/11/31/26).
+- 다음(선택): PF-71 99 accent 처리는 사용자 FP 재정의 시 floor·PF-71·GT 재산정(기준4상 현재 유지 확정). 변환호환/디자인권고는 정책결정 사안(검출 정확, 죽이면 표준 상실).
+> [ckpt-202606150300:btn-design] **STATUS: PF 소급 재판정 (잘림/오버플로/겹침 COM 정밀화 384→207)** **STATUS: resolved (2026-06-15 ckpt-0400 흡수)**
+- 마지막 결정: 사용자 "대충말고 COM 이미지"+"PF 소급적용" 수행. ①PF-25/28 정적→--full Playwright computed 전환(checkPF25/28 빈반환, runPlaywrightChecks에 실측 게이트). PF-25=실측 font-size<7pt+긴본문≥20자+짧은라벨/svg/table/출처 제외(6장 COM 직접판정 8-9pt 전수 가독 FP), PF-28=실측 scrollHeight 세로넘침만(밀도≠결함). 96→0. ②소급 COM: PF-66 34→3(★subagent 전수판정 TP 2=s8004 ④4대보험값·s8017 콜아웃 진짜 정보손실, 메인 직접 재검증 확정. 게이트=잘린본문 실존+길이>4+보이는비율≤0.65+장식워터마크/디센더 skip)·PF-65 23→1·PF-23 4→1(tolerance+세로축라벨/행높이흡수 skip)·PF-03 12→1(8px tol, 4px 여백오차 FP, s2015 28px 보존)·PF-18 2→1(차트 트랙+fill 레이어 ownText DIV 제외)·PF-15/27 0(정적 wrap/overflow 예측 비활성, 실측 위임). 회귀0(GT 13/13·PF-clean⊇VP-clean 무영향).
+- 다음 의도: PF-71 99(VP-04 accent ④ 핸드오프, 기준4 약한정탐 유지 — 사용자 accent FP 재정의 시 floor·PF-71·GT 재산정)·PF-21 13(이미지 aspect 왜곡 표준, borderline 전수 COM 미완)·변환호환7룰(PF-36/19/29/41/42/40/30=코드사실 유효 유지)·1건씩 13개(개별 노이즈/TP). 추가 정밀화는 PF-21 전수판정 or accent 재정의 시.
+- 동기화 필요: preflight-html.js(checkPF25/28/15/27 빈반환+runPlaywrightChecks PF-25/28/66/65/23/18/03 게이트), VERIFICATION.md(D2c·D3 박제), pf-full13.json(현 207). long-mode on(500k). realmix 155장. 커밋 a666eec·b56580a·9f36dd7.
+> [ckpt-202606150100:btn-design] **STATUS: PF 정답화 진행중 (정적게이트 완료, 잔존+소급 = --full computed)**
+- 마지막 결정: 사용자 "대충말고 COM 이미지"+"PF 보던것도 소급적용". PF 정적게이트 PF-70 91→0 완전·PF-25 61→35·PF-28 84→61·PF-20 45→0(--full 569→384). 3 subagent PowerPoint COM 전수판정=전부 FP·TP0. 잔존(PF-25 35 inline 9pt·PF-28 61 본문카드)은 정적 정규식 한계 → --full computed 전환 필요.
+- 다음 의도: [handoff-pf-truing-20260615.md](./handoff-pf-truing-20260615.md) §5 — (a)PF-25/28 --full Playwright computed 전환(요소역할·넘침 실측) (b)이전검증 PF 소급 COM 재판정(PF-23/65/66/15/34/18) (c)D3 PF-36/19/29/60. 정탐 보존, COM 이미지 직접판정.
+- 동기화 필요: preflight-html.js(PF게이트 적용됨), VERIFICATION.md(D1/D2/D2b 박제), pf-full3.json(현 384), regr-img/(COM 렌더 다수). long-mode on2(750k). realmix 155장.
 > [ckpt-202606150000:btn-design] **STATUS: Phase C 완료 — VP 정답화 마무리 + PF교차검증**
 - 마지막 결정: 사용자 "vp정답화→pf렌더링하면 vp 안잡혀야 정상, 잡히면 pf구멍. 정탐회귀 절대금지, fp 최대0, 기준명시" + 자율주행 on2. **판정기준 SSOT 5항 plan 박제**(recall=1.0 절대/이미지직접/TP=WCAG미달·잘림/accent=약한정탐 유지/PF-clean=VP-clean). **성과**: VP 133→96(E2 W94), FP 37건 제거(phantom10·glyph4·출처10·반투명A8B8CC7·장식T1·autofit5, 전부 이미지직접판정), GT 13/13 recall=1.0 전구간, ★PF-clean⊇VP-clean(VP-04 발화색 전부 PF-71 커버=구멍0). 커밋 6개.
 - 다음 의도: 잔존 = (a)VP-16 비-GT 12건(autofit none, GT s71/99와 추정구조 동일 → 정탐회귀 위험 보수유지. 추가시 bodyPr tIns/bIns 파싱으로 padding 정밀화 여지) (b)VP-04 강조색 65건(기준4=WCAG미달 약한정탐 유지, GT가 REAL로 박음. 사용자가 FP로 재정의 원하면 floor·PF-71 동반조정+GT재산정 필요 — §4 미해결). PF 과민분(1B2A4A/FAFAF9/FFFFFF26=HTML단계 엄격경고, 변환후 무해).

@@ -174,6 +174,8 @@ function extractShapes(slideXml) {
       // 둘 다 PowerPoint 렌더 시 넘침/잘림 없음. none/noAutofit = 고정(잘림 가능). VP-16 판정에 사용.
       const bpr = txBody[1].match(/<a:bodyPr[^>]*>[\s\S]*?<\/a:bodyPr>|<a:bodyPr[^>]*\/>/);
       shape.autofit = bpr ? (/<a:spAutoFit/.test(bpr[0]) ? 'sp' : /<a:normAutofit/.test(bpr[0]) ? 'norm' : 'none') : 'none';
+      // VP-16: 명시 줄바꿈(단락 <a:p> + <a:br>) 줄수 — PowerPoint 가 명시 줄로 배치하므로 폭추정을 줄당으로.
+      shape.lineCount = ((txBody[1].match(/<a:p\b/g) || []).length) + ((txBody[1].match(/<a:br\b/g) || []).length) || 1;
       const runs = matchAll(txBody[1], '<a:r>([\\s\\S]*?)<\\/a:r>');
       for (const run of runs) {
         const runInner = run[1];
@@ -1380,7 +1382,15 @@ function checkCjkTextOverflow(shapes, slideNum) {
     // Note: VP-16 only runs when cjkRatio ≥ 0.2 (CJK-width rule); pure-Latin lines are out of scope.
     const spaceCount = (text.match(/\s/g) || []).length;
     const otherLatin = Math.max(0, latinCount - spaceCount);
-    const estimatedWidth = (cjkCount * fontEmu * 0.92) + (otherLatin * fontEmu * 0.5) + (spaceCount * fontEmu * 0.25);
+    // 명시 줄바꿈 반영(2026-06-15 VP 팩트체크 s76 FP): 다줄 텍스트(s76 "수산화리튬\n정제")는 PowerPoint 가
+    // 그 줄로 배치하므로 줄당 폭으로 추정. GT 71(작은막대)·99(긴제목)는 단일줄(lineCount 1)이라 영향 0 = 정탐 보존.
+    // 명시 다줄(lineCount≥2)이고 ★인접 텍스트 도형 겹침이 없을 때만 줄당 폭(s76 step-box "수산화리튬\n정제").
+    // 겹침(GT s99: 제목이 길어져 부제 "호르무즈해협" 침범)은 줄나눔 미적용=원래 폭 유지 → 정탐 보존.
+    const _sbForLine = s.y + s.h;
+    const _overlapForLine = shapes.some((o) => o !== s && o.textRuns.some((rr) => rr.text && rr.text.trim()) &&
+      o.y > s.y && o.y < _sbForLine && o.x < s.x + s.w && o.x + o.w > s.x);
+    const lineDiv = (s.lineCount >= 2 && !_overlapForLine) ? s.lineCount : 1;
+    const estimatedWidth = ((cjkCount * fontEmu * 0.92) + (otherLatin * fontEmu * 0.5) + (spaceCount * fontEmu * 0.25)) / lineDiv;
 
     // Compare with shape width (minus estimated padding ~5pt each side)
     const availableWidth = s.w - (10 * EMU_PER_PT);

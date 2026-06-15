@@ -1179,7 +1179,17 @@ async function extractSlideData(page) {
       }
 
       // Extract DIVs with backgrounds/borders as shapes
-      const isContainer = el.tagName === 'DIV' && !textTags.includes(el.tagName);
+      // orphan span 보강(2026-06-15, executive 발견): display:inline-flex/inline-block 등 자체 박스를 가진
+      // <span>(배지 "SECTION 1"·pill)이 block 형제(h2 등) 있는 컨테이너의 자식이면, 부모가 leaf-div 아니라
+      // parseInlineFormatting 에 안 잡혀 silent drop. 그런 span 만 shape 경로 허용(부모 block자식 보유 +
+      // 부모≠textTag = leaf-div/텍스트 경로가 이미 잡는 span 은 제외 → 이중 emit 방지).
+      let isOrphanSpan = false;
+      if (el.tagName === 'SPAN' && el.parentElement && !textTags.includes(el.parentElement.tagName)
+          && el.parentElement.querySelector(BLOCK_CHILD_SELECTOR) && el.textContent.trim()) {
+        const dsp = window.getComputedStyle(el).display;
+        isOrphanSpan = dsp !== 'inline' && /flex|block|grid/.test(dsp);
+      }
+      const isContainer = (el.tagName === 'DIV' || isOrphanSpan) && !textTags.includes(el.tagName);
       if (isContainer) {
         const computed = window.getComputedStyle(el);
         let hasBg = computed.backgroundColor && computed.backgroundColor !== 'rgba(0, 0, 0, 0)';

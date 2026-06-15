@@ -251,7 +251,15 @@ date: 2026-06-13
 - 사용자 "ㅇㅇ"(변환기 결함 고치기) → 1종씩 회귀게이트로 진행.
 - **① h3/p grid x-collapse = 재현 불가 → 수정 안 함**: 최소 재현 2종(grid+h3/p, align-items:center nested-flex) 둘 다 **정상 분리**(좌/우 컬럼 x 다름). 변환기가 grid/flex h3/p 정상 처리 = teammate 겹침은 긴CJK·타이트레이아웃 엣지케이스를 디자인 회피한 것이지 일반 변환기 결함 아님. ⛔근거 없는 blind fix 안 함(회귀위험).
 - **③ loose text-node drop = 재현 확정 → 수정 완료**: `html2pptx.cjs:1090` 순회가 element만 방문 → 컨테이너가 block 자식+형제 loose 텍스트노드 동시보유 시 loose 텍스트 silent drop(`<div class=l>날짜</div>2026.06` → "2026.06" 소실). fix: block 자식 있을 때만 직속 loose 텍스트노드를 Range로 위치잡아 text emit(leaf-div 경로와 배타=중복방지). **회귀게이트**: 재현본 "2026.06" 복원+중복0 / 8 e2e 재변환 ERROR=0 / GT 3덱 a:t 수 HEAD=FIXED 동일(255/208/506=무영향).
-- **② CJK width inflation(*0.25)·④ inline-flex/% = 미수정(별도)**: ②가 엣지케이스 겹침 실제 lever 의심이나 width 추정이 VP-16 등에 feed = recall 민감 → 회귀게이트 신중 필요. 박제만.
+- **② CJK width inflation·④ = 추가 조사 완료 (아래 ckpt-202606160030)**.
+
+> [ckpt-202606160030:btn-design] **STATUS: ✅변환기 결함 4종 전수 조사·정리 — 진짜 버그 2종(③④) 수정, ①② 버그아님**
+- 사용자 "필요한거 다해" → 변환기 4종 전수 재현·판정:
+- **① h3/p grid x-collapse = 버그 아님**: 재현 2종(grid·align-items:center flex) 모두 정상 분리. 변환기 정상.
+- **② CJK width inflation(*0.25) = 버그 아님**: `html2pptx.cjs:479-518` 의도된 wrap-방지 headroom. 박스만 넓히고 ink 중앙 유지 → 인접 박스 겹쳐도 **VP-14 ink-range가 흡수**(타이트 긴CJK 2컬럼 재현 = All checks passed, 박스도 실제 안 겹침). teammate workaround=구 VP-14 만족용.
+- **③ loose text-node drop = 수정 완료**(커밋 2b9f6be).
+- **④ orphan span drop = 재현 확정 → 수정 완료**: `<span display:inline-flex>` 배지(SECTION 1·pill)가 block 형제 있는 컨테이너 자식이면 shape 경로(`isContainer=DIV만`) 진입 못해 silent drop. fix: orphan span(자체박스+부모 block자식+부모≠textTag)만 shape 경로 허용(`html2pptx.cjs:1182`), leaf-div/textTag 내 span 제외=이중emit 방지. **회귀게이트**: 배지 복원+중복0 / 8 e2e ERROR=0 / GT 5덱 a:t 무변동(coupang +1="Coupang" = 실제 drop되던 텍스트 **복원**, 이중emit 아님, 새 ERROR 0).
+- **결론**: 변환기 결함 4종 중 진짜 버그는 ③④(텍스트 silent 손실)뿐 → 둘 다 수정. ①②는 재현으로 버그 아님 확인(blind fix 회피). consult-adoption-gate 작동 = teammate 보고 4건 중 2건만 진짜.
 
 > [ckpt-202606155000:btn-design] **STATUS: ✅Phase3 수정파이프라인 검증 = 8테마 fresh 재실행 전부 ERROR=0**
 - 지시: 고친 파이프라인(VP-04/07/10/14/16 + `<small>` 변환기)으로 8테마(editorial/modern/executive/academic/classic/dark-mono/company/dark-pitch) **처음부터 fresh 재생성** 5장씩 → 디자인스킬→PF→VP→COM.

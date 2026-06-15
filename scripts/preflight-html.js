@@ -354,6 +354,13 @@ function checkPF25(html, file) {
 }
 
 function checkPF27(html, file) {
+  // PF-27 비활성(2026-06-15 COM 직접판정, s2008 점유율막대·카드 전수 1줄 완전표시 FP, s8030 "1pt
+  // width"=flex/auto 측정오류). 정적 "좁은 컨테이너+CJK+nowrap없음=wrap 우려" 예측이 컨테이너 실제
+  // 텍스트 fit 을 못 봐 안 wrap 하는 배지도 발화 — PF-15 와 동일 정적 한계. 실측 wrap 은 PF-65(셀)·
+  // PF-23(CJK overflow, --full scrollWidth)이 정확히 커버 → 정적 예측 폐기.
+  void html; void file;
+  return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   // CJK badge/label nowrap check: elements with explicit small width + CJK text without nowrap
   // Pattern: style="...width: Xpt..." containing CJK text without white-space: nowrap

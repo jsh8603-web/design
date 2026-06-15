@@ -92,6 +92,22 @@
   --accent-cobalt:    #2563EB;  /* corporate                 */
   --accent-violet:    #6366F1;  /* strategy                  */
 
+  /* ── Legacy aliases — mck/slides 레퍼런스가 참조하는 구버전 토큰 (McKinsey 라이트 팔레트) ── */
+  --navy:             #051C2C;  /* deep navy — 제목/헤딩       */
+  --white:            #FFFFFF;
+  --black:            #1A1A1A;
+  --gray-50:          #F7F8FA;
+  --gray-200:         #E3E6EA;
+  --gray-400:         #A8B0BA;
+  --gray-500:         #6B7480;
+  --gray-600:         #4A5562;  /* 본문                       */
+  --gray-800:         #2A323C;  /* 강조 본문                  */
+  --gray-900:         #141A20;
+  --accent-red:       #C5394A;  /* down / negative           */
+  --accent-orange-bg: #FFF3E0;  /* orange 배지 배경           */
+  --status-amber:     #E8A317;
+  --shadow-preview:   0 4px 16px rgba(0, 0, 0, 0.10);
+
   /* ── Semantic foreground / background (slides) ─────────── */
   --bg:           var(--neutral-100);
   --bg-alt:       var(--neutral-0);

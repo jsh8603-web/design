@@ -314,3 +314,7 @@ date: 2026-06-13
 - ⛔ **VP-07 칸반 colocated 수정 시도→revert**: containment 확장이 samsung 진짜 빈칸표 정탐 2→5 깨뜨림(회귀). WARN-level FP 위해 정탐 깰 수 없음 → 미수정(advisory 수용).
 - **전략**: R4 spec(complex-spec4.md)에 ★변환기 idiomatic 필수 체크리스트 6항 추가(배경=div만/solid hex만/인라인 margin금지/텍스트는 색div 자손/clip-path·pseudo는 실div/대비 COM기준) + advisory WARN(칸반·퍼널·clip-path)은 "워크어라운드 말고 note만". → R4부터 변환기 global_issue 급감 기대.
 - R4 새 5종: gantt/heatmap/gauge/waterfall/agenda × 8테마.
+
+> [ckpt-202606170015:btn-design] **루프 게이트 보강 (사용자): 매 라운드 생성덱 전수 회귀 추가**
+- 매 라운드 수정 후 `tests/regress-generated.sh` 실행 = 이전 생성 e2e 덱 전부(e2e-*/e2e2-*/e2e3-*/e2e4-*) 현 파이프라인으로 재변환+VP → ERROR=0 유지 확인. 누적 생성덱 = 성장하는 회귀 corpus. 이번 라운드 룰/변환기 수정이 이전 라운드 덱 망가뜨리면 catch.
+- 라운드 게이트 = ①17 GT 덱 ERROR delta=0(recall) ②합성 positive(검출력) ③**생성덱 전수 ERROR=0(신규)** ④현 라운드 8테마 COM 검증.

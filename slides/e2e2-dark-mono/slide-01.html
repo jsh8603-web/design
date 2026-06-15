@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:64px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:14px; }
+h1 { font-size:38px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:34px; }
+h1 em { font-style:normal; color:var(--accent); }
+.cols { display:flex; gap:56px; flex:1; min-height:0; }
+.col { flex:1; min-width:0; }
+.col h2 { font-size:18px; font-weight:700; color:var(--accent); margin-bottom:10px; }
+.col .rule { height:1px; background:var(--gray-3); margin-bottom:18px; }
+ul, ol { list-style:disc; padding-left:24px; }
+li { font-size:16px; color:var(--gray-1); line-height:1.45; margin-bottom:11px; }
+li.sub { list-style:none; font-size:14px; color:var(--gray-2); margin-bottom:8px; margin-left:8px; }
+</style></head><body data-layout="two-column" data-screen-label="01-dark-mono · nested-list">
+  <div class="bar"></div>
+  <div class="kicker">// FY26 실행 로드맵 · 메모리사업부</div>
+  <h1>HBM 양산 전환은 <em>설비·수율·인력</em> 세 축을<br>동시에 끌어올려야 완성된다.</h1>
+  <div class="cols">
+    <div class="col">
+      <h2>설비 및 공정 준비</h2>
+      <div class="rule"></div>
+      <ul>
+        <li>2026 상반기 P4 라인 TSV 본딩 장비 12대 입고·셋업 완료</li>
+        <li class="sub">— EUV 노광 슬롯은 로직 라인과 분리 운용해 가동률 92% 확보</li>
+        <li class="sub">— 하이브리드 본딩 신규 장비는 파일럿 2대 선검증 후 확대</li>
+        <li>12단 적층 수율을 분기마다 6%p 끌어올려 연말 81% 목표</li>
+        <li class="sub">— 웨이퍼 휨(warpage) 제어용 캐리어 신규 설계 적용</li>
+        <li>후공정 패키징 외주 비중을 35%에서 18%로 축소</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2>고객 대응 및 인력</h2>
+      <div class="rule"></div>
+      <ol>
+        <li>주요 가속기 고객 3사와 2026~2028 장기 물량 계약 우선 체결</li>
+        <li class="sub">— 분기 단위 캐파 예약제로 변동성 흡수, 위약 조항 명문화</li>
+        <li class="sub">— 샘플 인증 리드타임을 14주에서 9주로 단축</li>
+        <li>공정 엔지니어 240명 신규 충원, 이 중 40%는 본딩 전문 트랙</li>
+        <li>협력사 합동 품질 태스크포스를 상시 조직으로 전환</li>
+        <li class="sub">— 불량 원인 공유 주기를 월간에서 주간으로 단축</li>
+      </ol>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

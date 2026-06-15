@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 64px 80px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+  .title { font-size: 38px; font-weight: 800; color: var(--primary); line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 36px; }
+  .cols { display: flex; gap: 56px; flex: 1; }
+  .col { flex: 1; display: flex; flex-direction: column; }
+  .col-head { font-size: 19px; font-weight: 800; color: var(--primary); padding-bottom: 12px; border-bottom: 3px solid var(--accent); margin-bottom: 20px; }
+  .list { display: flex; flex-direction: column; }
+  .l1 { font-size: 18px; font-weight: 700; color: var(--gray-1); line-height: 1.4; padding-left: 22px; position: relative; margin-bottom: 9px; }
+  .l1::before { content: ""; position: absolute; left: 0; top: 9px; width: 9px; height: 9px; background: var(--accent); border-radius: 2px; }
+  .l2 { font-size: 15px; font-weight: 500; color: var(--gray-2); line-height: 1.45; padding-left: 42px; position: relative; margin-bottom: 7px; }
+  .l2::before { content: ""; position: absolute; left: 24px; top: 9px; width: 7px; height: 2px; background: var(--gray-3); }
+  .l3 { font-size: 13px; font-weight: 500; color: var(--gray-2); line-height: 1.4; padding-left: 60px; position: relative; margin-bottom: 5px; }
+  .l3::before { content: "–"; position: absolute; left: 44px; top: -1px; color: var(--gray-3); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">FY2026 H2 Execution Plan</div>
+  <div class="title">하반기 우선순위, 공급망 안정화와<br>제품 믹스 고도화에 집중</div>
+  <div class="cols">
+    <div class="col">
+      <div class="col-head">공급망 안정화</div>
+      <div class="list">
+        <div class="l1">핵심 소재 이원화 조달 체계 구축으로 단일 협력사 의존도 완화</div>
+        <div class="l2">HBM 패키징 기판 대체 벤더 2개사 추가 인증 완료 후 양산 전환</div>
+        <div class="l2">리드타임 16주 → 9주 단축을 위한 안전재고 정책 재설계</div>
+        <div class="l3">주요 12개 품목 대상 분기별 수요예측 정확도 KPI 도입</div>
+        <div class="l3">물류 거점 동남아 1개소 신설로 지정학 리스크 분산</div>
+        <div class="l1">협력사 동반성장 프로그램으로 품질 변동성 구조적 개선</div>
+        <div class="l2">1차 협력사 35개사 대상 공정 표준화 컨설팅 및 설비 투자 지원</div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="col-head">제품 믹스 고도화</div>
+      <div class="list">
+        <div class="l1">고부가 HBM3E 비중 확대로 평균판매단가(ASP) 개선 견인</div>
+        <div class="l2">레거시 DDR4 라인 단계적 축소, 12나노급 전환 투자 가속</div>
+        <div class="l2">고객사 맞춤형 커스텀 다이 비중을 매출의 28%까지 상향</div>
+        <div class="l3">북미 하이퍼스케일러 3개사와 장기 공급계약 체결 추진</div>
+        <div class="l3">전장·온디바이스 AI용 저전력 라인업 신규 진입</div>
+        <div class="l1">파운드리 캐파 선점으로 AI 가속기 수요 대응력 확보</div>
+        <div class="l2">차세대 공정 노드 캐파 예약을 통한 선제적 물량 확보 전략</div>
+      </div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:34px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:30px; }
+h1 em { font-style:normal; color:var(--accent); }
+.cards { display:flex; gap:28px; flex:1; min-height:0; }
+.card { flex:1; min-width:0; background:var(--gray-4); border-radius:18px;
+  padding:28px 26px; display:flex; flex-direction:column; }
+.card.hot { background:#13314f; }
+.tier { display:inline-flex; align-self:flex-start; background:var(--gray-3);
+  color:var(--gray-1); font-size:12px; font-weight:700; letter-spacing:0.08em;
+  padding:6px 14px; border-radius:999px; margin-bottom:18px; }
+.card.hot .tier { background:var(--accent); color:#0F1419; }
+.price { display:flex; align-items:baseline; gap:6px; margin-bottom:6px; }
+.price .num { font-size:52px; font-weight:800; color:var(--heading); line-height:1; }
+.price small { font-size:16px; font-weight:500; color:var(--gray-2); }
+.note { font-size:13px; color:var(--gray-2); margin-bottom:20px; }
+.feat { list-style:none; flex:1; }
+.feat li { font-size:14px; color:var(--gray-1); line-height:1.4; margin-bottom:13px; }
+.cta { margin-top:18px; text-align:center; background:var(--gray-3); color:var(--gray-1);
+  font-size:14px; font-weight:700; padding:12px; border-radius:10px; }
+.card.hot .cta { background:var(--accent); color:#0F1419; }
+</style></head><body data-layout="pricing-cards" data-screen-label="03-dark-mono · pricing">
+  <div class="bar"></div>
+  <div class="kicker">// 캐파 예약 프로그램 · 2026 고객 등급</div>
+  <h1>공급 보장 수준은 <em>3개 약정 등급</em>으로 나뉜다.</h1>
+  <div class="cards">
+    <div class="card">
+      <div class="tier">STANDARD</div>
+      <div class="price"><span class="num">₩0</span><small>/ 선예약금</small></div>
+      <div class="note">스팟 물량 기반 · 분기 할당</div>
+      <ul class="feat">
+        <li>✓ 분기 단위 잔여 캐파 우선 배정</li>
+        <li>✓ 표준 리드타임 14주 적용</li>
+        <li>✓ 기본 신뢰성 리포트 제공</li>
+        <li>✓ 가격은 분기 스팟 시세 연동</li>
+      </ul>
+      <div class="cta">기본 배정 신청</div>
+    </div>
+    <div class="card hot">
+      <div class="tier">★ 추천 · PARTNER</div>
+      <div class="price"><span class="num">₩28억</span><small>/ 분기 약정</small></div>
+      <div class="note">장기 물량 보장 · 우선 인증 트랙</div>
+      <ul class="feat">
+        <li>✓ 2026~2028 캐파 라인 우선 확보</li>
+        <li>✓ 리드타임 9주로 단축 보장</li>
+        <li>✓ 전담 품질 태스크포스 배정</li>
+        <li>✓ 시세 변동 ±5% 가격 밴드 고정</li>
+        <li>✓ 신규 12단 제품 선출시 권한</li>
+      </ul>
+      <div class="cta">파트너 계약 체결</div>
+    </div>
+    <div class="card">
+      <div class="tier">ENTERPRISE</div>
+      <div class="price"><span class="num">별도</span><small>/ 협의</small></div>
+      <div class="note">전용 라인 · 맞춤 사양</div>
+      <ul class="feat">
+        <li>✓ 고객 전용 패키징 라인 분리 운영</li>
+        <li>✓ 맞춤 스택 구조·피치 공동 설계</li>
+        <li>✓ 임원급 분기 공급 리뷰 정례화</li>
+        <li>✓ 무상 핫라인 대응 24시간</li>
+      </ul>
+      <div class="cta">전담 영업 문의</div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

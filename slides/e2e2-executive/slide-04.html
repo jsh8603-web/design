@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:54px 64px;
+  display:flex; flex-direction:column;
+}
+.head { display:flex; align-items:center; gap:14px; font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); border-bottom:1.5px solid var(--primary); padding-bottom:16px; margin-bottom:42px; }
+.head .dot { color:var(--accent); }
+.head { justify-content:flex-start; }
+.head .spacer { flex:1; }
+.head .docid { font-family:'JetBrains Mono', monospace; color:var(--gray-3); letter-spacing:0.04em; }
+
+.quotes { display:flex; flex-direction:column; gap:40px; flex:1; justify-content:center; }
+.quote { display:grid; grid-template-columns:auto 1fr; gap:30px; align-items:start; }
+.mark { font-family:'Georgia', serif; font-size:96px; line-height:0.7; color:var(--accent); font-weight:700; padding-top:18px; }
+.q-body .bq { font-family:'Georgia', 'Times New Roman', serif; font-size:31px; font-style:italic; font-weight:400; color:var(--primary); line-height:1.4; letter-spacing:-0.01em; }
+.q-body .bq em { font-style:italic; color:var(--accent); font-weight:600; }
+.attr { display:flex; align-items:center; gap:16px; margin-top:22px; }
+.avatar { width:54px; height:54px; border-radius:50%; background:var(--gray-4); border:1.5px solid var(--border-soft); display:flex; align-items:center; justify-content:center; font-family:'Georgia', serif; font-size:22px; font-weight:700; color:var(--gray-2); }
+.avatar.navy { background:var(--accent); color:var(--surface-inverse-fg); border-color:var(--accent); }
+.attr .who .nm { font-family:'Pretendard', sans-serif; font-size:17px; font-weight:700; color:var(--primary); }
+.attr .who .ro { font-family:'Pretendard', sans-serif; font-size:14px; color:var(--gray-2); margin-top:2px; }
+.divider { height:1px; background:var(--border-soft); }
+</style></head><body data-layout="pull-quote" data-screen-label="04-executive · pull-quote">
+
+  <div class="head"><span class="dot">●</span><span>&nbsp;현장의 목소리</span><div class="spacer"></div><div class="docid">SGS-2026-07 / p.21</div></div>
+
+  <div class="quotes">
+    <div class="quote">
+      <div class="mark">“</div>
+      <div class="q-body">
+        <p class="bq">전력을 먼저 잡지 않으면 칩이 아무리 좋아도 <em>가동률은 종이 위 숫자</em>에 머문다. 부지 경쟁은 이미 전기로 끝났다.</p>
+        <div class="attr">
+          <div class="avatar navy">강</div>
+          <div class="who"><div class="nm">강민호</div><div class="ro">데이터센터 인프라 본부장 · 인프라전략실</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="quote">
+      <div class="mark">“</div>
+      <div class="q-body">
+        <p class="bq">냉각 표준을 내재화한 곳만 다음 세대 밀도를 감당한다. <em>capex가 아니라 시간</em>이 진짜 비용이다.</p>
+        <div class="attr">
+          <div class="avatar">L</div>
+          <div class="who"><div class="nm">Dr. Elena Park</div><div class="ro">Head of Thermal Systems · R&amp;D Center</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

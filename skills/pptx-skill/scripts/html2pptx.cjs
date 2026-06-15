@@ -1084,7 +1084,9 @@ async function extractSlideData(page) {
     // Process all elements
     const elements = [];
     const placeholders = [];
-    const textTags = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'UL', 'OL', 'LI'];
+    // BLOCKQUOTE 추가(2026-06-15, phase4 풀쿼트 발견): blockquote 가 textTags 에 없어 비-leaf div 도
+    // 아니면 텍스트 추출 경로를 못 타 인용 본문 silent drop. plain blockquote = 텍스트로 처리.
+    const textTags = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'UL', 'OL', 'LI', 'BLOCKQUOTE'];
     const processed = new Set();
 
     document.querySelectorAll('*').forEach((el) => {
@@ -1459,31 +1461,35 @@ async function extractSlideData(page) {
         const rect = el.getBoundingClientRect();
         if (rect.width === 0 || rect.height === 0) return;
 
-        const liElements = Array.from(el.querySelectorAll('li'));
         const items = [];
         const ulComputed = window.getComputedStyle(el);
         const ulPaddingLeftPt = pxToPoints(ulComputed.paddingLeft);
-
-        // Split: margin-left for bullet position, indent for text position
-        // margin-left + indent = ul padding-left
         const marginLeft = ulPaddingLeftPt * 0.5;
         const textIndent = ulPaddingLeftPt * 0.5;
 
-        liElements.forEach((li, idx) => {
-          const isLast = idx === liElements.length - 1;
-          const runs = parseInlineFormatting(li, { breakLine: false });
-          // Clean manual bullets from first run
-          if (runs.length > 0) {
-            runs[0].text = runs[0].text.replace(/^[•\-\*▪▸]\s*/, '');
-            runs[0].options.bullet = { indent: textIndent };
+        // 중첩 ul/ol 정밀화(2026-06-15, phase4 발견): 기존 querySelectorAll('li')=후손 li 전체 평탄수집 +
+        // 부모 li parseInlineFormatting 이 자식 ul 텍스트까지 흡수 = 중복, 게다가 중첩 ul 컨테이너 미-processed
+        // → DOM walk 재매칭 → 같은 li 재방출 = 100% 겹침 garbled(VP-14). fix: 직속 li(:scope>li)만 처리 +
+        // li 자체 텍스트(nested ul/ol 제외) + 깊이별 들여쓰기 재귀 + 중첩 ul/ol 도 processed 등록(재방출 차단).
+        const liOwnText = (liEl) => {
+          let t = '';
+          for (const n of liEl.childNodes) {
+            if (n.nodeType === 3) t += n.textContent;
+            else if (n.nodeType === 1 && n.tagName !== 'UL' && n.tagName !== 'OL') t += n.textContent;
           }
-          // Set breakLine on last run
-          if (runs.length > 0 && !isLast) {
-            runs[runs.length - 1].options.breakLine = true;
-          }
-          items.push(...runs);
-        });
+          return t.replace(/\s+/g, ' ').replace(/^[•\-\*▪▸]\s*/, '').trim();
+        };
+        const collectItems = (listEl, depth) => {
+          Array.from(listEl.querySelectorAll(':scope > li')).forEach((li) => {
+            const txt = liOwnText(li);
+            if (txt) items.push({ text: txt, options: { bullet: { indent: textIndent * (depth + 1) }, breakLine: true } });
+            Array.from(li.querySelectorAll(':scope > ul, :scope > ol')).forEach((sub) => collectItems(sub, depth + 1));
+          });
+        };
+        collectItems(el, 0);
+        if (items.length > 0) items[items.length - 1].options.breakLine = false;
 
+        const liElements = Array.from(el.querySelectorAll('li'));
         const computed = window.getComputedStyle(liElements[0] || el);
 
         // WCAG contrast check for list text
@@ -1514,6 +1520,8 @@ async function extractSlideData(page) {
         });
 
         liElements.forEach(li => processed.add(li));
+        // 중첩 ul/ol 컨테이너도 processed 등록 = DOM walk 재매칭 재방출(겹침) 차단.
+        el.querySelectorAll('ul, ol').forEach(n => processed.add(n));
         processed.add(el);
         return;
       }

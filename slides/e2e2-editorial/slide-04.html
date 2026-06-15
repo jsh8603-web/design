@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:56px 72px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  .glyph { font-size:96px; font-weight:500; color:var(--accent); line-height:1; padding-top:12px; }
+  .quote { font-size:44px; font-weight:500; color:var(--primary); line-height:1.22; letter-spacing:-0.015em; max-width:1000px; padding-top:8px; }
+  .quote em { font-style:italic; color:var(--accent); }
+  .attrib { display:flex; align-items:center; gap:18px; margin-top:32px; }
+  .avatar { width:60px; height:60px; border-radius:50%; background:var(--accent); color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:22px; font-weight:600; }
+  .who .name { font-size:19px; font-weight:600; color:var(--primary); }
+  .who .role { font-size:15px; color:var(--gray-2); padding-top:3px; }
+  .rule { height:1px; background:var(--rule-soft, #D8D2C9); margin:34px 0; }
+  .second .quote { font-size:24px; font-weight:400; color:var(--gray-1); line-height:1.45; max-width:1040px; }
+  .second .attrib { margin-top:20px; }
+  .avatar.sm { width:48px; height:48px; font-size:17px; }
+  .second .who .name { font-size:16px; }
+  .second .who .role { font-size:13px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="pull-quote" data-screen-label="e2e2-editorial · quote">
+<div class="kicker">고객 추천사 · 공급 파트너십</div>
+<div class="glyph serif">&ldquo;</div>
+<p class="quote serif">우리가 찾던 건 단순한 공급사가 아니라 <em>위기에도 캐파를 함께 지키는 파트너</em>였다. 그들은 약속한 물량을 단 한 분기도 어기지 않았다.</p>
+<div class="attrib">
+  <div class="avatar">K</div>
+  <div class="who">
+    <div class="name">김도현</div>
+    <div class="role">글로벌 가전사 · 부품구매 총괄 부사장</div>
+  </div>
+</div>
+<div class="rule"></div>
+<div class="second">
+  <p class="quote serif">기술 로드맵을 먼저 공유해준 덕분에 우리는 1년 앞선 설계 결정을 내릴 수 있었다.</p>
+  <div class="attrib">
+    <div class="avatar sm">P</div>
+    <div class="who">
+      <div class="name">박서연</div>
+      <div class="role">팹리스 스타트업 · CTO</div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

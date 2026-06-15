@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:52px 56px;
+  display:flex; flex-direction:column;
+}
+.head { display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1.5px solid var(--primary); padding-bottom:18px; margin-bottom:30px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:34px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.18; margin-top:8px; }
+h1 em { font-style:normal; color:var(--accent); }
+.docid { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--gray-3); }
+.cols { display:grid; grid-template-columns:1fr 1fr; gap:44px; flex:1; }
+.col-label { font-size:14px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); padding-bottom:10px; margin-bottom:16px; border-bottom:1px solid var(--border-soft); }
+ul, ol { list-style:none; }
+/* 중첩을 시각적으로 유지하되 nested <ul> 미사용 (변환기 중첩 ul 이중렌더 회피):
+   상위 항목 = 헤딩 행, 하위 = 단일 <ul> (들여쓰기). */
+.grp { margin-bottom:15px; }
+.grp .hd { font-size:18px; font-weight:700; color:var(--primary); line-height:1.3; }
+.grp .hd .mk { color:var(--accent); font-weight:700; }
+.grp .hd .mk.num { font-family:'JetBrains Mono', monospace; font-size:14px; }
+.sub { list-style:none; margin-top:5px; padding-left:20px; }
+.sub li { font-size:15px; font-weight:400; color:var(--gray-2); line-height:1.4; padding:3px 0 3px 16px; position:relative; }
+.sub li::before { content:"·"; position:absolute; left:4px; color:var(--gray-3); }
+</style></head><body data-layout="two-column" data-screen-label="01-executive · nested-list">
+
+  <div class="head">
+    <div>
+      <div class="eyebrow"><span class="dot">●</span> Strategy Memo · 전력 인프라</div>
+      <h1>전력 병목, <em>네 갈래</em>로 동시에 풀어야 한다</h1>
+    </div>
+    <div class="docid">SGS-2026-07 / p.02</div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <div class="col-label">구조적 제약 — 무엇이 막는가</div>
+      <div class="grp">
+        <div class="hd"><span class="mk">– </span>전력 공급 한계</div>
+        <ul class="sub">
+          <li>신규 변전 인입 평균 대기 4.2년, 권역별 편차 큼</li>
+          <li>재생에너지 PPA 단가 상승으로 원가 압박 가중</li>
+        </ul>
+      </div>
+      <div class="grp">
+        <div class="hd"><span class="mk">– </span>냉각·용수 인프라 부족</div>
+        <ul class="sub">
+          <li>액침냉각 전환 시 초기 capex 38% 증가 추정</li>
+          <li>용수 가용 권역이 부지 선정의 1차 필터로 부상</li>
+          <li>내륙 후보지 다수가 용수 규제로 탈락</li>
+        </ul>
+      </div>
+      <div class="grp">
+        <div class="hd"><span class="mk">– </span>부지 확보 경쟁</div>
+        <ul class="sub">
+          <li>수도권 인근 가용 부지 사실상 소진 단계</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-r">
+      <div class="col-label">실행 우선순위 — 어디부터</div>
+      <div class="grp olabel">
+        <div class="hd"><span class="mk num">01  </span>전력 우선 부지 선점</div>
+        <ul class="sub">
+          <li>변전 인입 확정 부지 2개 권역 우선 계약</li>
+          <li>장기 PPA로 단가 변동 헤지</li>
+        </ul>
+      </div>
+      <div class="grp olabel">
+        <div class="hd"><span class="mk num">02  </span>냉각 기술 표준화</div>
+        <ul class="sub">
+          <li>액침냉각 레퍼런스 라인 1개소 우선 구축</li>
+        </ul>
+      </div>
+      <div class="grp olabel">
+        <div class="hd"><span class="mk num">03  </span>밸류체인 수직 통합</div>
+        <ul class="sub">
+          <li>전력·냉각 협력사 지분 투자로 공급 안정화</li>
+        </ul>
+      </div>
+      <div class="grp olabel">
+        <div class="hd"><span class="mk num">04  </span>단계별 자본 배분</div>
+        <ul class="sub">
+          <li>1단계 검증 후 2단계 capex 게이트 적용</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

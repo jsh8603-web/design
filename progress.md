@@ -253,6 +253,14 @@ date: 2026-06-13
 - **③ loose text-node drop = 재현 확정 → 수정 완료**: `html2pptx.cjs:1090` 순회가 element만 방문 → 컨테이너가 block 자식+형제 loose 텍스트노드 동시보유 시 loose 텍스트 silent drop(`<div class=l>날짜</div>2026.06` → "2026.06" 소실). fix: block 자식 있을 때만 직속 loose 텍스트노드를 Range로 위치잡아 text emit(leaf-div 경로와 배타=중복방지). **회귀게이트**: 재현본 "2026.06" 복원+중복0 / 8 e2e 재변환 ERROR=0 / GT 3덱 a:t 수 HEAD=FIXED 동일(255/208/506=무영향).
 - **② CJK width inflation·④ = 추가 조사 완료 (아래 ckpt-202606160030)**.
 
+> [ckpt-202606161600:btn-design] **STATUS: ✅Phase4 새 복잡 5종(list/flow/pricing/quote/imagegrid) 5테마 + 새 결함 2종 수정**
+- 새 5종 5테마 teammate 병렬, 전부 생성·변환·COM 통과(이전 FP 미재출현, 방법준수=글로벌 직접수정0).
+- **새 변환기 결함 2종 수정**(5팀 교차확인, 회귀게이트):
+  - **blockquote 텍스트 silent drop**: textTags(html2pptx.cjs:1087) BLOCKQUOTE 누락→풀쿼트 본문 소실. fix=BLOCKQUOTE 추가. (active=html2pptx.cjs 확정, teammate grep한 scripts/html2pptx-local.cjs=미사용 사본)
+  - **중첩 ul/ol 이중방출+겹침**: UL핸들러가 querySelectorAll('li') 후손 평탄수집(중복)+중첩ul 미-processed→재방출 garbled. fix=`:scope>li`만+li자체텍스트+깊이 들여쓰기 재귀+중첩 ul/ol processed 등록.
+  - 회귀게이트: blockquote 보존+중첩 중복0 / 8 e2e ERROR=0 / GT 5덱 run·글자수 동일(손실0).
+- **미수정(별도)**: ⑤ pseudo-element(::before/after) 미렌더=근본한계(디자인은 실 div) ⑥ 오버레이 contrast FP(absolute 흰글씨를 페이지bg와 대비→FP, 실제 어두운 박스 위 가독). resolveBackground z-stack 필요=moderate, 박제만.
+
 > [ckpt-202606160030:btn-design] **STATUS: ✅변환기 결함 4종 전수 조사·정리 — 진짜 버그 2종(③④) 수정, ①② 버그아님**
 - 사용자 "필요한거 다해" → 변환기 4종 전수 재현·판정:
 - **① h3/p grid x-collapse = 버그 아님**: 재현 2종(grid·align-items:center flex) 모두 정상 분리. 변환기 정상.

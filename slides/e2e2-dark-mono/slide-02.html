@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:64px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:14px; }
+h1 { font-size:38px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:44px; }
+h1 em { font-style:normal; color:var(--accent); }
+.flow { display:flex; align-items:stretch; gap:0; }
+.step { flex:1; min-width:0; background:var(--gray-4); border-radius:14px;
+  padding:24px 20px; display:flex; flex-direction:column; }
+.step .n { font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.08em; margin-bottom:12px; }
+.step .t { font-size:19px; font-weight:700; color:var(--gray-1); line-height:1.25; margin-bottom:10px; }
+.step .d { font-size:13px; color:var(--gray-2); line-height:1.5; }
+.conn { width:48px; flex:0 0 48px; display:flex; align-items:center; justify-content:center;
+  position:relative; }
+.conn .line { width:48px; height:3px; background:var(--gray-3); }
+.conn .head { position:absolute; right:6px; color:var(--accent); font-size:22px; font-weight:700; line-height:1; }
+.lane { margin-top:40px; display:flex; align-items:center; gap:18px; }
+.lane .tag { font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent);
+  letter-spacing:0.08em; }
+.lane .track { flex:1; height:6px; background:var(--gray-4); border-radius:3px; position:relative; }
+.lane .fill { position:absolute; left:0; top:0; height:6px; width:62%; background:var(--accent); border-radius:3px; }
+.lane .pct { font-size:14px; color:var(--gray-1); font-weight:700; }
+</style></head><body data-layout="process-flow" data-screen-label="02-dark-mono · flow">
+  <div class="bar"></div>
+  <div class="kicker">// 설계 검증부터 양산 인증까지 5단계</div>
+  <h1>신규 HBM 패키지는 <em>5개 게이트</em>를 순차 통과해야 출하된다.</h1>
+  <div class="flow">
+    <div class="step"><div class="n">STEP 01</div><div class="t">설계 동결</div><div class="d">스택 구조·TSV 피치 확정, DFM 리뷰 클리어</div></div>
+    <div class="conn"><div class="line"></div><div class="head">›</div></div>
+    <div class="step"><div class="n">STEP 02</div><div class="t">시제 본딩</div><div class="d">파일럿 라인에서 12단 적층 시제품 50롯 생산</div></div>
+    <div class="conn"><div class="line"></div><div class="head">›</div></div>
+    <div class="step"><div class="n">STEP 03</div><div class="t">신뢰성 시험</div><div class="d">온도·습도·사이클 1000h 스트레스 통과 확인</div></div>
+    <div class="conn"><div class="line"></div><div class="head">›</div></div>
+    <div class="step"><div class="n">STEP 04</div><div class="t">고객 인증</div><div class="d">가속기 보드 실장 테스트 및 샘플 승인 획득</div></div>
+    <div class="conn"><div class="line"></div><div class="head">›</div></div>
+    <div class="step"><div class="n">STEP 05</div><div class="t">양산 램프</div><div class="d">수율 게이트 80% 돌파 시 풀 캐파 가동 개시</div></div>
+  </div>
+  <div class="lane"><div class="tag">현재 진척</div><div class="track"><div class="fill"></div></div><div class="pct">STEP 03 진행 · 62%</div></div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

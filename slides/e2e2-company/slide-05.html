@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 52px 64px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 32px; font-weight: 800; color: var(--primary); line-height: 1.12; margin-bottom: 28px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 22px; flex: 1; }
+  .cell { position: relative; border-radius: 12px; overflow: hidden; background: var(--gray-3); }
+  .cell.c1 { background: #2C3E50; }
+  .cell.c2 { background: #41566B; }
+  .cell.c3 { background: #34495E; }
+  .cell.c4 { background: #4A5C6E; }
+  .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; }
+  .overlay { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 20px; background: rgba(26,35,50,0.82); }
+  .overlay .cap-l { font-size: 12px; font-weight: 800; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .overlay .cap-t { font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">글로벌 생산 거점 현황</div>
+  <div class="title">4대 거점 체계로 권역별 수요에<br>탄력 대응하는 생산 네트워크</div>
+  <div class="grid">
+    <div class="cell c1">
+      <div class="ph">FAB · 평택</div>
+      <div class="overlay"><div class="cap-l">Korea HQ</div><div class="cap-t">평택 캠퍼스 — 최첨단 12나노 HBM 양산 주력 라인</div></div>
+    </div>
+    <div class="cell c2">
+      <div class="ph">FAB · 시안</div>
+      <div class="overlay"><div class="cap-l">China</div><div class="cap-t">시안 공장 — 낸드 플래시 메모리 대량 생산 거점</div></div>
+    </div>
+    <div class="cell c3">
+      <div class="ph">FAB · 텍사스</div>
+      <div class="overlay"><div class="cap-l">North America</div><div class="cap-t">테일러 신공장 — 북미 AI 가속기 고객 전용 캐파</div></div>
+    </div>
+    <div class="cell c4">
+      <div class="ph">PKG · 페낭</div>
+      <div class="overlay"><div class="cap-l">Southeast Asia</div><div class="cap-t">페낭 후공정 — 첨단 패키징 및 테스트 허브</div></div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

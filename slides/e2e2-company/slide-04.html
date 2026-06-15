@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 80px 96px; position: relative; display: flex; flex-direction: column; justify-content: center; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 40px; }
+  .qmark { font-family: Georgia, 'Times New Roman', serif; font-size: 120px; font-weight: 700; color: var(--accent); line-height: 0.5; height: 56px; }
+  .quote { font-family: Georgia, 'Times New Roman', serif; font-size: 46px; font-weight: 600; color: var(--primary); line-height: 1.32; letter-spacing: -0.01em; max-width: 1000px; margin-bottom: 44px; }
+  .attr { display: flex; align-items: center; gap: 20px; }
+  .avatar { width: 68px; height: 68px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; color: #fff; }
+  .who { display: flex; flex-direction: column; }
+  .who .name { font-size: 20px; font-weight: 800; color: var(--primary); }
+  .who .role { font-size: 15px; font-weight: 500; color: var(--gray-2); margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">고객 추천사 · Customer Voice</div>
+  <div class="qmark">&ldquo;</div>
+  <div class="quote">아틀라스의 HBM 솔루션 덕분에 차세대 AI 가속기의 메모리 대역폭 병목을 완전히 해소했습니다. 양산 전환 일정을 6개월이나 앞당길 수 있었던 결정적 파트너였습니다.</div>
+  <div class="attr">
+    <div class="avatar">J</div>
+    <div class="who">
+      <div class="name">정민서</div>
+      <div class="role">노바실리콘 · 최고기술책임자(CTO)</div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

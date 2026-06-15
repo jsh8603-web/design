@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:50px 56px;
+  display:flex; flex-direction:column;
+}
+.head { border-bottom:1.5px solid var(--primary); padding-bottom:16px; margin-bottom:34px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); margin-bottom:8px; }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:32px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.15; }
+h1 em { font-style:normal; color:var(--accent); }
+
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; flex:1; }
+.card { background:var(--theme-bg-card); border:1px solid var(--border-soft); padding:26px 24px 24px; display:flex; flex-direction:column; position:relative; }
+.card.reco { background:var(--surface-inverse); border-color:var(--surface-inverse); }
+.tier { display:inline-block; align-self:flex-start; width:auto; white-space:nowrap; padding:6px 16px; border-radius:14px; font-size:13px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; background:var(--gray-4); color:var(--gray-1); margin-bottom:18px; }
+.card.reco .tier { background:var(--accent-secondary); color:var(--surface-inverse-fg); }
+.reco-flag { position:absolute; top:-13px; right:20px; width:auto; white-space:nowrap; padding:6px 16px; background:var(--accent); color:var(--surface-inverse-fg); font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; border-radius:13px; }
+.price { display:flex; align-items:baseline; gap:4px; margin-bottom:6px; }
+.price .num { font-size:50px; font-weight:800; letter-spacing:-0.02em; color:var(--primary); line-height:1; }
+.card.reco .price .num { color:var(--surface-inverse-fg); }
+.price small { font-size:16px; font-weight:500; color:var(--gray-2); }
+.card.reco .price small { color:var(--gray-3); }
+.sub { font-size:13.5px; color:var(--gray-2); line-height:1.4; margin-bottom:18px; padding-bottom:16px; border-bottom:1px solid var(--border-soft); }
+.card.reco .sub { color:var(--gray-3); border-color:#333; }
+.feat { list-style:none; flex:1; }
+.feat li { font-size:14.5px; color:var(--gray-1); line-height:1.4; padding:7px 0 7px 24px; position:relative; }
+.card.reco .feat li { color:#E8E8E4; }
+.feat li::before { content:"✓"; position:absolute; left:0; color:var(--positive); font-weight:700; }
+.feat li.off { color:var(--gray-3); }
+.feat li.off::before { content:"–"; color:var(--gray-3); }
+.cta { margin-top:18px; display:block; text-align:center; padding:12px; border:1.5px solid var(--primary); border-radius:8px; font-size:15px; font-weight:700; color:var(--primary); }
+.card.reco .cta { background:var(--accent-secondary); border-color:var(--accent-secondary); color:var(--surface-inverse-fg); }
+</style></head><body data-layout="pricing-cards" data-screen-label="03-executive · pricing">
+
+  <div class="head">
+    <div class="eyebrow"><span class="dot">●</span> 투자 트랙 비교</div>
+    <h1>세 가지 진입 트랙, <em>전력 우선 트랙</em>을 권고한다</h1>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="tier" style="width:78px;text-align:center;">관망</div>
+      <div class="price"><span class="num">320</span><small>억 / 단계</small></div>
+      <div class="sub">기존 부지 임차 중심, 최소 capex로 시장 관찰</div>
+      <ul class="feat">
+        <li>임차형 코로케이션 진입</li>
+        <li>전력 인입 권리 미확보</li>
+        <li class="off">냉각 기술 내재화</li>
+        <li class="off">밸류체인 지분 투자</li>
+      </ul>
+      <span class="cta">리스크 최소</span>
+    </div>
+
+    <div class="card reco">
+      <div class="reco-flag" style="width:70px;text-align:center;">권고</div>
+      <div class="tier" style="width:110px;text-align:center;">전력 우선</div>
+      <div class="price"><span class="num">1,180</span><small>억 / 단계</small></div>
+      <div class="sub">변전 인입 확정 부지 선점 + 장기 PPA 동시 체결</div>
+      <ul class="feat">
+        <li>인입 확정 부지 2개 권역</li>
+        <li>장기 PPA 단가 헤지</li>
+        <li>액침냉각 레퍼런스 라인</li>
+        <li class="off">완전 수직 통합</li>
+      </ul>
+      <span class="cta">IRR 14% 추정</span>
+    </div>
+
+    <div class="card">
+      <div class="tier" style="width:110px;text-align:center;">전면 통합</div>
+      <div class="price"><span class="num">2,640</span><small>억 / 단계</small></div>
+      <div class="sub">전력·냉각·부지 전 구간 지분 투자로 공급 완전 내재화</div>
+      <ul class="feat">
+        <li>전력 인입 + 발전 지분</li>
+        <li>냉각 기술 자체 보유</li>
+        <li>협력사 경영권 확보</li>
+        <li>최장 회수 기간 8년+</li>
+      </ul>
+      <span class="cta">자본 부담 큼</span>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

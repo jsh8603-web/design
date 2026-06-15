@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:50px 56px;
+  display:flex; flex-direction:column;
+}
+.head { border-bottom:1.5px solid var(--primary); padding-bottom:16px; margin-bottom:28px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); margin-bottom:8px; }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:31px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.15; }
+h1 em { font-style:normal; color:var(--accent); }
+
+.grid { display:grid; grid-template-columns:1.4fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:18px; flex:1; }
+.cell { position:relative; overflow:hidden; border:1px solid var(--border-soft); }
+.cell.big { grid-row:1 / span 2; }
+.ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+.ph.d1 { background:#2A2E38; }
+.ph.d2 { background:#3A3127; }
+.ph.d3 { background:#243042; }
+.ph.l1 { background:var(--gray-4); }
+.ph .icon { font-size:40px; color:rgba(255,255,255,0.35); }
+.ph.l1 .icon { color:var(--gray-3); }
+
+/* overlay caption (on image, contrast-safe scrim) */
+.overlay { position:absolute; left:0; right:0; bottom:0; padding:18px 20px; }
+.overlay::before { content:""; position:absolute; inset:0; background:rgba(20,20,20,0.62); z-index:0; }
+.overlay .otag, .overlay .otxt { position:relative; z-index:1; }
+.overlay .otag { font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:700; letter-spacing:0.08em; color:var(--accent-secondary); text-transform:uppercase; }
+.overlay .otxt { font-size:18px; font-weight:700; color:#FFFFFF; line-height:1.25; margin-top:5px; }
+
+/* below caption (outside image) */
+.below { position:absolute; left:0; right:0; bottom:0; padding:10px 14px; background:var(--theme-bg-card); border-top:1px solid var(--border-soft); }
+.below .ctag { font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; color:var(--accent); letter-spacing:0.06em; }
+.below .ctxt { font-size:13.5px; font-weight:600; color:var(--primary); line-height:1.25; margin-top:2px; }
+</style></head><body data-layout="image-grid" data-screen-label="05-executive · image-grid">
+
+  <div class="head">
+    <div class="eyebrow"><span class="dot">●</span> 후보 권역 현장</div>
+    <h1>네 권역 모두 <em>전력·냉각·부지</em>가 동시에 걸린다</h1>
+  </div>
+
+  <div class="grid">
+    <div class="cell big">
+      <div class="ph d1"><span class="icon">▦</span></div>
+      <div class="overlay">
+        <div class="otag">권역 A · 수도권 남부</div>
+        <div class="otxt">변전 인입 확정, 용수 규제 협의 진행 중</div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="ph d2"><span class="icon">◧</span></div>
+      <div class="overlay">
+        <div class="otag">권역 B · 중부</div>
+        <div class="otxt">대기열 5.1년</div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="ph l1"><span class="icon">◩</span></div>
+      <div class="below">
+        <div class="ctag">권역 C · 동남권</div>
+        <div class="ctxt">냉각 용수 충분, 부지 단가 높음</div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="ph d3"><span class="icon">▤</span></div>
+      <div class="overlay">
+        <div class="otag">권역 D · 서해안</div>
+        <div class="otxt">재생에너지 PPA 유리</div>
+      </div>
+    </div>
+
+    <div class="cell">
+      <div class="ph l1"><span class="icon">▥</span></div>
+      <div class="below">
+        <div class="ctag">권역 E · 내륙</div>
+        <div class="ctxt">용수 규제로 후순위 재분류</div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

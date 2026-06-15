@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:72px 96px; position:relative;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:30px; }
+.qmark { font-family:'Newsreader', serif; font-size:120px; line-height:0.5; color:var(--accent);
+  height:56px; }
+.quote { font-family:'Newsreader','Pretendard', serif; font-size:46px; font-weight:500;
+  color:var(--heading); line-height:1.32; letter-spacing:-0.01em; max-width:1000px;
+  margin-top:18px; margin-bottom:44px; }
+.quote em { font-style:italic; color:var(--accent); }
+.attr { display:flex; align-items:center; gap:22px; }
+.avatar { width:72px; height:72px; border-radius:50%; background:var(--accent);
+  color:#0F1419; display:inline-flex; align-items:center; justify-content:center;
+  font-size:26px; font-weight:800; flex:0 0 72px; }
+.who .name { font-size:20px; font-weight:700; color:var(--gray-1); }
+.who .role { font-size:15px; color:var(--gray-2); margin-top:4px; }
+.who .l { font-family:'JetBrains Mono', monospace; }
+</style></head><body data-layout="pull-quote" data-screen-label="04-dark-mono · quote">
+  <div class="bar"></div>
+  <div class="kicker">// 2026 상반기 기술 리뷰 · 인용</div>
+  <div class="qmark">&ldquo;</div>
+  <p class="quote">먼저 라인을 세운 회사가 다음 3년의 점유율을 가져간다. 우리는 <em>수율 곡선</em>을 6개월 앞당겼고, 그 차이가 곧 협상 테이블의 가격이 된다.</p>
+  <div class="attr">
+    <div class="avatar">KS</div>
+    <div class="who">
+      <div class="name">김상현 · 메모리전략실장</div>
+      <div class="role"><span class="l">EVP</span> · Memory Strategy Office, 2026.06</div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

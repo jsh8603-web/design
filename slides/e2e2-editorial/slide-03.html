@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:48px 64px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  h1 { font-size:36px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:8px; }
+  h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px; margin-top:30px; flex:1; }
+  .card { background:var(--theme-bg-card); border:1px solid var(--rule-soft, #D8D2C9); padding:26px 24px; display:flex; flex-direction:column; }
+  .card.featured { background:var(--surface-inverse); border-color:var(--surface-inverse); }
+  .badge { display:inline-flex; align-self:flex-start; background:var(--gray-4); color:var(--gray-2); font-size:13px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:5px 12px; }
+  .card.featured .badge { background:var(--accent); color:#FFFFFF; }
+  .price { font-size:46px; font-weight:700; color:var(--primary); letter-spacing:-0.02em; padding-top:18px; line-height:1; }
+  .card.featured .price { color:var(--surface-inverse-fg); }
+  .price small { font-size:16px; font-weight:400; color:var(--gray-2); letter-spacing:0; }
+  .card.featured .price small { color:#C9C3BA; }
+  .feat { list-style:none; padding-top:18px; }
+  .feat li { font-size:14px; color:var(--gray-1); line-height:1.4; padding:7px 0 7px 22px; position:relative; }
+  .feat li::before { content:"\2713"; position:absolute; left:0; top:7px; color:var(--accent); font-weight:700; }
+  .card.featured .feat li { color:var(--surface-inverse-fg); }
+  .card.featured .feat li::before { color:var(--accent); }
+  .cta { margin-top:auto; display:flex; justify-content:center; padding:11px 0; border:1.5px solid var(--accent); color:var(--accent); font-size:14px; font-weight:700; letter-spacing:0.06em; }
+  .card.featured .cta { background:var(--accent); border-color:var(--accent); color:#FFFFFF; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="pricing-cards" data-screen-label="e2e2-editorial · pricing">
+<div class="kicker">파운드리 서비스 · 요금제</div>
+<h1 class="serif">수요 규모에 맞춘 <em>세 가지 약정</em></h1>
+<div class="cards">
+  <div class="card">
+    <div class="badge">Standard</div>
+    <div class="price">₩320<small> /웨이퍼</small></div>
+    <ul class="feat">
+      <li>28nm 공정 노드 기본 지원</li>
+      <li>표준 리드타임 12주</li>
+      <li>분기 단위 캐파 예약</li>
+      <li>기본 PDK 라이브러리 제공</li>
+    </ul>
+    <div class="cta">문의하기</div>
+  </div>
+  <div class="card featured">
+    <div class="badge">추천 · Pro</div>
+    <div class="price">₩540<small> /웨이퍼</small></div>
+    <ul class="feat">
+      <li>14nm FinFET 우선 캐파 배정</li>
+      <li>단축 리드타임 8주 보장</li>
+      <li>전담 PE 엔지니어 배정</li>
+      <li>월 단위 캐파 예약 + 가격 락인</li>
+    </ul>
+    <div class="cta">지금 계약</div>
+  </div>
+  <div class="card">
+    <div class="badge">Enterprise</div>
+    <div class="price">맞춤<small> /협의</small></div>
+    <ul class="feat">
+      <li>5nm 이하 첨단 노드 접근</li>
+      <li>전용 라인 옵션 협의 가능</li>
+      <li>공동 개발(NRE) 프로그램</li>
+      <li>임원급 분기 비즈니스 리뷰</li>
+    </ul>
+    <div class="cta">상담 신청</div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

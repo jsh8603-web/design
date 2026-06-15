@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:54px 56px;
+  display:flex; flex-direction:column;
+}
+.head { border-bottom:1.5px solid var(--primary); padding-bottom:18px; margin-bottom:46px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); margin-bottom:8px; }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:33px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.15; }
+h1 em { font-style:normal; color:var(--accent); }
+
+.flow { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:54px; }
+.node { width:178px; display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; }
+.node .circle { width:74px; height:74px; border-radius:50%; border:1.5px solid var(--primary); background:var(--theme-bg-card); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-size:24px; font-weight:700; color:var(--accent); margin-bottom:14px; }
+.node.on .circle { background:var(--accent); color:var(--surface-inverse-fg); border-color:var(--accent); }
+.node .nm { font-size:18px; font-weight:700; color:var(--primary); line-height:1.25; margin-bottom:6px; }
+.node .ds { font-size:13.5px; color:var(--gray-2); line-height:1.4; padding:0 4px; }
+.conn { flex:1; height:74px; display:flex; align-items:center; justify-content:center; position:relative; }
+.conn .line { width:100%; height:2px; background:var(--gray-3); position:relative; }
+.conn .line::after { content:"›"; position:absolute; right:-4px; top:50%; transform:translateY(-50%); color:var(--accent); font-size:26px; font-weight:700; line-height:0; }
+
+.zig { display:grid; grid-template-columns:repeat(3,1fr); gap:0 56px; }
+.step2 { display:flex; gap:16px; align-items:flex-start; padding:18px 20px; background:var(--theme-bg-card); border:1px solid var(--border-soft); border-left:4px solid var(--accent-secondary); }
+.step2 .tag { font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:700; color:var(--accent-secondary); padding-top:2px; }
+.step2 .bd .t { font-size:16.5px; font-weight:700; color:var(--primary); margin-bottom:5px; }
+.step2 .bd .d { font-size:13.5px; color:var(--gray-2); line-height:1.45; }
+.zig-label { grid-column:1 / -1; font-size:14px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+</style></head><body data-layout="process-flow" data-screen-label="02-executive · process-flow">
+
+  <div class="head">
+    <div class="eyebrow"><span class="dot">●</span> 부지 확보 프로세스</div>
+    <h1>부지 확정까지 <em>5단계</em>, 각 게이트를 통과해야 다음으로</h1>
+  </div>
+
+  <div class="flow">
+    <div class="node on"><div class="circle">01</div><div class="nm">권역 스크리닝</div><div class="ds">전력·용수 가용성 1차 필터</div></div>
+    <div class="conn"><div class="line"></div></div>
+    <div class="node"><div class="circle">02</div><div class="nm">변전 인입 확인</div><div class="ds">한전 협의 · 대기열 산정</div></div>
+    <div class="conn"><div class="line"></div></div>
+    <div class="node"><div class="circle">03</div><div class="nm">부지 실사</div><div class="ds">지반·인허가·민원 리스크</div></div>
+    <div class="conn"><div class="line"></div></div>
+    <div class="node"><div class="circle">04</div><div class="nm">capex 게이트</div><div class="ds">단계별 자본 승인</div></div>
+    <div class="conn"><div class="line"></div></div>
+    <div class="node on"><div class="circle">05</div><div class="nm">계약 체결</div><div class="ds">장기 PPA 동시 확정</div></div>
+  </div>
+
+  <div class="zig">
+    <div class="zig-label">각 게이트의 통과 기준</div>
+    <div class="step2"><span class="tag">G1·2</span><div class="bd"><div class="t">전력 인입 4년 이내</div><div class="d">대기열 4.2년 평균 초과 시 후순위 권역으로 재분류한다.</div></div></div>
+    <div class="step2"><span class="tag">G3</span><div class="bd"><div class="t">민원 리스크 등급 B 이상</div><div class="d">지자체 사전 협의 결과를 정량 스코어로 환산해 판정한다.</div></div></div>
+    <div class="step2"><span class="tag">G4·5</span><div class="bd"><div class="t">IRR 12% · PPA 동시</div><div class="d">자본 게이트와 전력 단가 헤지를 한 번에 승인한다.</div></div></div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

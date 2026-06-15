@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:56px 64px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  h1 { font-size:38px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:8px; }
+  h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .flow { display:flex; align-items:stretch; justify-content:space-between; margin-top:64px; }
+  .node { width:188px; background:var(--theme-bg-card); border:1px solid var(--rule-soft, #D8D2C9); border-top:3px solid var(--accent); padding:22px 18px; display:flex; flex-direction:column; }
+  .node .step { font-size:13px; font-weight:700; color:var(--accent); letter-spacing:0.1em; }
+  .node .title { font-size:18px; font-weight:600; color:var(--primary); line-height:1.25; padding-top:10px; }
+  .node .desc { font-size:13px; color:var(--gray-2); line-height:1.45; padding-top:10px; }
+  .conn { flex:1; align-self:flex-start; margin-top:36px; height:24px; display:flex; align-items:center; }
+  .conn .line { flex:1; height:2px; background:var(--rule-soft, #D8D2C9); }
+  .conn .arrow { font-size:22px; font-weight:700; color:var(--accent); line-height:1; padding-left:2px; }
+  .legend { margin-top:auto; font-size:14px; color:var(--gray-2); line-height:1.5; border-top:1px solid var(--rule-soft, #D8D2C9); padding-top:18px; }
+  .legend b { color:var(--accent); font-weight:600; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="process-flow" data-screen-label="e2e2-editorial · flow">
+<div class="kicker">신제품 출시 · 게이트 프로세스</div>
+<h1 class="serif">설계에서 양산까지 — <em>다섯 관문</em>을 통과한다</h1>
+<div class="flow">
+  <div class="node">
+    <div class="step">STEP 01</div>
+    <div class="title">개념 설계</div>
+    <div class="desc">시장 요구사항을 사양으로 변환하고 타깃 원가를 확정한다.</div>
+  </div>
+  <div class="conn"><div class="line"></div><div class="arrow">&#8250;</div></div>
+  <div class="node">
+    <div class="step">STEP 02</div>
+    <div class="title">시제품 검증</div>
+    <div class="desc">기능 샘플로 핵심 리스크를 조기에 노출시킨다.</div>
+  </div>
+  <div class="conn"><div class="line"></div><div class="arrow">&#8250;</div></div>
+  <div class="node">
+    <div class="step">STEP 03</div>
+    <div class="title">신뢰성 평가</div>
+    <div class="desc">가속 수명·환경 시험으로 품질 기준을 확인한다.</div>
+  </div>
+  <div class="conn"><div class="line"></div><div class="arrow">&#8250;</div></div>
+  <div class="node">
+    <div class="step">STEP 04</div>
+    <div class="title">파일럿 양산</div>
+    <div class="desc">소량 라인으로 수율과 공정 능력을 검증한다.</div>
+  </div>
+  <div class="conn"><div class="line"></div><div class="arrow">&#8250;</div></div>
+  <div class="node">
+    <div class="step">STEP 05</div>
+    <div class="title">대량 양산</div>
+    <div class="desc">풀 캐파로 전환하고 가동률을 안정화한다.</div>
+  </div>
+</div>
+<div class="legend">각 관문은 <b>Go / No-Go</b> 의사결정 지점이다 — 통과 실패 시 직전 단계로 되돌려 재설계한다.</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

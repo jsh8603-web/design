@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 56px 72px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.12; margin-bottom: 32px; }
+  .cards { display: flex; gap: 28px; flex: 1; align-items: stretch; }
+  .card { flex: 1; border: 1.5px solid var(--gray-4); border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; }
+  .card.reco { background: var(--primary); border-color: var(--primary); }
+  .badge { display: inline-flex; align-items: center; align-self: flex-start; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; background: var(--gray-4); color: var(--gray-1); margin-bottom: 18px; }
+  .card.reco .badge { background: var(--accent); color: #fff; }
+  .price { font-size: 46px; font-weight: 800; color: var(--primary); line-height: 1; margin-bottom: 6px; }
+  .card.reco .price { color: #fff; }
+  .price small { font-size: 17px; font-weight: 600; color: var(--gray-2); }
+  .card.reco .price small { color: var(--gray-3); }
+  .ptag { font-size: 13px; color: var(--gray-2); margin-bottom: 22px; }
+  .card.reco .ptag { color: var(--gray-3); }
+  ul.feat { list-style: none; flex: 1; }
+  ul.feat li { font-size: 14px; font-weight: 500; color: var(--gray-1); line-height: 1.4; padding-left: 26px; position: relative; margin-bottom: 13px; }
+  .card.reco ul.feat li { color: #fff; }
+  ul.feat li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--positive); font-weight: 800; font-size: 15px; }
+  .card.reco ul.feat li::before { color: var(--accent); }
+  .cta { display: inline-flex; align-items: center; justify-content: center; padding: 13px 0; border-radius: 10px; font-size: 15px; font-weight: 800; background: var(--gray-4); color: var(--primary); margin-top: 18px; }
+  .card.reco .cta { background: var(--accent); color: #fff; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">엔터프라이즈 라이선스 플랜</div>
+  <div class="title">반도체 설계 자동화 플랫폼, 3개 플랜으로<br>규모별 도입 비용 최적화</div>
+  <div class="cards">
+    <div class="card">
+      <div class="badge">STARTER</div>
+      <div class="price">₩290만<small> /월</small></div>
+      <div class="ptag">소규모 설계팀 (시트 10석)</div>
+      <ul class="feat">
+        <li>RTL 합성·검증 기본 워크플로우 제공</li>
+        <li>클라우드 시뮬레이션 월 500시간 포함</li>
+        <li>표준 IP 라이브러리 접근 권한</li>
+        <li>이메일 기술 지원 (영업일 24h)</li>
+      </ul>
+      <div class="cta">도입 문의</div>
+    </div>
+    <div class="card reco">
+      <div class="badge">추천 · PRO</div>
+      <div class="price">₩740만<small> /월</small></div>
+      <div class="ptag">중견 설계본부 (시트 40석)</div>
+      <ul class="feat">
+        <li>고급 타이밍 분석·전력 최적화 엔진 포함</li>
+        <li>클라우드 시뮬레이션 월 3,000시간 + 버스트</li>
+        <li>프리미엄 IP 및 커스텀 셀 라이브러리</li>
+        <li>전담 솔루션 아키텍트 배정</li>
+        <li>실시간 채팅 지원 (영업일 4h SLA)</li>
+      </ul>
+      <div class="cta">14일 무료 체험</div>
+    </div>
+    <div class="card">
+      <div class="badge">ENTERPRISE</div>
+      <div class="price">맞춤<small> 견적</small></div>
+      <div class="ptag">전사 도입 (무제한 시트)</div>
+      <ul class="feat">
+        <li>온프레미스·하이브리드 배포 옵션</li>
+        <li>전용 컴퓨팅 자원 및 무제한 시뮬레이션</li>
+        <li>고객사 전용 IP 보안 격리 환경</li>
+        <li>연중무휴 전담 지원 (1h Critical SLA)</li>
+      </ul>
+      <div class="cta">전담팀 연결</div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

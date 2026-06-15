@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:52px 64px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  h1 { font-size:38px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:8px; }
+  h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .rule { height:1px; background:var(--rule-soft, #D8D2C9); margin:20px 0 24px; }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:48px; flex:1; }
+  .col h2 { font-size:18px; font-weight:600; color:var(--accent); letter-spacing:0.06em; text-transform:uppercase; padding-bottom:12px; }
+  ul, ol { list-style:none; }
+  .lead { font-size:17px; font-weight:600; color:var(--primary); line-height:1.4; padding:10px 0 6px 22px; position:relative; }
+  .lead::before { content:""; position:absolute; left:2px; top:17px; width:8px; height:8px; background:var(--accent); }
+  .sub { padding:0 0 6px 22px; }
+  .sub li { font-size:14.5px; font-weight:400; color:var(--gray-2); line-height:1.45; padding:4px 0 4px 22px; position:relative; }
+  .sub.dash li::before { content:"–"; position:absolute; left:4px; top:4px; color:var(--gray-3); font-weight:600; }
+  .sub.num { counter-reset:sub; }
+  .sub.num li::before { counter-increment:sub; content:counter(sub) ")"; position:absolute; left:0; top:4px; color:var(--gray-3); font-weight:600; font-size:13px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="two-column-list" data-screen-label="e2e2-editorial · nested-list">
+<div class="kicker">HBM 로드맵 · 실행 어젠다</div>
+<h1 class="serif">두 갈래 과제 — <em>캐파와 수율</em>을 동시에 푼다</h1>
+<div class="rule"></div>
+<div class="cols">
+  <div class="col">
+    <h2>캐파 확장 트랙</h2>
+    <p class="lead">HBM3E 12-Hi 양산 라인을 2개 팹으로 이원화하여 단일 팹 리스크를 제거한다</p>
+    <ul class="sub dash">
+      <li>P3 라인은 4분기 풀가동 전환, 월 4만 장 목표 설정</li>
+      <li>후공정 TSV 본딩 장비를 선제 발주하여 리드타임 단축</li>
+    </ul>
+    <p class="lead">핵심 고객사와 장기 공급계약(LTA)을 체결해 가동률 변동성을 흡수한다</p>
+    <ol class="sub num">
+      <li>물량 락인 기반의 분기별 캐파 예약제 도입</li>
+      <li>가격 연동 조항으로 원가 상승분 일부 전가</li>
+    </ol>
+  </div>
+  <div class="col">
+    <h2>수율·품질 트랙</h2>
+    <p class="lead">다단 적층에서 누적되는 워피지(warpage)를 공정 단계마다 보정한다</p>
+    <ul class="sub dash">
+      <li>몰드 언더필 점도 최적화로 보이드 발생률 절감</li>
+      <li>인라인 검사 커버리지를 전수 검사 수준으로 확대</li>
+    </ul>
+    <p class="lead">불량 데이터를 실시간 피드백 루프로 묶어 학습 곡선을 가속한다</p>
+    <ol class="sub num">
+      <li>설비 센서 로그를 통합 데이터 레이크로 수집</li>
+      <li>이상 패턴 조기 경보 모델을 라인에 상시 적용</li>
+    </ol>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

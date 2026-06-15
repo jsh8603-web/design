@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:34px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:26px; }
+h1 em { font-style:normal; color:var(--accent); }
+.grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+  gap:22px; flex:1; min-height:0; }
+.cell { position:relative; border-radius:14px; overflow:hidden; background:var(--gray-4); min-width:0; }
+.cell .ph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--gray-2); letter-spacing:0.1em; }
+.cell.a { background:#243244; }
+.cell.b { background:#1c2c3e; }
+.cell.c { background:#2a3340; }
+.cell.d { background:#1f2b3a; }
+/* overlay caption — solid strip for contrast on image */
+.ov { position:absolute; left:0; bottom:0; right:0; background:#0F1419;
+  padding:14px 18px; }
+.ov .t { font-size:17px; font-weight:700; color:var(--gray-1); }
+.ov .s { font-size:12px; color:var(--accent); font-family:'JetBrains Mono', monospace;
+  letter-spacing:0.08em; margin-top:3px; }
+/* below-image caption */
+.below { position:absolute; left:18px; top:16px; }
+.below .num { font-size:30px; font-weight:800; color:var(--heading); line-height:1; }
+.below .lbl { font-size:13px; color:var(--gray-2); margin-top:6px; max-width:230px; line-height:1.4; }
+</style></head><body data-layout="image-grid" data-screen-label="05-dark-mono · imagegrid">
+  <div class="bar"></div>
+  <div class="kicker">// 양산 라인 현장 · 2026 1H 스냅샷</div>
+  <h1>P4 라인은 <em>4개 핵심 공정</em>이 동시에 가동되고 있다.</h1>
+  <div class="grid">
+    <div class="cell a">
+      <div class="ph">[ TSV BONDING ]</div>
+      <div class="ov"><div class="t">TSV 본딩 셀</div><div class="s">12대 가동 · 가동률 92%</div></div>
+    </div>
+    <div class="cell b">
+      <div class="ph">[ STACK INSPECTION ]</div>
+      <div class="below"><div class="num">81%</div><div class="lbl">12단 적층 수율, 연말 목표 대비 진척</div></div>
+    </div>
+    <div class="cell c">
+      <div class="ph">[ RELIABILITY LAB ]</div>
+      <div class="ov"><div class="t">신뢰성 시험실</div><div class="s">1000h 스트레스 챔버</div></div>
+    </div>
+    <div class="cell d">
+      <div class="ph">[ PACKAGING ]</div>
+      <div class="below"><div class="num">18%</div><div class="lbl">외주 패키징 비중, 35%에서 축소</div></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

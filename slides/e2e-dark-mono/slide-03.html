@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Content" name="03 Dark Mono — option matrix" subtitle="dark monotone · 2x2 assessment grid · highlight cell" viewport="960x540" --><html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:64px 80px; position:relative;
+}
+.kicker {
+  font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent);
+  letter-spacing:0.1em; margin-bottom:16px;
+}
+.title { font-size:32px; font-weight:700; color:var(--heading); line-height:1.2; margin-bottom:40px; max-width:1040px; }
+.grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:22px; height:440px; }
+.cell { background:var(--surface-inverse); border-radius:10px; padding:26px 28px; position:relative; }
+.cell.hl { border:2px solid var(--accent); }
+.cell .tag {
+  font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700;
+  color:var(--gray-2); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;
+}
+.cell .name { font-size:26px; font-weight:700; color:var(--gray-1); line-height:1.15; }
+.cell.hl .name { color:var(--accent); }
+.cell .star { font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--accent); margin-bottom:8px; }
+.cell .meta { margin-top:14px; font-size:14px; color:var(--gray-2); line-height:1.5; }
+.source { position:absolute; bottom:32px; left:80px; font-size:12px; color:var(--gray-2); }
+.page { position:absolute; bottom:32px; right:80px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gray-2); }
+</style></head><body data-layout="matrix-2x2" data-screen-label="03-dark-mono · matrix">
+  <div class="kicker">// OPTION ASSESSMENT</div>
+  <div class="title">4개 경로 중 자체 스택만 우상단 점유 — 임팩트·실행난이도 매트릭스</div>
+  <div class="grid">
+    <div class="cell">
+      <div class="tag">고임팩트 · 고난이도</div>
+      <div class="name">전용 칩 자체 설계</div>
+      <div class="meta">3년+ 개발 사이클 · 초기 CapEx 과중 · 불확실성 높음</div>
+    </div>
+    <div class="cell hl">
+      <div class="star">★ 추천</div>
+      <div class="name">자체 추론 스택 확장</div>
+      <div class="meta">3개년 누적 마진 +4.8%p · 회수 11개월 · CapEx ₩180억</div>
+    </div>
+    <div class="cell">
+      <div class="tag">저임팩트 · 고난이도</div>
+      <div class="name">멀티클라우드 분산 (보류)</div>
+      <div class="meta">운영 복잡도 대비 단가 절감 불충분</div>
+    </div>
+    <div class="cell">
+      <div class="tag">저임팩트 · 저난이도</div>
+      <div class="name">예약 인스턴스 약정 (병행)</div>
+      <div class="meta">단기 헤지용 · 주력 아님</div>
+    </div>
+  </div>
+  <div class="source">Source: 플랫폼전략팀 옵션 평가 모델, FY26.Q1 · 외부 자문 검증</div>
+  <div class="page">03 / 03</div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

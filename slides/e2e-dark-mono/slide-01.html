@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="01 Dark Mono — cover" subtitle="dark monotone · cold cyan accent · cover" viewport="960x540" --><html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:80px; position:relative;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker {
+  font-family:'JetBrains Mono', monospace; font-size:16px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:28px;
+}
+h1 {
+  font-size:80px; font-weight:700; color:var(--heading);
+  line-height:1.08; letter-spacing:-0.02em;
+}
+h1 em { font-style:normal; color:var(--accent); }
+.dek { margin-top:32px; font-size:23px; color:var(--gray-2); line-height:1.45; max-width:840px; }
+.meta { position:absolute; bottom:80px; left:80px; display:flex; gap:64px; }
+.meta .item { font-size:16px; color:var(--gray-1); }
+.meta .l {
+  font-family:'JetBrains Mono', monospace; color:var(--accent);
+  font-size:12px; letter-spacing:0.08em; margin-bottom:6px;
+}
+.dot { position:absolute; bottom:88px; right:80px; width:56px; height:56px;
+  border:1px solid var(--gray-3); border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:24px; color:var(--accent); }
+</style></head><body data-layout="cover" data-screen-label="01-dark-mono · cover">
+  <div class="bar"></div>
+  <div class="kicker">// PLATFORM STRATEGY · FY26</div>
+  <h1>인프라 단가가 향후 3년<br><em>마진 구조를 결정</em>한다.</h1>
+  <div class="dek">컴퓨트·스토리지·전력 — 세 비용 곡선이 동시에 꺾이는 첫 해. 어디에 자본을 묶을지 결정하는 단 하나의 질문.</div>
+  <div class="meta">
+    <div class="item"><div class="l">PREPARED FOR</div>경영위원회</div>
+    <div class="item"><div class="l">DATE</div>2026.06</div>
+    <div class="item"><div class="l">AUTHOR</div>플랫폼전략팀</div>
+  </div>
+  <div class="dot">↗</div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

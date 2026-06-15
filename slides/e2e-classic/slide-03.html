@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; padding: 64px 96px; position: relative; }
+  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px; }
+  .title { font-size: 32px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 40px; max-width: 1040px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 22px; height: 452px; }
+  .cell { background: var(--gray-4); border-radius: 10px; padding: 28px 30px; position: relative; }
+  .cell.hl { background: var(--surface-inverse); }
+  .cell .tag { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--gray-2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .cell .name { font-size: 26px; font-weight: 700; color: var(--heading); line-height: 1.18; }
+  .cell.hl .name { color: var(--surface-inverse-fg); }
+  .cell .star { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .cell .meta { margin-top: 14px; font-size: 14px; color: var(--gray-2); line-height: 1.5; }
+  .cell.hl .meta { color: var(--gray-3); }
+  .source { position: absolute; bottom: 32px; left: 96px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 32px; right: 96px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="kicker">// OPTION ASSESSMENT</div>
+  <div class="title">3개 레버 중 운영 자동화만 단기 회수 — 임팩트·실행속도 매트릭스</div>
+  <div class="grid">
+    <div class="cell">
+      <div class="tag">고임팩트 · 장기</div>
+      <div class="name">생산 거점 재편</div>
+      <div class="meta">3년+ 전환 사이클 · 초기 CapEx 부담 큼</div>
+    </div>
+    <div class="cell hl">
+      <div class="star">★ 추천</div>
+      <div class="name">운영 자동화 (Operations automation)</div>
+      <div class="meta">2개년 누적 +₩640억 · 영업이익률 +3.1%p · 회수 11개월</div>
+    </div>
+    <div class="cell">
+      <div class="tag">저임팩트 · 장기</div>
+      <div class="name">신규 사업 진출 (보류)</div>
+      <div class="meta">초기 투자 대비 기여 시점 불확실</div>
+    </div>
+    <div class="cell">
+      <div class="tag">저임팩트 · 단기</div>
+      <div class="name">간접비 절감 (병행)</div>
+      <div class="meta">즉시 실행 가능 · 규모 한정적</div>
+    </div>
+  </div>
+  <div class="source">Source: 전략기획실 레버 평가 모델, FY26.Q2 · 외부 자문 검증</div>
+  <div class="page">03 / 12</div>
+</div>
+</body>
+</html>

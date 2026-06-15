@@ -209,11 +209,24 @@ date: 2026-06-13
 | **S0** | dark-pitch | ✅ | ✅ | ✅ | 없음 (검정+cyan+Newsreader hero 의도보존) | ✅ DONE |
 | **S1** | editorial | ✅ | ✅ | ✅ | ~~B6 masthead wrap~~✅(변환기) · ~~slide-02 overflow~~✅(디자인 여백압축) · ~~drop 겹침 회귀~~✅(변환기 height게이트) | ✅ DONE |
 | **S2** | modern | ✅ | ✅ | ✅ | ~~PF-13 변환통과~~✅ · ~~VP-04 noFill 배지 FP~~✅(룰 게이트) · ~~VP-10 space-between FP~~✅(룰 게이트) · VP-07 정탐 부수회귀 잡음✅(borderColor 분리) | ✅ DONE |
-| **S3** | executive | ✅ | ⬜ | ⬜ | B5 대비(#FFF on #F5F5F0 1.09:1) · B4 overflow | ⬜ 대기 |
-| **S4** | academic | ✅ | ⬜ | ⬜ | B4 overflow | ⬜ 대기 |
-| **S5** | classic | ⬜ 생성필요 | ⬜ | ⬜ | (dark-deck 패턴으로 생성) | ⬜ 대기 |
-| **S6** | dark-mono | ⬜ 생성필요 | ⬜ | ⬜ | — | ⬜ 대기 |
-| **S7** | company | ⬜ 생성필요 | ⬜ | ⬜ | — | ⬜ 대기 |
+| **S3** | executive | ✅ | 🔄 | 🔄 | B5 대비(#FFF on #F5F5F0 1.09:1) · B4 overflow | 🔄 Teammate(a6a357) |
+| **S4** | academic | ✅ | 🔄 | 🔄 | B4 overflow | 🔄 Teammate(acff12) |
+| **S5** | classic | 🔄 생성 | 🔄 | 🔄 | (dark-deck 패턴+classic 토큰 생성) | 🔄 Teammate(a41a99) |
+| **S6** | dark-mono | 🔄 생성 | 🔄 | 🔄 | dark 대비 정탐주의 | 🔄 Teammate(a7cebb) |
+| **S7** | company | 🔄 생성 | 🔄 | 🔄 | — | 🔄 Teammate(ad0520) |
+
+> **harness2-wf 병렬 dispatch (2026-06-15 13:05, ckpt-153100)**: S3~S7 5세트 = background Agent teammate 1세트씩(teamless bg Agent + agentId resume, ⛔subagent 일회성 아님). 각 teammate=생성/변환/COM/K규칙 **디자인수정만 자율**. ⛔**전역 룰/변환기(validate-pptx.js·preflight-html.js·html2pptx.cjs) 직접수정 금지** → execution-log `ev:global_issue` 로 메인 보고(병렬 공유파일 충돌 차단, 메인 합의 후 일괄 전역적용). 통신 SSOT=`.harness2/execution-log.jsonl`. agentId=`.harness2/agents.json`. **메인=Supervisor**: 완료 시 방법준수 점검 + 세트별 예시 ~3개 COM 직접 재검 + global_issue 합의판정. ⛔정탐회귀0·FP0·GT(slides-grab) 불가침.
+
+> **[ckpt-202606153500] 5세트 teammate 전부 완료 + Supervisor 검증**: 방법준수 = 전 teammate 글로벌파일 직접수정 0(global_issue 보고만) ✅. COM 스폿체크(메인 직접) = S3 cover·S4 s2·S6 cover·S7 cover + S5 로그 = 생성품질·디자인수정 정상 확인.
+> - **디자인 수정(세트별, teammate 자율)**: S3(B5 흰pill→navy-outline 배지·B4 overflow padding×2) / S4(B4 overflow padding 85.33→72) / S6(gray-3→gray-2 WCAG 다크대비) / S5·S7 수정0.
+> - **★global_issue 2건 (메인 독립검증=진짜, 합의 처리 대상)**:
+>   1. **변환기 결함 — html2pptx.cjs inline `<small>` 텍스트런 누락**(S4 발견). `.find .v` 의 `67<small>B$</small>`·`5.1<small>×</small>`·`52<small>%</small>` → 변환 XML a:t = "67"/"5.1"/"52"만, **단위 B$·×·% 소실**. XML+COM(s2 png) 양쪽 확정. inline `<small>` 파싱부 보수 필요(전역, 회귀게이트=e2e 전체+17 GT 재변환).
+>   2. **룰 과탐 — VP-16 FP**(S3 발견). slide-01 dek("HBM·CoWoS·서버전력...28페이지의 답") 을 "740pt>available 364pt 3줄 overflow" ERROR 판정하나 COM(s1 png)은 **3줄 정상 들어맞음**. 원인=VP-16 폭추정이 `max-width:675.56px` + shape autofit 높이 무시. validate-pptx.js VP-16 게이트에 max-width/측정높이 반영 필요(전역, 회귀게이트).
+> - 둘 다 ⛔전역 = teammate 미수정(보고만), 메인이 회귀게이트 거쳐 일괄 적용 예정. 적용 후 5세트 재변환·재COM 으로 효과확인.
+>
+> **[ckpt-202606154000] 글로벌 2건 합의 처리**:
+> - ✅ **(1) `<small>` 변환기 fix 적용·검증완료**: `html2pptx.cjs:958` 인식목록에 `SMALL` 추가 + ELEMENT_NODE else-fallback(미인식 inline=SUB/SUP/CODE/MARK 등도 재귀로 텍스트 보존, silent drop 차단). 근본=parseInlineFormatting 이 SPAN/B/STRONG/I/EM/U 만 인식→SMALL 은 분기진입 후 run 미생성 소실. **검증**: S4 재변환 XML a:t="67","B$","5.1","×","52","%" 단위 복원 / modern 회귀 = "Business Deck"·"Presented by"·"Luna Martinez" 온전, 15런 중복0(strictly additive=소실분만 1회 추가). node --check 통과.
+> - ⏸ **(2) VP-16 FP — 박제 후 별도 회귀게이트 처리(defer, recall 보호)**: 근본 = ERROR 경로(`validate-pptx.js:1449`)가 `verticalOverflow`(heightNeeded>shape h)만 보고 **인접겹침/슬라이드하단 클리핑 미확인** → 도형이 짧아도 아래 빈 공간으로 넘치면(=COM 가시, 미클리핑) FP. WARN 경로(1458)엔 이미 `!overlapsNeighbor && !isSmallShape→skip` 있으나 ERROR 경로엔 없음. **안전 수정안**: ERROR 발화에 `(overlapsNeighbor || (s.y+heightNeeded > SLIDE_H 실클리핑))` 조건 추가 = 인접 안 겹치고 슬라이드 안에 들어가면 가시 → skip. ⛔ **VP-16=코드 최다튜닝·recall 민감(GT 앵커 s99 제목→부제침범·s71 막대·s84·s132·s76 다수)** → 17 GT 전수 ERROR delta=0 회귀게이트 통과 후에만 적용. 저예산 졸속 금지(정탐회귀=최대금지). S3 executive 1슬라이드 FP라 긴급도 낮음(VP는 advisory, 변환 안 막음).
 
 ## 전역 자산 변경 (모든 세트에 적용 — incremental 누적)
 - [x] **PF-13** checkPF13 정밀화 (정사각 ratio 0.95~1.05 통과 / 비정사각·치수불명 ERROR, pf13Len 헬퍼). COM 증거: triassic·modern 정사각=깨끗한 원, 타원만 pill. `preflight-html.js`. **GT 정정 보류**(회귀0 확인 후).

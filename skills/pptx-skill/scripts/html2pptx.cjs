@@ -955,7 +955,9 @@ async function extractSlideData(page) {
           const computed = window.getComputedStyle(node);
 
           // Handle inline elements with computed styles
-          if (node.tagName === 'SPAN' || node.tagName === 'B' || node.tagName === 'STRONG' || node.tagName === 'I' || node.tagName === 'EM' || node.tagName === 'U') {
+          // SMALL 포함: <small> 단위접미(KPI "67<small>B$</small>" 등)가 인식목록에 빠져 ELEMENT_NODE
+          // 분기 진입 후 내부 if 미매칭 → run 미생성 = 텍스트 소실(S4 academic 발견, XML+COM 확정).
+          if (node.tagName === 'SPAN' || node.tagName === 'B' || node.tagName === 'STRONG' || node.tagName === 'I' || node.tagName === 'EM' || node.tagName === 'U' || node.tagName === 'SMALL') {
             const isBold = computed.fontWeight === 'bold' || parseInt(computed.fontWeight) >= 600;
             if (isBold && !shouldSkipBold(computed.fontFamily)) options.bold = true;
             if (computed.fontStyle === 'italic') options.italic = true;
@@ -988,6 +990,10 @@ async function extractSlideData(page) {
             }
 
             // Recursively process the child node. This will flatten nested spans into multiple runs.
+            parseInlineFormatting(node, options, runs, textTransform);
+          } else {
+            // 미인식 inline 요소(SUB/SUP/CODE/MARK/A 등)도 텍스트는 보존 — 재귀로 base 옵션 적용.
+            // 과거엔 silent drop(위 SMALL 과 동일 결함 클래스). 서식 특화는 없어도 텍스트 소실은 차단.
             parseInlineFormatting(node, options, runs, textTransform);
           }
         }

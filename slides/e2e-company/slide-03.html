@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; padding: 64px 96px; position: relative; }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.18; margin-bottom: 50px; max-width: 1020px; letter-spacing: -0.01em; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .card { border: 1px solid var(--gray-4); border-radius: 12px; padding: 34px 30px; position: relative; }
+  .card .idx { width: 46px; height: 46px; border-radius: 10px; background: var(--primary); color: #FFFFFF; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+  .card.hi .idx { background: var(--accent); }
+  .card .h { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.25; margin-bottom: 14px; }
+  .card .d { font-size: 16px; color: var(--gray-2); line-height: 1.55; margin-bottom: 22px; }
+  .card .metric { border-top: 1px solid var(--gray-4); padding-top: 16px; }
+  .card .metric .m { font-size: 30px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .card .metric .ml { font-size: 13px; color: var(--gray-2); margin-top: 7px; }
+  .source { position: absolute; bottom: 30px; left: 96px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 30px; right: 96px; font-size: 12px; font-weight: 600; color: var(--gray-3); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="kicker">Strategic Priorities · FY26 H2</div>
+  <div class="title">하반기, 세 개의 축으로 성장 모멘텀을 고착화한다</div>
+  <div class="cards">
+    <div class="card hi">
+      <div class="idx">1</div>
+      <div class="h">핵심 시장 점유율 확대</div>
+      <div class="d">상위 5개 도시 거점을 중심으로 영업 조직을 재배치하고 채널 커버리지를 강화합니다.</div>
+      <div class="metric"><div class="m">+5%p</div><div class="ml">목표 시장 점유율 증가</div></div>
+    </div>
+    <div class="card">
+      <div class="idx">2</div>
+      <div class="h">운영 자동화 고도화</div>
+      <div class="d">반복 업무를 자동화 파이프라인으로 전환해 처리 단가와 리드타임을 동시에 줄입니다.</div>
+      <div class="metric"><div class="m">-18%</div><div class="ml">단위 처리 원가 절감</div></div>
+    </div>
+    <div class="card">
+      <div class="idx">3</div>
+      <div class="h">인재 리텐션 강화</div>
+      <div class="d">핵심 직무 보상 체계를 개편하고 성장 트랙을 명확히 해 핵심 인력 이탈을 방지합니다.</div>
+      <div class="metric"><div class="m">90%+</div><div class="ml">핵심 인재 잔존율 목표</div></div>
+    </div>
+  </div>
+  <div class="source">Source: FY26 전사 전략 워크숍 결과 · 전략기획본부</div>
+  <div class="page">03 / 03</div>
+</div>
+</body>
+</html>

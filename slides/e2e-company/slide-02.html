@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; padding: 64px 96px; position: relative; }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.18; margin-bottom: 48px; max-width: 1020px; letter-spacing: -0.01em; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .kpi { background: var(--gray-4); border-top: 4px solid var(--accent); border-radius: 10px; padding: 32px 30px; }
+  .kpi .label { font-size: 15px; font-weight: 600; color: var(--gray-2); margin-bottom: 18px; }
+  .kpi .num { font-size: 66px; font-weight: 800; color: var(--primary); line-height: 0.95; letter-spacing: -0.02em; }
+  .kpi .num span { font-size: 34px; vertical-align: 8%; }
+  .kpi .delta { margin-top: 16px; font-size: 16px; font-weight: 700; }
+  .kpi .delta.up { color: var(--positive); }
+  .kpi .delta.down { color: var(--negative); }
+  .kpi .note { margin-top: 8px; font-size: 14px; color: var(--gray-2); line-height: 1.4; }
+  .banner { margin-top: 36px; background: var(--surface-inverse); color: var(--surface-inverse-fg); border-radius: 10px; padding: 26px 34px; display: flex; align-items: center; gap: 24px; }
+  .banner .big { font-size: 40px; font-weight: 800; color: var(--accent); line-height: 1; }
+  .banner .txt { font-size: 18px; line-height: 1.4; color: var(--surface-inverse-fg); }
+  .source { position: absolute; bottom: 30px; left: 96px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 30px; right: 96px; font-size: 12px; font-weight: 600; color: var(--gray-3); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="kicker">Performance Snapshot</div>
+  <div class="title">FY26 상반기, 매출과 수익성 동반 개선 — 영업이익률 두 자릿수 진입</div>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="label">연결 매출</div>
+      <div class="num">1.84<span>조</span></div>
+      <div class="delta up">▲ 23.4% YoY</div>
+      <div class="note">신규 B2B 채널 매출 본격 기여</div>
+    </div>
+    <div class="kpi">
+      <div class="label">영업이익률</div>
+      <div class="num">11.2<span>%</span></div>
+      <div class="delta up">▲ 3.1%p YoY</div>
+      <div class="note">원가 구조 개선 + 고정비 레버리지</div>
+    </div>
+    <div class="kpi">
+      <div class="label">고객 이탈률</div>
+      <div class="num">4.6<span>%</span></div>
+      <div class="delta down">▼ 1.8%p YoY</div>
+      <div class="note">리텐션 프로그램 효과 가시화</div>
+    </div>
+  </div>
+  <div class="banner">
+    <div class="big">+312억</div>
+    <div class="txt">상반기 잉여현금흐름 — 전년 동기 대비 흑자 전환, 하반기 설비 투자 재원 확보</div>
+  </div>
+  <div class="source">Source: 연결 재무제표 (잠정), FY26 1H · 사내 경영관리시스템</div>
+  <div class="page">02 / 03</div>
+</div>
+</body>
+</html>

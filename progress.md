@@ -328,3 +328,8 @@ date: 2026-06-13
 - **클린 판정 = baseline-relative**: 생성덱 회귀 = finalize ERROR보다 증가시만 회귀. recall-lock FP(flow/funnel/kanban VP-07/16, COM 확정 FP지만 samsung 정탐 보호상 미수정)는 "늘 있던 것"=클린 간주. **신규 global_issue(변환기버그/새 룰FP) 또는 baseline 대비 ERROR 증가 = 비클린**.
 - **R4 진행**: dark-mono·company = global_issue 0(클린). spec4 idiomatic 체크리스트가 변환기 우회 자체를 없앰 = 신규 결함 0. 나머지 6 진행중.
 - 사용자 재지정 시 absolute-0 또는 flow-detection 게이트 개발로 전환 가능(핸드오프 박제).
+
+> [ckpt-202606171200:btn-design] R4 클린 판정(카운터 1) → R5 진입
+- R4: 8테마 디자인 전부 클린(COM 의도보존), teammate global_issue 0(idiomatic spec 적중). 2 ERROR=COM확정 룰FP(워터폴 VP-07·게이지 VP-04 resolveBackground, recall-lock advisory, 디자인 멀쩡·과조정0). baseline-relative+advisory → **R4 클린, 클린카운터=1**.
+- R5: 새 5종(벤다이어그램/팀그리드/비포애프터/체크리스트/사분면버블) × 8테마. R5도 클린(신규 변환기버그0+디자인결함0)이면 2연속 클린 → 루프 종료.
+- 누적 사용 타입 20종(R1~R4) → R5는 직교 5종.

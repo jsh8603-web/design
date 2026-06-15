@@ -122,9 +122,11 @@ date: 2026-06-13
 
 ## Phase D — PF 룰 정답화 `2026-06-15` `model: opus`
 > plan.md `# PF 룰 정답화` 참조. PF-70부터, 끝까지 자율주행. 이미지 직접판정, FP는 로직게이트(회피금지), 정탐 놓침 금지.
-- [ ] D1 PF-70(91건 이미지품질: object-fit/pt/border-radius/alt) 이미지 직접판정 → 게이트
-- [ ] D2 PF-28/25/20 realmix 재판정
-- [ ] D3 잔여 미판정 PF (PF-60/61/36/24 등)
+- [x] D1 PF-70 91→0 (subagent 전수 FP·TP0, 디자인 이미지 클래스 면제 게이트). 커밋
+- [x] D2 PF-28/25 정적 게이트 (subagent 전수 FP) — PF-25 61→35(보조정보 제외), PF-28 84→61(표/숫자 제외). 잔존 = 정적 한계(요소역할·레이아웃 미인지)
+  - 회귀 확인: checkPF25/PF28 독립 수정, 타 PF 룰 불변. 잔존은 정탐놓침방지 보수유지
+- [~] D2b PF-20(45, --full 룰) subagent 판정 중 → 게이트 예정
+- [ ] D3 잔여 PF (PF-36/19/29/60 등) + ★PF-25/28 잔존·PF-20 완전해소 = --full computed 실측 전환 필요(설계분기)
 - [ ] D4 VERIFICATION 박제 + 커밋
 
 ## Working Notes

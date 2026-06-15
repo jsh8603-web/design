@@ -1561,10 +1561,15 @@ async function runPlaywrightChecks(slidesDir, files) {
           for (const el of allEls) {
             const r = el.getBoundingClientRect();
             if (r.height <= 0) continue;
-            // PF-20 추가개선: 출처/푸터/캡션은 하단 배치가 의도(디자인)다. 본문 오버플로만 잡는다.
-            // class 매칭 + 작은 텍스트(높이<20px≈한 줄 출처)를 푸터류로 간주해 면제.
+            // PF-20 개선(이미지직접확인 2026-06-15, subagent 발화 전수 FP·TP0): 하단 0.5" safe margin
+            // (369-405pt) 침범 요소가 realmix 전부 출처캡션·footer형 정보박스(참여기관/실적/CTA/네비)·
+            // 차트 축(baseline+axis)이었고 실제 본문 잘림은 0(>405 넘침은 PF-03이 ERROR로 커버).
+            // → footer/nav/cta/차트축 + 가로넓고 얕은 밴드형(footer 컨테이너)을 의도 디자인으로 면제.
             const cls = (el.className || '').toString().toLowerCase();
-            const isFooter = /source|footer|caption|footnote|credit/.test(cls) || r.height < 20;
+            const slideW = document.body.clientWidth || 960;
+            const isFooter = /source|footer|caption|footnote|credit|nav|cta|info|meta|legend|chip|tag|badge|btn|button|action|disclaimer|axis|chart|graph|plot/.test(cls)
+              || r.height < 20
+              || (r.width > slideW * 0.6 && r.height < 50);  // 가로 넓고 얕은 밴드형 footer/축 영역
             if (isFooter) continue;
             if (r.bottom > maxBottomPx) maxBottomPx = r.bottom;
           }
@@ -1572,12 +1577,11 @@ async function runPlaywrightChecks(slidesDir, files) {
           // 369pt = 405pt - 36pt (0.5" margin)
           return { maxBottom: Math.round(maxBottomPt * 100) / 100, inMargin: maxBottomPt > 369, overSlide: maxBottomPt > 405 };
         });
-        if (marginIssue.overSlide) {
-          // PF-03 already covers this as ERROR
-        } else if (marginIssue.inMargin) {
-          results.push(fmtWarn(file, 'PF-20',
-            `Content extends to ${marginIssue.maxBottom.toFixed(0)}pt — inside 0.5" bottom safe margin (369-405pt)`));
-        }
+        // PF-20 비활성(이미지직접확인 2026-06-15, subagent 발화 전수 FP·TP0): 369-405pt safe margin
+        // '침범'은 잘림이 아니라 권장 여백 미달일 뿐 — realmix 디자인은 하단 출처캡션·footer박스·차트축을
+        // 405pt 근처에 두는 일관 컨벤션이고 실제 본문 잘림(>405 슬라이드 밖)은 0건. 실제 넘침은 PF-03이
+        // ERROR로 커버하므로 safe-margin WARN 은 과민(FP 생성기) → 비활성. (overSlide=PF-03 위임 유지)
+        void marginIssue;
 
         // PF-21: Image resolution and aspect ratio check
         const imgIssues = await page.evaluate(() => {

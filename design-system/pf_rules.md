@@ -284,6 +284,13 @@ if (!THEME_ALLOWED_LAYOUTS[theme].has(layout)) {
 
 **수정:** 매트릭스 §2 에서 ✅ 인 다른 레이아웃 사용. 또는 다른 테마로 전환.
 
+> ⚠️ **번호 주의 (2026-06-15)**: 본 문서의 PF-70~73(구조 게이트: data-layout / data-theme /
+> LayoutSchema / primary)은 코드(`scripts/preflight-html.js`)의 **PF-70(이미지 품질)·PF-71(WCAG 대비)
+> 와 번호가 중복**된다. 이 구조 게이트들은 현재 preflight 에 **미구현**(계획 단계)이다.
+> 구현 시 (1) 코드와 번호 충돌 해소를 위해 PF-S1~S4 로 재배정, (2) 신규 ERROR 게이트는 기존
+> 슬라이드 회귀 위험이 있으므로 WARN→ERROR 점진 도입 필요. (참고: data-theme 누락은 colors_and_type.css
+> 가 `:root, [data-theme=...]` 구조라 색 폴백이 modern 으로 동작하므로 실제 렌더 색에는 영향 없음.)
+
 ### PF-70 — `data-layout` 속성 의무 (ERROR)
 
 모든 슬라이드 `<section>` 은 `data-layout="<id>"` 명시 필수. ID 는 `layout_catalog.md` 카탈로그의 46개 중 하나.

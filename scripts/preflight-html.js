@@ -13,6 +13,9 @@
 
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'node:url';
+
+const PF_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 // ── ANSI helpers ──────────────────────────────────────────────────────────────
 
@@ -272,7 +275,7 @@ function checkPF17(html, file) {
 }
 
 // Allowed fonts that are available in PowerPoint or embedded
-const ALLOWED_FONTS = new Set([
+const ALLOWED_FONTS_STATIC = [
   'pretendard', 'segoe ui', 'arial', 'helvetica', 'sans-serif', 'serif',
   'times new roman', 'courier new', 'monospace', 'calibri', 'cambria',
   'noto sans kr', 'noto sans', 'malgun gothic', 'gulim', 'dotum',
@@ -281,17 +284,72 @@ const ALLOWED_FONTS = new Set([
   // CSS system font keywords — gracefully fall back in all environments
   '-apple-system', 'blinkmacsystemfont', 'system-ui', 'ui-sans-serif',
   'ui-serif', 'ui-monospace', 'ui-rounded',
-]);
+];
+
+// PF-19 동적 확장: vendored woff2 = 임베드 가능 = PowerPoint Arial fallback 없음 → allow-list 자동 확장.
+// "JetBrainsMono-Bold.woff2" → family "JetBrainsMono" → {"jetbrainsmono", "jetbrains mono"} 둘 다 등록.
+function scanVendoredFonts() {
+  const families = new Set();
+  try {
+    const fontsDir = path.resolve(PF_DIR, '..', 'design-system', 'fonts', 'files');
+    for (const f of fs.readdirSync(fontsDir)) {
+      if (!f.toLowerCase().endsWith('.woff2')) continue;
+      const family = f.replace(/\.woff2$/i, '').split('-')[0];
+      families.add(family.toLowerCase());
+      const spaced = family.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase();
+      if (spaced !== family.toLowerCase()) families.add(spaced);
+    }
+  } catch (_) { /* fonts dir 없으면 static allow-list 만 사용 */ }
+  return families;
+}
+const VENDORED_FONTS = scanVendoredFonts();
+
+// PF-19 var(--font-*) resolve: colors_and_type.css :root 의 첫 폰트로 환원 후 검사.
+// "--font-mono: \"JetBrains Mono\", ..." → map["--font-mono"] = "jetbrains mono".
+function resolveCssVarFonts() {
+  const map = new Map();
+  try {
+    const cssPath = path.resolve(PF_DIR, '..', 'design-system', 'colors_and_type.css');
+    const css = fs.readFileSync(cssPath, 'utf8');
+    const re = /--font-([\w-]+)\s*:\s*([^;]+);/g;
+    let m;
+    while ((m = re.exec(css)) !== null) {
+      const first = m[2].split(',')[0].trim().replace(/^["']|["']$/g, '').toLowerCase();
+      map.set(`--font-${m[1]}`, first);
+    }
+  } catch (_) { /* css 없으면 var() 는 그대로 경고 */ }
+  return map;
+}
+const CSS_VAR_FONTS = resolveCssVarFonts();
+
+// allow-list = static + vendored 단순스캔 + CSS 변수의 실제 폰트값.
+// ★vendored 카멜분해는 단어경계 오차 가능("JetBrainsMono"→"jet brains mono") → CSS 가 선언한
+//   실제 패밀리명("jetbrains mono")을 SSOT 로 함께 포함해 var() resolve 결과와 일치 보장.
+const ALLOWED_FONTS = new Set([...ALLOWED_FONTS_STATIC, ...VENDORED_FONTS, ...CSS_VAR_FONTS.values()]);
 
 function checkPF19(html, file) {
   const issues = [];
-  // Font availability: check font-family declarations against allowed list
-  const fontRe = /font-family\s*:\s*([^;"]+)/gi;
+  // Font availability: check font-family declarations against allowed list.
+  // 정지 문자에 개행·중괄호 추가 — <style> 블록 내 다중 선언 오매칭 방지.
+  const fontRe = /font-family\s*:\s*([^;"\n}]+)/gi;
   let m;
   while ((m = fontRe.exec(html)) !== null) {
     const fonts = m[1].split(',').map(f => f.trim().replace(/['"]/g, '').toLowerCase());
-    for (const font of fonts) {
-      if (!font || ALLOWED_FONTS.has(font)) continue;
+    for (let font of fonts) {
+      if (!font) continue;
+      // var(--font-xxx) → colors_and_type.css 정의된 실제 패밀리로 환원 후 검사.
+      const varMatch = font.match(/^var\((--font-[\w-]+)\)$/i);
+      if (varMatch) {
+        const resolved = CSS_VAR_FONTS.get(varMatch[1]);
+        if (resolved) {
+          font = resolved;
+        } else {
+          issues.push(fmtWarn(file, 'PF-19',
+            `CSS variable "${varMatch[1]}" not found in colors_and_type.css — cannot verify font availability`));
+          return issues;
+        }
+      }
+      if (ALLOWED_FONTS.has(font)) continue;
       issues.push(fmtWarn(file, 'PF-19',
         `Font "${font}" may not be available in PowerPoint — will fallback to Arial`));
       return issues; // one per file
@@ -639,12 +697,12 @@ function checkPF39(html, file) {
   let m;
   while ((m = inlineGradRe.exec(html)) !== null) {
     issues.push(fmtError(file, 'PF-39',
-      `<${m[1]}> has background-image: linear-gradient() — PPTX converts to solid rectangle covering content. Move to body background or use PNG [IL-39]`));
+      `<${m[1]}> background-image: linear-gradient() — slides use solid hex only (design-system rule); gradient belongs in the editor app. Use solid background or rasterized PNG [IL-39]`));
   }
   // Check <style> blocks for non-body selectors with background-image: linear-gradient
   const styleRe = /<style[^>]*>([\s\S]*?)<\/style>/gi;
   while ((m = styleRe.exec(html)) !== null) {
-    const css = m[1];
+    const css = m[1].replace(/\/\*[\s\S]*?\*\//g, ''); // CSS 주석 제거 — 주석이 selector 로 오인되는 것 방지
     // Match CSS rules: selector { ... background-image: linear-gradient ... }
     const ruleRe = /([^{}]+)\{([^}]*background-image\s*:\s*linear-gradient[^}]*)\}/gi;
     let rm;
@@ -653,7 +711,7 @@ function checkPF39(html, file) {
       // Skip body/html selectors
       if (/^(body|html)\s*$/i.test(selector)) continue;
       issues.push(fmtError(file, 'PF-39',
-        `CSS "${selector}" has background-image: linear-gradient() — PPTX converts to solid rectangle. Move to body or use PNG [IL-39]`));
+        `CSS "${selector}" background-image: linear-gradient() — slides use solid hex only (design-system rule); gradient belongs in the editor app. Use solid background or rasterized PNG [IL-39]`));
     }
   }
   return issues;

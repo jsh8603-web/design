@@ -1821,7 +1821,11 @@ async function runPlaywrightChecks(slidesDir, files) {
           for (const el of els) {
             // 직접 텍스트 노드만 (자식 요소 텍스트 중복 제외)
             const direct = [...el.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent.trim()).join('');
-            if (!direct || direct.length < 2) continue;
+            if (!direct) continue;
+            // 1자 텍스트: 장식 glyph(기호·화살표)만 제외하고 번호/문자 배지("1"~"6" 등)는 대비 검사한다.
+            // VP-04 checkContrast 와 동일 패턴 — PF-clean⊇VP-clean 보장(2026-06-15 교차검증 구멍 발견:
+            // s3014 번호배지 흰글씨 on 주황 1.75 대비를 VP-04 는 잡는데 PF-71 이 length<2 로 놓쳤음).
+            if (direct.length === 1 && /^[+\-·•×÷/→←↑↓*=~|<>]$/.test(direct)) continue;
             const cs = getComputedStyle(el);
             const m = cs.color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/); if (!m) continue;
             const fg = [+m[1], +m[2], +m[3]];

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko" data-theme="dark-pitch">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; padding: 64px 80px; position: relative; }
+  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px; }
+  .title { font-size: 32px; font-weight: 700; color: var(--heading); line-height: 1.2; margin-bottom: 52px; max-width: 1040px; }
+  .body { display: grid; grid-template-columns: 520px 1fr; gap: 64px; }
+  .hero-num { font-family: var(--font-serif); font-weight: 700; font-size: 220px; line-height: 0.88; color: var(--accent); letter-spacing: -0.04em; }
+  .hero-num span { font-size: 100px; vertical-align: 18%; }
+  .hero-cap { margin-top: 20px; font-size: 17px; color: var(--gray-2); line-height: 1.5; max-width: 440px; }
+  .facts { display: flex; flex-direction: column; gap: 26px; }
+  .fact { background: var(--surface-inverse); border-left: 3px solid var(--accent); padding: 20px 26px; border-radius: 8px; }
+  .fact .n { font-family: var(--font-serif); font-weight: 700; font-size: 36px; color: var(--gray-1); line-height: 1; }
+  .fact .d { margin-top: 10px; font-size: 15px; color: var(--gray-2); line-height: 1.45; }
+  .source { position: absolute; bottom: 32px; left: 80px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 32px; right: 80px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="kicker">// CUSTOMER ACQUISITION</div>
+  <div class="title">디지털 채널 CAC 60% 도달 — 유료 광고 모델 유효성 상실</div>
+  <div class="body">
+    <div>
+      <div class="hero-num">60<span>%</span></div>
+      <div class="hero-cap">2024년 기준, 신규 고객 1명당 획득 비용 중 디지털 채널이 차지하는 비중. 2021년에는 22%였다.</div>
+    </div>
+    <div class="facts">
+      <div class="fact"><div class="n">2.7×</div><div class="d">3년간 CAC 증가 배수 · 매출 증가는 1.4×에 그침</div></div>
+      <div class="fact"><div class="n">14개월</div><div class="d">현재 CAC로 회수까지 걸리는 기간 · 손익분기 LTV 기준</div></div>
+      <div class="fact"><div class="n">–37%</div><div class="d">유료 광고 ROAS · YoY 하락 폭 · 추세는 가속 중</div></div>
+    </div>
+  </div>
+  <div class="source">Source: 내부 마케팅 대시보드, FY24.Q1–Q4 · Meta · Google Ads Manager</div>
+  <div class="page">02 / 12</div>
+</div>
+</body>
+</html>

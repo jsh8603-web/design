@@ -10,6 +10,9 @@ dist/
 out/
 # generated outputs
 slides/**/out/
+slides/**/pptx-png/
+slides/**/html-preview/
+slides/**/compare.png
 *.pptx
 *.pdf
 !templates/**/*.pptx

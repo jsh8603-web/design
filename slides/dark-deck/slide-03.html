@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko" data-theme="dark-pitch">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
+  .slide { width: 1280px; height: 720px; padding: 64px 80px; position: relative; }
+  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px; }
+  .title { font-size: 32px; font-weight: 700; color: var(--heading); line-height: 1.2; margin-bottom: 40px; max-width: 1040px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 22px; height: 460px; }
+  .cell { background: var(--surface-inverse); border-radius: 10px; padding: 26px 28px; position: relative; }
+  .cell.hl { border: 2px solid var(--accent); }
+  .cell .tag { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--gray-3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .cell .name { font-family: var(--font-serif); font-size: 26px; font-weight: 700; color: var(--gray-1); line-height: 1.15; }
+  .cell.hl .name { color: var(--accent); }
+  .cell .star { font-family: var(--font-mono); font-size: 12px; color: var(--accent); margin-bottom: 8px; }
+  .cell .meta { margin-top: 14px; font-size: 14px; color: var(--gray-2); line-height: 1.5; }
+  .source { position: absolute; bottom: 32px; left: 80px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 32px; right: 80px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="kicker">// OPTION ASSESSMENT</div>
+  <div class="title">3개 옵션 중 스택 통합만 우상단 점유 — 임팩트·난이도 매트릭스</div>
+  <div class="grid">
+    <div class="cell">
+      <div class="tag">고임팩트 · 고난이도</div>
+      <div class="name">차세대 화학 전환</div>
+      <div class="meta">5년+ R&D 사이클 · 불확실성 높음</div>
+    </div>
+    <div class="cell hl">
+      <div class="star">★ 추천</div>
+      <div class="name">스택 통합 (Stack consolidation)</div>
+      <div class="meta">3개년 누적 +₩1,200–1,600억 · 마진 +4.8%p · CapEx ₩280억</div>
+    </div>
+    <div class="cell">
+      <div class="tag">저임팩트 · 고난이도</div>
+      <div class="name">사내 M&A (보류)</div>
+      <div class="meta">통합 비용 대비 시너지 불충분</div>
+    </div>
+    <div class="cell">
+      <div class="tag">저임팩트 · 저난이도</div>
+      <div class="name">지역 분산 (병행)</div>
+      <div class="meta">리스크 헤지용 · 주력 아님</div>
+    </div>
+  </div>
+  <div class="source">Source: 전략기획팀 옵션 평가 모델, FY26.Q1 · 외부 자문 검증</div>
+  <div class="page">03 / 12</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:48px 64px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  h1 { font-size:34px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:6px; }
+  h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .rule { height:1px; background:var(--rule-soft, #D8D2C9); margin:16px 0 22px; }
+  .grid { flex:1; display:grid; grid-template-columns:2.2fr 1fr 1fr 1fr; grid-auto-rows:1fr; gap:0; align-content:stretch; }
+  .cell { display:flex; align-items:center; padding:0 18px; border-bottom:1px solid var(--rule-soft, #D8D2C9); }
+  .cell.c { justify-content:center; }
+  .hd { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); background:var(--surface-inverse); justify-content:center; border-bottom:none; }
+  .hd.feat { color:var(--accent); background:transparent; justify-content:flex-start; font-size:14px; letter-spacing:0.08em; text-transform:uppercase; }
+  .hd.pop { background:var(--accent); }
+  .feat-cell { font-size:15px; font-weight:600; color:var(--primary); }
+  .yes { font-size:26px; font-weight:800; color:var(--positive); line-height:1; }
+  .no { font-size:24px; font-weight:700; color:var(--gray-3); line-height:1; }
+  .na { font-size:22px; font-weight:700; color:var(--gray-3); line-height:1; }
+  .gridwrap { flex:1; display:flex; flex-direction:column; }
+  .legend { display:flex; gap:24px; margin-top:14px; font-size:12.5px; color:var(--gray-2); }
+  .legend span { display:flex; align-items:center; gap:6px; }
+  .legend b { font-size:15px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="icon-compare" data-screen-label="e2e3-editorial · icon-table">
+<div class="kicker">요금제 비교 · 기능 매트릭스</div>
+<h1 class="serif">상위 플랜일수록 <em>운영 자동화</em>가 두터워진다</h1>
+<div class="rule"></div>
+<div class="gridwrap">
+  <div class="grid">
+    <div class="cell hd feat">기능</div>
+    <div class="cell hd">스타터</div>
+    <div class="cell hd pop">그로스</div>
+    <div class="cell hd">엔터프라이즈</div>
+
+    <div class="cell feat-cell">기본 대시보드</div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+
+    <div class="cell feat-cell">팀 협업 워크스페이스</div>
+    <div class="cell c"><span class="na">&mdash;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+
+    <div class="cell feat-cell">자동화 워크플로</div>
+    <div class="cell c"><span class="no">&cross;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+
+    <div class="cell feat-cell">SSO · 감사 로그</div>
+    <div class="cell c"><span class="no">&cross;</span></div>
+    <div class="cell c"><span class="na">&mdash;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+
+    <div class="cell feat-cell">전담 매니저 지원</div>
+    <div class="cell c"><span class="no">&cross;</span></div>
+    <div class="cell c"><span class="no">&cross;</span></div>
+    <div class="cell c"><span class="yes">&check;</span></div>
+
+    <div class="cell feat-cell" style="border-bottom:none;">SLA 99.95% 보장</div>
+    <div class="cell c" style="border-bottom:none;"><span class="no">&cross;</span></div>
+    <div class="cell c" style="border-bottom:none;"><span class="na">&mdash;</span></div>
+    <div class="cell c" style="border-bottom:none;"><span class="yes">&check;</span></div>
+  </div>
+  <div class="legend">
+    <span><b class="yes">&check;</b> 제공</span>
+    <span><b class="na">&mdash;</b> 부분 / 추가 옵션</span>
+    <span><b class="no">&cross;</b> 미제공</span>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

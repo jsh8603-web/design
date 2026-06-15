@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 56px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 14px; }
+  h1 { font-size: 32px; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.02em; max-width: 1050px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 18px; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; padding: 60px 72px 0; }
+  .stat { padding: 0 8px; }
+  .stat .num { font-size: 104px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -0.03em; }
+  .stat .num small { font-size: 40px; font-weight: 700; color: var(--accent); letter-spacing: 0; }
+  .stat .lbl { font-size: 19px; font-weight: 700; color: var(--gray-1); margin-top: 18px; }
+  .stat .desc { font-size: 14px; font-weight: 500; color: var(--gray-2); line-height: 1.5; margin-top: 8px; }
+  .stat .bar { width: 48px; height: 4px; background: var(--gray-3); margin-top: 16px; }
+  .foot { position: absolute; left: 72px; bottom: 38px; font-size: 13px; color: var(--gray-3); font-family: var(--font-mono); }
+</style>
+</head>
+<body data-layout="three_stat" data-screen-label="classic · stat-hero">
+  <div class="head">
+    <div class="kicker">// FY26 상반기 · 핵심 성과 지표</div>
+    <h1>매출·마진·신규고객 세 지표 모두 목표 상회로 분기 마감</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="num">42.8<small>B$</small></div>
+      <div class="bar"></div>
+      <div class="lbl">연환산 매출</div>
+      <div class="desc">전년 동기 대비 +23%. HBM 라인 풀가동 전환이 성장 견인</div>
+    </div>
+    <div class="stat">
+      <div class="num">31.5<small>%</small></div>
+      <div class="bar"></div>
+      <div class="lbl">영업이익률</div>
+      <div class="desc">단위원가 9% 절감과 고부가 믹스 확대로 목표 28% 상회</div>
+    </div>
+    <div class="stat">
+      <div class="num">2.4<small>&times;</small></div>
+      <div class="bar"></div>
+      <div class="lbl">신규 고객 증가</div>
+      <div class="desc">GPU 고객 2곳과 장기공급계약 체결, 파이프라인 확대 지속.</div>
+    </div>
+  </div>
+  <div class="foot">Source: 내부 재무 마감 데이터, 2026 Q2</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:64px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.12em; margin-bottom:16px; }
+h1 { font-size:34px; font-weight:700; color:var(--heading); line-height:1.18; letter-spacing:-0.01em; margin-bottom:40px; max-width:1000px; }
+h1 em { font-style:normal; color:var(--accent); }
+.stats { display:flex; gap:36px; flex:1; min-height:0; }
+.stat { flex:1; min-width:0; background:var(--theme-bg-card); border-radius:14px; padding:34px 30px; display:flex; flex-direction:column; }
+.stat .num { font-size:104px; font-weight:800; color:var(--heading); line-height:0.96; letter-spacing:-0.03em; }
+.stat .num small { font-size:38px; font-weight:700; color:var(--accent); letter-spacing:0; padding-left:3px; }
+.stat.pos .num { color:var(--positive); }
+.stat .label { font-size:19px; font-weight:700; color:var(--gray-1); margin-top:18px; }
+.stat .desc { font-size:14px; color:var(--gray-2); line-height:1.45; margin-top:10px; }
+.stat .tick { width:42px; height:4px; background:var(--accent); border-radius:2px; margin-top:auto; }
+.stat.pos .tick { background:var(--positive); }
+</style></head><body data-layout="kpi-grid" data-screen-label="01-dark-pitch · stat-hero">
+  <div class="bar"></div>
+  <div class="kicker">// FY26 H1 BOARD METRICS · 메모리사업부</div>
+  <h1>반등 사이클 첫 두 분기, <em>매출·수익성·점유율</em>이<br>동시에 방향을 틀었다.</h1>
+  <div class="stats">
+    <div class="stat pos">
+      <div class="num">+38<small>%</small></div>
+      <div class="label">전년 동기 대비 매출</div>
+      <div class="desc">HBM 비중 확대가 견인. ASP 회복과 물량 증가가 함께 작동.</div>
+      <div class="tick"></div>
+    </div>
+    <div class="stat">
+      <div class="num">4.2<small>B$</small></div>
+      <div class="label">분기 영업현금흐름</div>
+      <div class="desc">설비 선투자에도 현금 창출력 유지. 자본 배분 여력 확보.</div>
+      <div class="tick"></div>
+    </div>
+    <div class="stat pos">
+      <div class="num">52<small>%</small></div>
+      <div class="label">HBM 시장 점유율</div>
+      <div class="desc">상위 가속기 고객 3사 우선 공급 계약으로 격차 유지.</div>
+      <div class="tick"></div>
+    </div>
+    <div class="stat">
+      <div class="num">1.8<small>&times;</small></div>
+      <div class="label">12단 적층 수율 개선</div>
+      <div class="desc">전년 대비 유효 다이 산출 1.8배. 캐리어 재설계 효과 반영.</div>
+      <div class="tick"></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

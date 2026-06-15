@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 56px 80px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 28px; }
+  .body { flex: 1; display: flex; gap: 56px; align-items: center; }
+
+  .funnel { width: 620px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .seg { height: 78px; display: flex; align-items: center; justify-content: center; clip-path: polygon(var(--lt) 0, var(--rt) 0, var(--rb) 100%, var(--lb) 100%); }
+  .s1 { width: 620px; background: var(--primary);  --lt:0%;  --rt:100%; --lb:8%;  --rb:92%; }
+  .s2 { width: 620px; background: #2D3C57;          --lt:8%;  --rt:92%;  --lb:16%; --rb:84%; }
+  .s3 { width: 620px; background: var(--accent);    --lt:16%; --rt:84%;  --lb:24%; --rb:76%; }
+  .s4 { width: 620px; background: #C25E14;          --lt:24%; --rt:76%;  --lb:32%; --rb:68%; }
+  .s5 { width: 620px; background: var(--positive);  --lt:32%; --rt:68%;  --lb:40%; --rb:60%; }
+  .seg-in { text-align: center; }
+  .seg-lab { font-size: 18px; font-weight: 800; color: #FFFFFF; line-height: 1.1; }
+  .seg-val { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.92); margin-top: 3px; }
+
+  .legend { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+  .lg-head { font-size: 18px; font-weight: 800; color: var(--primary); padding-bottom: 10px; border-bottom: 3px solid var(--accent); margin-bottom: 4px; }
+  .lg-row { display: flex; align-items: flex-start; gap: 14px; }
+  .lg-chip { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; margin-top: 3px; }
+  .lg-txt { flex: 1; }
+  .lg-t1 { font-size: 16px; font-weight: 800; color: var(--gray-1); line-height: 1.25; }
+  .lg-t2 { font-size: 13px; font-weight: 500; color: var(--gray-2); line-height: 1.35; margin-top: 2px; }
+  .lg-pct { font-size: 16px; font-weight: 800; color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">엔터프라이즈 영업 퍼널</div>
+  <div class="title">리드 → 계약 전환율 4.1%,<br>PoC 단계 이탈이 최대 병목</div>
+  <div class="body">
+    <div class="funnel">
+      <div class="seg s1"><div class="seg-in"><div class="seg-lab">유입 리드</div><div class="seg-val">12,400건 · 100%</div></div></div>
+      <div class="seg s2"><div class="seg-in"><div class="seg-lab">검증 기회 (SQL)</div><div class="seg-val">3,820건 · 30.8%</div></div></div>
+      <div class="seg s3"><div class="seg-in"><div class="seg-lab">PoC 진행</div><div class="seg-val">1,180건 · 9.5%</div></div></div>
+      <div class="seg s4"><div class="seg-in"><div class="seg-lab">제안·협상</div><div class="seg-val">640건 · 5.2%</div></div></div>
+      <div class="seg s5"><div class="seg-in"><div class="seg-lab">계약 체결</div><div class="seg-val">508건 · 4.1%</div></div></div>
+    </div>
+    <div class="legend">
+      <div class="lg-head">단계별 전환 진단</div>
+      <div class="lg-row">
+        <div class="lg-chip" style="background:var(--primary);"></div>
+        <div class="lg-txt"><div class="lg-t1">리드 → SQL <span class="lg-pct">30.8%</span></div><div class="lg-t2">마케팅 채널 품질 양호, 인바운드 비중 확대 효과</div></div>
+      </div>
+      <div class="lg-row">
+        <div class="lg-chip" style="background:var(--accent);"></div>
+        <div class="lg-txt"><div class="lg-t1">SQL → PoC <span class="lg-pct">30.9%</span></div><div class="lg-t2">기술 검증 리소스 부족, 영업·엔지니어 협업 지연</div></div>
+      </div>
+      <div class="lg-row">
+        <div class="lg-chip" style="background:#C25E14;"></div>
+        <div class="lg-txt"><div class="lg-t1">PoC → 제안 <span class="lg-pct" style="color:var(--negative);">54.2%</span></div><div class="lg-t2">최대 이탈 구간 — PoC 성공 기준 모호, ROI 입증 미흡</div></div>
+      </div>
+      <div class="lg-row">
+        <div class="lg-chip" style="background:var(--positive);"></div>
+        <div class="lg-txt"><div class="lg-t1">제안 → 계약 <span class="lg-pct">79.4%</span></div><div class="lg-t2">후기 단계 클로징은 안정적, 계약 조건 협상 우위</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

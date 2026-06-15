@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:52px 56px;
+  display:flex; flex-direction:column;
+}
+.head { display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1.5px solid var(--primary); padding-bottom:18px; margin-bottom:26px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:34px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.18; margin-top:8px; }
+h1 em { font-style:normal; color:var(--accent); }
+.docid { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--gray-3); }
+
+.board { flex:1; display:grid; grid-template-columns:1fr 1fr 1fr; gap:22px; min-height:0; }
+.col { display:flex; flex-direction:column; min-width:0; min-height:0; }
+.col-head { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:var(--surface-inverse); margin-bottom:14px; }
+.col-head .ct { font-size:15px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--surface-inverse-fg); }
+.col-head .cn { font-family:'JetBrains Mono', monospace; font-size:14px; font-weight:700; color:var(--gray-4); }
+.col.doing .col-head { background:var(--accent); }
+.col.done .col-head { background:var(--positive); }
+
+.card { background:var(--theme-bg-card); border:1px solid var(--border-soft); border-left:3px solid var(--accent); padding:13px 15px; margin-bottom:12px; }
+.card.hi { border-left-color:var(--accent-secondary); }
+.card .tag { font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; letter-spacing:0.06em; color:var(--accent); margin-bottom:6px; }
+.card.hi .tag { color:#B34D00; }
+.card .ctt { font-size:15px; font-weight:700; color:var(--primary); line-height:1.3; }
+.card .meta { display:flex; align-items:center; justify-content:space-between; margin-top:9px; }
+.card .who { font-size:12px; font-weight:600; color:var(--gray-2); }
+.card .pts { font-family:'JetBrains Mono', monospace; font-size:12px; font-weight:700; color:var(--gray-3); }
+</style></head><body data-layout="kanban" data-screen-label="05-executive · kanban">
+
+  <div class="head">
+    <div>
+      <div class="eyebrow"><span class="dot">●</span> 증설 스프린트 보드 · 2026 W24</div>
+      <h1>증설 게이트, <em>완료 컬럼</em>이 절반을 넘었다</h1>
+    </div>
+    <div class="docid">OPS-2026-W24 / p.02</div>
+  </div>
+
+  <div class="board">
+    <!-- To Do -->
+    <div class="col">
+      <div class="col-head"><span class="ct">To Do</span><span class="cn">3</span></div>
+      <div class="card">
+        <div class="tag">INFRA</div>
+        <div class="ctt">3권역 변전 인입 재협상</div>
+        <div class="meta"><span class="who">@조달 · 김민</span><span class="pts">8pt</span></div>
+      </div>
+      <div class="card hi">
+        <div class="tag">RISK · 긴급</div>
+        <div class="ctt">용수 규제 대응안 법무 검토</div>
+        <div class="meta"><span class="who">@법무 · 이서</span><span class="pts">5pt</span></div>
+      </div>
+      <div class="card">
+        <div class="tag">FINANCE</div>
+        <div class="ctt">2단계 capex 게이트 모델링</div>
+        <div class="meta"><span class="who">@투자심사 · 박준</span><span class="pts">3pt</span></div>
+      </div>
+    </div>
+
+    <!-- 진행 -->
+    <div class="col doing">
+      <div class="col-head"><span class="ct">In Progress</span><span class="cn">2</span></div>
+      <div class="card">
+        <div class="tag">COOLING</div>
+        <div class="ctt">액침냉각 2라인 시운전</div>
+        <div class="meta"><span class="who">@운영 · 정하</span><span class="pts">13pt</span></div>
+      </div>
+      <div class="card hi">
+        <div class="tag">SALES · 핵심</div>
+        <div class="ctt">상위 5개사 PPA 동시 협상</div>
+        <div class="meta"><span class="who">@엔터프라이즈 · 최윤</span><span class="pts">8pt</span></div>
+      </div>
+    </div>
+
+    <!-- 완료 -->
+    <div class="col done">
+      <div class="col-head"><span class="ct">Done</span><span class="cn">3</span></div>
+      <div class="card">
+        <div class="tag">INFRA</div>
+        <div class="ctt">2개 권역 우선 부지 계약</div>
+        <div class="meta"><span class="who">@조달 · 김민</span><span class="pts">8pt</span></div>
+      </div>
+      <div class="card">
+        <div class="tag">COOLING</div>
+        <div class="ctt">액침냉각 레퍼런스 라인 가동</div>
+        <div class="meta"><span class="who">@운영 · 정하</span><span class="pts">13pt</span></div>
+      </div>
+      <div class="card">
+        <div class="tag">ORG</div>
+        <div class="ctt">3계층 조직 개편 확정</div>
+        <div class="meta"><span class="who">@HR · 한솔</span><span class="pts">5pt</span></div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

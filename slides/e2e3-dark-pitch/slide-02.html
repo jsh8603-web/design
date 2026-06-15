@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 64px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.12em; margin-bottom:14px; }
+h1 { font-size:30px; font-weight:700; color:var(--heading); line-height:1.18; letter-spacing:-0.01em; margin-bottom:30px; }
+h1 em { font-style:normal; color:var(--accent); }
+.tree { position:relative; flex:1; min-height:0; }
+.box { position:absolute; background:var(--theme-bg-card); border:1px solid var(--gray-3); border-radius:12px; padding:16px 20px; }
+.box .t { font-size:18px; font-weight:700; color:var(--heading); }
+.box .s { font-size:13px; color:var(--gray-2); margin-top:5px; line-height:1.35; }
+.box.root { border-color:var(--accent); border-width:2px; background:var(--theme-bg-elevated); }
+.box.root .t { color:var(--accent); }
+/* connector lines as real divs */
+.ln { position:absolute; background:var(--gray-3); }
+.lv { width:2px; }
+.lh { height:2px; }
+</style></head><body data-layout="org-chart" data-screen-label="02-dark-pitch · org-tree">
+  <div class="bar"></div>
+  <div class="kicker">// HBM 양산 전환 거버넌스 · 의사결정 체계</div>
+  <h1>전환 프로그램은 <em>3개 실행라인</em>을 하나의 운영위가 묶는 구조로 간다.</h1>
+  <div class="tree">
+    <!-- root centered top -->
+    <div class="box root" style="left:438px; top:8px; width:300px;">
+      <div class="t">HBM 전환 운영위원회</div>
+      <div class="s">사업부장 주관 · 주간 의사결정 · 자본/캐파 승인</div>
+    </div>
+    <!-- vertical stub from root -->
+    <div class="ln lv" style="left:587px; top:84px; height:34px;"></div>
+    <!-- horizontal spine -->
+    <div class="ln lh" style="left:172px; top:118px; width:830px;"></div>
+    <!-- three vertical drops to children -->
+    <div class="ln lv" style="left:172px; top:118px; height:34px;"></div>
+    <div class="ln lv" style="left:587px; top:118px; height:34px;"></div>
+    <div class="ln lv" style="left:1002px; top:118px; height:34px;"></div>
+    <!-- three mid boxes -->
+    <div class="box" style="left:52px; top:152px; width:240px;">
+      <div class="t">공정·설비 라인</div>
+      <div class="s">TSV 본딩·적층 수율 · 장비 셋업</div>
+    </div>
+    <div class="box" style="left:467px; top:152px; width:240px;">
+      <div class="t">고객·물량 라인</div>
+      <div class="s">장기계약 · 캐파 예약 · 인증 단축</div>
+    </div>
+    <div class="box" style="left:882px; top:152px; width:240px;">
+      <div class="t">품질·인력 라인</div>
+      <div class="s">불량 TF · 엔지니어 충원 트랙</div>
+    </div>
+    <!-- drops from each mid to its leaf -->
+    <div class="ln lv" style="left:172px; top:236px; height:30px;"></div>
+    <div class="ln lv" style="left:587px; top:236px; height:30px;"></div>
+    <div class="ln lv" style="left:1002px; top:236px; height:30px;"></div>
+    <!-- spine over leaf pairs (left line) -->
+    <div class="ln lh" style="left:80px; top:266px; width:184px;"></div>
+    <div class="ln lv" style="left:80px; top:266px; height:28px;"></div>
+    <div class="ln lv" style="left:264px; top:266px; height:28px;"></div>
+    <div class="ln lh" style="left:495px; top:266px; width:184px;"></div>
+    <div class="ln lv" style="left:495px; top:266px; height:28px;"></div>
+    <div class="ln lv" style="left:679px; top:266px; height:28px;"></div>
+    <div class="ln lh" style="left:910px; top:266px; width:184px;"></div>
+    <div class="ln lv" style="left:910px; top:266px; height:28px;"></div>
+    <div class="ln lv" style="left:1094px; top:266px; height:28px;"></div>
+    <!-- six leaf boxes -->
+    <div class="box" style="left:8px; top:294px; width:148px;">
+      <div class="t" style="font-size:15px;">P4 장비셋업</div>
+      <div class="s">12대 입고·가동률 92%</div>
+    </div>
+    <div class="box" style="left:192px; top:294px; width:148px;">
+      <div class="t" style="font-size:15px;">수율 TF</div>
+      <div class="s">분기 +6%p · 연말 81%</div>
+    </div>
+    <div class="box" style="left:423px; top:294px; width:148px;">
+      <div class="t" style="font-size:15px;">물량 계약</div>
+      <div class="s">3사 28년까지</div>
+    </div>
+    <div class="box" style="left:607px; top:294px; width:148px;">
+      <div class="t" style="font-size:15px;">인증 단축</div>
+      <div class="s">14주 → 9주</div>
+    </div>
+    <div class="box" style="left:838px; top:294px; width:148px;">
+      <div class="t" style="font-size:15px;">엔지니어 충원</div>
+      <div class="s">240명 · 본딩 40%</div>
+    </div>
+    <div class="box" style="left:1022px; top:294px; width:148px;">
+      <div class="t" style="font-size:15px;">품질 TF</div>
+      <div class="s">주간 원인공유</div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

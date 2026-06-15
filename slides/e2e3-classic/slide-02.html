@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 48px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 12px; }
+  h1 { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.02em; max-width: 1050px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 14px; }
+
+  .org { padding: 30px 72px 0; position: relative; }
+  /* root */
+  .root-row { display: flex; justify-content: center; }
+  .box { background: var(--gray-4); border-left: 4px solid var(--accent); width: 232px; padding: 14px 18px; }
+  .box.lead { background: var(--primary); border-left: 4px solid var(--accent); }
+  .box.lead .bt { color: #FFFFFF; }
+  .box.lead .bs { color: var(--gray-3); }
+  .box .bt { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.2; }
+  .box .bs { font-size: 13px; font-weight: 500; color: var(--gray-2); margin-top: 5px; }
+
+  /* connectors (real divs, not pseudo-elements) */
+  .v-stub { width: 3px; height: 22px; background: var(--gray-3); margin: 0 auto; }
+  .h-bar-wrap { display: flex; justify-content: center; }
+  .h-bar { width: 720px; height: 3px; background: var(--gray-3); }
+  .drop-row { display: flex; justify-content: center; gap: 76px; }
+  .drop { width: 232px; display: flex; justify-content: center; }
+  .drop .v { width: 3px; height: 22px; background: var(--gray-3); }
+
+  .heads-row { display: flex; justify-content: center; gap: 76px; }
+  .col { width: 232px; }
+  .v-mini { width: 3px; height: 18px; background: var(--gray-3); margin: 0 auto; }
+  .member { background: var(--theme-bg); border: 1.5px solid var(--gray-4); border-left: 4px solid var(--gray-3); padding: 9px 16px; margin-top: 10px; }
+  .member .mt { font-size: 14px; font-weight: 700; color: var(--gray-1); }
+  .member .ms { font-size: 12px; font-weight: 500; color: var(--gray-2); margin-top: 3px; }
+</style>
+</head>
+<body data-layout="org_chart" data-screen-label="classic · org-chart">
+  <div class="head">
+    <div class="kicker">// 조직 · 신규 사업본부 거버넌스</div>
+    <h1>AI 메모리 사업본부, 3개 실 체제로 의사결정 라인 단순화</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="org">
+    <div class="root-row">
+      <div class="box lead"><div class="bt">사업본부장</div><div class="bs">CDO · 김선호 부사장</div></div>
+    </div>
+    <div class="v-stub"></div>
+    <div class="h-bar-wrap"><div class="h-bar"></div></div>
+    <div class="drop-row">
+      <div class="drop"><div class="v"></div></div>
+      <div class="drop"><div class="v"></div></div>
+      <div class="drop"><div class="v"></div></div>
+    </div>
+    <div class="heads-row">
+      <div class="col">
+        <div class="box"><div class="bt">제품기획실</div><div class="bs">상무 · 이도현</div></div>
+        <div class="v-mini"></div>
+        <div class="member"><div class="mt">HBM 로드맵팀</div><div class="ms">세대별 출시 계획</div></div>
+        <div class="member"><div class="mt">고객 솔루션팀</div><div class="ms">LTA · 커스텀 스펙</div></div>
+      </div>
+      <div class="col">
+        <div class="box"><div class="bt">양산기술실</div><div class="bs">상무 · 박지우</div></div>
+        <div class="v-mini"></div>
+        <div class="member"><div class="mt">수율개선팀</div><div class="ms">TSV · 검사 자동화</div></div>
+        <div class="member"><div class="mt">원가혁신팀</div><div class="ms">소재 국산화</div></div>
+      </div>
+      <div class="col">
+        <div class="box"><div class="bt">전략구매실</div><div class="bs">상무 · 정유진</div></div>
+        <div class="v-mini"></div>
+        <div class="member"><div class="mt">캐파운영팀</div><div class="ms">라인 가동률 관리</div></div>
+        <div class="member"><div class="mt">공급망팀</div><div class="ms">장비 · 소재 조달</div></div>
+      </div>
+    </div>
+  </div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

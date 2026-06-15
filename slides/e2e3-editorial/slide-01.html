@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:52px 64px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  h1 { font-size:38px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:8px; }
+  h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .rule { height:1px; background:var(--rule-soft, #D8D2C9); margin:20px 0 28px; }
+  .stats { display:grid; grid-template-columns:repeat(4, 1fr); gap:32px; flex:1; align-content:center; }
+  .stat { display:flex; flex-direction:column; justify-content:center; padding:0 8px; border-left:2px solid var(--rule-soft, #D8D2C9); }
+  .stat:first-child { border-left:none; }
+  .num { font-size:104px; font-weight:800; line-height:0.92; color:var(--primary); letter-spacing:-0.04em; }
+  .num small { font-size:34px; font-weight:600; color:var(--accent); letter-spacing:0; }
+  .lbl { font-size:18px; font-weight:700; color:var(--accent); letter-spacing:0.04em; margin-top:18px; text-transform:uppercase; }
+  .desc { font-size:14.5px; font-weight:400; color:var(--gray-2); line-height:1.4; margin-top:8px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="stat-hero" data-screen-label="e2e3-editorial · stat-hero">
+<div class="kicker">FY26 연간 결산 · 핵심 지표</div>
+<h1 class="serif">숫자가 말한다 — <em>성장은 가속</em>, 수익성은 견고</h1>
+<div class="rule"></div>
+<div class="stats">
+  <div class="stat">
+    <div class="num">+38<small>%</small></div>
+    <div class="lbl">매출 성장</div>
+    <div class="desc">전년 대비 연간 매출 증가율, 3년 연속 두 자릿수</div>
+  </div>
+  <div class="stat">
+    <div class="num">2.4<small>B$</small></div>
+    <div class="lbl">연간 매출</div>
+    <div class="desc">사상 최대 분기 실적이 4개 분기 연속 경신</div>
+  </div>
+  <div class="stat">
+    <div class="num">31<small>%</small></div>
+    <div class="lbl">영업이익률</div>
+    <div class="desc">규모 확대에도 마진 방어, 운영 레버리지 효과</div>
+  </div>
+  <div class="stat">
+    <div class="num">1.7<small>&times;</small></div>
+    <div class="lbl">순현금 배수</div>
+    <div class="desc">EBITDA 대비 순현금, 재무 유연성 충분</div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

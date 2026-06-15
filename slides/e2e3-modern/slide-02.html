@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 52px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 14px; }
+  h1 { font-size: 32px; font-weight: 800; color: var(--heading); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 16px; }
+  .tree { padding: 36px 72px 0; }
+  .row { display: flex; justify-content: center; }
+  .box { width: 248px; border: 2px solid var(--gray-3); border-radius: 8px; padding: 14px 16px; background: var(--theme-bg); }
+  .box.top { border-color: var(--accent); border-width: 3px; }
+  .box .t { font-size: 17px; font-weight: 800; color: var(--gray-1); line-height: 1.25; }
+  .box .s { font-size: 12px; font-weight: 600; color: var(--gray-2); margin-top: 5px; line-height: 1.35; }
+  .box.top .t { color: var(--accent); }
+  /* connectors as real divs */
+  .vline { width: 3px; height: 26px; background: var(--gray-3); margin: 0 auto; }
+  .vline.short { height: 18px; }
+  .hbar { height: 3px; background: var(--gray-3); margin: 0 auto; }
+  .tier2 { display: flex; justify-content: center; gap: 56px; }
+  .tier3wrap { display: flex; justify-content: center; gap: 56px; }
+  .branch { display: flex; flex-direction: column; align-items: center; }
+  .subrow { display: flex; gap: 20px; }
+  .box.sm { width: 168px; padding: 11px 13px; border-width: 2px; border-color: var(--gray-4); }
+  .box.sm .t { font-size: 14px; font-weight: 700; }
+  .box.sm .s { font-size: 11px; margin-top: 4px; }
+</style>
+</head>
+<body data-layout="org_chart" data-screen-label="modern · org-chart">
+  <div class="head">
+    <div class="kicker">// 조직 개편 · FY26 신규 거버넌스</div>
+    <h1>CEO 직속 3개 부문 체제로 의사결정 단계를 축소</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="tree">
+    <div class="row">
+      <div class="box top">
+        <div class="t">CEO 직속 경영위원회</div>
+        <div class="s">전사 전략·자원배분 최종 의사결정</div>
+      </div>
+    </div>
+    <div class="vline"></div>
+    <div class="hbar" style="width: 760px;"></div>
+    <div class="tier2">
+      <div class="branch">
+        <div class="vline short"></div>
+        <div class="box">
+          <div class="t">메모리 사업부문</div>
+          <div class="s">DRAM·HBM·NAND 개발/양산 총괄</div>
+        </div>
+        <div class="vline short"></div>
+        <div class="hbar" style="width: 356px;"></div>
+        <div class="subrow">
+          <div class="box sm"><div class="t">HBM 본부</div><div class="s">고대역폭 메모리 라인</div></div>
+          <div class="box sm"><div class="t">레거시 DRAM 본부</div><div class="s">범용 제품 캐파 운영</div></div>
+        </div>
+      </div>
+      <div class="branch">
+        <div class="vline short"></div>
+        <div class="box">
+          <div class="t">파운드리 사업부문</div>
+          <div class="s">선단공정·패키징 수탁생산</div>
+        </div>
+        <div class="vline short"></div>
+        <div class="hbar" style="width: 356px;"></div>
+        <div class="subrow">
+          <div class="box sm"><div class="t">선단공정 본부</div><div class="s">3nm 이하 양산 전담</div></div>
+          <div class="box sm"><div class="t">어드밴스드 패키징</div><div class="s">2.5D/3D 적층 통합</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

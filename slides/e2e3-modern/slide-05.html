@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 52px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 14px; }
+  h1 { font-size: 32px; font-weight: 800; color: var(--heading); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 16px; }
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 34px 72px 0; }
+  .col { background: var(--gray-4); border-radius: 10px; padding: 16px 14px; }
+  .colhd { display: flex; align-items: center; justify-content: space-between; padding: 0 4px 14px; }
+  .colhd .nm { font-size: 15px; font-weight: 800; color: var(--gray-1); letter-spacing: 0.02em; }
+  .count { font-size: 13px; font-weight: 800; color: var(--gray-2); background: var(--theme-bg); border-radius: 12px; padding: 3px 11px; }
+  .card { background: var(--theme-bg); border-radius: 8px; padding: 13px 14px; margin-bottom: 12px; border-left: 4px solid var(--gray-3); }
+  .card.acc { border-left-color: var(--accent); }
+  .card.ok { border-left-color: var(--positive); }
+  .card .ct { font-size: 15px; font-weight: 700; color: var(--gray-1); line-height: 1.3; }
+  .card .meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 11px; }
+  .tag { font-size: 11px; font-weight: 800; color: var(--accent); background: #FDF3EB; border-radius: 4px; padding: 3px 8px; letter-spacing: 0.03em; white-space: nowrap; }
+  .who { white-space: nowrap; }
+  .tag.g { color: var(--positive); background: #E8F3EC; }
+  .tag.n { color: var(--gray-2); background: var(--gray-4); }
+  .who { font-size: 12px; font-weight: 600; color: var(--gray-2); }
+</style>
+</head>
+<body data-layout="four_column" data-screen-label="modern · kanban">
+  <div class="head">
+    <div class="kicker">// 스프린트 24 · 실행 보드</div>
+    <h1>핵심 출시 항목 2건이 진행 중, 완료 라인은 일정대로 소화</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="board">
+    <div class="col">
+      <div class="colhd"><div class="nm">To Do</div><div class="count">3</div></div>
+      <div class="card"><div class="ct">결제 모듈 PG 3사 연동 설계</div><div class="meta"><div class="tag n">대기</div><div class="who">김도현</div></div></div>
+      <div class="card"><div class="ct">대시보드 권한 모델 재정의</div><div class="meta"><div class="tag n">대기</div><div class="who">이서연</div></div></div>
+      <div class="card"><div class="ct">알림 센터 다국어 리소스 정리</div><div class="meta"><div class="tag n">낮음</div><div class="who">박준영</div></div></div>
+    </div>
+    <div class="col">
+      <div class="colhd"><div class="nm">진행 중</div><div class="count">2</div></div>
+      <div class="card acc"><div class="ct">신규 온보딩 플로우 A/B 적용</div><div class="meta"><div class="tag">우선</div><div class="who">정민지</div></div></div>
+      <div class="card acc"><div class="ct">검색 색인 파이프라인 이관</div><div class="meta"><div class="tag">우선</div><div class="who">최우성</div></div></div>
+    </div>
+    <div class="col">
+      <div class="colhd"><div class="nm">완료</div><div class="count">3</div></div>
+      <div class="card ok"><div class="ct">로그인 2FA 의무화 배포</div><div class="meta"><div class="tag g">완료</div><div class="who">한지우</div></div></div>
+      <div class="card ok"><div class="ct">청구서 PDF 양식 개편</div><div class="meta"><div class="tag g">완료</div><div class="who">오세훈</div></div></div>
+      <div class="card ok"><div class="ct">API 응답 캐시 계층 추가</div><div class="meta"><div class="tag g">완료</div><div class="who">윤하늘</div></div></div>
+    </div>
+  </div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

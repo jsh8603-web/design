@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:60px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:14px; }
+h1 { font-size:36px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:40px; }
+h1 em { font-style:normal; color:var(--accent); }
+.stats { display:flex; gap:40px; flex:1; min-height:0; align-items:stretch; }
+.stat { flex:1; min-width:0; display:flex; flex-direction:column; }
+.stat .rule { height:3px; background:var(--accent); width:56px; margin-bottom:22px; }
+.stat.muted .rule { background:var(--gray-3); }
+.num { font-size:104px; font-weight:800; color:var(--heading); line-height:0.95;
+  letter-spacing:-0.03em; display:flex; align-items:baseline; }
+.num small { font-size:36px; font-weight:700; color:var(--accent); padding-left:6px;
+  letter-spacing:0; }
+.stat.muted .num { color:var(--gray-1); }
+.stat.muted .num small { color:var(--gray-2); }
+.label { font-size:20px; font-weight:700; color:var(--gray-1); margin-top:18px; }
+.desc { font-size:15px; color:var(--gray-2); line-height:1.45; margin-top:10px; }
+.foot { font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gray-2);
+  letter-spacing:0.08em; margin-top:28px; }
+</style></head><body data-layout="big_number" data-screen-label="01-dark-mono · stat-hero">
+  <div class="bar"></div>
+  <div class="kicker">// FY26 상반기 결산 · 클라우드 인프라본부</div>
+  <h1>전환 첫 분기에 <em>매출·마진·이탈률</em> 세 지표가<br>동시에 목표선을 넘어섰다.</h1>
+  <div class="stats">
+    <div class="stat">
+      <div class="rule"></div>
+      <div class="num">128<small>%</small></div>
+      <div class="label">목표 대비 신규 매출</div>
+      <div class="desc">엔터프라이즈 신규 계약 42건이 상반기에 조기 체결되며 가이던스를 28%p 상회했다.</div>
+    </div>
+    <div class="stat">
+      <div class="rule"></div>
+      <div class="num">2.4<small>B$</small></div>
+      <div class="label">연환산 반복 매출(ARR)</div>
+      <div class="desc">멀티이어 약정 비중이 61%로 올라가며 매출 가시성이 4개 분기 앞까지 확보됐다.</div>
+    </div>
+    <div class="stat muted">
+      <div class="rule"></div>
+      <div class="num">0.9<small>%</small></div>
+      <div class="label">월간 고객 이탈률</div>
+      <div class="desc">전년 동기 2.7%에서 3분의 1 수준으로 하락, 온보딩 자동화 효과가 본격 반영됐다.</div>
+    </div>
+  </div>
+  <div class="foot">SOURCE · 내부 RevOps 대시보드 / 2026-06-15 마감 기준</div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

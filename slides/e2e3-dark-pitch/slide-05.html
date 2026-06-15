@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 64px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.12em; margin-bottom:14px; }
+h1 { font-size:30px; font-weight:700; color:var(--heading); line-height:1.18; letter-spacing:-0.01em; margin-bottom:26px; }
+h1 em { font-style:normal; color:var(--accent); }
+.board { display:flex; gap:28px; flex:1; min-height:0; }
+.col { flex:1; min-width:0; display:flex; flex-direction:column; }
+.colhead { display:flex; align-items:center; justify-content:space-between; padding:0 4px 12px; border-bottom:2px solid var(--gray-3); margin-bottom:16px; }
+.colhead .ct { font-size:17px; font-weight:800; color:var(--heading); }
+.colhead .cn { font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:700; color:#0A0A0B; background:var(--gray-2); border-radius:11px; padding:2px 11px; }
+.col.todo .colhead { border-bottom-color:var(--gray-2); }
+.col.prog .colhead { border-bottom-color:var(--accent); }
+.col.done .colhead { border-bottom-color:var(--positive); }
+.col.prog .cn { background:var(--accent); }
+.col.done .cn { background:var(--positive); }
+.cards { display:flex; flex-direction:column; gap:14px; flex:1; min-height:0; }
+.card { background:var(--theme-bg-card); border-radius:10px; padding:15px 16px; border-left:3px solid var(--gray-3); }
+.col.prog .card { border-left-color:var(--accent); }
+.col.done .card { border-left-color:var(--positive); }
+.card .tt { font-size:15px; font-weight:700; color:var(--heading); line-height:1.3; }
+.card .meta { display:flex; align-items:center; justify-content:space-between; margin-top:11px; }
+.card .tag { font-size:11px; font-weight:700; font-family:'JetBrains Mono', monospace; letter-spacing:0.04em; color:var(--accent); background:var(--theme-bg-elevated); border-radius:5px; padding:3px 14px; white-space:nowrap; flex:none; }
+.col.done .card .tag { color:var(--positive); background:var(--theme-bg-elevated); }
+.card .who { font-size:12px; color:var(--gray-2); }
+</style></head><body data-layout="kanban-board" data-screen-label="05-dark-pitch · kanban">
+  <div class="bar"></div>
+  <div class="kicker">// HBM 전환 실행 보드 · 6월 4주차 스냅샷</div>
+  <h1>전환 작업은 <em>진행 라인에 집중</em>되어 있고, 병목은 인증·장비다.</h1>
+  <div class="board">
+    <div class="col todo">
+      <div class="colhead"><span class="ct">To Do</span><div class="cn">3</div></div>
+      <div class="cards">
+        <div class="card"><div class="tt">하이브리드 본딩 파일럿 2대 선검증</div><div class="meta"><div class="tag">설비</div><span class="who">공정 1팀</span></div></div>
+        <div class="card"><div class="tt">후공정 외주 비중 35% → 18% 전환 계획</div><div class="meta"><div class="tag">SCM</div><span class="who">구매팀</span></div></div>
+        <div class="card"><div class="tt">웨이퍼 휨 제어 캐리어 신규 설계 검토</div><div class="meta"><div class="tag">R&amp;D</div><span class="who">소재기술</span></div></div>
+      </div>
+    </div>
+    <div class="col prog">
+      <div class="colhead"><span class="ct">진행 중</span><div class="cn">3</div></div>
+      <div class="cards">
+        <div class="card"><div class="tt">P4 라인 TSV 본딩 장비 12대 셋업</div><div class="meta"><div class="tag">설비</div><span class="who">공정 2팀</span></div></div>
+        <div class="card"><div class="tt">샘플 인증 리드타임 14주 → 9주 단축</div><div class="meta"><div class="tag">품질</div><span class="who">인증팀</span></div></div>
+        <div class="card"><div class="tt">공정 엔지니어 240명 충원 · 본딩 트랙</div><div class="meta"><div class="tag">인사</div><span class="who">HR·교육</span></div></div>
+      </div>
+    </div>
+    <div class="col done">
+      <div class="colhead"><span class="ct">완료</span><div class="cn">2</div></div>
+      <div class="cards">
+        <div class="card"><div class="tt">가속기 고객 3사 장기 물량 계약 체결</div><div class="meta"><div class="tag">영업</div><span class="who">키어카운트</span></div></div>
+        <div class="card"><div class="tt">협력사 합동 품질 TF 상시 조직 전환</div><div class="meta"><div class="tag">품질</div><span class="who">품질보증</span></div></div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

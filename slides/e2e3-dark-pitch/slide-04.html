@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 64px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.12em; margin-bottom:14px; }
+h1 { font-size:30px; font-weight:700; color:var(--heading); line-height:1.18; letter-spacing:-0.01em; margin-bottom:28px; }
+h1 em { font-style:normal; color:var(--accent); }
+.grid { flex:1; min-height:0; display:grid; grid-template-columns:2.1fr 1fr 1fr 1fr; grid-auto-rows:1fr; gap:0; border-radius:12px; overflow:hidden; border:1px solid var(--gray-3); }
+.cell { display:flex; align-items:center; padding:0 22px; border-bottom:1px solid var(--gray-3); border-right:1px solid var(--gray-3); }
+.cell:nth-child(4n) { border-right:none; }
+.grid > .cell:nth-last-child(-n+4) { border-bottom:none; }
+.hdr { background:var(--theme-bg-elevated); flex-direction:column; align-items:center; justify-content:center; }
+.hdr.feat { align-items:flex-start; }
+.hdr .ht { font-size:18px; font-weight:800; color:var(--heading); }
+.hdr .hs { font-size:12px; color:var(--gray-2); font-weight:600; padding-top:3px; }
+.hdr.pick { background:var(--theme-bg-elevated); }
+.hdr.pick .ht { color:var(--accent); }
+.feat .ft { font-size:15px; font-weight:600; color:var(--gray-1); }
+.mark { justify-content:center; font-size:24px; font-weight:800; }
+.mark.yes { color:var(--positive); }
+.mark.no { color:var(--negative); }
+.mark.par { color:var(--gray-2); }
+.col-pick { background:var(--theme-bg-elevated); }
+</style></head><body data-layout="comparison-table" data-screen-label="04-dark-pitch · icon-compare">
+  <div class="bar"></div>
+  <div class="kicker">// 공급 플랜 비교 · 고객 의사결정 매트릭스</div>
+  <h1>가속기 고객에게는 <em>Enterprise 우선공급</em> 플랜이 유일한 정합이다.</h1>
+  <div class="grid">
+    <!-- header row -->
+    <div class="cell hdr feat"><div class="ft" style="font-weight:800;color:var(--heading);font-size:14px;">공급 조건</div></div>
+    <div class="cell hdr"><div class="ht">Standard</div><div class="hs">현물 베이스</div></div>
+    <div class="cell hdr"><div class="ht">Priority</div><div class="hs">분기 예약</div></div>
+    <div class="cell hdr pick col-pick"><div class="ht">Enterprise</div><div class="hs">장기 우선</div></div>
+    <!-- rows -->
+    <div class="cell feat"><span class="ft">캐파 사전 예약</span></div>
+    <div class="cell mark no">✗</div>
+    <div class="cell mark yes">✓</div>
+    <div class="cell mark yes col-pick">✓</div>
+
+    <div class="cell feat"><span class="ft">12단 적층 우선 배정</span></div>
+    <div class="cell mark no">✗</div>
+    <div class="cell mark par">—</div>
+    <div class="cell mark yes col-pick">✓</div>
+
+    <div class="cell feat"><span class="ft">인증 리드타임 단축</span></div>
+    <div class="cell mark par">—</div>
+    <div class="cell mark yes">✓</div>
+    <div class="cell mark yes col-pick">✓</div>
+
+    <div class="cell feat"><span class="ft">가격 변동 헤지 조항</span></div>
+    <div class="cell mark no">✗</div>
+    <div class="cell mark par">—</div>
+    <div class="cell mark yes col-pick">✓</div>
+
+    <div class="cell feat"><span class="ft">전담 품질 TF 연동</span></div>
+    <div class="cell mark no">✗</div>
+    <div class="cell mark no">✗</div>
+    <div class="cell mark yes col-pick">✓</div>
+
+    <div class="cell feat"><span class="ft">28년까지 물량 보장</span></div>
+    <div class="cell mark no">✗</div>
+    <div class="cell mark par">—</div>
+    <div class="cell mark yes col-pick">✓</div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

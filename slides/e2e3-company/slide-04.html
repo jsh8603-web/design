@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 56px 80px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 30px; }
+
+  .grid { flex: 1; display: grid; grid-template-columns: 320px repeat(4, 1fr); grid-auto-rows: 1fr; gap: 0; border: 1px solid var(--gray-4); }
+  .cell { display: flex; align-items: center; padding: 0 18px; border-bottom: 1px solid var(--gray-4); }
+  .cell.ctr { justify-content: center; }
+
+  /* header row */
+  .hcell { font-size: 16px; font-weight: 800; color: var(--primary); border-bottom: 3px solid var(--primary); }
+  .hcell.plan { flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 3px; }
+  .hcell.plan .p-name { font-size: 17px; font-weight: 800; color: var(--primary); }
+  .hcell.plan .p-price { font-size: 12px; font-weight: 600; color: var(--gray-2); }
+  .hcell.pop { background: var(--surface-inverse); border-bottom: 3px solid var(--accent); }
+  .hcell.pop .p-name { color: var(--surface-inverse-fg); }
+  .hcell.pop .p-price { color: var(--accent); }
+
+  /* feature label cells */
+  .fcell { font-size: 15px; font-weight: 700; color: var(--gray-1); line-height: 1.25; }
+  .fsub { font-size: 12px; font-weight: 500; color: var(--gray-2); }
+
+  /* glyphs */
+  .gy { font-size: 22px; font-weight: 800; line-height: 1; }
+  .yes { color: var(--positive); }
+  .no  { color: var(--gray-3); }
+  .na  { color: var(--gray-1); font-weight: 700; }
+  .qty { font-size: 15px; font-weight: 800; color: var(--gray-1); }
+  .col-pop { background: #FCEEE2; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">엔터프라이즈 라이선스 플랜</div>
+  <div class="title">Business 플랜이 핵심 보안·SLA를<br>가장 균형 있게 포함</div>
+
+  <div class="grid">
+    <!-- header -->
+    <div class="cell hcell">기능 / 플랜</div>
+    <div class="cell hcell plan"><div class="p-name">Starter</div><div class="p-price">₩0 / 월</div></div>
+    <div class="cell hcell plan"><div class="p-name">Team</div><div class="p-price">₩39,000 / 월</div></div>
+    <div class="cell hcell plan pop"><div class="p-name">Business ★</div><div class="p-price">₩129,000 / 월</div></div>
+    <div class="cell hcell plan"><div class="p-name">Enterprise</div><div class="p-price">문의</div></div>
+
+    <!-- row 1 -->
+    <div class="cell"><div><div class="fcell">사용자 수</div><div class="fsub">동시 접속 시트</div></div></div>
+    <div class="cell ctr"><span class="qty">3</span></div>
+    <div class="cell ctr"><span class="qty">25</span></div>
+    <div class="cell ctr col-pop"><span class="qty">200</span></div>
+    <div class="cell ctr"><span class="qty">무제한</span></div>
+
+    <!-- row 2 -->
+    <div class="cell"><div><div class="fcell">SSO / SAML 연동</div><div class="fsub">IdP 통합 인증</div></div></div>
+    <div class="cell ctr"><span class="gy no">✗</span></div>
+    <div class="cell ctr"><span class="gy no">✗</span></div>
+    <div class="cell ctr col-pop"><span class="gy yes">✓</span></div>
+    <div class="cell ctr"><span class="gy yes">✓</span></div>
+
+    <!-- row 3 -->
+    <div class="cell"><div><div class="fcell">감사 로그 보존</div><div class="fsub">규제 대응</div></div></div>
+    <div class="cell ctr"><span class="gy no">✗</span></div>
+    <div class="cell ctr"><span class="na">30일</span></div>
+    <div class="cell ctr col-pop"><span class="na">1년</span></div>
+    <div class="cell ctr"><span class="na">7년</span></div>
+
+    <!-- row 4 -->
+    <div class="cell"><div><div class="fcell">전용 SLA 99.9%</div><div class="fsub">가동률 보장</div></div></div>
+    <div class="cell ctr"><span class="gy no">✗</span></div>
+    <div class="cell ctr"><span class="gy na">—</span></div>
+    <div class="cell ctr col-pop"><span class="gy yes">✓</span></div>
+    <div class="cell ctr"><span class="gy yes">✓</span></div>
+
+    <!-- row 5 -->
+    <div class="cell"><div><div class="fcell">API 호출 한도</div><div class="fsub">월 기준</div></div></div>
+    <div class="cell ctr"><span class="na">10K</span></div>
+    <div class="cell ctr"><span class="na">500K</span></div>
+    <div class="cell ctr col-pop"><span class="na">5M</span></div>
+    <div class="cell ctr"><span class="na">맞춤</span></div>
+
+    <!-- row 6 -->
+    <div class="cell" style="border-bottom:none;"><div><div class="fcell">전담 CSM 배정</div><div class="fsub">기술 지원 매니저</div></div></div>
+    <div class="cell ctr" style="border-bottom:none;"><span class="gy no">✗</span></div>
+    <div class="cell ctr" style="border-bottom:none;"><span class="gy no">✗</span></div>
+    <div class="cell ctr col-pop" style="border-bottom:none;"><span class="gy na">—</span></div>
+    <div class="cell ctr" style="border-bottom:none;"><span class="gy yes">✓</span></div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

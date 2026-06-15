@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--gray-1);
+  padding:48px 60px;
+  display:flex; flex-direction:column;
+  border-top:3px solid var(--rule-strong);
+}
+.head { border-bottom:1px solid var(--border-soft); padding-bottom:16px; margin-bottom:30px; }
+.eyebrow { font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+h1 { font-size:28px; font-weight:700; letter-spacing:-0.01em; color:var(--primary); line-height:1.2; margin-top:8px; }
+.tree { flex:1; display:flex; flex-direction:column; align-items:center; }
+.box { width:240px; border:1.5px solid var(--primary); border-radius:6px; padding:14px 16px; background:var(--theme-bg-card); text-align:center; }
+.box.root { background:var(--surface-inverse); border-color:var(--surface-inverse); }
+.box.root .t { color:var(--surface-inverse-fg); }
+.box.root .s { color:#D6E2F0; }
+.box .t { font-size:17px; font-weight:700; color:var(--primary); line-height:1.25; }
+.box .s { font-size:13px; font-weight:400; color:var(--gray-2); margin-top:4px; line-height:1.3; }
+/* connector lines = real divs */
+.vline { width:2px; height:26px; background:var(--gray-3); }
+.hwrap { position:relative; display:flex; justify-content:center; width:100%; }
+.hline { position:absolute; top:0; height:2px; background:var(--gray-3); }
+.row { display:flex; justify-content:center; gap:48px; width:100%; }
+.node { display:flex; flex-direction:column; align-items:center; }
+.lvl3 { margin-top:0; }
+.lvl3 .box { width:158px; padding:10px 10px; border-color:var(--accent); }
+.lvl3 .box .t { font-size:14px; }
+</style></head><body data-layout="org-chart" data-screen-label="02-academic · org-chart">
+
+  <div class="head">
+    <div class="eyebrow">거버넌스 · 연구 조직</div>
+    <h1>연구부총장 산하 3본부, 의사결정 라인을 단일화했다</h1>
+  </div>
+
+  <div class="tree">
+    <!-- Level 1: root -->
+    <div class="box root">
+      <div class="t">연구부총장실</div>
+      <div class="s">전략·예산 총괄</div>
+    </div>
+    <div class="vline"></div>
+
+    <!-- horizontal connector to 3 children -->
+    <div class="hwrap" style="height:2px;"><div class="hline" style="left:25%; right:25%;"></div></div>
+
+    <!-- Level 2: 3 boxes -->
+    <div class="row" style="margin-top:0;">
+      <div class="node">
+        <div class="vline"></div>
+        <div class="box">
+          <div class="t">기초연구본부</div>
+          <div class="s">기초·융합 12개 센터</div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="vline"></div>
+        <div class="box">
+          <div class="t">산학협력본부</div>
+          <div class="s">기술이전·창업 지원</div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="vline"></div>
+        <div class="box">
+          <div class="t">연구지원본부</div>
+          <div class="s">행정·인프라·윤리</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level 3 -->
+    <div class="row lvl3" style="margin-top:26px;">
+      <div class="node">
+        <div class="row" style="gap:20px;">
+          <div class="node"><div class="vline"></div><div class="box"><div class="t">생명과학</div></div></div>
+          <div class="node"><div class="vline"></div><div class="box"><div class="t">물리·소재</div></div></div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="row" style="gap:20px;">
+          <div class="node"><div class="vline"></div><div class="box"><div class="t">기술사업화</div></div></div>
+          <div class="node"><div class="vline"></div><div class="box"><div class="t">스타트업랩</div></div></div>
+        </div>
+      </div>
+      <div class="node">
+        <div class="row" style="gap:20px;">
+          <div class="node"><div class="vline"></div><div class="box"><div class="t">연구장비</div></div></div>
+          <div class="node"><div class="vline"></div><div class="box"><div class="t">IRB·윤리</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

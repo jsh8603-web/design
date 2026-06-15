@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:32px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:26px; }
+h1 em { font-style:normal; color:var(--accent); }
+.tree { flex:1; min-height:0; display:flex; flex-direction:column; align-items:center; }
+.box { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:12px;
+  padding:14px 22px; text-align:center; }
+.box .t { font-size:17px; font-weight:700; color:var(--gray-1); }
+.box .s { font-size:12px; color:var(--gray-2); margin-top:4px; }
+.box.root { background:var(--accent); border-color:var(--accent); }
+.box.root .t { color:#0F1419; font-size:19px; }
+.box.root .s { color:#10324f; }
+/* connectors are real divs */
+.vline { width:2px; height:26px; background:var(--gray-3); }
+.hbar-wrap { position:relative; width:920px; height:2px; }
+.hbar { position:absolute; top:0; height:2px; background:var(--gray-3); }
+.tier2 { display:flex; gap:48px; justify-content:center; }
+.branch { display:flex; flex-direction:column; align-items:center; width:280px; }
+.subs { display:flex; flex-direction:column; gap:10px; margin-top:4px; width:100%; }
+.sub { background:#161d27; border:1px solid var(--gray-4); border-left:3px solid var(--accent);
+  border-radius:8px; padding:9px 14px; }
+.sub .t { font-size:13px; font-weight:600; color:var(--gray-1); }
+.sub .s { font-size:11px; color:var(--gray-2); margin-top:2px; }
+</style></head><body data-layout="org_chart" data-screen-label="02-dark-mono · org-tree">
+  <div class="bar"></div>
+  <div class="kicker">// 플랫폼 엔지니어링 조직 개편 · 2026 Q3 발효</div>
+  <h1>플랫폼 본부는 <em>3개 도메인 챕터</em>로 재편돼<br>End-to-End 오너십을 갖는다.</h1>
+  <div class="tree">
+    <div class="box root">
+      <div class="t">플랫폼 엔지니어링 본부</div>
+      <div class="s">CTO 직속 · 정원 142명</div>
+    </div>
+    <div class="vline"></div>
+    <div class="hbar-wrap">
+      <div class="hbar" style="left:140px;right:140px;"></div>
+      <div class="vline" style="position:absolute;left:139px;top:0;"></div>
+      <div class="vline" style="position:absolute;left:50%;top:0;transform:translateX(-50%);"></div>
+      <div class="vline" style="position:absolute;right:139px;top:0;"></div>
+    </div>
+    <div class="tier2">
+      <div class="branch">
+        <div class="box"><div class="t">코어 인프라 챕터</div><div class="s">컴퓨트·네트워크 48명</div></div>
+        <div class="subs">
+          <div class="sub"><div class="t">쿠버네티스 플릿 스쿼드</div><div class="s">멀티리전 클러스터 운영</div></div>
+          <div class="sub"><div class="t">네트워크 메시 스쿼드</div><div class="s">서비스 메시·이그레스</div></div>
+        </div>
+      </div>
+      <div class="branch">
+        <div class="box"><div class="t">개발자 경험 챕터</div><div class="s">DevEx·툴링 46명</div></div>
+        <div class="subs">
+          <div class="sub"><div class="t">CI/CD 파이프라인 스쿼드</div><div class="s">빌드·배포 자동화</div></div>
+          <div class="sub"><div class="t">내부 개발자 포털 스쿼드</div><div class="s">셀프서비스 카탈로그</div></div>
+        </div>
+      </div>
+      <div class="branch">
+        <div class="box"><div class="t">신뢰성 챕터</div><div class="s">SRE·옵저버빌리티 48명</div></div>
+        <div class="subs">
+          <div class="sub"><div class="t">SRE 온콜 스쿼드</div><div class="s">SLO·장애 대응</div></div>
+          <div class="sub"><div class="t">옵저버빌리티 스쿼드</div><div class="s">메트릭·트레이스·로그</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

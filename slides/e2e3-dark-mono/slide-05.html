@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:32px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:24px; }
+h1 em { font-style:normal; color:var(--accent); }
+.board { flex:1; min-height:0; display:flex; gap:24px; }
+.col { flex:1; min-width:0; display:flex; flex-direction:column; background:#12161c;
+  border:1px solid var(--gray-4); border-radius:14px; padding:16px; }
+.colhead { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+.colhead .name { font-size:15px; font-weight:700; color:var(--gray-1); display:flex;
+  align-items:center; gap:8px; }
+.dot { width:9px; height:9px; border-radius:999px; background:var(--gray-3); display:inline-block; }
+.col.todo .dot { background:var(--gray-2); }
+.col.doing .dot { background:var(--accent); }
+.col.done .dot { background:var(--positive); }
+.count { font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:700;
+  color:var(--gray-2); background:var(--gray-4); border-radius:999px; padding:3px 11px; }
+.cards { display:flex; flex-direction:column; gap:12px; flex:1; min-height:0; }
+.card { background:var(--gray-4); border-radius:10px; padding:13px 14px;
+  border-left:3px solid var(--gray-3); }
+.col.doing .card { border-left-color:var(--accent); }
+.col.done .card { border-left-color:var(--positive); }
+.card .ct { font-size:14px; font-weight:600; color:var(--gray-1); line-height:1.35; }
+.card .meta { display:flex; align-items:center; gap:8px; margin-top:10px;
+  justify-content:space-between; }
+.tag { font-size:10px; font-weight:700; letter-spacing:0.04em; color:var(--accent);
+  background:#13314f; border-radius:5px; padding:3px 7px; }
+.tag.warn { color:#fcd34d; background:#3a2f12; }
+.tag.ok { color:var(--positive); background:#10331f; }
+.owner { font-size:11px; color:var(--gray-2); }
+</style></head><body data-layout="kanban_board" data-screen-label="05-dark-mono · kanban">
+  <div class="bar"></div>
+  <div class="kicker">// 스프린트 41 보드 · 결제 플랫폼 스쿼드</div>
+  <h1>이번 스프린트는 <em>정산 정확도</em> 작업에 집중,<br>완료 6건 중 4건이 결제 신뢰성 항목이다.</h1>
+  <div class="board">
+    <div class="col todo">
+      <div class="colhead"><span class="name"><span class="dot"></span>To Do</span><span class="count">3</span></div>
+      <div class="cards">
+        <div class="card"><div class="ct">환불 부분취소 멱등성 키 재설계</div><div class="meta"><span class="tag">결제코어</span><span class="owner">지윤</span></div></div>
+        <div class="card"><div class="ct">PG사 웹훅 재시도 백오프 정책 통일</div><div class="meta"><span class="tag warn">긴급</span><span class="owner">민수</span></div></div>
+        <div class="card"><div class="ct">정산 리포트 CSV 인코딩 BOM 처리</div><div class="meta"><span class="tag">정산</span><span class="owner">하늘</span></div></div>
+      </div>
+    </div>
+    <div class="col doing">
+      <div class="colhead"><span class="name"><span class="dot"></span>진행 중</span><span class="count">2</span></div>
+      <div class="cards">
+        <div class="card"><div class="ct">이중 출금 방지 분산락 도입</div><div class="meta"><span class="tag">결제코어</span><span class="owner">지윤</span></div></div>
+        <div class="card"><div class="ct">통화별 반올림 규칙 정산 엔진 반영</div><div class="meta"><span class="tag warn">리스크</span><span class="owner">서연</span></div></div>
+      </div>
+    </div>
+    <div class="col done">
+      <div class="colhead"><span class="name"><span class="dot"></span>완료</span><span class="count">3</span></div>
+      <div class="cards">
+        <div class="card"><div class="ct">결제 승인 지연 알림 임계치 튜닝</div><div class="meta"><span class="tag ok">배포완료</span><span class="owner">민수</span></div></div>
+        <div class="card"><div class="ct">대사(reconciliation) 배치 누락 건 복구</div><div class="meta"><span class="tag ok">검증</span><span class="owner">하늘</span></div></div>
+        <div class="card"><div class="ct">카드 BIN 라우팅 테이블 최신화</div><div class="meta"><span class="tag ok">배포완료</span><span class="owner">서연</span></div></div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

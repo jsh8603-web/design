@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--gray-1);
+  padding:52px 60px;
+  display:flex; flex-direction:column;
+  border-top:3px solid var(--rule-strong);
+}
+.head { border-bottom:1px solid var(--border-soft); padding-bottom:18px; margin-bottom:42px; }
+.eyebrow { font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+h1 { font-size:30px; font-weight:700; letter-spacing:-0.01em; color:var(--primary); line-height:1.2; margin-top:10px; }
+h1 em { font-style:normal; color:var(--accent); }
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:30px; flex:1; align-content:center; }
+.stat { display:flex; flex-direction:column; }
+.stat .num { font-size:96px; font-weight:800; line-height:0.95; color:var(--primary); letter-spacing:-0.03em; }
+.stat .num small { font-size:38px; font-weight:700; color:var(--accent); letter-spacing:0; }
+.stat .label { font-size:18px; font-weight:700; color:var(--gray-1); margin-top:16px; line-height:1.25; }
+.stat .desc { font-size:14px; font-weight:400; color:var(--gray-2); margin-top:8px; line-height:1.45; }
+.stat .bar { width:54px; height:4px; background:var(--rule-strong); margin-top:14px; }
+.foot { font-size:13px; color:var(--gray-2); margin-top:34px; }
+</style></head><body data-layout="stat-hero" data-screen-label="01-academic · stat-hero">
+
+  <div class="head">
+    <div class="eyebrow">연구 성과 · 2026 연차 보고</div>
+    <h1>3년 누적 연구 지표가 <em>임계 규모</em>에 도달했다</h1>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num">128</div>
+      <div class="bar"></div>
+      <div class="label">SCI 게재 논문</div>
+      <div class="desc">전년 대비 +34편, 상위 10% 저널 비중 41%</div>
+    </div>
+    <div class="stat">
+      <div class="num">96<small>%</small></div>
+      <div class="bar"></div>
+      <div class="label">연구비 집행률</div>
+      <div class="desc">정부·산학 과제 통합, 미집행 잔액 4%</div>
+    </div>
+    <div class="stat">
+      <div class="num">2.4<small>B$</small></div>
+      <div class="bar"></div>
+      <div class="label">기술이전 수입</div>
+      <div class="desc">누적 라이선스 18건, 후속 로열티 포함</div>
+    </div>
+    <div class="stat">
+      <div class="num">7.8<small>&times;</small></div>
+      <div class="bar"></div>
+      <div class="label">평균 피인용 배수</div>
+      <div class="desc">분야 평균 대비, h-index 중앙값 24</div>
+    </div>
+  </div>
+
+  <div class="foot">출처 — 연구처 통합 DB (2023–2026), 인용 데이터 Scopus 기준 집계</div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

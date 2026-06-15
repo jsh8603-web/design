@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 52px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 14px; }
+  h1 { font-size: 32px; font-weight: 800; color: var(--heading); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 16px; }
+  .grid { display: grid; grid-template-columns: 360px repeat(3, 1fr); padding: 36px 72px 0; column-gap: 2px; }
+  .cell { padding: 15px 18px; display: flex; align-items: center; }
+  .ch { background: var(--gray-4); font-size: 13px; font-weight: 800; color: var(--gray-2); letter-spacing: 0.04em; text-transform: uppercase; justify-content: center; text-align: center; }
+  .ch.feat { justify-content: flex-start; background: var(--theme-bg); }
+  .ch.hi { background: var(--accent); color: #fff; }
+  .feat-name { font-size: 15px; font-weight: 700; color: var(--gray-1); line-height: 1.3; }
+  .val { justify-content: center; font-size: 22px; font-weight: 800; border-bottom: 1px solid var(--gray-4); }
+  .feat-name.row { border-bottom: 1px solid var(--gray-4); }
+  .yes { color: var(--positive); }
+  .no { color: var(--gray-3); }
+  .par { color: var(--accent); font-size: 18px; }
+  .hicol { background: #FDF3EB; }
+</style>
+</head>
+<body data-layout="harvey_ball_table" data-screen-label="modern · icon-compare">
+  <div class="head">
+    <div class="kicker">// 구독 플랜 · 기능 비교</div>
+    <h1>Enterprise 플랜만 보안·전용지원 전 항목을 충족</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="grid">
+    <div class="cell ch feat">기능 / 플랜</div>
+    <div class="cell ch">Starter</div>
+    <div class="cell ch">Business</div>
+    <div class="cell ch hi">Enterprise</div>
+
+    <div class="cell"><div class="feat-name row">사용자 수 무제한</div></div>
+    <div class="cell val no">✗</div>
+    <div class="cell val yes">✓</div>
+    <div class="cell val yes hicol">✓</div>
+
+    <div class="cell"><div class="feat-name row">SSO / SAML 인증</div></div>
+    <div class="cell val no">✗</div>
+    <div class="cell val par">—</div>
+    <div class="cell val yes hicol">✓</div>
+
+    <div class="cell"><div class="feat-name row">감사 로그 보관 1년</div></div>
+    <div class="cell val no">✗</div>
+    <div class="cell val yes">✓</div>
+    <div class="cell val yes hicol">✓</div>
+
+    <div class="cell"><div class="feat-name row">전담 기술지원(TAM)</div></div>
+    <div class="cell val no">✗</div>
+    <div class="cell val no">✗</div>
+    <div class="cell val yes hicol">✓</div>
+
+    <div class="cell"><div class="feat-name row">SLA 99.9% 보장</div></div>
+    <div class="cell val par">—</div>
+    <div class="cell val yes">✓</div>
+    <div class="cell val yes hicol">✓</div>
+
+    <div class="cell"><div class="feat-name">온프레미스 배포</div></div>
+    <div class="cell val no" style="border-bottom:none">✗</div>
+    <div class="cell val no" style="border-bottom:none">✗</div>
+    <div class="cell val yes hicol" style="border-bottom:none">✓</div>
+  </div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

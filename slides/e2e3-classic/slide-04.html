@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko" data-theme="classic">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 48px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 12px; }
+  h1 { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.2; letter-spacing: -0.02em; max-width: 1050px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 14px; }
+
+  .grid { display: grid; grid-template-columns: 320px 1fr 1fr 1fr; padding: 32px 72px 0; }
+  .cell { padding: 13px 16px; border-bottom: 1.5px solid var(--gray-4); display: flex; align-items: center; }
+  /* header row */
+  .hcell { padding: 12px 16px; background: var(--primary); display: flex; flex-direction: column; justify-content: center; min-height: 64px; }
+  .hcell.feat { background: var(--gray-4); }
+  .hcell .ht { font-size: 16px; font-weight: 800; color: #FFFFFF; }
+  .hcell .hsub { font-size: 12px; font-weight: 500; color: var(--gray-3); margin-top: 3px; }
+  .hcell.feat .ht { color: var(--primary); }
+  .hcell.pop { background: var(--accent); }
+  .hcell.pop .hsub { color: #FFFFFF; }
+
+  .feat-name { font-size: 15px; font-weight: 700; color: var(--gray-1); }
+  .mark { justify-content: center; font-size: 22px; font-weight: 800; }
+  .yes { color: var(--positive); } .no { color: var(--negative); } .par { color: var(--gray-2); }
+  .grid .cell:nth-child(8n+5), .grid .cell:nth-child(8n+6), .grid .cell:nth-child(8n+7), .grid .cell:nth-child(8n+8) { background: var(--gray-4); }
+  .note { position: absolute; left: 72px; bottom: 34px; font-size: 12px; color: var(--gray-3); }
+  .note b { color: var(--gray-2); }
+</style>
+</head>
+<body data-layout="comparison_table" data-screen-label="classic · icon-compare">
+  <div class="head">
+    <div class="kicker">// 제품 · 플랜별 기능 비교</div>
+    <h1>Enterprise 플랜만 전 기능 지원, 핵심 차별점은 SLA와 전용 캐파</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="grid">
+    <div class="hcell feat"><div class="ht">기능 / 플랜</div></div>
+    <div class="hcell"><div class="ht">Starter</div><div class="hsub">월 1,200만원</div></div>
+    <div class="hcell"><div class="ht">Business</div><div class="hsub">월 3,800만원</div></div>
+    <div class="hcell pop"><div class="ht">Enterprise</div><div class="hsub">맞춤 견적</div></div>
+
+    <div class="cell"><span class="feat-name">기본 메모리 공급</span></div>
+    <div class="cell mark yes">&#10003;</div>
+    <div class="cell mark yes">&#10003;</div>
+    <div class="cell mark yes">&#10003;</div>
+
+    <div class="cell"><span class="feat-name">우선 출하 보장</span></div>
+    <div class="cell mark no">&#10007;</div>
+    <div class="cell mark yes">&#10003;</div>
+    <div class="cell mark yes">&#10003;</div>
+
+    <div class="cell"><span class="feat-name">커스텀 스펙 설계</span></div>
+    <div class="cell mark no">&#10007;</div>
+    <div class="cell mark par">&minus;</div>
+    <div class="cell mark yes">&#10003;</div>
+
+    <div class="cell"><span class="feat-name">전용 라인 캐파</span></div>
+    <div class="cell mark no">&#10007;</div>
+    <div class="cell mark no">&#10007;</div>
+    <div class="cell mark yes">&#10003;</div>
+
+    <div class="cell"><span class="feat-name">24/7 기술 SLA</span></div>
+    <div class="cell mark par">&minus;</div>
+    <div class="cell mark yes">&#10003;</div>
+    <div class="cell mark yes">&#10003;</div>
+
+    <div class="cell"><span class="feat-name">로드맵 사전 공유</span></div>
+    <div class="cell mark no">&#10007;</div>
+    <div class="cell mark par">&minus;</div>
+    <div class="cell mark yes">&#10003;</div>
+  </div>
+  <div class="note"><b>&#10003;</b> 지원 &nbsp;&nbsp; <b>&minus;</b> 부분/옵션 &nbsp;&nbsp; <b>&#10007;</b> 미지원</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

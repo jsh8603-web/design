@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:52px 56px;
+  display:flex; flex-direction:column;
+}
+.head { display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1.5px solid var(--primary); padding-bottom:18px; margin-bottom:28px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:34px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.18; margin-top:8px; }
+h1 em { font-style:normal; color:var(--accent); }
+.docid { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--gray-3); }
+
+.tree { flex:1; position:relative; }
+/* 박스 */
+.node { position:absolute; background:var(--theme-bg-card); border:1.5px solid var(--primary); padding:14px 18px; width:222px; }
+.node.root { border-width:2px; background:var(--surface-inverse); }
+.node.root .nt { color:var(--surface-inverse-fg); }
+.node.root .ns { color:var(--gray-4); }
+.node .nt { font-size:18px; font-weight:700; color:var(--primary); line-height:1.2; }
+.node .ns { font-size:13px; font-weight:400; color:var(--gray-2); margin-top:5px; line-height:1.35; }
+.node .nb { display:inline-block; font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--accent); margin-bottom:6px; }
+.node.l2 { border-color:var(--accent); }
+.node.l2 .nb { color:var(--accent); }
+.node.l3 { width:208px; padding:12px 16px; border-color:var(--border-soft); }
+.node.l3 .nt { font-size:15px; }
+.node.l3 .nb { color:#B34D00; }
+/* 연결선 = 실 div */
+.line { position:absolute; background:var(--gray-3); }
+.line.v { width:1.5px; }
+.line.h { height:1.5px; }
+</style></head><body data-layout="org-tree" data-screen-label="02-executive · org-chart">
+
+  <div class="head">
+    <div>
+      <div class="eyebrow"><span class="dot">●</span> 조직 개편안 · 데이터센터 사업본부</div>
+      <h1>의사결정 라인을 <em>3계층</em>으로 압축한다</h1>
+    </div>
+    <div class="docid">ORG-2026-04 / p.07</div>
+  </div>
+
+  <div class="tree">
+    <!-- 연결선: root → L2 (세로 줄기 + 가로 분배 + 각 L2 세로) -->
+    <div class="line v" style="left:639px; top:88px; height:30px;"></div>
+    <div class="line h" style="left:181px; top:118px; width:916px;"></div>
+    <div class="line v" style="left:181px; top:118px; height:28px;"></div>
+    <div class="line v" style="left:639px; top:118px; height:28px;"></div>
+    <div class="line v" style="left:1097px; top:118px; height:28px;"></div>
+    <!-- 연결선: 각 L2 → L3 자식 (가운데 L2 만 2 자식 분기 예시) -->
+    <div class="line v" style="left:181px; top:262px; height:26px;"></div>
+    <div class="line v" style="left:639px; top:262px; height:26px;"></div>
+    <div class="line v" style="left:1097px; top:262px; height:26px;"></div>
+
+    <!-- root -->
+    <div class="node root" style="left:528px; top:18px;">
+      <div class="nt">사업본부장 (COO)</div>
+      <div class="ns">전 부문 손익·캐파 투자 최종 승인</div>
+    </div>
+
+    <!-- L2 3개 -->
+    <div class="node l2" style="left:70px; top:146px;">
+      <div class="nb">DIV · 01</div>
+      <div class="nt">인프라 운영실</div>
+      <div class="ns">전력·냉각·부지 운영 총괄</div>
+    </div>
+    <div class="node l2" style="left:528px; top:146px;">
+      <div class="nb">DIV · 02</div>
+      <div class="nt">캐파 투자실</div>
+      <div class="ns">신규 증설 ROI 심사·집행</div>
+    </div>
+    <div class="node l2" style="left:986px; top:146px;">
+      <div class="nb">DIV · 03</div>
+      <div class="nt">고객·세일즈실</div>
+      <div class="ns">대형 계약·PPA 협상</div>
+    </div>
+
+    <!-- L3 (각 L2 아래 1개씩 대표 팀) -->
+    <div class="node l3" style="left:77px; top:288px;">
+      <div class="nb">TEAM</div>
+      <div class="nt">에너지 조달팀</div>
+      <div class="ns">PPA·변전 인입 관리</div>
+    </div>
+    <div class="node l3" style="left:535px; top:288px;">
+      <div class="nb">TEAM</div>
+      <div class="nt">투자심사팀</div>
+      <div class="ns">capex 게이트 운영</div>
+    </div>
+    <div class="node l3" style="left:993px; top:288px;">
+      <div class="nb">TEAM</div>
+      <div class="nt">엔터프라이즈팀</div>
+      <div class="ns">상위 20개사 전담</div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

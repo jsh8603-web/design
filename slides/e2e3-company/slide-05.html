@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 56px 80px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 28px; }
+
+  .board { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .col { display: flex; flex-direction: column; }
+  .col-head { display: flex; align-items: center; justify-content: space-between; padding: 0 4px 12px; border-bottom: 3px solid var(--gray-3); margin-bottom: 16px; }
+  .col-title { font-size: 18px; font-weight: 800; color: var(--primary); }
+  .col-count { font-size: 14px; font-weight: 800; color: #FFFFFF; background: var(--gray-3); border-radius: 12px; padding: 2px 11px; }
+  .c-todo .col-head { border-bottom-color: var(--gray-3); }
+  .c-prog .col-head { border-bottom-color: var(--accent); }
+  .c-prog .col-count { background: var(--accent); }
+  .c-done .col-head { border-bottom-color: var(--positive); }
+  .c-done .col-count { background: var(--positive); }
+
+  .cards { display: flex; flex-direction: column; gap: 14px; }
+  .card { border: 1px solid var(--gray-4); border-left: 4px solid var(--gray-3); border-radius: 8px; padding: 14px 16px; background: var(--theme-bg); }
+  .c-prog .card { border-left-color: var(--accent); }
+  .c-done .card { border-left-color: var(--positive); }
+  .card-title { font-size: 16px; font-weight: 800; color: var(--gray-1); line-height: 1.25; margin-bottom: 10px; }
+  .card-meta { display: flex; align-items: center; justify-content: space-between; }
+  .tag { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 4px; }
+  .tag-feat { background: #FCEEE2; color: #B85A12; }
+  .tag-bug  { background: #FBE7EA; color: var(--negative); }
+  .tag-infra{ background: #E7E9ED; color: var(--primary); }
+  .tag-done { background: #E5F1E9; color: #20663A; }
+  .assignee { display: flex; align-items: center; gap: 8px; }
+  .avatar { width: 24px; height: 24px; border-radius: 50%; background: var(--primary); color: #FFFFFF; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .who { font-size: 13px; font-weight: 600; color: var(--gray-2); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">스프린트 24 진행 현황</div>
+  <div class="title">완료 6건으로 번다운 정상 궤도,<br>진행 중 인증 모듈이 잔여 리스크</div>
+
+  <div class="board">
+    <!-- To Do -->
+    <div class="col c-todo">
+      <div class="col-head"><span class="col-title">To Do</span><div class="col-count">3</div></div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">결제 실패 재시도 로직 설계</div>
+          <div class="card-meta"><div class="tag tag-feat">Feature</div><div class="assignee"><div class="avatar">JH</div><span class="who">정현우</span></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">온보딩 이탈 구간 로그 보강</div>
+          <div class="card-meta"><div class="tag tag-infra">Infra</div><div class="assignee"><div class="avatar">SY</div><span class="who">신유진</span></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">다국어 리소스 번들 분리</div>
+          <div class="card-meta"><div class="tag tag-feat">Feature</div><div class="assignee"><div class="avatar">MK</div><span class="who">문경호</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- In Progress -->
+    <div class="col c-prog">
+      <div class="col-head"><span class="col-title">진행 중</span><div class="col-count">2</div></div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">SSO 인증 모듈 SAML 연동</div>
+          <div class="card-meta"><div class="tag tag-bug">Critical</div><div class="assignee"><div class="avatar">DH</div><span class="who">김도현</span></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">대시보드 위젯 가상 스크롤</div>
+          <div class="card-meta"><div class="tag tag-feat">Feature</div><div class="assignee"><div class="avatar">SR</div><span class="who">이서연</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Done -->
+    <div class="col c-done">
+      <div class="col-head"><span class="col-title">완료</span><div class="col-count">3</div></div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">API 레이트 리밋 v2 배포</div>
+          <div class="card-meta"><div class="tag tag-done">Done</div><div class="assignee"><div class="avatar">JY</div><span class="who">박준영</span></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">감사 로그 보존 정책 적용</div>
+          <div class="card-meta"><div class="tag tag-done">Done</div><div class="assignee"><div class="avatar">HM</div><span class="who">한미래</span></div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">결제 영수증 PDF 생성</div>
+          <div class="card-meta"><div class="tag tag-done">Done</div><div class="assignee"><div class="avatar">JH</div><span class="who">정현우</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--gray-1);
+  padding:48px 60px;
+  display:flex; flex-direction:column;
+  border-top:3px solid var(--rule-strong);
+}
+.head { border-bottom:1px solid var(--border-soft); padding-bottom:16px; margin-bottom:28px; }
+.eyebrow { font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+h1 { font-size:28px; font-weight:700; letter-spacing:-0.01em; color:var(--primary); line-height:1.2; margin-top:8px; }
+.body-grid { flex:1; display:grid; grid-template-columns:1fr 360px; gap:46px; align-items:center; }
+.funnel { display:flex; flex-direction:column; align-items:center; gap:10px; }
+.seg { height:84px; display:flex; align-items:center; justify-content:center; color:#FFFFFF; }
+.seg .stxt { font-size:18px; font-weight:700; text-align:center; line-height:1.2; }
+.seg .stxt b { font-size:22px; }
+.s1 { width:560px; background:var(--surface-inverse); clip-path:polygon(0 0,100% 0,90% 100%,10% 100%); }
+.s2 { width:490px; background:var(--primary); clip-path:polygon(0 0,100% 0,89% 100%,11% 100%); }
+.s3 { width:430px; background:var(--accent); clip-path:polygon(0 0,100% 0,88% 100%,12% 100%); }
+.s4 { width:380px; background:#3D6FA0; clip-path:polygon(0 0,100% 0,87% 100%,13% 100%); }
+.s5 { width:330px; background:#2E5C8A; clip-path:polygon(0 0,100% 0,86% 100%,14% 100%); }
+.notes { display:flex; flex-direction:column; gap:16px; }
+.note { padding-left:14px; border-left:3px solid var(--accent); }
+.note .nt { font-size:16px; font-weight:700; color:var(--primary); line-height:1.25; }
+.note .nd { font-size:13px; font-weight:400; color:var(--gray-2); margin-top:4px; line-height:1.4; }
+</style></head><body data-layout="funnel" data-screen-label="03-academic · funnel">
+
+  <div class="head">
+    <div class="eyebrow">연구비 파이프라인 · 과제 전환율</div>
+    <h1>제안서 1,840건이 본 과제 96건으로 수렴한다</h1>
+  </div>
+
+  <div class="body-grid">
+    <div class="funnel">
+      <div class="seg s1"><div class="stxt">사전 제안 접수 · <b>1,840건</b></div></div>
+      <div class="seg s2"><div class="stxt">예비 심사 통과 · <b>720건</b></div></div>
+      <div class="seg s3"><div class="stxt">본 심사 진입 · <b>310건</b></div></div>
+      <div class="seg s4"><div class="stxt">최종 선정 · <b>140건</b></div></div>
+      <div class="seg s5"><div class="stxt">착수 과제 · <b>96건</b></div></div>
+    </div>
+    <div class="notes">
+      <div class="note">
+        <div class="nt">예비 단계 39% 통과</div>
+        <div class="nd">서식·적격성 자동 필터로 1차 1,120건 조기 탈락</div>
+      </div>
+      <div class="note">
+        <div class="nt">본 심사 전환율 43%</div>
+        <div class="nd">분야 패널 정성평가, 중복 주제 통합 권고 반영</div>
+      </div>
+      <div class="note">
+        <div class="nt">최종 착수율 5.2%</div>
+        <div class="nd">예산 배정·협약 단계서 44건 자진 철회·이월</div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

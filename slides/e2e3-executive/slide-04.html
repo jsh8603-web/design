@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:52px 56px;
+  display:flex; flex-direction:column;
+}
+.head { display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1.5px solid var(--primary); padding-bottom:18px; margin-bottom:28px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:34px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.18; margin-top:8px; }
+h1 em { font-style:normal; color:var(--accent); }
+.docid { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--gray-3); }
+
+.grid { flex:1; display:grid; grid-template-columns:1.7fr 1fr 1fr 1fr; grid-auto-rows:1fr; gap:0; border:1.5px solid var(--primary); }
+.cell { display:flex; flex-direction:column; justify-content:center; padding:0 22px; min-width:0; border-bottom:1px solid var(--gray-4); border-left:1px solid var(--gray-4); }
+.cell.c0 { border-left:none; align-items:flex-start; }
+.cell.cc { align-items:center; }
+.row-last .cell { border-bottom:none; }
+/* 헤더행 */
+.cell.hdr { background:var(--surface-inverse); border-bottom:1.5px solid var(--primary); }
+.cell.hdr .ph { font-size:18px; font-weight:700; color:var(--surface-inverse-fg); line-height:1.2; }
+.cell.hdr .ph small { display:block; font-size:12px; font-weight:400; color:var(--gray-4); padding-top:4px; letter-spacing:0.04em; }
+.cell.hdr.feat .ph { color:var(--surface-inverse-fg); }
+.cell.hdr.reco { background:var(--accent); }
+/* 기능명 셀 */
+.cell .fn { font-size:16px; font-weight:700; color:var(--primary); line-height:1.25; }
+.cell .fd { font-size:12px; font-weight:400; color:var(--gray-2); margin-top:3px; line-height:1.3; }
+/* 기호 */
+.mark { font-size:26px; font-weight:700; line-height:1; }
+.mark.yes { color:var(--positive); }
+.mark.no { color:var(--gray-2); }
+.mark.par { color:#C25400; font-size:24px; }
+.qty { font-family:'JetBrains Mono', monospace; font-size:16px; font-weight:700; color:var(--primary); }
+.zebra { background:var(--theme-bg-alt); }
+</style></head><body data-layout="compare-table" data-screen-label="04-executive · icon-compare">
+
+  <div class="head">
+    <div>
+      <div class="eyebrow"><span class="dot">●</span> 플랜 비교 · 데이터센터 코로케이션</div>
+      <h1>중대형 고객엔 <em>Scale</em> 플랜이 정답이다</h1>
+    </div>
+    <div class="docid">PRICING-2026 / p.05</div>
+  </div>
+
+  <div class="grid">
+    <!-- 헤더행 -->
+    <div class="cell c0 hdr feat"><div class="ph">기능 / SLA</div></div>
+    <div class="cell cc hdr"><div class="ph">Core<small>스타트업</small></div></div>
+    <div class="cell cc hdr reco"><div class="ph">Scale<small>중대형 · 권장</small></div></div>
+    <div class="cell cc hdr"><div class="ph">Edge<small>분산 엣지</small></div></div>
+
+    <!-- 행 1 -->
+    <div class="cell c0 zebra"><div class="fn">가동 보장 SLA</div><div class="fd">월 가용성 환산</div></div>
+    <div class="cell cc zebra"><span class="qty">99.9%</span></div>
+    <div class="cell cc zebra"><span class="qty">99.99%</span></div>
+    <div class="cell cc zebra"><span class="qty">99.95%</span></div>
+
+    <!-- 행 2 -->
+    <div class="cell c0"><div class="fn">전용 액침냉각 랙</div><div class="fd">고밀도 GPU 대응</div></div>
+    <div class="cell cc"><span class="mark no">✗</span></div>
+    <div class="cell cc"><span class="mark yes">✓</span></div>
+    <div class="cell cc"><span class="mark par">—</span></div>
+
+    <!-- 행 3 -->
+    <div class="cell c0 zebra"><div class="fn">전력 단가 헤지</div><div class="fd">장기 PPA 연동</div></div>
+    <div class="cell cc zebra"><span class="mark par">—</span></div>
+    <div class="cell cc zebra"><span class="mark yes">✓</span></div>
+    <div class="cell cc zebra"><span class="mark no">✗</span></div>
+
+    <!-- 행 4 -->
+    <div class="cell c0"><div class="fn">전담 솔루션 아키텍트</div><div class="fd">24/7 온콜</div></div>
+    <div class="cell cc"><span class="mark no">✗</span></div>
+    <div class="cell cc"><span class="mark yes">✓</span></div>
+    <div class="cell cc"><span class="mark yes">✓</span></div>
+
+    <!-- 행 5 -->
+    <div class="cell c0 zebra"><div class="fn">멀티리전 페일오버</div><div class="fd">자동 트래픽 전환</div></div>
+    <div class="cell cc zebra"><span class="mark par">—</span></div>
+    <div class="cell cc zebra"><span class="mark yes">✓</span></div>
+    <div class="cell cc zebra"><span class="mark yes">✓</span></div>
+
+    <!-- 행 6 (마지막) -->
+    <div class="cell c0 row-last"><div class="fn">월 기준 단가</div><div class="fd">랙 1기 환산</div></div>
+    <div class="cell cc row-last"><span class="qty">$2.1K</span></div>
+    <div class="cell cc row-last"><span class="qty">$6.8K</span></div>
+    <div class="cell cc row-last"><span class="qty">$4.0K</span></div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--gray-1);
+  padding:48px 60px;
+  display:flex; flex-direction:column;
+  border-top:3px solid var(--rule-strong);
+}
+.head { border-bottom:1px solid var(--border-soft); padding-bottom:16px; margin-bottom:26px; }
+.eyebrow { font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+h1 { font-size:28px; font-weight:700; letter-spacing:-0.01em; color:var(--primary); line-height:1.2; margin-top:8px; }
+.grid { flex:1; display:grid; grid-template-columns:2.2fr 1fr 1fr 1fr; grid-auto-rows:1fr; gap:1px; background:var(--border-soft); border:1px solid var(--border-soft); }
+.cell { background:var(--theme-bg); display:flex; align-items:center; padding:0 18px; font-size:15px; color:var(--gray-1); }
+.cell.center { justify-content:center; }
+.hcell { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-weight:700; font-size:16px; justify-content:center; text-align:center; }
+.hcell.left { justify-content:flex-start; }
+.fcell { font-weight:600; color:var(--primary); }
+.mark { font-size:22px; font-weight:800; line-height:1; }
+.yes { color:var(--primary); }
+.no { color:var(--gray-2); }
+.par { color:var(--accent); font-weight:700; font-size:18px; }
+.rowalt { background:var(--theme-bg-card); }
+.foot { font-size:13px; color:var(--gray-2); margin-top:18px; }
+</style></head><body data-layout="icon-table" data-screen-label="04-academic · icon-comparison-table">
+
+  <div class="head">
+    <div class="eyebrow">데이터 플랫폼 · 등급 비교</div>
+    <h1>연구데이터 라이선스 3종, 기능 경계가 명확하다</h1>
+  </div>
+
+  <div class="grid">
+    <!-- header row -->
+    <div class="cell hcell left">제공 기능</div>
+    <div class="cell hcell">Campus</div>
+    <div class="cell hcell">Lab Pro</div>
+    <div class="cell hcell">Enterprise</div>
+
+    <div class="cell fcell">원자료 다운로드</div>
+    <div class="cell center"><span class="mark yes">&check;</span></div>
+    <div class="cell center"><span class="mark yes">&check;</span></div>
+    <div class="cell center"><span class="mark yes">&check;</span></div>
+
+    <div class="cell fcell rowalt">API 호출 (월 한도)</div>
+    <div class="cell center rowalt"><span class="par">5만</span></div>
+    <div class="cell center rowalt"><span class="par">50만</span></div>
+    <div class="cell center rowalt"><span class="mark yes">&infin;</span></div>
+
+    <div class="cell fcell">전임상 코호트 연계</div>
+    <div class="cell center"><span class="mark no">&times;</span></div>
+    <div class="cell center"><span class="mark yes">&check;</span></div>
+    <div class="cell center"><span class="mark yes">&check;</span></div>
+
+    <div class="cell fcell rowalt">전용 GPU 워크스페이스</div>
+    <div class="cell center rowalt"><span class="mark no">&times;</span></div>
+    <div class="cell center rowalt"><span class="par">&mdash;</span></div>
+    <div class="cell center rowalt"><span class="mark yes">&check;</span></div>
+
+    <div class="cell fcell">IRB 자동 감사 로그</div>
+    <div class="cell center"><span class="mark no">&times;</span></div>
+    <div class="cell center"><span class="mark yes">&check;</span></div>
+    <div class="cell center"><span class="mark yes">&check;</span></div>
+
+    <div class="cell fcell rowalt">전담 데이터 큐레이터</div>
+    <div class="cell center rowalt"><span class="mark no">&times;</span></div>
+    <div class="cell center rowalt"><span class="mark no">&times;</span></div>
+    <div class="cell center rowalt"><span class="mark yes">&check;</span></div>
+  </div>
+
+  <div class="foot">&check; 포함 · &times; 미포함 · &mdash; 옵션 추가 · &infin; 무제한 — 2026년 4월 개정 단가표 기준</div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

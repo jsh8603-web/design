@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:52px 56px;
+  display:flex; flex-direction:column;
+}
+.head { display:flex; align-items:flex-end; justify-content:space-between; border-bottom:1.5px solid var(--primary); padding-bottom:18px; margin-bottom:26px; }
+.eyebrow { font-size:15px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gray-2); }
+.eyebrow .dot { color:var(--accent); }
+h1 { font-size:34px; font-weight:600; letter-spacing:-0.01em; color:var(--primary); line-height:1.18; margin-top:8px; }
+h1 em { font-style:normal; color:var(--accent); }
+.docid { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--gray-3); }
+
+.body { flex:1; display:grid; grid-template-columns:1.35fr 1fr; gap:48px; align-items:center; }
+/* 퍼널 = 폭 감소 중앙정렬 바 스택 (clip-path 는 변환기서 bbox 처리되므로 실 width 로 narrowing 구현) */
+.funnel { display:flex; flex-direction:column; gap:8px; align-items:center; }
+.seg { height:84px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--surface-inverse-fg); }
+.seg .st { font-size:19px; font-weight:700; line-height:1.15; }
+.seg .sv { font-family:'JetBrains Mono', monospace; font-size:15px; font-weight:700; padding-top:4px; }
+.s1 { background:var(--accent); width:100%; }
+.s2 { background:#1f3bbf; width:84%; }
+.s3 { background:#3551c9; width:66%; }
+.s4 { background:#C25400; width:48%; }
+.s5 { background:#1A1A1A; width:32%; }
+
+.legend .lt { font-size:14px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); padding-bottom:12px; margin-bottom:16px; border-bottom:1px solid var(--border-soft); }
+.lrow { display:flex; align-items:baseline; gap:12px; padding:11px 0; border-bottom:1px solid var(--gray-4); }
+.lrow:last-child { border-bottom:none; }
+.lrow .lk { font-family:'JetBrains Mono', monospace; font-size:13px; font-weight:700; color:var(--accent); width:40px; flex-shrink:0; }
+.lrow .lx { min-width:0; }
+.lrow .lx .ln { font-size:15px; font-weight:700; color:var(--primary); line-height:1.25; }
+.lrow .lx .ld { font-size:13px; font-weight:400; color:var(--gray-2); margin-top:3px; line-height:1.35; }
+</style></head><body data-layout="funnel" data-screen-label="03-executive · funnel">
+
+  <div class="head">
+    <div>
+      <div class="eyebrow"><span class="dot">●</span> 파이프라인 전환 · 엔터프라이즈 세일즈</div>
+      <h1>리드에서 계약까지, <em>이탈 구간</em>은 한 곳뿐</h1>
+    </div>
+    <div class="docid">SALES-2026-Q2 / p.11</div>
+  </div>
+
+  <div class="body">
+    <div class="funnel">
+      <div class="seg s1"><div class="st">유입 리드</div><div class="sv">1,240 · 100%</div></div>
+      <div class="seg s2"><div class="st">검증 통과 (MQL)</div><div class="sv">620 · 50%</div></div>
+      <div class="seg s3"><div class="st">기회 등록 (SQL)</div><div class="sv">310 · 25%</div></div>
+      <div class="seg s4"><div class="st">제안·POC</div><div class="sv">112 · 9%</div></div>
+      <div class="seg s5"><div class="st">계약 체결</div><div class="sv">48 · 3.9%</div></div>
+    </div>
+
+    <div class="legend">
+      <div class="lt">단계별 진단</div>
+      <div class="lrow"><div class="lk">50%</div><div class="lx"><div class="ln">리드 → MQL 정상</div><div class="ld">스코어링 기준 재정비 후 통과율 안정화</div></div></div>
+      <div class="lrow"><div class="lk">40%</div><div class="lx"><div class="ln">POC → 계약 병목</div><div class="ld">POC 인력 부족으로 평균 체류 47일, 최대 이탈 구간</div></div></div>
+      <div class="lrow"><div class="lk">3.9%</div><div class="lx"><div class="ln">최종 전환율</div><div class="ld">업계 벤치 2.8% 상회, POC 개선 시 5%대 가능</div></div></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

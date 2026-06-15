@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 64px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.12em; margin-bottom:14px; }
+h1 { font-size:30px; font-weight:700; color:var(--heading); line-height:1.18; letter-spacing:-0.01em; margin-bottom:26px; }
+h1 em { font-style:normal; color:var(--accent); }
+.wrap { display:flex; gap:48px; flex:1; min-height:0; align-items:center; }
+.funnel { width:560px; display:flex; flex-direction:column; align-items:center; gap:8px; }
+.seg { width:100%; height:84px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+  clip-path:polygon(var(--lt) 0, var(--rt) 0, var(--rb) 100%, var(--lb) 100%); }
+.seg .v { font-size:26px; font-weight:800; color:#0A0A0B; line-height:1; }
+.seg .l { font-size:14px; font-weight:700; color:#0A0A0B; padding-top:4px; }
+.s1 { background:var(--accent); --lt:0%; --rt:100%; --rb:88%; --lb:12%; }
+.s2 { background:#22B8E8; --lt:12%; --rt:88%; --rb:77%; --lb:23%; }
+.s3 { background:#3FC5EC; --lt:23%; --rt:77%; --rb:65%; --lb:35%; }
+.s4 { background:#10B981; --lt:35%; --rt:65%; --rb:54%; --lb:46%; }
+.s5 { background:#34D399; --lt:46%; --rt:54%; --rb:42%; --lb:58%; }
+.notes { flex:1; min-width:0; display:flex; flex-direction:column; gap:14px; }
+.note { background:var(--theme-bg-card); border-left:3px solid var(--accent); border-radius:8px; padding:13px 16px; }
+.note .nt { font-size:15px; font-weight:700; color:var(--heading); }
+.note .ns { font-size:13px; color:var(--gray-2); margin-top:4px; line-height:1.4; }
+.note.green { border-left-color:var(--positive); }
+</style></head><body data-layout="funnel" data-screen-label="03-dark-pitch · funnel">
+  <div class="bar"></div>
+  <div class="kicker">// 고객 파이프라인 전환 퍼널 · FY26 H1</div>
+  <h1>리드에서 <em>장기 공급계약</em>까지, 단계마다 절반씩 좁혀진다.</h1>
+  <div class="wrap">
+    <div class="funnel">
+      <div class="seg s1"><div class="v">120</div><div class="l">초기 접촉 고객</div></div>
+      <div class="seg s2"><div class="v">68</div><div class="l">샘플 인증 진행</div></div>
+      <div class="seg s3"><div class="v">34</div><div class="l">검증 통과</div></div>
+      <div class="seg s4"><div class="v">18</div><div class="l">물량 협의</div></div>
+      <div class="seg s5"><div class="v">9</div><div class="l">장기계약 체결</div></div>
+    </div>
+    <div class="notes">
+      <div class="note"><div class="nt">인증 단계가 최대 누수 구간</div><div class="ns">120 → 68, 43% 이탈. 인증 리드타임 14주가 병목으로 작동.</div></div>
+      <div class="note"><div class="nt">리드타임 9주 단축이 핵심 레버</div><div class="ns">샘플 인증 단축 시 검증 통과 전환율 2배 개선 여지.</div></div>
+      <div class="note green"><div class="nt">최종 전환율 7.5%</div><div class="ns">9개 장기계약이 28년까지 캐파 예약. 변동성 흡수.</div></div>
+      <div class="note green"><div class="nt">계약당 평균 규모 +24%</div><div class="ns">상위 가속기 고객 집중으로 건당 물량 확대.</div></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0b; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

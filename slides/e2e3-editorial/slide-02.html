@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:48px 64px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  h1 { font-size:34px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:6px; }
+  h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .rule { height:1px; background:var(--rule-soft, #D8D2C9); margin:16px 0 24px; }
+  .tree { flex:1; display:flex; flex-direction:column; align-items:center; }
+  .box { background:var(--theme-bg-card); border:1.5px solid var(--rule-soft, #D8D2C9); padding:14px 22px; width:230px; text-align:center; }
+  .box.root { background:var(--surface-inverse); border-color:var(--surface-inverse); width:300px; padding:18px 24px; }
+  .box .bt { font-size:17px; font-weight:700; color:var(--primary); line-height:1.15; }
+  .box .bs { font-size:13px; font-weight:400; color:var(--gray-2); margin-top:5px; line-height:1.3; }
+  .box.root .bt { color:var(--surface-inverse-fg); font-size:20px; }
+  .box.root .bs { color:#D8C9C2; }
+  .box.lead { border-left:4px solid var(--accent); }
+  /* connectors = real divs */
+  .vline { width:2px; height:26px; background:var(--rule-soft, #D8D2C9); }
+  .hbar { height:2px; background:var(--rule-soft, #D8D2C9); }
+  .l2-row { display:flex; justify-content:center; gap:64px; }
+  .l3-wrap { display:flex; justify-content:center; gap:64px; }
+  .branch { display:flex; flex-direction:column; align-items:center; }
+  .l3-row { display:flex; gap:18px; }
+  .box.sm { width:175px; padding:11px 14px; }
+  .box.sm .bt { font-size:14.5px; }
+  .box.sm .bs { font-size:11.5px; margin-top:3px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="org-tree" data-screen-label="e2e3-editorial · org-chart">
+<div class="kicker">통합 거버넌스 · 조직 체계</div>
+<h1 class="serif">의사결정은 <em>3계층</em>으로 빠르게 흐른다</h1>
+<div class="rule"></div>
+<div class="tree">
+  <div class="box root">
+    <div class="bt">전략기획 본부</div>
+    <div class="bs">전사 우선순위 조율 · 자원 배분 총괄</div>
+  </div>
+  <div class="vline"></div>
+  <div class="hbar" style="width:520px;"></div>
+  <div class="l2-row" style="width:584px; justify-content:space-between;">
+    <div class="branch">
+      <div class="vline"></div>
+      <div class="box lead">
+        <div class="bt">제품 개발실</div>
+        <div class="bs">로드맵 · 출시 책임</div>
+      </div>
+      <div class="vline"></div>
+      <div class="hbar" style="width:193px;"></div>
+      <div class="l3-row">
+        <div class="branch"><div class="vline"></div><div class="box sm"><div class="bt">코어 플랫폼</div><div class="bs">인프라 · API</div></div></div>
+        <div class="branch"><div class="vline"></div><div class="box sm"><div class="bt">애플리케이션</div><div class="bs">UX · 클라이언트</div></div></div>
+      </div>
+    </div>
+    <div class="branch">
+      <div class="vline"></div>
+      <div class="box lead">
+        <div class="bt">사업 운영실</div>
+        <div class="bs">영업 · 고객 성공</div>
+      </div>
+      <div class="vline"></div>
+      <div class="hbar" style="width:193px;"></div>
+      <div class="l3-row">
+        <div class="branch"><div class="vline"></div><div class="box sm"><div class="bt">국내 영업</div><div class="bs">엔터프라이즈</div></div></div>
+        <div class="branch"><div class="vline"></div><div class="box sm"><div class="bt">글로벌 확장</div><div class="bs">APAC · EMEA</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .head { padding: 52px 72px 0; }
+  .kicker { font-family: var(--font-mono); font-size: 14px; color: var(--accent); letter-spacing: 0.12em; margin-bottom: 14px; }
+  h1 { font-size: 32px; font-weight: 800; color: var(--heading); line-height: 1.2; letter-spacing: -0.02em; max-width: 1080px; }
+  .rule { width: 56px; height: 4px; background: var(--accent); margin-top: 16px; }
+  .wrap { display: grid; grid-template-columns: 620px 1fr; gap: 48px; padding: 40px 72px 0; align-items: start; }
+  .funnel { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .seg { display: flex; align-items: center; justify-content: center; height: 78px; color: #fff; }
+  .seg .st { font-size: 19px; font-weight: 800; text-align: center; line-height: 1.2; }
+  .s1 { width: 620px; background: var(--primary); clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%); }
+  .s2 { width: 540px; background: #2A3850; clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .s3 { width: 460px; background: #3C5070; clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%); }
+  .s4 { width: 380px; background: var(--accent); clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%); }
+  .legend { display: flex; flex-direction: column; gap: 16px; padding-top: 4px; }
+  .lg { display: flex; gap: 14px; align-items: flex-start; }
+  .lg .dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; margin-top: 5px; }
+  .lg .body .h { font-size: 16px; font-weight: 800; color: var(--gray-1); }
+  .lg .body .v { font-size: 14px; font-weight: 700; color: var(--accent); margin-top: 2px; }
+  .lg .body .p { font-size: 13px; font-weight: 500; color: var(--gray-2); margin-top: 4px; line-height: 1.4; }
+</style>
+</head>
+<body data-layout="funnel" data-screen-label="modern · funnel">
+  <div class="head">
+    <div class="kicker">// 영업 파이프라인 · FY26 Q2 전환 분석</div>
+    <h1>리드에서 계약까지 4단계 전환율, 검토 구간이 최대 이탈점</h1>
+    <div class="rule"></div>
+  </div>
+  <div class="wrap">
+    <div class="funnel">
+      <div class="seg s1"><div class="st">유효 리드 12,400건</div></div>
+      <div class="seg s2"><div class="st">상담 진행 4,960건</div></div>
+      <div class="seg s3"><div class="st">제안·검토 1,490건</div></div>
+      <div class="seg s4"><div class="st">계약 체결 372건</div></div>
+    </div>
+    <div class="legend">
+      <div class="lg"><div class="dot" style="background:var(--primary)"></div><div class="body"><div class="h">유효 리드</div><div class="v">전환 40% →</div><div class="p">마케팅 검증 통과 인입, 분기 목표 1.1만건 초과</div></div></div>
+      <div class="lg"><div class="dot" style="background:#3C5070"></div><div class="body"><div class="h">상담 진행</div><div class="v">전환 30% →</div><div class="p">초기 미팅 완료, 응대 SLA 24h 준수율 94%</div></div></div>
+      <div class="lg"><div class="dot" style="background:#3C5070"></div><div class="body"><div class="h">제안·검토</div><div class="v">전환 25% →</div><div class="p">최대 이탈 구간, 가격·납기 협상 장기화가 원인</div></div></div>
+      <div class="lg"><div class="dot" style="background:var(--accent)"></div><div class="body"><div class="h">계약 체결</div><div class="v">최종 3.0%</div><div class="p">평균 계약 규모 전년比 +18%, 리드당 매출 개선</div></div></div>
+    </div>
+  </div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

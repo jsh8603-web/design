@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:48px 64px; color:var(--primary); display:flex; flex-direction:column; }
+  .kicker { font-size:16px; font-weight:600; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; }
+  h1 { font-size:34px; font-weight:500; color:var(--primary); letter-spacing:-0.02em; line-height:1.1; margin-top:6px; }
+  h1 em { font-style:italic; color:var(--accent); font-weight:400; }
+  .rule { height:1px; background:var(--rule-soft, #D8D2C9); margin:16px 0 22px; }
+  .stage { flex:1; display:flex; gap:48px; align-items:center; }
+  .funnel { display:flex; flex-direction:column; align-items:center; gap:8px; width:560px; }
+  .seg { display:flex; align-items:center; justify-content:center; gap:14px; height:74px; color:#FFFFFF; }
+  .seg .st { font-size:19px; font-weight:700; letter-spacing:0.01em; }
+  .seg .sv { font-size:19px; font-weight:800; }
+  .s1 { width:560px; background:var(--surface-inverse); clip-path:polygon(0 0, 100% 0, 92% 100%, 8% 100%); }
+  .s2 { width:515px; background:#8A4A35; clip-path:polygon(0 0, 100% 0, 91% 100%, 9% 100%); }
+  .s3 { width:468px; background:var(--accent); clip-path:polygon(0 0, 100% 0, 90% 100%, 10% 100%); }
+  .s4 { width:420px; background:#9E5238; clip-path:polygon(0 0, 100% 0, 88% 100%, 12% 100%); }
+  .s5 { width:360px; background:#7A4530; clip-path:polygon(0 0, 100% 0, 86% 100%, 14% 100%); }
+  .notes { flex:1; display:flex; flex-direction:column; gap:16px; justify-content:center; }
+  .note { padding-left:16px; border-left:3px solid var(--accent); }
+  .note .nt { font-size:15px; font-weight:700; color:var(--primary); }
+  .note .nd { font-size:13.5px; font-weight:400; color:var(--gray-2); line-height:1.4; margin-top:3px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="funnel" data-screen-label="e2e3-editorial · funnel">
+<div class="kicker">파이프라인 · 전환 깔때기</div>
+<h1 class="serif">방문에서 계약까지, <em>5단계</em>로 좁혀진다</h1>
+<div class="rule"></div>
+<div class="stage">
+  <div class="funnel">
+    <div class="seg s1"><span class="st">방문자</span><span class="sv">120,000</span></div>
+    <div class="seg s2"><span class="st">가입 리드</span><span class="sv">28,400</span></div>
+    <div class="seg s3"><span class="st">제품 체험</span><span class="sv">9,100</span></div>
+    <div class="seg s4"><span class="st">상담 요청</span><span class="sv">2,650</span></div>
+    <div class="seg s5"><span class="st">유료 계약</span><span class="sv">840</span></div>
+  </div>
+  <div class="notes">
+    <div class="note"><div class="nt">상단 누수 23.7%</div><div class="nd">방문 대비 가입 전환, 랜딩 카피 A/B로 +4%p 개선 여지</div></div>
+    <div class="note"><div class="nt">체험 전환이 병목</div><div class="nd">가입 후 첫 가치 경험까지 평균 3.2일, 온보딩 단축 과제</div></div>
+    <div class="note"><div class="nt">상담→계약 31.7%</div><div class="nd">영업 개입 구간 효율은 양호, 리드 품질 확보가 관건</div></div>
+    <div class="note"><div class="nt">최종 전환 0.7%</div><div class="nd">업계 중앙값 대비 상회, 단가 인상 여력 동반 확인</div></div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

@@ -298,3 +298,13 @@ date: 2026-06-13
 - 마지막 결정: B6 보수 적용 완료. fit:'shrink' 가 shape+text 에서 PptxGenJS 무시(실측) → fill-없는 single-line shape-text 폭 headroom 으로 전환. cx 3.029→3.332in, COM 렌더 masthead 1줄 복귀 확인(디자인 원안 보존). diff 클린(fix 21줄). 미커밋 html2pptx.cjs 추가.
 - 다음 의도: (1) slide-02 overflow(39pt 세로넘침) K규칙 판정 — 디자인 결함인지 변환기 측정인지 COM 실측 (2) **S2 modern 변환** = PF-13 정밀화 변환통과 확인 + B6 변환기수정 회귀 실증(incremental) + VP-04 noFill 배지 오판 정답화. → S3~S7.
 - 동기화 필요: 미커밋 = preflight-html.js·html2pptx.cjs·run-full-regression.mjs·progress·plan·handoff. long-mode on2(750k). 임시 _dbg_one 정리됨.
+
+## ★루프 지시 (2026-06-15, 사용자) — 2회 연속 클린까지 반복
+- **루프**: 매 회차 = **다른 복잡 5종 × 8테마(40슬라이드)** 디자인스킬→PF→VP→COM 전체. 매 회차 발견 룰FP/변환기결함 **수정**(회귀게이트)하고 고친 파이프라인으로 다음 회차. **2회 연속 신규에러 0**이면 종료(파이프라인 robust 입증).
+- **회차별 복잡 5종**(중복 금지):
+  - R1(phase2/3): KPI/표/매트릭스/타임라인 (4종, 8테마)
+  - R2(phase4): 리스트/플로우/가격/쿼트/이미지그리드 → 수정: blockquote drop·중첩ul 이중방출
+  - R3(phase5, 진행중): stat hero/조직도/퍼널/아이콘표/칸반 → 발견: VP-07 칸반 FP(ERROR)·VP-16 퍼널라벨 FP(WARN)·span-bg 미페인트(한계)
+  - R4~: gantt/swot/heatmap/radar/waterfall/map/gauge/venn/team-grid/agenda/feature-spotlight/tier/checklist/comparison-slider 등에서 5종씩
+- **클린 카운터**: R3까지 매 회차 신규결함 발생(아직 0회 연속 클린). R 신규에러0 = 카운터+1, 에러발생 = 카운터 리셋. 2 도달 시 종료.
+- **누적 수정**(전역, 모든 회차 적용): VP-04/07/10/14/16 룰게이트 + `<small>`/loose-text/orphan-span/blockquote/중첩ul 변환기. R3 발견분(VP-07 칸반·VP-16 퍼널) 수정 예정.

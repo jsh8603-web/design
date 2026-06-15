@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko" data-theme="company">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 56px 80px; position: relative; display: flex; flex-direction: column; }
+  .bar { position: absolute; left: 0; top: 0; width: 10px; height: 720px; background: var(--accent); }
+  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 30px; }
+  .tree { flex: 1; position: relative; }
+
+  /* boxes */
+  .box { position: absolute; border: 2px solid var(--gray-3); border-radius: 8px; padding: 12px 16px; background: var(--theme-bg); display: flex; flex-direction: column; justify-content: center; }
+  .box .bx-name { font-size: 17px; font-weight: 800; color: var(--primary); line-height: 1.15; }
+  .box .bx-role { font-size: 13px; font-weight: 600; color: var(--gray-2); margin-top: 4px; line-height: 1.2; }
+  .root { border: 2px solid var(--primary); background: var(--surface-inverse); }
+  .root .bx-name { color: var(--surface-inverse-fg); }
+  .root .bx-role { color: var(--gray-3); }
+  .div2 { border-color: var(--accent); }
+
+  /* connector lines (real divs) */
+  .ln { position: absolute; background: var(--gray-3); }
+  .ln-v { width: 2px; }
+  .ln-h { height: 2px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bar"></div>
+  <div class="kicker">2026 조직 개편안</div>
+  <div class="title">CEO 직속 3대 부문 체제로 재편,<br>AI·플랫폼 사업에 의사결정 권한 집중</div>
+  <div class="tree">
+    <!-- root -->
+    <div class="box root" style="left:476px; top:6px; width:212px; height:66px;">
+      <div class="bx-name">대표이사 / CEO</div>
+      <div class="bx-role">전사 전략 · 자원배분 총괄</div>
+    </div>
+
+    <!-- vertical from root down to bus -->
+    <div class="ln ln-v" style="left:582px; top:72px; height:34px;"></div>
+    <!-- horizontal bus across 3 divisions -->
+    <div class="ln ln-h" style="left:168px; top:106px; width:828px;"></div>
+    <!-- 3 verticals from bus down to division boxes -->
+    <div class="ln ln-v" style="left:168px; top:106px; height:34px;"></div>
+    <div class="ln ln-v" style="left:582px; top:106px; height:34px;"></div>
+    <div class="ln ln-v" style="left:996px; top:106px; height:34px;"></div>
+
+    <!-- division boxes -->
+    <div class="box div2" style="left:62px; top:140px; width:212px; height:64px;">
+      <div class="bx-name">제품·R&D 부문</div>
+      <div class="bx-role">김도현 부사장</div>
+    </div>
+    <div class="box div2" style="left:476px; top:140px; width:212px; height:64px;">
+      <div class="bx-name">AI·플랫폼 부문</div>
+      <div class="bx-role">이서연 부사장</div>
+    </div>
+    <div class="box div2" style="left:890px; top:140px; width:212px; height:64px;">
+      <div class="bx-name">글로벌 사업 부문</div>
+      <div class="bx-role">박준영 부사장</div>
+    </div>
+
+    <!-- verticals from each division to sub-bus -->
+    <div class="ln ln-v" style="left:168px; top:204px; height:30px;"></div>
+    <div class="ln ln-v" style="left:582px; top:204px; height:30px;"></div>
+    <div class="ln ln-v" style="left:996px; top:204px; height:30px;"></div>
+
+    <!-- sub-bus 1 (2 children) -->
+    <div class="ln ln-h" style="left:90px; top:234px; width:156px;"></div>
+    <div class="ln ln-v" style="left:90px; top:234px; height:26px;"></div>
+    <div class="ln ln-v" style="left:246px; top:234px; height:26px;"></div>
+    <!-- sub-bus 2 (3 children) -->
+    <div class="ln ln-h" style="left:490px; top:234px; width:184px;"></div>
+    <div class="ln ln-v" style="left:490px; top:234px; height:26px;"></div>
+    <div class="ln ln-v" style="left:582px; top:234px; height:26px;"></div>
+    <div class="ln ln-v" style="left:674px; top:234px; height:26px;"></div>
+    <!-- sub-bus 3 (2 children) -->
+    <div class="ln ln-h" style="left:918px; top:234px; width:156px;"></div>
+    <div class="ln ln-v" style="left:918px; top:234px; height:26px;"></div>
+    <div class="ln ln-v" style="left:1074px; top:234px; height:26px;"></div>
+
+    <!-- sub boxes row -->
+    <div class="box" style="left:24px; top:260px; width:132px; height:58px;">
+      <div class="bx-name">반도체 설계</div>
+      <div class="bx-role">시스템반도체팀</div>
+    </div>
+    <div class="box" style="left:180px; top:260px; width:132px; height:58px;">
+      <div class="bx-name">소자·공정</div>
+      <div class="bx-role">선행기술팀</div>
+    </div>
+    <div class="box" style="left:424px; top:260px; width:132px; height:58px;">
+      <div class="bx-name">AI 모델</div>
+      <div class="bx-role">파운데이션팀</div>
+    </div>
+    <div class="box" style="left:516px; top:336px; width:132px; height:58px;">
+      <div class="bx-name">클라우드</div>
+      <div class="bx-role">인프라팀</div>
+    </div>
+    <div class="box" style="left:608px; top:260px; width:132px; height:58px;">
+      <div class="bx-name">데이터</div>
+      <div class="bx-role">데이터플랫폼팀</div>
+    </div>
+    <div class="box" style="left:852px; top:260px; width:132px; height:58px;">
+      <div class="bx-name">북미·구주</div>
+      <div class="bx-role">해외영업1팀</div>
+    </div>
+    <div class="box" style="left:1008px; top:260px; width:132px; height:58px;">
+      <div class="bx-name">아시아</div>
+      <div class="bx-role">해외영업2팀</div>
+    </div>
+
+    <!-- center child of div2 has extra stacked box: connector from box5(center,582) down -->
+    <div class="ln ln-v" style="left:582px; top:318px; height:18px;"></div>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body>
+</html>

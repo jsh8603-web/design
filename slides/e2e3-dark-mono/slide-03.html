@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 72px; position:relative;
+  display:flex; flex-direction:column;
+}
+.bar { position:absolute; left:0; top:0; width:8px; height:720px; background:var(--accent); }
+.kicker { font-family:'JetBrains Mono', monospace; font-size:14px; color:var(--accent);
+  letter-spacing:0.12em; margin-bottom:12px; }
+h1 { font-size:32px; font-weight:700; color:var(--heading); line-height:1.15;
+  letter-spacing:-0.01em; margin-bottom:24px; }
+h1 em { font-style:normal; color:var(--accent); }
+.wrap { flex:1; min-height:0; display:flex; gap:48px; }
+.funnel { flex:1.3; min-width:0; display:flex; flex-direction:column; gap:8px;
+  justify-content:center; }
+/* trapezoid background lives on the segment itself (real bg) so dark text
+   resolves against the light-blue fill, not the body. clip-path may be
+   flattened to bbox in PPTX but contrast stays correct either way. */
+.seg { position:relative; height:64px; display:flex; align-items:center;
+  justify-content:center; margin:0 auto; background:var(--accent);
+  clip-path:polygon(6% 0,94% 0,100% 100%,0% 100%); }
+.seg .lbl { font-size:18px; font-weight:700; color:#0F1419; letter-spacing:-0.01em; }
+.seg.s1 { width:100%; background:#4a93dd; clip-path:polygon(4% 0,96% 0,100% 100%,0% 100%); }
+.seg.s2 { width:84%; background:#5aa0e6; }
+.seg.s3 { width:66%; background:#4A9EFF; }
+.seg.s4 { width:48%; background:#67b0ff; clip-path:polygon(8% 0,92% 0,100% 100%,0% 100%); }
+.seg.s5 { width:32%; background:#9ccbff; clip-path:polygon(10% 0,90% 0,100% 100%,0% 100%); }
+.seg .lbl small { font-weight:600; font-size:13px; padding-left:6px; }
+.side { flex:1; min-width:0; display:flex; flex-direction:column; justify-content:center; gap:18px; }
+.metric { border-left:3px solid var(--accent); padding-left:16px; }
+.metric .v { font-size:34px; font-weight:800; color:var(--heading); line-height:1; }
+.metric .v small { font-size:16px; font-weight:600; color:var(--accent); padding-left:3px; }
+.metric .k { font-size:14px; color:var(--gray-2); margin-top:6px; line-height:1.4; }
+</style></head><body data-layout="funnel" data-screen-label="03-dark-mono · funnel">
+  <div class="bar"></div>
+  <div class="kicker">// 세일즈 퍼널 분석 · 2026 상반기 누계</div>
+  <h1>리드에서 계약까지 <em>5단계 전환</em>에서<br>제안→협상 구간이 최대 누수 지점이다.</h1>
+  <div class="wrap">
+    <div class="funnel">
+      <div class="seg s1"><div class="lbl">방문 리드 <small>48,200</small></div></div>
+      <div class="seg s2"><div class="lbl">유효 리드 <small>19,400</small></div></div>
+      <div class="seg s3"><div class="lbl">기회(SQL) <small>6,820</small></div></div>
+      <div class="seg s4"><div class="lbl">제안·협상 <small>2,140</small></div></div>
+      <div class="seg s5"><div class="lbl">계약 체결 <small>612</small></div></div>
+    </div>
+    <div class="side">
+      <div class="metric"><div class="v">1.3<small>%</small></div><div class="k">방문 → 계약 전체 전환율, 전년 대비 +0.4%p</div></div>
+      <div class="metric"><div class="v">29<small>%</small></div><div class="k">제안 → 협상 구간 전환율, 단계 중 최저</div></div>
+      <div class="metric"><div class="v">38<small>일</small></div><div class="k">평균 영업 사이클, 협상 단계가 절반 차지</div></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

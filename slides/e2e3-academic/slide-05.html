@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--gray-1);
+  padding:48px 60px;
+  display:flex; flex-direction:column;
+  border-top:3px solid var(--rule-strong);
+}
+.head { border-bottom:1px solid var(--border-soft); padding-bottom:16px; margin-bottom:26px; }
+.eyebrow { font-size:14px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+h1 { font-size:28px; font-weight:700; letter-spacing:-0.01em; color:var(--primary); line-height:1.2; margin-top:8px; }
+.board { flex:1; display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+.col { display:flex; flex-direction:column; }
+.colhead { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:6px 6px 0 0; background:var(--surface-inverse); }
+.colhead .ct { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+.colhead .cn { font-size:14px; font-weight:700; color:var(--primary); background:#FFFFFF; border-radius:11px; padding:2px 10px; }
+.colbody { flex:1; background:var(--theme-bg-card); border:1px solid var(--border-soft); border-top:none; border-radius:0 0 6px 6px; padding:14px; display:flex; flex-direction:column; gap:12px; }
+.card { background:var(--theme-bg); border:1px solid var(--border-soft); border-left:4px solid var(--accent); border-radius:5px; padding:12px 14px; }
+.card .ctitle { font-size:15px; font-weight:700; color:var(--primary); line-height:1.3; }
+.card .crow { display:flex; align-items:center; justify-content:space-between; margin-top:10px; }
+.tag { font-size:12px; font-weight:700; color:var(--accent); background:var(--gray-4); border-radius:4px; padding:3px 8px; }
+.who { font-size:12px; font-weight:400; color:var(--gray-2); padding-left:8px; }
+.card.done { border-left-color:var(--gray-3); }
+.card.done .ctitle { color:var(--gray-2); }
+</style></head><body data-layout="kanban" data-screen-label="05-academic · kanban-board">
+
+  <div class="head">
+    <div class="eyebrow">연구 운영 · 스프린트 보드</div>
+    <h1>핵심 과제 9건이 3단계로 분산 진행 중이다</h1>
+  </div>
+
+  <div class="board">
+    <div class="col">
+      <div class="colhead"><div class="ct">대기 (To Do)</div><div class="cn">3</div></div>
+      <div class="colbody">
+        <div class="card">
+          <div class="ctitle">코호트 데이터 익명화 파이프라인</div>
+          <div class="crow"><span class="tag">데이터</span><span class="who">담당 · 김연수</span></div>
+        </div>
+        <div class="card">
+          <div class="ctitle">신규 GPU 클러스터 벤치마크</div>
+          <div class="crow"><span class="tag">인프라</span><span class="who">담당 · 박도현</span></div>
+        </div>
+        <div class="card">
+          <div class="ctitle">IRB 재심 서류 보완</div>
+          <div class="crow"><span class="tag">윤리</span><span class="who">담당 · 이서진</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="colhead"><div class="ct">진행 (In Progress)</div><div class="cn">3</div></div>
+      <div class="colbody">
+        <div class="card">
+          <div class="ctitle">단백질 구조 예측 모델 재학습</div>
+          <div class="crow"><span class="tag">모델링</span><span class="who">담당 · 정하늘</span></div>
+        </div>
+        <div class="card">
+          <div class="ctitle">산학 공동 특허 명세 초안</div>
+          <div class="crow"><span class="tag">사업화</span><span class="who">담당 · 최민재</span></div>
+        </div>
+        <div class="card">
+          <div class="ctitle">2분기 연구비 정산 검토</div>
+          <div class="crow"><span class="tag">행정</span><span class="who">담당 · 한지우</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="colhead"><div class="ct">완료 (Done)</div><div class="cn">3</div></div>
+      <div class="colbody">
+        <div class="card done">
+          <div class="ctitle">국제 학술대회 초록 제출</div>
+          <div class="crow"><span class="tag">논문</span><span class="who">담당 · 윤서연</span></div>
+        </div>
+        <div class="card done">
+          <div class="ctitle">기술이전 라이선스 협약 체결</div>
+          <div class="crow"><span class="tag">사업화</span><span class="who">담당 · 강태웅</span></div>
+        </div>
+        <div class="card done">
+          <div class="ctitle">연구윤리 정기 교육 이수</div>
+          <div class="crow"><span class="tag">윤리</span><span class="who">담당 · 오세빈</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

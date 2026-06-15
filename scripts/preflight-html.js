@@ -1690,13 +1690,10 @@ async function runPlaywrightChecks(slidesDir, files) {
           }
           return { count: visibleBlocks };
         });
-        if (densityCheck.count > 5) {
-          results.push(fmtError(file, 'PF-26',
-            `Slide has ${densityCheck.count} top-level content blocks (max 5) — split into multiple slides [IL-33]`));
-        } else if (densityCheck.count > 4) {
-          results.push(fmtWarn(file, 'PF-26',
-            `Slide has ${densityCheck.count} top-level content blocks — consider splitting for readability [IL-33]`));
-        }
+        // PF-26 비활성(2026-06-15 subagent COM 전수판정 FP): 블록 수만으로는 sparse 한 섹션 divider
+        // (s8029 PART9 — 5블록이나 시각상 여백 충분·깔끔)도 "과밀"로 오판. 진짜 과밀=잘림은 실측
+        // PF-03(body overflow 405pt)이 잡음. 블록 수 휴리스틱은 밀도와 무관 → 비활성.
+        void densityCheck;
 
         // PF-23: CJK text density — predict overflow with 20% width correction
         const densityIssue = await page.evaluate(() => {

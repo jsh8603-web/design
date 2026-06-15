@@ -1090,6 +1090,35 @@ async function extractSlideData(page) {
     document.querySelectorAll('*').forEach((el) => {
       if (processed.has(el)) return;
 
+      // Loose text-node 보존(2026-06-15, dark-pitch 발견): 컨테이너가 block 자식 + 형제 loose 텍스트노드를
+      // 동시에 가지면 block 자식만 element 순회로 처리되고 loose 텍스트는 누락(silent drop, <small> 류).
+      // leaf-div 경로(block 자식 없을 때 parseInlineFormatting)가 안 타므로, block 자식 있을 때만 직속 loose
+      // 텍스트노드를 Range 로 위치잡아 text 요소로 emit (block 자식 없으면 leaf-div 가 처리 → 중복 방지).
+      if (el.querySelector(BLOCK_CHILD_SELECTOR)) {
+        const csLoose = window.getComputedStyle(el);
+        for (const node of el.childNodes) {
+          if (node.nodeType !== 3) continue; // TEXT_NODE 만
+          const txt = node.textContent.replace(/\s+/g, ' ').trim();
+          if (!txt) continue;
+          const lr = document.createRange();
+          lr.selectNode(node);
+          const rr = lr.getBoundingClientRect();
+          if (rr.width === 0 || rr.height === 0) continue;
+          elements.push({
+            type: 'p',
+            text: txt,
+            position: { x: pxToInch(rr.left), y: pxToInch(rr.top), w: pxToInch(rr.width), h: pxToInch(rr.height) },
+            style: {
+              fontSize: pxToPoints(csLoose.fontSize),
+              fontFace: csLoose.fontFamily.split(',')[0].replace(/['"]/g, '').trim(),
+              color: rgbToHex(csLoose.color),
+              align: csLoose.textAlign === 'start' ? 'left' : csLoose.textAlign,
+              lineSpacing: pxToPoints(csLoose.lineHeight)
+            }
+          });
+        }
+      }
+
       // Validate text elements don't have backgrounds, borders, or shadows
       if (textTags.includes(el.tagName)) {
         const computed = window.getComputedStyle(el);

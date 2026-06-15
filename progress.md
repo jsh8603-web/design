@@ -247,6 +247,12 @@ date: 2026-06-13
   - → **(A) 우선**. 적용 후 재변환 + COM 렌더로 1줄 복귀 확인 + rule-audit 회귀 diff 0.
 - **⛔삽질주의**: B2 normAutofit·중복pPr 가설 기각됨. 폰트는 설치로 해결(임베드는 COM 무효). 높이 추정 가설도 기각(폭 문제).
 
+> [ckpt-202606155500:btn-design] **STATUS: 변환기 결함 조사·1종 수정 (loose text-node drop) — ① 재현불가(수정안함)**
+- 사용자 "ㅇㅇ"(변환기 결함 고치기) → 1종씩 회귀게이트로 진행.
+- **① h3/p grid x-collapse = 재현 불가 → 수정 안 함**: 최소 재현 2종(grid+h3/p, align-items:center nested-flex) 둘 다 **정상 분리**(좌/우 컬럼 x 다름). 변환기가 grid/flex h3/p 정상 처리 = teammate 겹침은 긴CJK·타이트레이아웃 엣지케이스를 디자인 회피한 것이지 일반 변환기 결함 아님. ⛔근거 없는 blind fix 안 함(회귀위험).
+- **③ loose text-node drop = 재현 확정 → 수정 완료**: `html2pptx.cjs:1090` 순회가 element만 방문 → 컨테이너가 block 자식+형제 loose 텍스트노드 동시보유 시 loose 텍스트 silent drop(`<div class=l>날짜</div>2026.06` → "2026.06" 소실). fix: block 자식 있을 때만 직속 loose 텍스트노드를 Range로 위치잡아 text emit(leaf-div 경로와 배타=중복방지). **회귀게이트**: 재현본 "2026.06" 복원+중복0 / 8 e2e 재변환 ERROR=0 / GT 3덱 a:t 수 HEAD=FIXED 동일(255/208/506=무영향).
+- **② CJK width inflation(*0.25)·④ inline-flex/% = 미수정(별도)**: ②가 엣지케이스 겹침 실제 lever 의심이나 width 추정이 VP-16 등에 feed = recall 민감 → 회귀게이트 신중 필요. 박제만.
+
 > [ckpt-202606155000:btn-design] **STATUS: ✅Phase3 수정파이프라인 검증 = 8테마 fresh 재실행 전부 ERROR=0**
 - 지시: 고친 파이프라인(VP-04/07/10/14/16 + `<small>` 변환기)으로 8테마(editorial/modern/executive/academic/classic/dark-mono/company/dark-pitch) **처음부터 fresh 재생성** 5장씩 → 디자인스킬→PF→VP→COM.
 - **결과: 8/8 전부 ERROR=0** (academic/classic 각 2 WARN=timeline 라벨·bar gap cosmetic, COM 클린). **이전 phase2 FP 3종(VP-14 표 phantom·VP-16 cover dek·`<small>` 단위소실) 전 테마서 미재출현 = fix end-to-end 검증**. VP-16 fix 실증=표지 제목 ERROR→WARN("fits vertically").

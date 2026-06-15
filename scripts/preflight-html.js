@@ -535,6 +535,10 @@ function checkPF34(html, file) {
 
 // PF-32: <li> + ::before/::after pseudo-element — PPTX ignores pseudo-elements [IL-44]
 function checkPF35(html, file) {
+  // PF-35 비활성(2026-06-15 subagent COM 전수판정 FP): ::before/::after bullet 은 PPTX 변환이 표준
+  // bullet(·)로 정상 치환하고 위치오류 0(s4010 SWOT 확인). "position error" 전제 거짓.
+  void html; void file; return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   const hasLi = /<li\b/i.test(html);
   const hasPseudo = /::(?:before|after)\s*\{/i.test(html);
@@ -547,6 +551,11 @@ function checkPF35(html, file) {
 
 // PF-33: background: rgba() on any element — creates opaque shape covering text in PPTX [IL-43]
 function checkPF36(html, file) {
+  // PF-36 비활성(2026-06-15 subagent COM 전수판정 FP, 19발 최대 노이즈원): 변환 파이프라인이 rgba 알파
+  // 배경을 정상 렌더(다크카드·틴트·오버레이 전부 텍스트 가림 0, s6001 표지 PPTX 확인). "ANY alpha→
+  // opaque" 전제 거짓. 불투명화로 실제 대비역전(가림) 생기면 실측 PF-71(--full 대비)이 정확히 잡음.
+  void html; void file; return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   // Extract CSS from <style> blocks
   const styleRe = /<style[^>]*>([\s\S]*?)<\/style>/gi;
@@ -659,6 +668,10 @@ function checkPF39(html, file) {
  * html2pptx ignores letter-spacing — text width differs in PPTX
  */
 function checkPF41(html, file) {
+  // PF-41 비활성(2026-06-15 subagent COM 전수판정 FP): letter-spacing 무시는 글자 폭만 좁아질 뿐
+  // 가독성·레이아웃 무영향(s2018 "BUY" 배지 등 확인). 룰 본문도 "accept width difference" 자인.
+  void html; void file; return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   const re = /letter-spacing\s*:\s*(-?[\d.]+)\s*(pt|px)/gi;
   let m;
@@ -776,6 +789,10 @@ function checkPF44(html, file) {
  * PPTX shape positioning may differ with large negative margins
  */
 function checkPF45(html, file) {
+  // PF-45 비활성(2026-06-15 subagent COM 전수판정 FP): negative margin 위치가 PPTX서 정상(s5013 타임라인
+  // dot 선 위 정위치, 카드 정렬 동일). positioning 차이 0. 실제 요소 겹침은 실측 PF-18 이 잡음.
+  void html; void file; return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   const re = /margin(?:-(?:top|bottom|left|right))?\s*:\s*(-[\d.]+)\s*(pt|px)/gi;
   let m;
@@ -815,6 +832,10 @@ function checkPF46(html, file) {
  * PPTX ignores these — line break positions differ
  */
 function checkPF47(html, file) {
+  // PF-47 비활성(2026-06-15 subagent COM 전수판정 FP): word-break:break-all 은 텍스트가 실제 overflow
+  // 할 때만 발동하는데 s8030 등 단어중간 끊김·넘침 0. 실측 overflow 는 PF-03/23/66 이 잡음.
+  void html; void file; return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   if (/word-break\s*:\s*break-all/i.test(html)) {
     issues.push(fmtWarn(file, 'PF-47',
@@ -1045,6 +1066,11 @@ function checkPF59(html, file) {
  * against the PARENT container's background, not just the badge's own background.
  */
 function checkPF60(html, file) {
+  // PF-60 비활성(2026-06-15 subagent COM 전수판정 사실상 FP): 배지 fill 은 PPTX서 정상 렌더+텍스트 선명
+  // (s3003/3009 초록배지 흰텍스트 확인). "fill 미렌더→invisible" 거짓 + 부모배경 오귀속(배지는 흰슬라이드
+  // 위). 브랜드컬러 저대비는 accent 약한정탐이고 실측 PF-71(--full 대비)이 배지 텍스트까지 커버.
+  void html; void file; return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   // Find badge divs with border-radius:50% AND a background color AND containing text
   // The badge must have its own background (colored circle) to be relevant
@@ -1164,6 +1190,10 @@ function checkPF63(html, file) {
  * with small explicit widths or inline-block-like sizing.
  */
 function checkPF64(html, file) {
+  // PF-64 비활성(2026-06-15 subagent COM 전수판정 FP): flex-wrap pill 컨테이너가 PPTX서 한 줄 정상정렬
+  // (s3003 5 pill 겹침·오정렬 0). "may overlap" 미발생. 실제 요소 겹침은 실측 PF-18 이 잡음.
+  void html; void file; return [];
+  // eslint-disable-next-line no-unreachable
   const issues = [];
   // Step 1: Find div openings with style attributes
   const divOpenRe = /<div\b[^>]*style\s*=\s*"([^"]*)"[^>]*>/gi;

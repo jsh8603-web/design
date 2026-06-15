@@ -107,7 +107,7 @@ date: 2026-06-13
 > 사용자: "프롬프트는 로컬 환경 없어 못본다 했으니 너가 봐야한다". 핸드오프 코퍼스전용 7 + 정적32 + 미발화25 미점검분을 운영덱 156장 + 이미지로 직접 판정.
 - [x] R5-1 코퍼스전용 7규칙 판정 (운영덱 + 이미지) `model: opus`
   - VP-03 423→362(fill 시각요소 제외)·VP-02 178→109(상대변동 게이트) 추가개선 적용. VP-11/PF-20/VP-08 FP패턴 식별(다음배치). VP-07/VP-01 저빈도. 상세 VERIFICATION §R5
-- [ ] R5-2 잔여 추가개선(VP-08 fill제외·PF-20 푸터면제·VP-11 멀티컬럼) + 정적32 + 미발화25 `model: opus` (다음 배치)
+- [x] R5-2 잔여 추가개선 — 후속 Phase C/D에서 전부 흡수: VP-08 fill제외(validate-pptx.js:709/712 종횡비·카드동료 억제)·PF-20 비활성(preflight:1620)·VP-11 멀티컬럼+reading order 비활성(validate-pptx.js:1013/1585). 정적32+미발화25 = D5 전수검토(VERIFICATION D5/D5b, PF미발화43 bug0·VP미발화13 정상). `model: opus`
 
 ## Phase C — VP/PF 정답화 마무리 + 교차검증 `2026-06-15` `model: opus`
 > plan.md `# VP/PF 정답화 마무리` 참조. 판정기준 SSOT 5항(plan). 자율주행, 정탐회귀 절대금지.

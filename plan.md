@@ -126,9 +126,9 @@ assets/fonts/         # 로컬 .woff2 (CDN 대체)
 5. **PF-clean = VP-clean 교차검증**: PF 통과한 HTML을 PPTX 변환 후 VP 돌리면 VP도 통과해야 한다. VP에 잡히는데 PF에 안 잡히면 = **PF 구멍** → PF 보강. (PF=생성규칙=답, VP=변환후 검증)
 
 ## 작업 (recall=1.0 유지, 이미지 직접판정, 매 수정 GT 게이트)
-- [ ] C1 VP-16 출처캡션 FP 게이트 — fills 과대추정(s82 "출처:" 한줄수용 확인). GT s71/99 보존.
-- [ ] C2 PF-71 동기화 — VP-04 phantom(배경오측정)·장식glyph 게이트를 PF-71에 이식(PF-71 99 → VP-04 88 정합).
-- [ ] C3 PF-clean=VP-clean 교차검증 — realmix 전수: PF-71 미발화 슬라이드가 VP-04 발화하면 PF 구멍 식별·보강.
+- [x] C1 VP-16 출처캡션 FP 게이트 — fills 과대추정(s82 "출처:" 한줄수용 확인). GT s71/99 보존. (→ C1-4로 흡수 완료)
+- [x] C2 PF-71 동기화 — VP-04 phantom(배경오측정)·장식glyph 게이트를 PF-71에 이식(PF-71 99 → VP-04 88 정합). (→ C2-4 완료)
+- [x] C3 PF-clean=VP-clean 교차검증 — realmix 전수: PF-71 미발화 슬라이드가 VP-04 발화하면 PF 구멍 식별·보강. (→ C3 구멍0 완료)
 - [x] C1 VP-16 출처캡션+autofit 게이트 (31→16, GT VP-16 4/4)
 - [x] C2 VP-04 phantom·반투명·2tier·장식T (88→80, A8B8CC/s144/s57)
 - [x] C3 PF-clean⊇VP-clean 교차검증 (구멍 0)
@@ -142,7 +142,7 @@ assets/fonts/         # 로컬 .woff2 (CDN 대체)
 > 회귀 제약: PF는 GT 정답지 별도 없음 → 각 룰 수정 시 발화 diff로 "제거분 전수 이미지확인 = 안 깨진 것만 제거" 확인. 정탐(진짜 결함) 놓침 금지.
 
 ## 작업 (미판정 PF, 발화량 순)
-- [ ] D1 **PF-70(91건, 이미지품질)** — object-fit:cover 27 / pt크기 27 / border-radius 27 / alt 10. img 30개(realmix assets/). 이미지 직접판정 FP/TP → 게이트.
-- [ ] D2 PF-28(84)/PF-25(61)/PF-20(45) realmix 재판정 (이전 부분검증, 현 발화 미판정분)
-- [ ] D3 잔여 미판정 PF (PF-60/61/36/24/63/19/21/40/42 등, 발화량 순)
-- [ ] D4 VERIFICATION 박제 + 커밋 (PF 정답화 종합)
+- [x] D1 **PF-70(91건, 이미지품질)** — object-fit:cover 27 / pt크기 27 / border-radius 27 / alt 10. img 30개(realmix assets/). 이미지 직접판정 FP/TP → 게이트. (e97ca85, VERIFICATION D1)
+- [x] D2 PF-28(84)/PF-25(61)/PF-20(45) realmix 재판정 — --full computed 전환(a666eec/df33605/5ff5bec/b9203f7), VERIFICATION D2/D2b/D2c
+- [x] D3 잔여 미판정 PF — 잘림/오버플로/겹침+이미지/계층/대비 소급(b56580a/90ae383/9f36dd7/f3c5cf9), VERIFICATION D3/D3b. 전체 전수검토 D5/D5b
+- [x] D4 VERIFICATION 박제 + 커밋 (PF 정답화 종합) — --full 569→161, 커밋 15개 push 완료

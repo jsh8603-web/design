@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- @dsCard group="Slides" name="Slide — Timeline / process" subtitle="5-stage timeline, circular markers + connector + labels" viewport="960x540" -->
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 54px 88px; position: relative; }
+  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
+  .title { font-size: 30px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 46px; max-width: 1060px; }
+  .timeline { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+  .track { position: absolute; top: 26px; left: 52px; right: 52px; height: 3px; background: var(--gray-3); z-index: 0; }
+  .track .fill { position: absolute; left: 0; top: 0; height: 3px; width: 65%; background: var(--accent); }
+  .node { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; padding: 0 12px; }
+  .dot { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 800; font-size: 19px; background: var(--theme-bg); border: 3px solid var(--gray-3); color: var(--gray-2); }
+  .node.done .dot { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .node.now .dot { background: var(--primary); border-color: var(--primary); color: #fff; box-shadow: 0 0 0 5px rgba(232,119,34,0.22); }
+  .badge { margin-top: 16px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 11px; background: var(--gray-4); color: var(--gray-2); }
+  .node.done .badge { background: #FCE9D8; color: var(--accent); }
+  .node.now .badge { background: var(--primary); color: #fff; }
+  .node h4 { margin-top: 12px; font-size: 17px; font-weight: 700; color: var(--heading); text-align: center; line-height: 1.3; }
+  .node p { margin-top: 8px; font-size: 13px; color: var(--gray-2); line-height: 1.5; text-align: center; }
+  .legend { margin-top: 44px; display: flex; gap: 26px; justify-content: center; }
+  .legend span { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray-2); }
+  .legend i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+  .source { position: absolute; bottom: 26px; left: 88px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 26px; right: 88px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+</style>
+</head>
+<body data-layout="data_table" data-screen-label="modern · timeline">
+<div class="slide">
+  <div class="kicker">// EXECUTION ROADMAP · HBM4 양산 일정</div>
+  <div class="title">HBM4 양산 5단계 로드맵 — 3단계까지 완료, 현재 파일럿 검증 중</div>
+  <div class="timeline">
+    <div class="track"><div class="fill"></div></div>
+    <div class="node done">
+      <div class="dot">01</div>
+      <div class="badge">FY25.Q3</div>
+      <h4>아키텍처 확정</h4>
+      <p>2048-bit I/O 규격<br>베이스 다이 설계 동결</p>
+    </div>
+    <div class="node done">
+      <div class="dot">02</div>
+      <div class="badge">FY25.Q4</div>
+      <h4>시제품 TO</h4>
+      <p>첫 실리콘 테이프아웃<br>본딩 공정 1차 검증</p>
+    </div>
+    <div class="node done">
+      <div class="dot">03</div>
+      <div class="badge">FY26.Q1</div>
+      <h4>샘플 출하</h4>
+      <p>핵심 고객 3사<br>인증 샘플 제공 완료</p>
+    </div>
+    <div class="node now">
+      <div class="dot">04</div>
+      <div class="badge">FY26.Q2 · NOW</div>
+      <h4>파일럿 양산</h4>
+      <p>수율 70% 목표<br>신뢰성 검증 진행</p>
+    </div>
+    <div class="node">
+      <div class="dot">05</div>
+      <div class="badge">FY26.Q4</div>
+      <h4>본격 양산</h4>
+      <p>월 캐파 램프업<br>매출 인식 개시</p>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--accent)"></i>완료 단계</span>
+    <span><i style="background:var(--primary)"></i>진행 중</span>
+    <span><i style="background:var(--gray-3)"></i>예정</span>
+  </div>
+  <div class="source">Source: HBM4 PMO 통합 일정표 (FY26.Q2 기준), 마일스톤 게이트 리뷰 결과</div>
+  <div class="page">05 / 05</div>
+</div>
+</body>
+</html>

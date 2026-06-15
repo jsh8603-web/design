@@ -188,6 +188,12 @@ function extractShapes(slideXml) {
       shape.autofit = bpr ? (/<a:spAutoFit/.test(bpr[0]) ? 'sp' : /<a:normAutofit/.test(bpr[0]) ? 'norm' : 'none') : 'none';
       // VP-16: 명시 줄바꿈(단락 <a:p> + <a:br>) 줄수 — PowerPoint 가 명시 줄로 배치하므로 폭추정을 줄당으로.
       shape.lineCount = ((txBody[1].match(/<a:p\b/g) || []).length) + ((txBody[1].match(/<a:br\b/g) || []).length) || 1;
+      // 단락 정렬(algn): VP-14 ink-range 판정용. r=우측 ctr=중앙 l/없음=좌측. lIns/rIns(텍스트 inset)도 취득.
+      const algnM = txBody[1].match(/<a:pPr[^>]*\balgn="(l|r|ctr|just)"/i);
+      shape.textAlign = algnM ? algnM[1].toLowerCase() : 'l';
+      const lInsM = bpr && bpr[0].match(/\blIns="(\d+)"/); const rInsM = bpr && bpr[0].match(/\brIns="(\d+)"/);
+      shape.lIns = lInsM ? parseInt(lInsM[1], 10) : 91440;  // 기본 0.1in
+      shape.rIns = rInsM ? parseInt(rInsM[1], 10) : 91440;
       const runs = matchAll(txBody[1], '<a:r>([\\s\\S]*?)<\\/a:r>');
       for (const run of runs) {
         const runInner = run[1];
@@ -1183,6 +1189,29 @@ function checkShapeOverlap(shapes, slideNum) {
         // Same row (>50% vertical overlap) with thin horizontal strip, or same column with thin vertical strip
         if ((yOverlap > minH * 0.5 && xOverlap < minW * 0.25) ||
             (xOverlap > minW * 0.5 && yOverlap < minH * 0.25)) continue;
+        // VP-14 ink-range 게이트(2026-06-15, 복잡 데이터표 FP — e2e 6/7 테마서 hit): 같은 행에서 box 가
+        // 두껍게 겹쳐도 텍스트 ink 가 양끝(좌측 라벨 + 우정렬 숫자)이면 시각 충돌 없음(COM 전수확인=FP).
+        // 정렬(algn)+텍스트폭으로 각 ink 가로범위 추정 → 비겹침이면 skip. 폭추정 CJK 0.92(≈5% 과대=보수적,
+        // 과대추정이라 false-skip 안전방향). 같은 행(세로 큰 겹침) 쌍만 적용 — 진짜 본문 겹침은 발화 보존.
+        if (yOverlap > minH * 0.5) {
+          const inkW = (sh) => {
+            const t = shapeText(sh); const fEmu = (fontOf(sh) || 12) * EMU_PER_PT;
+            const cjk = (t.match(/[　-鿿가-힯豈-﫿]/g) || []).length;
+            const sp = (t.match(/\s/g) || []).length; const lat = t.length - cjk - sp;
+            const w = cjk * fEmu * 0.92 + lat * fEmu * 0.5 + sp * fEmu * 0.25;
+            const inner = sh.w - (sh.lIns || 0) - (sh.rIns || 0);
+            return inner > 0 ? Math.min(w, inner) : w;
+          };
+          const inkRange = (sh) => {
+            const w = inkW(sh);
+            if (sh.textAlign === 'r') { const r = sh.x + sh.w - (sh.rIns || 0); return [r - w, r]; }
+            if (sh.textAlign === 'ctr') { const c = sh.x + sh.w / 2; return [c - w / 2, c + w / 2]; }
+            const l = sh.x + (sh.lIns || 0); return [l, l + w];
+          };
+          const [aInkL, aInkR] = inkRange(a); const [bInkL, bInkR] = inkRange(b);
+          const inkTol = 4 * EMU_PER_PT;
+          if (aInkR < bInkL - inkTol || bInkR < aInkL - inkTol) continue; // ink 가로 비겹침 = 시각충돌 없음
+        }
         const pct = Math.round(overlapArea / smallerArea * 100);
 
         if (pct >= 5) {
@@ -1446,7 +1475,17 @@ function checkCjkTextOverflow(shapes, slideNum) {
     const overflowRatio = availableHeight > 0 ? heightNeeded / availableHeight : Infinity;
     const isBorderlineOverflow = overflowRatio < 1.5;
 
-    if (ratio > 1.2 && verticalOverflow && !isShortText && !isMinorOverflow && !isBorderlineOverflow) {
+    // VP-16 ERROR 게이트 정밀화(2026-06-15, e2e cover dek FP — S3 executive): 도형이 짧아 box 를 넘쳐도
+    // 넘침이 (a) 인접 텍스트 도형 침범 또는 (b) 슬라이드 하단 밖 잘림일 때만 진짜 결함. 빈 슬라이드 공간으로
+    // 넘치면 PowerPoint 가 박스밖 텍스트를 가시 렌더(미클리핑)=정상(COM 확인). s99(인접침범)·슬라이드밖
+    // 잘림은 발화 보존, cover dek(아래 빈공간+슬라이드 안 fit) FP 만 해소.
+    const shapeBottomV = s.y + s.h;
+    const overlapsNeighborV = shapes.some((o) => o !== s &&
+      o.textRuns.some((rr) => rr.text && rr.text.trim()) &&
+      o.y > s.y && o.y < shapeBottomV && o.x < s.x + s.w && o.x + o.w > s.x);
+    const clipsBeyondSlide = (s.y + heightNeeded) > DEFAULT_SLIDE_H;
+
+    if (ratio > 1.2 && verticalOverflow && !isShortText && !isMinorOverflow && !isBorderlineOverflow && (overlapsNeighborV || clipsBeyondSlide)) {
       const availPt = Math.round(availableWidth / EMU_PER_PT);
       const estPt = Math.round(estimatedWidth / EMU_PER_PT);
       issues.push({
@@ -1455,7 +1494,7 @@ function checkCjkTextOverflow(shapes, slideNum) {
         slide: slideNum,
         message: `CJK text "${text.substring(0, 25)}..." ${estPt}pt > available ${availPt}pt (${estimatedFontPt}pt font, ${linesNeeded} lines needed, shape too short) — will overflow [IL-37]`,
       });
-    } else if (ratio > 1.2 && (isShortText || isMinorOverflow || isBorderlineOverflow || !verticalOverflow)) {
+    } else if (ratio > 1.2 && (isShortText || isMinorOverflow || isBorderlineOverflow || !verticalOverflow || !(overlapsNeighborV || clipsBeyondSlide))) {
       // VP-16 wraps 정밀화(이미지직접확인 2026-06-14): 2줄 wrap 자체는 정상 — 큰 도형의 긴 제목/문장이
       // 카드 안에서 2줄로 흐르는 건 디자인(s12 카드제목·s7 제목 여백충분). 진짜 결함은 ① 늘어난 텍스트가
       // 인접 텍스트 도형을 침범(s99 GT: 제목 3줄→부제 "호르무즈해협" 덮음) ② 작은 도형(막대 안 7pt,

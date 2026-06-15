@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="03 Executive Editorial — data table" subtitle="6×6 peer comparison · noFill + filled cells" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:35.56px 56.89px; display:flex; flex-direction:column; }
+.head { border-bottom:1.5px solid var(--primary); padding-bottom:14.22px; margin-bottom:21.33px; }
+.eyebrow { font-size:14.22px; font-weight:700; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8.89px; }
+h1 { font-size:31.11px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.12; }
+h1 em { font-style:normal; color:var(--accent); }
+.key { font-size:16px; color:var(--gray-2); margin-top:8.89px; }
+.tbl { flex:1; display:flex; flex-direction:column; min-height:0; border:1px solid var(--border-soft); border-radius:10px; overflow:hidden; }
+.row { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr 1fr 1.1fr; }
+.row.hd { background:var(--surface-inverse); }
+.row.hd .c { color:var(--surface-inverse-fg); font-size:14.22px; font-weight:700; letter-spacing:0.02em; }
+.row .c { padding:13.33px 17.78px; font-size:15.11px; color:var(--primary); display:flex; align-items:center; border-bottom:1px solid var(--border-soft); border-right:1px solid var(--border-soft); }
+.row.hd .c { border-bottom:none; border-right:1px solid rgba(255,255,255,0.18); }
+.row .c:first-child { font-weight:700; }
+.row .c:last-child { border-right:none; }
+.row:last-child .c { border-bottom:none; }
+.num { justify-content:flex-end; font-variant-numeric:tabular-nums; }
+.row.alt .c { background:var(--theme-bg-alt); }
+.row.total { background:#EFEAE2; }
+.row.total .c { font-weight:800; border-top:1.5px solid var(--primary); border-bottom:none; }
+.pos { color:var(--positive); font-weight:700; }
+.neg { color:var(--negative); font-weight:700; }
+.tag { display:inline-block; padding:2.67px 10.67px; border:1px solid var(--accent); border-radius:14px; font-size:12.44px; font-weight:700; color:var(--accent); }
+.src { font-size:12.44px; color:var(--gray-2); margin-top:14.22px; text-align:right; }
+</style></head><body data-layout="data_table" data-screen-label="03-executive · data_table">
+  <div class="head">
+    <div class="eyebrow">Section 02 · Peer benchmark</div>
+    <h1>경쟁사 대비 HBM 마진 격차 <em>+11%p</em> — 수율 우위가 핵심</h1>
+    <div class="key">FY2025 실적 기준 글로벌 메모리 3사 + 신규 진입사 HBM 사업 비교 (USD 환산)</div>
+  </div>
+  <div class="tbl">
+    <div class="row hd">
+      <div class="c">기업 / 지표</div>
+      <div class="c num">HBM 매출 ($B)</div>
+      <div class="c num">점유율 (%)</div>
+      <div class="c num">영업이익률 (%)</div>
+      <div class="c num">수율 (%)</div>
+      <div class="c">HBM4 양산</div>
+    </div>
+    <div class="row">
+      <div class="c">SK Hynix</div>
+      <div class="c num">28.4</div>
+      <div class="c num">52.0</div>
+      <div class="c num"><span class="pos">47.2</span></div>
+      <div class="c num">82</div>
+      <div class="c"><span class="tag">'26 2H</span></div>
+    </div>
+    <div class="row alt">
+      <div class="c">Samsung</div>
+      <div class="c num">15.1</div>
+      <div class="c num">27.6</div>
+      <div class="c num">36.1</div>
+      <div class="c num">71</div>
+      <div class="c"><span class="tag">'27 1H</span></div>
+    </div>
+    <div class="row">
+      <div class="c">Micron</div>
+      <div class="c num">9.8</div>
+      <div class="c num">17.9</div>
+      <div class="c num">31.4</div>
+      <div class="c num">68</div>
+      <div class="c"><span class="tag">'27 1H</span></div>
+    </div>
+    <div class="row alt">
+      <div class="c">CXMT (신규)</div>
+      <div class="c num">1.4</div>
+      <div class="c num">2.5</div>
+      <div class="c num"><span class="neg">-8.0</span></div>
+      <div class="c num">41</div>
+      <div class="c">미정</div>
+    </div>
+    <div class="row total">
+      <div class="c">합계 / 평균</div>
+      <div class="c num">54.7</div>
+      <div class="c num">100.0</div>
+      <div class="c num">26.7</div>
+      <div class="c num">66</div>
+      <div class="c">—</div>
+    </div>
+  </div>
+  <div class="src">각사 4Q 실적발표 · TrendForce · Gartner Memory Tracker (2026.02) · 환율 1,380원/$ 적용</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

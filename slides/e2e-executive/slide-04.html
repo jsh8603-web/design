@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="04 Executive Editorial — 2x2 matrix" subtitle="scenario matrix · long CJK paragraphs" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:35.56px 56.89px; display:flex; flex-direction:column; }
+.head { border-bottom:1.5px solid var(--primary); padding-bottom:14.22px; margin-bottom:18px; }
+.eyebrow { font-size:14.22px; font-weight:700; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8.89px; }
+h1 { font-size:31.11px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.12; }
+h1 em { font-style:normal; color:var(--accent); }
+.matrix { flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:16px; min-height:0; }
+.cell { background:var(--theme-bg-card); border:1px solid var(--border-soft); border-left:4px solid var(--accent); border-radius:10px; padding:17.78px 21.33px; box-sizing:border-box; min-width:0; overflow:hidden; display:flex; flex-direction:column; }
+.cell.hot { border-left-color:var(--accent-secondary); }
+.ch { display:flex; align-items:center; gap:10.67px; margin-bottom:10.67px; }
+.badge { width:32px; height:32px; border-radius:50%; border:1.5px solid var(--accent); color:var(--accent); display:inline-flex; align-items:center; justify-content:center; font-size:14.22px; font-weight:800; flex-shrink:0; }
+.cell.hot .badge { border-color:var(--accent-secondary); color:var(--accent-secondary); }
+.ct { font-size:18.67px; font-weight:700; color:var(--primary); line-height:1.2; flex:1; min-width:0; }
+.cmeta { font-size:12.44px; font-weight:700; color:var(--gray-2); letter-spacing:0.04em; text-transform:uppercase; flex-shrink:0; }
+.cbody { font-size:14.22px; color:var(--gray-1); line-height:1.55; min-width:0; }
+.cbody b { color:var(--accent); font-weight:700; }
+.cell.hot .cbody b { color:var(--accent-secondary); }
+.src { font-size:12.44px; color:var(--gray-2); margin-top:14.22px; text-align:right; }
+</style></head><body data-layout="prioritization_matrix" data-screen-label="04-executive · matrix">
+  <div class="head">
+    <div class="eyebrow">Section 03 · Scenario matrix</div>
+    <h1>수요 × 공급 4분면 — <em>기본 시나리오</em>는 우상단 강세 국면</h1>
+  </div>
+  <div class="matrix">
+    <div class="cell hot">
+      <div class="ch"><div class="badge">A</div><div class="ct">강세 — 공급 부족 지속</div><div class="cmeta">확률 45%</div></div>
+      <div class="cbody">AI 가속기 출하가 컨센서스를 <b>상회</b>하고 HBM4 전환 지연으로 유효 공급이 묶이는 국면. ASP가 분기마다 8~12% 추가 상승하며 SK Hynix 영업이익률은 <b>50%를 돌파</b>한다. 목표주가 상단(31만원) 시나리오로, 캐파 증설 속도가 유일한 제약이 된다.</div>
+    </div>
+    <div class="cell">
+      <div class="ch"><div class="badge">B</div><div class="ct">중립 — 점진적 정상화</div><div class="cmeta">확률 35%</div></div>
+      <div class="cbody">수요는 견조하나 Samsung·Micron의 HBM3E 인증이 순차 통과되며 공급이 따라붙는 국면. ASP는 <b>고점 유지 후 완만히 둔화</b>하고 점유율은 52%→44%로 하락하지만, 절대 물량 증가가 이를 상쇄해 이익은 우상향을 유지한다.</div>
+    </div>
+    <div class="cell">
+      <div class="ch"><div class="badge">C</div><div class="ct">약세 — 더블오더 조정</div><div class="cmeta">확률 15%</div></div>
+      <div class="cbody">고객사 재고 축적(더블오더)이 드러나며 '26년 하반기 발주가 <b>일시 둔화</b>되는 국면. 일반 DRAM 동반 약세 시 믹스 악화로 이익률이 10%p 가까이 훼손될 수 있으나, HBM 장기계약 비중(70%)이 하방을 방어한다.</div>
+    </div>
+    <div class="cell">
+      <div class="ch"><div class="badge">D</div><div class="ct">하방 — 수요 절벽</div><div class="cmeta">확률 5%</div></div>
+      <div class="cbody">AI 투자 사이클이 급랭하고 하이퍼스케일러 CapEx가 동시 삭감되는 <b>꼬리 위험</b> 국면. 가능성은 낮으나 발생 시 메모리 전반의 가격 붕괴로 이어진다. 현 밸류에이션(P/B 1.6배)은 이 시나리오를 부분적으로만 반영하고 있다.</div>
+    </div>
+  </div>
+  <div class="src">하우스 시나리오 · SK Hynix IR · Bloomberg 컨센서스 (2026.03)</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

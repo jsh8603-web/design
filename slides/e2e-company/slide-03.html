@@ -5,49 +5,118 @@
 <link rel="stylesheet" href="../../design-system/colors_and_type.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; }
-  .slide { width: 1280px; height: 720px; padding: 64px 96px; position: relative; }
-  .kicker { font-size: 15px; font-weight: 700; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
-  .title { font-size: 34px; font-weight: 800; color: var(--primary); line-height: 1.18; margin-bottom: 50px; max-width: 1020px; letter-spacing: -0.01em; }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-  .card { border: 1px solid var(--gray-4); border-radius: 12px; padding: 34px 30px; position: relative; }
-  .card .idx { width: 46px; height: 46px; border-radius: 10px; background: var(--primary); color: #FFFFFF; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
-  .card.hi .idx { background: var(--accent); }
-  .card .h { font-size: 22px; font-weight: 800; color: var(--primary); line-height: 1.25; margin-bottom: 14px; }
-  .card .d { font-size: 16px; color: var(--gray-2); line-height: 1.55; margin-bottom: 22px; }
-  .card .metric { border-top: 1px solid var(--gray-4); padding-top: 16px; }
-  .card .metric .m { font-size: 30px; font-weight: 800; color: var(--accent); line-height: 1; }
-  .card .metric .ml { font-size: 13px; color: var(--gray-2); margin-top: 7px; }
-  .source { position: absolute; bottom: 30px; left: 96px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 30px; right: 96px; font-size: 12px; font-weight: 600; color: var(--gray-3); }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--theme-text); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 52px 72px 44px; position: relative; display: flex; flex-direction: column; }
+  .head { margin-bottom: 24px; }
+  .kicker { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.13em; text-transform: uppercase; margin-bottom: 9px; }
+  .title { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1.16; letter-spacing: -0.01em; max-width: 1040px; }
+  .tbl { display: flex; flex-direction: column; }
+  .row { display: grid; grid-template-columns: 23% 15% 12% 16% 15% 12%; column-gap: 16px; align-items: stretch; }
+  .cell { padding: 13px 4px; font-size: 15px; text-align: left; border-bottom: 1px solid var(--gray-4); display: flex; align-items: center; justify-content: flex-start; }
+  .cell.seg { font-weight: 700; color: var(--primary); }
+  .row.hd .cell { background: var(--primary); color: #FFFFFF; font-weight: 700; font-size: 14px; border-bottom: none; }
+  .row.hd .cell.seg { color: #FFFFFF; }
+  .row.alt .cell { background: var(--gray-4); }
+  .cell.pos { color: var(--positive); font-weight: 700; }
+  .cell.neg { color: var(--negative); font-weight: 700; }
+  .row.tot .cell { background: var(--surface-inverse); color: var(--surface-inverse-fg); font-weight: 800; border-bottom: none; }
+  .row.tot .cell.seg { color: var(--surface-inverse-fg); }
+  .row.tot .cell.accent { color: var(--accent); }
+  .legend { margin-top: 18px; font-size: 13px; color: var(--gray-2); display: flex; gap: 24px; }
+  .legend span b { color: var(--primary); }
+  .source { position: absolute; bottom: 18px; left: 72px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 18px; right: 72px; font-size: 12px; font-weight: 600; color: var(--gray-3); }
 </style>
 </head>
 <body>
 <div class="slide">
-  <div class="kicker">Strategic Priorities · FY26 H2</div>
-  <div class="title">하반기, 세 개의 축으로 성장 모멘텀을 고착화한다</div>
-  <div class="cards">
-    <div class="card hi">
-      <div class="idx">1</div>
-      <div class="h">핵심 시장 점유율 확대</div>
-      <div class="d">상위 5개 도시 거점을 중심으로 영업 조직을 재배치하고 채널 커버리지를 강화합니다.</div>
-      <div class="metric"><div class="m">+5%p</div><div class="ml">목표 시장 점유율 증가</div></div>
+  <div class="head">
+    <div class="kicker">Segment Performance · FY26 1H</div>
+    <div class="title">사업부별 실적 — 엔터프라이즈가 성장과 수익성을 동시에 견인</div>
+  </div>
+  <div class="tbl">
+    <div class="row hd">
+      <div class="cell seg">사업부</div>
+      <div class="cell">매출(억)</div>
+      <div class="cell">YoY</div>
+      <div class="cell">영업이익(억)</div>
+      <div class="cell">영업이익률</div>
+      <div class="cell">비중</div>
     </div>
-    <div class="card">
-      <div class="idx">2</div>
-      <div class="h">운영 자동화 고도화</div>
-      <div class="d">반복 업무를 자동화 파이프라인으로 전환해 처리 단가와 리드타임을 동시에 줄입니다.</div>
-      <div class="metric"><div class="m">-18%</div><div class="ml">단위 처리 원가 절감</div></div>
+    <div class="row">
+      <div class="cell seg">엔터프라이즈</div>
+      <div class="cell">8,420</div>
+      <div class="cell pos">+31.2%</div>
+      <div class="cell">1,180</div>
+      <div class="cell">14.0%</div>
+      <div class="cell">45.8%</div>
     </div>
-    <div class="card">
-      <div class="idx">3</div>
-      <div class="h">인재 리텐션 강화</div>
-      <div class="d">핵심 직무 보상 체계를 개편하고 성장 트랙을 명확히 해 핵심 인력 이탈을 방지합니다.</div>
-      <div class="metric"><div class="m">90%+</div><div class="ml">핵심 인재 잔존율 목표</div></div>
+    <div class="row alt">
+      <div class="cell seg">클라우드 플랫폼</div>
+      <div class="cell">4,260</div>
+      <div class="cell pos">+24.6%</div>
+      <div class="cell">512</div>
+      <div class="cell">12.0%</div>
+      <div class="cell">23.2%</div>
+    </div>
+    <div class="row">
+      <div class="cell seg">리테일 솔루션</div>
+      <div class="cell">3,180</div>
+      <div class="cell pos">+9.4%</div>
+      <div class="cell">286</div>
+      <div class="cell">9.0%</div>
+      <div class="cell">17.3%</div>
+    </div>
+    <div class="row alt">
+      <div class="cell seg">디바이스</div>
+      <div class="cell">1,640</div>
+      <div class="cell neg">−6.1%</div>
+      <div class="cell">74</div>
+      <div class="cell">4.5%</div>
+      <div class="cell">8.9%</div>
+    </div>
+    <div class="row">
+      <div class="cell seg">신사업(베타)</div>
+      <div class="cell">890</div>
+      <div class="cell pos">+118%</div>
+      <div class="cell neg">−42</div>
+      <div class="cell">적자</div>
+      <div class="cell">4.8%</div>
+    </div>
+    <div class="row tot">
+      <div class="cell seg">전사 합계</div>
+      <div class="cell">18,390</div>
+      <div class="cell accent">+23.4%</div>
+      <div class="cell">2,010</div>
+      <div class="cell">10.9%</div>
+      <div class="cell">100%</div>
     </div>
   </div>
-  <div class="source">Source: FY26 전사 전략 워크숍 결과 · 전략기획본부</div>
-  <div class="page">03 / 03</div>
+  <div class="legend">
+    <span><b>적자</b> = 영업손실 구간 (신사업 투자 단계)</span>
+    <span>비중 = 전사 매출 대비 사업부 매출 점유</span>
+  </div>
+  <div class="source">Source: FY26 1H 사업부별 손익 (잠정) · 전사 경영관리</div>
+  <div class="page">03 / 05</div>
 </div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
 </body>
 </html>

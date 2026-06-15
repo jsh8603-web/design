@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- @dsCard group="Slides" name="Slide — 2x2 matrix" subtitle="quadrant matrix, title+CJK body per cell" viewport="960x540" -->
+<html lang="ko" data-theme="modern">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 54px 88px; position: relative; }
+  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
+  .title { font-size: 30px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 28px; max-width: 1060px; }
+  .matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; height: 458px; }
+  .cell { border: 1px solid var(--gray-3); border-radius: 12px; padding: 24px 26px; display: flex; flex-direction: column; position: relative; }
+  .cell .qbadge { position: absolute; top: 20px; right: 24px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--gray-3); letter-spacing: 0.06em; }
+  .cell h3 { font-size: 21px; font-weight: 700; color: var(--heading); margin-bottom: 6px; }
+  .cell .sub { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; }
+  .cell p { font-size: 15px; color: var(--gray-2); line-height: 1.62; }
+  .cell.hi { border-top: 4px solid var(--accent); }
+  .cell.hi h3 { color: var(--accent); }
+  .cell.inv { background: var(--surface-inverse); border-color: var(--surface-inverse); }
+  .cell.inv h3 { color: var(--surface-inverse-fg); }
+  .cell.inv .sub { color: #F4A668; }
+  .cell.inv p { color: rgba(255,255,255,0.78); }
+  .cell.inv .qbadge { color: rgba(255,255,255,0.4); }
+  .source { position: absolute; bottom: 26px; left: 88px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 26px; right: 88px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+</style>
+</head>
+<body data-layout="data_table" data-screen-label="modern · matrix_2x2">
+<div class="slide">
+  <div class="kicker">// STRATEGIC POSTURE · 2x2 매트릭스</div>
+  <div class="title">HBM 차세대 로드맵 — 단기 수익성과 장기 캐파 투자의 4분면 전략</div>
+  <div class="matrix">
+    <div class="cell hi">
+      <div class="qbadge">Q1 · 高수익 / 高확실성</div>
+      <h3>HBM3E 12-hi 양산 가속</h3>
+      <div class="sub">Defend &amp; Harvest</div>
+      <p>현 세대 주력 제품으로 분기 매출의 35%를 차지하며 OPM 30%를 상회한다. 본딩 수율이 82%까지 안정화되어 추가 캐파 전환 없이도 ASP 프리미엄을 유지할 수 있다. 핵심 고객 3사와의 장기 공급계약을 통해 물량 가시성을 FY27 상반기까지 확보하는 것이 최우선 과제다.</p>
+    </div>
+    <div class="cell">
+      <div class="qbadge">Q2 · 高수익 / 低확실성</div>
+      <h3>HBM4 선행 개발</h3>
+      <div class="sub">Bet &amp; Validate</div>
+      <p>2048-bit 인터페이스와 커스텀 베이스 다이를 채택한 차세대 규격으로, 성공 시 ASP가 현 세대 대비 1.6배 상승할 잠재력이 있다. 다만 파운드리 협업 일정과 하이브리드 본딩 공정 성숙도가 변수로 남아 있어, 시제품 검증 마일스톤을 분기별로 게이트화하여 투자 규모를 단계적으로 조정한다.</p>
+    </div>
+    <div class="cell">
+      <div class="qbadge">Q3 · 低수익 / 高확실성</div>
+      <h3>레거시 DRAM 라인 전환</h3>
+      <div class="sub">Optimize &amp; Exit</div>
+      <p>가동률 하락과 ASP 압박으로 OPM이 5% 미만으로 떨어진 구간이다. 신규 투자 없이 기존 설비를 HBM 후공정 캐파로 점진 전환하여 자본 효율을 회복한다. 전환 과정의 일시적 생산 공백은 고객 재고 사전 적재로 흡수하고, FY27까지 레거시 매출 비중을 한 자릿수로 축소하는 것을 목표로 한다.</p>
+    </div>
+    <div class="cell inv">
+      <div class="qbadge">Q4 · 低수익 / 低확실성</div>
+      <h3>신규 응용 시장 탐색</h3>
+      <div class="sub">Explore &amp; Seed</div>
+      <p>온디바이스 AI·자동차·로보틱스 등 중장기 수요처를 대상으로 한 탐색적 투자 영역이다. 단기 매출 기여는 제한적이나, 표준화 논의 초기 단계에 참여해 규격 영향력을 확보하는 옵션 가치가 크다. 소규모 다수 베팅으로 리스크를 분산하고, 시장 신호가 확인되는 영역에 한해 캐파를 선별 집중한다.</p>
+    </div>
+  </div>
+  <div class="source">Source: 전사 전략기획실 HBM 로드맵 워크숍 (FY26.Q2), 4분면 우선순위 합의안</div>
+  <div class="page">04 / 05</div>
+</div>
+</body>
+</html>

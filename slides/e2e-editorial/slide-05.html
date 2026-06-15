@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="04 Editorial Magazine — timeline" subtitle="horizontal timeline · serif markers · terracotta line" viewport="960x540" --><html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:40px 64px; color:var(--primary); display:grid; grid-template-rows: auto auto 1fr; gap:24px; }
+  .head { display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--rule-soft, #D8D2C9); padding-bottom:16px; }
+  .head h2 { font-size:19.56px; font-weight:600; color:var(--accent); letter-spacing:0.16em; text-transform:uppercase; }
+  .head .pg { font-size:17.78px; color:var(--gray-2); font-family:'Newsreader', serif; font-style:italic; }
+  .lead { font-size:30px; color:var(--primary); font-family:'Newsreader', serif; line-height:1.15; letter-spacing:-0.015em; max-width:1000px; }
+  .lead em { font-style:italic; color:var(--accent); }
+  .timeline { position:relative; display:grid; grid-template-columns: repeat(4, 1fr); gap:64px; align-content:start; padding-top:28px; }
+  .axis { position:absolute; top:36px; left:18px; right:18px; height:2px; background:var(--rule-soft, #D8D2C9); }
+  .timeline > .step { min-width:0; }
+  .step { position:relative; display:flex; flex-direction:column; gap:12px; min-width:0; }
+  .step h3, .step p, .step .when { overflow-wrap:break-word; word-break:keep-all; }
+  .marker { width:36px; height:36px; border-radius:50%; background:var(--accent); color:#FAF8F5; font-family:'Newsreader', serif; font-size:18px; display:flex; align-items:center; justify-content:center; font-weight:600; position:relative; z-index:1; }
+  .step.muted .marker { background:var(--primary); }
+  .when { font-size:14px; color:var(--gray-2); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; }
+  .step h3 { font-size:24px; font-weight:500; color:var(--primary); line-height:1.1; font-family:'Newsreader', serif; }
+  .step p { font-size:15px; color:var(--gray-1); line-height:1.45; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="timeline" data-screen-label="04-editorial · timeline"><div class="head">
+  <h2>Roadmap · 자본 배분 단계</h2>
+  <div class="pg">page <em>08</em></div>
+</div>
+<div class="lead serif">2026–2028, <em>네 개의 분기점.</em></div>
+<div class="timeline">
+  <div class="axis"></div>
+  <div class="step">
+    <div class="marker serif">I</div>
+    <div class="when">2026 H1 · 진입</div>
+    <h3 class="serif">공급 집중에 베팅</h3>
+    <p>HBM3E 단독 공급 구간에서 비중을 선제 확대. 캐파 증설 18개월 리드타임이 방어선.</p>
+  </div>
+  <div class="step muted">
+    <div class="marker serif">II</div>
+    <div class="when">2026 H2 · 확인</div>
+    <h3 class="serif">수요 비탄력 점검</h3>
+    <p>클라우드 학습 투자의 가격 둔감성을 분기 실적으로 확인. 전가율이 가정과 일치하는지 추적.</p>
+  </div>
+  <div class="step muted">
+    <div class="marker serif">III</div>
+    <div class="when">2027 H1 · 전환</div>
+    <h3 class="serif">전력 병목 선점</h3>
+    <p>전력·냉각 계약을 확보한 사업자로 비중 이동. 변전 인프라가 실질 캐파 상한을 결정.</p>
+  </div>
+  <div class="step">
+    <div class="marker serif">IV</div>
+    <div class="when">2028 · 점검</div>
+    <h3 class="serif">Falsifier 발동</h3>
+    <p>추론 비용 급락 신호 시 비중 단계적 축소. 비대칭 소멸을 출구 조건으로 명시.</p>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

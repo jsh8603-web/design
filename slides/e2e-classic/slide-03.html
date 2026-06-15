@@ -6,49 +6,93 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; }
-  .slide { width: 1280px; height: 720px; padding: 64px 96px; position: relative; }
-  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px; }
-  .title { font-size: 32px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 40px; max-width: 1040px; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 22px; height: 452px; }
-  .cell { background: var(--gray-4); border-radius: 10px; padding: 28px 30px; position: relative; }
-  .cell.hl { background: var(--surface-inverse); }
-  .cell .tag { font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--gray-2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
-  .cell .name { font-size: 26px; font-weight: 700; color: var(--heading); line-height: 1.18; }
-  .cell.hl .name { color: var(--surface-inverse-fg); }
-  .cell .star { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
-  .cell .meta { margin-top: 14px; font-size: 14px; color: var(--gray-2); line-height: 1.5; }
-  .cell.hl .meta { color: var(--gray-3); }
-  .source { position: absolute; bottom: 32px; left: 96px; font-size: 12px; color: var(--gray-3); }
-  .page { position: absolute; bottom: 32px; right: 96px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
+  .slide { width: 1280px; height: 720px; padding: 56px 96px; position: relative; }
+  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
+  .title { font-size: 30px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 30px; max-width: 1040px; }
+  .tbl { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr 1.1fr; border: 1px solid var(--gray-3); border-radius: 8px; overflow: hidden; }
+  .tbl > div { padding: 14px 18px; font-size: 15px; line-height: 1.3; border-bottom: 1px solid var(--gray-4); border-right: 1px solid var(--gray-4); display: flex; align-items: center; }
+  .tbl > div.r { justify-content: flex-end; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .tbl > div.c { justify-content: center; }
+  .head { background: var(--surface-inverse); color: var(--surface-inverse-fg); font-weight: 700; font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; border-bottom-color: var(--primary) !important; }
+  .head.r { justify-content: flex-end; }
+  .head.c { justify-content: center; }
+  .lab { font-weight: 600; color: var(--heading); }
+  .zebra { background: var(--gray-4); }
+  .pos { color: var(--positive); font-weight: 700; }
+  .neg { color: var(--negative); font-weight: 700; }
+  .total { background: var(--accent); color: #fff; font-weight: 700; }
+  .total .lab, .total.r, .total.c { color: #fff; }
+  .tbl > div.st { justify-content: center; font-family: var(--font-mono); font-size: 12px; font-weight: 700; }
+  .st.ok { background: var(--positive); color: #fff; }
+  .st.warn { background: var(--negative); color: #fff; }
+  .st.hold { background: var(--gray-2); color: #fff; }
+  .source { position: absolute; bottom: 28px; left: 96px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 28px; right: 96px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
 </style>
 </head>
 <body>
 <div class="slide">
-  <div class="kicker">// OPTION ASSESSMENT</div>
-  <div class="title">3개 레버 중 운영 자동화만 단기 회수 — 임팩트·실행속도 매트릭스</div>
-  <div class="grid">
-    <div class="cell">
-      <div class="tag">고임팩트 · 장기</div>
-      <div class="name">생산 거점 재편</div>
-      <div class="meta">3년+ 전환 사이클 · 초기 CapEx 부담 큼</div>
-    </div>
-    <div class="cell hl">
-      <div class="star">★ 추천</div>
-      <div class="name">운영 자동화 (Operations automation)</div>
-      <div class="meta">2개년 누적 +₩640억 · 영업이익률 +3.1%p · 회수 11개월</div>
-    </div>
-    <div class="cell">
-      <div class="tag">저임팩트 · 장기</div>
-      <div class="name">신규 사업 진출 (보류)</div>
-      <div class="meta">초기 투자 대비 기여 시점 불확실</div>
-    </div>
-    <div class="cell">
-      <div class="tag">저임팩트 · 단기</div>
-      <div class="name">간접비 절감 (병행)</div>
-      <div class="meta">즉시 실행 가능 · 규모 한정적</div>
-    </div>
+  <div class="kicker">// CAPACITY PLAN BY LINE</div>
+  <div class="title">라인별 캐파 증설 계획 — P3·P4가 FY27 증분의 71% 담당</div>
+  <div class="tbl">
+    <!-- header -->
+    <div class="head">생산 라인</div>
+    <div class="head c">노드</div>
+    <div class="head r">현 캐파 (Kwpm)</div>
+    <div class="head r">FY27 목표</div>
+    <div class="head r">증분</div>
+    <div class="head c">상태</div>
+    <!-- row 1 -->
+    <div class="lab">P1 — 화성 1기</div>
+    <div class="c">1α</div>
+    <div class="r">42.0</div>
+    <div class="r">45.0</div>
+    <div class="r pos">+3.0</div>
+    <div class="st ok">진행</div>
+    <!-- row 2 -->
+    <div class="lab zebra">P2 — 화성 2기</div>
+    <div class="c zebra">1α</div>
+    <div class="r zebra">38.5</div>
+    <div class="r zebra">40.0</div>
+    <div class="r zebra pos">+1.5</div>
+    <div class="st ok">진행</div>
+    <!-- row 3 -->
+    <div class="lab">P3 — 평택 3기</div>
+    <div class="c">1β</div>
+    <div class="r">28.0</div>
+    <div class="r">52.0</div>
+    <div class="r pos">+24.0</div>
+    <div class="st ok">진행</div>
+    <!-- row 4 -->
+    <div class="lab zebra">P4 — 평택 4기</div>
+    <div class="c zebra">1β</div>
+    <div class="r zebra">0.0</div>
+    <div class="r zebra">18.0</div>
+    <div class="r zebra pos">+18.0</div>
+    <div class="st warn">착공지연</div>
+    <!-- row 5 -->
+    <div class="lab">P5 — 청주 1기</div>
+    <div class="c">1y</div>
+    <div class="r">15.0</div>
+    <div class="r">12.0</div>
+    <div class="r neg">–3.0</div>
+    <div class="st hold">전환검토</div>
+    <!-- row 6 -->
+    <div class="lab zebra">P6 — 신규 (미정)</div>
+    <div class="c zebra">—</div>
+    <div class="r zebra">0.0</div>
+    <div class="r zebra">8.0</div>
+    <div class="r zebra pos">+8.0</div>
+    <div class="st hold">검토</div>
+    <!-- total -->
+    <div class="total lab" style="border-right:1px solid var(--primary)">합계</div>
+    <div class="total c" style="border-right:1px solid var(--primary)">—</div>
+    <div class="total r" style="border-right:1px solid var(--primary)">123.5</div>
+    <div class="total r" style="border-right:1px solid var(--primary)">175.0</div>
+    <div class="total r" style="border-right:1px solid var(--primary)">+51.5</div>
+    <div class="total c">▲ +41.7%</div>
   </div>
-  <div class="source">Source: 전략기획실 레버 평가 모델, FY26.Q2 · 외부 자문 검증</div>
+  <div class="source">Source: 제조기술팀 캐파 마스터플랜 v4.2 · Kwpm = 1,000 wafers/month · FY26.Q2 기준</div>
   <div class="page">03 / 12</div>
 </div>
 </body>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="04 Editorial Magazine — 2x2 matrix" subtitle="quadrant essay cells · long CJK" viewport="960x540" --><html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:40px 64px; color:var(--primary); display:grid; grid-template-rows: auto 1fr; gap:20px; }
+  .head { display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--rule-soft, #D8D2C9); padding-bottom:16px; }
+  .head h2 { font-size:19.56px; font-weight:600; color:var(--accent); letter-spacing:0.16em; text-transform:uppercase; }
+  .head .pg { font-size:17.78px; color:var(--gray-2); font-family:'Newsreader', serif; font-style:italic; }
+  .matrix { display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; column-gap:96px; row-gap:24px; }
+  .matrix > .q { min-width:0; }
+  .matrix > .q:nth-child(odd) { padding-right:64px; }
+  .q { border-top:3.56px solid var(--primary); padding-top:16px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+  .q p { overflow-wrap:break-word; word-break:keep-all; }
+  .q.alt { border-top-color:var(--accent); }
+  .q .tag { font-size:13px; color:var(--gray-2); letter-spacing:0.12em; text-transform:uppercase; font-weight:600; }
+  .q h3 { font-size:28px; font-weight:500; color:var(--primary); letter-spacing:-0.015em; line-height:1.1; font-family:'Newsreader', serif; }
+  .q h3 em { font-style:italic; color:var(--accent); }
+  .q p { font-size:15.5px; color:var(--gray-1); line-height:1.5; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="matrix_2x2" data-screen-label="04-editorial · matrix_2x2"><div class="head">
+  <h2>Framework · 자본 배분의 네 갈래</h2>
+  <div class="pg">page <em>07</em></div>
+</div>
+<div class="matrix">
+  <div class="q">
+    <div class="tag">I · 메모리 사이클</div>
+    <h3 class="serif">공급이 <em>먼저</em> 좁아진다</h3>
+    <p>HBM3E는 한 자릿수 공급사로 집중되어 있다. 캐파 증설에 18개월이 걸리는 구조상, 수요가 두 배로 뛰어도 단기 공급은 거의 고정이다. 가격 결정권이 명백히 공급사로 이동하는 구간이며, 이 비대칭이 향후 6분기 마진의 핵심 동력이 된다.</p>
+  </div>
+  <div class="q alt">
+    <div class="tag">II · 컴퓨트 사이클</div>
+    <h3 class="serif">수요는 <em>비탄력적</em>이다</h3>
+    <p>대형 클라우드 사업자의 학습 클러스터 투자는 가격에 둔감하다. ROI가 모델 성능에 직결되는 한, HBM 단가 상승은 곧장 전가된다. 다만 추론 비용 최적화 압력이 누적되면 2027년 이후 탄력성이 회복될 수 있어, 중기 가정에는 보수적 쿠션이 필요하다.</p>
+  </div>
+  <div class="q alt">
+    <div class="tag">III · 전력 사이클</div>
+    <h3 class="serif">병목은 <em>팹 밖에</em> 있다</h3>
+    <p>다음 제약은 웨이퍼가 아니라 전력과 냉각이다. 데이터센터 전력 계약이 2~3년 선행 예약되며, 변전·송전 인프라가 실질적 캐파 상한을 결정한다. 전력을 확보한 사업자가 컴퓨트 경쟁의 승자가 되는, 그동안 보지 못한 형태의 진입 장벽이 형성되고 있다.</p>
+  </div>
+  <div class="q">
+    <div class="tag">IV · 자본 함의</div>
+    <h3 class="serif">묶을 곳은 <em>좁다</em></h3>
+    <p>세 사이클이 동시에 열리는 구간에서 우위는 소수에 집중된다. 우리는 공급 집중·수요 비탄력·전력 확보 세 조건을 모두 만족하는 자산에 비중을 싣되, 추론 비용 하락이라는 단일 falsifier를 분기마다 점검한다. 한 세대에 한 번의 비대칭에 베팅하는 동시에 출구를 명시한다.</p>
+  </div>
+</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

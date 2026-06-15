@@ -247,6 +247,14 @@ date: 2026-06-13
   - → **(A) 우선**. 적용 후 재변환 + COM 렌더로 1줄 복귀 확인 + rule-audit 회귀 diff 0.
 - **⛔삽질주의**: B2 normAutofit·중복pPr 가설 기각됨. 폰트는 설치로 해결(임베드는 COM 무효). 높이 추정 가설도 기각(폭 문제).
 
+> [ckpt-202606154500:btn-design] **STATUS: ✅Phase2 복잡슬라이드 e2e(7테마×5장) + VP-14/VP-16 일괄수정 완료**
+- Phase2: 각 테마 표지1+복잡슬라이드4(KPI/표/매트릭스/타임라인) harness2 Teammate 7병렬. 전 teammate 글로벌 직접수정0(global_issue 보고만)=방법준수. 디자인결함=슬라이드 자율수정(PF-62 conic→bar·h3→div·gray-3→gray-2·padding/gap 등). PF-55/62/63=변환기 미지원 정탐(디자인적응).
+- **글로벌 일괄수정(메인, 회귀게이트 통과)**:
+  - **VP-14 ink-range FP** (6/7 테마 데이터표 hit=체계적): `validate-pptx.js` parseShapes에 algn/lIns/rIns 파싱 추가 + checkShapeOverlap에 ink-range 게이트(같은행 box겹침이어도 정렬+CJK0.92폭추정으로 실제 글자범위 비겹침이면 skip). 좌라벨+우정렬숫자 phantom 해소.
+  - **VP-16 ERROR 게이트** (cover dek FP): ERROR 조건에 `(overlapsNeighbor || s.y+heightNeeded>SLIDE_H)` 추가 — 빈 슬라이드공간 넘침(가시·미클리핑)=skip, 인접침범·슬라이드밖잘림만 ERROR.
+  - **회귀게이트 통과**: ①17 GT 덱 ERROR delta=0(VP-14·VP-16 모두, recall=1.0 보존) ②합성 positive=진짜겹침/인접침범/슬라이드밖 발화유지·FP만 skip ③7 e2e 복잡세트 전부 ERROR=0(FP소멸).
+- 미적용(별도, recall민감·고위험): 변환기 h3/p grid-column x-collapse·CJK width inflation·inline-flex/% (academic·editorial·executive 발견, teammate 디자인회피 됨). 박제만, 회귀게이트 갖춰 별도 처리.
+
 > [ckpt-202606153100:btn-design] **STATUS: ✅S2 modern 완료(VP-04/VP-10 FP 룰게이트 수정 + VP-07 정탐 보존 + 회귀0). 다음=S3~S7 Teammate 병렬(harness2-wf)**
 - 검증 대상 재확인(사용자 dispute 시정): 검증 대상 = **디자인 스킬세트(design-system) 생성 슬라이드 → 변환 PPT 의 원안보존**. slides-grab corpus(samsung 등)는 **검증 대상 아님 = 룰 정탐회귀0 확인용 read-only GT**(plan §0.5). samsung s4(분기표 Q1~Q3 빈칸)는 GT 의 VP-07 정탐 = 죽이면 안 되는 것 → borderColor 분리로 보존. samsung 을 길게 렌더해 drift 처럼 보였음 = 표현 과다, 실제는 의무 회귀게이트.
 - S2 K규칙 처리(전부 COM 직접판정): (1) PF-13 정사각 원배지 통과(이전세션 완료) (2) **VP-04 noFill 배지 FP** = 룰과탐 → `validate-pptx.js:158` ln-strip(테두리색을 배경 오판 차단), COM png-fix 검은글씨 가독 (3) **VP-10 space-between FP** = 룰과탐 → 끝 gap 3배+ 2클러스터 제외 (4) **VP-07 부수회귀** = borderColor 분리로 정탐 복원. 디자인 수정 0(modern 원안 정상), 전부 **룰 게이트 수정**.

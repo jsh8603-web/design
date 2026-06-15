@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Content" name="05 Dark Mono — timeline" subtitle="dark monotone · 4-stage process with markers" viewport="960x540" --><html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 80px 48px; position:relative;
+}
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.1em; margin-bottom:14px; }
+.title { font-size:30px; font-weight:700; color:var(--heading); line-height:1.2; margin-bottom:48px; max-width:1080px; }
+.tl { position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:8px; }
+.line { position:absolute; top:23px; left:6%; right:6%; height:2px; background:var(--gray-3); z-index:0; }
+.stage { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; }
+.marker { width:48px; height:48px; border-radius:50%; background:var(--gray-4); border:2px solid var(--gray-3); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-weight:700; font-size:18px; color:var(--gray-2); margin-bottom:18px; }
+.stage.done .marker { background:var(--accent); border-color:var(--accent); color:#0F1419; }
+.stage.now .marker { background:var(--surface-inverse); border-color:var(--accent); color:var(--accent); }
+.badge { font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; color:var(--gray-2); border:1px solid var(--gray-3); border-radius:11px; padding:3px 11px; margin-bottom:12px; }
+.stage.done .badge { color:var(--accent); border-color:var(--accent); }
+.stage.now .badge { color:var(--accent); border-color:var(--accent); background:var(--surface-inverse); }
+.stage h3 { font-size:18px; font-weight:700; color:var(--gray-1); line-height:1.25; margin-bottom:10px; }
+.stage p { font-size:13.5px; color:var(--gray-2); line-height:1.5; max-width:240px; }
+.metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:40px; }
+.metric { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:8px; padding:16px 18px; text-align:center; }
+.metric .mv { font-size:28px; font-weight:800; color:var(--gray-1); line-height:1; }
+.metric .mv small { font-size:15px; color:var(--gray-2); }
+.metric .mv.acc { color:var(--accent); }
+.metric .ml { margin-top:8px; font-size:12px; color:var(--gray-2); }
+.source { position:absolute; bottom:24px; left:80px; font-size:12px; color:var(--gray-2); }
+.page { position:absolute; bottom:24px; right:80px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gray-2); }
+</style></head><body data-layout="timeline-process" data-screen-label="05-dark-mono · timeline">
+  <div class="kicker">// EXECUTION ROADMAP · 18-MONTH WINDOW</div>
+  <div class="title">스택 통합 4단계 — 현재 2단계, 게이트 통과 시 자동 집행</div>
+  <div class="tl">
+    <div class="line"></div>
+    <div class="stage done">
+      <div class="marker">01</div>
+      <div class="badge">완료 · Q4</div>
+      <h3>파일럿 검증</h3>
+      <p>단일 워크로드 자체 추론 스택 PoC. 단가 41% 절감 실측 확인.</p>
+    </div>
+    <div class="stage now">
+      <div class="marker">02</div>
+      <div class="badge">진행 · Q1–Q2</div>
+      <h3>핵심 트래픽 전환</h3>
+      <p>상위 5개 워크로드 전면 이관. 매출총이익률 +4.8%p 기여 확정.</p>
+    </div>
+    <div class="stage">
+      <div class="marker">03</div>
+      <div class="badge">예정 · Q3</div>
+      <h3>전사 확장</h3>
+      <p>잔여 트래픽 90% 이관. 외부 API 라이선스 81% 축소 목표.</p>
+    </div>
+    <div class="stage">
+      <div class="marker">04</div>
+      <div class="badge">예정 · Q4</div>
+      <h3>차세대 최적화</h3>
+      <p>커널 레벨 튜닝 + 하드웨어 협상. 추가 12% 단가 절감 타겟.</p>
+    </div>
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="mv acc">41<small>%</small></div><div class="ml">현재 단가 절감</div></div>
+    <div class="metric"><div class="mv">53<small>%</small></div><div class="ml">목표 단가 절감</div></div>
+    <div class="metric"><div class="mv">18<small>mo</small></div><div class="ml">총 실행 윈도우</div></div>
+    <div class="metric"><div class="mv">70<small>%</small></div><div class="ml">집중 자원 배분</div></div>
+  </div>
+  <div class="source">Source: 실행 로드맵, FY26.Q2 기준 · 분기 게이트 리뷰 체계</div>
+  <div class="page">05 / 05</div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

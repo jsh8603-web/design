@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="03 Academic Clean — matrix" subtitle="2×2 사이클 매트릭스 · 긴 CJK 단락 · D-index" viewport="960x540" --><html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+  body { background:var(--theme-bg); padding:44px 64px; color:var(--gray-1); display:flex; flex-direction:column; }
+  .ghost { font-size:14px; color:var(--gray-2); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+  h1 { font-size:30px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.22; max-width:1100px; }
+  .axis-cap { font-size:14px; color:var(--gray-2); margin-top:14px; margin-bottom:10px; }
+  .axis-cap b { color:var(--primary); }
+  .mtx { flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:18px; min-height:0; }
+  .q { border:1.78px solid var(--border-soft, #E2E8F0); border-top:4px solid var(--primary); padding:16px 20px; display:flex; flex-direction:column; min-height:0; background:var(--theme-bg-card, #F8F9FA); }
+  .q .tag { font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--gray-2); }
+  .q .qh { font-size:19px; font-weight:700; color:var(--primary); margin-top:4px; letter-spacing:-0.01em; }
+  .q p { font-size:14.5px; line-height:1.5; color:var(--gray-1); margin-top:8px; }
+  .q .ev { font-size:13px; color:var(--gray-2); margin-top:auto; padding-top:8px; }
+  .q .ev b { color:var(--accent); font-weight:600; }
+  .src { font-size:13px; color:var(--gray-2); margin-top:12px; }
+  .src b { color:var(--primary); font-weight:600; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="bcg_matrix" data-screen-label="03-academic · matrix"><div class="ghost">Framework 01 · Section 3.1</div>
+<h1>3개 사이클의 동조성·내구성 2×2 분류</h1>
+<div class="axis-cap"><b>축.</b> 세로 = 수요 내구성(구조적 vs 일시적) · 가로 = 공급 동조성(독립 vs 연동). 각 셀은 사이클 1개를 배치한다.</div>
+<div class="mtx">
+  <div class="q">
+    <div class="tag">D-1 · 구조적 · 연동</div>
+    <div class="qh">HBM 메모리 사이클</div>
+    <p>AI 가속기 1대당 HBM 탑재량이 세대마다 1.5배씩 증가하면서 GPU 출하와 거의 1:1로 연동된다. 수요는 학습 모델 규모 확장이라는 구조적 동인에 묶여 있어 단기 재고 조정에도 추세가 꺾이지 않는다.</p>
+    <div class="ev"><b>근거.</b> GPU↔HBM 분기 상관 0.94 (n=12)</div>
+  </div>
+  <div class="q">
+    <div class="tag">D-2 · 구조적 · 독립</div>
+    <div class="qh">데이터센터 전력 사이클</div>
+    <p>전력 인프라는 리드타임이 18~36개월로 길어 반도체 출하 변동과 시차를 두고 독립적으로 움직인다. 다만 한번 착공되면 가동률이 장기 고정되어, 수요 자체는 가장 구조적이고 되돌리기 어려운 성격을 띤다.</p>
+    <div class="ev"><b>근거.</b> 신규 PPA 계약 잔고 +240% YoY</div>
+  </div>
+  <div class="q">
+    <div class="tag">D-3 · 일시적 · 연동</div>
+    <div class="qh">GPU 선구매 사이클</div>
+    <p>대형 클라우드 3사의 선제 발주가 공급망 전체를 끌어올리지만, 일부는 미래 수요를 앞당긴 재고 성격이다. 모델 수익화가 지연되면 발주 페이스가 둔화될 수 있어, 동조성은 높되 내구성은 검증이 더 필요한 영역이다.</p>
+    <div class="ev"><b>근거.</b> 상위 3사 capex 집중도 68%</div>
+  </div>
+  <div class="q">
+    <div class="tag">D-4 · 일시적 · 독립</div>
+    <div class="qh">엣지·온디바이스 사이클</div>
+    <p>소비자 디바이스의 AI 기능 탑재는 교체 수요를 일부 자극하나, 대규모 capex와 직접 연동되지 않고 소비 경기에 더 민감하다. 거시 사이클 판정에서는 가중치를 낮게 두되 보조 신호로만 활용한다.</p>
+    <div class="ev"><b>근거.</b> AI PC 침투율 추정 11% (잠정)</div>
+  </div>
+</div>
+<div class="src"><b>Source.</b> Author's framework; 각사 IR·EIA 전력 데이터 (2026) 기반 분류. 잠정 (tentative) 배치.</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

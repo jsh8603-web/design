@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="04 Editorial Magazine — data table" subtitle="grid table · hairline rules · serif numerals" viewport="960x540" --><html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  body { background:var(--theme-bg); padding:40px 64px; color:var(--primary); display:grid; grid-template-rows: auto auto 1fr; gap:20px; }
+  .head { display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--rule-soft, #D8D2C9); padding-bottom:16px; }
+  .head h2 { font-size:19.56px; font-weight:600; color:var(--accent); letter-spacing:0.16em; text-transform:uppercase; }
+  .head .pg { font-size:17.78px; color:var(--gray-2); font-family:'Newsreader', serif; font-style:italic; }
+  .lead { font-size:22px; color:var(--primary); font-family:'Newsreader', serif; line-height:1.3; max-width:1000px; }
+  .lead em { font-style:italic; color:var(--accent); }
+  .table { display:grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr; align-content:start; }
+  .cell { padding:13px 16px; font-size:16px; line-height:1.3; border-bottom:1px solid var(--rule-soft, #D8D2C9); }
+  .cell.num { font-family:'Newsreader', serif; text-align:right; font-feature-settings:'lnum'; }
+  .table .hrow .cell { font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gray-2); font-weight:600; border-bottom:2.5px solid var(--primary); }
+  .table .cell.rowhead { font-weight:600; color:var(--primary); }
+  .table .accentfill { background:var(--gray-4); }
+  .table .accentnum { color:var(--accent); font-weight:600; }
+  .foot { font-size:13px; color:var(--gray-2); font-style:italic; font-family:'Newsreader', serif; margin-top:4px; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+.serif { font-family: 'Newsreader', 'Times New Roman', serif; font-feature-settings: 'lnum'; }
+</style></head><body data-layout="data_table" data-screen-label="04-editorial · data_table"><div class="head">
+  <h2>Exhibit · HBM 공급사 비교</h2>
+  <div class="pg">page <em>06</em></div>
+</div>
+<div class="lead serif">세 공급사, <em>세 갈래의 전략.</em> 캐파·수율·고객 집중도가 향후 2년의 마진을 가른다.</div>
+<div class="table">
+  <div class="hrow cell rowhead">공급사</div>
+  <div class="hrow cell num">캐파 (k wpm)</div>
+  <div class="hrow cell num">수율 (%)</div>
+  <div class="hrow cell num">ASP (×)</div>
+  <div class="hrow cell num">점유율 (%)</div>
+
+  <div class="cell rowhead">SK Hynix</div>
+  <div class="cell num accentnum">120</div>
+  <div class="cell num accentnum">82</div>
+  <div class="cell num accentnum">1.00</div>
+  <div class="cell num accentfill accentnum">52</div>
+
+  <div class="cell rowhead">Samsung</div>
+  <div class="cell num">95</div>
+  <div class="cell num">71</div>
+  <div class="cell num">0.94</div>
+  <div class="cell num accentfill">31</div>
+
+  <div class="cell rowhead">Micron</div>
+  <div class="cell num">48</div>
+  <div class="cell num">68</div>
+  <div class="cell num">0.97</div>
+  <div class="cell num accentfill">14</div>
+
+  <div class="cell rowhead">CXMT 외</div>
+  <div class="cell num">12</div>
+  <div class="cell num">54</div>
+  <div class="cell num">0.81</div>
+  <div class="cell num accentfill">3</div>
+
+  <div class="cell rowhead">합계 / 가중</div>
+  <div class="cell num accentnum">275</div>
+  <div class="cell num accentnum">74</div>
+  <div class="cell num accentnum">0.97</div>
+  <div class="cell num accentfill accentnum">100</div>
+</div>
+<div class="foot">출처: slides-grab Research, 공급사 IR 및 채널 체크 (2026-03 기준). 캐파는 12L 환산.</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

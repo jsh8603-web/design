@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="05 Executive Editorial — timeline" subtitle="5-phase roadmap · circular markers + connector" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:35.56px 56.89px; display:flex; flex-direction:column; }
+.head { border-bottom:1.5px solid var(--primary); padding-bottom:14.22px; margin-bottom:21.33px; }
+.eyebrow { font-size:14.22px; font-weight:700; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8.89px; }
+h1 { font-size:31.11px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.12; }
+h1 em { font-style:normal; color:var(--accent); }
+.key { font-size:16px; color:var(--gray-2); margin-top:8.89px; }
+.timeline { flex:1; position:relative; display:flex; align-items:stretch; min-height:0; padding-top:10.67px; }
+.track { position:absolute; top:39.78px; left:5%; right:5%; height:3px; background:var(--border-soft); z-index:0; }
+.track .fill { position:absolute; left:0; top:0; height:100%; width:55%; background:var(--accent); }
+.phases { display:grid; grid-template-columns:repeat(5, 1fr); gap:14.22px; width:100%; position:relative; z-index:1; }
+.ph { display:flex; flex-direction:column; align-items:center; min-width:0; }
+.marker { width:62.22px; height:62.22px; border-radius:50%; background:var(--gray-4); color:var(--gray-2);
+  display:flex; align-items:center; justify-content:center; font-size:22.22px; font-weight:800; flex-shrink:0;
+  border:3px solid var(--theme-bg); box-sizing:border-box; }
+.ph.done .marker { background:var(--accent); color:#fff; }
+.ph.now .marker { background:var(--accent-secondary); color:#fff; }
+.qtr { font-size:13.33px; font-weight:700; color:var(--accent); margin-top:12px; letter-spacing:0.04em; }
+.ph.now .qtr { color:var(--accent-secondary); }
+.pcard { background:var(--theme-bg-card); border:1px solid var(--border-soft); border-radius:10px; padding:13.33px 14.22px; margin-top:10.67px; width:100%; box-sizing:border-box; min-width:0; overflow:hidden; flex:1; display:flex; flex-direction:column; }
+.ph.now .pcard { border-color:var(--accent-secondary); border-width:1.5px; }
+.pt { font-size:15.11px; font-weight:700; color:var(--primary); line-height:1.2; margin-bottom:8.89px; }
+.pd { font-size:13.33px; color:var(--gray-2); line-height:1.5; min-width:0; }
+.tagline { display:inline-block; margin-top:10.67px; padding:2.67px 8.89px; border-radius:5px; background:var(--theme-bg-alt); font-size:11.56px; font-weight:700; color:var(--accent); }
+.ph.now .tagline { color:var(--accent-secondary); }
+.src { font-size:12.44px; color:var(--gray-2); margin-top:14.22px; text-align:right; }
+</style></head><body data-layout="waves_timeline" data-screen-label="05-executive · timeline">
+  <div class="head">
+    <div class="eyebrow">Section 04 · Roadmap</div>
+    <h1>HBM4 양산까지 <em>5단계</em> — 현재 인증 통과 국면 진입</h1>
+    <div class="key">2025년 샘플 출하부터 2027년 대량 양산까지의 핵심 마일스톤</div>
+  </div>
+  <div class="timeline">
+    <div class="track"><div class="fill"></div></div>
+    <div class="phases">
+      <div class="ph done"><div class="marker">1</div><div class="qtr">'25 2Q</div>
+        <div class="pcard"><div class="pt">샘플 출하</div><div class="pd">HBM4 1차 엔지니어링 샘플을 주요 고객사 3곳에 공급. 16-hi 스택 구조 검증 착수.</div><span class="tagline">완료</span></div></div>
+      <div class="ph done"><div class="marker">2</div><div class="qtr">'25 4Q</div>
+        <div class="pcard"><div class="pt">설계 확정</div><div class="pd">로직 다이 협업 설계(파운드리 연계) 완료. 전력·대역폭 목표치 1.4TB/s 달성 확인.</div><span class="tagline">완료</span></div></div>
+      <div class="ph now"><div class="marker">3</div><div class="qtr">'26 2Q</div>
+        <div class="pcard"><div class="pt">고객 인증</div><div class="pd">NVIDIA·AMD 차세대 가속기 대상 퀄 진행 중. 통과 시 단독 공급 지위 연장.</div><span class="tagline">진행 중</span></div></div>
+      <div class="ph"><div class="marker">4</div><div class="qtr">'26 4Q</div>
+        <div class="pcard"><div class="pt">초기 양산</div><div class="pd">M15X 신규 라인 가동. 초기 수율 60% 목표, 분기별 10%p 개선 계획.</div><span class="tagline">예정</span></div></div>
+      <div class="ph"><div class="marker">5</div><div class="qtr">'27 2H</div>
+        <div class="pcard"><div class="pt">대량 양산</div><div class="pd">수율 80%+ 안정화 및 캐파 풀가동. HBM 매출 비중 50% 돌파 전망.</div><span class="tagline">예정</span></div></div>
+    </div>
+  </div>
+  <div class="src">SK Hynix 기술 로드맵 · 사업부 가이던스 (2026.03)</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

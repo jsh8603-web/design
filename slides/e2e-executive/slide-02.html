@@ -1,45 +1,80 @@
 <!DOCTYPE html>
-<!-- @dsCard group="Brand" name="01 Executive Editorial — KPI" subtitle="4-tile KPI · V-bar chart · Q4 orange highlight" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
-  body { background:var(--theme-bg-alt, #F8F9FA); padding:39.78px 56.89px; }
-  h1 { font-size:30.22px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; margin-bottom:10.67px; }
-  .key { font-size:17.78px; color:var(--gray-2); margin-bottom:24.89px; }
-  .grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:17.78px; margin-bottom:24.89px; }
-  .kpi { background:var(--theme-bg-card, var(--surface-inverse-fg)); border-radius:14.22px; padding:24.89px 21.33px; text-align:center; }
-  .kl { font-size:17.78px; font-weight:600; color:var(--accent); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:10.67px; }
-  .kv { font-size:53.33px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1.05; }
-  .ku { font-size:17.78px; color:var(--primary); }
-  .kc { font-size:17.78px; font-weight:600; color:var(--accent); margin-top:7.11px; }
-  .ks { font-size:17.78px; color:var(--gray-3); margin-top:3.56px; }
-  .bar-card { background:var(--theme-bg-card, var(--surface-inverse-fg)); border-radius:14.22px; padding:24.89px 28.44px; }
-  .bt { font-size:17.78px; font-weight:600; color:var(--primary); margin-bottom:17.78px; }
-  .bars { display:flex; align-items:flex-end; gap:32px; height:188.44px; padding:0 35.56px; }
-  .b-col { flex:1; display:flex; flex-direction:column; align-items:center; }
-  .bv { font-size:19.56px; font-weight:700; color:var(--primary); margin-bottom:7.11px; }
-  .b { width:100%; border-radius:7.11px 7.11px 0 0; min-height:14.22px; }
-  .bl { font-size:17.78px; color:var(--gray-2); margin-top:10.67px; text-align:center; }
-  .src { font-size:17.78px; color:var(--gray-3); margin-top:14.22px; text-align:right; }
-</style><style>
+<!-- @dsCard group="Brand" name="02 Executive Editorial — KPI dashboard" subtitle="4-tile KPI + V-bar + donut · HBM" viewport="960x540" --><html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
-</style></head><body data-layout="kpi_dashboard" data-screen-label="01-executive · kpi_dashboard"><h1>HBM 시장이 2년 내 3배로 — '25 230억$ → '27 670억$</h1>
-<div class="key">DRAM 매출에서 HBM 비중 17% → 41% · ASP 5배 · 공급 부족 지속</div>
-<div class="grid">
-  <div class="kpi"><div class="kl">'27 HBM TAM</div><div class="kv">67.0</div><div class="ku">B USD</div><div class="kc">CAGR +71%</div><div class="ks">2년 3배</div></div>
-  <div class="kpi"><div class="kl">SK Hynix 점유율</div><div class="kv">52</div><div class="ku">%</div><div class="kc">HBM3E 1위</div><div class="ks">NVIDIA 단독공급</div></div>
-  <div class="kpi"><div class="kl">CapEx '26</div><div class="kv">21.5</div><div class="ku">B USD</div><div class="kc">YoY +44%</div><div class="ks">팹3·M15X 확장</div></div>
-  <div class="kpi"><div class="kl">영업이익 '26E</div><div class="kv">38.4</div><div class="ku">조원</div><div class="kc">YoY +52%</div><div class="ks">컨센서스 상향</div></div>
-</div>
-<div class="bar-card">
-  <div class="bt">분기별 HBM 매출 추이 (조원) — '25 4Q 한 분기에 '23 연간 추월</div>
-  <div class="bars">
-    <div class="b-col"><div class="bv">1.2</div><div class="b" style="height:24.89px; background:var(--gray-3);"></div><div class="bl">'24 4Q</div></div>
-    <div class="b-col"><div class="bv">2.8</div><div class="b" style="height:58.67px; background:var(--accent);"></div><div class="bl">'25 1Q</div></div>
-    <div class="b-col"><div class="bv">4.6</div><div class="b" style="height:96px; background:var(--accent);"></div><div class="bl">'25 2Q</div></div>
-    <div class="b-col"><div class="bv">6.9</div><div class="b" style="height:144px; background:var(--accent);"></div><div class="bl">'25 3Q</div></div>
-    <div class="b-col"><div class="bv">9.0</div><div class="b" style="height:188.44px; background:var(--accent-secondary, #FF6F00);"></div><div class="bl">'25 4Q</div></div>
+body { width:1280px; height:720px; overflow:hidden; position:relative;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--primary);
+  padding:35.56px 56.89px; display:flex; flex-direction:column; }
+.head { border-bottom:1.5px solid var(--primary); padding-bottom:14.22px; margin-bottom:21.33px; }
+.eyebrow { font-size:14.22px; font-weight:700; color:var(--accent); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8.89px; }
+h1 { font-size:31.11px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.12; }
+h1 em { font-style:normal; color:var(--accent); }
+.key { font-size:16px; color:var(--gray-2); margin-top:8.89px; }
+.grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:18px; }
+.kpi { background:var(--theme-bg-card); border:1px solid var(--border-soft); border-radius:12px; padding:18px 17.78px; box-sizing:border-box; min-width:0; }
+.kl { font-size:13.33px; font-weight:700; color:var(--gray-2); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:10.67px; }
+.kv { font-size:46.22px; font-weight:800; color:var(--primary); letter-spacing:-0.02em; line-height:1; }
+.kv small { font-size:18.67px; font-weight:600; color:var(--gray-2); }
+.kc { font-size:15.11px; font-weight:700; margin-top:10.67px; }
+.kc.up { color:var(--positive); }
+.kc.hot { color:var(--accent-secondary); }
+.ks { font-size:13.33px; color:var(--gray-2); margin-top:3.56px; }
+.lower { display:grid; grid-template-columns:1.7fr 1fr; gap:16px; flex:1; min-height:0; }
+.mix { display:flex; flex-direction:column; gap:14.22px; flex:1; justify-content:center; }
+.mixbar { display:flex; width:100%; height:35.56px; border-radius:7px; overflow:hidden; }
+.mixseg { display:flex; align-items:center; justify-content:center; font-size:13.33px; font-weight:800; color:#fff; min-width:0; }
+.legend2 { display:flex; flex-direction:column; gap:8.89px; }
+.leg2 { display:flex; align-items:center; gap:8.89px; font-size:14.22px; color:var(--gray-1); }
+.leg2 .sw2 { width:13px; height:13px; border-radius:3px; flex-shrink:0; }
+.leg2 b { font-weight:800; color:var(--primary); }
+.card { background:var(--theme-bg-card); border:1px solid var(--border-soft); border-radius:12px; padding:18px 21.33px; box-sizing:border-box; min-width:0; overflow:hidden; display:flex; flex-direction:column; }
+.ct { font-size:15.11px; font-weight:700; color:var(--primary); margin-bottom:14.22px; }
+.bars { display:flex; align-items:flex-end; gap:21.33px; height:204.44px; padding:0 14.22px; }
+.b-col { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; min-width:0; }
+.bv { font-size:16px; font-weight:700; color:var(--primary); margin-bottom:5.33px; }
+.b { width:100%; max-width:53.33px; border-radius:5.33px 5.33px 0 0; min-height:10.67px; }
+.bl { font-size:13.33px; color:var(--gray-2); margin-top:8.89px; text-align:center; }
+.src { font-size:12.44px; color:var(--gray-2); margin-top:14.22px; text-align:right; }
+</style></head><body data-layout="kpi_dashboard" data-screen-label="02-executive · kpi_dashboard">
+  <div class="head">
+    <div class="eyebrow">Section 01 · Executive summary</div>
+    <h1>HBM 시장, 2년 내 3배로 — '25 230억$ → '27 <em>670억$</em></h1>
+    <div class="key">DRAM 매출 내 HBM 비중 17% → 41% · ASP 5배 · 2027년까지 공급 부족 지속 전망</div>
   </div>
-</div>
-<div class="src">SK Hynix 4Q 실적발표 · TrendForce HBM Tracker (2026.02)</div>
+  <div class="grid">
+    <div class="kpi"><div class="kl">'27 HBM TAM</div><div class="kv">67.0<small> B$</small></div><div class="kc up">CAGR +71%</div><div class="ks">2년 만에 3배 성장</div></div>
+    <div class="kpi"><div class="kl">SK Hynix 점유율</div><div class="kv">52<small> %</small></div><div class="kc up">HBM3E 1위</div><div class="ks">NVIDIA 단독 공급</div></div>
+    <div class="kpi"><div class="kl">'26E CapEx</div><div class="kv">21.5<small> B$</small></div><div class="kc up">YoY +44%</div><div class="ks">M15X·팹3 증설</div></div>
+    <div class="kpi"><div class="kl">'26E 영업이익</div><div class="kv">38.4<small> 조원</small></div><div class="kc hot">YoY +52%</div><div class="ks">컨센서스 상향 중</div></div>
+  </div>
+  <div class="lower">
+    <div class="card">
+      <div class="ct">분기별 HBM 매출 추이 (조원) — '25 4Q 한 분기가 '23 연간 추월</div>
+      <div class="bars">
+        <div class="b-col"><div class="bv">1.2</div><div class="b" style="height:27.56px; background:var(--gray-3);"></div><div class="bl">'24 4Q</div></div>
+        <div class="b-col"><div class="bv">2.8</div><div class="b" style="height:63.56px; background:var(--accent);"></div><div class="bl">'25 1Q</div></div>
+        <div class="b-col"><div class="bv">4.6</div><div class="b" style="height:104.44px; background:var(--accent);"></div><div class="bl">'25 2Q</div></div>
+        <div class="b-col"><div class="bv">6.9</div><div class="b" style="height:156.67px; background:var(--accent);"></div><div class="bl">'25 3Q</div></div>
+        <div class="b-col"><div class="bv">9.0</div><div class="b" style="height:204.44px; background:var(--accent-secondary);"></div><div class="bl">'25 4Q</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">'27E DRAM 매출 믹스 — HBM 41%</div>
+      <div class="mix">
+        <div class="mixbar">
+          <div class="mixseg" style="flex:41; background:var(--accent);">41%</div>
+          <div class="mixseg" style="flex:17; background:var(--accent-secondary);">17%</div>
+          <div class="mixseg" style="flex:42; background:var(--gray-2);">42%</div>
+        </div>
+        <div class="legend2">
+          <div class="leg2"><div class="sw2" style="background:var(--accent);"></div><b>HBM</b>&nbsp;41% · 매출 견인</div>
+          <div class="leg2"><div class="sw2" style="background:var(--accent-secondary);"></div><b>DDR5</b>&nbsp;17%</div>
+          <div class="leg2"><div class="sw2" style="background:var(--gray-2);"></div><b>기타</b>&nbsp;42%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="src">SK Hynix 4Q 실적발표 · TrendForce HBM Tracker (2026.02)</div>
 <style id="om-fit-scaler-style">
   html { overflow:hidden !important; background:#0a0a0a; }
 </style>
@@ -59,5 +94,4 @@ body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -a
   fit();
 })();
 </script>
-
 </body></html>

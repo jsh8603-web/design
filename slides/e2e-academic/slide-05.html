@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="03 Academic Clean — timeline" subtitle="연구 단계 타임라인 · 원형 마커 · 연결선 · 단계 배지" viewport="960x540" --><html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+  body { background:var(--theme-bg); padding:44px 64px; color:var(--gray-1); display:flex; flex-direction:column; }
+  .ghost { font-size:14px; color:var(--gray-2); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+  h1 { font-size:30px; font-weight:700; color:var(--primary); letter-spacing:-0.01em; line-height:1.22; max-width:1100px; }
+  .tl-cap { font-size:14px; color:var(--gray-2); margin-top:14px; margin-bottom:6px; }
+  .tl-cap b { color:var(--primary); }
+  .tl { flex:1; position:relative; display:grid; grid-template-columns:repeat(5,1fr); gap:0; min-height:0; margin-top:18px; }
+  .line { position:absolute; top:42px; left:10%; right:10%; height:3px; background:var(--border-soft, #E2E8F0); z-index:0; }
+  .line .fill { position:absolute; left:0; top:0; height:100%; width:62%; background:var(--primary); }
+  .step { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; padding:0 26px; }
+  .marker { width:54px; height:54px; border-radius:50%; background:#FFFFFF; border:3px solid var(--primary); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; font-size:18px; font-weight:700; color:var(--primary); }
+  .step.done .marker { background:var(--primary); color:#FFFFFF; }
+  .step.now .marker { outline:5px solid var(--gray-4); outline-offset:0; }
+  .badge { margin-top:14px; font-size:12px; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; padding:3px 9px; border-radius:11px; background:var(--gray-4); color:var(--gray-2); white-space:nowrap; }
+  .step.done .badge { background:var(--primary); color:#FFFFFF; }
+  .step.now .badge { background:var(--accent); color:#FFFFFF; }
+  .step .sh { font-size:16px; font-weight:700; color:var(--primary); margin-top:10px; text-align:center; line-height:1.25; }
+  .step .q { font-size:13px; color:var(--gray-2); margin-top:4px; }
+  .step .sp { font-size:13px; color:var(--gray-1); line-height:1.45; margin-top:8px; text-align:center; }
+  .src { font-size:13px; color:var(--gray-2); margin-top:14px; }
+  .src b { color:var(--primary); font-weight:600; }
+</style><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif; position:relative; }
+</style></head><body data-layout="waves_timeline" data-screen-label="03-academic · timeline"><div class="ghost">Roadmap 01 · Section 4</div>
+<h1>3개 사이클 동조성 검증, 4Q에 결론·발표 도달</h1>
+<div class="tl-cap"><b>Process.</b> 데이터 수집 → 모형 추정 → 교차검증 → 정책 함의 → 발표. ● = 완료 단계, 강조 = 진행 중.</div>
+<div class="tl">
+  <div class="line"><div class="fill"></div></div>
+  <div class="step done">
+    <div class="marker">1</div>
+    <div class="badge">완료</div>
+    <div class="sh">데이터 수집</div>
+    <div class="q">'25 Q1–Q2</div>
+    <div class="sp">3사 분기 IR·전력 PPA·GPU 출하 시계열 패널 구축 (n=12 분기).</div>
+  </div>
+  <div class="step done">
+    <div class="marker">2</div>
+    <div class="badge">완료</div>
+    <div class="sh">모형 추정</div>
+    <div class="q">'25 Q3</div>
+    <div class="sp">VAR·공적분 검정으로 사이클 간 동조성과 선후행 구조 추정.</div>
+  </div>
+  <div class="step done">
+    <div class="marker">3</div>
+    <div class="badge">완료</div>
+    <div class="sh">교차검증</div>
+    <div class="q">'25 Q4</div>
+    <div class="sp">walk-forward OOS 분할로 in-sample 결과 재현, 부호 일관성 확인.</div>
+  </div>
+  <div class="step now">
+    <div class="marker">4</div>
+    <div class="badge">진행 중</div>
+    <div class="sh">정책 함의</div>
+    <div class="q">'26 Q1</div>
+    <div class="sp">단일 사이클 가설 채택 여부와 capex 배분 시나리오 도출.</div>
+  </div>
+  <div class="step">
+    <div class="marker">5</div>
+    <div class="badge">예정</div>
+    <div class="sh">발표</div>
+    <div class="q">'26 Q2</div>
+    <div class="sp">워킹페이퍼 공개 및 학술 컨퍼런스 발표, 피어 리뷰 수렴.</div>
+  </div>
+</div>
+<div class="src"><b>Source.</b> slides-grab Research Group 내부 로드맵 (2026.03). 단계별 산출물은 부록 A 참조.</div>
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+
+</body></html>

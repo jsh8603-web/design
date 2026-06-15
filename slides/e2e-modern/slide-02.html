@@ -1,74 +1,98 @@
-<!DOCTYPE html>
-<!-- @dsCard group="Slides" name="Slide — Two-column content" subtitle="SECTION tag · h2 · two columns · footer" viewport="960x540" -->
+<!doctype html>
+<!-- @dsCard group="Slides" name="Slide — KPI dashboard" subtitle="4 KPI cards + bar + donut" viewport="960x540" -->
 <html lang="ko" data-theme="modern">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="../../design-system/colors_and_type.css">
-  
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      width: 1280px;
-      height: 720px;
-      font-family: 'Pretendard', sans-serif;
-      background: #ffffff;
-      padding: 71.11px 85.33px;
-      display: flex;
-      flex-direction: column;
-    }
-  </style>
-</head>
-<body data-layout="data_table" data-screen-label="legacy · data_table">
-  <!-- 헤더 -->
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 56.89px;">
-    <div style="display: flex; align-items: center; gap: 21.33px;">
-      <div style="display: inline-block; padding: 7.11px 17.78px; background: #1a1a1a; color: #fff; border-radius: 7.11px; font-size: 14.22px; font-weight: 600;">SECTION 1</div>
-      <h2 style="font-size: 42.67px; font-weight: 600; color: #1a1a1a;">Main Topic</h2>
-    </div>
-    <p style="font-size: 17.78px; color: #999;">02</p>
-  </div>
-
-  <!-- 콘텐츠 영역 -->
-  <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 56.89px;">
-    <div>
-      <h3 style="font-size: 32px; font-weight: 600; color: #1a1a1a; margin-bottom: 28.44px;">Key Point One</h3>
-      <p style="font-size: 23.11px; color: #666; line-height: 1.7;">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
-      </p>
-    </div>
-    <div>
-      <h3 style="font-size: 32px; font-weight: 600; color: #1a1a1a; margin-bottom: 28.44px;">Key Point Two</h3>
-      <p style="font-size: 23.11px; color: #666; line-height: 1.7;">
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
-      </p>
-    </div>
-  </div>
-
-  <!-- 푸터 -->
-  <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 28.44px; border-top: 1px solid #eee;">
-    <p style="font-size: 16px; color: #999;">www.yourwebsite.com</p>
-    <p style="font-size: 16px; color: #999;">©2025 YOUR BRAND</p>
-  </div>
-
-<style id="om-fit-scaler-style">
-  html { overflow:hidden !important; background:#0a0a0a; }
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1280px; height: 720px; background: var(--theme-bg); color: var(--gray-1); font-family: var(--font-sans); overflow: hidden; position: relative; }
+  .slide { width: 1280px; height: 720px; padding: 54px 88px; position: relative; }
+  .kicker { font-family: var(--font-mono); font-size: 15px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
+  .title { font-size: 30px; font-weight: 700; color: var(--heading); line-height: 1.22; margin-bottom: 32px; max-width: 1040px; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-bottom: 34px; }
+  .kpi { background: var(--gray-4); border-top: 4px solid var(--accent); border-radius: 10px; padding: 22px 22px 20px; }
+  .kpi .lab { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+  .kpi .num { font-weight: 800; font-size: 54px; line-height: 0.95; color: var(--heading); letter-spacing: -0.02em; }
+  .kpi .num small { font-size: 25px; font-weight: 700; color: var(--accent); }
+  .kpi .delta { margin-top: 12px; font-size: 14px; font-weight: 600; }
+  .kpi .delta.up { color: var(--positive); }
+  .kpi .delta.down { color: var(--negative); }
+  .kpi .cap { margin-top: 8px; font-size: 13px; color: var(--gray-2); line-height: 1.45; }
+  .charts { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: end; }
+  .chart-title { font-family: var(--font-mono); font-size: 12px; color: var(--gray-2); letter-spacing: 0.06em; margin-bottom: 18px; text-transform: uppercase; }
+  .bars { display: flex; align-items: flex-end; gap: 22px; height: 176px; padding-bottom: 28px; position: relative; border-bottom: 1px solid var(--gray-4); }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .bar-col .b { width: 100%; max-width: 56px; background: var(--accent); border-radius: 4px 4px 0 0; }
+  .bar-col .b.muted { background: var(--gray-3); }
+  .bar-col .bn { font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--heading); margin-bottom: 8px; }
+  .bar-col .bl { position: absolute; bottom: 4px; font-size: 12px; color: var(--gray-2); }
+  .mix-wrap { text-align: left; }
+  .mixbar { width: 100%; height: 176px; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+  .mixbar .seg { width: 100%; display: flex; align-items: center; gap: 10px; padding: 0 16px; color: #fff; }
+  .mixbar .seg .pct { font-family: var(--font-mono); font-weight: 800; font-size: 22px; }
+  .mixbar .seg .nm { font-size: 13px; font-weight: 600; }
+  .mixbar .s1 { background: var(--accent); }
+  .mixbar .s2 { background: var(--primary); }
+  .mixbar .s3 { background: var(--gray-3); color: var(--gray-1); }
+  .legend { display: flex; justify-content: center; gap: 18px; margin-top: 16px; }
+  .legend span { font-size: 12px; color: var(--gray-2); display: flex; align-items: center; gap: 6px; }
+  .legend i { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+  .source { position: absolute; bottom: 26px; left: 88px; font-size: 12px; color: var(--gray-3); }
+  .page { position: absolute; bottom: 26px; right: 88px; font-family: var(--font-mono); font-size: 12px; color: var(--gray-3); }
 </style>
-<script id="om-fit-scaler">
-(function(){
-  function fit(){
-    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
-    var b = document.body;
-    b.style.width='1280px'; b.style.height='720px';
-    b.style.position='absolute'; b.style.transformOrigin='top left';
-    b.style.left=((window.innerWidth-1280*s)/2)+'px';
-    b.style.top=((window.innerHeight-720*s)/2)+'px';
-    b.style.transform='scale('+s+')';
-  }
-  window.addEventListener('resize', fit, {passive:true});
-  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
-  fit();
-})();
-</script>
-
+</head>
+<body data-layout="data_table" data-screen-label="modern · kpi_dashboard">
+<div class="slide">
+  <div class="kicker">// PERFORMANCE DASHBOARD · FY26.Q2</div>
+  <div class="title">HBM 사업부 분기 핵심지표 — 매출·수율 동반 개선, 재고만 역행</div>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="lab">분기 매출</div>
+      <div class="num">3.42<small>B$</small></div>
+      <div class="delta up">▲ +18.6% QoQ</div>
+      <div class="cap">HBM3E 12-hi 양산 본격화 기여</div>
+    </div>
+    <div class="kpi">
+      <div class="lab">웨이퍼 수율</div>
+      <div class="num">82<small>%</small></div>
+      <div class="delta up">▲ +6.4%p QoQ</div>
+      <div class="cap">스택 본딩 공정 안정화 효과</div>
+    </div>
+    <div class="kpi">
+      <div class="lab">영업이익률</div>
+      <div class="num">27.3<small>%</small></div>
+      <div class="delta up">▲ +4.1%p QoQ</div>
+      <div class="cap">ASP 상승·고정비 레버리지</div>
+    </div>
+    <div class="kpi">
+      <div class="lab">재고 회전</div>
+      <div class="num">1.9<small>×</small></div>
+      <div class="delta down">▼ –0.3× QoQ</div>
+      <div class="cap">선행 캐파 확보용 원자재 적재</div>
+    </div>
+  </div>
+  <div class="charts">
+    <div>
+      <div class="chart-title">분기 매출 추이 (B$)</div>
+      <div class="bars">
+        <div class="bar-col"><div class="bn">2.18</div><div class="b muted" style="height:50%"></div><div class="bl">Q3'25</div></div>
+        <div class="bar-col"><div class="bn">2.51</div><div class="b muted" style="height:58%"></div><div class="bl">Q4'25</div></div>
+        <div class="bar-col"><div class="bn">2.88</div><div class="b muted" style="height:67%"></div><div class="bl">Q1'26</div></div>
+        <div class="bar-col"><div class="bn">3.42</div><div class="b" style="height:80%"></div><div class="bl">Q2'26</div></div>
+      </div>
+    </div>
+    <div class="mix-wrap">
+      <div class="chart-title">매출 믹스 (제품군별)</div>
+      <div class="mixbar">
+        <div class="seg s1" style="height:58%"><span class="pct">58%</span><span class="nm">HBM3E</span></div>
+        <div class="seg s2" style="height:24%"><span class="pct">24%</span><span class="nm">HBM3</span></div>
+        <div class="seg s3" style="height:18%"><span class="pct">18%</span><span class="nm">기타</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="source">Source: 사업부 관리회계, FY26.Q2 마감 · 내부 수율 트래커</div>
+  <div class="page">02 / 05</div>
+</div>
 </body>
 </html>

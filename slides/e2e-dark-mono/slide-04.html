@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Content" name="04 Dark Mono — 2x2 matrix" subtitle="dark monotone · option assessment grid" viewport="960x540" --><html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css"><style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  width:1280px; height:720px; overflow:hidden;
+  font-family:'Pretendard', -apple-system, sans-serif;
+  background:var(--theme-bg); color:var(--theme-text);
+  padding:56px 80px 48px; position:relative;
+}
+.kicker { font-family:'JetBrains Mono', monospace; font-size:15px; color:var(--accent); letter-spacing:0.1em; margin-bottom:14px; }
+.title { font-size:30px; font-weight:700; color:var(--heading); line-height:1.2; margin-bottom:30px; max-width:1080px; }
+.matrix { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:20px; height:474px; }
+.cell { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:10px; padding:24px 26px; display:flex; flex-direction:column; }
+.cell.hl { border-color:var(--accent); border-width:1.5px; background:var(--surface-inverse); }
+.cell .tag { font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.08em; color:var(--gray-2); margin-bottom:10px; }
+.cell.hl .tag { color:var(--accent); }
+.cell h3 { font-size:20px; font-weight:700; color:var(--gray-1); line-height:1.25; margin-bottom:12px; }
+.cell h3 .acc { color:var(--accent); }
+.cell p { font-size:14.5px; color:var(--gray-2); line-height:1.55; }
+.cell .foot { margin-top:auto; padding-top:14px; font-size:13px; color:var(--gray-2); display:flex; gap:8px; align-items:baseline; }
+.cell .foot b { font-size:22px; font-weight:800; color:var(--gray-1); }
+.cell.hl .foot b { color:var(--accent); }
+.source { position:absolute; bottom:24px; left:80px; font-size:12px; color:var(--gray-2); }
+.page { position:absolute; bottom:24px; right:80px; font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--gray-2); }
+</style></head><body data-layout="matrix-2x2" data-screen-label="04-dark-mono · matrix">
+  <div class="kicker">// STRATEGIC OPTIONS · ASSESSMENT</div>
+  <div class="title">자본 배분 4개 옵션 — 스택 통합만이 비용·속도 동시 충족</div>
+  <div class="matrix">
+    <div class="cell hl">
+      <div class="tag">OPTION A · 권고</div>
+      <h3><span class="acc">자체 추론 스택 통합</span> — 수직 집중</h3>
+      <p>컴퓨트 단가 41% 절감을 전사 워크로드로 확장. 18개월 윈도우 내 OEM 4개사 게이트웨이 계약 슬롯과 동기화돼 있어, 6개월 이상 지연 시 슬롯이 닫힌다. 자원 70% 집중이 유일한 임계점 돌파 경로.</p>
+      <div class="foot"><b>−41%</b> 단가 · <b>14mo</b> 회수</div>
+    </div>
+    <div class="cell">
+      <div class="tag">OPTION B</div>
+      <h3>지역 분산 — 멀티 리전 확장</h3>
+      <p>레이턴시·규제 리스크를 낮추나 단가 절감 효과는 제한적이다. 신규 리전당 고정비가 회수 기간을 28개월로 늘리며, 통합 효과와 자본이 경합한다. 보조 트랙(자원 20%)으로만 유효.</p>
+      <div class="foot"><b>−9%</b> 단가 · <b>28mo</b> 회수</div>
+    </div>
+    <div class="cell">
+      <div class="tag">OPTION C</div>
+      <h3>차세대 화학·하드웨어 R&D</h3>
+      <p>장기 비용 곡선의 근본적 재설계 가능성을 갖지만 36개월 이상 선행 투자가 필요하고 결과 불확실성이 높다. 현 의사결정 윈도우 밖. 자원 10% 탐색적 배분으로 옵션 가치만 보존한다.</p>
+      <div class="foot"><b>n/a</b> 단가 · <b>36mo+</b> 회수</div>
+    </div>
+    <div class="cell">
+      <div class="tag">OPTION D · 기각</div>
+      <h3>현상 유지 — 외부 API 의존</h3>
+      <p>전환 비용은 없으나 외부 API 라이선스가 YoY 우상향하며 매출총이익률을 잠식한다. 경쟁사 자체화 진행 시 단가 격차가 누적돼 24개월 내 구조적 열위로 고착. 방어 불가.</p>
+      <div class="foot"><b>+12%</b> 단가 · <b>—</b> 회수</div>
+    </div>
+  </div>
+  <div class="source">Source: 전략기획 옵션 평가 매트릭스, FY26.Q2 · 비용·속도 2축 정규화</div>
+  <div class="page">04 / 05</div>
+
+<style id="om-fit-scaler-style">
+  html { overflow:hidden !important; background:#0a0a0a; }
+</style>
+<script id="om-fit-scaler">
+(function(){
+  function fit(){
+    var s = Math.min(window.innerWidth/1280, window.innerHeight/720);
+    var b = document.body;
+    b.style.width='1280px'; b.style.height='720px';
+    b.style.position='absolute'; b.style.transformOrigin='top left';
+    b.style.left=((window.innerWidth-1280*s)/2)+'px';
+    b.style.top=((window.innerHeight-720*s)/2)+'px';
+    b.style.transform='scale('+s+')';
+  }
+  window.addEventListener('resize', fit, {passive:true});
+  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', fit);
+  fit();
+})();
+</script>
+</body></html>

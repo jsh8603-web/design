@@ -82,3 +82,21 @@
 - **클린카운터=0** (R8에서 신규결함 발견·수정 = 클린라운드 아님).
 - **미완 (다음)**: 이전 라운드(R4 매트릭스 배지/셀틴트 등) 색강조 복원 = 변환기 수정+학습8로 이제 가능 → 사용자 의도(의도보존) 차원에서 복원 권장. R9 진입 전 또는 병행 결정 필요.
 - **STATUS**: R8 완료 (2026-06-16). 변환기 수정 미커밋(영속화 필요).
+
+> [Working Notes — ckpt-202606160230:btn-design] R4 색강조 복원 (사용자 1번) — 압축 직전
+- **마지막 결정**: R4 slide-04 리스크매트릭스 위험배지 색칩 복원 완료(커밋 fff40e8). 원안 samsung/16 위험도 색강조(critical 주황#FF6F00·moderate 파랑#1428A0·low 연파랑#B0C4DE)를 텍스트색 span 강등→학습8 색배경 div 직속텍스트로 복원. 배지 width:62px+center로 변환기 폭과소측정(3글자 클립) fix. 대응전략 3색 보더 복원. 셀 틴트 rgba는 변환기 알파 미합성으로 대비 오측정→제거(학습5 확장, 배지로 위험도 강조 유지). 8테마 ERROR0, modern COM 의도보존 확인.
+- **다음 의도**: (1) R4 dark-mono/dark-pitch slide-04 COM 시각확인(배지 색칩 다크bg 대비) — modern만 확인함 (2) R5/R6 색강조 점검(grep 색배경칩 감소분, 원안 대비 복원) (3) R9 진행(payroll-v2/02·coupang/09·payroll-guide/30·11·32). 종료조건=2연속 클린, 클린카운터=0.
+- **동기화 필요**: 핸드오프 §10.3(A) = R4 배지복원 완료 마킹. 학습8 확장(배지 폭 width명시)·학습5 확장(rgba도 알파미합성 함정).
+
+## Working Notes — ckpt-202606160910 (btn-design, 색강조복원 종결 + R9 진입직전, 자율주행)
+- **마지막 결정**: ★(A)색강조 복원 작업 **종결**. (1)R4 slide-04 dark-mono/dark-pitch COM 시각확인 완료 = 위험배지 색칩(중위험 파랑#1428A0/고위험 주황#FF6F00/저위험 연파랑#B0C4DE 검은글씨) 다크bg 대비 우수, 글씨 안잘림, 대응전략 3색보더 보임. modern 포함 3테마 의도보존. (2)R5 색강조 점검 = 약화없음(slide-01 연말정산: step주황컬러바·다크헤더표·데이터의미색 환급청록/추징빨강·주황강조박스 보존 / slide-03 우주채굴: 주황차트·세그먼트바 보존). R6은 학습6(배지div>p)으로 이미 색배지 살림. → 결론: R4 유일 명확약화였고 복원완료, R5/R6 충분보존.
+- **사용자 질의응답(2026-06-16)**: "pptx가 원안png와 일치하나 보는거냐" → 정정설명: 2비교축 = ①생성HTML↔변환PNG(변환충실도, 주목적, 결함잡기) ②원안↔생성HTML(데이터·색강조 의도보존). 원안 픽셀일치 목표 아님(design-system은 다른 테마비주얼). 클린카운터=0(R3만 클린 후 R4~R8 매라운드 신규결함).
+- **R9 소재 복잡도 판정 완료**: coupang/09(순환다이어그램6노드+3색보더카드)·payroll-guide/30(2컬럼step프로세스+공식박스+하단다크)·payroll-guide/11(5열11행 누적비용표 다크헤더+subtotal+주황누적, ★11행 720주의)·payroll-guide/32(5단계체크리스트+다크타임라인) = **복잡 데이터슬라이드 4장 채택**. ★payroll-v2/02 = 목차(2x5 TOC) → **교체 필요**(R6 posco/03 목차교체 전례).
+- **다음 의도**: (1)payroll-v2/02 교체재 1장 확정 — 미사용 grid후보 중 slide-20(5열표 120/70/90/60/100pt)·17(4열)·24(4열)·22/23(3열 넓은) 유력, 1장 Read로 복잡도 확정 (2)R9 modern 베이스 5장 생성(★누적9학습 선적용: ①heading fallback ②어두운surface강조=surface-inverse-fg ③긴텍스트nowrap div+p ④복합셀=표패턴단일p ⑤연한톤bg고정hex금지→테마토큰 ⑥배지/태그=div>p+nowrap ⑦행많은표720주의 ⑧색배경칩=div직속텍스트 ⑨카드불릿=단일p) (3)sed 6테마+editorial serif (4)PF포함변환 (5)VP+COM 의도보존+정탐회귀0. 종료조건=2연속클린, **클린카운터=0**.
+- **동기화 필요**: RENDERED-ASSETS-INDEX R9행 = payroll-v2/02 교체 반영. 핸드오프 §10.3(A) R4완료+R5/R6점검완료 마킹(반영함).
+
+## Working Notes — ckpt-202606161900 (btn-design, R9 완료, 자율주행)
+- **마지막 결정**: ★R9 완료(커밋 d19c6cc). 소재 5장 = coupang/09 플라이휠 · payroll-guide/30 step프로세스 · 11 누적표 · 32 체크리스트 · **payroll-v2/20 시뮬표**(payroll-v2/02 목차→20 교체 확정, slide-20=hero KPI+계산박스+5열4행 시뮬표 다크헤더/주황하이라이트). 9학습 선적용. 8테마 PF/XML ERROR 0. 6계열 COM 의도보존 확인(modern 라이트/dark-mono·dark-pitch 다크/editorial serif/executive warm-navy). 색강조 = var(--accent) 테마적응(modern주황/dark cyan/exec navy), 다크헤더·3색보더 surface-inverse, 색칩 div직속(학습8). CONTRAST 전건 WARN(ERROR0).
+- **R9 신규결함 2건(K규칙 디자인수정, 둘다 해결)**: (1)slide-05 VP-14 = 좌우분리 head(제목+hero KPI) flex justify-between → 변환기 좌표화 58% 겹침 → htext width:720px+hero width:260px 둘다 flex-shrink:0 명시로 해소. (2)slide-01 대각선 화살표 ↘↗(U+2198/2197) → PowerPoint 폰트 폴백 È/É 깨짐 → 직교 →↑ 교체. **→ R9는 신규결함 발생 라운드 = 클린 아님. 클린카운터=0 유지(리셋)**. 학습10/11 = promotion-log K-202606161900 박제.
+- **다음 의도**: R10 진행(payroll-v2/30·payroll-guide/09·41·samsung/06·discounted/11 — plan §0.6). ★학습10/11 선적용(좌우분할 head=명시width / 다이어그램=직교화살표만). modern 베이스 생성→sed 6테마+editorial serif→PF변환→VP+COM 의도보존+정탐회귀0. 소재 복잡도 Read 재확인(목차/단순이면 미사용 복잡슬라이드 교체). 종료조건=2연속클린, **클린카운터=0**.
+- **동기화 필요**: RENDERED-ASSETS-INDEX R9행 완료 마킹(payroll-v2/20 교체 반영). 핸드오프 §10 R9완료+학습10/11 마킹.

@@ -106,7 +106,12 @@ next-action: "★R1~R8 완료(8테마 ERROR0+COM의도보존+정탐회귀0). ★
 - **정탐회귀 0 검증 (필수·완료)**: GT 17덱(slides-grab) 재변환+VP → 전부 VP-ERROR=0(baseline 동일). samsung FAIL=1슬라이드(slide-15 18pt overflow)는 GT 원본 고유 — git stash 대조로 수정 전후 동일 확인 = 회귀 아님.
 
 ### 10.3 ★잔여 작업 (우선순위 순)
-**(A) 이전 라운드 색강조 복원 [사용자 1번 선택, 최우선]**
+**(0) ★다음 = R10** [최우선, 자율]: payroll-v2/30·payroll-guide/09·41·samsung/06·discounted/11 (plan §0.6). 소재 복잡도 Read 재확인(목차/단순이면 미사용 복잡슬라이드 교체). modern 베이스 5장(★누적11학습 선적용)→sed 6테마+editorial serif→PF변환→VP+COM 의도보존+정탐회귀0. **종료=2연속 클린(신규결함0), 클린카운터=0**(R9 결함2 발생으로 리셋).
+
+**(A) 색강조 복원 [종결] + R9 [완료]**
+- **★진행 (2026-06-16)**: 색강조 복원(R4) **종결**(커밋 fff40e8) + **R9 완료**(커밋 d19c6cc). R9 소재 5장 = coupang/09 플라이휠·payroll-guide/30 step·11 누적표·32 체크리스트·**payroll-v2/20 시뮬표**(payroll-v2/02 목차→20 교체). 8테마 PF/XML ERROR0, 6계열 COM 의도보존(modern·dark-mono·dark-pitch·editorial·executive). 색강조=var(--accent) 테마적응(modern주황/dark cyan/exec navy). **R9 신규결함 2 수정 → R9 클린아님, 클린카운터=0 유지**.
+- **★학습10 (R9)**: 좌우분리 head(제목+우측 hero KPI) `flex justify-between`은 변환기 좌표화에서 제목폭이 hero영역 침범→VP-14 겹침 → htext/hero 둘다 `width:Npx + flex-shrink:0` 명시. **★학습11 (R9)**: 대각선 화살표 글리프 ↘↗(U+2198/2197)는 PowerPoint 폰트 폴백 È/É 깨짐 → 직교(→↑↓← U+2190~2193)만, 대각선은 직교 근사. (K-202606161900 promotion-log 박제)
+- **★학습8 확장**: flex-start 색배지는 변환기가 폭 과소측정(3글자 클립) → `width:Npx + text-align:center` 명시 필수. **★학습5 확장**: 셀틴트 rgba 반투명bg도 변환기 알파 미합성 → solid base색으로 대비 오측정 → 색칩(불투명)으로 강조하고 rgba 틴트는 제거. (K-202606160230 promotion-log 박제)
 - **왜**: 사용자 2지적(2026-06-16) — "PF/VP 맞게 깎지말고 디자인 의도 구현도 목표" + "이전 세션 수정 원안 크게 헤치는지 전수검토". 전수검토 결과 = 레이아웃·정보는 보존됐으나 **색 시각강조가 변환기 색칩약점 회피로 텍스트색/토큰으로 약화**됨.
 - **대상 (전수검토로 식별)**: ★R4 slide-04 리스크매트릭스 = 원안(samsung/16)의 위험도 셀틴트(high=주황#FFF3E0/med=파랑#F0F4FF/low=회색)·위험배지(critical 주황#FF6F00 칩·moderate 파랑#1428A0 칩 흰글씨) → 현재 `var(--theme-bg)` 단색 + 색텍스트(.crit{color:accent})로 강등. R5/R6 등도 grep지표상 색배경칩 감소(R5=0개, R7=0개 — 원안 색배경 6~7개 대비).
 - **방법**: 학습8 패턴(색배경 div 직속텍스트)으로 위험배지·셀틴트 색칩 복원. 변환기 수정으로 이제 정사각/소형 색칩도 변환 안전. 단 색칩 흰글씨는 ⛔자식`<p>` 금지(div 직속텍스트). 각 복원 후 변환 ERROR0 + COM 의도보존 재확인.

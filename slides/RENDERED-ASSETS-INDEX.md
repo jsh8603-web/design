@@ -21,7 +21,8 @@ date: 2026-06-15
 | **R6** | `slides/round6-{theme}/` | 8 | apartment/06·posco/07·space-economy/03-newspace·apartment/10·global-space/08 | ✅ 완료(8테마 ERROR0+COM+정탐회귀0). 권역비교표·재무추이표·투패널비용+stat·정책카드·outlook카드. ★배지/태그 span→div>p+nowrap 수정 |
 | **R7** | `slides/round7-{theme}/` | 8 | payroll-v2/28·posco/12·naver/15·payroll-v2/31·payroll-guide/17 | ✅ 완료(8테마 ERROR0+FAILED0+COM+정탐회귀0). 요율표+계수·리튬현황표·재무전망표·KPI+step+표·일용vs상용 12행표. ★slide-05 720초과 silent drop→높이축소 수정 |
 | **R8** | `slides/round8-{theme}/` | 8 | manuf-kpi/03·payroll-v2/14·payroll-guide/19·34·13 | ✅ 완료(8테마 ERROR0+FAIL0+COM의도보존+정탐회귀0). PQCD색아이콘카드·6열표·BEFORE/AFTER+영향표·9행캘린더·요율표+calc. ★변환기수정(정사각아이콘 table-column 오인→텍스트겹침 해결)+학습8(색칩=div직속텍스트, invisible방지)+학습9(불릿=단일p) |
-| R9~R10 | `slides/round{N}-{theme}/` | 8 | plan §0.6 표 참조 | ⏳ 예정 |
+| **R9** | `slides/round9-{theme}/` | 8 | coupang/09·payroll-guide/30·11·32·payroll-v2/20(02목차 교체) | ✅ 완료(8테마 ERROR0+6계열 COM 의도보존+정탐회귀0). 플라이휠다이어그램·2컬럼step·5열10행누적표·5단계체크리스트+다크타임라인·heroKPI+시뮬표. ★신규결함2 수정: slide05 좌우분리head flex겹침(VP-14)→명시width / slide01 대각선화살표글리프(↘↗ 폰트폴백깨짐)→직교화살표 |
+| R10 | `slides/round{N}-{theme}/` | 8 | plan §0.6 표 참조 | ⏳ 예정 |
 
 **테마 목록**(8): editorial(Track B serif) · modern · executive(executive-editorial) · academic · classic · dark-mono · company · dark-pitch.
 - 각 덱 COM 렌더 위치: `slides/round{N}-{theme}/png/slide_01.png ~ slide_05.png`.

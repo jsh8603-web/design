@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:44px 58px 30px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:16px; line-height:1.4; }
+  /* BEFORE / AFTER 2박스 */
+  .ba { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:16px; }
+  .babox { border-radius:9px; padding:13px 18px; }
+  .babox.before { background:var(--gray-4); border:1px solid var(--gray-3); }
+  .babox.after { background:var(--gray-4); border-left:4px solid var(--accent); }
+  .ba-tag { font-size:12px; font-weight:800; margin-bottom:7px; }
+  .babox.before .ba-tag { color:var(--gray-2); }
+  .babox.after .ba-tag { color:var(--accent); }
+  .ba-line { font-size:13.5px; color:var(--gray-1); line-height:1.5; }
+  .ba-line .st { font-weight:800; color:var(--heading, var(--primary)); }
+  /* main */
+  .main { display:grid; grid-template-columns:1.45fr 0.82fr; gap:20px; flex:1; min-height:0; }
+  .gt { display:grid; grid-template-columns:1.2fr 1.3fr 1.1fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .chd { background:var(--surface-inverse); padding:8px 13px; }
+  .chd p { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:8px 13px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:12.5px; color:var(--gray-1); line-height:1.3; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .cup p { color:var(--accent); font-weight:800; }
+  /* 우측 재무영향 다크패널 (fg+weight ②) */
+  .impact { background:var(--surface-inverse); border-radius:10px; padding:16px 20px; display:flex; flex-direction:column; }
+  .imp-t { font-size:13px; font-weight:800; color:#FF6F00; margin-bottom:12px; }
+  .imp-item { margin-bottom:13px; }
+  .imp-v { font-size:24px; font-weight:800; color:var(--surface-inverse-fg); line-height:1; }
+  .imp-l { font-size:11.5px; color:var(--surface-inverse-fg); opacity:0.78; margin-top:4px; line-height:1.4; }
+  .imp-note { margin-top:auto; border-top:1px solid rgba(255,255,255,0.16); padding-top:10px; }
+  .imp-note p { font-size:11.5px; color:var(--surface-inverse-fg); opacity:0.72; line-height:1.45; }
+  .src { font-size:11.5px; color:var(--gray-2); text-align:right; margin-top:12px; }
+</style></head>
+<body data-layout="before_after_impact">
+  <h1>'고정성' 요건 폐기로 <span class="em">정기상여금 전액</span>이 통상임금 산정 기초가 된다</h1>
+  <p class="sub">대법원 전원합의체 판결로 재직조건부 정기상여금도 통상임금에 포함된다. 통상임금 기반 수당·퇴직금이 일괄 상승하므로 인건비 예산 재추계가 필요하다.</p>
+  <div class="ba">
+    <div class="babox before">
+      <p class="ba-tag">BEFORE — 2024.12.18 이전</p>
+      <p class="ba-line">통상임금 = 정기성 + 일률성 + <span class="st">고정성</span><br>재직조건부 상여 → <span class="st">제외</span></p>
+    </div>
+    <div class="babox after">
+      <p class="ba-tag">AFTER — 2024.12.19 이후</p>
+      <p class="ba-line">통상임금 = 정기성 + 일률성 <span class="st">(고정성 폐기)</span><br>재직조건부 상여 → <span class="st">포함</span></p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="gt">
+      <div class="chd"><p>영향 항목</p></div>
+      <div class="chd"><p>계산 기준</p></div>
+      <div class="chd"><p>비용 증가 방향</p></div>
+
+      <div class="c clb"><p>연장근로수당</p></div>
+      <div class="c"><p>통상임금 × 1.5</p></div>
+      <div class="c cup"><p>산입분 인상</p></div>
+
+      <div class="c clb calt"><p>야간근로수당</p></div>
+      <div class="c calt"><p>통상임금 × 0.5</p></div>
+      <div class="c cup calt"><p>인상</p></div>
+
+      <div class="c clb"><p>휴일근로 (8h 이내)</p></div>
+      <div class="c"><p>통상임금 × 1.5</p></div>
+      <div class="c cup"><p>인상</p></div>
+
+      <div class="c clb calt"><p>휴일근로 (8h 초과)</p></div>
+      <div class="c calt"><p>통상임금 × 2.0</p></div>
+      <div class="c cup calt"><p>인상</p></div>
+
+      <div class="c clb"><p>연차수당</p></div>
+      <div class="c"><p>통상임금 × 1일분</p></div>
+      <div class="c cup"><p>인상</p></div>
+
+      <div class="c clb calt"><p>퇴직금</p></div>
+      <div class="c calt"><p>상여금 3/12 산입</p></div>
+      <div class="c cup calt"><p>퇴직금 증가</p></div>
+    </div>
+    <div class="impact">
+      <p class="imp-t">재무 영향 추계</p>
+      <div class="imp-item">
+        <p class="imp-v">+15~25%</p>
+        <p class="imp-l">정기상여 600만원 직군 통상임금 상승폭</p>
+      </div>
+      <div class="imp-item">
+        <p class="imp-v">소급 3년</p>
+        <p class="imp-l">미지급 수당 청구 가능 기간 (근기법 제49조)</p>
+      </div>
+      <div class="imp-note"><p>통상임금 단가 상승은 연장·야간·휴일수당에 동시 적용 → 가산수당 비중 높은 물류·생산직 인건비에 집중 영향. 충당부채 재산정 필요.</p></div>
+    </div>
+  </div>
+  <p class="src">출처: 대법원 2024.12.19. 선고 2020다247190, 근로기준법 제49조</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

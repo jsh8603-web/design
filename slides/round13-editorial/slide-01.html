@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  .serif-head, h1, h2, h3, h4, h5, .ctitle, .kicker { font-family:'Newsreader','Times New Roman',serif; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:42px 58px 42px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+  .main { display:grid; grid-template-columns:0.82fr 1.18fr; gap:28px; flex:1; min-height:0; }
+  /* 좌: 공식 패널 (다크, fg+weight 강조 ②) */
+  .formula { background:var(--surface-inverse); border-radius:10px; padding:18px 20px; display:flex; flex-direction:column; }
+  .fm-law { font-size:12px; font-weight:700; color:#FF6F00; margin-bottom:12px; }
+  .fm-block { margin-bottom:14px; }
+  .fm-label { font-size:12px; color:var(--surface-inverse-fg); opacity:0.78; margin-bottom:4px; }
+  .fm-eq { font-size:15px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.45; }
+  .fm-eq .hl { color:#FF6F00; }
+  .fm-div { height:1px; background:rgba(255,255,255,0.16); margin:6px 0 14px 0; }
+  .fm-note { font-size:12px; color:var(--surface-inverse-fg); opacity:0.72; line-height:1.45; margin-top:auto; }
+  /* 우: 산입 항목 표 */
+  .gt { display:grid; grid-template-columns:1.1fr 1.45fr 1.25fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .chd { background:var(--surface-inverse); padding:9px 12px; }
+  .chd p { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:8px 12px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:12.5px; color:var(--gray-1); line-height:1.3; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .crow-hl { background:var(--gray-4); }
+  .crow-hl p { color:var(--accent); font-weight:800; }
+  /* 하단 계산 패널 (다크, 결과 강조 ②) */
+  .calc { background:var(--surface-inverse); border-radius:10px; padding:13px 22px; margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .calc-l { flex:1; }
+  .calc-t { font-size:13px; font-weight:800; color:#FF6F00; margin-bottom:9px; }
+  .calc-items { display:flex; gap:22px; flex-wrap:wrap; }
+  .ci-l { font-size:11.5px; color:var(--surface-inverse-fg); opacity:0.78; }
+  .ci-v { font-size:16px; font-weight:800; color:var(--surface-inverse-fg); margin-top:2px; }
+  .calc-r { text-align:right; flex-shrink:0; border-left:1px solid rgba(255,255,255,0.18); padding-left:24px; }
+  .calc-r-l { font-size:11.5px; color:var(--surface-inverse-fg); opacity:0.78; }
+  .calc-r-v { font-size:30px; font-weight:800; color:var(--surface-inverse-fg); line-height:1; margin:3px 0; }
+  .calc-r-n { font-size:12.5px; font-weight:700; color:#FF6F00; }
+</style></head>
+<body data-layout="formula_table_calc">
+  <h1>퇴직금은 '1일 평균임금 × 30일 × 재직연수'이며, <span class="em">상여금·연차수당 산입</span>이 비용의 핵심이다</h1>
+  <p class="sub">평균임금 산정 시 상여금의 3/12, 연차수당의 3/12 비율 산입을 빠뜨리면 퇴직금이 과소 산정된다. FP&A는 충당부채 산정 시 이 항목을 반드시 포함해야 한다.</p>
+  <div class="main">
+    <div class="formula">
+      <p class="fm-law">퇴직금 기본 공식 (근퇴법 제8조)</p>
+      <div class="fm-block">
+        <p class="fm-label">1일 평균임금</p>
+        <p class="fm-eq">퇴직 전 <span class="hl">3개월 임금총액</span> ÷ 3개월 총일수</p>
+      </div>
+      <div class="fm-div"></div>
+      <div class="fm-block">
+        <p class="fm-label">퇴직금</p>
+        <p class="fm-eq">1일 평균임금 × <span class="hl">30일</span> × (재직일수 / 365)</p>
+      </div>
+      <p class="fm-note">3개월 임금총액 = 기본급 + 정기수당 + 상여금 산입분(연간×3/12) + 연차수당 산입분. 퇴직 직전 산정이라 직전 분기 임금 변동이 충당부채에 직접 영향.</p>
+    </div>
+    <div class="gt">
+      <div class="chd"><p>항목</p></div>
+      <div class="chd"><p>산입 방법</p></div>
+      <div class="chd"><p>FP&A 비고</p></div>
+
+      <div class="c clb"><p>기본급 (3개월분)</p></div>
+      <div class="c"><p>전액 산입</p></div>
+      <div class="c"><p>재산 기준</p></div>
+
+      <div class="c clb calt"><p>직무·직책수당</p></div>
+      <div class="c calt"><p>전액 산입</p></div>
+      <div class="c calt"><p>정기 지급 시 모두 포함</p></div>
+
+      <div class="c clb crow-hl"><p>상여금</p></div>
+      <div class="c crow-hl"><p>연간 상여금 × 3/12</p></div>
+      <div class="c crow-hl"><p>전 12개월 내 지급분 상여금 기준</p></div>
+
+      <div class="c clb crow-hl"><p>연차수당 (미사용)</p></div>
+      <div class="c crow-hl"><p>전전년도 미사용 × 3/12</p></div>
+      <div class="c crow-hl"><p>충당부채 산정 시 포함 필수</p></div>
+
+      <div class="c clb calt"><p>연장·야간·휴일수당</p></div>
+      <div class="c calt"><p>전액 산입 (3개월 평균)</p></div>
+      <div class="c calt"><p>가산수당 많은 직군은 규모 커짐</p></div>
+
+      <div class="c clb"><p>퇴직 시 당해 미사용 연차</p></div>
+      <div class="c"><p>제외</p></div>
+      <div class="c"><p>별도 수당 지급 (근기법 제60조)</p></div>
+    </div>
+  </div>
+  <div class="calc">
+    <div class="calc-l">
+      <p class="calc-t">계산 예시 — 재직 5년, 3월 31일 퇴직 (재직일수 1,825일)</p>
+      <div class="calc-items">
+        <div class="ci"><p class="ci-l">3개월 기본급 합계</p><p class="ci-v">900만원</p></div>
+        <div class="ci"><p class="ci-l">3개월 연장수당</p><p class="ci-v">90만원</p></div>
+        <div class="ci"><p class="ci-l">상여 산입분 (600×3/12)</p><p class="ci-v">150만원</p></div>
+        <div class="ci"><p class="ci-l">연차 산입분 (60×3/12)</p><p class="ci-v">15만원</p></div>
+        <div class="ci"><p class="ci-l">1일 평균임금 (÷92일)</p><p class="ci-v">125,543원</p></div>
+      </div>
+    </div>
+    <div class="calc-r">
+      <p class="calc-r-l">퇴직금 (125,543 × 30 × 1,825/365)</p>
+      <p class="calc-r-v">18,831,450원</p>
+      <p class="calc-r-n">3개월 임금총액 1,155만원 기준</p>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

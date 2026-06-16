@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:40px 56px 28px 56px; display:flex; flex-direction:column; }
+  h1 { font-size:24px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:5px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:13px; color:var(--gray-2); margin-bottom:14px; line-height:1.4; }
+  /* 상단 3박스 공식 */
+  .eqrow { display:grid; grid-template-columns:1.25fr 30px 1fr 30px 1.1fr; gap:0; align-items:stretch; margin-bottom:14px; }
+  .ebox { border-radius:9px; padding:12px 16px; }
+  .ebox.dark { background:var(--surface-inverse); }
+  .ebox.dark .eb-t { color:#FF6F00; }
+  .ebox.dark .eb-d { color:var(--surface-inverse-fg); opacity:0.82; }
+  .ebox.light { background:var(--gray-4); border:1px solid var(--gray-3); }
+  .ebox.light .eb-t { color:var(--heading, var(--primary)); }
+  .ebox.light .eb-d { color:var(--gray-2); }
+  .ebox.res { background:var(--surface-inverse); }
+  .ebox.res .eb-t { color:#FF6F00; }
+  .ebox.res .eb-d { color:var(--surface-inverse-fg); opacity:0.82; }
+  .eb-t { font-size:14px; font-weight:800; margin-bottom:5px; }
+  .eb-en { font-size:10.5px; font-weight:600; opacity:0.7; margin-bottom:4px; }
+  .ebox.dark .eb-en, .ebox.res .eb-en { color:var(--surface-inverse-fg); }
+  .ebox.light .eb-en { color:var(--gray-2); }
+  .eb-d { font-size:11.5px; line-height:1.4; }
+  .op { display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:800; color:var(--gray-2); }
+  /* 중간 2표 */
+  .duo { display:grid; grid-template-columns:1.32fr 1fr; gap:18px; flex:1; min-height:0; }
+  .panel-t { font-size:12.5px; font-weight:700; color:var(--gray-2); margin-bottom:7px; }
+  .gt { display:grid; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; }
+  .gt.t4 { grid-template-columns:0.85fr 1.15fr 1fr 1fr; }
+  .gt.t3 { grid-template-columns:0.95fr 1.3fr 1fr; }
+  .chd { background:var(--surface-inverse); padding:7px 10px; }
+  .chd p { font-size:11.5px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:6px 10px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:11px; color:var(--gray-1); line-height:1.28; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .cwarn p { color:var(--accent); font-weight:700; }
+  /* 하단 인사이트 3카드 (라이트배경 accent 강조 ②) */
+  .cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:14px; }
+  .card { background:var(--gray-4); border-left:3px solid var(--accent); border-radius:7px; padding:9px 13px; }
+  .card p { font-size:11.5px; color:var(--gray-1); line-height:1.4; }
+  .card p .ch { color:var(--accent); font-weight:800; }
+</style></head>
+<body data-layout="dbo_formula_dualtable">
+  <h1>DB형 퇴직연금의 <span class="em">확정급여채무(DBO)</span>는 계리보고서를 통해 보험수리적 가정에 따라 산정된다</h1>
+  <p class="sub">매 결산기 계리법인의 보험수리적 평가를 받아 DBO를 산정하며, 할인율·임금상승률·퇴직률 등 가정 변동이 충당부채에 직접 영향을 미친다.</p>
+  <div class="eqrow">
+    <div class="ebox dark">
+      <p class="eb-t">DBO</p>
+      <p class="eb-en">Defined Benefit Obligation</p>
+      <p class="eb-d">보험수리적 가정에 따라 산정한 미래 퇴직급여의 현재가치</p>
+    </div>
+    <div class="op">−</div>
+    <div class="ebox light">
+      <p class="eb-t">사외적립자산</p>
+      <p class="eb-en">Plan Assets</p>
+      <p class="eb-d">DB형 퇴직연금 신탁에 적립된 금액의 공정가치</p>
+    </div>
+    <div class="op">=</div>
+    <div class="ebox res">
+      <p class="eb-t">순확정급여부채(자산)</p>
+      <p class="eb-en">Net Defined Benefit Liability</p>
+      <p class="eb-d">DBO &gt; 적립자산 → 부채 / DBO &lt; 적립자산 → 자산</p>
+    </div>
+  </div>
+  <div class="duo">
+    <div style="display:flex; flex-direction:column; min-height:0;">
+      <p class="panel-t">보험수리적 가정 (Actuarial Assumptions)</p>
+      <div class="gt t4">
+        <div class="chd"><p>가정 항목</p></div>
+        <div class="chd"><p>설명</p></div>
+        <div class="chd"><p>물류업 (24~25)</p></div>
+        <div class="chd"><p>비용 영향</p></div>
+
+        <div class="c clb"><p>할인율</p></div>
+        <div class="c"><p>우량회사채 수익률 기반</p></div>
+        <div class="c"><p>4.0~4.5% (AA-)</p></div>
+        <div class="c cwarn"><p>↓ → DBO ↑ (부채 증가)</p></div>
+
+        <div class="c clb calt"><p>임금상승률</p></div>
+        <div class="c calt"><p>과거 실적 + 미래 예측</p></div>
+        <div class="c calt"><p>3.0~5.0% (인력난)</p></div>
+        <div class="c cwarn calt"><p>↑ → DBO ↑</p></div>
+
+        <div class="c clb"><p>퇴직률 (이직률)</p></div>
+        <div class="c"><p>연령·근속별 퇴직확률</p></div>
+        <div class="c"><p>15~25% (업종 평균↑)</p></div>
+        <div class="c"><p>↑ → DBO ↓ (기간 단축)</p></div>
+
+        <div class="c clb calt"><p>사망률</p></div>
+        <div class="c calt"><p>생명표 기반</p></div>
+        <div class="c calt"><p>통계청 생명표 적용</p></div>
+        <div class="c calt"><p>영향 미미</p></div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; min-height:0;">
+      <p class="panel-t">회계처리 요약 (IAS 19)</p>
+      <div class="gt t3">
+        <div class="chd"><p>구분</p></div>
+        <div class="chd"><p>회계처리</p></div>
+        <div class="chd"><p>재무제표 반영</p></div>
+
+        <div class="c clb"><p>당기근무원가</p></div>
+        <div class="c"><p>당해 연도 근무로 증가한 DBO</p></div>
+        <div class="c"><p>손익 (인건비)</p></div>
+
+        <div class="c clb calt"><p>이자원가</p></div>
+        <div class="c calt"><p>기초 DBO × 할인율</p></div>
+        <div class="c calt"><p>손익 (금융비용)</p></div>
+
+        <div class="c clb"><p>사외적립자산 수익</p></div>
+        <div class="c"><p>기초 적립자산 × 할인율</p></div>
+        <div class="c"><p>손익 (차감)</p></div>
+
+        <div class="c clb calt"><p>보험수리적 손익</p></div>
+        <div class="c calt"><p>가정 변동에 따른 DBO 변동</p></div>
+        <div class="c calt"><p>OCI — P&L 미반영</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="card"><p>당기근무원가 + 순이자원가는 <span class="ch">P&L 직접 반영</span> → 인건비 예산에 즉시 영향</p></div>
+    <div class="card"><p>할인율 <span class="ch">1%p 하락</span> 시 DBO 약 8~12% 증가 → 순확정급여부채 급증 가능</p></div>
+    <div class="card"><p>물류업 高이직률 → DBO 낮출 수 있으나, <span class="ch">장기근속 집중</span> 시 급증</p></div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

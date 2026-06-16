@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:38px 56px 26px 56px; display:flex; flex-direction:column; }
+  h1 { font-size:23px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:5px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:12.5px; color:var(--gray-2); margin-bottom:12px; line-height:1.4; }
+  /* 상단 공식 박스 (다크, 결과만 accent ②) */
+  .fbox { background:var(--surface-inverse); border-radius:9px; padding:11px 20px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+  .feq { font-size:15px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.4; }
+  .feq .sm { font-size:12.5px; font-weight:600; opacity:0.78; }
+  .fres { flex-shrink:0; text-align:right; border-left:1px solid rgba(255,255,255,0.18); padding-left:18px; }
+  .fres-l { font-size:11px; color:var(--surface-inverse-fg); opacity:0.78; }
+  .fres-v { font-size:26px; font-weight:800; color:#FF6F00; line-height:1; margin-top:2px; }
+  /* main */
+  .main { display:grid; grid-template-columns:1.22fr 0.95fr; gap:18px; flex:1; min-height:0; }
+  .gt { display:grid; grid-template-columns:1.15fr 0.7fr 1.5fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .chd { background:var(--surface-inverse); padding:6px 11px; }
+  .chd p { font-size:11.5px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:5px 11px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:11px; color:var(--gray-1); line-height:1.25; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .cnum p { font-weight:800; color:var(--accent); }
+  /* 우측 세로 2분할 */
+  .rcol { display:flex; flex-direction:column; gap:14px; min-height:0; }
+  .panel-t { font-size:11.5px; font-weight:700; color:var(--gray-2); margin-bottom:6px; }
+  .gt2 { display:grid; grid-template-columns:1.4fr 0.85fr 0.85fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .gt2 .chd { padding:6px 9px; }
+  .gt2 .c { padding:5px 9px; }
+  .gt2 .cnum2 p { font-weight:800; color:var(--heading, var(--primary)); }
+  /* FP&A 배지 단계 (배지=div>p+nowrap ⑥) */
+  .steps { display:flex; flex-direction:column; gap:6px; }
+  .step { display:flex; align-items:center; gap:9px; }
+  .snum { width:20px; height:20px; border-radius:50%; background:var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .snum p { font-size:11px; font-weight:800; color:#FFFFFF; white-space:nowrap; }
+  .stext { font-size:11.5px; color:var(--gray-1); line-height:1.3; }
+</style></head>
+<body data-layout="budget_formula_rates">
+  <h1>인건비 예산은 기본급에 <span class="em">총 인건비 계수(×1.44)</span>를 곱해 추계해야 누락이 없다</h1>
+  <p class="sub">주휴·4대보험·퇴직·연차·상여를 계수로 환산해 기본급에 일괄 적용한다. 업종별 산재요율과 근로형태에 따라 계수가 달라지므로 사업부 단위로 차등 적용한다.</p>
+  <div class="fbox">
+    <p class="feq">총 인건비 = 기본급 × (1 + <span class="sm">0.200 + 0.094 + 0.083 + 0.058 + 0.042</span>)</p>
+    <div class="fres">
+      <p class="fres-l">상용직 기준 계수</p>
+      <p class="fres-v">× 1.44</p>
+    </div>
+  </div>
+  <div class="main">
+    <div class="gt">
+      <div class="chd"><p>항목</p></div>
+      <div class="chd"><p>요율</p></div>
+      <div class="chd"><p>계산 근거</p></div>
+
+      <div class="c clb"><p>주휴수당</p></div>
+      <div class="c cnum"><p>+20.0%</p></div>
+      <div class="c"><p>기본급 × 주 8h / 40h</p></div>
+
+      <div class="c clb calt"><p>4대보험</p></div>
+      <div class="c cnum calt"><p>+9.4%</p></div>
+      <div class="c calt"><p>기준소득월액 × 회사부담</p></div>
+
+      <div class="c clb"><p>퇴직충당</p></div>
+      <div class="c cnum"><p>+8.3%</p></div>
+      <div class="c"><p>연간 임금총액 × 1/12</p></div>
+
+      <div class="c clb calt"><p>연차충당</p></div>
+      <div class="c cnum calt"><p>+5.8%</p></div>
+      <div class="c calt"><p>기본급 × 15일 / 260일</p></div>
+
+      <div class="c clb"><p>정기상여 (50%)</p></div>
+      <div class="c cnum"><p>+4.2%</p></div>
+      <div class="c"><p>기본급 × 50% / 12개월</p></div>
+
+      <div class="c clb calt"><p>산재보험</p></div>
+      <div class="c cnum calt"><p>+1.5%</p></div>
+      <div class="c calt"><p>물류 육상운송 업종 요율</p></div>
+
+      <div class="c clb"><p>연장·야간수당</p></div>
+      <div class="c cnum"><p>변동</p></div>
+      <div class="c"><p>통상임금 × 1.5~2.0배</p></div>
+
+      <div class="c clb calt"><p>합계 계수</p></div>
+      <div class="c cnum calt"><p>×1.44</p></div>
+      <div class="c calt"><p>상여 제외 기본 계수</p></div>
+    </div>
+    <div class="rcol">
+      <div>
+        <p class="panel-t">물류업 세부 계수 (업종별)</p>
+        <div class="gt2">
+          <div class="chd"><p>업종</p></div>
+          <div class="chd"><p>산재율</p></div>
+          <div class="chd"><p>총 계수</p></div>
+
+          <div class="c clb"><p>육상운송</p></div>
+          <div class="c"><p>1.5%</p></div>
+          <div class="c cnum2"><p>×1.49</p></div>
+
+          <div class="c clb calt"><p>창고업</p></div>
+          <div class="c calt"><p>1.2%</p></div>
+          <div class="c cnum2 calt"><p>×1.49</p></div>
+
+          <div class="c clb"><p>하역업</p></div>
+          <div class="c"><p>2.2%</p></div>
+          <div class="c cnum2"><p>×1.50</p></div>
+
+          <div class="c clb calt"><p>일반사무</p></div>
+          <div class="c calt"><p>0.6%</p></div>
+          <div class="c cnum2 calt"><p>×1.47</p></div>
+        </div>
+      </div>
+      <div style="min-height:0;">
+        <p class="panel-t">FP&A 예산 편성 실무</p>
+        <div class="steps">
+          <div class="step"><div class="snum"><p>1</p></div><p class="stext">사업부별 채용계획 → 기본급 추계</p></div>
+          <div class="step"><div class="snum"><p>2</p></div><p class="stext">근로형태(상용/일용)별 계수 차등</p></div>
+          <div class="step"><div class="snum"><p>3</p></div><p class="stext">신규 채용 예정 인원 + 수습 감액 반영</p></div>
+          <div class="step"><div class="snum"><p>4</p></div><p class="stext">상여 지급월 집중 → 분기 변동성 점검</p></div>
+          <div class="step"><div class="snum"><p>5</p></div><p class="stext">퇴직 예정자 DBO 충당 별도 추계</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

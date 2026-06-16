@@ -2,7 +2,7 @@
 title: 디자인 e2e 검증 핸드오프 — 테스트 자산 75장 + 워크플로우
 tags: [handoff, design-system, e2e, btn-design, test-asset]
 date: 2026-06-16
-next-action: "R12 착수 — plan-design-e2e.md §0.6 R12 소재 5장(payroll-guide/02·payroll-v2/17·samsung/12·payroll-guide/07·15) Read 복잡도 검증(목차/단순이면 교체) → modern 베이스 생성 → sed 8테마+editorial serif → convert-native.mjs PF변환 → COM 의도보존+K규칙+정탐회귀0"
+next-action: "R14 착수 — plan-design-e2e.md §0.6 R14 소재 5장(payroll-guide/29·payroll-v2/22·samsung/15·payroll-guide/33·payroll-guide/24) Read 복잡도 검증(목차/단순/일러스트면 후보풀서 교체) → modern 베이스 생성(학습 15개 §6 선적용) → sed 8테마+editorial serif → convert-native.mjs PF변환(⛔--skip-preflight 금지) → COM 의도보존+K규칙+정탐회귀0. ★R13 완료(클린아님 카운터0). R13 소재=PG/22·PV2/19·SS/13·PG/27·PG/23, FAILED2건 슬라이드수정: slide-01 결과텍스트 바닥경계<0.5\"→pad-bottom확대, slide-05 .imp-note p에 border→div>p분리(K-202606162310=학습⑮)"
 ---
 
 # 디자인 e2e 검증 핸드오프 (2026-06-16)
@@ -48,7 +48,7 @@ next-action: "R12 착수 — plan-design-e2e.md §0.6 R12 소재 5장(payroll-gu
 5. **COM + 판정**: `export-slides-png.ps1` → png 1366px resize(System.Drawing, `-replace '\.png$'` escape 주의) → Read 핵심 계열(modern 5장+다크2+executive+editorial). 의도보존 + K규칙(룰과탐=게이트수정/변환기결함=변환기수정/디자인결함=슬라이드수정) + 정탐회귀0(GT 17덱 ERROR delta0).
 
 ## §6 누적 학습 (생성 시 선적용 체크리스트) — promotion-log K 박제
-- ①heading=`var(--heading,var(--primary))` ②**다크패널(surface-inverse) 내 강조=`surface-inverse-fg`+weight 차이, accent 색강조는 라이트 배경에서만**(K-202606161045, navy 다크저대비 회피) ③긴텍스트 nowrap은 div+p ④복합셀=표패턴 단일p ⑤연한톤bg 고정hex/rgba 금지→테마토큰 ⑥배지=div>p+nowrap ⑦행많은표 720초과 silent drop→padding축소 ⑧색칩=div 직속텍스트+width명시(invisible방지) ⑨카드불릿=단일p ⑩좌우분할 head=htext/hero 둘다 width+flex-shrink:0 ⑪다이어그램=직교화살표만(↘↗ 폰트폴백 깨짐) ⑫**카드형 라벨+본문에서 본문 itext에 white-space:nowrap ⛔금지**(변환기 인라인 오인→형제 겹침, K-202606161200, nowrap 제거+flex column) ⑬데이터 의미색 중 어두운색(navy)은 다크테마 카드 저대비→밝은 대체(cobalt #2563EB) ⑭**박스/행 내 라벨좌+값우 양끝정렬=`display:grid;grid-template-columns:1fr auto`+자식 block(p)**. ⛔flex justify-content:space-between 변환기 미지원(2텍스트 병합 "기본급100%"), ⛔grid item에 inline span 금지(텍스트노드 병합)—표(.gt)가 정상인 이유=div>p block셀. (K-202606162210, R12 slide-01).
+- ①heading=`var(--heading,var(--primary))` ②**다크패널(surface-inverse) 내 강조=`surface-inverse-fg`+weight 차이, accent 색강조는 라이트 배경에서만**(K-202606161045, navy 다크저대비 회피) ③긴텍스트 nowrap은 div+p ④복합셀=표패턴 단일p ⑤연한톤bg 고정hex/rgba 금지→테마토큰 ⑥배지=div>p+nowrap ⑦행많은표 720초과 silent drop→padding축소 ⑧색칩=div 직속텍스트+width명시(invisible방지) ⑨카드불릿=단일p ⑩좌우분할 head=htext/hero 둘다 width+flex-shrink:0 ⑪다이어그램=직교화살표만(↘↗ 폰트폴백 깨짐) ⑫**카드형 라벨+본문에서 본문 itext에 white-space:nowrap ⛔금지**(변환기 인라인 오인→형제 겹침, K-202606161200, nowrap 제거+flex column) ⑬데이터 의미색 중 어두운색(navy)은 다크테마 카드 저대비→밝은 대체(cobalt #2563EB) ⑭**박스/행 내 라벨좌+값우 양끝정렬=`display:grid;grid-template-columns:1fr auto`+자식 block(p)**. ⛔flex justify-content:space-between 변환기 미지원(2텍스트 병합 "기본급100%"), ⛔grid item에 inline span 금지(텍스트노드 병합)—표(.gt)가 정상인 이유=div>p block셀. (K-202606162210, R12 slide-01). ⑮**border/background/shadow는 `<div>`만 지원—`<p>`에 주면 변환기 FAILED**("Text element <p> has border...only supported on <div>")→border 가진 요소는 div로 만들고 텍스트는 자식 p로 분리. **+텍스트박스 바닥 경계 0.5인치(48px) 미만이면 FAILED**("ends too close to bottom edge")→body padding-bottom 충분 확보(≥40px)+하단패널 margin 축소. (K-202606162310, R13 slide-01·05).
 
 ## §7 미해결 · 자문종합
 - **미해결**: (a) e2e-* 합성자산 삭제 여부(사용자 확인 대기) (b) R12~R15 복잡도 미검증(착수 시) (c) 클린 2연속 미달성(현 카운터 0).

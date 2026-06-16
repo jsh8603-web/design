@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 58px 32px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+  /* 3 hero KPI (accent 1곳=핵심 KPI만, §4.2) */
+  .hero { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:18px; }
+  .hcard { background:var(--gray-4); border-top:3px solid var(--gray-3); border-radius:9px; padding:16px 20px; text-align:center; }
+  .hcard.key { border-top-color:var(--accent); }
+  .hnum { font-size:34px; font-weight:800; color:var(--heading, var(--primary)); line-height:1; }
+  .hcard.key .hnum { color:var(--accent); }
+  .hunit { font-size:12.5px; color:var(--gray-2); margin-top:6px; }
+  .hsub { font-size:12px; color:var(--gray-1); margin-top:6px; font-weight:600; }
+  /* 하단 2분할 */
+  .bottom { display:grid; grid-template-columns:1fr 1fr; gap:20px; flex:1; min-height:0; }
+  .panel { background:var(--gray-4); border-radius:9px; padding:16px 20px; }
+  .pt { font-size:13px; font-weight:700; color:var(--heading, var(--primary)); margin-bottom:12px; }
+  /* 타임라인 */
+  .tl { display:flex; flex-direction:column; gap:3px; }
+  .tstep { display:flex; align-items:flex-start; gap:11px; }
+  .tdot { width:12px; height:12px; border-radius:50%; background:var(--gray-2); flex-shrink:0; margin-top:3px; }
+  .tdot.done { background:var(--accent); }
+  .tdot.pending { background:var(--gray-2); border:2px solid var(--accent); }
+  .tinfo { flex:1; }
+  .tdate { font-size:11.5px; font-weight:700; color:var(--gray-2); }
+  .tdesc { font-size:13px; color:var(--gray-1); font-weight:600; line-height:1.35; }
+  .tline { width:2px; height:14px; background:var(--gray-3); margin-left:5px; }
+  /* 불릿 (단일 p ⑨) */
+  .dlist { display:flex; flex-direction:column; gap:9px; }
+  .ditem { font-size:13px; color:var(--gray-1); line-height:1.4; padding-left:14px; position:relative; }
+  .ditem::before { content:''; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  .ditem .dh { font-weight:800; color:var(--heading, var(--primary)); }
+</style></head>
+<body data-layout="kpi_timeline_bullets">
+  <h1>24.7조 소각 + 4.7% 배당 — <span class="em">주주환원 복귀</span></h1>
+  <p class="sub">자사주 소각과 특별배당 재개로 5년 만에 본격적인 주주환원 사이클에 진입했다. 잔여 소각 16.3조원 완료 시 EPS 개선 효과가 추가로 반영된다.</p>
+  <div class="hero">
+    <div class="hcard key">
+      <p class="hnum">24.7조</p>
+      <p class="hunit">자사주 소각 총액</p>
+      <p class="hsub">8.4조 완료 + 16.3조 예정</p>
+    </div>
+    <div class="hcard">
+      <p class="hnum">4.7%</p>
+      <p class="hunit">보통주 배당수익률</p>
+      <p class="hsub">우선주 6.7% · 고배당 요건 충족</p>
+    </div>
+    <div class="hcard">
+      <p class="hnum">1,668원</p>
+      <p class="hunit">주당 연간 배당금</p>
+      <p class="hsub">특별배당 +203원 포함</p>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="panel">
+      <p class="pt">자사주 소각 타임라인</p>
+      <div class="tl">
+        <div class="tstep">
+          <div class="tdot done"></div>
+          <div class="tinfo"><p class="tdate">2025.02~07</p><p class="tdesc">자사주 매입 10조원 완료</p></div>
+        </div>
+        <div class="tline"></div>
+        <div class="tstep">
+          <div class="tdot done"></div>
+          <div class="tinfo"><p class="tdate">2025.12</p><p class="tdesc">1차 소각 8.4조원 완료</p></div>
+        </div>
+        <div class="tline"></div>
+        <div class="tstep">
+          <div class="tdot pending"></div>
+          <div class="tinfo"><p class="tdate">2026년 내</p><p class="tdesc">잔여 소각 16.3조원 예정 → EPS 개선</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <p class="pt">배당 · 주주환원 상세</p>
+      <div class="dlist">
+        <p class="ditem"><span class="dh">특별배당 1.3조원 재개</span> (5년 만, 주당 203원)</p>
+        <p class="ditem">고배당 요건 충족 → <span class="dh">분리과세 14%</span> 적용</p>
+        <p class="ditem">3개년 환원 계획 검토 (FCF 50%+)</p>
+        <p class="ditem">외국인 순매수 복귀 <span class="dh">+3.2조원</span></p>
+        <p class="ditem">소각 완료 → EPS 희석 방지</p>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

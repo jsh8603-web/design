@@ -136,3 +136,11 @@
   · slide-05=PG/24 계리보고서 4단계 프로세스 가로타임라인(번호+불릿카드)+하단2박스
 - 다음 의도: modern 베이스 5장 생성(학습 15개 선적용, 특히 ⑮ p border금지/바닥여백48px·⑥배지·⑪직교화살표·②다크강조fg) → sed 8테마+editorial serif → convert-native PF변환(--skip-preflight금지) → COM 의도보존+정탐회귀0.
 - 동기화: 완료 시 plan §0.6 R14행·RENDERED-ASSETS-INDEX·handoff frontmatter(→R15) 갱신+커밋.
+
+## ⚠️ Working Notes — ckpt R14결함발견 (btn-design, 사용자 감독지적)
+- ★사용자 지적 정당: 다크2/exec/edit를 360px 가로몽타주로만 봐서 **세부 결함 식별 불가**였음. 풀사이즈(1280px) 재검증 결과 결함 발견.
+- **R14 클린 철회 (카운터 0 복귀)**. cfe679c 커밋은 "클린" 오판정.
+- **발견 결함**: R14 slide-02(DB/DC) 우 "FP&A 선택가이드" 다크패널(.guide)의 긴 설명텍스트(.g-d/.g-note)가 **패널 우측 경계 넘어 잘림** — 8테마 공통(modern/executive 풀사이즈 확인). "…계리 리스크 부담"/"…예측 용이"/"…현금 유출이" 끊김. slide-01(.note)·slide-04(.check)는 텍스트 짧아 안 잘림 = 길이로 갈림.
+- **진단(코드레벨)**: html2pptx.cjs:521-552 텍스트폭→부모패널 clamp 로직 존재(line544 adjustedW=parentRight-adjustedX). 단 line532-534 포함체크(텍스트우측 ≤ 패널우측+tol)를 **긴텍스트가 Chrome서 패널폭 초과측정 시 통과못함→parentShape=null→clamp skip→폭초과 잘림**. 가설 검증엔 변환 디버그로그 1회 필요(g-d의 parentShape 검출여부+el.position.w vs 패널폭).
+- **다음 의도(압축후 fresh)**: (1) ★R13 다크패널 긴텍스트 풀사이즈 재검증(slide-02 인사이트카드·slide-05 imp-note·slide-01 fm-note — 같은결함 가능) (2) 변환기 디버그→원인확정 (3) 수정: 사용자우선순위=2순위 엔진수정(포함체크를 x축 겹침/clamp 기준 완화) 우선, 단 정탐회귀0(GT17덱) 검증필수 / 안되면 1순위 슬라이드 텍스트 패널폭 맞춤 (4) R14·R13 정정 재변환+풀사이즈 재판정 (5) 클린판정은 풀사이즈 개별Read 후에만.
+- **★검증방법 교정(박제)**: 몽타주 360px = 레이아웃깨짐만 식별가능, 텍스트가독성/대비/잘림은 식별불가. **다크패널·긴텍스트 포함 슬라이드는 풀사이즈(≥1100px) 개별 Read 의무**. 8테마 전수 풀사이즈가 이상적이나 최소 다크패널 슬라이드는 테마별 풀사이즈.

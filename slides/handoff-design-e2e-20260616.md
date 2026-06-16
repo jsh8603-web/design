@@ -2,7 +2,7 @@
 title: 디자인 e2e 검증 핸드오프 — 테스트 자산 75장 + 워크플로우
 tags: [handoff, design-system, e2e, btn-design, test-asset]
 date: 2026-06-16
-next-action: "★R15 착수(마지막 라운드, 클린 시 2연속=루프종료) — plan-design-e2e.md §0.6 R15 소재 5장(payroll-guide/36·payroll-v2/23·samsung/08·payroll-guide/05·payroll-v2/35) Read 복잡도 검증(목차/단순/일러스트면 후보풀서 교체) → modern 베이스 생성(학습 15개 §6 선적용) → sed 8테마+editorial serif → convert-native.mjs PF변환(⛔--skip-preflight 금지) → COM 의도보존+K규칙+정탐회귀0. ★R14 완료·클린(첫시도 ERROR0+FAILED0, 학습⑮ 선적용 효과). 클린카운터=1(R13 클린아님→0, R14 클린→1). R15도 클린이면 2연속=루프종료. R14 소재=PG/29·PV2/22·SS/15·PG/33·PG/24"
+next-action: "★R14 결함수정 우선(R15 보류) — 풀사이즈 재검증서 결함발견, 클린철회·카운터0. (1) R13 다크패널 긴텍스트 풀사이즈 재검증(slide-02 인사이트카드·slide-05 imp-note·slide-01 fm-note=같은결함 가능) (2) 변환기 디버그→원인확정: html2pptx.cjs:532-534 포함체크가 긴텍스트 패널폭초과측정 시 parentShape=null→clamp(line544) skip→우측잘림. g-d의 parentShape검출여부+el.position.w 디버그로그 1회 (3) 수정=사용자우선순위 2순위 엔진수정(포함체크 x축겹침/clamp완화) 우선·정탐회귀0(GT17덱) 필수 / 안되면 1순위 슬라이드 텍스트 패널폭맞춤 (4) R14·R13 재변환+풀사이즈 재판정 (5) ★클린판정은 다크패널 슬라이드 풀사이즈 개별Read 후에만. 결함: R14 slide-02 우 가이드패널 .g-d/.g-note 우측경계 잘림(8테마공통, modern/exec 풀사이즈 확인). 검증오류=360px몽타주로 놓침. 통과 후 R15(PG/36·PV2/23·SS/08·PG/05·PV2/35). 클린카운터=0"
 ---
 
 # 디자인 e2e 검증 핸드오프 (2026-06-16)

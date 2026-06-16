@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  .serif-head, h1, h2, h3, h4, h5, .ctitle, .kicker { font-family:'Newsreader','Times New Roman',serif; }
+$SERIF
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:50px 72px 46px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:13px; margin-bottom:22px; }
+  .kicker { font-size:15px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:27px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:6px; }
+  .list { flex:1; display:flex; flex-direction:column; gap:11px; }
+  /* 체크 아이템: 좌측 주황 보더(accent) + 연한 배경(테마토큰, 학습5) */
+  .item { display:flex; align-items:center; gap:15px; padding:13px 20px; background:var(--gray-4); border-radius:6px; border-left:5px solid var(--accent); }
+  /* step 원: 색배경칩 → div 직속 텍스트(학습8) */
+  .circ { width:32px; height:32px; border-radius:50%; background:var(--accent); color:#FFFFFF; font-size:15px; font-weight:800;
+          display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  /* 월 배지: 짙은 배경칩 → div 직속 텍스트(학습8), nowrap */
+  .mon { background:var(--surface-inverse); color:var(--surface-inverse-fg); border-radius:4px; padding:4px 12px;
+         font-size:14px; font-weight:700; white-space:nowrap; flex-shrink:0; }
+  .ctext { flex:1; min-width:0; }
+  .ctext p { font-size:17px; font-weight:500; color:var(--gray-1); line-height:1.35; }
+  .ctext .h { color:var(--heading, var(--primary)); font-weight:800; }
+  .chk { width:24px; height:24px; border:2px solid var(--gray-3); border-radius:5px; flex-shrink:0; }
+  /* 하단 다크 타임라인: surface-inverse + fg(학습2). 노드 칩=div 직속(학습8) */
+  .bot { background:var(--surface-inverse); border-radius:7px; padding:13px 22px; display:flex; align-items:center; gap:14px; margin-top:18px; }
+  .tlab { font-size:15px; font-weight:800; color:var(--accent); white-space:nowrap; flex-shrink:0; }
+  .tsep { width:1px; height:22px; background:var(--gray-3); flex-shrink:0; }
+  .tnode { border:1px solid var(--accent); border-radius:5px; padding:5px 14px; font-size:15px; font-weight:700;
+           color:var(--surface-inverse-fg); white-space:nowrap; flex-shrink:0; }
+  .tarr { font-size:16px; color:var(--gray-3); flex-shrink:0; }
+  .tnote { font-size:14px; color:var(--gray-2); white-space:nowrap; }
+</style></head>
+<body data-layout="checklist_timeline">
+  <div class="head">
+    <div class="kicker">Year-End Tax Checklist</div>
+    <h1>11~3월 연말정산 대응 — 11월 gap 분석부터 3월 환급 상계까지 5단계</h1>
+  </div>
+
+  <div class="list">
+    <div class="item">
+      <div class="circ">1</div>
+      <div class="mon">11월</div>
+      <div class="ctext"><p>기납부세액 누계 vs 예상 결정세액 <span class="h">gap 분석</span></p></div>
+      <div class="chk"></div>
+    </div>
+    <div class="item">
+      <div class="circ">2</div>
+      <div class="mon">12월</div>
+      <div class="ctext"><p>환급·추징 예상 총액 → <span class="h">2월 인건비 예비비 편성</span></p></div>
+      <div class="chk"></div>
+    </div>
+    <div class="item">
+      <div class="circ">3</div>
+      <div class="mon">1월</div>
+      <div class="ctext"><p>소득·세액공제 증빙 수집 완료율 모니터링</p></div>
+      <div class="chk"></div>
+    </div>
+    <div class="item">
+      <div class="circ">4</div>
+      <div class="mon">2월</div>
+      <div class="ctext"><p>급여 반영 후 <span class="h">실제 vs 예상 차이 분석</span></p></div>
+      <div class="chk"></div>
+    </div>
+    <div class="item">
+      <div class="circ">5</div>
+      <div class="mon">3월</div>
+      <div class="ctext"><p>원천세 신고 시 환급분 상계 → <span class="h">현금 회수 확인</span></p></div>
+      <div class="chk"></div>
+    </div>
+  </div>
+
+  <div class="bot">
+    <p class="tlab">현금 타임라인</p>
+    <div class="tsep"></div>
+    <div class="tnode">2월 환급 지급</div>
+    <p class="tarr">&#8594;</p>
+    <div class="tnode">3월 원천세 상계</div>
+    <p class="tarr">&#8594;</p>
+    <p class="tnote">1~2개월 시차 — 일시적 현금 유출 후 회수</p>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

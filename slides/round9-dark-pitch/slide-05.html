@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:50px 72px 46px 72px; display:flex; flex-direction:column; }
+  .head { display:flex; justify-content:space-between; align-items:flex-start; gap:36px; border-bottom:3px solid var(--accent);
+          padding-bottom:16px; margin-bottom:24px; }
+  .htext { width:720px; flex-shrink:0; }
+  .kicker { font-size:15px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:27px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:6px; }
+  /* hero KPI: 숫자가 시각 주인공(48pt+, accent) */
+  .hero { width:260px; text-align:right; flex-shrink:0; }
+  .hnum { font-size:54px; font-weight:800; color:var(--accent); line-height:1; letter-spacing:-0.02em; }
+  .hlab { font-size:14px; color:var(--gray-2); margin-top:5px; }
+  /* 계산 박스: 연한 톤 → 테마토큰. 2컬럼, 긴 텍스트 nowrap(div+p, 학습3) */
+  .calc { background:var(--gray-4); border-radius:7px; padding:15px 22px; display:flex; gap:40px; margin-bottom:24px; }
+  .citem { min-width:0; }
+  .citem p { font-size:15px; color:var(--gray-1); line-height:1.65; white-space:nowrap; }
+  .citem .h { color:var(--accent); font-weight:800; }
+  .tlabel { font-size:16px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:11px; }
+  /* 시뮬 표: 다크헤더 + 주황 하이라이트 컬럼(accent). 단일 p 셀 */
+  .tbl { display:grid; grid-template-columns:1fr 130px 150px 110px 180px; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:12px 16px; display:flex; align-items:center; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.r p { width:100%; text-align:right; }
+  .td { padding:13px 16px; display:flex; align-items:center; border-top:1px solid var(--gray-3); }
+  .td p { font-size:16px; color:var(--gray-1); }
+  .td.alt { background:var(--gray-4); }
+  .td.name p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.c p { width:100%; text-align:right; }
+  .td.cost p { width:100%; text-align:right; font-weight:800; color:var(--accent); }
+  .src { font-size:13px; color:var(--gray-2); margin-top:16px; text-align:right; }
+</style></head>
+<body data-layout="hero_kpi_table">
+  <div class="head">
+    <div class="htext">
+      <div class="kicker">Ordinary Wage Ruling</div>
+      <h1>상여금 100% 기업은 판결로 연간 가산수당 비용이 약 11% 증가 — 직원 100명 기준 연 4.8억 추가</h1>
+    </div>
+    <div class="hero">
+      <p class="hnum">+8.3%</p>
+      <p class="hlab">통상임금 시급 인상률</p>
+    </div>
+  </div>
+
+  <div class="calc">
+    <div class="citem">
+      <p>변경 전: 3,000,000원 → 시급 14,354원</p>
+      <p>상여 월환산: 250,000원</p>
+    </div>
+    <div class="citem">
+      <p>변경 후: 3,250,000원 → 시급 15,550원</p>
+      <p>가산수당 차액: <span class="h">+35,880원/월 (+8.3%)</span></p>
+    </div>
+  </div>
+
+  <p class="tlabel">시뮬레이션</p>
+  <div class="tbl">
+    <div class="th"><p>시나리오</p></div>
+    <div class="th r"><p>직원 수</p></div>
+    <div class="th r"><p>연장+야간</p></div>
+    <div class="th r"><p>상여율</p></div>
+    <div class="th r"><p>추가 비용/년</p></div>
+
+    <div class="td name alt"><p>중소 물류센터</p></div>
+    <div class="td c alt"><p>50명</p></div>
+    <div class="td c alt"><p>인당 300h</p></div>
+    <div class="td c alt"><p>50%</p></div>
+    <div class="td cost alt"><p>약 2,400만</p></div>
+
+    <div class="td name"><p>중견 택배사</p></div>
+    <div class="td c"><p>200명</p></div>
+    <div class="td c"><p>인당 250h</p></div>
+    <div class="td c"><p>50%</p></div>
+    <div class="td cost"><p>약 8,000만</p></div>
+
+    <div class="td name alt"><p>대형 물류기업</p></div>
+    <div class="td c alt"><p>1,000명</p></div>
+    <div class="td c alt"><p>인당 200h</p></div>
+    <div class="td c alt"><p>100%</p></div>
+    <div class="td cost alt"><p>약 4.8억</p></div>
+  </div>
+
+  <p class="src">출처: 대법원 2024.12.19. 선고 2020다247190</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

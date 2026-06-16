@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:7px; }
+  .cols { display:flex; gap:30px; flex:1; }
+  .col { flex:1; display:flex; flex-direction:column; }
+  /* 컬럼 헤더: 짙은 배경(surface-inverse) + 좌측 강조 점 */
+  .chd { background:var(--surface-inverse); border-radius:6px 6px 0 0; padding:11px 18px; display:flex; align-items:center; gap:11px; }
+  .chd .dot { width:18px; height:18px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+  .chd p { font-size:17px; font-weight:800; color:var(--surface-inverse-fg); }
+  .steps { display:flex; flex-direction:column; gap:13px; flex:1; padding-top:14px; }
+  .step { display:flex; gap:13px; align-items:flex-start; }
+  /* step 번호 원: 색배경칩 → div 직속 텍스트(학습8) */
+  .snum { width:34px; height:34px; border-radius:50%; background:var(--accent); color:#FFFFFF; font-size:16px; font-weight:800;
+          display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .sbody { flex:1; min-width:0; background:var(--gray-4); border-radius:6px; padding:11px 15px; }
+  .sdate { font-size:14px; font-weight:800; color:var(--accent); margin-bottom:3px; }
+  .stext { font-size:16px; font-weight:600; color:var(--gray-1); line-height:1.4; }
+  /* 공식 박스: 연한 톤 → 테마토큰(학습5). 단일 p */
+  .sform { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:4px; padding:5px 9px; margin-top:6px; }
+  .sform p { font-size:14px; font-weight:600; color:var(--gray-2); }
+  /* 하단 다크 박스: surface-inverse + fg(학습2) */
+  .bot { background:var(--surface-inverse); border-radius:7px; padding:14px 22px; display:flex; align-items:center; gap:16px; margin-top:18px; }
+  .blab { font-size:15px; font-weight:800; color:var(--accent); white-space:nowrap; flex-shrink:0; }
+  .bsep { width:1px; height:22px; background:var(--gray-3); flex-shrink:0; }
+  .btext { font-size:16px; font-weight:600; color:var(--surface-inverse-fg); line-height:1.4; }
+  .btext .h { color:var(--accent); font-weight:800; }
+</style></head>
+<body data-layout="two_col_steps">
+  <div class="head">
+    <div class="kicker">Reconciliation</div>
+    <h1>건강보험 보수총액 정산 — 전년 실제 vs 산정 보수 차이를 4월 급여에 반영한다</h1>
+  </div>
+
+  <div class="cols">
+    <div class="col">
+      <div class="chd"><div class="dot"></div><p>건강보험 정산</p></div>
+      <div class="steps">
+        <div class="step">
+          <div class="snum">1</div>
+          <div class="sbody">
+            <p class="sdate">3/10 마감</p>
+            <p class="stext">전년 실제 보수 합계 신고</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">2</div>
+          <div class="sbody">
+            <p class="sdate">정산액 산정</p>
+            <p class="stext">차액 정산료 산정</p>
+            <div class="sform"><p>(실보수 − 산정×12) × 7.09% × 1/2</p></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">3</div>
+          <div class="sbody">
+            <p class="sdate">4월~ 급여 반영</p>
+            <p class="stext">추가분 10회 분할(7~4월), 환급은 당월 차감</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="chd"><div class="dot"></div><p>고용·산재 정산</p></div>
+      <div class="steps">
+        <div class="step">
+          <div class="snum">1</div>
+          <div class="sbody">
+            <p class="sdate">3/15 마감</p>
+            <p class="stext">확정료 = 실보수총액 × 요율</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">2</div>
+          <div class="sbody">
+            <p class="sdate">비교·정산</p>
+            <p class="stext">확정 &gt; 개산 → 추가납부 / 확정 &lt; 개산 → 환급</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">3</div>
+          <div class="sbody">
+            <p class="sdate">당해 개산료</p>
+            <p class="stext">예상보수총액 × 요율 → 분기납부</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bot">
+    <p class="blab">계산 예시</p>
+    <div class="bsep"></div>
+    <p class="btext">월 300만 산정 → 실제 3,960만 → 차이 360만 → 추가 <span class="h">150,720원</span></p>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

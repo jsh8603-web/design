@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { margin-bottom:20px; }
+  .kicker { font-size:15px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:29px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:6px; }
+  h1 .em { color:var(--accent); }
+  /* 누적비용표: 행 많음(학습7) → padding 축소. 단일 p 셀(학습4) */
+  .tbl { display:grid; grid-template-columns:180px 1fr 130px 130px 150px; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:10px 14px; display:flex; align-items:center; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.r p { width:100%; text-align:right; }
+  .td { padding:9px 14px; display:flex; align-items:center; border-top:1px solid var(--gray-3); }
+  .td p { font-size:15px; color:var(--gray-1); line-height:1.3; }
+  .td.alt { background:var(--gray-4); }
+  .td.name p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.rate p { width:100%; text-align:right; font-weight:700; color:var(--heading, var(--primary)); }
+  /* 누적 컬럼 = accent 강조(원안 주황) */
+  .td.cumul p { width:100%; text-align:right; font-weight:800; color:var(--accent); }
+  /* highlight 행(연한 강조) → 테마토큰 */
+  .td.hl { background:var(--gray-4); }
+  .td.hl p { font-weight:700; }
+  /* subtotal 행 = 다크(surface-inverse) + fg(학습2) */
+  .td.sub { background:var(--surface-inverse); border-top:none; }
+  .td.sub p { color:var(--surface-inverse-fg); font-weight:700; }
+  .td.sub.rate p, .td.sub.cumul p { color:var(--accent); }
+  .bot { display:flex; align-items:center; gap:16px; margin-top:14px; }
+  .note { flex:1; background:var(--gray-4); border-radius:6px; padding:11px 18px; }
+  .note p { font-size:14px; color:var(--gray-2); line-height:1.5; }
+  .note .h { color:var(--heading, var(--primary)); font-weight:800; }
+  .src { font-size:13px; color:var(--gray-2); white-space:nowrap; }
+</style></head>
+<body data-layout="cumulative_table">
+  <div class="head">
+    <div class="kicker">Total Labor Cost</div>
+    <h1>기본급 100 기준 상용직 총 인건비는 약 <span class="em">145</span></h1>
+  </div>
+
+  <div class="tbl">
+    <div class="th"><p>항목</p></div>
+    <div class="th"><p>계산 근거</p></div>
+    <div class="th r"><p>비율</p></div>
+    <div class="th r"><p>누적</p></div>
+    <div class="th"><p>비고</p></div>
+
+    <div class="td name alt"><p>기본급</p></div>
+    <div class="td alt"><p>기준액</p></div>
+    <div class="td rate alt"><p>100.0%</p></div>
+    <div class="td cumul alt"><p>100.0</p></div>
+    <div class="td alt"><p>기준</p></div>
+
+    <div class="td name"><p>주휴수당</p></div>
+    <div class="td"><p>기본급 × 1/5</p></div>
+    <div class="td rate"><p>+20.0%</p></div>
+    <div class="td cumul"><p>120.0</p></div>
+    <div class="td"><p>법정</p></div>
+
+    <div class="td name alt"><p>국민연금</p></div>
+    <div class="td alt"><p>기준소득 × 4.5%</p></div>
+    <div class="td rate alt"><p>+4.5%</p></div>
+    <div class="td cumul alt"><p>124.5</p></div>
+    <div class="td alt"><p>회사분</p></div>
+
+    <div class="td name"><p>건강보험</p></div>
+    <div class="td"><p>보수월액 × 3.545%</p></div>
+    <div class="td rate"><p>+3.5%</p></div>
+    <div class="td cumul"><p>128.0</p></div>
+    <div class="td"><p>회사분</p></div>
+
+    <div class="td name alt"><p>장기요양</p></div>
+    <div class="td alt"><p>건강보험 × 12.81%</p></div>
+    <div class="td rate alt"><p>+0.5%</p></div>
+    <div class="td cumul alt"><p>128.5</p></div>
+    <div class="td alt"><p>회사분</p></div>
+
+    <div class="td name"><p>고용보험</p></div>
+    <div class="td"><p>보수월액 × 0.9%</p></div>
+    <div class="td rate"><p>+0.9%</p></div>
+    <div class="td cumul"><p>129.4</p></div>
+    <div class="td"><p>회사분</p></div>
+
+    <div class="td name alt"><p>산재(운수)</p></div>
+    <div class="td alt"><p>보수월액 × 1.5%</p></div>
+    <div class="td rate alt"><p>+1.5%</p></div>
+    <div class="td cumul alt"><p>130.9</p></div>
+    <div class="td alt"><p>업종별</p></div>
+
+    <div class="td name"><p>퇴직충당금</p></div>
+    <div class="td"><p>총임금 × 1/12</p></div>
+    <div class="td rate"><p>+8.3%</p></div>
+    <div class="td cumul"><p>139.2</p></div>
+    <div class="td"><p>1년+</p></div>
+
+    <div class="td name hl"><p>연차수당</p></div>
+    <div class="td hl"><p>일급 × 15일 ÷ 12</p></div>
+    <div class="td rate hl"><p>+5.8%</p></div>
+    <div class="td cumul hl"><p>145.0</p></div>
+    <div class="td hl"><p>만근</p></div>
+
+    <div class="td name sub"><p>상여(50%)</p></div>
+    <div class="td sub"><p>기본급 × 50% ÷ 12</p></div>
+    <div class="td rate sub"><p>+4.2%</p></div>
+    <div class="td cumul sub"><p>149.2</p></div>
+    <div class="td sub"><p>옵션</p></div>
+  </div>
+
+  <div class="bot">
+    <div class="note"><p>물류업: 상여 제외 <span class="h">×1.45</span> / 50% <span class="h">×1.49</span> / 100% <span class="h">×1.53</span></p></div>
+    <p class="src">출처: 근로기준법, 퇴직급여보장법</p>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { margin-bottom:26px; }
+  /* 배지: 짙은 배경 색칩 → div 직속 텍스트(학습8), nowrap */
+  .badge { display:inline-block; width:104px; text-align:center; background:var(--surface-inverse); color:var(--surface-inverse-fg);
+           padding:4px 0; border-radius:3px; font-size:13px; font-weight:700; letter-spacing:0.1em; white-space:nowrap; margin-bottom:12px; }
+  h1 { font-size:30px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.3; }
+  h1 .em { color:var(--accent); }
+  .layout { display:flex; gap:44px; flex:1; align-items:center; }
+  .left { flex:0 0 460px; display:flex; align-items:center; justify-content:center; }
+  .right { flex:1; display:flex; flex-direction:column; gap:16px; }
+
+  /* 순환 플라이휠 다이어그램(원안 절대배치 보존). 노드=짙은 칩 div 직속텍스트(학습8) */
+  .cycle { position:relative; width:440px; height:330px; }
+  .node { position:absolute; width:108px; text-align:center; padding:11px 0; border-radius:7px;
+          background:var(--surface-inverse); color:var(--surface-inverse-fg); font-size:15px; font-weight:700; white-space:nowrap; }
+  .node.flow { border:2px solid var(--accent); }
+  .arr { position:absolute; font-size:24px; color:var(--gray-3); font-weight:700; }
+  .ctr { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:150px; text-align:center; }
+  .ctr .ct { font-size:18px; font-weight:800; color:var(--accent); }
+  .ctr .cs { font-size:12px; color:var(--gray-2); margin-top:2px; }
+
+  /* 테크 카드: 좌측 3색 보더(데이터 의미색 고정hex, 보더=텍스트아님 안전). 본문=단일 p */
+  .card { padding:15px 20px; background:var(--gray-4); border-radius:8px; border-left:5px solid #C5394A; }
+  .card.b1 { border-left-color:#E87722; }
+  .card.b2 { border-left-color:#1428A0; }
+  .card .ct { font-size:17px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:4px; }
+  .card .cd { font-size:14px; color:var(--gray-2); line-height:1.45; }
+  .src { font-size:13px; color:var(--gray-2); margin-top:18px; }
+</style></head>
+<body data-layout="diagram_flywheel">
+  <div class="head">
+    <div class="badge">STRATEGY</div>
+    <h1>AI가 만드는 <span class="em">비용 구조적 우위</span> — 데이터·인프라·문화의 복합체가 경쟁 진입을 차단한다</h1>
+  </div>
+
+  <div class="layout">
+    <div class="left">
+      <div class="cycle">
+        <div class="node" style="top:0; left:50%; transform:translateX(-50%);">주문 데이터</div>
+        <div class="arr" style="top:48px; left:316px;">&#8594;</div>
+        <div class="node flow" style="top:118px; right:0;">수요 예측</div>
+        <div class="arr" style="top:188px; right:34px;">&#8595;</div>
+        <div class="node" style="bottom:14px; right:0;">사전 배치</div>
+        <div class="arr" style="bottom:32px; left:206px;">&#8592;</div>
+        <div class="node flow" style="bottom:14px; left:0;">빠른 배송</div>
+        <div class="arr" style="top:188px; left:34px;">&#8593;</div>
+        <div class="node" style="top:118px; left:0;">재구매</div>
+        <div class="arr" style="top:64px; left:104px;">&#8593;</div>
+        <div class="ctr">
+          <p class="ct">자기 강화 루프</p>
+          <p class="cs">Data Flywheel</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="card">
+        <p class="ct">수요 예측</p>
+        <p class="cd">지역·시간대별 앙상블 모델로 재고를 사전배치 — 배송 시간 단축과 재고 효율을 동시에 달성</p>
+      </div>
+      <div class="card b1">
+        <p class="ct">로봇 소팅</p>
+        <p class="cd">창고 자동화로 인건비 절감 및 피킹 오류 최소화 — 물류센터당 처리량 30%+ 향상</p>
+      </div>
+      <div class="card b2">
+        <p class="ct">경로 최적화</p>
+        <p class="cd">실시간 최적 경로 산정으로 연료비·시간 절감 — 라스트마일 비용 구조 개선의 핵심</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="src">출처: Coupang IR 2024, 연간 보고서</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

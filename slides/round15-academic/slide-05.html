@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 58px 40px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:20px; line-height:1.4; }
+
+  .gt { display:grid; grid-template-columns:0.5fr 1.7fr 1.1fr 1.1fr; border:1px solid var(--gray-3); border-radius:9px; overflow:hidden; align-content:start; }
+  .chd { background:var(--surface-inverse); padding:12px 16px; }
+  .chd p { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:12px 16px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:13px; color:var(--gray-1); line-height:1.35; }
+  .calt { background:var(--gray-4); }
+  .cmonth p { font-size:14px; font-weight:800; color:var(--accent); }
+  .ckey p { font-weight:700; color:var(--heading, var(--primary)); }
+
+  .foot { display:flex; gap:14px; margin-top:16px; }
+  .fcard { flex:1; background:var(--surface-inverse); border-radius:9px; padding:13px 16px; }
+  .fcard-t { font-size:11.5px; font-weight:800; color:#FF6F00; margin-bottom:4px; }
+  .fcard-d { font-size:12px; color:var(--surface-inverse-fg); opacity:0.85; line-height:1.4; }
+  .source { font-size:11px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="halfyear_schedule_table">
+  <h1>7~12월 <span class="em">보험정산·연차촉진·최저임금 일정</span>이 다음 연도 인건비 예산을 결정한다</h1>
+  <p class="sub">하반기는 정산·충당 이벤트가 집중된다. 8월 최저임금 고시와 12월 계리 회계반영이 예산의 두 축이므로 월별 캘린더 기반 관리가 필수다.</p>
+
+  <div class="gt">
+    <div class="chd"><p>월</p></div>
+    <div class="chd"><p>주요 이벤트</p></div>
+    <div class="chd"><p>비용 영향</p></div>
+    <div class="chd"><p>FP&A 반영</p></div>
+
+    <div class="c cmonth"><p>7월</p></div>
+    <div class="c"><p>건보 보수월액 / 건설 연금합산</p></div>
+    <div class="c"><p>기준 변경</p></div>
+    <div class="c"><p>기준선 재설정</p></div>
+
+    <div class="c cmonth calt"><p>8월</p></div>
+    <div class="c calt"><p>최저임금 고시 / 연차촉진 1단계</p></div>
+    <div class="c ckey calt"><p>인상 + 충당금 변동</p></div>
+    <div class="c calt"><p>예산초안 + 충당금</p></div>
+
+    <div class="c cmonth"><p>9월</p></div>
+    <div class="c"><p>4대보험 요율 변경 확인</p></div>
+    <div class="c"><p>요율 조정</p></div>
+    <div class="c"><p>조기 반영</p></div>
+
+    <div class="c cmonth calt"><p>10월</p></div>
+    <div class="c calt"><p>연차촉진 2단계 / 계리 데이터 준비</p></div>
+    <div class="c calt"><p>수당 소멸 + DBO</p></div>
+    <div class="c calt"><p>충당금 + 명단 확정</p></div>
+
+    <div class="c cmonth"><p>11월</p></div>
+    <div class="c"><p>계리 의뢰 → 수령</p></div>
+    <div class="c"><p>가정 협의</p></div>
+    <div class="c"><p>가정 검토</p></div>
+
+    <div class="c cmonth calt"><p>12월</p></div>
+    <div class="c calt"><p>계리 회계반영 / 연말정산 / 퇴직정산</p></div>
+    <div class="c ckey calt"><p>P&L + OCI + 확정</p></div>
+    <div class="c calt"><p>충당부채 정산</p></div>
+  </div>
+
+  <div class="foot">
+    <div class="fcard"><p class="fcard-t">핵심 분기점</p><p class="fcard-d">8월 최저임금 고시 = 다음 연도 기본급 추계의 출발점</p></div>
+    <div class="fcard"><p class="fcard-t">회계 확정</p><p class="fcard-d">12월 계리 반영으로 DBO·충당부채가 재무제표에 확정</p></div>
+  </div>
+
+  <p class="source">출처: 최저임금법 · 건강보험법 · 근로기준법 · K-IFRS IAS 19</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

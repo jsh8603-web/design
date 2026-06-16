@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 58px 40px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+
+  .formula { background:var(--surface-inverse); border-radius:10px; padding:16px 22px; margin-bottom:18px; }
+  .fm-1 { font-size:17px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.4; margin-bottom:5px; }
+  .fm-1 .hl { color:#FF6F00; }
+  .fm-2 { font-size:13px; color:var(--surface-inverse-fg); opacity:0.78; }
+  .fm-2 .hl { color:#FF6F00; font-weight:700; opacity:1; }
+
+  .gt { display:grid; grid-template-columns:1fr 1.3fr 1.3fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; }
+  .chd { background:var(--surface-inverse); padding:11px 16px; }
+  .chd p { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:11px 16px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:13px; color:var(--gray-1); line-height:1.3; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .ckey p { color:var(--accent); font-weight:800; }
+  .cmut p { color:var(--gray-2); }
+  .source { font-size:11px; color:var(--gray-2); margin-top:auto; padding-top:12px; text-align:right; }
+</style></head>
+<body data-layout="severance_formula_table">
+  <h1>퇴직금은 '1일 평균임금 × 30일 × 재직연수'이며 <span class="em">상여·연차수당 산입</span>이 비용을 좌우한다</h1>
+  <p class="sub">1일 평균임금은 퇴직 전 3개월 임금총액 기준이며, 상여금·미사용 연차수당의 3/12 산입을 빠뜨리면 퇴직금이 과소 산정된다. FP&A는 충당부채 산정 시 이 항목을 반드시 포함한다.</p>
+
+  <div class="formula">
+    <p class="fm-1">퇴직금 = 1일 평균임금 <span class="hl">× 30일</span> × (재직일수 ÷ 365)</p>
+    <p class="fm-2">1일 평균임금 = 퇴직 전 <span class="hl">3개월 임금총액</span> ÷ 총일수</p>
+  </div>
+
+  <div class="gt">
+    <div class="chd"><p>항목</p></div>
+    <div class="chd"><p>산입 방법</p></div>
+    <div class="chd"><p>FP&A 비고</p></div>
+
+    <div class="c clb"><p>기본급 (3개월분)</p></div>
+    <div class="c"><p>전액 산입</p></div>
+    <div class="c"><p>재산 기준</p></div>
+
+    <div class="c clb calt"><p>직무·직책수당</p></div>
+    <div class="c calt"><p>전액 산입</p></div>
+    <div class="c calt"><p>정기 지급 시 모두 포함</p></div>
+
+    <div class="c clb"><p>상여금</p></div>
+    <div class="c ckey"><p>연간 상여금 × 3/12</p></div>
+    <div class="c ckey"><p>전 12개월 내 지급분 기준</p></div>
+
+    <div class="c clb calt"><p>연차수당 (미사용)</p></div>
+    <div class="c ckey calt"><p>전전년도 미사용 × 3/12</p></div>
+    <div class="c ckey calt"><p>충당부채 산정 시 필수 포함</p></div>
+
+    <div class="c clb"><p>연장·야간·휴일수당</p></div>
+    <div class="c"><p>전액 산입 (3개월 평균)</p></div>
+    <div class="c"><p>가산수당 많은 직군 규모 큼</p></div>
+
+    <div class="c clb calt"><p>당해 미사용 연차</p></div>
+    <div class="c cmut calt"><p>제외</p></div>
+    <div class="c cmut calt"><p>별도 수당 지급 (근기법 제60조)</p></div>
+  </div>
+
+  <p class="source">출처: 근로자퇴직급여보장법 제8조 · 근로기준법 제60조</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

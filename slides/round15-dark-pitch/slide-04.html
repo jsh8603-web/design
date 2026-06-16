@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 58px 40px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:20px; line-height:1.4; }
+
+  .gt { display:grid; grid-template-columns:0.7fr 1.25fr 1fr 1fr 1.05fr 1.1fr; border:1px solid var(--gray-3); border-radius:9px; overflow:hidden; align-content:start; }
+  .chd { background:var(--surface-inverse); padding:12px 12px; display:flex; align-items:center; justify-content:center; }
+  .chd p { font-size:12.5px; font-weight:700; color:var(--surface-inverse-fg); text-align:center; }
+  .c { padding:12px 12px; border-top:1px solid var(--gray-3); display:flex; flex-direction:column; justify-content:center; gap:5px; }
+  .c p { font-size:12.5px; color:var(--gray-1); line-height:1.35; }
+  .cmut p { font-size:11.5px; color:var(--gray-2); }
+
+  /* row label cells — 테마안전 색 */
+  .rl { justify-content:center; align-items:center; }
+  .rl p { font-size:13px; font-weight:800; text-align:center; }
+  .rl-day { background:var(--accent); }
+  .rl-day p { color:#FFFFFF; }
+  .rl-reg { background:var(--surface-inverse); }
+  .rl-reg p { color:var(--surface-inverse-fg); }
+  .rl-note { background:var(--gray-3); }
+  .rl-note p { color:var(--gray-1); }
+
+  .badge { display:inline-flex; align-self:flex-start; background:var(--accent); border-radius:4px; padding:2px 7px; }
+  .badge p { font-size:11px; font-weight:700; color:#FFFFFF; white-space:nowrap; }
+  /* 긴 값은 배지(nowrap) 대신 색강조 wrap 텍스트 — 좁은 셀 오버플로 회피 */
+  .c p.hl { font-size:11.5px; font-weight:700; color:var(--accent); line-height:1.3; }
+  .rowtint-day { background:var(--gray-4); }
+</style></head>
+<body data-layout="daily_regular_compare_table">
+  <h1>소득세·4대보험·주휴·퇴직·연차충당 <span class="em">5개 항목 모두 일용직·상용직 처우가 상이</span></h1>
+  <p class="sub">일용직은 분리과세·조건부 보험으로 부담이 가볍지만, 상용직은 4대보험 당연가입에 퇴직·연차충당금까지 발생한다. FP&A는 고용형태별 인건비 계수를 분리 적용해야 한다.</p>
+
+  <div class="gt">
+    <div class="chd"><p>구분</p></div>
+    <div class="chd"><p>소득세</p></div>
+    <div class="chd"><p>4대보험</p></div>
+    <div class="chd"><p>주휴수당</p></div>
+    <div class="chd"><p>퇴직충당금</p></div>
+    <div class="chd"><p>연차충당금</p></div>
+
+    <div class="c rl rl-day"><p>일용직</p></div>
+    <div class="c rowtint-day"><p>분리과세</p><div class="badge"><p>실효 2.7%</p></div></div>
+    <div class="c rowtint-day"><p>조건부 (1개월·60h)</p></div>
+    <div class="c rowtint-day cmut"><p>미발생</p></div>
+    <div class="c rowtint-day cmut"><p>미발생</p></div>
+    <div class="c rowtint-day cmut"><p>미발생</p></div>
+
+    <div class="c rl rl-reg"><p>상용직</p></div>
+    <div class="c"><p>원천징수</p><p class="hl">간이세액표 + 연말정산</p></div>
+    <div class="c"><p>당연 가입</p></div>
+    <div class="c"><p>발생</p><div class="badge"><p>+20%</p></div></div>
+    <div class="c"><p>발생</p><div class="badge"><p>급여 × 1/12</p></div></div>
+    <div class="c"><p>발생</p><p class="hl">연차 × 통상임금</p></div>
+
+    <div class="c rl rl-note"><p>비고</p></div>
+    <div class="c cmut"><p>3개월 기준 구분</p></div>
+    <div class="c cmut"><p>1개월 미만 시 제외</p></div>
+    <div class="c cmut"><p>주 15h + 개근 시</p></div>
+    <div class="c cmut"><p>1년+ 의무 적립</p></div>
+    <div class="c cmut"><p>1년 후 15일 발생</p></div>
+  </div>
+
+  <p style="font-size:11px; color:var(--gray-2); margin-top:auto; padding-top:12px; text-align:right;">출처: 근로기준법 · 소득세법 · 근로자퇴직급여보장법</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

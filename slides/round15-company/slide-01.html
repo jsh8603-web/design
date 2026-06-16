@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="company"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 58px 40px 58px; display:flex; flex-direction:column; }
+  .kicker { display:inline-block; background:var(--surface-inverse); border-radius:4px; padding:4px 11px; margin-bottom:10px; align-self:flex-start; }
+  .kicker p { font-size:11px; font-weight:800; color:#FF6F00; letter-spacing:0.06em; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:20px; line-height:1.4; }
+
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:13px 20px; flex:1; min-height:0; }
+  .item { display:flex; align-items:flex-start; gap:13px; background:var(--gray-4); border-radius:9px; padding:14px 16px; }
+  .badge { width:26px; height:26px; border-radius:7px; background:var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .badge p { font-size:13px; font-weight:800; color:#FFFFFF; line-height:1; }
+  .it-body { min-width:0; }
+  .it-t { font-size:14px; font-weight:700; color:var(--heading, var(--primary)); line-height:1.3; margin-bottom:3px; }
+  .it-d { font-size:12px; color:var(--gray-2); line-height:1.4; }
+
+  .flow { display:flex; align-items:center; gap:0; margin-top:16px; background:var(--surface-inverse); border-radius:10px; padding:14px 20px; }
+  .flow-lb { display:flex; align-items:center; border-left:3px solid #FF6F00; padding-left:12px; margin-right:18px; flex-shrink:0; }
+  .flow-lb p { font-size:12.5px; font-weight:800; color:#FF6F00; white-space:nowrap; }
+  .flow-step { flex:1; display:flex; align-items:center; justify-content:center; gap:8px; }
+  .fdot { width:9px; height:9px; border-radius:50%; background:#FF6F00; flex-shrink:0; }
+  .flow-step p { font-size:12.5px; font-weight:600; color:var(--surface-inverse-fg); white-space:nowrap; }
+  .farrow { font-size:14px; font-weight:800; color:#FF6F00; padding:0 6px; flex-shrink:0; }
+</style></head>
+<body data-layout="budget_checklist_6">
+  <div class="kicker"><p>BUDGET CHECKLIST</p></div>
+  <h1>11~12월 인건비 예산은 <span class="em">6개 항목 체크리스트</span>로 누락 없이 마감한다</h1>
+  <p class="sub">최저임금 고시·연차 충당·DB 부채·보험요율·통상임금 판결·HC 시뮬레이션이 다음 연도 예산의 정확도를 좌우한다. 10~12월 계리 일정과 맞물려 순차 점검한다.</p>
+
+  <div class="grid">
+    <div class="item">
+      <div class="badge"><p>1</p></div>
+      <div class="it-body">
+        <div class="it-t">최저임금 인상분 반영</div>
+        <div class="it-d">10,030원 고시 → 연쇄 인상액 산출, 기본급 추계</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="badge"><p>2</p></div>
+      <div class="it-body">
+        <div class="it-t">연차일수 → 충당금 재산정</div>
+        <div class="it-d">근속 구간별 재확인, 미사용 증가분 충당부채 반영</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="badge"><p>3</p></div>
+      <div class="it-body">
+        <div class="it-t">DB 임금인상 → 부채 추정</div>
+        <div class="it-d">DBO 민감도 분석 +0.5%p, 계리법인 의뢰 일정 확정</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="badge"><p>4</p></div>
+      <div class="it-body">
+        <div class="it-t">보험요율 변경 → 예산 조정</div>
+        <div class="it-d">5대 보험 요율 고시 반영, 업종별 산재율 차등 적용</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="badge"><p>5</p></div>
+      <div class="it-body">
+        <div class="it-t">통상임금·상여 → 가산수당</div>
+        <div class="it-d">정기상여 포함 판결 기준 재판단, 연장·야간수당 재계산</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="badge"><p>6</p></div>
+      <div class="it-body">
+        <div class="it-t">HC 반영 → 시뮬레이션</div>
+        <div class="it-d">상용 ×1.45 / 일용 ×1.12 총 인건비 계수, 채용계획 결합</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="flow-lb"><p>계리보고서</p></div>
+    <div class="flow-step"><div class="fdot"></div><p>10월 데이터 준비</p></div>
+    <p class="farrow">→</p>
+    <div class="flow-step"><div class="fdot"></div><p>11월 계리 의뢰</p></div>
+    <p class="farrow">→</p>
+    <div class="flow-step"><div class="fdot"></div><p>12월 예산 반영</p></div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

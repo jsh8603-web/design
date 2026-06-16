@@ -32,3 +32,4 @@ __pycache__/
 tests/visual-regression/diff/
 tests/visual-regression/_selftest-out/
 tests/visual-regression/fixtures/
+slides/_render-check/

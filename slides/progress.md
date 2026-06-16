@@ -144,3 +144,30 @@
 - **진단(코드레벨)**: html2pptx.cjs:521-552 텍스트폭→부모패널 clamp 로직 존재(line544 adjustedW=parentRight-adjustedX). 단 line532-534 포함체크(텍스트우측 ≤ 패널우측+tol)를 **긴텍스트가 Chrome서 패널폭 초과측정 시 통과못함→parentShape=null→clamp skip→폭초과 잘림**. 가설 검증엔 변환 디버그로그 1회 필요(g-d의 parentShape 검출여부+el.position.w vs 패널폭).
 - **다음 의도(압축후 fresh)**: (1) ★R13 다크패널 긴텍스트 풀사이즈 재검증(slide-02 인사이트카드·slide-05 imp-note·slide-01 fm-note — 같은결함 가능) (2) 변환기 디버그→원인확정 (3) 수정: 사용자우선순위=2순위 엔진수정(포함체크를 x축 겹침/clamp 기준 완화) 우선, 단 정탐회귀0(GT17덱) 검증필수 / 안되면 1순위 슬라이드 텍스트 패널폭 맞춤 (4) R14·R13 정정 재변환+풀사이즈 재판정 (5) 클린판정은 풀사이즈 개별Read 후에만.
 - **★검증방법 교정(박제)**: 몽타주 360px = 레이아웃깨짐만 식별가능, 텍스트가독성/대비/잘림은 식별불가. **다크패널·긴텍스트 포함 슬라이드는 풀사이즈(≥1100px) 개별 Read 의무**. 8테마 전수 풀사이즈가 이상적이나 최소 다크패널 슬라이드는 테마별 풀사이즈.
+
+## 추가진단 — R14 slide-02 wrap (ckpt, 미해결·압축전)
+- 변환기 DBG_WRAP 로그: g-d "장기근속..." el.position={w:3.033",h:0.1257"(=1줄)}, parentShape 검출O+clamp작동O(adjW=3.189"=패널폭). **폭은 정상, 높이가 1줄**이 근본. → 텍스트박스 1줄높이에 폭 3.189"서 wrap된 2~3줄이 박스밖 잘림.
+- **유력 가설**: .guide(flex column)의 자식 .g-item(flex item)이 **min-width:auto** → 긴텍스트 min-content(1줄폭)가 stretch 이김 → .g-item overflow → .g-d 1줄. (짧은텍스트는 min-content<패널폭이라 정상)
+- ⚠️ **미스터리**: slide-02에 min-width:0 / white-space:normal / width:100% 추가해도 **el.position.h 픽셀단위까지 불변(0.125732421875)** = CSS 무반영. → convert-native.mjs가 측정 전 HTML 전처리(om-fit 제거 등)하며 내 CSS 무시 의심. **압축후 1순위 확인**: convert-native HTML 로딩/전처리 경로 + min-width:0 정말 무효인지 재검증.
+- **다음(압축후)**: (1) convert-native 전처리 확인→CSS 반영 여부 (2) 반영되면 .g-item min-width:0로 wrap 해결(엔진무수정·원안보존=사용자우선순위 최적) (3) CSS 무반영이면 엔진 p측정경로(html2pptx 1312/1362/1473 getBoundingClientRect) 추적 (4) R13 다크패널 풀사이즈 재검증 (5) 통과 후 R14·R13 재변환·재판정.
+
+## ✅ 해소 (ckpt-202606170010, 10×8 테스트) — 위 미스터리 규명
+- **진단 정정**: 위 "CSS(min-width:0) 무반영 미스터리"는 **오진단**. 잘린 건 .g-d(plain p, fit:shrink로 1줄 OK)가 아니라 **.g-note(border-top 가진 leaf-div)**. border 때문에 g-note가 shape+text로 방출 → PptxGenJS가 shape엔 fit:'shrink' 무시(html2pptx 420-425) → 좁은 패널 CJK 오버플로가 shrink 못 하고 잘림("금 유출" 유실). min-width CSS 무효 이유 = 전처리가 아니라 **shape에 안 먹어서**.
+- **수정**: g-note `<div class=g-note><p>텍스트</p></div>` 분리(학습⑮·⑯). border는 div, 텍스트는 p=일반텍스트 경로→shrink 부활→잘림해소. 엔진 무수정. 서브에이전트 풀사이즈 재확인 OK.
+- **10×8 테스트(R13+R14=80장) 결과**: 변환실패·누락 0건. 결함 3건=D1(s02 g-note잘림)✅ / D2(s01 '금액' 헤더 accent-on-dark 저대비)✅ / D3(R13 s01 각주 '분.' 중복=변환기버그)⏳큐잉. R14 8테마 재변환 ERROR0/저대비<2.0=0. 상세=`slides/FINDINGS-10x8-test.md`.
+- **빠른 검증법 확립**: `scripts/render-html-batch.sh`(헤드리스 Chrome HTML 1280×720) + COM PPTX + 변환기 contrast sweep. ⛔COM png 4000px=many-image 한도 → 풀사이즈 개별Read or 서브에이전트.
+- **D3 진단 선행조건**: slides-grab GT baseline 재저장(현 full-baseline.json=round덱 미스매치). `REGRESSION_SLIDES_DIR=/d/projects/slides-grab/slides node tests/run-full-regression.mjs --save`.
+- **다음**: D3 엔진수정(GT baseline 재저장 선행) or R15 진행 — 사용자 선택.
+
+## R15 착수 (사용자 ㄱㄱ, 2026-06-17)
+- **소재 5장 복잡도 검증 = 전부 ACCEPT**(목차/디바이더/일러스트 없음): PG/36(6항목 체크리스트+3스텝 프로세스바·중간밀집) · PV2/23(grid-table 21셀+formula) · SS/08(6-feature 그리드+통계, img/svg 0=텍스트아이콘) · PG/05(data-table 24셀+val-highlight) · PV2/35(grid-table 24셀+4헤더 멀티컬럼).
+- **slide-01(PG/36) modern 생성·변환 검증 ✅** — ERROR/FAILED/border 0, 저대비<2.0=0. 배지숫자 warn(2.96:1)=의도패턴. 학습⑮⑯ 선적용(border 텍스트 div/p 분리, 다크strip 강조 #FF6F00·surface-inverse-fg, 다크헤더 accent금지).
+- **잔여**: slide-02~05 modern 생성 → 8테마 propagate → 변환 → COM/HTML 렌더 판정. 소재경로=/d/projects/slides-grab/slides/{payroll-v2/slide-23, samsung-investment-report/slide-08, payroll-guide/slide-05, payroll-v2/slide-35}.html. 생성패턴=round15-modern/slide-01.html + round14 modern 참조.
+- **✅ 생성·변환 완료 (5장×8테마=40)**: ERROR 0 / 저대비<2.0 = 0. ★변환 sweep가 결함 1건 잡음 = slide-03 점유율 막대 배경에 `var(--gray-1/2)`(테마적응) 줘서 dark-mono/dark-pitch서 흰글씨 흰배경 소실(1.0~1.24:1) → 고정 hex(#555/#7C7C7C)로 수정·재변환 클린. 데이터viz 색은 테마토큰 금지=고정hex(차트바 패턴). slide-02=퇴직금공식+산입표, 03=Galaxy AI(⚠️emoji 6개 아이콘=PPTX 렌더 시각확인 필요), 04=6컬럼 일용/상용 비교표+배지, 05=7~12월 월별표.
+- **잔여(R15)**: 시각판정 — emoji 렌더·표 잘림·다크대비·의도보존. COM 렌더(modern/dark-pitch/executive 완료) + HTML 40장. 서브에이전트 판정 중.
+
+## ✅ R15 완료 + D3 결론 (2026-06-17, 사용자 "1.2 둘다")
+- **R15 시각판정**: emoji 6개 3테마 전부 정상 렌더(핵심 리스크 해소). s01·s02·s03·s05 클린. **s04 결함 2건 발견·수정**: (1)긴 배지("간이세액표+연말정산"·"연차×통상임금") 좁은셀 오버플로→de-badge(색강조 wrap 텍스트) (2)헤더 "충당금" 유령=배지 오버플로의 하위증상이라 de-badge로 동반 해소(modern·dark-pitch 크롭 확정). +slide-03 막대 배경 `var(--gray)` 다크테마 흰글씨소실→고정hex. R15 8테마 ERROR0/저대비<2.0=0.
+- **★D3 "분." 중복 = 변환기 버그 아님 (확정)**: PPTX XML run 단일·"산입분." 1회(검증). PowerPoint COM 렌더가 올바른 콘텐츠 wrap 시 만드는 렌더 quirk. 높이보정 가설 틀림(2줄로 오버플로 아닌데 중복)→revert. 변환기 순변경0(git diff 빈결과). 슬라이드도 무수정(PPTX 정답). **결함분류 게이트 적용: "HTML/PPTX 콘텐츠엔 있나?" 없으면 다운스트림 렌더 quirk=수정대상 아님.**
+- **수정우선순위 학습 강화(promotion-log ERROR 202606170)**: 변환기버그(phantom/중복)는 슬라이드 깎기 금지·엔진 또는 무수정. 단 디자인 과욕(긴 nowrap 배지)은 슬라이드 조정 정당. 사용자 "넌 변환기 고치고있는거 맞냐" 개입으로 헤더단축 dodge revert.
+- **상태**: R13/R14(80장)+R15(40장)=120장 8테마 검증. 변환실패 0. 수정완료=D1(g-note)·D2(금액대비)·R15(막대·s04). 잔여=D3(렌더quirk,비수정)·R15 light테마 4종(classic/company/academic/editorial) 최종 시각 미확인(sweep clean·구조동일 low risk).

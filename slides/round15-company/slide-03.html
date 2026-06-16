@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="company"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 58px 40px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+
+  .share { display:flex; align-items:center; gap:18px; background:var(--gray-4); border-radius:9px; padding:13px 18px; margin-bottom:14px; }
+  .share-t { font-size:12px; font-weight:700; color:var(--gray-2); flex-shrink:0; width:96px; line-height:1.3; }
+  .bars { display:flex; align-items:center; gap:7px; flex:1; }
+  .bar { height:24px; border-radius:4px; display:flex; align-items:center; padding:0 9px; }
+  .bar p { font-size:12px; font-weight:700; color:#FFFFFF; white-space:nowrap; }
+  .bar-legend { font-size:12px; color:var(--gray-2); margin-left:2px; }
+
+  .features { display:grid; grid-template-columns:1fr 1fr 1fr; gap:11px; margin-bottom:14px; }
+  .feat { background:var(--gray-4); border-radius:9px; padding:13px 14px; text-align:center; }
+  .feat-ic { font-size:22px; margin-bottom:5px; }
+  .feat-n { font-size:13px; font-weight:700; color:var(--heading, var(--primary)); margin-bottom:3px; }
+  .feat-d { font-size:11.5px; color:var(--gray-2); line-height:1.3; }
+
+  .bottom { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .ibox { background:var(--gray-4); border-radius:9px; padding:14px 16px; }
+  .ibox-t { font-size:13px; font-weight:800; color:var(--accent); margin-bottom:8px; }
+  .ilist { display:flex; flex-direction:column; gap:5px; }
+  .ili { font-size:12.5px; color:var(--gray-1); line-height:1.4; padding-left:12px; position:relative; }
+  .ili::before { content:''; position:absolute; left:0; top:7px; width:5px; height:5px; border-radius:50%; background:var(--accent); }
+  .source { font-size:11px; color:var(--gray-2); margin-top:auto; padding-top:10px; text-align:right; }
+</style></head>
+<body data-layout="galaxy_ai_feature_grid">
+  <h1>Galaxy AI가 <span class="em">교체 사이클</span>을 창출한다 — S26 에이전틱 AI로 확대</h1>
+  <p class="sub">온디바이스 AI가 프리미엄 수요를 견인해 S25는 전작 대비 +18% 판매를 기록했다. 2026 S26은 에이전틱 AI 비서와 AI 구독으로 신규 수익원을 연다.</p>
+
+  <div class="share">
+    <p class="share-t">글로벌 점유율 (2025.4Q)</p>
+    <div class="bars">
+      <div class="bar" style="width:150px; background:var(--accent);"><p>삼성 20%</p></div>
+      <div class="bar" style="width:135px; background:#555555;"><p>애플 18%</p></div>
+      <div class="bar" style="width:98px; background:#7C7C7C;"><p>샤오미 13%</p></div>
+      <p class="bar-legend">기타 49%</p>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feat"><p class="feat-ic">🌐</p><p class="feat-n">실시간 통화 통역</p><p class="feat-d">16개 언어 실시간 통역</p></div>
+    <div class="feat"><p class="feat-ic">🔍</p><p class="feat-n">서클 투 서치</p><p class="feat-d">화면 원으로 즉시 검색</p></div>
+    <div class="feat"><p class="feat-ic">✍️</p><p class="feat-n">노트 어시스트</p><p class="feat-d">AI 요약·번역·포맷팅</p></div>
+    <div class="feat"><p class="feat-ic">🖼️</p><p class="feat-n">AI 이미지 편집</p><p class="feat-d">AI 사진 편집·객체 제거</p></div>
+    <div class="feat"><p class="feat-ic">📄</p><p class="feat-n">브라우징 어시스트</p><p class="feat-d">웹페이지 자동 요약</p></div>
+    <div class="feat"><p class="feat-ic">💬</p><p class="feat-n">라이브 번역</p><p class="feat-d">메시지·SNS 실시간 번역</p></div>
+  </div>
+
+  <div class="bottom">
+    <div class="ibox">
+      <p class="ibox-t">Galaxy S25 실적</p>
+      <div class="ilist">
+        <p class="ili">S24 대비 +18% 판매, 역대 최고 오프닝</p>
+        <p class="ili">Ultra $1,299 — AI 프리미엄 가격 수용</p>
+        <p class="ili">프리미엄 비중 상승 → ASP 개선</p>
+      </div>
+    </div>
+    <div class="ibox">
+      <p class="ibox-t">2026 Galaxy S26 전망</p>
+      <div class="ilist">
+        <p class="ili">에이전틱 AI 비서 — 능동 실행형</p>
+        <p class="ili">Exynos 2600 온디바이스 추론</p>
+        <p class="ili">AI 구독 → 반복 수익원 신설</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="source">출처: IDC 2025.4Q · 삼성전자 MX IR</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

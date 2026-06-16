@@ -333,3 +333,32 @@ date: 2026-06-13
 - R4: 8테마 디자인 전부 클린(COM 의도보존), teammate global_issue 0(idiomatic spec 적중). 2 ERROR=COM확정 룰FP(워터폴 VP-07·게이지 VP-04 resolveBackground, recall-lock advisory, 디자인 멀쩡·과조정0). baseline-relative+advisory → **R4 클린, 클린카운터=1**.
 - R5: 새 5종(벤다이어그램/팀그리드/비포애프터/체크리스트/사분면버블) × 8테마. R5도 클린(신규 변환기버그0+디자인결함0)이면 2연속 클린 → 루프 종료.
 - 누적 사용 타입 20종(R1~R4) → R5는 직교 5종.
+
+> [ckpt-202606171230:btn-design] ★드리프트 정정(사용자) — slides-grab 실제 복잡슬라이드 기준, 합성물 삭제
+- **드리프트**: 매 라운드 5종을 내가 합성 생성(KPI/벤다이어그램 등 발명) = 사용자 의도(slides-grab 실제 복잡 슬라이드 변환·검증)와 다름. plan §0.5 문구("디자인스킬 생성")는 따랐으나 사용자 의도 기준 미준수.
+- **정정 기준(SSOT)**: 매 라운드 = **slides-grab 27덱(433슬라이드)에서 복잡해 보이는 슬라이드 5개 선택 → 현 파이프라인으로 변환 → PF/VP/COM 으로 원안보존·룰정합 검증**. 합성 생성 금지.
+- **R4 클린 판정 무효 → 클린카운터 0 리셋**. R5 취소(teammate 중단 완료).
+- **합성 테스트 자산 삭제**: slides/e2e-* e2e2-* e2e3-* e2e4-* e2e5-* + RENDERED-ASSETS-INDEX.md (전부 합성, slides-grab 변환 아님).
+
+> [ckpt-202606160010:btn-design] ★기준 재정정(사용자 최종) + 삭제자산 원복
+- **삭제 원복**: 직전 ckpt서 삭제한 e2e-*/e2e2-*/e2e3-* + RENDERED-ASSETS-INDEX.md = `git checkout HEAD -- slides/` 로 전부 원복(staged D → 복구).
+- **R4 teammate 5개 중단**(editorial/modern/academic/classic/dark-pitch) — 합성 타입(gantt/heatmap 등) 생성 = 드리프트라 종료.
+- **확정 기준(SSOT, plan §0.5 재정정)**: 매 라운드 = slides-grab 복잡슬라이드 5장 **소재 선택** → 디자인스킬 **8테마로 재현 생성**(40장) → convert(PF)→VP→COM 원안보존·룰정합. ⛔드리프트 2종: (a)타입 발명(R1~R4 합성) (b)slides-grab HTML 직접변환. slides-grab = 복잡도 소재 + read-only 룰GT 두 역할.
+- **유효 보존 자산**: VP-04/07/10/14/16 게이트 + html2pptx(small/loose-text/orphan-span/blockquote/nested-ul) 수정 = GT 17덱 ERROR delta0 게이트 통과분이라 유지. 클린카운터=0(재시작).
+- **다음**: slides-grab 27덱서 복잡 슬라이드 5장 식별 → 디자인스킬 8테마 생성 dispatch.
+
+> [Working Notes — ckpt-202606160020:btn-design] 5장 선택 진행 중(compact 직전)
+- **마지막 결정**: slides-grab 복잡 5장 식별(Explore). 단 `chupi-character/slide-05`=SVG 캐릭터 일러스트 100+개 → 디자인시스템 토큰 재현 불가(이미지슬롯 영역) → **데이터밀집형으로 교체 결정**. 교체 후보 = coupang-09/lg-hynix-09(grid)/posco-06/kakao-11 등 투자리포트 데이터밀집(직접 열어 구조 확인 필요, grep table=0이라 div-grid 기반).
+- **확정 4장(유력)**: ① samsung-investment-report/slide-14(투패널 5×5표+시나리오 바차트) ② discounted-breakeven-analysis/slide-13(비교표+이중바차트+범례) ③ payroll-guide/slide-14(6열표+계산박스+사이드패널) ④ triassic-dinosaurs/slide-05(수평 타임라인 교대배치). ⑤=chupi 교체분(데이터밀집 1장) 미확정.
+- **다음 의도**: ⑤ 교체 1장 확정 → 5장의 내용·구조를 **디자인스킬 8테마(editorial/modern/executive/academic/classic/dark-mono/company/dark-pitch)로 재현 생성**(40장) → convert-native.mjs(PF)→VP→COM 원안보존·룰정합. teammate 8세트 병렬 dispatch(harness2 방식) 또는 순차.
+- **동기화 완료**: plan §0.5 3단 워크플로우 박제 / handoff next-action+§3 갱신 / 클린카운터0 / ERROR-202606160015 기록 / R4 teammate 중단 / 삭제자산 git 원복.
+
+> [Working Notes — ckpt-202606160030:btn-design] ★사용자 신규지시(드리프트 영구방지)
+- **지시(2026-06-16)**: slides-grab 복잡 슬라이드 후보를 **5라운드 분량 25장** 선발 → **5장씩 R1~R5 테스트자산으로 등록** → plan/progress에 "해당 자산으로 어떻게 테스트하는지" 명시(자산=포인터 연결). 다시 드리프트 안 하게 SSOT 고정.
+- **다음 의도**: (1) Explore로 25장 식별(디자인시스템 재현 적합=데이터/레이아웃 복잡형, SVG캐릭터·일러스트 이미지슬롯 영역 제외, 라운드별 유형 다양) (2) plan에 §라운드맵 테이블(R1~R5 × 5장 절대경로 포인터 + 레이아웃유형) (3) 각 라운드 테스트절차 명시(소재→디자인스킬 8테마 재현→PF→VP→COM→K규칙). (4) 그 후 R1부터 8테마 생성.
+
+> [Working Notes — ckpt-202606160040:btn-design] 25장 SSOT 박제 완료 (compact 직전)
+- **마지막 결정**: slides-grab 복잡 슬라이드 25장(5R×5장) 선발+실재검증(MISSING 0) → **plan §0.6 라운드맵 테이블 박제**(절대경로 포인터 25개 + 레이아웃유형 + 테스트절차 5단). chupi(SVG캐릭터) 등 이미지슬롯 영역 제외, 데이터/레이아웃 복잡형만. payroll-guide 편중 8/25(유형은 다양화) — 편중 문제시 사용자 지시로 교체.
+- **다음 의도**: **R1 5장**(payroll-guide/14·payroll-v2/11·discounted/13·samsung/14·naver/17) 소재로 디자인스킬 8테마 재현 생성 → `slides/round1-{theme}/slide-01~05.html`(40장) → convert(PF)→VP→COM 의도보존 판정 → K규칙·정탐회귀0. harness2 teammate 8세트 병렬 또는 순차.
+- **동기화 완료**: plan §0.5 3단 워크플로우 + §0.6 25장 라운드맵 / handoff next-action·§3 / progress ckpt 4개 / ERROR-202606160015 / 클린카운터0 / 자산 git원복 / teammate중단.
+- **드리프트 영구방지 게이트**: 매 라운드 착수 전 plan §0.6 테이블의 해당 R 5장 경로만 소재로 사용. ⛔타입 발명·임의 슬라이드 교체·slides-grab 직접변환 3종 금지.

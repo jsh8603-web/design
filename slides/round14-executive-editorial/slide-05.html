@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:42px 56px 30px 56px; display:flex; flex-direction:column; }
+  h1 { font-size:24px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:5px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:13px; color:var(--gray-2); margin-bottom:16px; line-height:1.4; }
+  /* 4단계 가로 프로세스 */
+  .proc { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
+  .pcol { display:flex; flex-direction:column; }
+  .phead { display:flex; align-items:center; gap:9px; margin-bottom:8px; }
+  .pn { width:26px; height:26px; border-radius:50%; background:var(--gray-2); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .pcol.key .pn { background:var(--accent); }
+  .pn p { font-size:13px; font-weight:800; color:#FFFFFF; white-space:nowrap; }
+  .pdate { font-size:11px; font-weight:700; color:var(--gray-2); }
+  .ptitle { font-size:13.5px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:7px; line-height:1.25; }
+  .pcard { background:var(--gray-4); border-radius:7px; padding:10px 13px; flex:1; }
+  .pli { font-size:11.5px; color:var(--gray-1); line-height:1.35; padding-left:11px; position:relative; margin-bottom:5px; }
+  .pli:last-child { margin-bottom:0; }
+  .pli::before { content:''; position:absolute; left:0; top:6px; width:4px; height:4px; border-radius:50%; background:var(--accent); }
+  /* 하단 2박스 */
+  .duo { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .box { border-radius:9px; padding:13px 18px; }
+  .box.b1 { background:var(--gray-4); border-left:4px solid var(--gray-2); }
+  .box.b2 { background:var(--gray-4); border-left:4px solid var(--accent); }
+  .box-t { font-size:12.5px; font-weight:800; margin-bottom:9px; }
+  .box.b1 .box-t { color:var(--heading, var(--primary)); }
+  .box.b2 .box-t { color:var(--accent); }
+  .bli { font-size:12px; color:var(--gray-1); line-height:1.35; padding-left:12px; position:relative; margin-bottom:5px; }
+  .bli:last-child { margin-bottom:0; }
+  .bli::before { content:''; position:absolute; left:0; top:6px; width:4px; height:4px; border-radius:50%; background:var(--gray-2); }
+  .box.b2 .bli::before { background:var(--accent); }
+</style></head>
+<body data-layout="actuarial_process_4step">
+  <h1>계리보고서는 10월 데이터 준비부터 12월 회계 반영까지 <span class="em">약 3개월의 절차</span>가 필요하다</h1>
+  <p class="sub">계리보고서 작성은 외부 계리법인에 의뢰하며, 10월부터 데이터를 준비해 12월 결산 전까지 완료해야 한다. FP&A는 이 타임라인을 예산 캘린더에 반드시 포함해야 한다.</p>
+  <div class="proc">
+    <div class="pcol">
+      <div class="phead"><div class="pn"><p>1</p></div><p class="pdate">10월 초~중순</p></div>
+      <p class="ptitle">데이터 준비</p>
+      <div class="pcard">
+        <p class="pli">전 직원 명단 (생년월일·입사일·근속)</p>
+        <p class="pli">기준일 예상 연봉 + 직전 12개월 보수</p>
+        <p class="pli">DB 사외적립자산 잔액 확인서</p>
+        <p class="pli">당해 퇴직자 명단·지급 내역</p>
+      </div>
+    </div>
+    <div class="pcol">
+      <div class="phead"><div class="pn"><p>2</p></div><p class="pdate">10월 중순~11월 초</p></div>
+      <p class="ptitle">계리법인 의뢰·가정 협의</p>
+      <div class="pcard">
+        <p class="pli">할인율: AA- 등급 회사채 수익률 커브</p>
+        <p class="pli">임금상승률: 과거 3~5년 + 인상 계획</p>
+        <p class="pli">퇴직률: 연령·근속별 실측 데이터</p>
+        <p class="pli">가정 변경 시 DBO 민감도 분석 (+0.5%p)</p>
+      </div>
+    </div>
+    <div class="pcol">
+      <div class="phead"><div class="pn"><p>3</p></div><p class="pdate">11월 말~12월 중순</p></div>
+      <p class="ptitle">보고서 수령·검토</p>
+      <div class="pcard">
+        <p class="pli">DBO 총액 확인</p>
+        <p class="pli">당기근무원가 (당해 P&L 영향)</p>
+        <p class="pli">손이자수익 / 보험수리손익 (OCI)</p>
+        <p class="pli">전년 대비 DBO ±10%+ 원인 분석</p>
+      </div>
+    </div>
+    <div class="pcol key">
+      <div class="phead"><div class="pn"><p>4</p></div><p class="pdate">12월 말</p></div>
+      <p class="ptitle">회계 반영·공시</p>
+      <div class="pcard">
+        <p class="pli">(차) 퇴직급여 P&L / (대) 확정급여부채 B/S</p>
+        <p class="pli">기타포괄손익 (OCI) — 보험수리적 손실</p>
+        <p class="pli">IAS 19 주석 공시 (가정·민감도)</p>
+        <p class="pli">당기근무원가 → 다음 연도 기준치</p>
+      </div>
+    </div>
+  </div>
+  <div class="duo">
+    <div class="box b1">
+      <p class="box-t">계리법인 선정 시 고려사항</p>
+      <p class="bli">보험업법상 등록된 보험계리사 보유 여부</p>
+      <p class="bli">동종 업종(물류업) 계리 경험 (이직률·계절적 인력 변동 반영)</p>
+      <p class="bli">보고서 산출 소요 기간: 통상 2~4주 / 비용 중소 300~800만, 대기업 1,000~3,000만+</p>
+    </div>
+    <div class="box b2">
+      <p class="box-t">물류업 특이사항</p>
+      <p class="bli">높은 이직률 (연 15~25%) → 퇴직률 가정이 DBO에 미치는 영향 큼</p>
+      <p class="bli">성수기 대량 채용 + 비수기 이탈 → 근속연수 분포 1~2년 집중</p>
+      <p class="bli">장기 근속자(10년+) 비율 낮아 개별 DBO 기여도 높음 → 개별 추적 필요</p>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:8px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:32px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .sub { font-size:16px; color:var(--gray-2); margin:11px 0 24px 2px; }
+  .wrap { display:flex; justify-content:center; }
+  .tbl { display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr 1fr; width:100%; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:14px 18px; text-align:right; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.l { text-align:left; }
+  .th.e { background:var(--accent); }
+  .th.e p { color:#FFFFFF; }
+  .td { padding:14px 18px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); text-align:right; }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:17px; color:var(--gray-1); }
+  .td.item { text-align:left; }
+  .td.item p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.yoy p { color:#03A852; font-weight:800; }
+  .ins { display:flex; gap:16px; margin-top:24px; }
+  .ic { flex:1; background:var(--gray-4); border-radius:7px; padding:15px 20px; }
+  .ic p { font-size:16px; color:var(--gray-1); line-height:1.4; }
+  .ic p b { color:var(--heading, var(--primary)); font-weight:800; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="earnings_outlook_table">
+  <div class="head">
+    <div class="kicker">2025~2026 Earnings Outlook</div>
+    <h1>AI 수익화 + 커머스 확장 → 2026년 영업이익 2.4조 돌파</h1>
+  </div>
+  <p class="sub">연결 기준, 단위 표기 외 조원</p>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th l"><p>항목</p></div>
+      <div class="th"><p>2024A</p></div>
+      <div class="th e"><p>2025E</p></div>
+      <div class="th e"><p>2026E</p></div>
+      <div class="th"><p>YoY</p></div>
+
+      <div class="td item"><p>매출액</p></div>
+      <div class="td"><p>10.57조</p></div>
+      <div class="td"><p>12.06조</p></div>
+      <div class="td"><p>13.58조</p></div>
+      <div class="td yoy"><p>+12.6%</p></div>
+
+      <div class="td item alt"><p>영업이익</p></div>
+      <div class="td alt"><p>1.85조</p></div>
+      <div class="td alt"><p>2.12조</p></div>
+      <div class="td alt"><p>2.44조</p></div>
+      <div class="td yoy alt"><p>+15.1%</p></div>
+
+      <div class="td item"><p>OPM</p></div>
+      <div class="td"><p>17.5%</p></div>
+      <div class="td"><p>17.6%</p></div>
+      <div class="td"><p>18.0%</p></div>
+      <div class="td yoy"><p>+0.4%p</p></div>
+
+      <div class="td item alt"><p>EPS</p></div>
+      <div class="td alt"><p>8,521원</p></div>
+      <div class="td alt"><p>10,245원</p></div>
+      <div class="td alt"><p>12,180원</p></div>
+      <div class="td yoy alt"><p>+18.9%</p></div>
+
+      <div class="td item"><p>PER (E)</p></div>
+      <div class="td"><p>26.5x</p></div>
+      <div class="td"><p>22.1x</p></div>
+      <div class="td"><p>18.6x</p></div>
+      <div class="td yoy"><p>−15.8%</p></div>
+    </div>
+  </div>
+
+  <div class="ins">
+    <div class="ic"><p><b>서치플랫폼:</b> AI 탭 출시 → 광고 단가 +8%</p></div>
+    <div class="ic"><p><b>커머스:</b> 3.69조 → 4.32조 (+17%)</p></div>
+    <div class="ic"><p><b>핀테크:</b> 결제+보험 확장 → 흑자 전환</p></div>
+  </div>
+
+  <p class="src">Source: FnGuide 컨센서스 (2025.03)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

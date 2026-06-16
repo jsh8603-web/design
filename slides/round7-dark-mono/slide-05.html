@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:11px; margin-bottom:14px; }
+  .kicker { font-size:15px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:5px; }
+  .wrap { display:flex; justify-content:center; flex:1; }
+  .tbl { display:grid; grid-template-columns:1.5fr 1.2fr 1.2fr 1fr; width:100%; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:8px 18px; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); text-align:right; }
+  .th.l p { text-align:left; }
+  .td { padding:7px 18px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); text-align:right; }
+  .td.l { text-align:left; }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:15px; color:var(--gray-1); }
+  .td.item p { font-weight:600; color:var(--heading, var(--primary)); }
+  .casual p { color:#1A7A45; }
+  .regular p { color:#C06820; }
+  .diff p { color:#1A7A45; font-weight:700; }
+  .zero p { color:var(--gray-3); }
+  .total { background:var(--gray-4); }
+  .total p { font-weight:800; }
+  .total .it p { color:var(--heading, var(--primary)); }
+  .annual { background:var(--surface-inverse); }
+  .annual p { color:var(--surface-inverse-fg); font-weight:800; }
+  .botrow { display:flex; gap:14px; margin-top:16px; }
+  .note { flex:1; background:var(--gray-4); border-left:4px solid var(--accent); border-radius:0 6px 6px 0; padding:12px 18px; }
+  .note p { font-size:15px; color:var(--gray-1); line-height:1.4; }
+  .note p b { color:var(--accent); font-weight:800; }
+  .law { background:var(--gray-4); border-radius:6px; padding:12px 18px; display:flex; align-items:center; }
+  .law p { font-size:14px; color:var(--gray-2); }
+</style></head>
+<body data-layout="casual_regular_table">
+  <div class="head">
+    <div class="kicker">Casual vs Regular · Cost</div>
+    <h1>4대보험은 동일, 주휴 · 퇴직 · 연차만 차이가 난다</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th l"><p>비용 항목</p></div>
+      <div class="th"><p>일용직</p></div>
+      <div class="th"><p>상용직</p></div>
+      <div class="th"><p>차이</p></div>
+
+      <div class="td l item alt"><p>기본급 (22일×10만)</p></div><div class="td casual alt"><p>2,200,000</p></div><div class="td regular alt"><p>2,200,000</p></div><div class="td zero alt"><p>—</p></div>
+      <div class="td l item"><p>주휴수당</p></div><div class="td zero"><p>0</p></div><div class="td regular"><p>366,666</p></div><div class="td diff"><p>−366,666</p></div>
+      <div class="td l item alt"><p>국민연금 (4.5%)</p></div><div class="td casual alt"><p>99,000</p></div><div class="td regular alt"><p>116,100</p></div><div class="td diff alt"><p>−17,100</p></div>
+      <div class="td l item"><p>건강 (3.545%)</p></div><div class="td casual"><p>77,990</p></div><div class="td regular"><p>91,522</p></div><div class="td diff"><p>−13,532</p></div>
+      <div class="td l item alt"><p>장기요양</p></div><div class="td casual alt"><p>9,573</p></div><div class="td regular alt"><p>11,231</p></div><div class="td diff alt"><p>−1,658</p></div>
+      <div class="td l item"><p>고용 (0.9%)</p></div><div class="td casual"><p>19,800</p></div><div class="td regular"><p>23,238</p></div><div class="td diff"><p>−3,438</p></div>
+      <div class="td l item alt"><p>산재 (2.2%)</p></div><div class="td casual alt"><p>48,400</p></div><div class="td regular alt"><p>56,773</p></div><div class="td diff alt"><p>−8,373</p></div>
+      <div class="td l item"><p>퇴직금 (1/12)</p></div><div class="td zero"><p>0</p></div><div class="td regular"><p>216,476</p></div><div class="td diff"><p>−216,476</p></div>
+      <div class="td l item alt"><p>연차충당금</p></div><div class="td zero alt"><p>0</p></div><div class="td regular alt"><p>414,835</p></div><div class="td diff alt"><p>−414,835</p></div>
+
+      <div class="td l it total"><p>월 인건비</p></div><div class="td casual total"><p>2,454,763</p></div><div class="td regular total"><p>3,496,841</p></div><div class="td diff total"><p>−1,042,078</p></div>
+      <div class="td l item"><p>비용 계수</p></div><div class="td casual"><p>×1.12</p></div><div class="td regular"><p>×1.46</p></div><div class="td diff"><p>−0.34</p></div>
+      <div class="td l annual"><p>연간 인건비</p></div><div class="td annual"><p>29,457,156</p></div><div class="td annual"><p>41,962,092</p></div><div class="td annual"><p>−12,504,936</p></div>
+    </div>
+  </div>
+
+  <div class="botrow">
+    <div class="note"><p><b>50명 시 연 6.3억 차이</b> — 3개월+ 시 퇴직 · 연차 발생</p></div>
+    <div class="law"><p>근로기준법 · 고용보험법</p></div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

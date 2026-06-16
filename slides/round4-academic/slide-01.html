@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:8px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:30px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:7px; }
+  .sub { font-size:16px; color:var(--gray-2); margin:11px 0 20px 2px; }
+  .wrap { display:flex; justify-content:center; }
+  .tbl { display:grid; grid-template-columns:150px 110px 120px 1fr 1fr 1fr 1fr 150px; width:100%; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:13px 14px; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.r { text-align:right; }
+  .td { padding:13px 14px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-2); }
+  .td.r { text-align:right; }
+  .td.name p { font-weight:800; color:var(--heading, var(--primary)); }
+  .td.val p { color:var(--gray-1); }
+  .td.sum p { font-weight:800; color:var(--heading, var(--primary)); }
+  .td.zero p { color:var(--accent); font-weight:800; }
+  .td.last { border-bottom:3px solid var(--accent); }
+  .note { background:var(--gray-4); border-radius:7px; padding:14px 20px; margin-top:20px; }
+  .note p { font-size:17px; color:var(--gray-1); line-height:1.5; }
+  .note p b { color:var(--accent); font-weight:800; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="scenario_calc_table">
+  <div class="head">
+    <div class="kicker">Daily Worker · Insurance Cost</div>
+    <h1>근로일수가 갈리면 월 4대보험 회사부담이 2만~28만원으로 벌어진다</h1>
+  </div>
+  <p class="sub">일급 120,000원 기준 · 물류업 일용직</p>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th"><p>시나리오</p></div>
+      <div class="th"><p>월 근로일</p></div>
+      <div class="th"><p>월 임금</p></div>
+      <div class="th r"><p>산재</p></div>
+      <div class="th r"><p>고용</p></div>
+      <div class="th r"><p>건강</p></div>
+      <div class="th r"><p>국민연금</p></div>
+      <div class="th r"><p>합계</p></div>
+
+      <div class="td name"><p>A: 성수기</p></div>
+      <div class="td"><p>22일</p></div>
+      <div class="td"><p>264만</p></div>
+      <div class="td r val"><p>39,600</p></div>
+      <div class="td r val"><p>23,760</p></div>
+      <div class="td r val"><p>93,588</p></div>
+      <div class="td r val"><p>118,800</p></div>
+      <div class="td r sum"><p>275,748원</p></div>
+
+      <div class="td name alt"><p>B: 평시</p></div>
+      <div class="td alt"><p>12일</p></div>
+      <div class="td alt"><p>144만</p></div>
+      <div class="td r val alt"><p>21,600</p></div>
+      <div class="td r val alt"><p>12,960</p></div>
+      <div class="td r val alt"><p>51,048</p></div>
+      <div class="td r val alt"><p>64,800</p></div>
+      <div class="td r sum alt"><p>150,408원</p></div>
+
+      <div class="td name last"><p>C: 비수기</p></div>
+      <div class="td last"><p>7일</p></div>
+      <div class="td last"><p>84만</p></div>
+      <div class="td r val last"><p>12,600</p></div>
+      <div class="td r val last"><p>7,560</p></div>
+      <div class="td r zero last"><p>0</p></div>
+      <div class="td r zero last"><p>0</p></div>
+      <div class="td r sum last"><p>20,160원</p></div>
+    </div>
+  </div>
+
+  <div class="note"><p><b>월 8일 임계치</b> → 건강·국민연금 가입 요건 충족 여부로 보험료가 급변한다</p></div>
+
+  <p class="src">출처: 고용보험법, 국민건강보험법, 2025년 고용노동부 고시</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { display:flex; align-items:flex-start; gap:16px; border-bottom:3px solid var(--accent); padding-bottom:13px; margin-bottom:20px; }
+  .hbar { width:6px; height:44px; background:var(--accent); flex-shrink:0; margin-top:3px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:5px; }
+  .tbl { display:grid; grid-template-columns:80px 340px 280px 1fr; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:11px 16px; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); text-align:center; }
+  .th.l p { text-align:left; }
+  .td { padding:10px 16px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); display:flex; align-items:center; }
+  .td p { font-size:15px; color:var(--gray-1); }
+  .td.c { justify-content:center; }
+  .td.c p { text-align:center; }
+  .td.alt { background:var(--gray-4); }
+  .td.hl { background:var(--gray-4); }
+  .month p { font-size:16px; font-weight:800; color:var(--heading, var(--primary)); }
+  .month.acc p { color:var(--accent); }
+  .ev p { font-weight:600; color:var(--heading, var(--primary)); }
+  .up p { color:#C62828; font-weight:700; }
+  .neu p { color:var(--gray-2); font-weight:600; }
+  .note { background:var(--surface-inverse); border-radius:7px; padding:13px 20px; display:flex; align-items:center; gap:16px; margin-top:16px; }
+  .note .nl { font-size:15px; font-weight:800; color:var(--surface-inverse-fg); white-space:nowrap; }
+  .note .nt { font-size:15px; color:var(--surface-inverse-fg); opacity:0.85; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:10px; text-align:right; }
+</style></head>
+<body data-layout="calendar_table">
+  <div class="head">
+    <div class="hbar"></div>
+    <div>
+      <div class="kicker">Cost Event Calendar · H2</div>
+      <h1>7~12월: 정산 · 연차촉진 · 최저임금 → 예산 확정</h1>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <div class="th"><p>월</p></div>
+    <div class="th l"><p>이벤트</p></div>
+    <div class="th"><p>비용 영향</p></div>
+    <div class="th l"><p>FP&amp;A</p></div>
+
+    <div class="td c"><p class="month">7월</p></div>
+    <div class="td"><p class="ev">건강 정산 10회분</p></div>
+    <div class="td c"><p class="up">추가료</p></div>
+    <div class="td"><p>CF 반영</p></div>
+
+    <div class="td c alt"><p class="month">7월</p></div>
+    <div class="td alt"><p class="ev">개산 3Q 납부</p></div>
+    <div class="td c alt"><p class="up">분기</p></div>
+    <div class="td alt"><p>CF 반영</p></div>
+
+    <div class="td c hl"><p class="month acc">8월</p></div>
+    <div class="td hl"><p class="ev">최저임금 결정 (8/5)</p></div>
+    <div class="td c hl"><p class="up">인상 확정</p></div>
+    <div class="td hl"><p>예산 기초</p></div>
+
+    <div class="td c"><p class="month">9월</p></div>
+    <div class="td"><p class="ev">연차촉진 1차</p></div>
+    <div class="td c"><p class="neu">방지</p></div>
+    <div class="td"><p>부채 추산</p></div>
+
+    <div class="td c alt"><p class="month">9월</p></div>
+    <div class="td alt"><p class="ev">3Q 실적 vs 예산</p></div>
+    <div class="td c alt"><p class="neu">분석</p></div>
+    <div class="td alt"><p>FY 갱신</p></div>
+
+    <div class="td c hl"><p class="month acc">10월</p></div>
+    <div class="td hl"><p class="ev">예산 편성 착수</p></div>
+    <div class="td c hl"><p class="neu">편성</p></div>
+    <div class="td hl"><p>요율 가반영</p></div>
+
+    <div class="td c"><p class="month">10월</p></div>
+    <div class="td"><p class="ev">개산 4Q 납부</p></div>
+    <div class="td c"><p class="up">분기</p></div>
+    <div class="td"><p>CF 반영</p></div>
+
+    <div class="td c alt"><p class="month">11월</p></div>
+    <div class="td alt"><p class="ev">연말정산 gap</p></div>
+    <div class="td c alt"><p class="neu">분석</p></div>
+    <div class="td alt"><p>예비비</p></div>
+
+    <div class="td c hl"><p class="month acc">12월</p></div>
+    <div class="td hl"><p class="ev">연차수당 확정</p></div>
+    <div class="td c hl"><p class="up">일시</p></div>
+    <div class="td hl"><p>마감 반영</p></div>
+
+    <div class="td c"><p class="month">12월</p></div>
+    <div class="td"><p class="ev">요율 고시 · 예산 확정</p></div>
+    <div class="td c"><p class="neu">확정</p></div>
+    <div class="td"><p>계획 완성</p></div>
+  </div>
+
+  <div class="note">
+    <p class="nl">예산 편성 핵심</p>
+    <p class="nt">8월 최저임금 → 10월 초안 → 12월 요율 → 완성</p>
+  </div>
+
+  <p class="src">출처: 인건비 이벤트 캘린더 (2025)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

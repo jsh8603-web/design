@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); display:flex; }
+  .lp { width:36%; background:var(--surface-inverse); display:flex; flex-direction:column; justify-content:space-between; padding:54px 44px; }
+  .badge { display:inline-block; background:var(--accent); border-radius:4px; padding:5px 14px; width:fit-content; margin-bottom:22px; }
+  .badge p { font-size:15px; font-weight:700; color:#FFFFFF; letter-spacing:0.1em; white-space:nowrap; }
+  .lt h2 { font-size:27px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.5; letter-spacing:-0.02em; }
+  .lt h2 .em { color:var(--surface-inverse-fg); border-bottom:3px solid var(--accent); }
+  .lbar { width:48px; height:4px; background:var(--surface-inverse-fg); margin:22px 0; }
+  .lsub p { font-size:16px; color:var(--surface-inverse-fg); opacity:0.78; line-height:1.7; }
+  .lbottom { border-top:1px solid var(--gray-3); padding-top:14px; }
+  .lbottom p { font-size:14px; color:var(--surface-inverse-fg); opacity:0.55; }
+
+  .rp { flex:1; display:flex; flex-direction:column; padding:48px 52px; gap:24px; }
+  .rh p { font-size:15px; font-weight:700; color:var(--gray-2); letter-spacing:0.06em; text-transform:uppercase; }
+  .wf { display:flex; align-items:flex-end; gap:0; height:300px; }
+  .wi { display:flex; flex-direction:column; align-items:center; flex:1; height:100%; justify-content:flex-end; }
+  .bwrap { width:100%; display:flex; justify-content:center; }
+  .wbar { width:78%; border-radius:5px 5px 0 0; display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px; }
+  .wbar p { font-size:15px; font-weight:800; }
+  .wbar.dark p { color:var(--surface-inverse-fg); }
+  .wbar.mid p { color:var(--heading, var(--primary)); }
+  .wbar.acc p { color:#FFFFFF; }
+  .wlb { margin-top:8px; }
+  .wlb p { font-size:15px; color:var(--gray-2); font-weight:600; white-space:nowrap; }
+  .wp { display:flex; align-items:center; justify-content:center; padding-bottom:70px; width:18px; flex-shrink:0; }
+  .wp p { font-size:18px; color:var(--gray-3); font-weight:300; }
+  .wa { display:flex; align-items:center; justify-content:center; padding-bottom:70px; width:22px; flex-shrink:0; }
+  .wa p { font-size:24px; color:var(--accent); font-weight:700; }
+  .rbox { background:var(--surface-inverse); border-radius:9px; padding:22px 30px; display:flex; align-items:center; justify-content:space-between; }
+  .rl p { font-size:16px; color:var(--surface-inverse-fg); opacity:0.78; line-height:1.5; }
+  .rn h3 { font-size:46px; font-weight:800; color:var(--surface-inverse-fg); letter-spacing:-0.03em; line-height:1; }
+  .rr { text-align:right; }
+  .rr p { font-size:15px; color:var(--surface-inverse-fg); opacity:0.68; line-height:1.7; }
+  .rr p b { color:var(--surface-inverse-fg); opacity:1; font-weight:700; }
+</style></head>
+<body data-layout="waterfall_chart">
+  <div class="lp">
+    <div>
+      <div class="badge"><p>PART 3</p></div>
+      <div class="lt"><h2>급여 <span class="em">100원</span>을 지급할 때 회사가 실제 부담하는 인건비는 <span class="em">140~150원</span>이다</h2></div>
+      <div class="lbar"></div>
+      <div class="lsub"><p>기본급 외 숨겨진 부담 비용 전체를 정확히 파악해야 인건비 예산이 잡힌다</p></div>
+    </div>
+    <div class="lbottom"><p>적용 대상: 상용직 물류업 기준</p></div>
+  </div>
+
+  <div class="rp">
+    <div class="rh"><p>기본급 100 기준 — 총 인건비 구성</p></div>
+    <div class="wf">
+      <div class="wi"><div class="bwrap"><div class="wbar dark" style="background:var(--surface-inverse); height:188px;"><p>100</p></div></div><div class="wlb"><p>기본급</p></div></div>
+      <div class="wp"><p>+</p></div>
+      <div class="wi"><div class="bwrap"><div class="wbar mid" style="background:var(--gray-3); height:72px;"><p>20</p></div></div><div class="wlb"><p>주휴</p></div></div>
+      <div class="wp"><p>+</p></div>
+      <div class="wi"><div class="bwrap"><div class="wbar mid" style="background:var(--gray-3); height:42px;"><p>11</p></div></div><div class="wlb"><p>4대보험</p></div></div>
+      <div class="wp"><p>+</p></div>
+      <div class="wi"><div class="bwrap"><div class="wbar acc" style="background:var(--accent); height:34px;"><p>8.3</p></div></div><div class="wlb"><p>퇴직</p></div></div>
+      <div class="wp"><p>+</p></div>
+      <div class="wi"><div class="bwrap"><div class="wbar acc" style="background:var(--accent); height:42px;"><p>5.8</p></div></div><div class="wlb"><p>연차</p></div></div>
+      <div class="wp"><p>+</p></div>
+      <div class="wi"><div class="bwrap"><div class="wbar acc" style="background:var(--accent); height:38px;"><p>4.2</p></div></div><div class="wlb"><p>상여</p></div></div>
+      <div class="wa"><p>→</p></div>
+      <div class="wi"><div class="bwrap"><div class="wbar acc" style="background:var(--accent); height:300px; width:85%;"><p style="font-size:20px;">145~</p></div></div><div class="wlb"><p>총 인건비</p></div></div>
+    </div>
+
+    <div class="rbox">
+      <div class="rl"><p>물류업 상용직 (상여 50% 기준)<br>기본급 대비 총 인건비</p></div>
+      <div class="rn"><h3>×1.49</h3></div>
+      <div class="rr"><p>상여 제외: <b>×1.45</b><br>상여 100%: <b>×1.53</b></p></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

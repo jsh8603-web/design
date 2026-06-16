@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:30px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:33px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .wrap { display:flex; justify-content:center; }
+  .tbl { display:grid; grid-template-columns:1.5fr 1.6fr 1fr 1.3fr; width:100%; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:15px 20px; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:18px 20px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); display:flex; align-items:center; }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:17px; color:var(--gray-1); line-height:1.4; }
+  .td.proj p { font-weight:800; color:var(--heading, var(--primary)); }
+  .td.hl { background:var(--gray-4); border-left:4px solid var(--accent); }
+  .td.hl p { color:var(--accent); font-weight:800; }
+  .note { display:inline-flex; background:var(--gray-4); border-left:4px solid var(--accent); border-radius:0 7px 7px 0; padding:14px 22px; margin-top:26px; }
+  .note p { font-size:17px; font-weight:700; color:var(--accent); }
+  .src { font-size:14px; color:var(--gray-2); margin-top:auto; text-align:right; }
+</style></head>
+<body data-layout="project_status_table">
+  <div class="head">
+    <div class="kicker">Lithium Project Status</div>
+    <h1>아르헨티나 리튬 공장이 2026년 3월 상업 가동을 개시했다</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th"><p>프로젝트</p></div>
+      <div class="th"><p>규모</p></div>
+      <div class="th"><p>투자액</p></div>
+      <div class="th"><p>현황</p></div>
+
+      <div class="td proj"><p>호주 미네랄리소스</p></div>
+      <div class="td"><p>지분 30%, 정광 27만톤/년</p></div>
+      <div class="td"><p>1.1조원</p></div>
+      <div class="td"><p>가동 중</p></div>
+
+      <div class="td proj alt"><p>아르헨티나 옴브레무에르토</p></div>
+      <div class="td alt"><p>수산화리튬 5만톤</p></div>
+      <div class="td alt"><p>950억원</p></div>
+      <div class="td hl"><p>2026.03 상업 가동</p></div>
+
+      <div class="td proj"><p>전고체 (JK솔리드솔루션)</p></div>
+      <div class="td"><p>전해질 24만톤</p></div>
+      <div class="td"><p>—</p></div>
+      <div class="td"><p>차세대 배터리</p></div>
+    </div>
+  </div>
+
+  <div class="note"><p>리튬 BEP: kg당 12~13달러</p></div>
+
+  <p class="src">출처: 포스코 뉴스룸, 글로벌이코노믹</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

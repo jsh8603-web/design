@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:20px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:33px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .wrap { display:flex; justify-content:center; }
+  .tbl { display:grid; grid-template-columns:220px 220px 150px 150px; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:10px 14px; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.r { text-align:right; }
+  .td { padding:9px 14px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-1); }
+  .td.r { text-align:right; }
+  .td.item p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.basis p { color:var(--gray-2); }
+  .td.cum p { font-weight:800; color:var(--heading, var(--primary)); }
+  .td.hl p { color:var(--accent); font-weight:800; }
+  .td.last { border-bottom:3px solid var(--accent); }
+  .chips { display:flex; gap:12px; justify-content:center; margin-top:20px; }
+  .chip { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:6px; padding:10px 22px; }
+  .chip p { font-size:18px; color:var(--heading, var(--primary)); font-weight:700; }
+  .chip p b { color:var(--accent); font-weight:800; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:auto; text-align:right; }
+</style></head>
+<body data-layout="variance_table">
+  <div class="head">
+    <div class="kicker">Loaded Labor Cost</div>
+    <h1>기본급 100 기준, 상용직 총 인건비는 약 145로 불어난다</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th"><p>항목</p></div>
+      <div class="th"><p>계산 근거</p></div>
+      <div class="th r"><p>비율</p></div>
+      <div class="th r"><p>누적</p></div>
+
+      <div class="td item"><p>기본급</p></div>
+      <div class="td basis"><p>—</p></div>
+      <div class="td r"><p>100.0%</p></div>
+      <div class="td r cum"><p>100.0%</p></div>
+
+      <div class="td item alt"><p>주휴수당</p></div>
+      <div class="td basis alt"><p>8h / 40h</p></div>
+      <div class="td r alt"><p>+20.0%</p></div>
+      <div class="td r cum alt"><p>120.0%</p></div>
+
+      <div class="td item"><p>국민연금 (회사)</p></div>
+      <div class="td basis"><p>4.5%</p></div>
+      <div class="td r"><p>+4.5%</p></div>
+      <div class="td r cum"><p>124.5%</p></div>
+
+      <div class="td item alt"><p>건강보험 (회사)</p></div>
+      <div class="td basis alt"><p>3.545%</p></div>
+      <div class="td r alt"><p>+3.5%</p></div>
+      <div class="td r cum alt"><p>128.0%</p></div>
+
+      <div class="td item"><p>장기요양 (회사)</p></div>
+      <div class="td basis"><p>12.81%</p></div>
+      <div class="td r"><p>+0.5%</p></div>
+      <div class="td r cum"><p>128.5%</p></div>
+
+      <div class="td item alt"><p>고용보험 (회사)</p></div>
+      <div class="td basis alt"><p>0.9%</p></div>
+      <div class="td r alt"><p>+0.9%</p></div>
+      <div class="td r cum alt"><p>129.4%</p></div>
+
+      <div class="td item"><p>산재보험 (운수)</p></div>
+      <div class="td basis"><p>1.5%</p></div>
+      <div class="td r"><p>+1.5%</p></div>
+      <div class="td r cum"><p>130.9%</p></div>
+
+      <div class="td item hl alt"><p>퇴직충당금</p></div>
+      <div class="td basis alt"><p>1 / 12</p></div>
+      <div class="td r hl alt"><p>+8.3%</p></div>
+      <div class="td r hl alt"><p>139.2%</p></div>
+
+      <div class="td item hl"><p>연차충당금</p></div>
+      <div class="td basis"><p>15 / 260일</p></div>
+      <div class="td r hl"><p>+5.8%</p></div>
+      <div class="td r hl"><p>145.0%</p></div>
+
+      <div class="td item hl alt last"><p>정기상여금 (50%)</p></div>
+      <div class="td basis alt last"><p>50% ÷ 12</p></div>
+      <div class="td r hl alt last"><p>+4.2%</p></div>
+      <div class="td r hl alt last"><p>149.2%</p></div>
+    </div>
+  </div>
+
+  <div class="chips">
+    <div class="chip"><p>제외 <b>×1.45</b></p></div>
+    <div class="chip"><p>상여 50% <b>×1.49</b></p></div>
+    <div class="chip"><p>상여 100% <b>×1.53</b></p></div>
+  </div>
+
+  <p class="src">출처: 근로기준법, 고용보험법, 국민건강보험법</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

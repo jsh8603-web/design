@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:8px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:33px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .sub { font-size:16px; color:var(--gray-2); margin:11px 0 22px 2px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; flex:1; align-content:start; }
+  .card { background:var(--gray-4); border-left:4px solid var(--accent); border-radius:0 8px 8px 0; padding:18px 20px; display:flex; flex-direction:column; gap:8px; }
+  .ctitle p { font-size:20px; font-weight:800; color:var(--heading, var(--primary)); }
+  .cdesc p { font-size:15px; color:var(--gray-2); line-height:1.45; }
+  .tag { display:inline-block; padding:3px 14px; border-radius:11px; width:fit-content; margin-top:auto; }
+  .tag p { font-size:14px; font-weight:700; color:#FFFFFF; white-space:nowrap; }
+  .t-grow { background:#22C55E; }
+  .t-risk { background:#EF4444; }
+  .t-neu { background:#E8913A; }
+  .summary { background:var(--surface-inverse); border-radius:9px; padding:18px 28px; margin-top:18px; text-align:center; }
+  .summary p { font-size:19px; font-weight:700; color:var(--surface-inverse-fg); line-height:1.4; }
+  .summary p b { color:var(--surface-inverse-fg); }
+  .src { font-size:14px; color:var(--gray-2); margin-top:12px; text-align:right; }
+</style></head>
+<body data-layout="outlook_card_grid">
+  <div class="head">
+    <div class="kicker">Space Industry · 2030 Outlook</div>
+    <h1>2030 우주 산업 — 6대 트렌드와 리스크</h1>
+  </div>
+  <p class="sub">성장 동력과 위협 요인을 한눈에 (■ 성장 · ■ 주목 · ■ 리스크)</p>
+
+  <div class="grid">
+    <div class="card"><div class="ctitle"><p>LEO 통신 대중화</p></div><div class="cdesc"><p>위성 인터넷 가격 하락, 50억 인구 커버</p></div><div class="tag t-grow"><p>성장</p></div></div>
+    <div class="card"><div class="ctitle"><p>우주 관광 상용화</p></div><div class="cdesc"><p>Axiom Station 2028 운영 시작</p></div><div class="tag t-grow"><p>성장</p></div></div>
+    <div class="card"><div class="ctitle"><p>달 경제 시대</p></div><div class="cdesc"><p>Artemis + 중국 달 기지, 자원 채굴 가속</p></div><div class="tag t-neu"><p>주목</p></div></div>
+    <div class="card"><div class="ctitle"><p>우주 쓰레기 위기</p></div><div class="cdesc"><p>LEO 포화, 국제 규제 논의 본격화</p></div><div class="tag t-risk"><p>리스크</p></div></div>
+    <div class="card"><div class="ctitle"><p>국가 간 우주 군비</p></div><div class="cdesc"><p>미·중·러 우주군 확대, ASAT 금지 논의</p></div><div class="tag t-risk"><p>리스크</p></div></div>
+    <div class="card"><div class="ctitle"><p>AI + 위성 데이터</p></div><div class="cdesc"><p>농업·기후·재난 예측 시장 급성장</p></div><div class="tag t-grow"><p>성장</p></div></div>
+  </div>
+
+  <div class="summary"><p>2030년 <b>$1조 시장</b> — 민간 주도 + 정부 지원의 하이브리드 성장 모델</p></div>
+
+  <p class="src">출처: Morgan Stanley, McKinsey Space Report 2024</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:32px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .layout { display:flex; gap:32px; flex:1; }
+  .left { flex:1.05; display:flex; flex-direction:column; }
+  .ctitle p { font-size:17px; font-weight:700; color:var(--heading, var(--primary)); margin-bottom:14px; }
+  .tbl { display:grid; grid-template-columns:1.2fr 1.2fr 1.3fr; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:13px 16px; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:16px 16px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:17px; color:var(--gray-1); }
+  .td.gen p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.goal p { color:var(--accent); font-weight:800; }
+  .arrow { margin-top:18px; display:flex; align-items:center; gap:12px; }
+  .arrow .big { font-size:24px; font-weight:800; color:var(--heading, var(--primary)); }
+  .arrow .ac { color:var(--accent); }
+  .right { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:14px; align-content:start; }
+  .stat { background:var(--surface-inverse); border-radius:9px; padding:22px 24px; display:flex; flex-direction:column; justify-content:center; }
+  .sv p { font-size:38px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.1; }
+  .sl p { font-size:15px; color:var(--surface-inverse-fg); opacity:0.78; margin-top:6px; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:16px; text-align:right; }
+</style></head>
+<body data-layout="panel_cost_stats">
+  <div class="head">
+    <div class="kicker">New Space Economy</div>
+    <h1>뉴스페이스 혁명 — 재사용이 바꾼 우주 경제학</h1>
+  </div>
+
+  <div class="layout">
+    <div class="left">
+      <div class="ctitle"><p>세대별 발사 비용 변화</p></div>
+      <div class="tbl">
+        <div class="th"><p>세대</p></div>
+        <div class="th"><p>발사 비용</p></div>
+        <div class="th"><p>주요 로켓</p></div>
+
+        <div class="td gen alt"><p>1세대 (2000s)</p></div>
+        <div class="td alt"><p>$54,000 / kg</p></div>
+        <div class="td alt"><p>Space Shuttle</p></div>
+
+        <div class="td gen"><p>현재</p></div>
+        <div class="td"><p>$2,700 / kg</p></div>
+        <div class="td"><p>Falcon 9</p></div>
+
+        <div class="td gen alt"><p>목표</p></div>
+        <div class="td goal alt"><p>$10 / kg</p></div>
+        <div class="td alt"><p>Starship</p></div>
+      </div>
+      <div class="arrow"><p class="big">$54,000<span class="ac"> → $10</span> / kg</p></div>
+    </div>
+
+    <div class="right">
+      <div class="stat"><div class="sv"><p>60%+</p></div><div class="sl"><p>글로벌 발사 시장점유율</p></div></div>
+      <div class="stat"><div class="sv"><p>20회+</p></div><div class="sl"><p>부스터 재비행</p></div></div>
+      <div class="stat"><div class="sv"><p>6,000+</p></div><div class="sl"><p>Starlink 위성</p></div></div>
+      <div class="stat"><div class="sv"><p>$10/kg</p></div><div class="sl"><p>Starship 목표 비용</p></div></div>
+    </div>
+  </div>
+
+  <p class="src">출처: SpaceX 공식 발표, 발사 횟수 기준 2024</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

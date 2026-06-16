@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:8px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:33px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .sub { font-size:16px; color:var(--gray-2); margin:12px 0 22px 2px; }
+  .wrap { display:flex; justify-content:center; flex:1; }
+  .mx { display:grid; grid-template-columns:200px repeat(4, 1fr); width:1040px; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:13px 14px; text-align:center; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.lb { text-align:left; }
+  .rl { background:var(--gray-4); padding:18px 16px; border-bottom:1px solid var(--gray-3); display:flex; align-items:center; }
+  .rl p { font-size:18px; font-weight:800; color:var(--heading, var(--primary)); }
+  .cell { padding:14px 8px; border-bottom:1px solid var(--gray-3); display:flex; flex-direction:column; align-items:center; gap:7px; }
+  .dot { width:48px; height:30px; border-radius:15px; display:flex; align-items:center; justify-content:center; }
+  .dot p { font-size:14px; font-weight:800; color:#FFFFFF; }
+  .g { background:#16A34A; }
+  .y { background:#F59E0B; }
+  .r { background:#DC2626; }
+  .y p { color:#1A1A1A; }
+  .clb { font-size:14px; color:var(--gray-2); font-weight:600; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="evaluation_matrix">
+  <div class="head">
+    <div class="kicker">Content Portfolio Scorecard</div>
+    <h1>뮤직이 콘텐츠 부문 매출과 성장을 동시에 견인한다</h1>
+  </div>
+  <p class="sub">부문별 4개 지표 종합 평가 (■ 우수 · ■ 보통 · ■ 주의)</p>
+
+  <div class="wrap">
+    <div class="mx">
+      <div class="th lb"><p>부문</p></div>
+      <div class="th"><p>매출 규모</p></div>
+      <div class="th"><p>성장률</p></div>
+      <div class="th"><p>수익성</p></div>
+      <div class="th"><p>전망</p></div>
+
+      <div class="rl"><p>뮤직</p></div>
+      <div class="cell"><div class="dot g"><p>Large</p></div><p class="clb">대규모</p></div>
+      <div class="cell"><div class="dot g"><p>+12%</p></div><p class="clb">고성장</p></div>
+      <div class="cell"><div class="dot y"><p>Mid</p></div><p class="clb">중간</p></div>
+      <div class="cell"><div class="dot g"><p>UP</p></div><p class="clb">긍정적</p></div>
+
+      <div class="rl"><p>스토리</p></div>
+      <div class="cell"><div class="dot y"><p>Mid</p></div><p class="clb">중간</p></div>
+      <div class="cell"><div class="dot r"><p>−5%</p></div><p class="clb">역성장</p></div>
+      <div class="cell"><div class="dot r"><p>Low</p></div><p class="clb">낮음</p></div>
+      <div class="cell"><div class="dot y"><p>=</p></div><p class="clb">중립</p></div>
+
+      <div class="rl"><p>미디어</p></div>
+      <div class="cell"><div class="dot r"><p>Small</p></div><p class="clb">소규모</p></div>
+      <div class="cell"><div class="dot g"><p>+30%</p></div><p class="clb">고성장</p></div>
+      <div class="cell"><div class="dot y"><p>Low</p></div><p class="clb">낮음</p></div>
+      <div class="cell"><div class="dot g"><p>UP</p></div><p class="clb">긍정적</p></div>
+    </div>
+  </div>
+
+  <p class="src">출처: 사업부문별 실적 컨센서스 (2025)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

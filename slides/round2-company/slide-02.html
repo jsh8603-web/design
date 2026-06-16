@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="company"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:22px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:32px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .wrap { display:flex; justify-content:center; flex:1; }
+  .tbl { display:grid; grid-template-columns:200px repeat(3, 1fr); width:1000px; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:11px 16px; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:9px 16px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-1); }
+  .td.item p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.hl p { color:var(--accent); font-weight:800; }
+  .tf { background:var(--surface-inverse); padding:11px 16px; }
+  .tf p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .tf.val p { color:var(--accent); font-weight:800; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="comparison_table">
+  <div class="head">
+    <div class="kicker">Loaded Cost by Employment Type</div>
+    <h1>같은 일을 시켜도, 고용형태마다 보험·수당 부담이 갈린다</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th"><p>항목</p></div>
+      <div class="th"><p>일용근로자</p></div>
+      <div class="th"><p>상용근로자</p></div>
+      <div class="th"><p>초단시간</p></div>
+
+      <div class="td item"><p>계약 기간</p></div>
+      <div class="td"><p>1일 단위 (3M 미만)</p></div>
+      <div class="td"><p>1년+ / 무기한</p></div>
+      <div class="td"><p>제한 없음</p></div>
+
+      <div class="td item alt"><p>소득세 과세</p></div>
+      <div class="td alt"><p>분리과세</p></div>
+      <div class="td alt"><p>연말정산</p></div>
+      <div class="td alt"><p>동일</p></div>
+
+      <div class="td item"><p>산재보험</p></div>
+      <div class="td"><p>1시간부터</p></div>
+      <div class="td"><p>입사 즉시</p></div>
+      <div class="td"><p>입사 즉시</p></div>
+
+      <div class="td item alt"><p>고용보험</p></div>
+      <div class="td alt"><p>1일부터 0.9%</p></div>
+      <div class="td alt"><p>입사 즉시 0.9%</p></div>
+      <div class="td alt"><p>3개월+ 시</p></div>
+
+      <div class="td item"><p>건강보험</p></div>
+      <div class="td"><p>1M+ · 8일+</p></div>
+      <div class="td"><p>입사 즉시</p></div>
+      <div class="td"><p>1M+ · 8일+</p></div>
+
+      <div class="td item alt"><p>국민연금</p></div>
+      <div class="td alt"><p>1M+ · 8일/60h+</p></div>
+      <div class="td alt"><p>입사 즉시</p></div>
+      <div class="td alt"><p>1M+ · 8일/60h+</p></div>
+
+      <div class="td item"><p>주휴수당</p></div>
+      <div class="td"><p>미발생</p></div>
+      <div class="td hl"><p>+20%</p></div>
+      <div class="td"><p>미발생</p></div>
+
+      <div class="td item alt"><p>연차충당금</p></div>
+      <div class="td alt"><p>미발생</p></div>
+      <div class="td hl alt"><p>+5.8%</p></div>
+      <div class="td alt"><p>미발생</p></div>
+
+      <div class="td item"><p>퇴직충당금</p></div>
+      <div class="td"><p>1년+ · 주15h+</p></div>
+      <div class="td hl"><p>+8.3%</p></div>
+      <div class="td"><p>미발생</p></div>
+
+      <div class="tf"><p>총 인건비 계수</p></div>
+      <div class="tf val"><p>×1.20~1.40</p></div>
+      <div class="tf val"><p>×1.40~1.50</p></div>
+      <div class="tf val"><p>×1.10</p></div>
+    </div>
+  </div>
+
+  <p class="src">출처: 소득세법 제14조, 근로기준법 제2조, 고용보험법 시행령 제3조</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

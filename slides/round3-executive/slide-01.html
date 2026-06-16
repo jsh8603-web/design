@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:24px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:31px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.22; margin-top:7px; }
+  .main { display:flex; gap:40px; flex:1; }
+  .pcol { flex:1; display:flex; flex-direction:column; }
+  .collbl { font-size:15px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px; }
+  .step { border-radius:8px; padding:16px 22px; }
+  .step.dark { background:var(--surface-inverse); }
+  .step.light { background:var(--gray-4); }
+  .stag { display:inline-block; background:var(--accent); border-radius:4px; padding:2px 10px; margin-bottom:7px; }
+  .stag p { font-size:13px; font-weight:800; color:#FFFFFF; white-space:nowrap; }
+  .step.dark h3 { font-size:20px; font-weight:800; color:var(--surface-inverse-fg); margin-bottom:4px; }
+  .step.dark .desc { font-size:15px; color:var(--surface-inverse-fg); opacity:0.72; }
+  .step.light h3 { font-size:20px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:4px; }
+  .step.light .desc { font-size:15px; color:var(--gray-2); }
+  .arr { display:flex; align-items:center; justify-content:center; padding:8px 0; }
+  .arr p { font-size:22px; color:var(--accent); font-weight:900; }
+  .branch { display:flex; gap:14px; }
+  .bbox { flex:1; border-radius:8px; padding:14px 16px; border:2px solid; }
+  .b-yes { background:#E8F5E9; border-color:#16A34A; }
+  .b-no { background:#FFF3E0; border-color:#E8913A; }
+  .blbl { display:inline-block; border-radius:4px; padding:2px 9px; margin-bottom:6px; }
+  .blbl p { font-size:12px; font-weight:800; color:#FFFFFF; white-space:nowrap; }
+  .yl { background:#16A34A; } .nl { background:#E8913A; }
+  .bbox h4 { font-size:17px; font-weight:800; color:#1A1A1A; margin-bottom:3px; }
+  .bbox .bd { font-size:14px; color:#444; line-height:1.4; }
+  .kcol { width:380px; flex-shrink:0; display:flex; flex-direction:column; }
+  .kcards { display:flex; flex-direction:column; gap:11px; flex:1; }
+  .kc { background:var(--gray-4); border-radius:7px; padding:13px 18px; display:flex; align-items:center; gap:18px; }
+  .kc.total { background:var(--surface-inverse); margin-top:5px; }
+  .knum { flex-shrink:0; }
+  .knum p { font-size:28px; font-weight:900; color:var(--accent); line-height:1; white-space:nowrap; }
+  .kc.total .knum p { font-size:32px; color:var(--surface-inverse-fg); }
+  .ktit p { font-size:17px; font-weight:700; color:var(--heading, var(--primary)); white-space:nowrap; }
+  .ksrc p { font-size:13px; color:var(--gray-2); margin-top:2px; }
+  .kc.total .ktit p { color:var(--surface-inverse-fg); }
+  .kc.total .ksrc p { color:var(--surface-inverse-fg); opacity:0.6; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:16px; text-align:right; }
+</style></head>
+<body data-layout="process_kpi">
+  <div class="head">
+    <div class="kicker">Conversion Decision</div>
+    <h1>3개월 이상 계속 고용되면 상용직 전환, 인건비가 약 40%p 뛴다</h1>
+  </div>
+
+  <div class="main">
+    <div class="pcol">
+      <div class="collbl">전환 판단 흐름</div>
+      <div class="step dark">
+        <div class="stag"><p>STEP 1</p></div>
+        <h3>계약 형태 확인</h3>
+        <p class="desc">명칭이 아닌 실제 고용 기간 확인</p>
+      </div>
+      <div class="arr"><p>↓</p></div>
+      <div class="step light">
+        <div class="stag"><p>STEP 2</p></div>
+        <h3>3개월 계속성 판단</h3>
+        <p class="desc">동일 고용주 · 계속 근로 여부</p>
+      </div>
+      <div class="arr"><p>↓</p></div>
+      <div class="branch">
+        <div class="bbox b-yes">
+          <div class="blbl yl"><p>YES — 3개월 이상</p></div>
+          <h4>상용직 전환 의무</h4>
+          <p class="bd">보험 · 주휴 · 퇴직 전면 적용</p>
+        </div>
+        <div class="bbox b-no">
+          <div class="blbl nl"><p>NO — 3개월 미만</p></div>
+          <h4>일용직 유지</h4>
+          <p class="bd">분리과세 · 조건부 보험</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="kcol">
+      <div class="collbl">전환 시 비용 영향</div>
+      <div class="kcards">
+        <div class="kc"><div class="knum"><p>+20%</p></div><div><div class="ktit"><p>주휴수당</p></div><div class="ksrc"><p>근로기준법 §55</p></div></div></div>
+        <div class="kc"><div class="knum"><p>+10~11%</p></div><div><div class="ktit"><p>4대보험 회사분</p></div><div class="ksrc"><p>산재·고용·건강·연금</p></div></div></div>
+        <div class="kc"><div class="knum"><p>+8.3%</p></div><div><div class="ktit"><p>퇴직충당금</p></div><div class="ksrc"><p>근퇴법 §4</p></div></div></div>
+        <div class="kc"><div class="knum"><p>+5.8%</p></div><div><div class="ktit"><p>연차충당금</p></div><div class="ksrc"><p>근로기준법 §60</p></div></div></div>
+        <div class="kc total"><div class="knum"><p>≈+40%p</p></div><div><div class="ktit"><p>총 증가</p></div><div class="ksrc"><p>일용직 대비</p></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="src">출처: 소득세법, 근로기준법, 퇴직급여보장법</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

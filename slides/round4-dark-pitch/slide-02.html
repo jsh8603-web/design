@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:24px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:31px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .wrap { display:flex; justify-content:center; }
+  .tbl { display:grid; grid-template-columns:200px 200px 180px 230px 1fr; width:100%; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:14px 16px; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:13px 16px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-2); }
+  .td.name p { color:var(--heading, var(--primary)); font-weight:700; }
+  .td.rate p { color:var(--heading, var(--primary)); font-weight:800; }
+  .td.rate.hl p { color:var(--accent); }
+  .td.last { border-bottom:3px solid var(--accent); }
+  .note { background:var(--gray-4); border-radius:7px; padding:16px 22px; margin-top:24px; }
+  .note p { font-size:16px; color:var(--gray-1); line-height:1.55; }
+  .note p b { color:var(--heading, var(--primary)); font-weight:800; }
+  .note p .acc { color:var(--accent); font-weight:800; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:auto; text-align:right; }
+</style></head>
+<body data-layout="comparison_table">
+  <div class="head">
+    <div class="kicker">2025 · Employer Contribution</div>
+    <h1>4대보험 회사부담분 합계는 급여의 약 9.7% + 업종별 산재보험료다</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th"><p>보험 종류</p></div>
+      <div class="th"><p>회사부담 요율</p></div>
+      <div class="th"><p>근로자부담</p></div>
+      <div class="th"><p>산정 기준</p></div>
+      <div class="th"><p>근거 법령</p></div>
+
+      <div class="td name"><p>국민연금</p></div>
+      <div class="td rate"><p>4.5%</p></div>
+      <div class="td"><p>4.5%</p></div>
+      <div class="td"><p>기준소득월액</p></div>
+      <div class="td"><p>국민연금법 §88</p></div>
+
+      <div class="td name alt"><p>건강보험</p></div>
+      <div class="td rate alt"><p>3.545%</p></div>
+      <div class="td alt"><p>3.545%</p></div>
+      <div class="td alt"><p>보수월액</p></div>
+      <div class="td alt"><p>국민건강보험법</p></div>
+
+      <div class="td name"><p>장기요양</p></div>
+      <div class="td rate"><p>≈0.454%</p></div>
+      <div class="td"><p>동일</p></div>
+      <div class="td"><p>건강보험료 기준</p></div>
+      <div class="td"><p>노인장기요양보험법</p></div>
+
+      <div class="td name alt"><p>고용보험</p></div>
+      <div class="td rate alt"><p>0.9%</p></div>
+      <div class="td alt"><p>0.9%</p></div>
+      <div class="td alt"><p>월 보수</p></div>
+      <div class="td alt"><p>고용보험법</p></div>
+
+      <div class="td name last"><p>산재보험</p></div>
+      <div class="td rate hl last"><p>0.6% ~ 18.8%</p></div>
+      <div class="td last"><p>없음</p></div>
+      <div class="td last"><p>월 보수</p></div>
+      <div class="td last"><p>산업재해보상보험법</p></div>
+    </div>
+  </div>
+
+  <div class="note"><p><b>계산 예시 (운수업, 월급 300만원):</b> 국민연금 135,000 + 건강 106,350 + 장기요양 13,623 + 고용 27,000 + 산재 45,000 = <span class="acc">합계 326,973원 (약 10.9%)</span></p></div>
+
+  <p class="src">출처: 2025년 고용노동부 고시</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

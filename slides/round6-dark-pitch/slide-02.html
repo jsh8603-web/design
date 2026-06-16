@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:30px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:33px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .wrap { display:flex; justify-content:center; flex:1; }
+  .tbl { display:grid; grid-template-columns:260px repeat(4, 1fr); width:1000px; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:16px 20px; text-align:right; }
+  .th p { font-size:17px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.l { text-align:left; }
+  .th.e { background:var(--accent); }
+  .th.e p { color:#FFFFFF; }
+  .td { padding:16px 20px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); text-align:right; }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:18px; color:var(--gray-1); }
+  .td.item { text-align:left; }
+  .td.item p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.e p { font-weight:800; color:var(--heading, var(--primary)); }
+  .td.hl p { color:var(--accent); font-weight:800; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:18px; text-align:right; }
+</style></head>
+<body data-layout="financial_trend_table">
+  <div class="head">
+    <div class="kicker">POSCO · Consolidated Earnings</div>
+    <h1>2026년 영업이익 3조원대 회복을 전망한다</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th l"><p>항목</p></div>
+      <div class="th"><p>2023A</p></div>
+      <div class="th"><p>2024A</p></div>
+      <div class="th"><p>2025A</p></div>
+      <div class="th e"><p>2026E</p></div>
+
+      <div class="td item"><p>매출 (조원)</p></div>
+      <div class="td"><p>77.1</p></div>
+      <div class="td"><p>72.7</p></div>
+      <div class="td"><p>69.1</p></div>
+      <div class="td e"><p>70.5</p></div>
+
+      <div class="td item alt"><p>영업이익 (조원)</p></div>
+      <div class="td alt"><p>3.53</p></div>
+      <div class="td alt"><p>2.17</p></div>
+      <div class="td alt"><p>1.83</p></div>
+      <div class="td e hl alt"><p>3.35</p></div>
+
+      <div class="td item"><p>영업이익률 (%)</p></div>
+      <div class="td"><p>4.6</p></div>
+      <div class="td"><p>3.0</p></div>
+      <div class="td"><p>2.6</p></div>
+      <div class="td e"><p>4.8</p></div>
+
+      <div class="td item alt"><p>순이익 (조원)</p></div>
+      <div class="td alt"><p>1.84</p></div>
+      <div class="td alt"><p>0.95</p></div>
+      <div class="td alt"><p>0.50</p></div>
+      <div class="td e alt"><p>1.75</p></div>
+    </div>
+  </div>
+
+  <p class="src">출처: 포스코홀딩스 IR, 증권사 컨센서스</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

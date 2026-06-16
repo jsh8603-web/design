@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="company"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:18px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:29px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:7px; }
+  .formula { background:var(--surface-inverse); border-radius:8px; padding:16px 24px; margin-bottom:18px; }
+  .formula .f1 p { font-size:19px; font-weight:700; color:var(--surface-inverse-fg); margin-bottom:4px; }
+  .formula .f2 p { font-size:15px; color:var(--surface-inverse-fg); opacity:0.7; }
+  .body { display:flex; gap:24px; flex:1; }
+  .tbl { flex:1.4; display:grid; grid-template-columns:1.3fr 1fr 1.4fr; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:11px 16px; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:10px 16px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:15px; color:var(--gray-1); }
+  .td.item p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.rate p { color:var(--accent); font-weight:800; }
+  .cards { flex:1; display:flex; flex-direction:column; gap:12px; }
+  .clbl p { font-size:15px; font-weight:700; color:var(--gray-2); margin-bottom:2px; }
+  .cgrid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .cc { background:var(--gray-4); border-radius:7px; padding:14px 16px; text-align:center; }
+  .cc .cn p { font-size:14px; color:var(--gray-2); margin-bottom:4px; }
+  .cc .cv p { font-size:24px; font-weight:800; color:var(--accent); }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="formula_rate_table">
+  <div class="head">
+    <div class="kicker">Loaded Cost Formula</div>
+    <h1>인건비 예산 = 기본급 × (1 + 주휴 + 보험 + 퇴직 + 연차 + 상여)</h1>
+  </div>
+
+  <div class="formula">
+    <div class="f1"><p>총 인건비 = 기본급 × (1 + α주휴 + α보험 + α퇴직 + α연차 + α상여)</p></div>
+    <div class="f2"><p>상용직 기본 계수: 1.44</p></div>
+  </div>
+
+  <div class="body">
+    <div class="tbl">
+      <div class="th"><p>항목</p></div>
+      <div class="th"><p>요율</p></div>
+      <div class="th"><p>계산 기준</p></div>
+
+      <div class="td item alt"><p>α주휴</p></div><div class="td rate alt"><p>+20.0%</p></div><div class="td alt"><p>8h / 40h</p></div>
+      <div class="td item"><p>α국민연금</p></div><div class="td rate"><p>+4.5%</p></div><div class="td"><p>4.5%</p></div>
+      <div class="td item alt"><p>α건강보험</p></div><div class="td rate alt"><p>+3.5%</p></div><div class="td alt"><p>3.545%</p></div>
+      <div class="td item"><p>α장기요양</p></div><div class="td rate"><p>+0.5%</p></div><div class="td"><p>12.81%</p></div>
+      <div class="td item alt"><p>α고용보험</p></div><div class="td rate alt"><p>+0.9%</p></div><div class="td alt"><p>0.9%</p></div>
+      <div class="td item"><p>α산재</p></div><div class="td rate"><p>+0.6~18.8%</p></div><div class="td"><p>업종별</p></div>
+      <div class="td item alt"><p>α퇴직충당</p></div><div class="td rate alt"><p>+8.3%</p></div><div class="td alt"><p>1 / 12</p></div>
+      <div class="td item"><p>α연차충당</p></div><div class="td rate"><p>+5.8%</p></div><div class="td"><p>15 / 260일</p></div>
+      <div class="td item alt"><p>α상여</p></div><div class="td rate alt"><p>사업장별</p></div><div class="td alt"><p>연상여 ÷ 12</p></div>
+    </div>
+
+    <div class="cards">
+      <div class="clbl"><p>업종별 총 계수</p></div>
+      <div class="cgrid">
+        <div class="cc"><div class="cn"><p>운수업</p></div><div class="cv"><p>≈1.49</p></div></div>
+        <div class="cc"><div class="cn"><p>창고업</p></div><div class="cv"><p>≈1.49</p></div></div>
+        <div class="cc"><div class="cn"><p>하역업</p></div><div class="cv"><p>≈1.50</p></div></div>
+        <div class="cc"><div class="cn"><p>택배</p></div><div class="cv"><p>≈1.47</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="src">출처: 근기법, 고용보험법, 건강보험법, 산재법</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

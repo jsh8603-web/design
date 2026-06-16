@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:26px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:30px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:7px; }
+  .tlwrap { position:relative; margin-bottom:30px; }
+  .tline { position:absolute; top:8px; left:40px; right:40px; height:3px; background:var(--gray-3); }
+  .nodes { display:flex; justify-content:space-between; position:relative; }
+  .node { display:flex; flex-direction:column; align-items:center; width:160px; }
+  .ndot { width:18px; height:18px; border-radius:50%; background:var(--accent); border:3px solid var(--theme-bg); margin-bottom:10px; }
+  .nyear p { font-size:17px; font-weight:800; color:var(--heading, var(--primary)); }
+  .nval p { font-size:15px; font-weight:700; color:var(--accent); margin-top:3px; }
+  .nl1 p { font-size:14px; font-weight:600; color:var(--gray-1); margin-top:4px; text-align:center; }
+  .nl2 p { font-size:13px; color:var(--gray-2); text-align:center; margin-top:1px; }
+  .wrap { display:flex; justify-content:center; flex:1; }
+  .tbl { display:grid; grid-template-columns:130px 180px 1fr 130px; width:100%; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:13px 18px; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:14px 18px; border-bottom:1px solid var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-1); }
+  .td.name p { font-weight:800; color:var(--heading, var(--primary)); }
+  .r-opt { background:var(--theme-bg); } .r-base { background:var(--gray-4); } .r-cons { background:var(--theme-bg); }
+  .v-opt p { color:#16A34A; font-weight:800; }
+  .v-base p { color:var(--accent); font-weight:800; }
+  .v-cons p { color:#E8913A; font-weight:800; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:12px; text-align:right; }
+</style></head>
+<body data-layout="timeline_scenario">
+  <div class="head">
+    <div class="kicker">AI Infrastructure Outlook</div>
+    <h1>2025~2030년, AI 인프라는 3가지 시나리오 중 어느 경로를 택하는가</h1>
+  </div>
+
+  <div class="tlwrap">
+    <div class="tline"></div>
+    <div class="nodes">
+      <div class="node"><div class="ndot"></div><div class="nyear"><p>2025</p></div><div class="nval"><p>$1,583억</p></div><div class="nl1"><p>시장 원년</p></div><div class="nl2"><p>Stargate 발동</p></div></div>
+      <div class="node"><div class="ndot"></div><div class="nyear"><p>2026</p></div><div class="nval"><p>$1,920억</p></div><div class="nl1"><p>Blackwell 고도화</p></div><div class="nl2"><p>TPU v6</p></div></div>
+      <div class="node"><div class="ndot"></div><div class="nyear"><p>2027</p></div><div class="nval"><p>$2,330억</p></div><div class="nl1"><p>ASIC 주류화</p></div><div class="nl2"><p>NVIDIA vs 대안</p></div></div>
+      <div class="node"><div class="ndot"></div><div class="nyear"><p>2028</p></div><div class="nval"><p>$2,830억</p></div><div class="nl1"><p>에너지 전환</p></div><div class="nl2"><p>SMR 가동 시작</p></div></div>
+      <div class="node"><div class="ndot"></div><div class="nyear"><p>2029</p></div><div class="nval"><p>$3,430억</p></div><div class="nl1"><p>엣지 폭발</p></div><div class="nl2"><p>5G+AI 융합</p></div></div>
+      <div class="node"><div class="ndot"></div><div class="nyear"><p>2030</p></div><div class="nval"><p>$4,188억</p></div><div class="nl1"><p>성숙기 진입</p></div><div class="nl2"><p>DC 200GW</p></div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th"><p>시나리오</p></div>
+      <div class="th"><p>2030 시장 규모</p></div>
+      <div class="th"><p>전제 조건</p></div>
+      <div class="th"><p>방향</p></div>
+
+      <div class="td name r-opt"><p>낙관</p></div>
+      <div class="td v-opt r-opt"><p>$9,340억</p></div>
+      <div class="td r-opt"><p>전력망 조기 해결 + 규제 완화 + AGI 임박</p></div>
+      <div class="td v-opt r-opt"><p>Positive</p></div>
+
+      <div class="td name r-base"><p>기준</p></div>
+      <div class="td v-base r-base"><p>$4,188억</p></div>
+      <div class="td r-base"><p>현 추세 지속, 전력 병목 일부 해소</p></div>
+      <div class="td v-base r-base"><p>Accent</p></div>
+
+      <div class="td name r-cons"><p>보수</p></div>
+      <div class="td v-cons r-cons"><p>$2,056억</p></div>
+      <div class="td r-cons"><p>규제 강화 + 전력 제약 + 기술 버블 조정</p></div>
+      <div class="td v-cons r-cons"><p>Warning</p></div>
+    </div>
+  </div>
+
+  <p class="src">출처: AI 인프라 투자 전망 (2026)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

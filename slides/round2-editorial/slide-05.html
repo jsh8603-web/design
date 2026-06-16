@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  .serif-head, h1, h2, h3, .sn, .tt, .kicker, .vsc p { font-family:'Newsreader','Times New Roman',serif; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:8px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:31px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .sub { font-size:16px; color:var(--gray-2); margin:11px 0 22px 2px; }
+  .layout { display:flex; gap:22px; flex:1; }
+  .left { flex:1; display:flex; flex-direction:column; gap:16px; }
+  .right { flex:1; }
+  .sc { background:var(--gray-4); border-radius:9px; padding:20px 24px; flex:1; }
+  .sh { display:flex; align-items:center; gap:11px; margin-bottom:14px; }
+  .sd { width:14px; height:14px; border-radius:50%; flex-shrink:0; }
+  .sd.main { background:var(--accent); }
+  .sd.sub { background:var(--gray-3); }
+  .sn { font-size:19px; font-weight:800; color:var(--heading, var(--primary)); }
+  .sg { display:grid; grid-template-columns:110px 1fr; gap:8px 14px; }
+  .sl { font-size:15px; font-weight:600; color:var(--gray-2); }
+  .sv { font-size:15px; color:var(--gray-1); line-height:1.4; }
+  .sv.b { font-weight:800; color:var(--accent); }
+  .tc { background:var(--gray-4); border-radius:9px; padding:22px 26px; height:100%; }
+  .tt { font-size:16px; font-weight:700; color:var(--heading, var(--primary)); margin-bottom:18px; }
+  .tl { position:relative; padding-left:26px; }
+  .tll { position:absolute; left:7px; top:6px; bottom:6px; width:3px; background:var(--gray-3); }
+  .ti { display:flex; gap:14px; margin-bottom:18px; position:relative; }
+  .ti:last-child { margin-bottom:0; }
+  .td2 { width:15px; height:15px; border-radius:50%; flex-shrink:0; position:absolute; left:-26px; top:3px; border:3px solid var(--gray-4); }
+  .td2.main { background:var(--accent); }
+  .td2.sub { background:var(--gray-3); }
+  .tdate { font-size:15px; font-weight:800; color:var(--accent); }
+  .ttext { font-size:16px; color:var(--gray-1); line-height:1.4; margin-top:2px; }
+  .tot { background:var(--surface-inverse); border-radius:8px; padding:16px 26px; display:flex; justify-content:space-between; align-items:center; margin-top:18px; }
+  .tot .tl2 { font-size:16px; color:var(--surface-inverse-fg); opacity:0.75; }
+  .tot .tv { font-size:26px; font-weight:800; color:var(--surface-inverse-fg); }
+  .src { font-size:14px; color:var(--gray-2); margin-top:12px; text-align:right; }
+</style></head>
+<body data-layout="panel_timeline">
+  <div class="head">
+    <div class="kicker">HBM Capacity Buildout</div>
+    <h1>용인 31조 · 청주 20조 — 국내 최대 AI 메모리 클러스터를 짓는다</h1>
+  </div>
+  <p class="sub">국내 50조+ 투자로 2027까지 HBM4 생산력 확대</p>
+
+  <div class="layout">
+    <div class="left">
+      <div class="sc">
+        <div class="sh"><div class="sd main"></div><p class="sn">용인 반도체 클러스터</p></div>
+        <div class="sg">
+          <p class="sl">투자 규모</p><p class="sv b">31조원 (시설투자 21.6조)</p>
+          <p class="sl">가동 목표</p><p class="sv b">2027년 2월 (1기 팹)</p>
+          <p class="sl">목적</p><p class="sv">HBM4 전용 첨단 팹</p>
+          <p class="sl">생태계</p><p class="sv">협력사 포함 120조</p>
+        </div>
+      </div>
+      <div class="sc">
+        <div class="sh"><div class="sd sub"></div><p class="sn">청주 M15X</p></div>
+        <div class="sg">
+          <p class="sl">투자 규모</p><p class="sv b">5.3조 (1차) ~ 최대 20조</p>
+          <p class="sl">준공</p><p class="sv b">2025년 11월 완료</p>
+          <p class="sl">목적</p><p class="sv">HBM 특화 생산 기지</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="tc">
+        <p class="tt">설비 투자 타임라인</p>
+        <div class="tl">
+          <div class="tll"></div>
+          <div class="ti"><div class="td2 sub"></div><div><p class="tdate">2025.11</p><p class="ttext">청주 M15X 준공 + 양산</p></div></div>
+          <div class="ti"><div class="td2 sub"></div><div><p class="tdate">2026.H1</p><p class="ttext">M15X HBM3E 풀가동</p></div></div>
+          <div class="ti"><div class="td2 main"></div><div><p class="tdate">2027.02</p><p class="ttext">용인 1기 팹 — HBM4 전용</p></div></div>
+          <div class="ti"><div class="td2 sub"></div><div><p class="tdate">2028+</p><p class="ttext">용인 2~4기 순차 증설 (총 120조)</p></div></div>
+        </div>
+        <div class="tot">
+          <p class="tl2">2025~2027 설비투자 합계</p>
+          <p class="tv">50조원+</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="src">출처: SK하이닉스 IR (2025)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

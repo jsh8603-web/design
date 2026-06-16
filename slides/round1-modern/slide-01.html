@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:22px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:33px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .tbl { display:grid; grid-template-columns:96px 200px 124px 116px 100px 1fr; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:11px 13px; display:flex; align-items:center; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:12px 13px; display:flex; align-items:center; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-1); line-height:1.4; }
+  .td.name p { font-weight:700; color:var(--heading, var(--primary)); font-size:17px; }
+  .td.rate p { font-weight:800; color:var(--accent); font-size:18px; }
+  .badge { display:inline-flex; padding:4px 12px; border-radius:4px; }
+  .badge p { font-size:15px; font-weight:700; }
+  .b-yes { background:var(--surface-inverse); }
+  .b-yes p { color:var(--surface-inverse-fg); }
+  .b-cond { background:var(--accent); }
+  .b-cond p { color:#FFFFFF; }
+  .b-no { background:var(--gray-4); }
+  .b-no p { color:var(--gray-2); }
+  .bottom { display:flex; gap:18px; margin-top:18px; flex:1; }
+  .calc { background:var(--surface-inverse); border-radius:8px; padding:18px 22px; flex:1; display:flex; flex-direction:column; gap:10px; }
+  .calc .ctitle p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .calc .crow { display:flex; gap:22px; align-items:flex-end; }
+  .calc .citem { display:flex; flex-direction:column; gap:3px; }
+  .calc .citem .lbl { font-size:14px; color:var(--surface-inverse-fg); }
+  .calc .citem .val { font-size:19px; font-weight:800; color:var(--surface-inverse-fg); }
+  .calc .ctot { margin-left:auto; display:flex; flex-direction:column; gap:3px; align-items:flex-end; }
+  .calc .ctot .lbl { font-size:14px; color:var(--surface-inverse-fg); }
+  .calc .ctot .big { font-size:30px; font-weight:800; color:var(--accent); }
+  .calc .ctot .sub { font-size:15px; color:var(--surface-inverse-fg); font-weight:600; }
+  .notes { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:8px; padding:18px 20px; width:258px; display:flex; flex-direction:column; gap:11px; }
+  .notes .ntitle p { font-size:15px; font-weight:800; color:var(--accent); }
+  .nitem { display:flex; gap:9px; align-items:flex-start; }
+  .ndot { width:7px; height:7px; border-radius:50%; background:var(--accent); margin-top:7px; flex-shrink:0; }
+  .nitem p { font-size:16px; color:var(--gray-1); line-height:1.4; }
+  .nitem p b { color:var(--accent); font-weight:700; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:auto; text-align:right; }
+</style></head>
+<body data-layout="data_table">
+  <div class="head">
+    <div class="kicker">Daily Worker · Coverage</div>
+    <h1>보험별 가입 기준이 달라, 일용직은 개별 확인이 필수다</h1>
+  </div>
+
+  <div class="tbl">
+    <div class="th"><p>보험</p></div>
+    <div class="th"><p>가입기준</p></div>
+    <div class="th"><p>초단시간</p></div>
+    <div class="th"><p>회사부담</p></div>
+    <div class="th"><p>요율</p></div>
+    <div class="th"><p>신고방법</p></div>
+
+    <div class="td name alt"><p>산재</p></div>
+    <div class="td alt"><div class="badge b-yes"><p>전원 가입</p></div></div>
+    <div class="td alt"><div class="badge b-yes"><p>가입</p></div></div>
+    <div class="td rate alt"><p>100%</p></div>
+    <div class="td rate alt"><p>1.5%</p></div>
+    <div class="td alt"><p>월별 신고</p></div>
+
+    <div class="td name"><p>고용</p></div>
+    <div class="td"><div class="badge b-cond"><p>60h+</p></div></div>
+    <div class="td"><div class="badge b-no"><p>미가입</p></div></div>
+    <div class="td rate"><p>50%</p></div>
+    <div class="td rate"><p>0.9%</p></div>
+    <div class="td"><p>근로확인 (익월 15일)</p></div>
+
+    <div class="td name alt"><p>건강</p></div>
+    <div class="td alt"><div class="badge b-cond"><p>8일+ / 60h+</p></div></div>
+    <div class="td alt"><div class="badge b-no"><p>미가입</p></div></div>
+    <div class="td rate alt"><p>50%</p></div>
+    <div class="td rate alt"><p>3.5%</p></div>
+    <div class="td alt"><p>취득신고 (14일)</p></div>
+
+    <div class="td name"><p>국민연금</p></div>
+    <div class="td"><div class="badge b-cond"><p>8일+ / 60h+</p></div></div>
+    <div class="td"><div class="badge b-no"><p>미가입</p></div></div>
+    <div class="td rate"><p>50%</p></div>
+    <div class="td rate"><p>4.5%</p></div>
+    <div class="td"><p>사업장 (익월 15일)</p></div>
+  </div>
+
+  <div class="bottom">
+    <div class="calc">
+      <div class="ctitle"><p>예시 — 일당 10만 × 20일 = 월 200만</p></div>
+      <div class="crow">
+        <div class="citem"><p class="lbl">산재 1.5%</p><p class="val">30,000</p></div>
+        <div class="citem"><p class="lbl">고용 0.9%</p><p class="val">18,000</p></div>
+        <div class="citem"><p class="lbl">건강 3.545%</p><p class="val">70,900</p></div>
+        <div class="citem"><p class="lbl">국민연금 4.5%</p><p class="val">90,000</p></div>
+        <div class="ctot"><p class="lbl">회사 합계</p><p class="big">~188,000원</p><p class="sub">급여의 9.4%</p></div>
+      </div>
+    </div>
+    <div class="notes">
+      <div class="ntitle"><p>주의사항</p></div>
+      <div class="nitem"><div class="ndot"></div><p>초단시간은 <b>산재만</b> 적용</p></div>
+      <div class="nitem"><div class="ndot"></div><p>건강·연금은 <b>8일+</b> 조건</p></div>
+      <div class="nitem"><div class="ndot"></div><p>지연 신고 시 과태료</p></div>
+      <p class="src">출처: 고용보험법 등</p>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

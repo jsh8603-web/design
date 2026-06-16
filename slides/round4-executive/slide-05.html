@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { display:flex; align-items:center; gap:16px; border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:8px; }
+  .num { background:var(--surface-inverse); border-radius:5px; padding:5px 13px; }
+  .num p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  h1 { font-size:31px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; }
+  .sub { font-size:16px; color:var(--gray-2); margin:11px 0 22px 2px; }
+  .wrap { display:flex; justify-content:center; flex:1; }
+  .tbl { display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; width:100%; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:15px 18px; }
+  .th p { font-size:17px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.crit p { color:var(--surface-inverse-fg); opacity:0.6; font-size:14px; letter-spacing:0.06em; }
+  .td { padding:13px 18px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .td.lb { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-1); }
+  .td.lb p { font-weight:800; color:var(--heading, var(--primary)); }
+  .pos p { color:#16A34A; font-weight:700; }
+  .neg p { color:#DC2626; font-weight:700; }
+  .mid p { color:#E8913A; font-weight:700; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="entity_comparison">
+  <div class="head">
+    <div class="num"><p>02</p></div>
+    <h1>해외 진출 — Branch · Subsidiary · JV 구조를 한눈에 비교한다</h1>
+  </div>
+  <p class="sub">법적 지위 · 책임 · 세무 · 비용 6개 기준 종합 비교</p>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th crit"><p>CRITERIA</p></div>
+      <div class="th"><p>Branch</p></div>
+      <div class="th"><p>Subsidiary</p></div>
+      <div class="th"><p>Joint Venture</p></div>
+
+      <div class="td lb"><p>법적 지위</p></div>
+      <div class="td"><p>본사의 연장</p></div>
+      <div class="td"><p>독립 법인</p></div>
+      <div class="td"><p>공동 소유 법인</p></div>
+
+      <div class="td lb"><p>책임 범위</p></div>
+      <div class="td neg"><p>무한책임</p></div>
+      <div class="td pos"><p>유한책임</p></div>
+      <div class="td pos"><p>유한 (지분별)</p></div>
+
+      <div class="td lb"><p>과세 이연</p></div>
+      <div class="td neg"><p>불가</p></div>
+      <div class="td pos"><p>배당 시까지</p></div>
+      <div class="td mid"><p>유형에 따라</p></div>
+
+      <div class="td lb"><p>설립 비용</p></div>
+      <div class="td pos"><p>낮음</p></div>
+      <div class="td mid"><p>중간</p></div>
+      <div class="td neg"><p>높음</p></div>
+
+      <div class="td lb"><p>조세조약 혜택</p></div>
+      <div class="td mid"><p>부분 적용</p></div>
+      <div class="td pos"><p>전면 적용</p></div>
+      <div class="td pos"><p>전면 적용</p></div>
+
+      <div class="td lb"><p>적합 용도</p></div>
+      <div class="td"><p>단기 프로젝트</p></div>
+      <div class="td"><p>장기 운영</p></div>
+      <div class="td"><p>위험 분담 사업</p></div>
+    </div>
+  </div>
+
+  <p class="src">출처: InvestKOREA, Choi Hong Lee &amp; Kang CPA</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

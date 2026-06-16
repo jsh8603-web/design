@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); display:flex; }
+  .lp { width:36%; background:var(--surface-inverse); display:flex; flex-direction:column; justify-content:space-between; padding:54px 44px; }
+  .badge { display:inline-block; background:var(--accent); border-radius:4px; padding:5px 14px; width:fit-content; margin-bottom:22px; }
+  .badge p { font-size:15px; font-weight:700; color:#FFFFFF; letter-spacing:0.1em; }
+  .lt p { font-size:27px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.45; letter-spacing:-0.02em; }
+  .lt p.acc { color:var(--surface-inverse-fg); }
+  .lbar { width:48px; height:4px; background:var(--surface-inverse-fg); margin:20px 0; }
+  .warn { border:1.5px solid var(--surface-inverse-fg); border-radius:7px; padding:16px 18px; }
+  .wt p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); margin-bottom:9px; }
+  .wi { display:flex; flex-direction:column; gap:6px; }
+  .wi p { font-size:15px; color:var(--surface-inverse-fg); opacity:0.85; line-height:1.5; }
+  .wi p b { color:var(--surface-inverse-fg); font-weight:700; }
+  .lb-bottom { border-top:1px solid var(--gray-3); padding-top:14px; margin-top:14px; }
+  .lb-bottom p { font-size:14px; color:var(--surface-inverse-fg); opacity:0.6; }
+
+  .rp { flex:1; display:flex; flex-direction:column; padding:48px 56px; gap:18px; }
+  .rh p { font-size:15px; font-weight:700; color:var(--gray-2); letter-spacing:0.05em; text-transform:uppercase; }
+  .kpis { display:flex; gap:11px; }
+  .kc { flex:1; background:var(--gray-4); border-radius:8px; padding:15px 13px; display:flex; flex-direction:column; gap:6px; }
+  .kc.primary { background:var(--surface-inverse); }
+  .kc.acc { background:var(--accent); }
+  .kl p { font-size:14px; font-weight:600; color:var(--gray-2); line-height:1.3; }
+  .kc.primary .kl p { color:var(--surface-inverse-fg); opacity:0.7; }
+  .kc.acc .kl p { color:#FFFFFF; opacity:0.85; }
+  .kr h3 { font-size:23px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.02em; line-height:1.1; }
+  .kc.primary .kr h3 { color:var(--surface-inverse-fg); }
+  .kc.acc .kr h3 { color:#FFFFFF; }
+  .ks p { font-size:13px; color:var(--gray-2); line-height:1.4; }
+  .kc.primary .ks p { color:var(--surface-inverse-fg); opacity:0.7; }
+  .kc.acc .ks p { color:#FFFFFF; opacity:0.85; }
+
+  .isec .ilbl p { font-size:15px; font-weight:700; color:var(--gray-2); margin-bottom:8px; }
+  .ig { display:grid; grid-template-columns:130px 1fr 1fr 1fr 1.2fr; border:1px solid var(--gray-3); }
+  .igh { background:var(--surface-inverse); padding:9px 12px; }
+  .igh p { font-size:14px; font-weight:700; color:var(--surface-inverse-fg); }
+  .igt { padding:9px 12px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); }
+  .igt.alt { background:var(--gray-4); }
+  .igt p { font-size:15px; color:var(--gray-1); }
+  .igt.name p { font-weight:700; color:var(--heading, var(--primary)); }
+  .igt.rate p { font-weight:700; color:var(--accent); }
+  .igt.total p { font-weight:800; color:var(--heading, var(--primary)); }
+  .note { background:var(--gray-4); border-radius:6px; padding:12px 18px; display:flex; align-items:center; gap:14px; }
+  .note .ni { width:30px; height:30px; border-radius:50%; background:var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .note .ni p { font-size:16px; font-weight:800; color:#FFFFFF; }
+  .note .nt p { font-size:15px; color:var(--gray-1); font-weight:600; line-height:1.5; }
+  .note .nt p b { color:var(--accent); font-weight:800; }
+</style></head>
+<body data-layout="panel_kpi_table">
+  <div class="lp">
+    <div>
+      <div class="badge"><p>PART 4</p></div>
+      <div class="lt">
+        <p>4대보험 회사부담률 합계는</p>
+        <p class="acc">급여의 9.7% ~ 23%+</p>
+        <p>업종에 따라 달라진다</p>
+      </div>
+      <div class="lbar"></div>
+      <div class="warn">
+        <div class="wt"><p>미가입 과태료</p></div>
+        <div class="wi">
+          <p>건강·연금: <b>최대 500만</b></p>
+          <p>고용·산재: <b>1인 300만</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="lb-bottom"><p>2025년 기준</p></div>
+  </div>
+
+  <div class="rp">
+    <div class="rh"><p>2025 회사부담 요율</p></div>
+    <div class="kpis">
+      <div class="kc primary"><div class="kl"><p>국민연금</p></div><div class="kr"><h3>4.5%</h3></div><div class="ks"><p>기준소득월액</p></div></div>
+      <div class="kc"><div class="kl"><p>건강보험</p></div><div class="kr"><h3>3.545%</h3></div><div class="ks"><p>보수월액 기준</p></div></div>
+      <div class="kc"><div class="kl"><p>장기요양</p></div><div class="kr"><h3>0.454%</h3></div><div class="ks"><p>건보료의 12.81%</p></div></div>
+      <div class="kc"><div class="kl"><p>고용보험</p></div><div class="kr"><h3>0.9%</h3></div><div class="ks"><p>보수월액 기준</p></div></div>
+      <div class="kc acc"><div class="kl"><p>산재보험</p></div><div class="kr"><h3>업종별</h3></div><div class="ks"><p>운수1.5%~하역2.2%</p></div></div>
+    </div>
+
+    <div class="isec">
+      <div class="ilbl"><p>물류업 산재보험 세분류</p></div>
+      <div class="ig">
+        <div class="igh"><p>업종</p></div>
+        <div class="igh"><p>산재요율</p></div>
+        <div class="igh"><p>4대보험 합계</p></div>
+        <div class="igh"><p>퇴직 포함</p></div>
+        <div class="igh"><p>비고</p></div>
+
+        <div class="igt name alt"><p>육상운수</p></div>
+        <div class="igt rate alt"><p>1.5%</p></div>
+        <div class="igt total alt"><p>10.4%</p></div>
+        <div class="igt alt"><p>~18.7%</p></div>
+        <div class="igt alt"><p>화물·택배</p></div>
+
+        <div class="igt name"><p>창고업</p></div>
+        <div class="igt rate"><p>1.2%</p></div>
+        <div class="igt total"><p>10.1%</p></div>
+        <div class="igt"><p>~18.4%</p></div>
+        <div class="igt"><p>일반창고</p></div>
+
+        <div class="igt name alt"><p>하역업</p></div>
+        <div class="igt rate alt"><p>2.2%</p></div>
+        <div class="igt total alt"><p>11.1%</p></div>
+        <div class="igt alt"><p>~19.4%</p></div>
+        <div class="igt alt"><p>항만·물류센터</p></div>
+
+        <div class="igt name"><p>택배업</p></div>
+        <div class="igt rate"><p>1.5%</p></div>
+        <div class="igt total"><p>10.4%</p></div>
+        <div class="igt"><p>~18.7%</p></div>
+        <div class="igt"><p>라스트마일</p></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <div class="ni"><p>i</p></div>
+      <div class="nt"><p>업종 산재요율 차이로 총 부담은 <b>육상 10.4%</b>에서 <b>하역 11.1%</b>까지 벌어진다</p></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { display:flex; align-items:flex-start; gap:16px; border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:24px; }
+  .hbar { width:6px; height:46px; background:var(--accent); flex-shrink:0; margin-top:3px; }
+  .htext .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.3; margin-top:5px; }
+  .steps { display:flex; gap:16px; margin-bottom:24px; }
+  .step { flex:1; background:var(--gray-4); border-radius:8px; border-top:4px solid var(--accent); padding:16px 18px; display:flex; gap:13px; align-items:flex-start; }
+  .sbadge { width:34px; height:34px; background:var(--surface-inverse); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .sbadge p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .scon { flex:1; }
+  .smonth p { font-size:14px; font-weight:700; color:var(--accent); margin-bottom:3px; }
+  .stitle p { font-size:17px; font-weight:700; color:var(--heading, var(--primary)); margin-bottom:3px; }
+  .sdesc p { font-size:14px; color:var(--gray-2); line-height:1.4; }
+  .wrap { display:flex; justify-content:center; flex:1; }
+  .tbl { display:grid; grid-template-columns:160px 1fr 1fr 1.4fr; width:100%; border:1px solid var(--gray-3); align-self:start; }
+  .th { background:var(--surface-inverse); padding:13px 18px; text-align:center; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .th.l { text-align:left; }
+  .td { padding:14px 18px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); text-align:center; }
+  .td.l { text-align:left; }
+  .td p { font-size:16px; color:var(--gray-1); }
+  .td.lb p { font-weight:800; color:var(--heading, var(--primary)); }
+  .td.refund p { color:#2E7D32; font-weight:800; }
+  .td.charge p { color:#C62828; font-weight:800; }
+  .td.net p { color:var(--heading, var(--primary)); font-weight:800; }
+  .note { background:var(--gray-4); border-radius:7px; border-left:4px solid var(--accent); padding:14px 20px; margin-top:20px; }
+  .note p { font-size:16px; color:var(--gray-1); line-height:1.5; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:12px; text-align:right; }
+</style></head>
+<body data-layout="step_table">
+  <div class="head">
+    <div class="hbar"></div>
+    <div class="htext">
+      <div class="kicker">Year-End Tax Settlement</div>
+      <h1>연말정산 환급·추징은 2월 급여에 일괄 반영, 해당 월 인건비가 ±10% 변동한다</h1>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="sbadge"><p>1</p></div><div class="scon"><div class="smonth"><p>1월</p></div><div class="stitle"><p>원천징수영수증 작성</p></div><div class="sdesc"><p>전년 소득·비과세·세액공제 집계</p></div></div></div>
+    <div class="step"><div class="sbadge"><p>2</p></div><div class="scon"><div class="smonth"><p>1~2월</p></div><div class="stitle"><p>증빙 수집 + 산출세액 확정</p></div><div class="sdesc"><p>공제 증빙 취합 → 결정세액 산출</p></div></div></div>
+    <div class="step"><div class="sbadge"><p>3</p></div><div class="scon"><div class="smonth"><p>2월</p></div><div class="stitle"><p>급여 반영</p></div><div class="sdesc"><p>&gt;0 추가 징수 | &lt;0 환급 지급</p></div></div></div>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th l"><p>구분</p></div>
+      <div class="th"><p>1인 평균</p></div>
+      <div class="th"><p>100명 합계</p></div>
+      <div class="th l"><p>FP&amp;A 영향</p></div>
+
+      <div class="td l lb"><p>환급 (70%)</p></div>
+      <div class="td refund"><p>−185,000원</p></div>
+      <div class="td refund"><p>−12,950,000원</p></div>
+      <div class="td l"><p>급여↑ 1,295만원 지출</p></div>
+
+      <div class="td l lb"><p>추징 (30%)</p></div>
+      <div class="td charge"><p>+120,000원</p></div>
+      <div class="td charge"><p>+3,600,000원</p></div>
+      <div class="td l"><p>급여에서 공제</p></div>
+
+      <div class="td l lb"><p>순 현금</p></div>
+      <div class="td net"><p>—</p></div>
+      <div class="td net"><p>−9,350,000원</p></div>
+      <div class="td l"><p>+935만원 순지출</p></div>
+    </div>
+  </div>
+
+  <div class="note"><p>물류업 야간비과세 초과 적용 → 환급 비율이 타업종 대비 높다</p></div>
+
+  <p class="src">출처: 소득세법 연말정산 규정 (2025)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

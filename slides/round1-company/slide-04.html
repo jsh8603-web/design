@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="company"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:22px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:31px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.22; margin-top:7px; }
+  .layout { display:flex; gap:22px; flex:1; }
+  .left { flex:0 0 520px; }
+  .right { flex:1; display:flex; flex-direction:column; gap:16px; }
+  .card { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:8px; padding:16px 18px; }
+  .ctitle { font-size:16px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:12px; }
+  .gt { display:grid; grid-template-columns:130px 1fr 1fr 1fr 1fr; }
+  .c { padding:8px 8px; font-size:15px; color:var(--gray-1); border-bottom:1px solid var(--gray-3); text-align:center; }
+  .c-hd { background:var(--surface-inverse); color:var(--surface-inverse-fg); font-weight:700; border-bottom:none; }
+  .c-lb { font-weight:700; background:var(--theme-bg); text-align:left; color:var(--heading, var(--primary)); }
+  .c-sec { color:var(--accent); font-weight:800; }
+  .bars { display:flex; flex-direction:column; gap:14px; }
+  .brow { display:flex; align-items:center; gap:10px; }
+  .blbl { font-size:15px; font-weight:800; width:44px; color:var(--gray-1); }
+  .blbl.base { color:var(--accent); }
+  .btrack { flex:1; height:30px; background:var(--theme-bg); border:1px solid var(--gray-3); border-radius:5px; position:relative; }
+  .bfill { height:100%; border-radius:5px; display:flex; align-items:center; padding-left:12px; }
+  .bfill p { font-size:15px; font-weight:800; color:#FFFFFF; }
+  .cur-line { position:absolute; left:39%; top:-5px; bottom:-5px; width:2px; background:var(--accent); }
+  .bpct { font-size:15px; font-weight:800; width:46px; text-align:right; color:var(--gray-2); }
+  .bpct.base { color:var(--accent); }
+  .cur-tag { font-size:14px; color:var(--accent); font-weight:700; margin-bottom:6px; padding-left:34%; }
+  .notes { display:flex; flex-direction:column; gap:7px; }
+  .nitem { display:flex; gap:9px; align-items:flex-start; }
+  .ndot { width:7px; height:7px; border-radius:50%; background:var(--accent); margin-top:7px; flex-shrink:0; }
+  .nitem p { font-size:16px; color:var(--gray-1); line-height:1.4; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:auto; text-align:right; }
+</style></head>
+<body data-layout="table_insight">
+  <div class="head">
+    <div class="kicker">Samsung Electronics · Valuation</div>
+    <h1>P/E 5.4배는 역사적 바닥, 이익 회복 시 리레이팅은 필연이다</h1>
+  </div>
+
+  <div class="layout">
+    <div class="left">
+      <div class="card">
+        <p class="ctitle">글로벌 피어 밸류에이션 비교</p>
+        <div class="gt">
+          <div class="c c-hd"><p>지표</p></div>
+          <div class="c c-hd"><p>삼성전자</p></div>
+          <div class="c c-hd"><p>SK하이닉스</p></div>
+          <div class="c c-hd"><p>TSMC</p></div>
+          <div class="c c-hd"><p>섹터평균</p></div>
+
+          <div class="c c-lb"><p>Forward P/E</p></div>
+          <div class="c c-sec"><p>5.4배</p></div>
+          <div class="c"><p>8.2배</p></div>
+          <div class="c"><p>22.1배</p></div>
+          <div class="c"><p>18배</p></div>
+
+          <div class="c c-lb"><p>P/B</p></div>
+          <div class="c c-sec"><p>1.8배</p></div>
+          <div class="c"><p>2.4배</p></div>
+          <div class="c"><p>6.8배</p></div>
+          <div class="c"><p>3.2배</p></div>
+
+          <div class="c c-lb"><p>EV/EBITDA</p></div>
+          <div class="c c-sec"><p>3.9배</p></div>
+          <div class="c"><p>5.1배</p></div>
+          <div class="c"><p>14.2배</p></div>
+          <div class="c"><p>9.5배</p></div>
+
+          <div class="c c-lb"><p>배당수익률</p></div>
+          <div class="c c-sec"><p>4.7%</p></div>
+          <div class="c"><p>1.2%</p></div>
+          <div class="c"><p>1.8%</p></div>
+          <div class="c"><p>1.5%</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="card">
+        <p class="ctitle">목표주가 시나리오 (현재가 ~15.6만원)</p>
+        <p class="cur-tag">현재 15.6만</p>
+        <div class="bars">
+          <div class="brow">
+            <p class="blbl">Bear</p>
+            <div class="btrack"><div class="cur-line"></div><div class="bfill" style="width:42%; background:var(--gray-3);"><p>16.5만원</p></div></div>
+            <p class="bpct">+5%</p>
+          </div>
+          <div class="brow">
+            <p class="blbl base">Base</p>
+            <div class="btrack"><div class="bfill" style="width:58%; background:var(--surface-inverse);"><p>23만원</p></div></div>
+            <p class="bpct base">+47%</p>
+          </div>
+          <div class="brow">
+            <p class="blbl">Bull</p>
+            <div class="btrack"><div class="bfill" style="width:70%; background:var(--accent);"><p>27.5만원</p></div></div>
+            <p class="bpct">+76%</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="notes">
+          <div class="nitem"><div class="ndot"></div><p>외국인 순매수 +3.2조 복귀</p></div>
+          <div class="nitem"><div class="ndot"></div><p>코리아 디스카운트 해소 시 리레이팅</p></div>
+          <div class="nitem"><div class="ndot"></div><p>24.7조 자사주 소각 → EPS 개선</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="src">Bloomberg, FnGuide, 각 증권사 컨센서스 (2026.03 기준)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

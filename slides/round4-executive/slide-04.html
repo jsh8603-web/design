@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="executive-editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:24px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:31px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:7px; }
+  .layout { display:flex; gap:28px; flex:1; }
+  .left { flex:1.25; }
+  .right { flex:1; }
+  .ctitle { font-size:17px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:14px; }
+  .mx { display:grid; grid-template-columns:64px 1fr 1fr; border:1px solid var(--gray-3); }
+  .corner { background:var(--surface-inverse); }
+  .colhd { background:var(--surface-inverse); padding:12px; text-align:center; }
+  .colhd p { font-size:15px; color:var(--surface-inverse-fg); font-weight:700; }
+  .ylab { display:flex; align-items:center; justify-content:center; background:var(--gray-4); border-top:1px solid var(--gray-3); }
+  .ylab p { font-size:14px; color:var(--gray-2); font-weight:700; text-align:center; line-height:1.3; }
+  .cell { padding:14px 16px; border-top:1px solid var(--gray-3); border-left:1px solid var(--gray-3); background:var(--theme-bg); }
+  .cell p { font-size:15px; line-height:1.55; color:var(--gray-1); }
+  .cell p .rn { font-size:16px; font-weight:800; color:var(--heading, var(--primary)); }
+  .cell p .crit { font-weight:800; color:var(--accent); }
+  .cell p .mod { font-weight:800; color:var(--heading, var(--primary)); }
+  .cell p .low { font-weight:800; color:var(--gray-2); }
+  .cell p .sm { font-size:14px; color:var(--gray-2); }
+  .rlist { display:flex; flex-direction:column; gap:11px; }
+  .rc { padding:13px 16px; background:var(--gray-4); border-radius:7px; border-left:4px solid var(--gray-3); }
+  .rc.warn { border-left-color:var(--accent); }
+  .rcr p { font-size:16px; font-weight:700; color:var(--heading, var(--primary)); margin-bottom:2px; }
+  .rca p { font-size:15px; color:var(--gray-2); line-height:1.35; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:14px; text-align:right; }
+</style></head>
+<body data-layout="risk_matrix">
+  <div class="head">
+    <div class="kicker">Risk Assessment</div>
+    <h1>3대 리스크(관세 · HBM 과잉 · 수율)에 대한 대응력은 충분하다</h1>
+  </div>
+
+  <div class="layout">
+    <div class="left">
+      <p class="ctitle">리스크 매트릭스</p>
+      <div class="mx">
+        <div class="corner"></div>
+        <div class="colhd"><p>중저 확률</p></div>
+        <div class="colhd"><p>고 확률</p></div>
+
+        <div class="ylab"><p>고<br>충격도</p></div>
+        <div class="cell"><p><span class="mod">중위험</span> · <span class="rn">AI 사이클 변동</span><br><span class="sm">CAPEX 조정 → 수요 둔화</span><br><br><span class="mod">중위험</span> · <span class="rn">수율 지연</span><br><span class="sm">SF2 미달 → 고객 이탈</span></p></div>
+        <div class="cell"><p><span class="crit">고위험</span> · <span class="rn">미국 관세</span><br><span class="sm">10% 관세 → 비용 상승</span><br><br><span class="crit">고위험</span> · <span class="rn">HBM 과잉</span><br><span class="sm">3사 양산 → 가격 하락</span></p></div>
+
+        <div class="ylab"><p>저<br>충격도</p></div>
+        <div class="cell"><p><span class="low">저위험</span> · <span class="rn">환율 변동</span><br><span class="sm">경쟁력 일부 상쇄</span></p></div>
+        <div class="cell"><p><span class="low">저위험</span> · <span class="rn">미중 기술패권</span><br><span class="sm">중국 제한 → 고객 다변화</span></p></div>
+      </div>
+    </div>
+
+    <div class="right">
+      <p class="ctitle">대응 전략</p>
+      <div class="rlist">
+        <div class="rc warn"><div class="rcr"><p>미국 관세</p></div><div class="rca"><p>텍사스 증설 + 가격 전가</p></div></div>
+        <div class="rc warn"><div class="rcr"><p>HBM 공급과잉</p></div><div class="rca"><p>HBM4E 선제 + LTA 확대</p></div></div>
+        <div class="rc"><div class="rcr"><p>AI 투자 사이클</p></div><div class="rca"><p>비AI 메모리 수요 유지</p></div></div>
+        <div class="rc"><div class="rcr"><p>파운드리 수율</p></div><div class="rca"><p>수율 보증 계약</p></div></div>
+        <div class="rc"><div class="rcr"><p>미중 기술패권</p></div><div class="rca"><p>비중국 고객 다변화</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="src">출처: 사업보고서, Bloomberg Risk 2026.01</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:54px 72px 48px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:24px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:31px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.22; margin-top:7px; }
+  .vs { display:grid; grid-template-columns:1fr 64px 1fr; flex:1; gap:0; align-items:stretch; }
+  .col { border-radius:10px; padding:26px 30px; display:flex; flex-direction:column; }
+  .col.l { background:var(--surface-inverse); }
+  .col.r { background:var(--gray-4); }
+  .chd { padding-bottom:14px; margin-bottom:16px; }
+  .col.l .chd { border-bottom:1px solid var(--gray-3); }
+  .col.r .chd { border-bottom:1px solid var(--gray-3); }
+  .lawrow { display:flex; gap:8px; margin-bottom:10px; }
+  .law { background:var(--accent); border-radius:4px; padding:3px 10px; }
+  .law p { font-size:13px; color:#FFFFFF; font-weight:700; }
+  .col.l h2 { font-size:23px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.2; }
+  .col.r h2 { font-size:23px; font-weight:800; color:var(--heading, var(--primary)); line-height:1.2; }
+  .col.l .csub { font-size:15px; color:var(--surface-inverse-fg); opacity:0.7; margin-top:5px; }
+  .col.r .csub { font-size:15px; color:var(--gray-2); margin-top:5px; }
+  .items { display:flex; flex-direction:column; gap:14px; flex:1; }
+  .it { display:flex; gap:13px; align-items:flex-start; }
+  .ic { width:30px; height:30px; border-radius:5px; flex-shrink:0; background:var(--accent); display:flex; align-items:center; justify-content:center; }
+  .ic p { font-size:15px; font-weight:800; color:#FFFFFF; }
+  .ib { flex:1; }
+  .col.l .ilb p { font-size:14px; font-weight:700; color:var(--surface-inverse-fg); opacity:0.65; margin-bottom:2px; }
+  .col.r .ilb p { font-size:14px; font-weight:700; color:var(--gray-2); margin-bottom:2px; }
+  .col.l .iv p { font-size:17px; font-weight:700; color:var(--surface-inverse-fg); line-height:1.3; }
+  .col.r .iv p { font-size:17px; font-weight:700; color:var(--heading, var(--primary)); line-height:1.3; }
+  .tag { display:inline-block; background:var(--accent); border-radius:4px; padding:2px 9px; margin-top:4px; white-space:nowrap; }
+  .tag p { font-size:12px; color:#FFFFFF; font-weight:700; white-space:nowrap; }
+  .vsd { display:flex; align-items:center; justify-content:center; }
+  .vsc { width:48px; height:48px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; }
+  .vsc p { font-size:16px; font-weight:900; color:#FFFFFF; }
+  .src { font-size:14px; color:var(--gray-2); margin-top:16px; text-align:center; }
+</style></head>
+<body data-layout="comparison_panel">
+  <div class="head">
+    <div class="kicker">Tax · Insurance Basis</div>
+    <h1>고용형태가 갈리면 과세·4대보험 규약이 통째로 달라진다</h1>
+  </div>
+
+  <div class="vs">
+    <div class="col l">
+      <div class="chd">
+        <div class="lawrow"><div class="law"><p>소득세법 §14</p></div><div class="law"><p>3개월 미만</p></div></div>
+        <h2>소득세법상 일용근로자</h2>
+        <p class="csub">3개월 미만 단기 고용</p>
+      </div>
+      <div class="items">
+        <div class="it"><div class="ic"><p>1</p></div><div class="ib"><div class="ilb"><p>과세 방식</p></div><div class="iv"><p>완납적 분리과세</p></div></div></div>
+        <div class="it"><div class="ic"><p>2</p></div><div class="ib"><div class="ilb"><p>원천징수 세율</p></div><div class="iv"><p>(일급−15만)×2.7%</p></div><div class="tag"><p>실효세율 2.7%</p></div></div></div>
+        <div class="it"><div class="ic"><p>3</p></div><div class="ib"><div class="ilb"><p>주휴수당</p></div><div class="iv"><p>미발생 (단기)</p></div></div></div>
+        <div class="it"><div class="ic"><p>4</p></div><div class="ib"><div class="ilb"><p>4대보험</p></div><div class="iv"><p>조건부 (1개월 / 60h)</p></div></div></div>
+      </div>
+    </div>
+
+    <div class="vsd"><div class="vsc"><p>VS</p></div></div>
+
+    <div class="col r">
+      <div class="chd">
+        <div class="lawrow"><div class="law"><p>근로기준법 §2</p></div><div class="law"><p>3개월 이상</p></div></div>
+        <h2>상용근로자</h2>
+        <p class="csub">3개월+ 계속 근무</p>
+      </div>
+      <div class="items">
+        <div class="it"><div class="ic"><p>1</p></div><div class="ib"><div class="ilb"><p>과세 방식</p></div><div class="iv"><p>원천징수 → 연말정산</p></div></div></div>
+        <div class="it"><div class="ic"><p>2</p></div><div class="ib"><div class="ilb"><p>원천징수 세율</p></div><div class="iv"><p>간이세액표 누진</p></div><div class="tag"><p>공제 후 정산</p></div></div></div>
+        <div class="it"><div class="ic"><p>3</p></div><div class="ib"><div class="ilb"><p>주휴수당</p></div><div class="iv"><p>당연 발생 (+20%)</p></div></div></div>
+        <div class="it"><div class="ic"><p>4</p></div><div class="ib"><div class="ilb"><p>4대보험</p></div><div class="iv"><p>당연 가입 (의무)</p></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="src">출처: 소득세법 §14, 근로기준법 §2</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

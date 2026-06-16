@@ -125,3 +125,14 @@
 - **동기화 완료**: plan §0.6 R11행·INDEX R11행 갱신, K-202606161200 박제, R11 커밋.
 
 > ★인계: [handoff-design-e2e-20260616.md](./handoff-design-e2e-20260616.md) — 테스트자산 **75장(R1~R10 소진 + R11~R15 신규25)** + 워크플로우 5단계 + 누적학습13 + 드리프트교훈. **R12 착수**(plan §0.6 R12 소재 Read검증→생성)부터 재개. 클린카운터=0, 종료=2연속클린.
+
+## Working Notes — ckpt R14착수 (btn-design, R13완료 e3ed107)
+- R13 완료·커밋 e3ed107 (클린아님 카운터0). FAILED2건 슬라이드수정(K-202606162310=학습⑮: p에border→div>p / 텍스트바닥<0.5"→pad-bottom확대).
+- **R14 소재 5장 Read복잡도 검증 완료·전부 채택**(교체불요):
+  · slide-01=PG/29 건강·고용·산재 정산 3패널(각3step)+물류 계산예시
+  · slide-02=PV2/22 DB vs DC 비교 6행표(다소sparse→생성시 선택가이드패널 밀집보강)
+  · slide-03=SS/15 막대차트(OP추이 3바,2026E주황강조)+부문별OP 5행표+Catalyst 3카드
+  · slide-04=PG/33 7~12월 월별 가로타임라인+월별상세표+다크 체크리스트패널
+  · slide-05=PG/24 계리보고서 4단계 프로세스 가로타임라인(번호+불릿카드)+하단2박스
+- 다음 의도: modern 베이스 5장 생성(학습 15개 선적용, 특히 ⑮ p border금지/바닥여백48px·⑥배지·⑪직교화살표·②다크강조fg) → sed 8테마+editorial serif → convert-native PF변환(--skip-preflight금지) → COM 의도보존+정탐회귀0.
+- 동기화: 완료 시 plan §0.6 R14행·RENDERED-ASSETS-INDEX·handoff frontmatter(→R15) 갱신+커밋.

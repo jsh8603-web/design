@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:40px 56px 28px 56px; display:flex; flex-direction:column; }
+  h1 { font-size:23px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:5px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:13px; color:var(--gray-2); margin-bottom:14px; line-height:1.4; }
+  /* 상단 가로 타임라인 (직교 가로선 ⑪) */
+  .tl { display:grid; grid-template-columns:repeat(6,1fr); gap:0; margin-bottom:16px; position:relative; }
+  .tcol { display:flex; flex-direction:column; align-items:center; padding:0 6px; position:relative; }
+  .tbar { width:100%; height:4px; background:var(--gray-3); position:absolute; top:9px; left:0; }
+  .tcol.act .tbar { background:var(--accent); }
+  .tdot { width:18px; height:18px; border-radius:50%; background:var(--gray-3); border:3px solid var(--theme-bg); z-index:1; margin-bottom:8px; }
+  .tcol.act .tdot { background:var(--accent); }
+  .tmonth { font-size:13px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:2px; }
+  .tlabel { font-size:11px; color:var(--gray-2); text-align:center; line-height:1.3; }
+  /* main */
+  .main { display:grid; grid-template-columns:1.45fr 1fr; gap:20px; flex:1; min-height:0; }
+  .gt { display:grid; grid-template-columns:0.5fr 1.5fr 1fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .chd { background:var(--surface-inverse); padding:7px 12px; }
+  .chd p { font-size:12px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:6.5px 12px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:11.5px; color:var(--gray-1); line-height:1.28; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:800; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .cimp p { color:var(--accent); font-weight:700; }
+  /* 우 다크 체크리스트 (fg+weight ②) */
+  .check { background:var(--surface-inverse); border-radius:10px; padding:16px 18px; display:flex; flex-direction:column; }
+  .ck-t { font-size:13px; font-weight:800; color:#FF6F00; margin-bottom:13px; }
+  .ck-item { display:flex; align-items:flex-start; gap:9px; margin-bottom:11px; }
+  .ck-box { width:15px; height:15px; border-radius:4px; border:2px solid #FF6F00; flex-shrink:0; margin-top:1px; }
+  .ck-d { font-size:12px; color:var(--surface-inverse-fg); line-height:1.4; }
+  .ck-d .ckh { font-weight:800; }
+</style></head>
+<body data-layout="halfyear_timeline_table">
+  <h1>7~12월: 건강보험 정산·연차 촉진·최저임금 발표로 <span class="em">다음 연도 예산 기준</span>이 결정된다</h1>
+  <p class="sub">하반기는 정산·충당 이벤트가 집중된다. 8월 최저임금 고시와 12월 계리 반영이 다음 연도 인건비 예산의 두 축이므로 캘린더 기반 관리가 필수다.</p>
+  <div class="tl">
+    <div class="tcol act"><div class="tbar"></div><div class="tdot"></div><p class="tmonth">7월</p><p class="tlabel">건강보험 정산 반영</p></div>
+    <div class="tcol act"><div class="tbar"></div><div class="tdot"></div><p class="tmonth">8월</p><p class="tlabel">최저임금 고시(내년)</p></div>
+    <div class="tcol act"><div class="tbar"></div><div class="tdot"></div><p class="tmonth">9월</p><p class="tlabel">연차 촉진 1차</p></div>
+    <div class="tcol act"><div class="tbar"></div><div class="tdot"></div><p class="tmonth">10월</p><p class="tlabel">계리 데이터 준비</p></div>
+    <div class="tcol act"><div class="tbar"></div><div class="tdot"></div><p class="tmonth">11월</p><p class="tlabel">계리 의뢰·연말정산</p></div>
+    <div class="tcol act"><div class="tbar"></div><div class="tdot"></div><p class="tmonth">12월</p><p class="tlabel">계리 반영·공시</p></div>
+  </div>
+  <div class="main">
+    <div class="gt">
+      <div class="chd"><p>월</p></div>
+      <div class="chd"><p>주요 업무</p></div>
+      <div class="chd"><p>비용 영향</p></div>
+
+      <div class="c clb"><p>7월</p></div>
+      <div class="c"><p>건강보험 보수총액 정산 반영</p></div>
+      <div class="c cimp"><p>정산 추가납부</p></div>
+
+      <div class="c clb calt"><p>8월</p></div>
+      <div class="c calt"><p>내년 최저임금 고시·공표</p></div>
+      <div class="c cimp calt"><p>인건비 기준 변동</p></div>
+
+      <div class="c clb"><p>9월</p></div>
+      <div class="c"><p>연차 사용촉진 1차 서면 통보</p></div>
+      <div class="c cimp"><p>미사용수당 절감</p></div>
+
+      <div class="c clb calt"><p>10월</p></div>
+      <div class="c calt"><p>연차 촉진 확인 + 계리 데이터 준비</p></div>
+      <div class="c cimp calt"><p>충당 정산</p></div>
+
+      <div class="c clb"><p>11월</p></div>
+      <div class="c"><p>계리법인 의뢰 + 연말정산 준비</p></div>
+      <div class="c cimp"><p>DBO 산정</p></div>
+
+      <div class="c clb calt"><p>12월</p></div>
+      <div class="c calt"><p>계리 반영·공시 + 내년 최저임금 시행</p></div>
+      <div class="c cimp calt"><p>회계 확정</p></div>
+    </div>
+    <div class="check">
+      <p class="ck-t">다음 연도 예산 체크리스트 (11~12월)</p>
+      <div class="ck-item"><div class="ck-box"></div><p class="ck-d"><span class="ckh">최저임금 인상률</span> 반영한 기본급 추계</p></div>
+      <div class="ck-item"><div class="ck-box"></div><p class="ck-d">계리 DBO 변동분 → <span class="ckh">충당부채 예산</span></p></div>
+      <div class="ck-item"><div class="ck-box"></div><p class="ck-d">정산 추가납부 이력 → 보험료 예산 보정</p></div>
+      <div class="ck-item"><div class="ck-box"></div><p class="ck-d">채용 계획 × 총 인건비 계수 적용</p></div>
+      <div class="ck-item"><div class="ck-box"></div><p class="ck-d">연차 촉진 효과 → <span class="ckh">미사용수당 절감</span> 반영</p></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="classic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:42px 56px 28px 56px; display:flex; flex-direction:column; }
+  h1 { font-size:24px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:5px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:13px; color:var(--gray-2); margin-bottom:14px; line-height:1.4; }
+  .top { display:grid; grid-template-columns:0.85fr 1.15fr; gap:20px; margin-bottom:14px; }
+  /* 막대차트 */
+  .chart { background:var(--gray-4); border-radius:9px; padding:13px 20px 11px 20px; }
+  .ch-t { font-size:12px; font-weight:700; color:var(--gray-2); margin-bottom:8px; }
+  .bars { display:flex; align-items:flex-end; justify-content:space-around; height:118px; }
+  .bcol { display:flex; flex-direction:column; align-items:center; }
+  .bval { font-size:13px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:3px; }
+  .bcol.key .bval { color:var(--accent); }
+  .bblk { width:54px; border-radius:4px 4px 0 0; background:var(--gray-2); }
+  .bcol.key .bblk { background:var(--accent); }
+  .byr { font-size:11.5px; color:var(--gray-2); margin-top:4px; font-weight:600; }
+  .bopm { font-size:11px; color:var(--gray-2); margin-top:1px; }
+  .bcol.key .bopm { color:var(--accent); font-weight:700; }
+  /* 부문별 표 */
+  .gt { display:grid; grid-template-columns:0.7fr 0.7fr 1.6fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .chd { background:var(--surface-inverse); padding:7px 12px; }
+  .chd p { font-size:12px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:6.5px 12px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:12px; color:var(--gray-1); line-height:1.28; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .cop p { font-weight:800; color:var(--accent); }
+  /* Catalyst 3카드 */
+  .cats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .cat { background:var(--gray-4); border-left:3px solid var(--accent); border-radius:7px; padding:11px 15px; }
+  .cat-n { font-size:11.5px; font-weight:800; color:var(--accent); margin-bottom:4px; }
+  .cat-d { font-size:12.5px; color:var(--gray-1); line-height:1.35; }
+</style></head>
+<body data-layout="bar_chart_segment_table">
+  <h1>2026 영업이익 <span class="em">170~226조</span> 전망 — 메모리 슈퍼사이클로 성장률 300%+ 현실화</h1>
+  <p class="sub">HBM4 ASP 상승과 AI 데이터센터 D램 수요 초과로 DS 메모리가 OP를 견인한다. 파운드리 흑자 전환과 MX 신제품이 추가 동력으로 작용한다.</p>
+  <div class="top">
+    <div class="chart">
+      <p class="ch-t">연도별 영업이익 추이 (조원)</p>
+      <div class="bars">
+        <div class="bcol">
+          <p class="bval">32.7</p>
+          <div class="bblk" style="height:26px;"></div>
+          <p class="byr">2024</p>
+          <p class="bopm">OPM 10.9%</p>
+        </div>
+        <div class="bcol">
+          <p class="bval">43.6</p>
+          <div class="bblk" style="height:35px;"></div>
+          <p class="byr">2025A</p>
+          <p class="bopm">OPM 13.1%</p>
+        </div>
+        <div class="bcol key">
+          <p class="bval">170~226</p>
+          <div class="bblk" style="height:92px;"></div>
+          <p class="byr">2026E</p>
+          <p class="bopm">OPM 37~40%</p>
+        </div>
+      </div>
+    </div>
+    <div class="gt">
+      <div class="chd"><p>부문</p></div>
+      <div class="chd"><p>2026E OP</p></div>
+      <div class="chd"><p>주요 드라이버</p></div>
+
+      <div class="c clb"><p>DS 메모리</p></div>
+      <div class="c cop"><p>110~130조</p></div>
+      <div class="c"><p>HBM4 ASP +40~60%, 가격 상승</p></div>
+
+      <div class="c clb calt"><p>DS 파운드리</p></div>
+      <div class="c cop calt"><p>10~15조</p></div>
+      <div class="c calt"><p>SF2 수율↑, 수주 확대, 흑자 전환</p></div>
+
+      <div class="c clb"><p>DX MX</p></div>
+      <div class="c cop"><p>15~18조</p></div>
+      <div class="c"><p>S26 + 폴더블 + AI 구독</p></div>
+
+      <div class="c clb calt"><p>SDC</p></div>
+      <div class="c cop calt"><p>10조</p></div>
+      <div class="c calt"><p>폴더블·전장 OLED</p></div>
+
+      <div class="c clb"><p>Harman</p></div>
+      <div class="c cop"><p>1.5~2조</p></div>
+      <div class="c"><p>전장 플랫폼 성장</p></div>
+    </div>
+  </div>
+  <div class="cats">
+    <div class="cat"><p class="cat-n">Catalyst 1</p><p class="cat-d">HBM4 GB300 공급 확정 (2026.1H)</p></div>
+    <div class="cat"><p class="cat-n">Catalyst 2</p><p class="cat-d">AI DC D램 수요 초과 → 가격 상승</p></div>
+    <div class="cat"><p class="cat-n">Catalyst 3</p><p class="cat-d">낸드 회복 → eSSD 수익성 개선</p></div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

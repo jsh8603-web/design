@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:42px 56px 30px 56px; display:flex; flex-direction:column; }
+  h1 { font-size:24px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:13.5px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+  .main { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; flex:1; min-height:0; }
+  .panel { display:flex; flex-direction:column; min-height:0; }
+  .pnum { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
+  .pnum-b { width:22px; height:22px; border-radius:6px; background:var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .pnum-b p { font-size:12px; font-weight:800; color:#FFFFFF; white-space:nowrap; }
+  .pnum-t { font-size:13px; font-weight:800; color:var(--heading, var(--primary)); line-height:1.25; }
+  /* step 박스 (div>p, border는 div ⑮) */
+  .step { background:var(--gray-4); border-radius:7px; padding:9px 12px; margin-bottom:8px; }
+  .step-h { font-size:12px; font-weight:800; color:var(--accent); margin-bottom:3px; }
+  .step-d { font-size:11.5px; color:var(--gray-1); line-height:1.35; }
+  /* 패널3 표 */
+  .gt { display:grid; grid-template-columns:1fr auto; border:1px solid var(--gray-3); border-radius:7px; overflow:hidden; margin-bottom:9px; }
+  .c { padding:6px 11px; border-top:1px solid var(--gray-3); }
+  .c:nth-child(1), .c:nth-child(2) { border-top:none; }
+  .c p { font-size:11.5px; color:var(--gray-1); line-height:1.25; }
+  .chd { background:var(--surface-inverse); }
+  .chd p { font-size:11.5px; font-weight:700; color:var(--surface-inverse-fg); }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .cv p { font-weight:800; color:var(--accent); text-align:right; }
+  /* 특이사항 다크패널 (fg+weight ②) */
+  .note { background:var(--surface-inverse); border-radius:8px; padding:11px 14px; margin-top:auto; }
+  .note-t { font-size:11.5px; font-weight:800; color:#FF6F00; margin-bottom:6px; }
+  .note-l { font-size:11px; color:var(--surface-inverse-fg); line-height:1.4; padding-left:11px; position:relative; margin-bottom:4px; }
+  .note-l::before { content:''; position:absolute; left:0; top:6px; width:4px; height:4px; border-radius:50%; background:#FF6F00; }
+</style></head>
+<body data-layout="settlement_three_panel">
+  <h1>건강보험 보수총액 정산은 전년도 실제 보수와 산정 보수의 차이를 <span class="em">4월 급여에 반영</span>한다</h1>
+  <p class="sub">건강보험은 3월 보수총액 신고로 전년 정산하고, 고용·산재는 확정·개산보험료를 동시 정산한다. 정산 추가납부가 발생하므로 인건비 예산에 반드시 반영해야 한다.</p>
+  <div class="main">
+    <div class="panel">
+      <div class="pnum"><div class="pnum-b"><p>1</p></div><p class="pnum-t">건강보험 보수총액 정산</p></div>
+      <div class="step"><p class="step-h">Step 1 — 신고 (3/10)</p><p class="step-d">전년도 1~12월 지급 보수총액 + 정산 건강보험료 신고</p></div>
+      <div class="step"><p class="step-h">Step 2 — 정산액 산출</p><p class="step-d">실제 보수 기준 재산정 − 기납부 보험료 = 차액</p></div>
+      <div class="step"><p class="step-h">Step 3 — 반영 (4월)</p><p class="step-d">정산 보험료 4월 급여 반영, 4~6월 분납 또는 일시납</p></div>
+    </div>
+    <div class="panel">
+      <div class="pnum"><div class="pnum-b"><p>2</p></div><p class="pnum-t">고용·산재 확정보험료 정산</p></div>
+      <div class="step"><p class="step-h">Step 1 — 신고 (3/15)</p><p class="step-d">전년 확정보험료 + 올해 개산보험료 보수총액 신고</p></div>
+      <div class="step"><p class="step-h">Step 2 — 개산보험료 산출</p><p class="step-d">올해 추정 보수총액 × 업종별 요율로 선납 산정</p></div>
+      <div class="step"><p class="step-h">Step 3 — 정산</p><p class="step-d">확정 − 개산 차액 추가납부 또는 충당·환급 처리</p></div>
+    </div>
+    <div class="panel">
+      <div class="pnum"><div class="pnum-b"><p>3</p></div><p class="pnum-t">물류업 계산 예시 (월 300만)</p></div>
+      <div class="gt">
+        <div class="chd"><p>구분</p></div>
+        <div class="chd cv"><p>금액</p></div>
+        <div class="c clb"><p>산정 보수 (전년)</p></div>
+        <div class="c cv"><p>3,600만원</p></div>
+        <div class="c clb"><p>실제 보수 (정산)</p></div>
+        <div class="c cv"><p>3,800만원</p></div>
+        <div class="c clb"><p>차액 (×3.545%)</p></div>
+        <div class="c cv"><p>추가 납부</p></div>
+        <div class="c clb"><p>건강보험 추가분</p></div>
+        <div class="c cv"><p>127,620원</p></div>
+      </div>
+      <div class="note">
+        <p class="note-t">물류업 정산 특이사항</p>
+        <p class="note-l">성수기(11~12월) 대량 채용 → 보수총액 정산 추가납부 폭 큼</p>
+        <p class="note-l">FP&A는 정산월(4월) 추가 납부 예상액 예산에 사전 반영</p>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

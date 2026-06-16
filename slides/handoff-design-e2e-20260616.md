@@ -2,7 +2,7 @@
 title: 디자인 e2e 검증 핸드오프 — 테스트 자산 75장 + 워크플로우
 tags: [handoff, design-system, e2e, btn-design, test-asset]
 date: 2026-06-16
-next-action: "R14 착수 — plan-design-e2e.md §0.6 R14 소재 5장(payroll-guide/29·payroll-v2/22·samsung/15·payroll-guide/33·payroll-guide/24) Read 복잡도 검증(목차/단순/일러스트면 후보풀서 교체) → modern 베이스 생성(학습 15개 §6 선적용) → sed 8테마+editorial serif → convert-native.mjs PF변환(⛔--skip-preflight 금지) → COM 의도보존+K규칙+정탐회귀0. ★R13 완료(클린아님 카운터0). R13 소재=PG/22·PV2/19·SS/13·PG/27·PG/23, FAILED2건 슬라이드수정: slide-01 결과텍스트 바닥경계<0.5\"→pad-bottom확대, slide-05 .imp-note p에 border→div>p분리(K-202606162310=학습⑮)"
+next-action: "★R15 착수(마지막 라운드, 클린 시 2연속=루프종료) — plan-design-e2e.md §0.6 R15 소재 5장(payroll-guide/36·payroll-v2/23·samsung/08·payroll-guide/05·payroll-v2/35) Read 복잡도 검증(목차/단순/일러스트면 후보풀서 교체) → modern 베이스 생성(학습 15개 §6 선적용) → sed 8테마+editorial serif → convert-native.mjs PF변환(⛔--skip-preflight 금지) → COM 의도보존+K규칙+정탐회귀0. ★R14 완료·클린(첫시도 ERROR0+FAILED0, 학습⑮ 선적용 효과). 클린카운터=1(R13 클린아님→0, R14 클린→1). R15도 클린이면 2연속=루프종료. R14 소재=PG/29·PV2/22·SS/15·PG/33·PG/24"
 ---
 
 # 디자인 e2e 검증 핸드오프 (2026-06-16)

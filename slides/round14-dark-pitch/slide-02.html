@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 58px 32px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+  .main { display:grid; grid-template-columns:1.5fr 0.9fr; gap:22px; flex:1; min-height:0; }
+  .gt { display:grid; grid-template-columns:1fr 1.2fr 1.2fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .chd { background:var(--surface-inverse); padding:10px 14px; }
+  .chd p { font-size:13.5px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:10px 14px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:13px; color:var(--gray-1); line-height:1.3; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .crisk p { color:var(--accent); font-weight:800; }
+  .csec p { color:#1E8E5A; font-weight:800; }
+  .warn { background:var(--gray-4); border-left:4px solid var(--accent); border-radius:7px; padding:11px 16px; margin-top:14px; }
+  .warn p { font-size:13px; color:var(--gray-1); line-height:1.4; }
+  .warn p .wh { color:var(--accent); font-weight:800; }
+  /* 우측 시사점 다크패널 (fg+weight ②) */
+  .guide { background:var(--surface-inverse); border-radius:10px; padding:18px 20px; display:flex; flex-direction:column; }
+  .g-t { font-size:13px; font-weight:800; color:#FF6F00; margin-bottom:14px; }
+  .g-item { margin-bottom:14px; }
+  .g-tag { font-size:12px; font-weight:800; color:var(--surface-inverse-fg); margin-bottom:4px; }
+  .g-d { font-size:11.5px; color:var(--surface-inverse-fg); opacity:0.8; line-height:1.4; }
+  .g-note { font-size:11.5px; color:var(--surface-inverse-fg); opacity:0.72; line-height:1.45; margin-top:auto; border-top:1px solid rgba(255,255,255,0.16); padding-top:11px; }
+</style></head>
+<body data-layout="db_dc_compare_guide">
+  <h1>DB는 퇴직 시 평균임금 기준이며 DC는 매년 임금총액의 <span class="em">1/12을 사전 납입</span>한다</h1>
+  <p class="sub">DB형은 운용 책임이 회사에 있어 임금상승·투자 위험을 부담하고, DC형은 매년 확정 납입으로 예측 가능성이 높다. 충당부채 구조가 근본적으로 다르다.</p>
+  <div class="main">
+    <div>
+      <div class="gt">
+        <div class="chd"><p>구분</p></div>
+        <div class="chd"><p>DB (확정급여형)</p></div>
+        <div class="chd"><p>DC (확정기여형)</p></div>
+
+        <div class="c clb"><p>운용 주체</p></div>
+        <div class="c"><p>사용자 (회사)</p></div>
+        <div class="c"><p>근로자 (본인)</p></div>
+
+        <div class="c clb calt"><p>회사 납입 시점</p></div>
+        <div class="c calt"><p>퇴직 시 일시 지급</p></div>
+        <div class="c calt"><p>매년 1/12 이상 사전 납입</p></div>
+
+        <div class="c clb"><p>연간 적립률</p></div>
+        <div class="c"><p>임금 × 1/12 (충당부채)</p></div>
+        <div class="c"><p>임금 × 1/12 이상 (실납입)</p></div>
+
+        <div class="c clb calt"><p>임금 인상 위험</p></div>
+        <div class="c crisk calt"><p>회사 부담</p></div>
+        <div class="c calt"><p>없음</p></div>
+
+        <div class="c clb"><p>FP&A 예측 가능성</p></div>
+        <div class="c"><p>낮음</p></div>
+        <div class="c csec"><p>높음</p></div>
+
+        <div class="c clb calt"><p>투자 위험</p></div>
+        <div class="c crisk calt"><p>회사 부담</p></div>
+        <div class="c calt"><p>근로자 부담</p></div>
+      </div>
+      <div class="warn"><p><span class="wh">미적립 시:</span> 재무제표 왜곡 + 지연이자 연 20% + 형사 처벌 (근퇴법 제8·13·14·20조)</p></div>
+    </div>
+    <div class="guide">
+      <p class="g-t">FP&A 선택 가이드</p>
+      <div class="g-item">
+        <p class="g-tag">DB 적합</p>
+        <p class="g-d">장기근속·임금상승 안정 기업. 운용수익 회사 귀속, 단 충당부채·계리 리스크 부담</p>
+      </div>
+      <div class="g-item">
+        <p class="g-tag">DC 적합</p>
+        <p class="g-d">인력 변동 큰 물류·서비스업. 매년 확정 납입으로 부채 이연 차단, 예산 예측 용이</p>
+      </div>
+      <div class="g-note">물류업은 이직률이 높아 DC 전환 시 충당부채 변동성을 제거할 수 있으나, 매년 현금 유출이 고정된다.</div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

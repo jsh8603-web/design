@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="classic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:52px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { border-bottom:3px solid var(--accent); padding-bottom:14px; margin-bottom:22px; }
+  .kicker { font-size:15px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:30px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:7px; }
+  .wrap { display:flex; justify-content:center; }
+  .tbl { display:grid; grid-template-columns:1fr 2fr 1.7fr 1.4fr 1fr 2fr; width:100%; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:13px 16px; }
+  .th p { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:12px 16px; border-bottom:1px solid var(--gray-4); background:var(--theme-bg); display:flex; align-items:center; }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-2); line-height:1.35; }
+  .td.ins p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.crit p { color:var(--gray-1); font-weight:600; }
+  .td.hl { border-bottom:3px solid var(--accent); }
+  .example { margin-top:24px; background:var(--gray-4); border-radius:8px; border-left:4px solid var(--accent); padding:18px 24px; }
+  .example p { font-size:17px; color:var(--gray-1); line-height:1.5; }
+  .example p b { font-weight:800; color:var(--accent); }
+  .example p .lab { font-weight:700; color:var(--heading, var(--primary)); }
+  .src { margin-top:auto; padding-top:14px; }
+  .src p { font-size:13px; color:var(--gray-3); }
+</style></head>
+<body data-layout="insurance_criteria_table">
+  <div class="head">
+    <div class="kicker">Daily Worker · Insurance</div>
+    <h1>일용직 4대보험 가입 기준은 보험마다 다르다</h1>
+  </div>
+
+  <div class="wrap">
+    <div class="tbl">
+      <div class="th"><p>보험</p></div>
+      <div class="th"><p>일용직 가입 기준</p></div>
+      <div class="th"><p>초단시간</p></div>
+      <div class="th"><p>회사부담</p></div>
+      <div class="th"><p>요율</p></div>
+      <div class="th"><p>신고 방법</p></div>
+
+      <div class="td ins"><p>산재</p></div>
+      <div class="td crit"><p>1시간+</p></div>
+      <div class="td"><p>즉시 가입</p></div>
+      <div class="td"><p>사업주 전액</p></div>
+      <div class="td"><p>업종별</p></div>
+      <div class="td"><p>익월 15일</p></div>
+
+      <div class="td ins alt"><p>고용</p></div>
+      <div class="td crit alt"><p>1일+</p></div>
+      <div class="td alt"><p>3개월+ 계속</p></div>
+      <div class="td alt"><p>사업주 50%</p></div>
+      <div class="td alt"><p>0.9%</p></div>
+      <div class="td alt"><p>익월 15일</p></div>
+
+      <div class="td ins"><p>건강</p></div>
+      <div class="td crit"><p>1개월+ · 월8일+</p></div>
+      <div class="td"><p>1개월+ · 월8일+</p></div>
+      <div class="td"><p>사업주 50%</p></div>
+      <div class="td"><p>3.545%</p></div>
+      <div class="td"><p>14일 내</p></div>
+
+      <div class="td ins hl alt"><p>국민연금</p></div>
+      <div class="td crit hl alt"><p>1개월+ · 월8일+/60h+</p></div>
+      <div class="td hl alt"><p>1개월+ · 월8일+/60h+</p></div>
+      <div class="td hl alt"><p>사업주 50%</p></div>
+      <div class="td hl alt"><p>4.5%</p></div>
+      <div class="td hl alt"><p>다음달 15일</p></div>
+    </div>
+  </div>
+
+  <div class="example">
+    <p><span class="lab">예시 ·</span> 일급 10만 × 월 20일 = 200만 → 회사부담 <b>188,000원 (9.4%)</b></p>
+  </div>
+
+  <div class="src"><p>출처: 고용보험법, 국민건강보험법, 국민연금법</p></div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

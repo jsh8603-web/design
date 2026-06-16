@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  .serif-head, h1, h2, h3, h4, h5, .ctitle, .kicker { font-family:'Newsreader','Times New Roman',serif; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { margin-bottom:20px; }
+  .kicker { font-size:15px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:30px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:7px; }
+
+  .cmp { display:flex; gap:16px; align-items:stretch; margin-bottom:22px; }
+  .box { flex:1; border-radius:10px; padding:20px 24px; }
+  .before { background:var(--gray-4); border:1px solid var(--gray-3); }
+  .after { background:var(--surface-inverse); }
+  .tag { display:inline-block; border-radius:5px; padding:5px 14px; margin-bottom:14px; }
+  .tag p { font-size:15px; font-weight:800; letter-spacing:0.06em; white-space:nowrap; }
+  .before .tag { background:var(--surface-inverse); }
+  .before .tag p { color:var(--surface-inverse-fg); }
+  .after .tag { background:var(--surface-inverse-fg); }
+  .after .tag p { color:var(--surface-inverse); }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .chip { border-radius:5px; padding:6px 14px; }
+  .chip p { font-size:16px; font-weight:700; white-space:nowrap; }
+  .chip.on-b { background:var(--surface-inverse); }
+  .chip.on-b p { color:var(--surface-inverse-fg); }
+  .chip.del { background:transparent; border:1.5px solid var(--gray-3); }
+  .chip.del p { color:var(--gray-2); text-decoration:line-through; }
+  .chip.on-a { background:var(--surface-inverse-fg); }
+  .chip.on-a p { color:var(--surface-inverse); }
+  .res p { font-size:15px; line-height:1.35; }
+  .before .res p { color:var(--gray-2); }
+  .after .res p { color:var(--surface-inverse-fg); opacity:0.85; }
+  .arrow { display:flex; align-items:center; padding:0 4px; }
+  .arrow p { font-size:30px; color:var(--accent); font-weight:400; }
+
+  .tbl { display:grid; grid-template-columns:1.3fr 2fr 1.6fr 1.4fr; width:100%; border:1px solid var(--gray-3); flex:1; }
+  .th { background:var(--surface-inverse); padding:11px 14px; display:flex; align-items:center; justify-content:center; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); white-space:nowrap; }
+  .cell { padding:9px 14px; border-bottom:1px solid var(--gray-4); display:flex; align-items:center; background:var(--theme-bg); }
+  .cell.c { justify-content:center; }
+  .cell.alt { background:var(--gray-4); }
+  .cell p { font-size:15px; color:var(--gray-1); line-height:1.3; white-space:nowrap; }
+  .cell.up p { color:#D64545; font-weight:800; }
+</style></head>
+<body data-layout="before_after_impact_table">
+  <div class="head">
+    <div class="kicker">통상임금 · 고정성 폐기</div>
+    <h1>고정성 폐기 → 정기상여금 전액 통상임금 포함</h1>
+  </div>
+
+  <div class="cmp">
+    <div class="box before">
+      <div class="tag"><p>BEFORE</p></div>
+      <div class="chips">
+        <div class="chip on-b"><p>정기성</p></div>
+        <div class="chip on-b"><p>일률성</p></div>
+        <div class="chip del"><p>고정성</p></div>
+      </div>
+      <div class="res"><p>재직 조건부 상여 → 제외</p></div>
+    </div>
+
+    <div class="arrow"><p>→</p></div>
+
+    <div class="box after">
+      <div class="tag"><p>AFTER (2024.12.19~)</p></div>
+      <div class="chips">
+        <div class="chip on-a"><p>정기성</p></div>
+        <div class="chip on-a"><p>일률성</p></div>
+      </div>
+      <div class="res"><p>재직 조건부 상여 → 포함</p></div>
+    </div>
+  </div>
+
+  <div class="tbl">
+    <div class="th"><p>영향 항목</p></div>
+    <div class="th"><p>계산 기준</p></div>
+    <div class="th"><p>비용 증가</p></div>
+    <div class="th"><p>비고</p></div>
+
+    <div class="cell"><p>연장수당</p></div>
+    <div class="cell c"><p>통상 × 0.5 × h</p></div>
+    <div class="cell c up"><p>↑</p></div>
+    <div class="cell"><p>1.5배</p></div>
+
+    <div class="cell alt"><p>야간수당</p></div>
+    <div class="cell alt c"><p>통상 × 0.5 × h</p></div>
+    <div class="cell alt c up"><p>↑</p></div>
+    <div class="cell alt"><p>0.5배 가산</p></div>
+
+    <div class="cell"><p>휴일 (8h 내)</p></div>
+    <div class="cell c"><p>통상 × 0.5 × h</p></div>
+    <div class="cell c up"><p>↑</p></div>
+    <div class="cell"><p>1.5배</p></div>
+
+    <div class="cell alt"><p>휴일 (8h+)</p></div>
+    <div class="cell alt c"><p>통상 × 1.0 × h</p></div>
+    <div class="cell alt c up"><p>↑</p></div>
+    <div class="cell alt"><p>2.0배</p></div>
+
+    <div class="cell"><p>연차수당</p></div>
+    <div class="cell c"><p>통상 × 1일 × 잔여</p></div>
+    <div class="cell c up"><p>↑</p></div>
+    <div class="cell"><p>1일분</p></div>
+
+    <div class="cell alt"><p>퇴직금</p></div>
+    <div class="cell alt c"><p>평균 × 30 / 365</p></div>
+    <div class="cell alt c up"><p>↑</p></div>
+    <div class="cell alt"><p>상여 3/12</p></div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

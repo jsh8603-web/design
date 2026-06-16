@@ -629,7 +629,16 @@ function addElements(slideData, targetSlide, pres) {
     }
 
     // Confirmed table columns: shapes at 2+ distinct Y positions
-    const tableColumns = shapeColumns.filter(c => c.ySet.size >= 2);
+    // EXCLUDE square small shapes (icons/badges in card grids): a 2×2 icon layout
+    // forms a 2-Y column at the same X, but is NOT a table — snapping card body text
+    // into its Y-range mangles it (text overlap/drop). Table cells are wider than tall
+    // (or clearly non-square); icons are ~square. Gate on small width + near-square ratio.
+    const tableColumns = shapeColumns.filter(c => {
+      if (c.ySet.size < 2) return false;
+      const avgH = c.yRanges.reduce((s, r) => s + r.h, 0) / c.yRanges.length;
+      const isSquareIcon = c.w < 1.2 && Math.abs(c.w - avgH) < Math.max(c.w, avgH) * 0.35;
+      return !isSquareIcon;
+    });
 
     // Compute Y range and max height from CONFIRMED table columns only
     // (not from badges, hero numbers, or other non-table shapes)

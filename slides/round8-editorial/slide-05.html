@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  .serif-head, h1, h2, h3, h4, h5, .ctitle, .kicker { font-family:'Newsreader','Times New Roman',serif; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { margin-bottom:18px; }
+  .kicker { font-size:15px; font-weight:700; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; }
+  h1 { font-size:30px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.25; margin-top:6px; }
+
+  .tbl { display:grid; grid-template-columns:1.3fr 1fr 1.2fr 1.5fr 1.6fr; width:100%; border:1px solid var(--gray-3); }
+  .th { background:var(--surface-inverse); padding:11px 16px; display:flex; align-items:center; }
+  .th p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); white-space:nowrap; }
+  .td { padding:10px 16px; border-bottom:1px solid var(--gray-4); display:flex; align-items:center; background:var(--theme-bg); }
+  .td.alt { background:var(--gray-4); }
+  .td p { font-size:16px; color:var(--gray-1); line-height:1.35; }
+  .td.ins p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.comp p { font-weight:800; color:var(--accent); font-size:17px; }
+  .td.work p { font-weight:600; color:var(--gray-2); }
+  .td.law p { font-size:14px; color:var(--gray-3); }
+  .td.total { background:var(--gray-4); border-bottom:none; }
+  .td.total p { font-weight:800; color:var(--heading, var(--primary)); }
+  .td.total.comp p { color:var(--accent); font-size:19px; }
+
+  .calc { background:var(--surface-inverse); border-radius:9px; padding:16px 22px; margin-top:18px; display:flex; align-items:center; gap:22px; }
+  .calc .lab { flex-shrink:0; }
+  .calc .lab p { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); opacity:0.7; margin-bottom:4px; }
+  .calc .lab h4 { font-size:16px; font-weight:800; color:var(--surface-inverse-fg); line-height:1.25; }
+  .calc .divider { width:1px; height:48px; background:var(--surface-inverse-fg); opacity:0.35; flex-shrink:0; }
+  .calc .bd { display:flex; gap:22px; flex:1; align-items:center; }
+  .calc .it { display:flex; flex-direction:column; gap:3px; }
+  .calc .it p { font-size:13px; color:var(--surface-inverse-fg); opacity:0.65; white-space:nowrap; }
+  .calc .it h5 { font-size:16px; font-weight:700; color:var(--surface-inverse-fg); white-space:nowrap; }
+  .calc .tot { flex-shrink:0; margin-left:auto; text-align:right; }
+  .calc .tot p { font-size:13px; color:var(--surface-inverse-fg); opacity:0.7; margin-bottom:3px; }
+  .calc .tot h3 { font-size:28px; font-weight:800; color:var(--accent); letter-spacing:-0.02em; }
+  .calc .tot span { font-size:15px; color:var(--accent); font-weight:600; }
+</style></head>
+<body data-layout="rate_table_with_calc">
+  <div class="head">
+    <div class="kicker">4대보험 · 회사부담</div>
+    <h1>4대보험 회사부담 합계: 급여의 9.7% + 산재</h1>
+  </div>
+
+  <div class="tbl">
+    <div class="th"><p>보험종류</p></div>
+    <div class="th"><p>회사부담요율</p></div>
+    <div class="th"><p>근로자부담</p></div>
+    <div class="th"><p>산정기준</p></div>
+    <div class="th"><p>근거법령</p></div>
+
+    <div class="td ins alt"><p>국민연금</p></div>
+    <div class="td comp alt"><p>4.5%</p></div>
+    <div class="td work alt"><p>4.5%</p></div>
+    <div class="td alt"><p>기준소득월액</p></div>
+    <div class="td law alt"><p>연금법 §88</p></div>
+
+    <div class="td ins"><p>건강보험</p></div>
+    <div class="td comp"><p>3.545%</p></div>
+    <div class="td work"><p>3.545%</p></div>
+    <div class="td"><p>보수월액</p></div>
+    <div class="td law"><p>건보법 §76</p></div>
+
+    <div class="td ins alt"><p>장기요양</p></div>
+    <div class="td comp alt"><p>0.454%</p></div>
+    <div class="td work alt"><p>0.454%</p></div>
+    <div class="td alt"><p>건강료 × 12.81%</p></div>
+    <div class="td law alt"><p>요양법 §9</p></div>
+
+    <div class="td ins"><p>고용보험</p></div>
+    <div class="td comp"><p>0.9%</p></div>
+    <div class="td work"><p>0.9%</p></div>
+    <div class="td"><p>보수월액</p></div>
+    <div class="td law"><p>고용법 §69의4</p></div>
+
+    <div class="td ins alt"><p>산재보험 (운수)</p></div>
+    <div class="td comp alt"><p>1.5%</p></div>
+    <div class="td work alt"><p>0% (전액)</p></div>
+    <div class="td alt"><p>보수월액</p></div>
+    <div class="td law alt"><p>산재법 §13</p></div>
+
+    <div class="td ins total"><p>합계 (운수업)</p></div>
+    <div class="td comp total"><p>10.4%+</p></div>
+    <div class="td work total"><p>9.4%</p></div>
+    <div class="td total"><p>창고10.1/하역11.1</p></div>
+    <div class="td law total"><p>업종별</p></div>
+  </div>
+
+  <div class="calc">
+    <div class="lab">
+      <p>계산 예시</p>
+      <h4>운수업 월급 300만원</h4>
+    </div>
+    <div class="divider"></div>
+    <div class="bd">
+      <div class="it"><p>국민연금</p><h5>135,000원</h5></div>
+      <div class="it"><p>건강보험</p><h5>106,350원</h5></div>
+      <div class="it"><p>장기요양</p><h5>13,623원</h5></div>
+      <div class="it"><p>고용보험</p><h5>27,000원</h5></div>
+      <div class="it"><p>산재(운수)</p><h5>45,000원</h5></div>
+    </div>
+    <div class="tot">
+      <p>회사부담 합계</p>
+      <h3>326,973원</h3>
+      <span>급여의 10.9%</span>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

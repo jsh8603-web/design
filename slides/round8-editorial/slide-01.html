@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  .serif-head, h1, h2, h3, h4, h5, .ctitle, .kicker { font-family:'Newsreader','Times New Roman',serif; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:52px 76px 48px 76px; display:flex; flex-direction:column; }
+  .head { margin-bottom:22px; }
+  .kicker { font-size:16px; font-weight:700; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+  h1 { font-size:34px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.2; margin-top:8px; }
+  .submsg { font-size:18px; font-weight:600; color:var(--accent); margin-top:10px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; flex:1; }
+  .card { background:var(--gray-4); border:1px solid var(--gray-3); border-radius:12px; padding:24px 28px; display:flex; flex-direction:column; gap:16px; }
+  .chead { display:flex; align-items:center; gap:16px; }
+  /* 학습8: 색배경 아이콘은 자식 <p> 없이 div 직속 텍스트 (shape+embedded text, 분리 방지) */
+  .icon { width:54px; height:54px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+          font-size:24px; font-weight:800; color:#FFFFFF; }
+  .ic-p { background:#3B6FD4; }
+  .ic-q { background:#1A9E6E; }
+  .ic-c { background:#D8862A; }
+  .ic-d { background:#7A52C0; }
+  .ctitle { font-size:21px; font-weight:700; color:var(--heading, var(--primary)); }
+  .csub { font-size:14px; font-weight:500; color:var(--gray-2); margin-top:2px; }
+  /* 학습9: 카드 내 불릿 리스트는 .item flex(dot+p) 대신 단일 <p>+inline <b>불릿 (column-snap 오작동/텍스트겹침 방지) */
+  .items { display:flex; flex-direction:column; gap:9px; }
+  .items p { font-size:15px; line-height:1.85; color:var(--gray-1); }
+  .items p b { color:var(--accent); font-weight:800; }
+</style></head>
+<body data-layout="pqcd_framework_grid">
+  <div class="head">
+    <div class="kicker">02 — Framework</div>
+    <h1>4대 핵심 범주로 공장 전체를 조망한다</h1>
+    <div class="submsg">PQCD 프레임워크 · Productivity · Quality · Cost · Delivery</div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="chead">
+        <div class="icon ic-p">P</div>
+        <div>
+          <div class="ctitle">Productivity</div>
+          <div class="csub">생산성</div>
+        </div>
+      </div>
+      <div class="items"><p><b>·</b> OEE (설비종합효율)<br><b>·</b> 가동률 / Cycle Time<br><b>·</b> Throughput (시간당 산출)</p></div>
+    </div>
+
+    <div class="card">
+      <div class="chead">
+        <div class="icon ic-q">Q</div>
+        <div>
+          <div class="ctitle">Quality</div>
+          <div class="csub">품질</div>
+        </div>
+      </div>
+      <div class="items"><p><b>·</b> 수율 (FPY) / 불량률<br><b>·</b> Scrap Rate (폐기율)<br><b>·</b> 고객 클레임률</p></div>
+    </div>
+
+    <div class="card">
+      <div class="chead">
+        <div class="icon ic-c">C</div>
+        <div>
+          <div class="ctitle">Cost</div>
+          <div class="csub">원가</div>
+        </div>
+      </div>
+      <div class="items"><p><b>·</b> 단위 생산비용<br><b>·</b> 재료비율<br><b>·</b> 에너지 원단위</p></div>
+    </div>
+
+    <div class="card">
+      <div class="chead">
+        <div class="icon ic-d">D</div>
+        <div>
+          <div class="ctitle">Delivery</div>
+          <div class="csub">납기</div>
+        </div>
+      </div>
+      <div class="items"><p><b>·</b> 정시 납품률 (OTD)<br><b>·</b> 리드타임<br><b>·</b> 재고 회전율</p></div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  .serif-head, h1, h2, h3, h4, h5, .ctitle, .kicker { font-family:'Newsreader','Times New Roman',serif; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 60px 34px 60px; display:flex; flex-direction:column; }
+  h1 { font-size:26px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:20px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .panels { display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1; min-height:0; }
+  .panel { background:var(--gray-4); border-radius:10px; padding:16px 18px; display:flex; flex-direction:column; }
+  .panel-title { font-size:16px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:12px; }
+  .gt { display:grid; grid-template-columns:1fr 1.15fr 1.15fr; border-radius:6px; overflow:hidden; border:1px solid var(--gray-3); background:var(--theme-bg); }
+  .chd { background:var(--surface-inverse); padding:8px 12px; }
+  .chd p { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:8px 12px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:13.5px; color:var(--gray-1); line-height:1.3; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  /* 의미색: 열위=주황(#FF6F00) / 우위=cobalt(#2563EB, navy 다크저대비 회피 ⑬). 둘다 라이트·다크 안전 */
+  .warn p { color:#FF6F00; font-weight:800; }
+  .sec p { color:#2563EB; font-weight:800; }
+  .insight-bar { background:var(--surface-inverse); border-radius:8px; padding:12px 20px; margin-top:18px; display:flex; align-items:baseline; gap:10px; }
+  .insight-label { font-size:14px; font-weight:800; color:#FF6F00; flex-shrink:0; }
+  .insight-text { font-size:14px; color:var(--surface-inverse-fg); line-height:1.4; }
+  .src { font-size:12px; color:var(--gray-2); text-align:right; margin-top:10px; }
+</style></head>
+<body data-layout="dual_panel_compare">
+  <h1>파운드리 TSMC 격차 현실, <span class="em">Galaxy AI</span>로 모바일 패권 유지</h1>
+  <div class="panels">
+    <div class="panel">
+      <p class="panel-title">파운드리 — 삼성 vs TSMC</p>
+      <div class="gt">
+        <div class="chd"><p>지표</p></div>
+        <div class="chd"><p>삼성</p></div>
+        <div class="chd"><p>TSMC</p></div>
+
+        <div class="c clb"><p>시장점유율</p></div>
+        <div class="c warn"><p>7.2%</p></div>
+        <div class="c sec"><p>69.9%</p></div>
+
+        <div class="c clb"><p>노드</p></div>
+        <div class="c"><p>SF2 GAA</p></div>
+        <div class="c"><p>N2 FinFlex</p></div>
+
+        <div class="c clb"><p>수율 추정</p></div>
+        <div class="c warn"><p>50%대</p></div>
+        <div class="c sec"><p>70%+</p></div>
+
+        <div class="c clb"><p>고객</p></div>
+        <div class="c"><p>퀄컴·IBM</p></div>
+        <div class="c"><p>애플·NVDA·AMD</p></div>
+
+        <div class="c clb"><p>가격</p></div>
+        <div class="c"><p>10~15% 할인</p></div>
+        <div class="c"><p>프리미엄</p></div>
+
+        <div class="c clb"><p>미국 공장</p></div>
+        <div class="c"><p>텍사스 Taylor</p></div>
+        <div class="c"><p>애리조나 Fab21</p></div>
+      </div>
+    </div>
+    <div class="panel">
+      <p class="panel-title">모바일 — 삼성 vs 애플</p>
+      <div class="gt">
+        <div class="chd"><p>지표</p></div>
+        <div class="chd"><p>삼성 MX</p></div>
+        <div class="chd"><p>애플 iPhone</p></div>
+
+        <div class="c clb"><p>출하량</p></div>
+        <div class="c sec"><p>1위 (20%)</p></div>
+        <div class="c"><p>2위 (18%)</p></div>
+
+        <div class="c clb"><p>영업이익률</p></div>
+        <div class="c warn"><p>~6~8%</p></div>
+        <div class="c sec"><p>~35~40%</p></div>
+
+        <div class="c clb"><p>AI 전략</p></div>
+        <div class="c"><p>Galaxy AI</p></div>
+        <div class="c"><p>Apple AI</p></div>
+
+        <div class="c clb"><p>폴더블</p></div>
+        <div class="c sec"><p>선제 확보</p></div>
+        <div class="c"><p>2026 진입</p></div>
+
+        <div class="c clb"><p>ASP</p></div>
+        <div class="c"><p>Ultra 상승</p></div>
+        <div class="c"><p>프리미엄</p></div>
+
+        <div class="c clb"><p>생태계</p></div>
+        <div class="c"><p>개방</p></div>
+        <div class="c sec"><p>폐쇄 우위</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="insight-bar">
+    <span class="insight-label">투자 시사점</span>
+    <span class="insight-text">파운드리 격차 5~7년, 모바일 ASP+AI로 이익률 개선</span>
+  </div>
+  <p class="src">TrendForce 2025.4Q, IDC Smartphone Tracker, Apple IR</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="company"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:44px 58px 30px 58px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:14px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+  .main { display:grid; grid-template-columns:0.82fr 1.18fr; gap:28px; flex:1; min-height:0; }
+  /* 좌: 누적 스택 + 계수패널 (색칩=풀폭 박스, ⑧) */
+  .stack-wrap { display:flex; flex-direction:column; }
+  .stack-title { font-size:13px; font-weight:700; color:var(--gray-2); margin-bottom:8px; }
+  .seg { width:100%; border-radius:6px; padding:9px 14px; margin-bottom:6px; display:grid; grid-template-columns:1fr auto; align-items:center; }
+  .seg .sl { font-size:14px; font-weight:700; }
+  .seg .sv { font-size:14px; font-weight:800; }
+  .seg-base { background:var(--surface-inverse); padding:18px 14px; }
+  .seg-base .sl, .seg-base .sv { color:var(--surface-inverse-fg); }
+  .seg-base .sv { font-size:20px; }
+  .seg-1 { background:#1E8E5A; } .seg-1 .sl,.seg-1 .sv{ color:#FFFFFF; }
+  .seg-2 { background:#2563EB; } .seg-2 .sl,.seg-2 .sv{ color:#FFFFFF; }
+  .seg-3 { background:#7C3AED; } .seg-3 .sl,.seg-3 .sv{ color:#FFFFFF; }
+  .seg-4 { background:#DB2777; } .seg-4 .sl,.seg-4 .sv{ color:#FFFFFF; }
+  .seg-5 { background:#FF6F00; } .seg-5 .sl,.seg-5 .sv{ color:#FFFFFF; }
+  .coef { background:var(--surface-inverse); border-radius:8px; padding:12px 16px; margin-top:8px; }
+  .coef-t { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); margin-bottom:6px; }
+  .coef-r { display:grid; grid-template-columns:1fr auto; align-items:center; padding:3px 0; }
+  .coef-r .cl { font-size:13px; color:var(--surface-inverse-fg); }
+  .coef-r .cv { font-size:17px; font-weight:800; color:#FF6F00; }
+  /* 우: 누적표 */
+  .gt { display:grid; grid-template-columns:1.25fr 1.75fr 0.8fr 0.8fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; height:fit-content; }
+  .chd { background:var(--surface-inverse); padding:8px 12px; }
+  .chd p { font-size:13px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:6px 12px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:13px; color:var(--gray-1); line-height:1.25; }
+  .clb p { font-weight:600; }
+  .calt { background:var(--gray-4); }
+  .cnum p { font-weight:700; color:var(--heading, var(--primary)); }
+  .crow-hl { background:var(--gray-4); }
+  .crow-hl p { color:var(--accent); font-weight:800; }
+  /* 하단 도트 */
+  .dots { display:flex; gap:16px; align-items:center; margin-top:12px; flex-wrap:wrap; }
+  .dots .dt { font-size:12px; font-weight:700; color:var(--gray-2); }
+  .dots .dl { font-size:12px; color:var(--gray-2); display:flex; align-items:center; gap:5px; }
+  .dots .dl::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--accent); display:inline-block; flex-shrink:0; }
+</style></head>
+<body data-layout="stack_cumulative_table">
+  <h1>기본급 100 기준, 상용직 총 인건비는 주휴·보험·퇴직·연차 합산 시 약 <span class="em">145</span>가 된다</h1>
+  <p class="sub">기본급만으로 예산을 책정하면 실제 인건비의 약 69%밖에 반영하지 못한다. FP&A는 반드시 총 인건비 계수(약 1.45)를 적용해야 한다.</p>
+  <div class="main">
+    <div class="stack-wrap">
+      <p class="stack-title">기본급 100 기준 누적 비율</p>
+      <div class="seg seg-base"><p class="sl">기본급</p><p class="sv">100%</p></div>
+      <div class="seg seg-1"><p class="sl">주휴수당</p><p class="sv">+20%</p></div>
+      <div class="seg seg-2"><p class="sl">4대보험</p><p class="sv">+9.4%</p></div>
+      <div class="seg seg-3"><p class="sl">퇴직충당금</p><p class="sv">+8.3%</p></div>
+      <div class="seg seg-4"><p class="sl">연차충당금</p><p class="sv">+5.8%</p></div>
+      <div class="seg seg-5"><p class="sl">정기상여</p><p class="sv">+4.2%</p></div>
+      <div class="coef">
+        <p class="coef-t">물류업 FP&A 계수</p>
+        <div class="coef-r"><p class="cl">상여 제외 기본</p><p class="cv">×1.45</p></div>
+        <div class="coef-r"><p class="cl">상여 50% 포함</p><p class="cv">×1.49</p></div>
+        <div class="coef-r"><p class="cl">상여 100% 포함</p><p class="cv">×1.53</p></div>
+      </div>
+    </div>
+    <div class="gt">
+      <div class="chd"><p>항목</p></div>
+      <div class="chd"><p>계산 근거</p></div>
+      <div class="chd"><p>비율</p></div>
+      <div class="chd"><p>누적</p></div>
+
+      <div class="c clb"><p>기본급</p></div>
+      <div class="c"><p>—</p></div>
+      <div class="c cnum"><p>100.0%</p></div>
+      <div class="c cnum"><p>100.0%</p></div>
+
+      <div class="c clb calt"><p>주휴수당</p></div>
+      <div class="c calt"><p>기본급 × 20% (주8h/주40h)</p></div>
+      <div class="c cnum calt"><p>+20.0%</p></div>
+      <div class="c cnum calt"><p>120.0%</p></div>
+
+      <div class="c clb"><p>국민연금</p></div>
+      <div class="c"><p>기준소득월액 × 4.5%</p></div>
+      <div class="c cnum"><p>+4.5%</p></div>
+      <div class="c cnum"><p>124.5%</p></div>
+
+      <div class="c clb calt"><p>건강보험</p></div>
+      <div class="c calt"><p>보수월액 × 3.545%</p></div>
+      <div class="c cnum calt"><p>+3.5%</p></div>
+      <div class="c cnum calt"><p>128.0%</p></div>
+
+      <div class="c clb"><p>장기요양</p></div>
+      <div class="c"><p>건강보험료 × 12.81%</p></div>
+      <div class="c cnum"><p>+0.5%</p></div>
+      <div class="c cnum"><p>128.5%</p></div>
+
+      <div class="c clb calt"><p>고용보험</p></div>
+      <div class="c calt"><p>월 보수 × 0.9%</p></div>
+      <div class="c cnum calt"><p>+0.9%</p></div>
+      <div class="c cnum calt"><p>129.4%</p></div>
+
+      <div class="c clb"><p>산재보험</p></div>
+      <div class="c"><p>월 보수 × 물류업(1.5%)</p></div>
+      <div class="c cnum"><p>+1.5%</p></div>
+      <div class="c cnum"><p>130.9%</p></div>
+
+      <div class="c clb calt"><p>퇴직충당금</p></div>
+      <div class="c calt"><p>연간 임금총액 × 1/12</p></div>
+      <div class="c cnum calt"><p>+8.3%</p></div>
+      <div class="c cnum calt"><p>139.2%</p></div>
+
+      <div class="c clb"><p>연차충당금</p></div>
+      <div class="c"><p>기본급 × 15일/260일</p></div>
+      <div class="c cnum"><p>+5.8%</p></div>
+      <div class="c cnum"><p>145.0%</p></div>
+
+      <div class="c clb crow-hl"><p>정기상여 (50%)</p></div>
+      <div class="c crow-hl"><p>기본급 × 50% / 12</p></div>
+      <div class="c crow-hl"><p>+4.2%</p></div>
+      <div class="c crow-hl"><p>149.2%</p></div>
+    </div>
+  </div>
+  <div class="dots">
+    <span class="dt">물류업 산재보험료율 상세</span>
+    <span class="dl">운수업(육상) 1.5%</span>
+    <span class="dl">창고업 1.2%</span>
+    <span class="dl">하역업 2.2%</span>
+    <span class="dl">택배·소포 1.5%</span>
+    <span class="dl">복합사업장 고위험 기준</span>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

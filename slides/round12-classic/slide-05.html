@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="classic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 56px 34px 56px; display:flex; flex-direction:column; }
+  h1 { font-size:25px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:13.5px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+  .gt { display:grid; grid-template-columns:1fr 1.5fr 1.3fr 1.3fr 1.6fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; }
+  .chd { background:var(--surface-inverse); padding:9px 12px; }
+  .chd p { font-size:13.5px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:8px 12px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:13px; color:var(--gray-1); line-height:1.35; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  /* 산재열 강조 = gray-4 bg + accent 텍스트 (라이트, 연한톤 고정hex 회피 ⑤) */
+  .cwarn { background:var(--gray-4); }
+  .cwarn p { color:var(--accent); font-weight:700; }
+  /* 다크 계산패널 (큰숫자=fg+weight ②, 항목값=fg) */
+  .calc { background:var(--surface-inverse); border-radius:10px; padding:16px 22px; margin-top:18px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .calc-l { flex:1; }
+  .calc-t { font-size:14px; font-weight:800; color:#FF6F00; margin-bottom:10px; }
+  .calc-items { display:flex; gap:26px; flex-wrap:wrap; }
+  .ci-l { font-size:12px; color:var(--surface-inverse-fg); opacity:0.78; }
+  .ci-v { font-size:18px; font-weight:800; color:var(--surface-inverse-fg); margin-top:2px; }
+  .calc-r { text-align:right; flex-shrink:0; border-left:1px solid rgba(255,255,255,0.18); padding-left:24px; }
+  .calc-r-l { font-size:12px; color:var(--surface-inverse-fg); opacity:0.78; }
+  .calc-r-v { font-size:32px; font-weight:800; color:var(--surface-inverse-fg); line-height:1; margin:3px 0; }
+  .calc-r-n { font-size:13px; font-weight:700; color:#FF6F00; }
+</style></head>
+<body data-layout="insurance_table_calc">
+  <h1>보험 종류마다 가입 기준이 달라 일용직 처리 시 반드시 <span class="em">개별 확인</span>해야 한다</h1>
+  <p class="sub">산재(1시간)부터 건강·국민연금(월 8일+)까지 기준이 다르며, 가입 의무 시점을 놓치면 사후 부과 및 비용 예산 오류가 발생한다.</p>
+  <div class="gt">
+    <div class="chd"><p>구분</p></div>
+    <div class="chd"><p>산재보험</p></div>
+    <div class="chd"><p>고용보험</p></div>
+    <div class="chd"><p>건강보험</p></div>
+    <div class="chd"><p>국민연금</p></div>
+
+    <div class="c clb"><p>일용직 가입 기준</p></div>
+    <div class="c cwarn"><p>1시간 근로부터 당연 가입</p></div>
+    <div class="c"><p>1일 근로부터 당연 가입</p></div>
+    <div class="c"><p>1개월+ & 월 8일+ 근로</p></div>
+    <div class="c"><p>1개월+ & 월 8일+/월 60h 또는 월소득 220만원+</p></div>
+
+    <div class="c clb"><p>초단시간 (주 15h 미만)</p></div>
+    <div class="c cwarn"><p>즉시 가입</p></div>
+    <div class="c"><p>3개월+ 계속 고용 시</p></div>
+    <div class="c"><p>1개월+ & 월 8일+</p></div>
+    <div class="c"><p>1개월+ & 월 8일+/60h+</p></div>
+
+    <div class="c clb"><p>보험료 부담</p></div>
+    <div class="c cwarn"><p>사업주 전액</p></div>
+    <div class="c"><p>사업주 50% / 근로자 50%</p></div>
+    <div class="c"><p>사업주 50% / 근로자 50%</p></div>
+    <div class="c"><p>사업주 50% / 근로자 50%</p></div>
+
+    <div class="c clb"><p>2025년 회사부담 요율</p></div>
+    <div class="c cwarn"><p>업종별 0.6~18.8%</p></div>
+    <div class="c"><p>0.9%</p></div>
+    <div class="c"><p>3.545%</p></div>
+    <div class="c"><p>4.5%</p></div>
+
+    <div class="c clb"><p>신고 방법</p></div>
+    <div class="c cwarn"><p>근로내용확인신고서 (익월 15일)</p></div>
+    <div class="c"><p>근로내용확인신고서 (익월 15일)</p></div>
+    <div class="c"><p>피보험자격취득신고 (14일 내)</p></div>
+    <div class="c"><p>취득신고 (다음 달 15일)</p></div>
+  </div>
+  <div class="calc">
+    <div class="calc-l">
+      <p class="calc-t">일용직 보험료 회사부담 계산예시 — 일급 100,000원, 월 20일 근로 (월 임금 2,000,000원)</p>
+      <div class="calc-items">
+        <div class="ci"><p class="ci-l">국민연금 (4.5%)</p><p class="ci-v">90,000원</p></div>
+        <div class="ci"><p class="ci-l">건강보험 (3.545%)</p><p class="ci-v">70,900원</p></div>
+        <div class="ci"><p class="ci-l">장기요양 (12.81%)</p><p class="ci-v">9,082원</p></div>
+        <div class="ci"><p class="ci-l">고용보험 (0.9%)</p><p class="ci-v">18,000원</p></div>
+      </div>
+    </div>
+    <div class="calc-r">
+      <p class="calc-r-l">회사부담 합계</p>
+      <p class="calc-r-v">약 188,000원</p>
+      <p class="calc-r-n">월 임금의 9.4%</p>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

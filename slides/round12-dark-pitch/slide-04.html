@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:46px 60px 32px 60px; display:flex; flex-direction:column; }
+  h1 { font-size:24px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .sub { font-size:13.5px; color:var(--gray-2); margin-bottom:18px; line-height:1.4; }
+  /* 상단 3 다크 KPI (surface-inverse, 큰숫자=fg+weight ②, 증감배지=밝은의미색) */
+  .kpis { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:18px; }
+  .kpi { background:var(--surface-inverse); border-radius:10px; padding:16px 20px; }
+  .kpi-l { font-size:13px; font-weight:600; color:var(--surface-inverse-fg); opacity:0.78; margin-bottom:6px; }
+  .kpi-v { font-size:38px; font-weight:800; color:var(--surface-inverse-fg); letter-spacing:-0.02em; line-height:1; }
+  .kpi-meta { margin-top:8px; display:flex; align-items:center; gap:8px; }
+  .kpi-badge { background:#FF6F00; border-radius:4px; padding:2px 8px; }
+  .kpi-badge p { font-size:12px; font-weight:800; color:#FFFFFF; }
+  .kpi-note { font-size:12px; color:var(--surface-inverse-fg); opacity:0.7; }
+  /* 하단 3패널 */
+  .panels { display:grid; grid-template-columns:1fr 1.25fr 1fr; gap:18px; flex:1; min-height:0; }
+  .pn { background:var(--gray-4); border-radius:10px; padding:14px 18px; display:flex; flex-direction:column; }
+  .pn-t { font-size:14px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:10px; }
+  .calc-line { font-size:13.5px; color:var(--gray-1); line-height:1.7; }
+  .calc-line b { color:var(--heading, var(--primary)); font-weight:700; }
+  .calc-res { font-size:15px; font-weight:800; color:var(--accent); margin-top:auto; padding-top:8px; }
+  /* 산입범위 2컬럼 (의미색: 포함=녹 / 미포함=빨, 라이트 텍스트 의미색) */
+  .scope { display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1; }
+  .sc-col { display:flex; flex-direction:column; }
+  .sc-h { font-size:13px; font-weight:800; padding:5px 10px; border-radius:5px; margin-bottom:8px; }
+  .sc-in { background:#1E8E5A; color:#FFFFFF; }
+  .sc-out { background:#D64545; color:#FFFFFF; }
+  .sc-li { font-size:12.5px; color:var(--gray-1); line-height:1.55; }
+  /* 수습 감액 다크패널 */
+  .pn-dark { background:var(--surface-inverse); }
+  .pn-dark .pn-t { color:var(--surface-inverse-fg); }
+  .pd-v { font-size:30px; font-weight:800; color:var(--surface-inverse-fg); line-height:1; margin:4px 0; }
+  .pd-badge { display:inline-block; background:#FF6F00; border-radius:4px; padding:2px 8px; margin-bottom:8px; }
+  .pd-badge p { font-size:11.5px; font-weight:800; color:#FFFFFF; }
+  .pd-li { font-size:12px; color:var(--surface-inverse-fg); opacity:0.85; line-height:1.5; margin-top:auto; }
+</style></head>
+<body data-layout="kpi_minwage_panels">
+  <h1>2025년 최저임금 10,030원 — 월 환산액과 산입범위를 정확히 알아야 <span class="em">예산 기준선</span>이 잡힌다</h1>
+  <p class="sub">정기상여금·복리후생비 전액이 산입범위에 포함됨에 따라 실질 위반 여부 계산이 복잡해진다.</p>
+  <div class="kpis">
+    <div class="kpi">
+      <p class="kpi-l">2025년 최저시급 (원)</p>
+      <p class="kpi-v">10,030</p>
+      <div class="kpi-meta"><span class="kpi-badge"><p>+1.7%</p></span><span class="kpi-note">vs prior year +170</span></div>
+    </div>
+    <div class="kpi">
+      <p class="kpi-l">월 환산액 (209h, 원)</p>
+      <p class="kpi-v">2,096,270</p>
+      <div class="kpi-meta"><span class="kpi-note">Monthly budget baseline</span></div>
+    </div>
+    <div class="kpi">
+      <p class="kpi-l">Daily wage (8h, 원)</p>
+      <p class="kpi-v">80,240</p>
+      <div class="kpi-meta"><span class="kpi-note">10,030 × 8h</span></div>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="pn">
+      <p class="pn-t">209시간 산출 근거</p>
+      <p class="calc-line">(주 40시간 + 주휴 8시간)<br>× 365일 / 7일 / 12개월<br>= 48시간 × 52.14 / 12<br><b>= 약 209시간</b></p>
+      <p class="calc-res">2,096,270 = 10,030 × 209h</p>
+    </div>
+    <div class="pn">
+      <p class="pn-t">산입범위 (2024 이후 전면 확대)</p>
+      <div class="scope">
+        <div class="sc-col">
+          <div class="sc-h sc-in">포함 항목</div>
+          <p class="sc-li">기본급·직무수당<br>식대 (현물 제외)<br>정기상여 전액<br>복리후생비 전액</p>
+        </div>
+        <div class="sc-col">
+          <div class="sc-h sc-out">미포함 항목</div>
+          <p class="sc-li">초과근로수당<br>(연장·야간·휴일)<br>현물급여 (식사·통근버스)<br>일시·부정기 수당</p>
+        </div>
+      </div>
+    </div>
+    <div class="pn pn-dark">
+      <p class="pn-t">수습 감액 (최저임금법 제5조)</p>
+      <div class="pd-badge"><p>최저임금 10% 감액</p></div>
+      <p class="pd-v">9,027원</p>
+      <p class="pd-li">요건: 1년 이상 근로계약 + 수습 시작 3개월 이내. 단순노무직(국표준직업분류 대분류 9)은 감액 불가.</p>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

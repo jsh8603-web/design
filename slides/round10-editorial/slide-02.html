@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="editorial"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+.serif-head, h1, h2, h3, h4, h5, .ctitle, .kicker { font-family:'Newsreader','Times New Roman',serif; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:50px 64px 38px 64px; display:flex; flex-direction:column; }
+  /* 좌우분할 head: title flex + 우측 다크 배지 명시 width(학습10) */
+  .head { display:flex; justify-content:space-between; align-items:flex-start; gap:32px; margin-bottom:22px; }
+  h1 { font-size:30px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.3; flex:1; }
+  h1 .em { color:var(--accent); }
+  .pbadge { width:226px; flex-shrink:0; background:var(--surface-inverse); border-radius:8px; padding:12px 18px; text-align:right; }
+  .pbadge .pl { font-size:14px; color:var(--surface-inverse-fg); opacity:0.78; margin-bottom:3px; }
+  .pbadge .pm { font-size:15px; color:var(--surface-inverse-fg); line-height:1.6; }
+  .pbadge .hl { color:var(--surface-inverse-fg); font-weight:800; }  /* 규약: 다크패널 강조=fg+weight (line162 라이트색 다크 금지) */
+  .grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:16px; flex:1; }
+  .card { background:var(--gray-4); border-radius:10px; padding:18px 22px; position:relative; display:flex; flex-direction:column; gap:10px; }
+  /* 카드번호 원: 색칩=div 직속텍스트(학습8) */
+  .cnum { position:absolute; top:16px; right:18px; width:32px; height:32px; border-radius:50%;
+          background:var(--surface-inverse); color:var(--surface-inverse-fg); display:flex; align-items:center; justify-content:center;
+          font-size:16px; font-weight:800; }
+  /* 태그 색칩: div 직속텍스트 + 개별 width 명시(학습8, flex-start under-measure 방지) */
+  .tag { background:var(--accent); color:#fff; border-radius:4px; padding:5px 0; text-align:center;
+         font-size:14px; font-weight:700; white-space:nowrap; }
+  .t1 { width:112px; } .t2 { width:170px; } .t3 { width:152px; } .t4 { width:160px; }
+  .ctitle { font-size:19px; font-weight:800; color:var(--heading, var(--primary)); line-height:1.25; padding-right:38px; }
+  .blist { display:flex; flex-direction:column; gap:6px; }
+  .brow { display:flex; gap:9px; align-items:flex-start; }
+  .bdot { width:6px; height:6px; border-radius:50%; background:var(--accent); margin-top:8px; flex-shrink:0; }
+  .brow p { font-size:15px; color:var(--gray-1); line-height:1.45; }
+  .brow .s { color:var(--heading, var(--primary)); font-weight:800; }
+  /* 주의 박스: 연한톤 bg 회피 → accent 좌보더 + accent 텍스트(학습5) */
+  .warn { border-left:4px solid var(--accent); padding:5px 0 5px 12px; margin-top:2px; }
+  .warn p { font-size:14px; color:var(--accent); font-weight:700; line-height:1.4; }
+  .src { font-size:13px; color:var(--gray-2); text-align:right; margin-top:14px; }
+</style></head>
+<body data-layout="violation_2x2_grid">
+  <div class="head">
+    <h1>최저임금 위반 빈발 <span class="em">4가지 상황</span></h1>
+    <div class="pbadge">
+      <p class="pl">위반 시</p>
+      <p class="pm"><span class="hl">3년 징역</span> 또는</p>
+      <p class="pm"><span class="hl">2,000만원</span> 벌금</p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="cnum">1</div>
+      <div class="tag t1">포괄임금제</div>
+      <p class="ctitle">시급 환산 확인 누락</p>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p>기본급÷근로시간 ≥ <span class="s">10,030원</span></p></div>
+        <div class="brow"><div class="bdot"></div><p>포괄 수당 환산 시 제외</p></div>
+      </div>
+      <div class="warn"><p>시급 환산값 기준으로 판단</p></div>
+    </div>
+    <div class="card">
+      <div class="cnum">2</div>
+      <div class="tag t2">식대·교통비 현물</div>
+      <p class="ctitle">현물 vs 현금식대 혼동</p>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p>구내식당 = <span class="s">미산입</span></p></div>
+        <div class="brow"><div class="bdot"></div><p>현금 식대 = <span class="s">전액 산입</span></p></div>
+      </div>
+      <div class="warn"><p>현물 산입 불가</p></div>
+    </div>
+    <div class="card">
+      <div class="cnum">3</div>
+      <div class="tag t3">정기상여금 주기</div>
+      <p class="ctitle">상여금 전액 산입</p>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p><span class="s">연총액÷12</span>로 월 산입</p></div>
+        <div class="brow"><div class="bdot"></div><p>2024년부터 <span class="s">전액 산입</span></p></div>
+      </div>
+      <div class="warn"><p>정기성이면 전액 포함</p></div>
+    </div>
+    <div class="card">
+      <div class="cnum">4</div>
+      <div class="tag t4">수습 감액 오적용</div>
+      <p class="ctitle">1년 미만 계약 감액 불가</p>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p>1년 미만 = <span class="s">감액 불가</span></p></div>
+        <div class="brow"><div class="bdot"></div><p>1년+ 계약 <span class="s">3개월 이내</span>만 허용</p></div>
+      </div>
+      <div class="warn"><p>단기직 9,027원 적용 시 위반</p></div>
+    </div>
+  </div>
+  <p class="src">최저임금법 §5, §28</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:52px 72px 44px 72px; display:flex; flex-direction:column; }
+  .head { margin-bottom:24px; }
+  /* 섹션 라벨 칩: 다크 bg + accent 텍스트, div 직속(학습8) */
+  .slabel { display:inline-block; background:var(--surface-inverse); color:var(--surface-inverse-fg); border-radius:4px;
+            padding:6px 16px; font-size:14px; font-weight:700; letter-spacing:0.03em; white-space:nowrap; margin-bottom:14px; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); line-height:1.35; }
+  h1 .em { color:var(--accent); }
+  /* 좌우분할: 우측 표 명시 width(학습10) */
+  .main { display:flex; gap:30px; flex:1; }
+  .left { flex:1; min-width:0; display:flex; flex-direction:column; gap:22px; }
+  .right { width:430px; flex-shrink:0; display:flex; flex-direction:column; gap:16px; }
+  /* Q&A 카드: accent 좌보더 + gray-4 */
+  .qa { border-left:6px solid var(--accent); background:var(--gray-4); border-radius:8px; padding:22px 26px; }
+  .qrow { display:flex; gap:14px; align-items:center; margin-bottom:14px; }
+  .qb { width:36px; height:36px; background:var(--accent); color:#fff; border-radius:6px; display:flex; align-items:center; justify-content:center;
+        font-size:18px; font-weight:800; flex-shrink:0; white-space:nowrap; }
+  .qrow h2 { font-size:20px; font-weight:800; color:var(--heading, var(--primary)); line-height:1.3; }
+  .atext { font-size:17px; color:var(--gray-1); line-height:1.6; padding-left:50px; }
+  .atext .s { color:var(--accent); font-weight:800; }
+  /* 공식 박스: 다크 패널(surface-inverse + fg) */
+  .formula { background:var(--surface-inverse); border-radius:10px; padding:24px 28px; }
+  .flab { font-size:14px; font-weight:700; color:var(--surface-inverse-fg); opacity:0.7; letter-spacing:0.03em; margin-bottom:12px; }
+  .feq { font-size:21px; font-weight:500; color:var(--surface-inverse-fg); line-height:1.5; }
+  .feq .s { color:var(--surface-inverse-fg); font-weight:800; }  /* 규약: 다크 강조=weight 차이(색X) */
+  .fhint { font-size:14px; color:var(--surface-inverse-fg); opacity:0.68; line-height:1.5; margin-top:12px; }
+  /* 민감도 표 */
+  .rtitle { font-size:18px; font-weight:800; color:var(--heading, var(--primary)); }
+  .stbl { display:grid; grid-template-columns:1fr 1fr 1fr; border-radius:8px; overflow:hidden; border:1px solid var(--gray-3); }
+  .sth { background:var(--surface-inverse); padding:12px 8px; display:flex; align-items:center; justify-content:center; }
+  .sth p { font-size:14px; font-weight:700; color:var(--surface-inverse-fg); text-align:center; white-space:nowrap; }
+  .std { background:var(--theme-bg); padding:14px 8px; display:flex; align-items:center; justify-content:center; border-top:1px solid var(--gray-3); }
+  .std p { font-size:16px; color:var(--gray-1); text-align:center; }
+  .std.alt { background:var(--gray-4); }
+  .std .s { color:var(--accent); font-weight:800; }
+  /* 하단 힌트: accent 좌보더 + gray-4(학습5) */
+  .bhint { border-left:4px solid var(--accent); background:var(--gray-4); border-radius:6px; padding:13px 16px; }
+  .bhint .ht { font-size:14px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:5px; }
+  .bhint .hb { font-size:14px; color:var(--gray-2); line-height:1.5; }
+</style></head>
+<body data-layout="qa_formula_table">
+  <div class="head">
+    <div class="slabel">FAQ — DB형 퇴직충당금</div>
+    <h1>DB형 충당부채: <span class="em">임금 인상 시나리오별 민감도 분석</span>으로 예산 반영</h1>
+  </div>
+  <div class="main">
+    <div class="left">
+      <div class="qa">
+        <div class="qrow">
+          <div class="qb">Q</div>
+          <h2>DB 충당부채 증가분 예산 반영법?</h2>
+        </div>
+        <p class="atext">기초 vs 기말 DBO 차이 = <span class="s">당해 퇴직비용</span>. 인상률별 계리 추정치 요청 후 예산 반영.</p>
+      </div>
+      <div class="formula">
+        <p class="flab">당해 퇴직비용 산정 공식</p>
+        <p class="feq">당해 퇴직비용 = <span class="s">기말DBO</span> − 기초DBO + 실지급액</p>
+        <p class="fhint">실지급액 차감 → 순 충당부채 변동 = 손익 반영분</p>
+      </div>
+    </div>
+    <div class="right">
+      <p class="rtitle">임금 인상별 DBO 민감도</p>
+      <div class="stbl">
+        <div class="sth"><p>시나리오</p></div>
+        <div class="sth"><p>임금인상</p></div>
+        <div class="sth"><p>DBO 변동</p></div>
+
+        <div class="std"><p>보수적</p></div>
+        <div class="std"><p>+3%</p></div>
+        <div class="std"><p><span class="s">소폭 증가</span></p></div>
+
+        <div class="std alt"><p>기본</p></div>
+        <div class="std alt"><p>+5%</p></div>
+        <div class="std alt"><p><span class="s">중폭 증가</span></p></div>
+
+        <div class="std"><p>적극</p></div>
+        <div class="std"><p>+7%</p></div>
+        <div class="std"><p><span class="s">대폭 증가</span></p></div>
+      </div>
+      <div class="bhint">
+        <p class="ht">추가 시나리오</p>
+        <p class="hb">할인율 ±0.5%p, 인상률 ±1%p 조합 범위 추정 — 계리 발주 시 요청</p>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

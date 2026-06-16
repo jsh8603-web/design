@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="academic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:52px 72px 40px 72px; display:flex; flex-direction:column; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:24px; line-height:1.3; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  /* 좌우분할: 우측 요약 패널 명시 width(학습10) */
+  .main { display:flex; gap:30px; flex:1; }
+  .left { flex:1; min-width:0; display:flex; flex-direction:column; gap:18px; }
+  /* 우측: 이미지슬롯 → 다크 핵심요약 패널 재구성 */
+  .right { width:308px; flex-shrink:0; background:var(--surface-inverse); border-radius:10px;
+           padding:28px 30px; display:flex; flex-direction:column; justify-content:center; gap:22px; }
+  /* 4단계 프로세스: 다크칩 + accent 숫자 + 직교 화살표(학습11) */
+  .steps { display:flex; align-items:stretch; gap:8px; }
+  .scell { flex:1; background:var(--surface-inverse); border-radius:8px; padding:15px 8px; text-align:center; }
+  .scell .sn { font-size:24px; font-weight:800; color:var(--surface-inverse-fg); }  /* 규약: 다크칩 위 강조=fg(색X) */
+  .scell .sl { font-size:15px; color:var(--surface-inverse-fg); font-weight:600; margin-top:4px; white-space:nowrap; }
+  .sarr { display:flex; align-items:center; font-size:22px; color:var(--gray-3); font-weight:700; }
+  /* 비교표: 항목 / 일반 / 공공(accent 헤더) */
+  .ctbl { display:grid; grid-template-columns:140px 1fr 1fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; }
+  .ch { padding:13px 16px; }
+  .ch.k { background:var(--surface-inverse); }
+  .ch.k p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .ch.a { background:var(--accent); }
+  .ch.a p { font-size:15px; font-weight:800; color:#fff; }
+  .cc { padding:13px 16px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .cc p { font-size:15px; color:var(--gray-1); }
+  .cc.lb { background:var(--gray-4); }
+  .cc.lb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .cc.hi { background:var(--gray-4); }
+  .cc.hi p { color:var(--accent); font-weight:800; }
+  .rt { font-size:15px; font-weight:800; color:var(--surface-inverse-fg); letter-spacing:0.05em; }  /* 규약: 다크패널 제목=fg */
+  .rk .rkl { font-size:14px; color:var(--surface-inverse-fg); opacity:0.7; }
+  .rk .rkv { font-size:30px; font-weight:600; color:var(--surface-inverse-fg); margin-top:3px; line-height:1.1; }
+  .rk .rkv .em2 { color:var(--surface-inverse-fg); font-weight:800; }  /* 규약: 다크 강조=weight 차이 */
+  .src { font-size:12px; color:var(--gray-2); margin-top:16px; }
+</style></head>
+<body data-layout="process_table_panel">
+  <h1>공공 인프라는 <span class="em">사회적 할인율과 30-50년 분석기간</span>이 표준이다</h1>
+  <div class="main">
+    <div class="left">
+      <div class="steps">
+        <div class="scell"><p class="sn">1</p><p class="sl">통행발생</p></div>
+        <div class="sarr">→</div>
+        <div class="scell"><p class="sn">2</p><p class="sl">통행배분</p></div>
+        <div class="sarr">→</div>
+        <div class="scell"><p class="sn">3</p><p class="sl">수단선택</p></div>
+        <div class="sarr">→</div>
+        <div class="scell"><p class="sn">4</p><p class="sl">노선배정</p></div>
+      </div>
+      <div class="ctbl">
+        <div class="ch k"><p>항목</p></div>
+        <div class="ch k"><p>일반 기업 투자</p></div>
+        <div class="ch a"><p>공공 인프라</p></div>
+
+        <div class="cc lb"><p>할인율</p></div>
+        <div class="cc"><p>WACC (8-12%)</p></div>
+        <div class="cc hi"><p>사회적 할인율 (5.5%)</p></div>
+
+        <div class="cc lb"><p>분석기간</p></div>
+        <div class="cc"><p>5-15년</p></div>
+        <div class="cc hi"><p>30-50년</p></div>
+
+        <div class="cc lb"><p>편익 측정</p></div>
+        <div class="cc"><p>매출/이익</p></div>
+        <div class="cc hi"><p>사회적 편익 화폐화</p></div>
+
+        <div class="cc lb"><p>DBEP 기준</p></div>
+        <div class="cc"><p>NPV = 0</p></div>
+        <div class="cc hi"><p>B/C Ratio = 1</p></div>
+      </div>
+    </div>
+    <div class="right">
+      <p class="rt">공공 인프라 기준</p>
+      <div class="rk"><p class="rkl">사회적 할인율</p><p class="rkv"><span class="em2">5.5%</span></p></div>
+      <div class="rk"><p class="rkl">분석기간</p><p class="rkv"><span class="em2">30-50</span>년</p></div>
+      <div class="rk"><p class="rkl">타당성 기준</p><p class="rkv">B/C ≥ <span class="em2">1</span></p></div>
+    </div>
+  </div>
+  <p class="src">Source: KDI 예비타당성조사 수행 총괄지침 (2021)</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

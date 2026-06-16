@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:48px 64px 36px 64px; display:flex; flex-direction:column; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:20px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .top { display:flex; gap:24px; margin-bottom:20px; }
+  /* 점유율 패널: 도넛 → 큰 KPI + 누적 비교 막대(변환기 호환, 점유율 의도 보존) */
+  .share { width:356px; flex-shrink:0; background:var(--gray-4); border-radius:10px; padding:22px 26px; }
+  .share .stitle { font-size:15px; font-weight:700; color:var(--gray-2); margin-bottom:12px; }
+  .bignum { font-size:54px; font-weight:800; color:var(--accent); line-height:1; }
+  .bigsub { font-size:14px; color:var(--gray-2); margin-top:5px; margin-bottom:20px; }
+  .bar { margin-bottom:13px; }
+  .bar:last-child { margin-bottom:0; }
+  .barlab { display:flex; justify-content:space-between; font-size:14px; margin-bottom:5px; }
+  .barlab .n { color:var(--gray-1); font-weight:600; }
+  .barlab .v { color:var(--gray-2); }
+  .bartrack { height:14px; background:var(--gray-3); border-radius:7px; }
+  .barfill { height:14px; border-radius:7px; background:var(--gray-2); }
+  .bar.me .barfill { background:var(--accent); }
+  .bar.me .n { color:var(--accent); font-weight:800; }
+  /* 4×5 비교표 */
+  .tbl { flex:1; min-width:0; display:grid; grid-template-columns:1.25fr 1.7fr 1fr 1fr;
+         border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; align-content:start; }
+  .th { background:var(--surface-inverse); padding:12px 13px; }
+  .th p { font-size:14px; font-weight:700; color:var(--surface-inverse-fg); }
+  .td { padding:11px 13px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .td p { font-size:14px; color:var(--gray-1); line-height:1.3; }
+  .td.lb { background:var(--gray-4); }
+  .td.lb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .td.win p { color:var(--accent); font-weight:800; }
+  /* 하단 3카드: top accent border */
+  .cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .bcard { background:var(--gray-4); border-radius:10px; padding:16px 20px; border-top:4px solid var(--accent); }
+  .bcard .bt { font-size:18px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:6px; }
+  .bcard .bb { font-size:14px; color:var(--gray-2); line-height:1.4; }
+  .src { font-size:12px; color:var(--gray-2); text-align:right; margin-top:14px; }
+</style></head>
+<body data-layout="share_table_cards">
+  <h1>HBM4 <span class="em">최초 양산</span> — 점유율 역전 기반 확보</h1>
+  <div class="top">
+    <div class="share">
+      <p class="stitle">HBM 시장 점유율 (2025.4Q)</p>
+      <p class="bignum">17%</p>
+      <p class="bigsub">삼성전자 현재 점유율 — 3위</p>
+      <div class="bar">
+        <div class="barlab"><span class="n">SK하이닉스</span><span class="v">57~62%</span></div>
+        <div class="bartrack"><div class="barfill" style="width:288px;"></div></div>
+      </div>
+      <div class="bar">
+        <div class="barlab"><span class="n">마이크론</span><span class="v">21~26%</span></div>
+        <div class="bartrack"><div class="barfill" style="width:112px;"></div></div>
+      </div>
+      <div class="bar me">
+        <div class="barlab"><span class="n">삼성전자</span><span class="v">17%</span></div>
+        <div class="bartrack"><div class="barfill" style="width:82px;"></div></div>
+      </div>
+    </div>
+    <div class="tbl">
+      <div class="th"><p>지표</p></div>
+      <div class="th"><p>삼성전자</p></div>
+      <div class="th"><p>SK하이닉스</p></div>
+      <div class="th"><p>마이크론</p></div>
+
+      <div class="td lb"><p>HBM 점유율</p></div>
+      <div class="td"><p>17%</p></div>
+      <div class="td win"><p>57~62%</p></div>
+      <div class="td"><p>21~26%</p></div>
+
+      <div class="td lb"><p>HBM4 양산</p></div>
+      <div class="td win"><p>2026.02 (최초)</p></div>
+      <div class="td"><p>2026 하반기</p></div>
+      <div class="td"><p>2026 하반기</p></div>
+
+      <div class="td lb"><p>엔비디아 공급</p></div>
+      <div class="td"><p>HBM3E 확정</p></div>
+      <div class="td win"><p>H200 메인</p></div>
+      <div class="td"><p>일부</p></div>
+
+      <div class="td lb"><p>원스톱 솔루션</p></div>
+      <div class="td win"><p>메모리+파운드리+패키징</p></div>
+      <div class="td"><p>메모리 전문</p></div>
+      <div class="td"><p>메모리 전문</p></div>
+    </div>
+  </div>
+  <div class="cards">
+    <div class="bcard">
+      <p class="bt">속도 2배 향상</p>
+      <p class="bb">대역폭 2배, 전력효율↑ → TCO 절감</p>
+    </div>
+    <div class="bcard">
+      <p class="bt">ASP +40~60%</p>
+      <p class="bb">프리미엄 → 이익 극대화, GB300 협의</p>
+    </div>
+    <div class="bcard">
+      <p class="bt">2027 HBM4E 로드맵</p>
+      <p class="bb">16단 HBM4E 가속, 25%+ 목표</p>
+    </div>
+  </div>
+  <p class="src">TrendForce, Counterpoint Research (2025.4Q), 삼성전자 IR</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

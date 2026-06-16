@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="classic"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:52px 72px 40px 72px; display:flex; flex-direction:column; }
+  .head { margin-bottom:26px; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; line-height:1.35; }
+  h1 .em { color:var(--accent); }
+  .cols { display:flex; gap:34px; flex:1; }
+  .col { flex:1; display:flex; flex-direction:column; }
+  /* top accent bar: 좌=accent / 우=다크 토큰 */
+  .bar { height:6px; border-radius:3px 3px 0 0; }
+  .bar.a { background:var(--accent); }
+  .bar.d { background:var(--surface-inverse); }
+  .panel { background:var(--gray-4); border-radius:0 0 10px 10px; padding:24px 26px; flex:1; }
+  .ph { font-size:20px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:20px; }
+  .step { display:flex; gap:16px; margin-bottom:18px; align-items:flex-start; }
+  .step:last-child { margin-bottom:0; }
+  /* 스텝 원: 색칩=div 직속텍스트(학습8), 정사각 width 명시 */
+  .snum { width:36px; height:36px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+          font-size:17px; font-weight:800; white-space:nowrap; }
+  .snum.a { background:var(--accent); color:#fff; }
+  .snum.d { background:var(--surface-inverse); color:var(--surface-inverse-fg); }
+  .sbody { flex:1; min-width:0; }
+  .sdate { font-size:15px; font-weight:800; margin-bottom:3px; }
+  .sdate.a { color:var(--accent); }
+  .sdate.d { color:var(--heading, var(--primary)); }
+  .stext { font-size:16px; color:var(--gray-1); line-height:1.5; }
+  /* 하단 예시: 다크 박스(surface-inverse + fg) */
+  .bot { display:flex; justify-content:space-between; align-items:center; gap:20px; margin-top:22px;
+         background:var(--surface-inverse); border-radius:8px; padding:15px 24px; }
+  .bot .ex { font-size:15px; color:var(--surface-inverse-fg); font-weight:600; white-space:nowrap; }
+  .bot .law { font-size:13px; color:var(--surface-inverse-fg); opacity:0.72; white-space:nowrap; }
+</style></head>
+<body data-layout="two_col_process">
+  <div class="head">
+    <h1>건강보험 보수총액 정산은 <span class="em">전년도 실제 보수와 산정 보수의 차이</span>를 정산하여 4월 급여에 반영한다</h1>
+  </div>
+  <div class="cols">
+    <div class="col">
+      <div class="bar a"></div>
+      <div class="panel">
+        <p class="ph">건강보험 보수총액 정산</p>
+        <div class="step">
+          <div class="snum a">1</div>
+          <div class="sbody"><p class="sdate a">3/10</p><p class="stext">전년도 실제 보수 합계 신고</p></div>
+        </div>
+        <div class="step">
+          <div class="snum a">2</div>
+          <div class="sbody"><p class="stext">정산액 = (실제 − 산정×12) × 7.09% × 1/2</p></div>
+        </div>
+        <div class="step">
+          <div class="snum a">3</div>
+          <div class="sbody"><p class="sdate a">4월~</p><p class="stext">추가납부 ≥ 1개월분 → 10회 분할</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="bar d"></div>
+      <div class="panel">
+        <p class="ph">고용 · 산재 확정보험료</p>
+        <div class="step">
+          <div class="snum d">1</div>
+          <div class="sbody"><p class="sdate d">3/15</p><p class="stext">확정보험료 = 실제 보수총액 × 요율</p></div>
+        </div>
+        <div class="step">
+          <div class="snum d">2</div>
+          <div class="sbody"><p class="stext">확정 &gt; 개산 → 추가납부</p></div>
+        </div>
+        <div class="step">
+          <div class="snum d">3</div>
+          <div class="sbody"><p class="stext">개산보험료 → 분기 납부</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bot">
+    <p class="ex">운수직 산정 월300만원: 실제 3,960만원 → 추가 약 150,720원</p>
+    <p class="law">국민건강보험법 · 고용보험법 · 산재법</p>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="modern"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:50px 64px 40px 64px; display:flex; flex-direction:column; }
+  h1 { font-size:26px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:18px; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  /* 비교표: 2 의미색(SKH 주황/SEC cobalt — 라이트·다크 둘다 안전). 7행 padding 적정 */
+  .gt { display:grid; grid-template-columns:1.5fr 1fr 1fr 1.3fr; border:1px solid var(--gray-3); border-radius:8px 8px 0 0; overflow:hidden; }
+  .chd { background:var(--surface-inverse); padding:11px 16px; }
+  .chd p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:9px 16px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:15px; color:var(--gray-1); line-height:1.3; }
+  .clb { background:var(--gray-4); }
+  .clb p { font-weight:700; color:var(--heading, var(--primary)); }
+  .calt { background:var(--gray-4); }
+  .skh p { color:#FF6F00; font-weight:800; }
+  .sec p { color:#2563EB; font-weight:800; }
+  .cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:16px; }
+  .icard { background:var(--gray-4); border-radius:8px; padding:14px 18px; border-top:4px solid #FF6F00; }
+  .icard.b { border-top-color:#2563EB; }
+  .icard.c { border-top-color:#00A9E0; }
+  .ilabel { font-size:16px; font-weight:800; margin-bottom:6px; color:#FF6F00; }
+  .icard.b .ilabel { color:#2563EB; }
+  .icard.c .ilabel { color:#00A9E0; }
+  .itext { font-size:13px; color:var(--gray-2); line-height:1.45; white-space:nowrap; }
+  .src { font-size:13px; color:var(--gray-2); text-align:right; margin-top:14px; }
+</style></head>
+<body data-layout="compare_table_insight">
+  <h1>OP는 <span class="em">SKH 우위</span>, 기술 다각화는 삼성 우위</h1>
+  <div class="gt">
+    <div class="chd"><p>지표</p></div>
+    <div class="chd"><p>삼성전자</p></div>
+    <div class="chd"><p>SK하이닉스</p></div>
+    <div class="chd"><p>우위</p></div>
+
+    <div class="c clb"><p>영업이익</p></div>
+    <div class="c"><p>43.6조원</p></div>
+    <div class="c skh"><p>47.2조원</p></div>
+    <div class="c skh"><p>SKH (+3.6조)</p></div>
+
+    <div class="c clb calt"><p>OPM (연간)</p></div>
+    <div class="c calt"><p>13.1%</p></div>
+    <div class="c calt skh"><p>49%</p></div>
+    <div class="c calt skh"><p>SKH 압도</p></div>
+
+    <div class="c clb"><p>Q4 OPM</p></div>
+    <div class="c"><p>21.4%</p></div>
+    <div class="c skh"><p>58%</p></div>
+    <div class="c skh"><p>SKH 압도</p></div>
+
+    <div class="c clb calt"><p>HBM 점유율</p></div>
+    <div class="c calt"><p>17%</p></div>
+    <div class="c calt skh"><p>57~62%</p></div>
+    <div class="c calt skh"><p>SKH 우위</p></div>
+
+    <div class="c clb"><p>HBM4 양산</p></div>
+    <div class="c sec"><p>2026.02 (선도)</p></div>
+    <div class="c"><p>2026 하반기</p></div>
+    <div class="c sec"><p>SEC 선도</p></div>
+
+    <div class="c clb calt"><p>파운드리</p></div>
+    <div class="c calt sec"><p>7.2% 보유</p></div>
+    <div class="c calt"><p>없음</p></div>
+    <div class="c calt sec"><p>SEC 독점</p></div>
+
+    <div class="c clb"><p>사업 다각화</p></div>
+    <div class="c sec"><p>4개 사업부</p></div>
+    <div class="c"><p>메모리 전문</p></div>
+    <div class="c sec"><p>SEC</p></div>
+  </div>
+  <div class="cards">
+    <div class="icard">
+      <p class="ilabel">SK하이닉스 강점</p>
+      <p class="itext">HBM 선점 → OPM 극대화(58%)</p>
+    </div>
+    <div class="icard b">
+      <p class="ilabel">삼성전자 강점</p>
+      <p class="itext">다각화 + 수직통합 + HBM4 확보</p>
+    </div>
+    <div class="icard c">
+      <p class="ilabel">투자 시사점</p>
+      <p class="itext">SKH=HBM 고베타 / 삼성=분산·저PER</p>
+    </div>
+  </div>
+  <p class="src">사업보고서, Bloomberg 2025</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

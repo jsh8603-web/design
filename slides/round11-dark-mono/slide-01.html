@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-mono"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:52px 72px 48px 72px; display:flex; flex-direction:column; }
+  h1 { font-size:27px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:24px; line-height:1.35; }
+  h1 .em { color:var(--accent); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:18px; flex:1; }
+  /* SWOT 4색 = 데이터 의미색 고정hex(테마무관, 상단 보더=텍스트아님 안전) */
+  .card { background:var(--gray-4); border-radius:10px; padding:20px 26px; border-top:5px solid #10B981; display:flex; flex-direction:column; }
+  .card.w { border-top-color:#EF4444; }
+  .card.o { border-top-color:#3B82F6; }
+  .card.t { border-top-color:#F59E0B; }
+  .chead { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
+  .ctitle { font-size:19px; font-weight:800; color:var(--heading, var(--primary)); }
+  .csub { font-size:13px; color:var(--gray-2); margin-top:2px; }
+  .letter { font-size:40px; font-weight:900; line-height:1; color:#10B981; }
+  .card.w .letter { color:#EF4444; }
+  .card.o .letter { color:#3B82F6; }
+  .card.t .letter { color:#F59E0B; }
+  .blist { display:flex; flex-direction:column; gap:8px; }
+  .brow { display:flex; gap:10px; align-items:flex-start; }
+  .bdot { width:7px; height:7px; border-radius:50%; margin-top:7px; flex-shrink:0; background:#10B981; }
+  .card.w .bdot { background:#EF4444; }
+  .card.o .bdot { background:#3B82F6; }
+  .card.t .bdot { background:#F59E0B; }
+  .brow p { font-size:16px; color:var(--gray-1); line-height:1.4; }
+</style></head>
+<body data-layout="swot_matrix">
+  <h1>전략 수립의 첫 걸음은 <span class="em">강점·약점·기회·위기</span>를 냉정하게 분석하는 것이다</h1>
+  <div class="grid">
+    <div class="card s">
+      <div class="chead"><div><p class="ctitle">Strengths</p><p class="csub">강점</p></div><p class="letter">S</p></div>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p>서울시 브랜드 파워</p></div>
+        <div class="brow"><div class="bdot"></div><p>전문 강사진 인프라</p></div>
+        <div class="brow"><div class="bdot"></div><p>지역 거점 학습장</p></div>
+      </div>
+    </div>
+    <div class="card w">
+      <div class="chead"><div><p class="ctitle">Weaknesses</p><p class="csub">약점</p></div><p class="letter">W</p></div>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p>경직된 행정 절차</p></div>
+        <div class="brow"><div class="bdot"></div><p>플랫폼 편의성 부족</p></div>
+        <div class="brow"><div class="bdot"></div><p>홍보 예산 한계</p></div>
+      </div>
+    </div>
+    <div class="card o">
+      <div class="chead"><div><p class="ctitle">Opportunities</p><p class="csub">기회</p></div><p class="letter">O</p></div>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p>평생학습 요구 증가</p></div>
+        <div class="brow"><div class="bdot"></div><p>하이브리드 학습 확산</p></div>
+        <div class="brow"><div class="bdot"></div><p>기관 간 연계 강화</p></div>
+      </div>
+    </div>
+    <div class="card t">
+      <div class="chead"><div><p class="ctitle">Threats</p><p class="csub">위기</p></div><p class="letter">T</p></div>
+      <div class="blist">
+        <div class="brow"><div class="bdot"></div><p>민간 온라인 교육 성장</p></div>
+        <div class="brow"><div class="bdot"></div><p>인구 감소 및 고령화</p></div>
+        <div class="brow"><div class="bdot"></div><p>자기계발비 위축</p></div>
+      </div>
+    </div>
+  </div>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

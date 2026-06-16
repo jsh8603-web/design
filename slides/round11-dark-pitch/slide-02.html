@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:52px 72px 46px 72px; display:flex; flex-direction:column; }
+  .head { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+  /* 단계 배지: 색칩=div 직속텍스트(학습8) */
+  .hbadge { width:54px; text-align:center; background:var(--surface-inverse); color:var(--surface-inverse-fg);
+            border-radius:5px; padding:7px 0; font-size:16px; font-weight:800; white-space:nowrap; }
+  h1 { font-size:28px; font-weight:800; color:var(--heading, var(--primary)); letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  .steps { flex:1; display:flex; flex-direction:column; gap:13px; }
+  .step { display:flex; gap:20px; align-items:center; background:var(--gray-4); border-radius:10px; padding:16px 24px; }
+  /* 스텝 원: 색칩=div 직속텍스트, 정사각 width명시(학습8) */
+  .snum { width:44px; height:44px; border-radius:50%; background:var(--accent); color:#fff; display:flex;
+          align-items:center; justify-content:center; font-size:20px; font-weight:800; flex-shrink:0; white-space:nowrap; }
+  .sbody { flex:1; min-width:0; }
+  .stitle { font-size:18px; font-weight:800; color:var(--heading, var(--primary)); }
+  .sdesc { font-size:14px; color:var(--gray-2); line-height:1.45; margin-top:3px; }
+  .src { font-size:13px; color:var(--gray-2); text-align:right; margin-top:18px; }
+</style></head>
+<body data-layout="step_process_5">
+  <div class="head">
+    <div class="hbadge">05</div>
+    <h1>Structuring a <span class="em">Tax-Efficient JV</span></h1>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="snum">1</div>
+      <div class="sbody"><p class="stitle">Choose JV Entity Type</p><p class="sdesc">Corporation (taxed at entity level) vs. Partnership (pass-through to partners)</p></div>
+    </div>
+    <div class="step">
+      <div class="snum">2</div>
+      <div class="sbody"><p class="stitle">Select JV Jurisdiction</p><p class="sdesc">Consider tax treaty network, local incentives, and regulatory environment</p></div>
+    </div>
+    <div class="step">
+      <div class="snum">3</div>
+      <div class="sbody"><p class="stitle">Design Capital Structure</p><p class="sdesc">Equity vs. debt ratio — interest is tax-deductible, but thin-cap rules limit leverage</p></div>
+    </div>
+    <div class="step">
+      <div class="snum">4</div>
+      <div class="sbody"><p class="stitle">Plan Profit Distribution</p><p class="sdesc">Agree on waterfall priority, dividend schedule, and reinvestment policy</p></div>
+    </div>
+    <div class="step">
+      <div class="snum">5</div>
+      <div class="sbody"><p class="stitle">Build Exit Provisions</p><p class="sdesc">Tax-efficient dissolution, buyout mechanisms, and capital gains planning</p></div>
+    </div>
+  </div>
+  <p class="src">Tax-Efficient JV Guide</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

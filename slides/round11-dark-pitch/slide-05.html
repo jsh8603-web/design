@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark-pitch"><head><meta charset="UTF-8"><link rel="stylesheet" href="../../design-system/colors_and_type.css">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1280px; height:720px; overflow:hidden; font-family:'Pretendard', -apple-system, sans-serif;
+         background:var(--theme-bg); color:var(--gray-1); padding:50px 72px 40px 72px; display:flex; flex-direction:column; }
+  h1 { font-size:26px; font-weight:800; color:var(--heading, var(--primary)); margin-bottom:22px; line-height:1.3; letter-spacing:-0.01em; }
+  h1 .em { color:var(--accent); }
+  /* 9행 일정표: padding 축소(720 내, 학습7). 월=accent(라이트셀 색강조 OK) */
+  .gt { display:grid; grid-template-columns:96px 1.7fr 1.3fr 1fr; border:1px solid var(--gray-3); border-radius:8px; overflow:hidden; }
+  .chd { background:var(--surface-inverse); padding:12px 18px; }
+  .chd p { font-size:15px; font-weight:700; color:var(--surface-inverse-fg); }
+  .c { padding:9px 18px; border-top:1px solid var(--gray-3); display:flex; align-items:center; }
+  .c p { font-size:16px; color:var(--gray-1); line-height:1.3; }
+  .mon p { color:var(--accent); font-weight:800; }
+  .calt { background:var(--gray-4); }
+  .src { font-size:13px; color:var(--gray-2); margin-top:18px; }
+</style></head>
+<body data-layout="schedule_table_9">
+  <h1>1~6월: <span class="em">연말정산·건보 정산</span>이 현금흐름에 가장 큰 영향을 준다</h1>
+  <div class="gt">
+    <div class="chd"><p>월</p></div>
+    <div class="chd"><p>이벤트</p></div>
+    <div class="chd"><p>비용 영향</p></div>
+    <div class="chd"><p>FP&amp;A 반영</p></div>
+
+    <div class="c mon"><p>1월</p></div>
+    <div class="c"><p>최저임금 시행</p></div>
+    <div class="c"><p>기본급 인상</p></div>
+    <div class="c"><p>재계산</p></div>
+
+    <div class="c mon calt"><p>1월</p></div>
+    <div class="c calt"><p>연말정산 개시</p></div>
+    <div class="c calt"><p>환급 / 추징</p></div>
+    <div class="c calt"><p>반영</p></div>
+
+    <div class="c mon"><p>2월</p></div>
+    <div class="c"><p>연말정산 급여 반영</p></div>
+    <div class="c"><p>환급 / 추징</p></div>
+    <div class="c"><p>변동 예상</p></div>
+
+    <div class="c mon calt"><p>3월</p></div>
+    <div class="c calt"><p>건보 보수총액 (3/10)</p></div>
+    <div class="c calt"><p>전년 차이 정산</p></div>
+    <div class="c calt"><p>예비비</p></div>
+
+    <div class="c mon"><p>3월</p></div>
+    <div class="c"><p>지급명세서 (3/10)</p></div>
+    <div class="c"><p>행정</p></div>
+    <div class="c"><p>—</p></div>
+
+    <div class="c mon calt"><p>4월</p></div>
+    <div class="c calt"><p>건보 정산 반영</p></div>
+    <div class="c calt"><p>추가납부 / 환급</p></div>
+    <div class="c calt"><p>±2~5%</p></div>
+
+    <div class="c mon"><p>4월</p></div>
+    <div class="c"><p>고용·산재 정산</p></div>
+    <div class="c"><p>전년 정산</p></div>
+    <div class="c"><p>동일</p></div>
+
+    <div class="c mon calt"><p>5월</p></div>
+    <div class="c calt"><p>종소세 신고 안내</p></div>
+    <div class="c calt"><p>행정</p></div>
+    <div class="c calt"><p>—</p></div>
+
+    <div class="c mon"><p>6월</p></div>
+    <div class="c"><p>4대보험 점검</p></div>
+    <div class="c"><p>소급 리스크</p></div>
+    <div class="c"><p>감사 확인</p></div>
+  </div>
+  <p class="src">출처: 국민건강보험법, 고용보험법, 소득세법</p>
+
+<style id="om-fit-scaler-style">html { overflow:hidden !important; background:#0a0a0a; }</style>
+<script id="om-fit-scaler">
+(function(){function fit(){var s=Math.min(window.innerWidth/1280,window.innerHeight/720);var b=document.body;b.style.width='1280px';b.style.height='720px';b.style.position='absolute';b.style.transformOrigin='top left';b.style.left=((window.innerWidth-1280*s)/2)+'px';b.style.top=((window.innerHeight-720*s)/2)+'px';b.style.transform='scale('+s+')';}window.addEventListener('resize',fit,{passive:true});if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',fit);fit();})();
+</script>
+</body></html>

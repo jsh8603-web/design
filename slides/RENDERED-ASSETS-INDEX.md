@@ -23,7 +23,8 @@ date: 2026-06-15
 | **R8** | `slides/round8-{theme}/` | 8 | manuf-kpi/03·payroll-v2/14·payroll-guide/19·34·13 | ✅ 완료(8테마 ERROR0+FAIL0+COM의도보존+정탐회귀0). PQCD색아이콘카드·6열표·BEFORE/AFTER+영향표·9행캘린더·요율표+calc. ★변환기수정(정사각아이콘 table-column 오인→텍스트겹침 해결)+학습8(색칩=div직속텍스트, invisible방지)+학습9(불릿=단일p) |
 | **R9** | `slides/round9-{theme}/` | 8 | coupang/09·payroll-guide/30·11·32·payroll-v2/20(02목차 교체) | ✅ 완료(8테마 ERROR0+6계열 COM 의도보존+정탐회귀0). 플라이휠다이어그램·2컬럼step·5열10행누적표·5단계체크리스트+다크타임라인·heroKPI+시뮬표. ★신규결함2 수정: slide05 좌우분리head flex겹침(VP-14)→명시width / slide01 대각선화살표글리프(↘↗ 폰트폴백깨짐)→직교화살표 |
 | **R10** | `slides/round10-{theme}/` | 8 | payroll-v2/30·payroll-guide/09·41·samsung/06·discounted/11 | ✅ 완료·**클린아님**(결함 발견·수정 라운드, 8테마 ERROR0). 2컬럼step·2x2위반카드·Q&A+다크공식+민감도표·점유율누적바+4×5표·4step+5행비교표. ★재구성2(도넛SVG→누적바+KPI / 이미지슬롯→다크요약패널)=토큰범위내. ★드리프트 자해+원복: executive navy 다크패널 저대비에 `--accent-on-dark` 토큰 발명→사용자 지적("스킬 개조=드리프트")→전량 원복. ★①규약준수수정: 근본=슬라이드가 prompting_rules §4.3(다크는 fg, 라이트색 다크금지) 위반→다크패널 강조 accent→surface-inverse-fg+weight(라이트영역 색강조 유지). 디자인시스템 무개조. 과거 R1~R10 드리프트 0건(subagent 전수검토). **클린카운터 0 유지**(결함수정 라운드) |
-| R11 | `slides/round11-{theme}/` | 8 | 미정(라운드맵 R10 소진 → 미사용 복잡슬라이드 신규 선발) | ⏳ 예정 (R11 클린 시 2연속=루프종료) |
+| **R11** | `slides/round11-{theme}/` | 8 | seoul/29·tax-jv/16·payroll-guide/28·samsung/11·payroll-v2/34 | ✅ 완료·**클린아님**(결함 발견·수정, 8테마 ERROR0). SWOT 2x2·5단계프로세스·인건비α계수9행표·삼성vsSKH 7행비교표·1~6월 일정표. ★slide-04 투자시사점 카드 itext `nowrap`→변환기 인라인 겹침→nowrap제거+flex column 해결(K-202606161200). SEC 의미색 navy→cobalt#2563EB(다크테마 안전). 다크패널 강조=fg+weight(①학습). **클린카운터 0** |
+| R12 | `slides/round12-{theme}/` | 8 | 미정(후보풀 PG-02/27/33/36·PV-17/22/35·SS-08/12/13/15 데이터밀집) | ⏳ 예정 (R12 클린 시 2연속=루프종료) |
 
 **테마 목록**(8): editorial(Track B serif) · modern · executive(executive-editorial) · academic · classic · dark-mono · company · dark-pitch.
 - 각 덱 COM 렌더 위치: `slides/round{N}-{theme}/png/slide_01.png ~ slide_05.png`.

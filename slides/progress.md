@@ -119,6 +119,7 @@
 ## Working Notes — ckpt-202606161130 (btn-design, R11 생성+slide04 겹침결함, 자율주행)
 - **마지막 결정**: R11 5장 확정(seoul/29 SWOT·tax-jv/16 5step·PG-28 인건비α계수표·SS-11 삼성vsSKH비교표·PV-34 일정표) → modern 베이스 생성 → 8테마 propagate(sed+editorial serif) → 변환 8테마 ERROR0. COM(modern/dark-mono/executive/editorial): SWOT 의미색4색 정상·인건비 다크공식/총계수 **①흰강조 정상(navy0)**·SS-11 SKH주황/SEC **cobalt#2563EB(navy→cobalt 조정으로 다크테마 안전)**·executive 다크강조 fg 정상. 생성 시 학습 선적용(다크패널 강조=fg+weight·라이트영역만 색강조) 성공.
 - **★미해결 결함: slide-04 투자시사점 카드 텍스트 겹침**(전테마 동일). 3카드 중 투자시사점만 ilabel("투자 시사점")과 itext가 같은 y에 겹침(다른 2카드 SKH강점/삼성강점 정상). **2회 수정 실패**: (1)2줄 텍스트→겹침 (2).itext 13px+nowrap+1줄 단축("SKH=HBM 고베타 / 삼성=분산·저PER")→여전히 겹침. png 최신 반영 확인(20:29, 이전 png 함정 아님). **변환기 결함 의심**: `.icard`(block) 안 ilabel(block)+itext(block)인데 변환기가 itext를 ilabel 옆/같은줄 배치. 정상 2카드와 차이 불명(ilabel "투자 시사점" 5자 최단/itext 영문 SKH 시작). **다음 세션 진단 순서**: (a) .icard `display:flex;flex-direction:column` 명시(변환기 명시구조 선호) (b) itext nowrap 제거+더 짧게 (c) html2pptx.cjs 다중 텍스트블록 좌표화 로직 확인 — 변환기 결함 확정 시 메인 합의 후 변환기 수정. 파일=slides/round11-modern/slide-04.html .icard/.ilabel/.itext.
-- **R11 판정 = 클린 아님**(slide-04 결함 미해결). **클린카운터 0**.
-- **다음 의도**: slide-04 겹침 진단·수정(상기 a→b→c 순) → 재변환·COM 확인 → R11 나머지 테마/슬라이드 COM 의도보존 점검 → plan §0.6 R11행+INDEX 기입+커밋 → R11 클린이면 카운터1, 아니면 0유지.
-- **동기화 필요**: R11 결함 해결 후 INDEX R11행 갱신.
+- **★slide-04 겹침 해결**: 원인=itext `white-space:nowrap`이 변환기에서 인라인 흐름 유발→형제 ilabel 옆/같은줄 배치. **nowrap 제거(+`.icard` display:flex;flex-direction:column)로 해결**, 정상 2줄 배치 COM 확인. 8테마 재변환 ERROR0. K-202606161200 박제.
+- **R11 판정 = 클린 아님**(slide-04 겹침 결함 발생·수정 라운드). **클린카운터 0**. R12부터 클린 2연속 카운트.
+- **다음 의도**: R11 완료(8테마 ERROR0+의도보존+slide04 겹침해결). R12 소재 선발(미사용 복잡 후보풀: PG-02/27/33/36·PV-17/22/35·SS-08/12/13/15 등 데이터밀집) → modern 생성→8테마→변환→COM. ★학습 선적용: **카드 itext nowrap 금지(겹침)**·다크패널 강조=fg+weight·라이트영역만 색강조·좌우분할 head 명시width·직교화살표. 종료=2연속클린, **클린카운터=0**.
+- **동기화 완료**: plan §0.6 R11행·INDEX R11행 갱신, K-202606161200 박제, R11 커밋.

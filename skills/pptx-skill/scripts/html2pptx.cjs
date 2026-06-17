@@ -34,7 +34,9 @@ const PX_PER_IN = 96;
 const EMU_PER_IN = 914400;
 
 async function launchBrowser(tmpDir) {
-  const launchOptions = { env: { TMPDIR: tmpDir } };
+  // --allow-file-access-from-files: file:// 페이지가 외부 차트 JS(assets/*.js)를 로드하도록 허용
+  // (없으면 origin-null CORS로 차트 JS 미실행 → 빈 차트)
+  const launchOptions = { env: { TMPDIR: tmpDir }, args: ['--allow-file-access-from-files'] };
 
   if (process.platform !== 'darwin') {
     return chromium.launch(launchOptions);
@@ -444,6 +446,7 @@ function addElements(slideData, targetSlide, pres) {
         const sc = clampToSlide(shapeOptions.x, shapeOptions.y, shapeOptions.w, shapeOptions.h);
         shapeOptions.x = sc.x; shapeOptions.w = sc.w;
       }
+      if (el.shape.rotate) shapeOptions.rotate = el.shape.rotate;
       targetSlide.addText(el.text || '', shapeOptions);
     } else if (el.type === 'list') {
       const listOptions = {
@@ -943,8 +946,17 @@ async function extractSlideData(page) {
     };
 
     // Parse inline formatting tags (<b>, <i>, <u>, <strong>, <em>, <span>) into text runs
+    const pseudoContent = (el, which) => {
+      const c = window.getComputedStyle(el, which).content;
+      if (!c || c === 'none' || c === 'normal') return '';
+      const m = c.match(/^["']([\s\S]*)["']$/);
+      return m ? m[1] : '';  // literal strings only (skip attr()/counter()/url())
+    };
     const parseInlineFormatting = (element, baseOptions = {}, runs = [], baseTextTransform = (x) => x) => {
       let prevNodeIsText = false;
+
+      const beforeC = pseudoContent(element, '::before');
+      if (beforeC) { runs.push({ text: baseTextTransform(beforeC), options: { ...baseOptions } }); }
 
       element.childNodes.forEach((node) => {
         let textTransform = baseTextTransform;
@@ -966,7 +978,7 @@ async function extractSlideData(page) {
           // Handle inline elements with computed styles
           // SMALL 포함: <small> 단위접미(KPI "67<small>B$</small>" 등)가 인식목록에 빠져 ELEMENT_NODE
           // 분기 진입 후 내부 if 미매칭 → run 미생성 = 텍스트 소실(S4 academic 발견, XML+COM 확정).
-          if (node.tagName === 'SPAN' || node.tagName === 'B' || node.tagName === 'STRONG' || node.tagName === 'I' || node.tagName === 'EM' || node.tagName === 'U' || node.tagName === 'SMALL') {
+          if (['SPAN','B','STRONG','I','EM','U','SMALL','SUB','SUP','MARK','CODE','ABBR','CITE','S','DEL','INS','KBD','SAMP','VAR','Q','TIME','DFN'].includes(node.tagName)) {
             const isBold = computed.fontWeight === 'bold' || parseInt(computed.fontWeight) >= 600;
             if (isBold && !shouldSkipBold(computed.fontFamily)) options.bold = true;
             if (computed.fontStyle === 'italic') options.italic = true;
@@ -986,16 +998,16 @@ async function extractSlideData(page) {
 
             // Validate: Check for margins on inline elements
             if (computed.marginLeft && parseFloat(computed.marginLeft) > 0) {
-              errors.push(`Inline element <${node.tagName.toLowerCase()}> has margin-left which is not supported in PowerPoint. Remove margin from inline elements.`);
+              console.warn(`  ⚠️  inline <${node.tagName.toLowerCase()}> margin-left ignored (PPTX inline runs can't carry margin)`);
             }
             if (computed.marginRight && parseFloat(computed.marginRight) > 0) {
-              errors.push(`Inline element <${node.tagName.toLowerCase()}> has margin-right which is not supported in PowerPoint. Remove margin from inline elements.`);
+              console.warn(`  ⚠️  inline <${node.tagName.toLowerCase()}> margin-right ignored (PPTX inline runs can't carry margin)`);
             }
             if (computed.marginTop && parseFloat(computed.marginTop) > 0) {
-              errors.push(`Inline element <${node.tagName.toLowerCase()}> has margin-top which is not supported in PowerPoint. Remove margin from inline elements.`);
+              console.warn(`  ⚠️  inline <${node.tagName.toLowerCase()}> margin-top ignored (PPTX inline runs can't carry margin)`);
             }
             if (computed.marginBottom && parseFloat(computed.marginBottom) > 0) {
-              errors.push(`Inline element <${node.tagName.toLowerCase()}> has margin-bottom which is not supported in PowerPoint. Remove margin from inline elements.`);
+              console.warn(`  ⚠️  inline <${node.tagName.toLowerCase()}> margin-bottom ignored (PPTX inline runs can't carry margin)`);
             }
 
             // Recursively process the child node. This will flatten nested spans into multiple runs.
@@ -1015,6 +1027,9 @@ async function extractSlideData(page) {
         runs[0].text = runs[0].text.replace(/^\s+/, '');
         runs[runs.length - 1].text = runs[runs.length - 1].text.replace(/\s+$/, '');
       }
+
+      const afterC = pseudoContent(element, '::after');
+      if (afterC) { runs.push({ text: baseTextTransform(afterC), options: { ...baseOptions } }); }
 
       return runs.filter(r => r.text.length > 0);
     };
@@ -1095,7 +1110,7 @@ async function extractSlideData(page) {
     const placeholders = [];
     // BLOCKQUOTE 추가(2026-06-15, phase4 풀쿼트 발견): blockquote 가 textTags 에 없어 비-leaf div 도
     // 아니면 텍스트 추출 경로를 못 타 인용 본문 silent drop. plain blockquote = 텍스트로 처리.
-    const textTags = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'UL', 'OL', 'LI', 'BLOCKQUOTE'];
+    const textTags = ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'UL', 'OL', 'LI', 'BLOCKQUOTE', 'FIGCAPTION'];
     const processed = new Set();
 
     document.querySelectorAll('*').forEach((el) => {
@@ -1142,9 +1157,53 @@ async function extractSlideData(page) {
         const hasShadow = computed.boxShadow && computed.boxShadow !== 'none';
 
         if (hasBg || hasBorder || hasShadow) {
+          // 디자인 보존: throw 대신 텍스트요소의 bg/border/shadow를 backing 도형으로 emit하고
+          // 그 안에 텍스트를 embed한다(leaf-div+bg 처리와 동일 패턴). 흰글씨+배경색이 보존된다.
+          const hasBlockChild = el.querySelector(BLOCK_CHILD_SELECTOR);
+          if (!hasBlockChild) {
+            const rect = el.getBoundingClientRect();
+            if (rect.width > 0 && rect.height > 0) {
+              const isBold = parseInt(computed.fontWeight) >= 600 && !shouldSkipBold(computed.fontFamily);
+              const baseRunOptions = {
+                fontSize: pxToPoints(computed.fontSize),
+                fontFace: computed.fontFamily.split(',')[0].replace(/['"]/g, '').trim(),
+                color: rgbToHex(computed.color),
+                bold: isBold,
+                italic: computed.fontStyle === 'italic',
+                breakLine: false
+              };
+              const transformStr = computed.textTransform;
+              const shapeText = parseInlineFormatting(el, baseRunOptions, [], (str) => applyTextTransform(str, transformStr));
+              const padToPt = (p) => pxToPoints(p) || 0;
+              elements.push({
+                type: 'shape',
+                text: shapeText,
+                position: { x: pxToInch(rect.left), y: pxToInch(rect.top), w: pxToInch(rect.width), h: pxToInch(rect.height) },
+                shape: {
+                  fill: hasBg ? rgbToHex(computed.backgroundColor) : null,
+                  transparency: hasBg ? extractAlpha(computed.backgroundColor) : null,
+                  line: hasBorder ? { color: rgbToHex(computed.borderColor), width: pxToPoints(computed.borderWidth) || 1 } : null,
+                  rectRadius: (() => {
+                    const r = computed.borderRadius; const v = parseFloat(r);
+                    if (!v) return 0;
+                    if (r.includes('%')) return v >= 50 ? 1 : (v/100)*pxToInch(Math.min(rect.width, rect.height));
+                    return pxToInch(v);
+                  })(),
+                  shadow: parseBoxShadow(computed.boxShadow),
+                  textAlign: computed.textAlign === 'center' ? 'center' : computed.textAlign === 'right' ? 'right' : 'left',
+                  textValign: 'middle',
+                  margin: [padToPt(computed.paddingTop), padToPt(computed.paddingRight), padToPt(computed.paddingBottom), padToPt(computed.paddingLeft)]
+                }
+              });
+              processed.add(el);
+              el.querySelectorAll('*').forEach(c => processed.add(c));
+              return;
+            }
+          }
+          // 블록 자식이 있으면(드묾) 안전하게 기존 동작 유지
           errors.push(
-            `Text element <${el.tagName.toLowerCase()}> has ${hasBg ? 'background' : hasBorder ? 'border' : 'shadow'}. ` +
-            'Backgrounds, borders, and shadows are only supported on <div> elements, not text elements.'
+            `Text element <${el.tagName.toLowerCase()}> has ${hasBg ? 'background' : hasBorder ? 'border' : 'shadow'} with block children. ` +
+            'Wrap in a <div> instead.'
           );
           return;
         }
@@ -1381,8 +1440,9 @@ async function extractSlideData(page) {
                 italic: computed.fontStyle === 'italic',
                 breakLine: false
               };
-              shapeText = parseInlineFormatting(el, baseRunOptions);
-              
+              const transformStr = computed.textTransform;
+              shapeText = parseInlineFormatting(el, baseRunOptions, [], (str) => applyTextTransform(str, transformStr));
+
               // Detect alignment from flex or text-align
               const justifyContent = computed.justifyContent;
               const alignItems = computed.alignItems;
@@ -1451,7 +1511,8 @@ async function extractSlideData(page) {
                   textAlign: shapeAlign,
                   textValign: shapeValign,
                   margin: shapeMargin,
-                  lineSpacing: el.dataset.shapeLineSpacing ? parseFloat(el.dataset.shapeLineSpacing) : undefined
+                  lineSpacing: el.dataset.shapeLineSpacing ? parseFloat(el.dataset.shapeLineSpacing) : undefined,
+                  rotate: getRotation(computed.transform, computed.writingMode) || undefined
                 }
               });
             }
@@ -1623,7 +1684,12 @@ async function extractSlideData(page) {
       } else {
         // Plain text - inherit CSS formatting
         const textTransform = computed.textTransform;
-        const transformedText = applyTextTransform(text, textTransform);
+        const beforeC = pseudoContent(el, '::before');
+        const afterC = pseudoContent(el, '::after');
+        const transformedText =
+          (beforeC ? applyTextTransform(beforeC, textTransform) : '') +
+          applyTextTransform(text, textTransform) +
+          (afterC ? applyTextTransform(afterC, textTransform) : '');
 
         const isBold = computed.fontWeight === 'bold' || parseInt(computed.fontWeight) >= 600;
 

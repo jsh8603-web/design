@@ -354,6 +354,13 @@ function checkPF19(html, file) {
   const fontRe = /font-family\s*:\s*([^;"\n}]+)/gi;
   let m;
   while ((m = fontRe.exec(html)) !== null) {
+    // var(--font-*) 선언은 fallback 인자·따옴표(var(--x, "Y") 형) 포함 가능 → fontRe 가 따옴표에서
+    // 잘려 "var(--font-serif" 로 오발(stress-c6 slide-07/08). m[1] 전체서 var 토큰 인라인 추출·환원 우선.
+    const varInline = m[1].match(/var\(\s*(--font-[\w-]+)/i);
+    if (varInline) {
+      const resolved = CSS_VAR_FONTS.get(varInline[1]);
+      if (resolved && ALLOWED_FONTS.has(resolved)) continue; // CSS 토큰 환원=allow → 이 선언 통과
+    }
     const fonts = m[1].split(',').map(f => f.trim().replace(/['"]/g, '').toLowerCase());
     for (let font of fonts) {
       if (!font) continue;
@@ -1505,7 +1512,35 @@ function checkPF70(html, file) {
   return issues;
 }
 
-function runStaticChecks(html, file) {
+// PF-76: diagonal arrow glyphs (↖↗↘↙ etc.) — PPTX font fallback breaks them [A8/학습⑪]
+function checkPF76(html, file) {
+  const issues = [];
+  // 가시 텍스트만 스캔 (style/script/태그 제거 → CSS·속성값 매칭 FP 차단)
+  const text = html
+    .replace(/<style[\s\S]*?<\/style>/gi, '')
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<[^>]+>/g, ' ');
+  const diag = text.match(/[↖↗↘↙⬈⬉⬊⬋⤡⤢]/g);
+  if (diag && diag.length) {
+    const uniq = [...new Set(diag)].join(' ');
+    issues.push(fmtError(file, 'PF-76',
+      `Diagonal arrow glyph(s) "${uniq}" in text — PPTX font fallback breaks these. Use orthogonal → ↑ ← ↓ or a CSS border+rotate shape [학습⑪]`));
+  }
+  return issues;
+}
+
+// 정적 검사 전 비렌더 영역(주석) 제거 — HTML 주석·<style> 내 CSS 주석은 렌더되지 않으므로
+// 태그/속성 존재 스캔(PF-63 <table>, PF-22 clip-path 등)에서 주석 내 문자열 매칭 = false positive.
+// (anchor: stress-c1 사이클1 — slide-01 PF-63 / slide-02·09 PF-22 주석-FP)
+function stripComments(rawHtml) {
+  let h = rawHtml.replace(/<!--[\s\S]*?-->/g, '');           // HTML 주석
+  h = h.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, (block) => // <style> 내 CSS 주석만
+    block.replace(/\/\*[\s\S]*?\*\//g, ''));
+  return h;
+}
+
+function runStaticChecks(rawHtml, file) {
+  const html = stripComments(rawHtml);
   return [
     // PF-01 removed (subsumed by PF-39 + PF-62)
     ...checkPF02(html, file),
@@ -1556,6 +1591,7 @@ function runStaticChecks(html, file) {
     ...checkPF63(html, file),
     ...checkPF64(html, file),
     ...checkPF70(html, file),
+    ...checkPF76(html, file),
   ];
 }
 

@@ -507,7 +507,18 @@ function addElements(slideData, targetSlide, pres) {
 
       // Minimum 10pt (0.139") absolute increase to compensate for PptxGenJS internal margin (~7.2pt)
       const minWidthIncrease = 10 / 72; // 10pt in inches
-      const widthIncrease = Math.max(el.position.w * widthMultiplier, minWidthIncrease);
+      // multi-line 텍스트는 wrap 되므로 폭 확장이 불필요(잘림은 줄바꿈으로 해결됨). 좁은 컬럼(배경없는
+      // div=shape 아님→부모 clamp L545 미발동)서 CJK ~25% 폭확장이 인접 컬럼을 침범 → X겹침 garble.
+      // (stress-c5 slide-08/probe-c5 repro-B 격리 확정.) single-line만 잘림방지 폭확장, multi-line은 최소(10pt).
+      // ★isSingleLine(위)은 position.h(inch) vs lineHeight(pt) 단위 불일치로 거의 항상 true(별도 버그이나
+      // heightIncrease/fit:shrink 가 의존 → 광범위 회귀 우려로 미수정). widthIncrease 만 올바른 단위로 multi-line
+      // 재판정: multi-line 은 wrap 되므로 폭확장 불필요 — 좁은 컬럼(배경없는 div=clamp L545 미발동)서 CJK ~24%
+      // 폭확장이 인접 컬럼 침범 → X겹침 garble (stress-c5 slide-08/probe-c5 repro-B 격리·DBG 확정).
+      const lineHeightInch = (el.style.lineSpacing || el.style.fontSize * 1.2) / 72;
+      const isMultiLineText = el.position.h > lineHeightInch * 1.5;
+      const widthIncrease = isMultiLineText
+        ? minWidthIncrease
+        : Math.max(el.position.w * widthMultiplier, minWidthIncrease);
       const heightIncrease = isSingleLine ? el.position.h * 0.15 : el.position.h * 0.1;
       const align = el.style.align;
 
@@ -638,6 +649,11 @@ function addElements(slideData, targetSlide, pres) {
     // (or clearly non-square); icons are ~square. Gate on small width + near-square ratio.
     const tableColumns = shapeColumns.filter(c => {
       if (c.ySet.size < 2) return false;
+      // ★전폭(거의 슬라이드 폭) shape = 차트 격자선/배경 패널/구분선 등 — 표 셀 컬럼 아님.
+      // 이게 tableColumn 으로 오판되면 그 폭 범위 안 모든 텍스트가 col.x 로 snap → X-collapse
+      // (stress-c6 slide-02 워터폴 axisrow 12 텍스트가 w9.09" gridline 컬럼에 snap, rect 정확한데
+      //  PPTX x 전부 0.45"로 통일. step 디버그 [XTC]/[XDBG2] 로 확정). 표 컬럼은 셀폭이라 좁다.
+      if (c.w > 7.0) return false; // 7"(896px) 초과 = 전폭 비-셀 shape
       const avgH = c.yRanges.reduce((s, r) => s + r.h, 0) / c.yRanges.length;
       const isSquareIcon = c.w < 1.2 && Math.abs(c.w - avgH) < Math.max(c.w, avgH) * 0.35;
       return !isSquareIcon;
@@ -1610,6 +1626,17 @@ async function extractSlideData(page) {
         } else {
           return;
         }
+      }
+
+      // textTag double-emit 방지(2026-06-19, stress-c1 slide-07 blockquote{flex-col}>p 발견):
+      // BLOCKQUOTE/FIGCAPTION 등 textTag 가 block 자식(<p> 등)을 가지면 el.textContent 가 자식
+      // 텍스트를 합쳐 한 박스로 방출되고, 자식 block 은 미-processed 라 개별 재방출 → 같은 영역 겹침
+      // garbled. textTag 자식(P/H/UL/OL/LI/BLOCKQUOTE/FIGCAPTION)이 있으면 그 자식이 텍스트를 개별
+      // 재방출하므로 자기 방출 skip(DIV isContainer 의 hasBlockChildren=textTags.join 체크와 동형).
+      // ⚠️ textTags 자식만 체크 — <p><img> 처럼 비-텍스트 block 자식은 재방출 안 하므로 텍스트 손실 방지.
+      // UL/OL/LI 는 위에서 이미 처리·return. 정상 blockquote(텍스트만)=무영향.
+      if (textTags.includes(el.tagName) && el.querySelector(textTags.join(', '))) {
+        return;
       }
 
       const rect = el.getBoundingClientRect();

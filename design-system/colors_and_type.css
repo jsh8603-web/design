@@ -461,6 +461,8 @@
   --pt-body:      14pt /* @kind font */;   /* PRIMARY body */
   --pt-small:     12pt /* @kind font */;   /* caption */
   --pt-foot:       9pt /* @kind font */;   /* footnote, source, page number */
+  --pt-body-compact: 16pt /* @kind font */; /* dense-grid body (3+ col cards) */
+  --pt-chart-label:  10pt /* @kind font */; /* mono label, chart axis, eyebrow */
 }
 
 /* ── Semantic type styles for slides (mck-compliant) ──────────────────── */
@@ -473,6 +475,8 @@
 .t-body      { font-family: var(--font-sans); font-size: var(--pt-body);      font-weight: 400; line-height: 1.45; color: var(--gray-1); }
 .t-small     { font-family: var(--font-sans); font-size: var(--pt-small);     font-weight: 400; line-height: 1.45; color: var(--gray-2); }
 .t-foot      { font-family: var(--font-sans); font-size: var(--pt-foot);      font-weight: 400; line-height: 1.45; color: var(--gray-2); letter-spacing: 0.01em; }
+.t-body-compact { font-family: var(--font-sans); font-size: var(--pt-body-compact); font-weight: 400; line-height: 1.30; color: var(--gray-1); }
+.t-chart-label  { font-family: var(--font-mono); font-size: var(--pt-chart-label); font-weight: 600; line-height: 1.20; color: var(--gray-2); letter-spacing: 0.06em; text-transform: uppercase; }
 
 /* ── Slide chrome (v3 — mck 13.333"×7.5" canvas, 1280×720px design grid) ──
    v3 표준 캔버스. 이전 slides-grab 의 720×405pt (10×5.625") 는 legacy.

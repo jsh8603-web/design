@@ -33,3 +33,9 @@ tests/visual-regression/diff/
 tests/visual-regression/_selftest-out/
 tests/visual-regression/fixtures/
 slides/_render-check/
+
+# stress-loop / probe converter-test scratch (transient evidence — kept local, excluded from repo)
+slides/probe*/
+slides/stress-c*/
+slides/**/*_sm.png
+slides/round11-modern/png/s4b.jpg
